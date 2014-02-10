@@ -3,15 +3,15 @@ Mulgara Semantic Store (Mulgara) Installation Guide
 
 Table of Contents
 
- * [Introduction][introduction]
- ** [Directory Layout][directory-layout]
- ** [Release Notes][release-notes]
- * [Installing Java][installing-java]
- * [Building Mulgara][building-mulgara]
- ** [Building Mulgara in Eclipse][building-a-mulgara-server]
- * [Running a Mulgara Server][running-a-mulgara-server]
- * [Mulgara Server Options][mulgara-server-options]
- * [License][license]
+ * [Introduction](#introduction)
+ * - [Directory Layout](#directory-layout)
+ * - [Release Notes](#release-notes)
+ * [Installing Java](#installing-java)
+ * [Building Mulgara](#building-mulgara)
+ * - [Building Mulgara in Eclipse](#building-a-mulgara-server)
+ * [Running a Mulgara Server](#running-a-mulgara-server)
+ * [Mulgara Server Options](#mulgara-server-options)
+ * [License](#license)
 
 
 # Introduction
