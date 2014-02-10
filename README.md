@@ -35,7 +35,7 @@ a highly scalable, transaction safe environment.
  * src -     Source code
  * test -    Test results (auto generated)
 
-ii. Release Notes
+## Release Notes
 -----------------
 
 New Features:
@@ -85,7 +85,7 @@ Known Bugs:
 The list of bugs may be browsed (and updated) at:
 http://mulgara.org/jira/secure/Dashboard.jspa
 
-II. Installing Java
+# Installing Java
 ===================
 
 Download a J2SE 1.5.X (or higher) for your platform from http://java.sun.com/j2se/,
@@ -113,7 +113,7 @@ Note. You must use a Java in the J2SE 1.5.x series for compiling and running
 Mulgara.  Java 1.6.0 and above is not yet supported.
 
 
-III. Building Mulgara
+# Building Mulgara
 ====================
 
 If you have downloaded the binary distribution of Mulgara please skip this
@@ -130,7 +130,7 @@ $ ./build.sh dist
 To build the distribution in Windows:
 C:\Mulgara\> build dist
 
-ii. Building Mulgara in Eclipse
+## Building Mulgara in Eclipse
 -------------------------------
 
 The Mulgara sources include the .project and .classpath files required for
@@ -155,7 +155,7 @@ After building the library, do a Refresh (F5) in Eclipse to make the library
 available to the project.
 
 
-IV. Running a Mulgara Server
+# Running a Mulgara Server
 ============================
 
 The Mulgara server is currently run from a shell script under Linux or a batch
@@ -205,7 +205,7 @@ Your HTTP port may be different if you have supplied a -p option.
 Follow the links to the user documentation to learn more about using Mulgara.
 
 
-V. Mulgara Server Options
+# Mulgara Server Options
 =========================
 
 You can change the basic Mulgara server options by suppling them as arguments
@@ -256,7 +256,7 @@ Under Windows :
 $java -jar mulgara-1.1.0.jar -a c:\mulgara-data
 ```
 
-VI. License
+# License
 ==========
 
 The Mulgara Semantic Store is licensed under the Open Software License
