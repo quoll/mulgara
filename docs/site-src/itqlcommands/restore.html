@@ -1,0 +1,91 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - restore</title>
+    <meta name="keywords" content="restore, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/itqlcommands/quit.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/itqlcommands/rollback.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/itqlcommands/index.html">iTQL Commands</a></p>
+<p class="relateditem"><a href="/itqlcommands/alias.html">alias</a></p>
+<p class="relateditem"><a href="/itqlcommands/backup.html">backup</a></p>
+<p class="relateditem"><a href="/itqlcommands/comment.html">comment (#)</a></p>
+<p class="relateditem"><a href="/itqlcommands/commit.html">commit</a></p>
+<p class="relateditem"><a href="/itqlcommands/create.html">create</a></p>
+<p class="relateditem"><a href="/itqlcommands/delete.html">delete</a></p>
+<p class="relateditem"><a href="/itqlcommands/drop.html">drop</a></p>
+<p class="relateditem"><a href="/itqlcommands/execute.html">execute</a></p>
+<p class="relateditem"><a href="/itqlcommands/help.html">help</a></p>
+<p class="relateditem"><a href="/itqlcommands/insert.html">insert</a></p>
+<p class="relateditem"><a href="/itqlcommands/load.html">load</a></p>
+<p class="relateditem"><a href="/itqlcommands/quit.html">quit</a></p>
+<p class="relateditem"><a href="/itqlcommands/rollback.html">rollback</a></p>
+<p class="relateditem"><a href="/itqlcommands/select.html">select</a></p>
+<p class="relateditem"><a href="/itqlcommands/set.html">set</a></p>
+
+ -->
+
+
+
+
+<h2>restore</h2>
+
+<p>Reads in a server backup file previously created using the <code><a id="h215" class="documentlinktemplate" title="backup" href="/itqlcommands/backup.html">backup</a></code> command. The general syntax is as follows:</p>
+
+<p class="commandtext">restore server from [local|remote] file;</p>
+
+<p>Where:</p>
+<ul><li><code>server</code> is the URI of the Mulgara server to restore.</li><li><code>local</code> or <code>remote</code> specifies whether the backup file is read locally from the client or remotely from the server's filesystem, respectively. If not specified, the default is <code>remote</code>.</li><li><code>file</code> is the URI of the backup file.</li></ul>
+<p>For example:</p>
+
+<p class="indentcommandtext">restore &lt;rmi://mysite.com/server1&gt; from &lt;file:/tmp/serverbackup.gz&gt;;</p>
+
+<p class="indent">and</p>
+
+<p class="indentcommandtext">restore &lt;rmi://mysite.com/server1&gt; from remote &lt;file:/tmp/serverbackup.gz&gt;;</p>
+
+<p class="indent">are equivalent. They both restore the backup file remotely from the server's filesystem.</p>
+
+<p class="indentcommandtext">restore &lt;rmi://mysite.com/server1&gt; from local &lt;file:/tmp/serverbackup.gz&gt;;</p>
+
+<p class="indent">restores the backup file locally from the client.</p>
+
+<p class="note"><strong>Note -</strong> To restore an individual model backup, use the <code><a id="h1527" class="documentlinktemplate" title="create" href="/itqlcommands/create.html">create</a></code> and <code><a id="h1528" class="documentlinktemplate" title="load" href="/itqlcommands/load.html">load</a></code> commands.</p>
+
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

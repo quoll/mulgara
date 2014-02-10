@@ -1,0 +1,196 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - JRDF Examples</title>
+    <meta name="keywords" content="JRDF Examples, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+
+		<a href="/system/jrdfexamples.html#o2514">Memory</a> &#124;
+		<a href="/system/jrdfexamples.html#o2518">Client</a> &#124;
+		<a href="/system/jrdfexamples.html#o2521">iTQL Results</a> 
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/system/jrdfvisitor.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/integration/index.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/system/jrdf.html">Java RDF (JRDF)</a></p>
+<p class="relateditem"><a href="/system/jrdfapis.html">JRDF APIs</a></p>
+<p class="relateditem"><a href="/system/jrdfgraphs.html">JRDF Graphs</a></p>
+<p class="relateditem"><a href="/system/jrdfgraphs.html#o2479">Querying a JRDF Graph</a></p>
+<p class="relateditem"><a href="/system/jrdftks.html">TKS Client Support</a></p>
+<p class="relateditem"><a href="/system/jrdfmemory.html">JRDF Memory Implementation</a></p>
+<p class="relateditem"><a href="/system/jrdfconcol.html">Containers and Collections</a></p>
+<p class="relateditem"><a href="/system/jrdfvisitor.html">Built-in Visitor Pattern</a></p>
+
+ -->
+
+
+
+
+<h3>Examples</h3>
+
+<p>The following examples illustrate using a JRDF Graph.</p>
+
+<div class="anchor"><a name="o2514">&nbsp;</a></div>
+<h4>JRDF Graph (Memory)</h4>
+
+<p>This example demonstrates how to:</p>
+<ul><li>Create a JRDF graph and add triples</li><li>Query the JRDF graph</li><li>Remove triples from the JRDF graph</li></ul>
+<div class="anchor"><a name="o2515">&nbsp;</a></div>
+<h5>Create a JRDF Graph and add Triples</h5>
+
+<p>The following code creates a memory JRDF graph and inserts triples (the graph does not store the triples in any specific order):</p>
+
+<p class="commandtext">//create Graph<br />
+Graph graph = new GraphImpl();<br />
+GraphElementFactory elementFactory = graph.getElementFactory();<br />
+<br />
+//create Elements<br />
+BlankNode subject = elementFactory.createResource();<br />
+URIReference subject2 = elementFactory.createResource(new URI(&quot;http://example.org#subject&quot;));<br />
+URIReference predicate = elementFactory.createResource(new URI(&quot;http://example.org#predicate&quot;));<br />
+URIReference predicate2 = elementFactory.createResource(new URI(&quot;http://example.org#predicate2&quot;));<br />
+Literal object = elementFactory.createLiteral(&quot;object&quot;);<br />
+<br />
+Triple triple = elementFactory.createTriple(subject, predicate, object);<br />
+Triple triple2 = elementFactory.createTriple(subject2, predicate, object);<br />
+Triple triple3 = elementFactory.createTriple(subject2, predicate, subject);<br />
+Triple triple4 = elementFactory.createTriple(predicate, predicate2, subject);<br />
+<br />
+//insert Triples<br />
+graph.add(triple);<br />
+graph.add(triple2);<br />
+graph.add(triple3);<br />
+graph.add(triple4);</p>
+
+<p>The graph now contains the following triples (N3):</p>
+
+<p class="commandtext">_blankNode123 &lt;http://example.org#predicate&gt; 'object'<br />
+&lt;http://example.org#subject&gt; &lt;http://example.org#predicate&gt; 'object'<br />
+&lt;http://example.org#subject&gt; &lt;http://example.org#predicate&gt; _blankNode123      <br />
+&lt;http://example.org#predicate&gt; &lt;http://example.org#predicate2&gt; _blankNode123      </p>
+
+<p class="note"><strong>Note </strong>- <code>_blankNode123</code> represents <code>subject</code> which is a BlankNode.</p>
+<div class="anchor"><a name="o2516">&nbsp;</a></div>
+<h5>Query the JRDF Graph</h5>
+
+<p>The following code queries the JRDF graph to find all triples where <code>subject2</code> is the SubjectNode. The results are a subgraph of the original JRDF graph.</p>
+
+<p class="commandtext">//query the graph<br />
+Triple queryTriple = elementFactory.createTriple(subject2, null, null);<br />
+ClosableIterator queryResult = graph.find(queryTriple);</p>
+
+<p>The contents of <code>queryResult</code> are:</p>
+
+<p class="commandtext">&lt;http://example.org#subject&gt; &lt;http://example.org#predicate&gt; 'object'<br />
+&lt;http://example.org#subject&gt; &lt;http://example.org#predicate&gt; _blankNode123</p>
+<div class="anchor"><a name="o2517">&nbsp;</a></div>
+<h5>Remove a Triple from the JRDF Graph</h5>
+
+<p>The following code removes a Triple from the JRDF Graph.</p>
+
+<p class="commandtext">//remove Triple<br />
+graph.remove(triple4);</p>
+
+<p>The JRDF graph now contains:</p>
+
+<p class="commandtext">_blankNode123 &lt;http://example.org#predicate&gt; 'object'<br />
+&lt;http://example.org#subject&gt; &lt;http://example.org#predicate&gt; 'object'<br />
+&lt;http://example.org#subject&gt; &lt;http://example.org#predicate&gt; _blankNode123</p>
+<div class="anchor"><a name="o2518">&nbsp;</a></div>
+<h4>Mulgara Backed JRDF Graph (Client)</h4>
+
+<p>This example demonstrates how to:</p>
+<ul><li>Create a Mulgara session</li><li>Create a Mulgara backed JRDF graph</li></ul>
+<div class="anchor"><a name="o2519">&nbsp;</a></div>
+<h5>Create a Mulgara Session</h5>
+
+<p>The following code creates a Mulgara session object:</p>
+
+<p class="commandtext">//location of the Mulgara Server<br />
+URI serverURI = new URI(&quot;rmi://mysite.com/server1&quot;);<br />
+<br />
+//connect to the Mulgara Server<br />
+//true indicates a remote Server, if the Server is not remote use false <br />
+SessionFactory sessionFactory = SessionFactoryFinder.newSessionFactory(serverURI, true);<br />
+Session session = sessionFactory.newSession();</p>
+
+<p class="note"><strong>Note -</strong> The Mulgara server must be running. <code>rmi://mysite.com/server1</code> is an example only. Replace this with the URI for your Mulgara server.</p>
+<div class="anchor"><a name="o2520">&nbsp;</a></div>
+<h5>Create a Mulgara Backed JRDF Graph</h5>
+
+<p>The following code creates a new JRDF graph:</p>
+
+<p class="commandtext">//create a new Mulgara Model<br />
+URI modelURI = new URI(&quot;rmi://mysite.com/server1#exampleGraph&quot;);<br />
+URI modelType = new URI(&quot;http://mulgara.org/mulgara#Model&quot;);<br />
+session.createModel(modelURI, modelType);<br />
+<br />
+//create a JRDF Graph using the model<br />
+ItqlInterpreter interpreter = new ItqlInterpreter(new HashMap());<br />
+Graph = AbstractGraphFactory.createGraph(modelURI, session);</p>
+
+<p class="note"><strong>Note -</strong> You only have to create the model once. If using an existing model you do not have to create it.</p>
+<div class="anchor"><a name="o2521">&nbsp;</a></div>
+<h4>Display iTQL Results as an JRDF Graph</h4>
+
+<p>This example demonstrates how to:</p>
+<ul><li>Execute an iTQL query</li><li>Create a read-only JRDF Graph using the results</li></ul>
+<p class="note"><strong>Note -</strong> This example assumes you have already <a id="h2522" class="documentlinktemplate" title="Create a Mulgara Session" href="/system/jrdfexamples.html#o2519">created a Mulgara session</a>.</p>
+<div class="anchor"><a name="o2523">&nbsp;</a></div>
+<h5>Execute an iTQL Query</h5>
+
+<p>The following code returns all triples for a model:</p>
+
+<p class="commandtext">//create the query<br />
+String queryText = &quot;select $s $p $o from &lt;rmi://mysite.com/server1#testModel&gt; where $s $p $o ; &quot;;<br />
+ItqlInterpreter interpreter = new ItqlInterpreter(new HashMap());<br />
+Query query = interpreter.parseQuery(queryText);<br />
+<br />
+//execute the query<br />
+Answer queryResult = session.query(query);</p>
+
+<p class="note"><strong>Note -</strong> The model <code>rmi://mysite.com/server1#testModel</code> is an example only. Replace this with the URI for your model.</p>
+<div class="anchor"><a name="o2524">&nbsp;</a></div>
+<h5>Create a JRDF Graph from the Results</h5>
+
+<p>The following code creates a new read-only JRDF graph from the results of the iTQL query in the previous example.</p>
+
+<p class="commandtext">//create a JRDF Graph<br />
+Graph = AbstractGraphFactory.createGraph(queryResult);</p>
+
+<p class="note"><strong>Note -</strong><code> queryResult</code> must contain three columns to be valid for use as a JRDF graph.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

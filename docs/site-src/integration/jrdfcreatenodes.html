@@ -1,0 +1,92 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Creating Nodes and Triples</title>
+    <meta name="keywords" content="Nodes, Triples, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/integration/jrdfcreategraph.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/integration/jrdfaddtriples.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/integration/jrdftutorial.html">JRDF Tutorial</a></p>
+<p class="relateditem"><a href="/integration/jrdfprereq.html">Prerequisites</a></p>
+<p class="relateditem"><a href="/integration/jrdfprereq.html#o2898">Obtaining a Session from a Mulgara Server</a></p>
+<p class="relateditem"><a href="/integration/jrdfprereq.html#o2899">Comparison of JRDF Graph Implementations</a></p>
+<p class="relateditem"><a href="/integration/jrdfcreategraph.html">Creating the Graph</a></p>
+<p class="relateditem"><a href="/integration/jrdfaddtriples.html">Adding Triples to the Graph</a></p>
+<p class="relateditem"><a href="/integration/searchgraph.html">Searching the Graph</a></p>
+<p class="relateditem"><a href="/integration/jrdfreify.html">Reify Triples</a></p>
+<p class="relateditem"><a href="/integration/jrdfremove.html">Removing Triples from the Graph</a></p>
+
+
+ -->
+
+
+
+
+<h3>Creating Nodes and Triples</h3>
+
+<p>Nodes and tiples are created using a <code>GraphElementFactory</code> that is obtained from a JRDF graph using the graph's <code>getElementFactory()</code> method. The following code creates example nodes and triples:</p>
+
+<p class="commandtext">//get the Factory<br />
+GraphElementFactory elementFactory = graph.getElementFactory();<br />
+<br />
+//create resources<br />
+URIReference person = elementFactory.createResource(new URI(&quot;http://example.org/staffid#85740&quot;));<br />
+BlankNode address = elementFactory.createResource();<br />
+<br />
+//create properties<br />
+URIReference hasAddress = elementFactory.createResource(new URI(&quot;http://example.org/terms#address&quot;));<br />
+URIReference hasStreet = elementFactory.createResource(new URI(&quot;http://example.org/terms#street&quot;));<br />
+URIReference hasCity = elementFactory.createResource(new URI(&quot;http://example.org/terms#city&quot;));<br />
+URIReference hasState = elementFactory.createResource(new URI(&quot;http://example.org/terms#state&quot;));<br />
+URIReference hasPostCode = elementFactory.createResource<br />
+  (new URI(&quot;http://example.org/terms#postalCode&quot;));<br />
+<br />
+//create values<br />
+Literal street = elementFactory.createLiteral(&quot;1501 Grant Avenue&quot;);<br />
+Literal city = elementFactory.createLiteral(&quot;Bedford&quot;);<br />
+Literal state = elementFactory.createLiteral(&quot;Massachusetts&quot;);<br />
+Literal postCode = elementFactory.createLiteral(&quot;01730&quot;);<br />
+<br />
+//create statements<br />
+Triple addressStatement = elementFactory.createTriple(person, hasAddress, address);<br />
+Triple streetStatement = elementFactory.createTriple(address, hasStreet, street);<br />
+Triple cityStatement = elementFactory.createTriple(address, hasCity, city);<br />
+Triple stateStatement = elementFactory.createTriple(address, hasState, state);<br />
+Triple postCodeStatement = elementFactory.createTriple(address, hasPostCode, postCode);</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

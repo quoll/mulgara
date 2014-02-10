@@ -1,0 +1,145 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Simple Object Access Protocol (SOAP)</title>
+    <meta name="keywords" content="Simple Object Access Protocol (SOAP), mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/system/itqlshell.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/system/itqlbean.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/system/index.html">System Architecture</a></p>
+<p class="relateditem"><a href="/system/jsptaglib.html">JavaServer Pages Tag Library</a></p>
+<p class="relateditem"><a href="/system/itqlshell.html">iTQL Shell</a></p>
+<p class="relateditem"><a href="/system/itqlbean.html">iTQL Bean</a></p>
+<p class="relateditem"><a href="/system/driver.html">Mulgara Driver</a></p>
+<p class="relateditem"><a href="/system/jrdf.html">Java RDF (JRDF)</a></p>
+
+
+			
+    
+ -->
+
+
+
+
+<h2>Simple Object Access Protocol (SOAP)</h2>
+
+<p>The <a class="internetlinktemplate" title="" href="http://www.w3.org/tr/soap">Simple Object Access Protocol (SOAP)</a> is a lightweight protocol for exchanging information in a decentralized, distributed environment. SOAP runs on top of HTTP, so it can be easily integrated into existing web-based applications, and into existing corporate systems, since most firewalls allow communication on the standard HTTP port. As SOAP is an <a class="internetlinktemplate" title="" href="http://www.w3.org/xml/">XML format</a>, the results of queries are easily rendered using <a class="internetlinktemplate" title="" href="http://www.w3.org/style/xsl/">XSLT</a> or other XML publishing tools.</p>
+
+<p>The following is an iTQL<sup>TM</sup> query, represented as a SOAP message, ready for sending to a Mulgara server's SOAP endpoint.</p>
+
+<p class="commandtext">&lt;?xml version='1.0' encoding='UTF-8'?&gt;<br />
+&lt;SOAP-ENV:Envelope<br />
+      xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;<br />
+      xmlns:xsi=&quot;http://www.w3.org/1999/XMLSchema-instance&quot;<br />
+      xmlns:xsd=&quot;http://www.w3.org/1999/XMLSchema&quot;&gt;<br />
+  &lt;SOAP-ENV:Body&gt;<br />
+    &lt;ns1:executeQueryToString<br />
+      xmlns:ns1=&quot;http://mysite.com:8080/webservices/services/ItqlBeanService&quot;<br />
+SOAP-ENV:encodingStyle=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot;&gt;<br />
+<br />
+    &lt;queryString xsi:type=&quot;xsd:string&quot;&gt;select $s $p $o from <br />
+      &lt;rmi://mysite.com/server1#&gt; where $s $p $o;&lt;/queryString&gt;<br />
+    &lt;/ns1:executeQueryToString&gt;<br />
+<br />
+  &lt;/SOAP-ENV:Body&gt;<br />
+&lt;/SOAP-ENV:Envelope&gt;</p>
+
+<p class="note"><strong>Note -</strong> In the above SOAP example, replace <code>mysite.com</code> with the host name for your system.</p>
+
+<p>Sending this query to a SOAP endpoint results in the query being executed, and the results returned. The following is an example of this using Visual Basic<sup>&reg;</sup> code.</p>
+
+<p class="commandtext">Public Function ExecuteQuery(ByVal server, _<br />
+                             ByVal Query As String) As String<br />
+    <br />
+    Rem External tools  <br />
+<br />
+    Dim Serializer As SoapSerializer30<br />
+    Dim Reader As SoapReader30<br />
+    Dim Connector As SoapConnector30<br />
+  <br />
+    Dim EndPointURL As String<br />
+    Dim NameSpace As String<br />
+    <br />
+    EndPointURL = server &amp; &quot;/webservices/services/ItqlBeanService&quot;<br />
+    NameSpace = &quot;http://mulgara.org/itql&quot;<br />
+    <br />
+    Rem Make the connection<br />
+    Set Connector = New HttpConnector30<br />
+<br />
+    Rem Initialise the properties<br />
+    Connector.Property(&quot;Timeout&quot;) = 0<br />
+    Connector.Property(&quot;EndPointURL&quot;) = EndPointURL   <br />
+    Connector.Property(&quot;SoapAction&quot;) = &quot;executeQueryToString&quot;<br />
+<br />
+    Rem Connect and create the envelope<br />
+    Connector.Connect<br />
+    Connector.BeginMessage<br />
+   <br />
+    Set Serializer = New SoapSerializer30<br />
+    Serializer.Init Connector.InputStream<br />
+   <br />
+    Serializer.StartEnvelope<br />
+    Serializer.SoapAttribute &quot;xsi&quot;, , &quot;http://www.w3.org/1999/XMLSchema-instance&quot;, &quot;xmlns&quot;<br />
+    Serializer.SoapAttribute &quot;xsd&quot;, , &quot;http://www.w3.org/1999/XMLSchema&quot;, &quot;xmlns&quot;<br />
+    Serializer.StartBody<br />
+    Serializer.StartElement Method, NameSpace, &quot;http://schemas.xmlsoap.org/soap/encoding/&quot;, &quot;ns1&quot;<br />
+    Serializer.StartElement &quot;queryString&quot;<br />
+    Serializer.SoapAttribute &quot;type&quot;, , &quot;xsd:string&quot;, &quot;xsi&quot;<br />
+    Serializer.WriteString Query<br />
+    Serializer.EndElement<br />
+    Serializer.EndElement<br />
+    Serializer.EndBody<br />
+    Serializer.EndEnvelope<br />
+    Connector.EndMessage<br />
+        <br />
+    Set Reader = New SoapReader30<br />
+    <br />
+    Rem Read the XML result<br />
+    Reader.Load Connector.OutputStream<br />
+   <br />
+    If Not Reader.Fault Is Nothing Then<br />
+       Err.Raise vbObjectError + ERR_SOAP_FAULT, , Reader.FaultString.Text<br />
+    Else<br />
+       ExecuteQuery = Reader.RpcResult.Text<br />
+    End If<br />
+    <br />
+    Set Reader = Nothing<br />
+    Set Serializer = Nothing<br />
+    Set Connector = Nothing<br />
+            <br />
+End Function</p>
+
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

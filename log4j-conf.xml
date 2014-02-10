@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!--
+<!DOCTYPE log4j:configuration SYSTEM "http://jakarta.apache.org/log4j/docs/api/org/apache/log4j/xml/doc-files/log4j.dtd">
+-->
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<!--
+Log4J configuration template for the Mulgara Query Engine project.
+
+Ant will copy this file from the templates directory to the CVS root.
+Developers are expected to edit the copied version so that they can see debug
+logging methods for their part of the project.  Typically, you'll want to add
+<category/> elements to display the debug messages of a class you're working
+on.  Any <category/> elements must appear after the <appender/> elements and
+before the <root/> element to satisfy the DTD.  An example <category/> element
+is as follows:
+
+  <category name="org.mulgara.grammar.rdfdb.QueryCompiler">
+    <priority value="debug"/>
+  </category>
+
+Sample XML configuration files can be found in:
+
+  /mnt/tools/jakarta/jakarta-log4j-1.1.3/src/java/org/apache/log4j/xml/examples/
+
+
+Don't commit your modified version of log4j-conf.xml to CVS; it's supposed
+to be different for every developer.  The template version of this file in
+the templates directory shouldn't generally be edited.  If you commit an
+update to this file, ant will overwrite everyone else's personal version of
+log4j-conf.xml with the new copy.  This is sure to upset them.
+-->
+
+<log4j:configuration>
+
+  <!-- Log to standard output -->
+  <!--
+  <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d %-5p [%t] %C{2} - %m%n"/>
+    </layout>
+  </appender>
+  -->
+
+  <!-- Log to a file -->
+  <appender name="LOGFILE" class="org.apache.log4j.FileAppender">
+    <param name="File" value="./devel-template.log"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d %-5p [%t] %C{2} - %m%n"/>
+    </layout>
+  </appender>
+
+  <!-- (Insert category elements here) -->
+  <logger name="org.mulgara">
+    <level value="info" />
+  </logger>
+
+  <logger name="org.mulgara.resolver.lucene">
+    <level value="debug" />
+  </logger>
+
+  <!-- Default is to log messages of "warn" priority to the logfile appender -->
+  <root>
+    <priority value="warn"/>
+    <appender-ref ref="LOGFILE"/>
+  </root>
+
+</log4j:configuration>

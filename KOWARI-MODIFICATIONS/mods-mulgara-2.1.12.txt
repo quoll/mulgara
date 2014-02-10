@@ -1,0 +1,148 @@
+------------------------------------------------------------------------
+r2080 | pag | 2011-12-14 14:54:11 -0500 (Wed, 14 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/common.properties
+
+Updated version number
+------------------------------------------------------------------------
+r2079 | pag | 2011-12-14 14:32:10 -0500 (Wed, 14 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/AbstractServer.java
+   M /trunk/src/jar/util/java/org/mulgara/util/TempDir.java
+
+Fixed error in treating an inability to create a directory as meaning that it doesn't exist
+------------------------------------------------------------------------
+r2078 | pag | 2011-12-14 14:31:50 -0500 (Wed, 14 Dec 2011) | 1 line
+Changed paths:
+   A /trunk/jxdata/iTQL/transitive/result15.txt
+   A /trunk/jxdata/iTQL/transitive/result16.txt
+   A /trunk/jxdata/iTQL/transitive/result17.txt
+   A /trunk/jxdata/iTQL/transitive/result18.txt
+   M /trunk/jxdata/iTQL/transitive/test.jxu
+
+Added tests for SPARQL transitivity
+------------------------------------------------------------------------
+r2077 | pag | 2011-12-12 18:30:54 -0500 (Mon, 12 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+   M /trunk/src/jar/server/java/org/mulgara/server/HttpServices.java
+   A /trunk/src/jar/server/java/org/mulgara/server/HttpServicesImpl.java
+   M /trunk/src/war/descriptor/index.jsp
+
+Factored out usage of HttpServices into an interface, so compilation does not require web libraries if they aren't used
+------------------------------------------------------------------------
+r2076 | pag | 2011-12-12 12:33:01 -0500 (Mon, 12 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/LEGAL.txt
+
+Updated URLs and version numbers in the legal file
+------------------------------------------------------------------------
+r2075 | pag | 2011-12-12 12:32:26 -0500 (Mon, 12 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/FreeList.java
+
+Fixed NPE when debug logging FreeList
+------------------------------------------------------------------------
+r2074 | pag | 2011-11-29 16:29:33 -0500 (Tue, 29 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/build.xml
+
+Removed the HTML parsing utilities
+------------------------------------------------------------------------
+r2073 | pag | 2011-11-29 14:02:28 -0500 (Tue, 29 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/build.xml
+
+Removed redundant references to jars that are already encapsulated by tuples.jar. Also stripped out more packages from minimal-server-dist
+------------------------------------------------------------------------
+r2072 | pag | 2011-11-29 14:02:15 -0500 (Tue, 29 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/tools/README.txt
+
+updated references from the old itql name to the new querylang name
+------------------------------------------------------------------------
+r2071 | pag | 2011-11-23 22:37:40 -0500 (Wed, 23 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/build.properties
+   M /trunk/build.xml
+   A /trunk/conf/mulgara-lite-config.xml
+
+Added a new build target for minimal distribution of a server
+------------------------------------------------------------------------
+r2070 | pag | 2011-11-08 19:51:22 -0500 (Tue, 08 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/SingleTransitiveConstraint.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/PatternMapper.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Expression.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/IRIReference.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Modifier.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Triple.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Variable.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Verb.java
+   M /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser/SparqlParser.java
+   M /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser/SparqlParser.jj
+   M /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser/SparqlParserConstants.java
+   M /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser/SparqlParserTokenManager.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DirectTransitiveFunction.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ExhaustiveTransitiveFunction.java
+
+Updated SPARQL to accept * and + modifiers on predicates, and then mapping them to transitive constraints. Added a zero-step inference for transitivity to for the sake of the * operator.
+------------------------------------------------------------------------
+r2069 | pag | 2011-11-08 19:49:51 -0500 (Tue, 08 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/io/LLHashMapUnitTest.java
+
+Fixed test with bad size comparison
+------------------------------------------------------------------------
+r2068 | pag | 2011-11-08 19:49:24 -0500 (Tue, 08 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/io/LLHashMap.java
+
+Removed redundant call to entrySet
+------------------------------------------------------------------------
+r2067 | alexhall | 2011-11-04 12:28:13 -0400 (Fri, 04 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/conf/query.minfiles
+   M /trunk/conf/util.minfiles
+
+Updating build configuration for mulgara-minimal.jar to reflect new and renamed classes in 2.1.11
+------------------------------------------------------------------------
+r2066 | pag | 2011-10-07 18:30:03 -0400 (Fri, 07 Oct 2011) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/io/FileHashMap.java
+   M /trunk/src/jar/util/java/org/mulgara/util/io/IOUtil.java
+   M /trunk/src/jar/util/java/org/mulgara/util/io/LLHashMapUnitTest.java
+
+Fixed a test, and re-organized to allow for variable-length objects in the mapping
+------------------------------------------------------------------------
+r2065 | pag | 2011-10-07 12:56:03 -0400 (Fri, 07 Oct 2011) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/RestoreOperation.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolImpl.java
+   A /trunk/src/jar/util/java/org/mulgara/util/io/ArrayBufferSetWrapper.java
+   A /trunk/src/jar/util/java/org/mulgara/util/io/Bytes.java
+   A /trunk/src/jar/util/java/org/mulgara/util/io/FileHashMap.java
+   A /trunk/src/jar/util/java/org/mulgara/util/io/FixedLengthSerializable.java
+   M /trunk/src/jar/util/java/org/mulgara/util/io/IOUtil.java
+   M /trunk/src/jar/util/java/org/mulgara/util/io/LBufferedFile.java
+   M /trunk/src/jar/util/java/org/mulgara/util/io/LBufferedFileTest.java
+   M /trunk/src/jar/util/java/org/mulgara/util/io/LIOBufferedFile.java
+   A /trunk/src/jar/util/java/org/mulgara/util/io/LLHashMap.java
+   A /trunk/src/jar/util/java/org/mulgara/util/io/LLHashMapUnitTest.java
+   M /trunk/src/jar/util/java/org/mulgara/util/io/LMappedBufferedFile.java
+   A /trunk/src/jar/util/java/org/mulgara/util/io/LMappedBufferedFileRO.java
+   A /trunk/src/jar/util/java/org/mulgara/util/io/LMappedBufferedFileRW.java
+   M /trunk/src/jar/util/java/org/mulgara/util/io/LMappedBufferedFileTest.java
+   M /trunk/src/jar/util/java/org/mulgara/util/io/LReadOnlyIOBufferedFile.java
+   A /trunk/src/jar/util/java/org/mulgara/util/io/RecordFile.java
+   A /trunk/src/jar/util/java/org/mulgara/util/io/RecordFileImpl.java
+   A /trunk/src/jar/util/java/org/mulgara/util/io/SetDataConverter.java
+
+Initial commit of memory mapped hash maps. This version requires fixed size on the keys and values, and only compares for equality on keys
+------------------------------------------------------------------------
+r2063 | pag | 2011-09-29 14:04:10 -0400 (Thu, 29 Sep 2011) | 1 line
+Changed paths:
+   A /trunk/KOWARI-MODIFICATIONS/mods-mulgara-2.1.11.txt
+
+changelog for release
+------------------------------------------------------------------------

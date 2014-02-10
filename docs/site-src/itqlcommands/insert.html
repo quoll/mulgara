@@ -1,0 +1,98 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - insert</title>
+    <meta name="keywords" content="insert, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/itqlcommands/help.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/itqlcommands/load.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/itqlcommands/index.html">iTQL Commands</a></p>
+<p class="relateditem"><a href="/itqlcommands/alias.html">alias</a></p>
+<p class="relateditem"><a href="/itqlcommands/backup.html">backup</a></p>
+<p class="relateditem"><a href="/itqlcommands/comment.html">comment (#)</a></p>
+<p class="relateditem"><a href="/itqlcommands/commit.html">commit</a></p>
+<p class="relateditem"><a href="/itqlcommands/create.html">create</a></p>
+<p class="relateditem"><a href="/itqlcommands/delete.html">delete</a></p>
+<p class="relateditem"><a href="/itqlcommands/drop.html">drop</a></p>
+<p class="relateditem"><a href="/itqlcommands/execute.html">execute</a></p>
+<p class="relateditem"><a href="/itqlcommands/help.html">help</a></p>
+<p class="relateditem"><a href="/itqlcommands/load.html">load</a></p>
+<p class="relateditem"><a href="/itqlcommands/quit.html">quit</a></p>
+<p class="relateditem"><a href="/itqlcommands/restore.html">restore</a></p>
+<p class="relateditem"><a href="/itqlcommands/rollback.html">rollback</a></p>
+<p class="relateditem"><a href="/itqlcommands/select.html">select</a></p>
+<p class="relateditem"><a href="/itqlcommands/set.html">set</a></p>
+
+
+ -->
+
+
+
+
+<h2>insert</h2>
+
+<p>Inserts statements into a model. Specify the statements either explicitly or by using a <code><a id="h207" class="documentlinktemplate" title="select" href="/itqlcommands/select.html">select</a></code> command. The corresponding command for deleting statements is <code><a id="h214" class="documentlinktemplate" title="delete" href="/itqlcommands/delete.html">delete</a></code>.</p>
+
+<p>To insert a single statement, specify its subject, predicate and object after the <code>insert</code> command. For example:</p>
+
+<p class="commandtext">insert &lt;ns:subject&gt; &lt;ns:predicate&gt; 'object' into &lt;rmi://mysite.com/server1#model&gt;;</p>
+
+<p>To insert multiple statements, repeat the statements one after the other. For example:</p>
+
+<p class="commandtext">insert &lt;ns:subject&gt; &lt;ns:predicate&gt; 'object' <br />
+  &lt;ns:subject2&gt; &lt;ns:predicate2&gt; 'object2' into &lt;rmi://mysite.com/server1#model&gt;;</p>
+
+<p class="note"><strong>Note -</strong> Inserting multiple statements using a single <code>insert</code> command provides optimal performance when working over a network.</p>
+
+<p>Blank (anonymous) nodes are inserted using unbound variables. For example:</p>
+
+<p class="commandtext">insert &lt;ns:subject&gt; &lt;ns:predicate&gt; $node <br />
+  $node &lt;ns:predicate2&gt; 'object2' into &lt;rmi://mysite.com/server1#model&gt; ;</p>
+
+<p>Where <code>$node</code> becomes an anonymous node at execution time.</p>
+
+<p>An alternative way to insert a group of statements is to include a <code>select</code> command after the <code>insert</code> command. The query must select exactly three columns, corresponding to the subject, predicate and object (in that order) of the statements to be added.</p>
+
+<p>The following example selects all the statements in <code>#model1</code> and uses the result within an <code>insert</code> command to copy all the statements in <code>#model1</code><em> </em>to another model, <code>#model2</code>.</p>
+
+<p class="commandtext">insert select $s $p $o from &lt;rmi://mysite.com/server1#model1&gt;<br />
+  where $s $p $o into &lt;rmi://mysite.com/server1#model2&gt;;</p>
+
+<p class="note"><strong>Note -</strong> The query must return valid RDF statements. That is, the subject and predicate must be resources, not literals.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

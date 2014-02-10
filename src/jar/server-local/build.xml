@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="server-local" default="server-local-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="server-local-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${driver.dist.dir}/${driver.jar}"/>
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${querylang.dist.dir}/${querylang.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+  </path>
+
+  <path id="server-local-test-classpath">
+
+    <path refid="server-local-classpath"/>
+
+    <fileset dir="${lib.dir}" includes="**/*.jar" />
+    <fileset dir="${bin.dir}" includes="**/*.jar" />
+    <fileset file="${server-local.dist.dir}/${server-local.jar}"/>
+  </path>
+
+  <target name="server-local-clean"
+          description="Removes all compile generated files for the server-local">
+
+    <tstamp/>
+
+    <delete dir="${server-local.obj.dir}"/>
+    <delete dir="${server-local.test.dir}"/>
+    <delete dir="${server-local.dist.dir}"/>
+  </target>
+
+  <target name="-server-local-prepare"
+          description="Creates all directories associated with the
+                       server-local's compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${server-local.obj.dir}"/>
+    <mkdir dir="${server-local.test.dir}"/>
+    <mkdir dir="${server-local.dist.dir}"/>
+    <mkdir dir="${server-local.obj.dir}/classes"/>
+  </target>
+
+  <target name="server-local-compile"
+          depends="-server-local-prepare, querylang-jar, server-jar"
+          description="Compiles all server-local related files included
+                       generated source code"
+          unless="server-local.classes.uptodate">
+
+    <javac destdir="${server-local.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="server-local-classpath"/>
+
+      <src path="${server-local.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="server-local-jar"
+          depends="server-local-compile, -server-local-jar-uptodate"
+          unless="server-local.jar.uptodate"
+          description="Creates the server-local's jar/s">
+
+    <jar jarfile="${server-local.dist.dir}/${server-local.jar}">
+      <fileset dir="${server-local.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-server-local-jar-uptodate">
+
+    <uptodate property="server-local.jar.uptodate"
+              targetfile="${server-local.dist.dir}/${server-local.jar}">
+      <srcfiles dir="${server-local.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="server-local-dist"
+          depends="server-local-jar"
+          unless="server-local.uptodate"
+          description="Performs all tasks related to finalising this server-local
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the server-local library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="server-local-test"
+          depends="server-local-jar, dist"
+          description="Carries out unit testing for this server-local">
+
+    <!-- start the Mulgara server -->
+    <antcall target="start"/>
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="server-local-test-classpath"/>
+      <param name="dir" value="${server-local.src.dir}"/>
+      <param name="jar" value="${server-local.jar}"/>
+    </antcall>
+
+    <!-- stop the Mulgara server -->
+    <antcall target="stop"/>
+  </target>
+
+  <target name="server-local-javadoc"
+          depends="server-local-jar"
+          description="Creates the javadoc for this server-local">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.server.local.*"/>
+      <param name="javadoc.classpath" value="server-local-classpath"/>
+      <param name="javadoc.sourcepath" value="${server-local.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="server-local-help"
+          description="Displays the help information for this server-local">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this server-local -->
+
+    <echo message="Welcome to the build script for ${name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${server-local.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

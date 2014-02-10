@@ -1,0 +1,62 @@
+ .ieOpacity { behavior: url(/style/iepngfix.htc) }
+ /* see http://www.twinhelix.com/css/iepngfix/
+  	USAGE: All you have to do is include this one line in your CSS file, 
+  	with the tag names to which you want the script applied (siehe oben).
+	Alternatively, you can specify that this will apply to all tags:
+   	* { behavior: url(/style/iepngfix.htc) }       */
+
+#styleSwitch	{
+	display: none;
+	}
+
+
+#navSite	{
+	width: 150px;
+	}
+#navPage	{
+	border-bottom: 0;
+	left: 201px;
+	height: 1.2em;
+	}
+
+#navProject	{
+	top: 105px;
+}	
+#navMain	{
+	left: 0px;
+	width: 150px;
+	top: 5px;
+	border-top: 0;
+	}
+#content	{
+	top: 50px;
+	left: 207px;
+	}
+
+
+#validator	{ 
+	margin-left:55px;
+	}
+		
+
+#footer{
+	width: auto;
+	margin: 10px 0 10px 210px;
+	}
+#verticalLine {
+	visibility: none;
+	}
+
+
+#navSite  li li, #navSite  ul, li.secindex	{
+	margin: 0;
+	border: 0;
+	height: 0;
+	padding: 0;
+	}	
+#navSite  ul.section li.ulcontainer{
+	margin: -0.1em 0 0.5em 0;
+	}
+#content ol {
+	margin-left: auto;
+	}

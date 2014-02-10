@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+<project name="tutorial" default="content-mp3.jar" basedir=".">
+
+  <property file="build-tutorial.properties"/>
+
+  <target name="-init">
+
+    <mkdir dir="${obj.dir}"/>
+    <mkdir dir="${obj.dir}/handler"/>
+    <mkdir dir="${obj.dir}/handler/classes"/>
+    <mkdir dir="${obj.dir}/resolver"/>
+    <mkdir dir="${obj.dir}/resolver/classes"/>
+    <mkdir dir="${dist.dir}"/>
+  </target>
+
+  <target name="content-mp3.jar" depends="-init"
+    description="Builds the MP3 Content Handler JAR">
+
+    <copy file="${handler.conf.dir}/parserfactory.conf"
+      tofile="${obj.dir}/handler/classes/parserfactory.conf"/>
+
+    <javac destdir="${obj.dir}/handler/classes"
+      debug="on" deprecation="on" source="1.5">
+      <classpath refid="content-mp3-classpath"/>
+      <src path="${handler.src.dir}/java"/>
+    </javac>
+
+    <jar jarfile="${dist.dir}/${content-mp3.base.jar}">
+      <fileset dir="${obj.dir}/handler/classes"/>
+    </jar>
+  </target>
+
+  <target name="resolver-http.jar" depends="-init"
+    description="Builds the Http Resolver JAR">
+
+    <javac destdir="${obj.dir}/resolver/classes"
+      debug="on" deprecation="on" source="1.5">
+      <classpath refid="resolver-http-classpath"/>
+      <src path="${resolver.src.dir}/java"/>
+    </javac>
+
+    <jar jarfile="${dist.dir}/${resolver-http.base.jar}">
+      <fileset dir="${obj.dir}/resolver/classes"/>
+    </jar>
+  </target>
+
+  <path id="resolver-http-classpath">
+
+    <fileset dir="${server.jar.dir}" includes="${tks.jar}"/>
+  </path>
+
+  <path id="content-mp3-classpath">
+
+    <fileset dir="${lib.dir}" includes="jid3lib-0.5.jar"/>
+    <fileset dir="${server.jar.dir}" includes="${tks.jar}"/>
+  </path>
+</project>

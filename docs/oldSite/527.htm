@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Simple Object Access Protocol (SOAP) </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Simple Object Access Protocol (SOAP)kowari, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="526.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="528.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h2 class="heading2">Simple Object Access Protocol (SOAP)</h2>
+<p class="bodytext">The <a class="internetlinktemplate" title="" href="http://www.w3.org/tr/soap" target="_blank">Simple Object Access Protocol (SOAP)</a> is a lightweight protocol for exchanging information in a decentralized, distributed environment. SOAP runs on top of HTTP, so it can be easily integrated into existing web-based applications, and into existing corporate systems, since most firewalls allow communication on the standard HTTP port. As SOAP is an <a class="internetlinktemplate" title="" href="http://www.w3.org/xml/" target="_blank">XML format</a>, the results of queries are easily rendered using <a class="internetlinktemplate" title="" href="http://www.w3.org/style/xsl/" target="_blank">XSLT</a> or other XML publishing tools.</p>
+<p class="bodytext">The following is an iTQL<sup class="superscript">TM</sup> query, represented as a SOAP message, ready for sending to a Mulgara server's SOAP endpoint.</p>
+<p class="commandtext">&lt;?xml version='1.0' encoding='UTF-8'?&gt;<br />&lt;SOAP-ENV:Envelope<br />      xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;<br />      xmlns:xsi=&quot;http://www.w3.org/1999/XMLSchema-instance&quot;<br />      xmlns:xsd=&quot;http://www.w3.org/1999/XMLSchema&quot;&gt;<br />  &lt;SOAP-ENV:Body&gt;<br />    &lt;ns1:executeQueryToString<br />      xmlns:ns1=&quot;http://mysite.com:8080/webservices/services/ItqlBeanService&quot;<br />SOAP-ENV:encodingStyle=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot;&gt;<br /><br />    &lt;queryString xsi:type=&quot;xsd:string&quot;&gt;select $s $p $o from <br />      &lt;rmi://mysite.com/server1#&gt; where $s $p $o;&lt;/queryString&gt;<br />    &lt;/ns1:executeQueryToString&gt;<br /><br />  &lt;/SOAP-ENV:Body&gt;<br />&lt;/SOAP-ENV:Envelope&gt;</p>
+<p class="note"><strong class="strong">Note -</strong> In the above SOAP example, replace <code class="monospace">mysite.com</code> with the host name for your system.</p>
+<p class="bodytext">Sending this query to a SOAP endpoint results in the query being executed, and the results returned. The following is an example of this using Visual Basic<sup class="superscript">&reg;</sup> code.</p>
+<p class="commandtext">Public Function ExecuteQuery(ByVal server, _<br />                             ByVal Query As String) As String<br />    <br />    Rem External tools  <br /><br />    Dim Serializer As SoapSerializer30<br />    Dim Reader As SoapReader30<br />    Dim Connector As SoapConnector30<br />  <br />    Dim EndPointURL As String<br />    Dim NameSpace As String<br />    <br />    EndPointURL = server &amp; &quot;/webservices/services/ItqlBeanService&quot;<br />    NameSpace = &quot;http://mulgara.org/itql&quot;<br />    <br />    Rem Make the connection<br />    Set Connector = New HttpConnector30<br /><br />    Rem Initialise the properties<br />    Connector.Property(&quot;Timeout&quot;) = 0<br />    Connector.Property(&quot;EndPointURL&quot;) = EndPointURL   <br />    Connector.Property(&quot;SoapAction&quot;) = &quot;executeQueryToString&quot;<br /><br />    Rem Connect and create the envelope<br />    Connector.Connect<br />    Connector.BeginMessage<br />   <br />    Set Serializer = New SoapSerializer30<br />    Serializer.Init Connector.InputStream<br />   <br />    Serializer.StartEnvelope<br />    Serializer.SoapAttribute &quot;xsi&quot;, , &quot;http://www.w3.org/1999/XMLSchema-instance&quot;, &quot;xmlns&quot;<br />    Serializer.SoapAttribute &quot;xsd&quot;, , &quot;http://www.w3.org/1999/XMLSchema&quot;, &quot;xmlns&quot;<br />    Serializer.StartBody<br />    Serializer.StartElement Method, NameSpace, &quot;http://schemas.xmlsoap.org/soap/encoding/&quot;, &quot;ns1&quot;<br />    Serializer.StartElement &quot;queryString&quot;<br />    Serializer.SoapAttribute &quot;type&quot;, , &quot;xsd:string&quot;, &quot;xsi&quot;<br />    Serializer.WriteString Query<br />    Serializer.EndElement<br />    Serializer.EndElement<br />    Serializer.EndBody<br />    Serializer.EndEnvelope<br />    Connector.EndMessage<br />        <br />    Set Reader = New SoapReader30<br />    <br />    Rem Read the XML result<br />    Reader.Load Connector.OutputStream<br />   <br />    If Not Reader.Fault Is Nothing Then<br />       Err.Raise vbObjectError + ERR_SOAP_FAULT, , Reader.FaultString.Text<br />    Else<br />       ExecuteQuery = Reader.RpcResult.Text<br />    End If<br />    <br />    Set Reader = Nothing<br />    Set Serializer = Nothing<br />    Set Connector = Nothing<br />            <br />End Function</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="1246.htm" target="_self">System Architecture</a></p><p class="relateditem"><a href="485.htm" target="_self">JavaServer Pages Tag Library</a></p><p class="relateditem"><a href="526.htm" target="_self">iTQL Shell</a></p><p class="relateditem"><a href="528.htm" target="_self">iTQL Bean</a></p><p class="relateditem"><a href="530.htm" target="_self">Mulgara Driver</a></p><p class="relateditem"><a href="2466.htm" target="_self">Java RDF (JRDF)</a></p></td>
+</tr>
+</table>
+
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

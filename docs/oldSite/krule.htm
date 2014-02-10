@@ -1,0 +1,337 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Mac OS X (vers 1st June 2004), see www.w3.org">
+
+  <title>Mulgara Rules Engine (Krule) Users Guide</title>
+  <link rel="icon" type="text/png" href="./images/siteicon.png">
+  <link rel="shortcut icon" type="text/png" href=
+  "images/siteicon.png">
+  <meta name="author" content="David Wood">
+  <meta name="copyright" content=
+  "Copyright &copy; 2005, Kowari Project">
+  <meta name="robots" content="all">
+  <meta name="description" content=
+  "Mulgara Project : Krule Users Guide">
+  <meta name="keywords" content=
+  "mulgara, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, homepage, rules engine, rule engine">
+  <meta name="location" content="Global">
+  <meta name="document-distribution" content="Global">
+  <meta http-equiv="content-type" content=
+  "text/html; charset=us-ascii">
+  <meta http-equiv="dialect" content="US">
+  <meta http-equiv="language" content="English">
+  <meta http-equiv="window-target" content="_top">
+  <meta name="DC.Title" content="mulgara : metastore">
+  <meta name="DC.Creator" content="David Wood">
+  <meta name="DC.Subject" content=
+  "Mulgara Project : Krule Users Guide">
+  <meta name="DC.Description" content=
+  "Mulgara Project : Krule Users Guide">
+  <meta name="DC.Date.Created" scheme="iso8601" content=
+  "2005-11-14">
+  <meta name="DC.Modified" scheme="iso8601" content="2005-11-14">
+  <meta name="DC.Language" scheme="rfc1766" content="en">
+  <meta name="DC.Rights" scheme="URI" content=
+  "http://mulgara.org/docs/legal.html">
+  <meta name="DC.Identifier" scheme="URI" content=
+  "http://mulgara.org/">
+  <meta name="Generator" content="VIM">
+  <link rel="stylesheet" href="mulgara_stylesheet.css" type=
+  "text/css"><!-- <link rel="stylesheet" href="44.css"> -->
+  <base target="BODY">
+</head>
+
+<body>
+  <table border="0" width="100%">
+    <tbody>
+      <tr valign="top">
+        <td width="80%">
+          <table border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+              <tr valign="top">
+                <td width="18">
+                  <p class="prevnextbutton"><a href="3201.htm"
+                  target="_self"><img src="previous.gif" alt=
+                  "Previous Topic" align="bottom" border="0"
+                  height="25" hspace="2" vspace="2" width=
+                  "23"></a></p>
+                </td>
+
+                <td width="18">
+                  <p class="prevnextbutton"><a href="752.htm"
+                  target="_self"><img src="next.gif" alt=
+                  "Next Topic" align="bottom" border="0" height=
+                  "25" hspace="2" vspace="2" width="23"></a></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h1 class="heading1">Mulgara Rules Engine (Krule) Users
+          Guide</h1>
+          <p class="bodytext">Mulgara includes a custom rules
+          engine known as Krule (pronounced "cruel" by its lead
+          developer).</p>
+
+          <p class="bodytext">The purpose of Krule is to apply a
+          set of entailment rules to a base set of statements
+          ("facts"), producing new statements based on those facts.
+          In other words, Krule applies a set of pre-defined rules
+          to statements in a model. The application of the rules
+          results in some new RDF statements, which may be added to
+          that model or stored elsewhere.</p>
+
+          <p class="bodytext">Krule is implemented in a manner
+          consistent with Mulgara. Rule definitions are provided in
+          RDF files and may be loaded into Mulgara models.
+          Similarly, Krule acts upon statements in models and
+          produces statements which may be stored in the same or
+          different models. Krule is "triples all the way
+          down".</p>
+
+          <p class="bodytext">Krule has been used to entail RDF
+          Schema rules and ongoing work may lead to a more scalable
+          method of dealing with Web Ontology Language (OWL)
+          analysis. Users and developers are encouraged to
+          investigate this impressive new addition to Mulgara.
+          Anyone may add new rules and apply them to
+          models.</p><a name="okrule1" id="okrule1">
+
+          <h2 class="heading3">Setting up Krule</h2>
+
+          <p class="bodytext">Some setup is required before one may
+          use Krule. Please note that this tutorial presumes the
+          use of &rsquo;localhost&rsquo; as a machine name,
+          &rsquo;server1&rsquo; as a database name. If you choose
+          to change these or use different model names for the
+          Krule setup, you may have to also change the URLs
+          embedded in the Krule rules files (called krule.owl and
+          rdfs-krule.rdf, both of which are located in the
+          .../mulgaa/rules/ directory) and in the commands
+          given below.</p>
+
+          <p class="bodytext">First, set up some handy aliases:</p>
+          <p class="commandtext">
+# set up aliases
+alias &lt;http://mulgara.org/mulgara#&gt; as mulgara;
+alias &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; as rdf;
+alias &lt;http://www.w3.org/2000/01/rdf-schema#&gt; as rdfs;
+alias &lt;http://www.w3.org/2002/07/owl#&gt; as owl;
+alias &lt;http://mulgara.org/owl/krule/#&gt; as krule;
+</p>
+
+          <p class="bodytext">Next, create some special models
+          which are used by Krule and presumed to be present:</p>
+          <p class="commandtext">
+# create utility models
+create &lt;rmi://localhost/server1#type&gt; &lt;mulgara:TypeModel&gt;;
+create &lt;rmi://localhost/server1#prefix&gt; &lt;mulgara:PrefixModel&gt;;
+</p>
+
+          <p class="bodytext">Create a model to hold the Krule
+          statements. Naturally, the URL that you use may vary:</p>
+          <p class="commandtext">
+# clear and create the rules model
+drop &lt;rmi://localhost/server1#krule&gt;;
+create &lt;rmi://localhost/server1#krule&gt;;
+</p>
+
+          <p class="bodytext">Load the Krule ontology into your
+          krule model. This ontology is used regardless of which
+          rules are used. You will need to replace "@basedir@" with
+          the path to your Mulgara source code
+          installation:</p>
+          <p class="commandtext">
+# Load the ontology for how the rules data fits together.
+load &lt;file:@basedir@/rules/krule.owl&gt;
+     into &lt;rmi://localhost/server1#krule&gt;;
+</p>
+
+          <p class="bodytext">Load your rules into your krule
+          model. In this case, we are loading the RDF Schema
+          entailment rules which are provided in the file
+          .../mulgara/rules/rdfs-krule.rdf.</p>
+          <p class="commandtext">
+# Load the rules data.
+load &lt;file:@basedir@/rules/rdfs-krule.rdf&gt;
+     into &lt;rmi://localhost/server1#krule&gt;;
+</p>
+
+          <p class="bodytext">Krule is now ready to go. All you
+          have to do is apply the rules to some RDF statements,
+          known in the parlance as "base data". This is covered in
+          the next section.</p>
+
+          <p class="bodytext">Please note that the instructions in
+          this section follow the file
+          .../mulgara/rules/example.itql, originally written by
+          Paul Gearon.</p><a name="okrule2" id="okrule2">
+
+          <h2 class="heading2">Using Krule</h2>
+
+          <p class="bodytext">Krule is used by applying a set of
+          rules to a set of RDF statements. The rules are
+          themselves RDF statements and are stored in their own
+          model. The RDF statements upon which those rules are
+          applied are known as "base data" and are stored in
+          another model.</p>
+
+          <p class="bodytext">The application of the rules to the
+          base data is accomplished by issuing the "apply" iTQL
+          command, like this:</p>
+          <p class="commandtext">
+apply &lt;rulesmodel&gt; to &lt;basemodel&gt;;
+</p>
+
+          <p class="bodytext">A Mulgara instance may have many
+          different models containing rules, since the rules are
+          just a set of RDF statements.</p>
+
+          <p class="bodytext">Using apply that way will place the
+          newly-generated entailed statements into the base
+          data&rsquo;s model (&lt;basemodel&gt;). If you want to
+          put the entailed statements into a separate model, you
+          may do so with this syntax:</p>
+          <p class="commandtext">
+apply &lt;rulesmodel&gt; to &lt;basemodel&gt; &lt;entailedmodel&gt;;
+</p>
+
+          <p class="bodytext">Base data may consist of any RDF
+          statements stored in a Mulgara model. There are no
+          restrictions on what kind of data may have Krule rules
+          run against it.</p>
+
+          <p class="bodytext">To try Krule, you first need to
+          complete the setup steps above. Once that is done, you
+          need to find some sample data. Fortunately, Mulgara ships
+          with some sample data. You can create a model and load it
+          in:</p>
+          <p class="commandtext">
+drop &lt;rmi://localhost/server1#input&gt;;
+create &lt;rmi://localhost/server1#input&gt;;
+load &lt;jar:file:/@basedir@/dist/mulgara-<em>x.y.z</em>.jar!/data/w3c-news.rss&gt;
+     into &lt;rmi://localhost/server1#input&gt;;
+</p>
+
+          <p class="bodytext">Although Krule allows you to put the
+          entailed statements into the same model as the base data,
+          we will separate them so you can see what was created. To
+          do that, we need to create a model to hold the
+          output:</p>
+          <p class="commandtext">
+drop &lt;rmi://localhost/server1#output&gt;;
+create &lt;rmi://localhost/server1#output&gt;;
+</p>
+
+          <p class="bodytext">Now we are ready to apply the rules
+          to the base data in the input model and store the
+          resulting entailed statements in the output model:</p>
+          <p class="commandtext">
+apply &lt;rmi://localhost/server1#krule&gt;
+      to &lt;rmi://localhost/server1#input&gt;
+			&lt;rmi://localhost/server1#output&gt;;
+</p>
+
+          <p class="bodytext">The newly-created entailed statements
+          may be viewed by querying the output model:</p>
+          <p class="commandtext">
+select $subject $predicate $object
+from &lt;rmi://localhost/server1#output&gt;
+where $subject $predicate $object;
+</p>
+
+          <p class="bodytext">We can show the numbers of statements
+          in the input and output models by using iTQL&rsquo;s
+          count function:</p>
+          <p class="commandtext">
+select 
+count ( select $subject $predicate $object
+        from &lt;rmi://localhost/server1#input&gt;
+				where $subject $predicate $object
+)
+from &lt;rmi://localhost/server1#input&gt;
+where $subject $predicate $object;
+</p>
+
+          <table border="1">
+            <thead>
+              <tr>
+                <th bgcolor="#6BA22F">k0</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>
+                "49.0"^^&lt;http://www.w3.org/2001/XMLSchema#double&gt;</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="commandtext">
+select 
+count ( select $subject $predicate $object
+        from &lt;rmi://localhost/server1#output&gt;
+				where $subject $predicate $object
+)
+from &lt;rmi://localhost/server1#output&gt;
+where $subject $predicate $object;
+</p>
+
+          <table border="1">
+            <thead>
+              <tr>
+                <th bgcolor="#6BA22F">k0</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>
+                "247.0"^^&lt;http://www.w3.org/2001/XMLSchema#double&gt;</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="bodytext"> </p><a name="okrule3" id="okrule3">
+
+          <h2 class="heading2">Krule for Developers: Making Your
+          Own Rules</h2>
+
+          <p class="bodytext">Information for developers
+          information may be found in the source under
+          .../mulgara/rules/RuleFormat.txt. That file includes a
+          discussion on the format for rule definitions.</p>
+
+          <p class="bodytext">A sample set of rules which implement
+          RDF Schema (RDFS) entailments is provided in the source
+          distribution in the file
+          .../mulgara/rules/rdfs-krule.rdf. You should review
+          those rules to make sure you understand how they work
+          before creating your own.</p>
+
+          <p class="bodytext">Developers who create reusable rule
+          sets are strongly encouraged to share them with the
+          Mulgara community. Please e-mail the <a href=
+          "http://mulgara.org/mailman/listinfo/mulgara-dev">
+          Mulgara Developers Mailing List</a> with your rule
+          sets!</p>
+
+        </td>
+      </tr>
+
+      <tr valign="bottom">
+        <td>
+          <br>
+
+          <p class="toc">&copy; 2005 Northrop Grumman Corporation.
+          Some rights reserved.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
+

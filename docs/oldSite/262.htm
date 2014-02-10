@@ -1,0 +1,414 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Datatyping Models </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Datatyping Models, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="257.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="2779.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h2 class="heading2">Datatyping Models</h2>
+<p class="bodytext">Datatyping models represent the property of orderedness that literals like dates and numbers possess. They are used to constrain results to be above, below, or between specified dates or numbers.</p>
+<p class="bodytext">Datatyping models are generally read-only. You do not insert statements into them as you do with standard or full-text models. Conceptually, they contain every true statement about their datatype, such as 1 is less than 2 and Christmas Day is after Christmas Eve.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="262.htm#o263" target="_self">Creating Datatyping Models</a></p><p class="relateditem"><a href="262.htm#o264" target="_self">Loading Datatyping Models</a></p><p class="relateditem"><a href="262.htm#o265" target="_self">Querying Datatyping Models</a></p><p class="relateditem"><a href="262.htm#o266" target="_self">Limitations of Datatyping Models</a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="254.htm" target="_self">Advanced iTQL Operations</a></p><p class="relateditem"><a href="255.htm" target="_self">Views</a></p><p class="relateditem"><a href="257.htm" target="_self">Full-Text Models</a></p><p class="relateditem"><a href="2779.htm" target="_self">Nodetyping Models</a></p><p class="relateditem"><a href="3201.htm" target="_self">Filesystem Models</a></p></td>
+</tr>
+</table>
+
+<a name="o263"></a><h3 class="heading3">Creating Datatyping Models</h3>
+<p class="bodytext">Use the <code class="monospace"><a id="h209" class="documentlinktemplate" title="create" href="176.htm" target="_self">create</a></code> command with an optional type argument of <code class="monospace">&lt;http://mulgara.org/mulgara#XMLSchemaModel&gt;</code> in addition to the model name.</p>
+<p class="bodytext">For example, to create the datatyping model <code class="monospace">#xsd</code>:</p>
+<p class="commandtext">create &lt;rmi://mysite.com/server1#xsd&gt; &lt;http://mulgara.org/mulgara#XMLSchemaModel&gt;;</p>
+<p class="note"><strong class="strong"><strong class="strong">Note -</strong></strong> Generally, there is no need to create more than one datatyping model per Mulgara server.</p>
+<a name="o264"></a><h3 class="heading3">Loading Datatyping Models</h3>
+<p class="bodytext">As well as having a value, typed literals (such as the number 7.5, as opposed to the untyped text &quot;7.5&quot;) also have a datatype, which is identified by a URI.</p>
+<p class="bodytext">The primitive datatypes supported by Mulgara are listed in the following table.</p>
+<table width="546" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr align="left" valign="top">
+<th width="144"><p class="tableheading">Datatype</p>
+</th>
+<th width="402"><p class="tableheading">Description</p>
+</th>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">string</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Character strings. For example, John</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">boolean</code></p>
+</td>
+<td width="402"><p class="tablebodytext">The mathematical concept of binary-valued logic. For example, true or false</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">decimal</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Arbitrary precision decimal numbers. For example, 1.23</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">float</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Single precision floating point numbers. For example, 1.23E4</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">double</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Double precision floating point numbers. For example, 1.23E4</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">dateTime</code></p>
+</td>
+<td width="402"><p class="tablebodytext">A point in time specified to one second accuracy. For example, 2004-12-24T23:59:59 (one second to Christmas Day 2004, UTC)</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">date</code></p>
+</td>
+<td width="402"><p class="tablebodytext">A point in time specified to one day accuracy.  For example, 2004-12-24 (Christmas Eve 2004)</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">gYearMonth</code></p>
+</td>
+<td width="402"><p class="tablebodytext">A specific gregorian month in a specific gregorian year. For example, 2004-12 (December 2004)</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">gYear</code></p>
+</td>
+<td width="402"><p class="tablebodytext">A gregorian calendar year. For example, 2004</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">gMonthDay</code></p>
+</td>
+<td width="402"><p class="tablebodytext">A day of the year. For example, 12-25 (Christmas Day)</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">gDay</code></p>
+</td>
+<td width="402"><p class="tablebodytext">A day of the month. For example, 25 (25th day of the month)</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">gMonth</code></p>
+</td>
+<td width="402"><p class="tablebodytext">A month of the year. For example, 12 (12th month of the year)</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">hexBinary</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Arbitrary hex-encoded binary data</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">base64Binary</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Arbitrary Base64-encoded binary data</p>
+</td>
+</tr>
+
+</table>
+<p class="bodytext">The primitive datatypes currently <em class="emphasis">not supported</em> by Mulgara are listed the following table.</p>
+<table width="546" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr align="left" valign="top">
+<th width="144"><p class="tableheading">Datatype</p>
+</th>
+<th width="402"><p class="tableheading">Description</p>
+</th>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">duration</code></p>
+</td>
+<td width="402"><p class="tablebodytext">A duration of time</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">anyURI</code></p>
+</td>
+<td width="402"><p class="tablebodytext">A Uniform Resource Identifier Reference (URI)</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">QName</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Qualified XML names</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">NOTATION</code></p>
+</td>
+<td width="402"><p class="tablebodytext">The NOTATION attribute type</p>
+</td>
+</tr>
+
+</table>
+<p class="bodytext">The derived datatypes currently supported by Mulgara are listed the following table.</p>
+<table width="546" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr align="left" valign="top">
+<th width="144"><p class="tableheading">Datatype</p>
+</th>
+<th width="402"><p class="tableheading">Description</p>
+</th>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">integer</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">decimal</code> with no fractional digits</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">nonPositiveInteger</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">integer</code> with a maximum value of 0</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">negativeInteger</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">nonPositiveInteger</code> with a maximum value of -1</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">long</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">integer</code> with a maximum value of 9223372036854775807 and a minimum value of -9223372036854775807</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">int</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">long</code> with a maximum value of 2147483647 and a minimum value of -2147483648</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">short</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">int</code> with a maximum value of 32767 and a minimum value of -32767</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">byte</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">short</code> with a maximum value of 127 and a minimum value of -128</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">nonNegativeInteger</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">integer</code> with a minimum value of 0</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">unsignedLong</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">nonNegativeInteger</code> with a maximum value of 18446744073709551615</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">unsignedInt</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">unsignedLong </code>with a maximum value of 4294967295</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">unsignedShort</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">unsignedInt </code>with a maximum value of 65535</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">unsignedByte</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">unsignedShort </code>with a maximum value of 255</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">positiveInteger</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">nonNegativeInteger</code> with a minimum value of 1</p>
+</td>
+</tr>
+
+</table>
+<p class="bodytext">The derived datatypes currently <em class="emphasis">not supported</em> by Mulgara are listed the following table.</p>
+<table width="546" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr align="left" valign="top">
+<th width="144"><p class="tableheading">Datatype</p>
+</th>
+<th width="402"><p class="tableheading">Description</p>
+</th>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">normalizedString</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">string</code> without carriage return, line feed or tab characters</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">token</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">normalizedString</code> without leading or trailing spaces and no internal sequences of two or more spaces</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">language</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">token</code> and is the set of all valid language identifiers</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">NMTOKEN</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">token</code> and represents the NMTOKEN attribute type</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">NMTOKENS</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">NMTOKEN</code> and represents the NMTOKENS attribute type</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">Name</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">token</code> and represents XML Names</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">NCName</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">Name</code> and represents XML non-colonized Names</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">ID</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">NCName</code> and represents the ID attribute type</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">IDREF</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">ID</code> and represents the IDREF attribute type</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">IDREFS</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">IDREF</code> and represents the IDREFS attribute type</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">ENTITY</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">NCName</code> and represents the ENTITY attribute type</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="144"><p class="tablebodytext"><code class="monospace">ENTITIES</code></p>
+</td>
+<td width="402"><p class="tablebodytext">Derived from <code class="monospace">ENTITY</code> and represents the ENTITIES attribute type</p>
+</td>
+</tr>
+
+</table>
+<p class="note"><strong class="strong"><strong class="strong">Note -</strong></strong> The URI prefix for all of the datatypes listed above is <code class="monospace">http://www.w3.org/2001/XMLSchema#</code>. For example <code class="monospace">http://www.w3.org/2001/XMLSchema#string</code>. More information about these datatypes is in the W3C document <a class="internetlinktemplate" title="" href="http://www.w3.org/TR/xmlschema-2/" target="_blank">XML Schema Part 2: Datatypes</a>.</p>
+<p class="bodytext">The syntax to express a typed literal is to separate a literal value and its type with a double-caret (<code class="monospace">^^</code>).</p>
+<p class="bodytext">For example, consider the statement that a text file was created on Christmas Eve 2004. This could be inserted into a model as follows:</p>
+<p class="commandtext">insert &lt;file:/nice.txt&gt; &lt;dc:date&gt; '2004-12-24'^^&lt;<code class="monospace">http://www.w3.org/2001/XMLSchema#date</code>&gt;<br />  into &lt;rmi://mysite.com/server1#model&gt;;</p>
+<p class="bodytext">Remember that the command <code class="monospace">alias &lt;http://www.w3.org/2001/XMLSchema#&gt; as xsd;</code> allows you to write the insert command as follows:</p>
+<p class="commandtext">insert &lt;file:/nice.txt&gt; &lt;dc:date&gt; '2004-12-24'^^&lt;<code class="monospace">xsd:date</code>&gt;<br />  into &lt;rmi://mysite.com/server1#model&gt;;</p>
+<p class="bodytext">Alternatively, the following could be loaded from an RDF/XML file:</p>
+<p class="commandtext">&lt;rdf:RDF xmlns:dc  = &quot;http://purl.org/dc/elements/1.1/&quot;<br />         xmlns:rdf = &quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;<br />         xmlns:xsd = &quot;http://www.w3.org/2001/XMLSchema#&quot;&gt;<br />&lt;rdf:Description rdf:about=&quot;file:/nice.txt&quot;&gt;<br />  &lt;dc:date rdf:datatype=&quot;http://www.w3.org/2001/XMLSchema#date&quot;&gt; 2004-12-24 &lt;/dc:date&gt;<br />&lt;/rdf:Description&gt;<br />&lt;/rdf:RDF&gt;</p>
+<p class="note"><strong class="strong"><strong class="strong">Note -</strong></strong> Datatyped statements are loaded into normal models, not datatyping models. Datatyping models cannot be written to, as this would be like trying to redefine the fixed nature of numbers or dates.</p>
+<a name="o265"></a><h3 class="heading3">Querying Datatyping Models</h3>
+<p class="bodytext">Querying datatyping models is much the same as for normal Mulgara models. Datatyping models contain all statements with the following properties that happen to be true for the relevant datatype:</p>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">&lt;mulgara:lt&gt;</code><p class="listcontinue">The subject is numerically less than the object, where both have a numeric datatype.</p>
+</li><li class="listbullet"><code class="monospace">&lt;mulgara:gt&gt;</code><p class="listcontinue">The subject is numerically greater than the object, where both have a numeric datatype.</p>
+</li><li class="listbullet"><code class="monospace">&lt;mulgara:after&gt;</code><p class="listcontinue">The subject occurs after the object, where both have a date datatype. That is, <code class="monospace">xsd:date</code>, <code class="monospace">xsd:dateTime</code>, <code class="monospace">xsd:gYear</code> and <code class="monospace">xsd:gYearMonth</code></p>
+</li><li class="listbullet"><code class="monospace">&lt;mulgara:before&gt;</code><p class="listcontinue">The subject occurs before the object, where both have a date datatype. That is, <code class="monospace">xsd:date</code>, <code class="monospace">xsd:dateTime</code>, <code class="monospace">xsd:gYear</code> and <code class="monospace">xsd:gYearMonth</code></p>
+</li></ul><p class="note"><strong class="strong">Note -</strong> The datatypes listed above assume a prior <code class="monospace">alias &lt;http://www.w3.org/2001/XMLSchema#&gt; as xsd;</code> command was performed.</p>
+<p class="bodytext">See the <a id="h2996" class="documentlinktemplate" title="Loading Datatyping Models" href="262.htm#o264" target="_self">Loading Datatyping Models section</a> for more information on the datatypes supported by Mulgara.</p>
+<p class="bodytext">To use a datatyping model in a query, compose a constraint with one of the above properties and direct it at the XML Schema model with the <code class="monospace"><a id="h206" class="documentlinktemplate" title="where Clause" href="187.htm#o197" target="_self">in</a></code> clause. For example, the following query lists all resources from the 19th century:</p>
+<p class="commandtext">select $doc from &lt;rmi://mysite.com/server1#model&gt;<br />  where $doc &lt;dc:date&gt; $date<br />    and $date &lt;mulgara:before&gt; '2000-01-01' in &lt;rmi://mysite.com/server1#xsd&gt;<br />    and $date &lt;mulgara:after&gt;  '1899-12-31' in &lt;rmi://mysite.com/server1#xsd&gt;;</p>
+<a name="o266"></a><h3 class="heading3">Limitations of Datatyping Models</h3>
+<p class="bodytext">Datatyping models have the following limitations:</p>
+<ul class="listbullet"><li class="listbullet">Mulgara treats values with the <code class="monospace">xsd:date</code> datatype as midnight of the corresponding day.</li><li class="listbullet">For <code class="monospace">xsd:dateTime</code>, Mulgara does not parse time zones.</li><li class="listbullet">Constraints containing variables for both the subject and object may not work when applied to a datatyping model.</li><li class="listbullet"><code class="monospace">xsd:decimal</code> and its derived types are currently only implemented as a 64-bit long and are not arbitrary-precision.</li></ul>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

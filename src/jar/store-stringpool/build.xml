@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="store-stringpool" default="store-stringpool-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="store-stringpool-classpath">
+    <path refid="common-classpath"/>
+    
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+  </path>
+
+  <path id="store-stringpool-test-classpath">
+    <path refid="store-stringpool-classpath"/>
+  </path>
+
+  <target name="store-stringpool-clean"
+          description="Removes all compile generated files for the store-stringpool">
+    <tstamp/>
+    <delete dir="${store-stringpool.obj.dir}"/>
+    <delete dir="${store-stringpool.test.dir}"/>
+    <delete dir="${store-stringpool.dist.dir}"/>
+  </target>
+
+  <target name="-store-stringpool-prepare"
+          description="Creates all directories associated with the store-stringpool's
+                       compilation"
+          depends="-prepare-build">
+    <mkdir dir="${store-stringpool.obj.dir}"/>
+    <mkdir dir="${store-stringpool.test.dir}"/>
+    <mkdir dir="${store-stringpool.dist.dir}"/>
+    <mkdir dir="${store-stringpool.obj.dir}/classes"/>
+  </target>
+
+  <target name="store-stringpool-compile"
+          depends="-store-stringpool-prepare, query-jar, tuples-jar, util-jar"
+          description="Compiles all store-stringpool related files included generated
+                       source code">
+
+    <javac destdir="${store-stringpool.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="store-stringpool-classpath"/>
+
+      <src path="${store-stringpool.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="store-stringpool-jar"
+          depends="store-stringpool-compile, -store-stringpool-jar-uptodate"
+          unless="store-stringpool.jar.uptodate"
+          description="Builds the store-stringpool JAR">
+
+    <jar jarfile="${store-stringpool.dist.dir}/${store-stringpool.jar}">
+      <fileset dir="${store-stringpool.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-store-stringpool-jar-uptodate">
+
+    <uptodate property="store-stringpool.jar.uptodate"
+              targetfile="${store-stringpool.dist.dir}/${store-stringpool.jar}">
+      <srcfiles dir="${store-stringpool.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="store-stringpool-dist"
+          depends="store-stringpool-jar"
+          unless="store-stringpool.uptodate"
+          description="Performs all tasks related to finalising this store-stringpool
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the store-stringpool library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="store-stringpool-test">
+    <antcall target="component-test">
+      <param name="classpath.id" value="store-stringpool-test-classpath"/>
+      <param name="dir" value="${store-stringpool.src.dir}"/>
+      <param name="jar" value="${store-stringpool.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="store-stringpool-javadoc"
+          depends="store-stringpool-jar"
+          description="Creates the javadoc for this store-stringpool">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.store-stringpool.*"/>
+      <param name="javadoc.classpath" value="store-stringpool-classpath"/>
+      <param name="javadoc.sourcepath" value="${store-stringpool.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="store-stringpool-help"
+          description="Displays the help information for this store-stringpool">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this store-stringpool -->
+
+    <echo message="Welcome to the build script for ${store-stringpool.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${store-stringpool.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

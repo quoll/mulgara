@@ -1,0 +1,18 @@
+# RDF test cases from W3C
+
+# RDF syntax
+create rmi://localhost/server1#rdf ;
+load file:@basedir@/test/RDF-Test-Cases/amp-in-url/test001.rdf into rmi://localhost/server1#rdf ;
+select $s $p $o from rmi://localhost/server1#rdf where $s $p $o ;
+dump rmi://localhost/server1#rdf into file:/tmp/test001-rdf.nt ;
+drop rmi://localhost/server1#rdf ;
+
+# N-triples syntax
+create rmi://localhost/server1#nt ;
+load file:@basedir@/test/RDF-Test-Cases/amp-in-url/test001.nt into rmi://localhost/server1#nt ;
+select $s $p $o from rmi://localhost/server1#nt where $s $p $o ;
+dump rmi://localhost/server1#nt into file:/tmp/test001-nt.nt ;
+drop rmi://localhost/server1#nt ;
+
+# Exit the session cleanly
+quit ;

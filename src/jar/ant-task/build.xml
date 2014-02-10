@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="ant-task" default="ant-task-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="ant-task-classpath">
+
+    <path refid="common-classpath"/>
+
+    <pathelement path="${dist.dir}/${driver.jar}"/>
+  </path>
+
+  <path id="ant-task-test-classpath">
+
+    <path refid="ant-task-classpath"/>
+
+    <fileset file="${ant-task.dist.dir}/${ant-task.jar}"/>
+  </path>
+
+  <target name="ant-task-clean"
+          description="Removes all compile generated files for the ant-task">
+
+    <tstamp/>
+
+    <delete dir="${ant-task.obj.dir}"/>
+    <delete dir="${ant-task.test.dir}"/>
+    <delete dir="${ant-task.dist.dir}"/>
+  </target>
+
+  <target name="-ant-task-prepare"
+          description="Creates all directories associated with the ant-task's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${ant-task.obj.dir}"/>
+    <mkdir dir="${ant-task.test.dir}"/>
+    <mkdir dir="${ant-task.dist.dir}"/>
+    <mkdir dir="${ant-task.obj.dir}/classes"/>
+  </target>
+
+  <target name="ant-task-compile"
+          depends="-ant-task-prepare, driver-dist"
+          description="Compiles all ant-task related files included generated
+                       source code">
+
+    <javac destdir="${obj.dir}/jar/ant-task/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="ant-task-classpath"/>
+
+      <src path="${ant-task.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="ant-task-jar"
+          depends="ant-task-compile, -ant-task-jar-uptodate"
+          unless="ant-task.jar.uptodate"
+          description="Creates the ant-task's jar/s">
+
+    <jar jarfile="${ant-task.dist.dir}/${ant-task.jar}">
+      <fileset dir="${ant-task.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-ant-task-jar-uptodate">
+
+    <uptodate property="ant-task.jar.uptodate"
+              targetfile="${ant-task.dist.dir}/${ant-task.jar}">
+      <srcfiles dir="${ant-task.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="ant-task-dist"
+          depends="ant-task-jar"
+          unless="ant-task.uptodate"
+          description="Performs all tasks related to finalising this ant-task
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the ant-task library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="ant-task-test"
+          depends="ant-task-jar"
+          description="Carries out unit testing for this ant-task">
+
+    <antcall target="start"/>
+
+    <sleep seconds="15"/>
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="ant-task-test-classpath"/>
+      <param name="dir" value="${ant-task.src.dir}"/>
+      <param name="jar" value="${ant-task.jar}"/>
+    </antcall>
+
+    <antcall target="stop"/>
+  </target>
+
+  <target name="ant-task-javadoc"
+          depends="ant-task-jar"
+          description="Creates the javadoc for this ant-task">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.ant.task.itql.*,
+                                           org.mulgara.ant.task.rdf.*"/>
+      <param name="javadoc.classpath" value="ant-task-test-classpath"/>
+      <param name="javadoc.sourcepath" value="${ant-task.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="ant-task-help"
+          description="Displays the help information for this ant-task">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this ant-task -->
+
+    <echo message="Welcome to the build script for ${ant-task.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${ant-task.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

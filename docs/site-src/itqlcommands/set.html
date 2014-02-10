@@ -1,0 +1,97 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - set</title>
+    <meta name="keywords" content="set, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/itqlcommands/select.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="254.htm"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/itqlcommands/index.html">iTQL Commands</a></p>
+<p class="relateditem"><a href="/itqlcommands/alias.html">alias</a></p>
+<p class="relateditem"><a href="/itqlcommands/backup.html">backup</a></p>
+<p class="relateditem"><a href="/itqlcommands/comment.html">comment (#)</a></p>
+<p class="relateditem"><a href="/itqlcommands/commit.html">commit</a></p>
+<p class="relateditem"><a href="/itqlcommands/create.html">create</a></p>
+<p class="relateditem"><a href="/itqlcommands/delete.html">delete</a></p>
+<p class="relateditem"><a href="/itqlcommands/drop.html">drop</a></p>
+<p class="relateditem"><a href="/itqlcommands/execute.html">execute</a></p>
+<p class="relateditem"><a href="/itqlcommands/help.html">help</a></p>
+<p class="relateditem"><a href="/itqlcommands/insert.html">insert</a></p>
+<p class="relateditem"><a href="/itqlcommands/load.html">load</a></p>
+<p class="relateditem"><a href="/itqlcommands/quit.html">quit</a></p>
+<p class="relateditem"><a href="/itqlcommands/restore.html">restore</a></p>
+<p class="relateditem"><a href="/itqlcommands/rollback.html">rollback</a></p>
+<p class="relateditem"><a href="/itqlcommands/select.html">select</a></p>
+
+
+ -->
+
+
+
+
+<h2>set</h2>
+
+<p>Sets a property in the interpreter. The general syntax is:</p>
+
+<p class="commandtext">set option [on | off];</p>
+
+<p>Where <code>option</code> is one of the following:</p>
+<ul><li><code>time</code>
+<p class="listcontinue">Prints the time a command takes to execute (in seconds). For example:</p>
+
+<p class="listcontinuecommandtext">set time on ;<br />
+Command timing on<br />
+Command execution time - 0.019 seconds<br />
+alias &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; as rdfns ;<br />
+Successfully aliased http://www.w3.org/1999/02/22-rdf-syntax-ns# as rdfns<br />
+Command execution time - 0.0050 seconds<br />
+set time off ;<br />
+Command timing off<br />
+alias &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; as rdfns ;<br />
+Successfully aliased http://www.w3.org/1999/02/22-rdf-syntax-ns# as rdfns</p>
+</li><li><code>autocommit</code>
+<p class="listcontinue">The default setting is <code>on</code>. Setting this option off specifies that all subsequent iTQL<sup>TM</sup> commands that modify the database are isolated in a logical unit of work. That is, modifications are not visible to other iTQL sessions until either <code>autocommit</code> is set back on or a <code>commit</code> command is performed. For example:</p>
+
+<p class="listcontinuecommandtext">set autocommit off ;<br />
+insert &lt;ns:subject&gt; &lt;ns:predicate1&gt; 'object' into &lt;rmi://mysite.com/server1#model&gt; ;<br />
+insert &lt;ns:subject&gt; &lt;ns:predicate2&gt; 'object2' into &lt;rmi://mysite.com/server1#model&gt; ; <br />
+set autocommit on ;</p>
+</li></ul>
+<p>If a session with <code>autocommit</code> set <code>off</code> is idle for a period greater than three minutes, and a second session attempts a write, then a rollback of the first session's uncommitted transactions occurs. The first session's next iTQL command then reports an error indicating that the transactions were lost.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

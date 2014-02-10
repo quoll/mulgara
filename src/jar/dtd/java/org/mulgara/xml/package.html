@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>XML utilities</title>
+</head>
+<body>
+<h1>
+XML utilities.
+</h1>
+<p>
+This package allows DTDs to be stored as resources in the classpath.
+The DTDs are currently hardcoded in, and include XHTML and Log4J.
+They're more fully described in
+{@link org.mulgara.xml.ResourceEntityResolver}.
+</p>
+<p>
+There's no logging in this package.  The reason for this is that one of its
+uses is to intercept Log4J from fetching the DTD for its configuration file
+from the Apache site.  Using any Log4J functions would initialize Log4J
+before the document builder factory was installed.
+</p>
+<p>
+This package is dependent on Crimson, the default parser in Sun's JDK 1.4.
+The class <code>org.apache.crimson.jaxp.DocumentBuilderFactoryImpl</code>
+must be in the classpath.
+</p>
+</body>
+</html>

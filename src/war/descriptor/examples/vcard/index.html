@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+  <title>Mulgara Descriptor model list tutorial</title>
+<link media="all" href="/all.css" type="text/css" title="Default" rel="stylesheet">
+<link media="screen" href="/default.css" type="text/css" title="Default" rel="stylesheet">
+<link media="print" href="/print.css" type="text/css" rel="stylesheet">
+<link href="/burnt.css" title="Burnt" media="screen" type="text/css" rel="alternate stylesheet">
+<link rel="icon" type="text/png" href="/images/icons/siteicon.png">
+<link rel="shortcut icon" type="text/png" href="/images/icons/siteicon.png">
+</head>
+
+<body>
+<div id="container">
+
+  <!-- Banner -->
+  <div id="banner">
+    <h1>mulgara.org</h1>
+  </div>
+
+  <div id="content">
+    <div id="breadcrumb">
+      [ Location:
+      <ul>
+        <li> <a href="/webservices/descriptor/" title="descriptors">descriptors</a> </li>
+        <ul>
+          <li> <a href="../index.html" title="examples">examples</a> </li>
+          <ul>
+            <li>vcard</li>
+          </ul>
+        </ul>
+      </ul>  ]
+  </div>  
+<h1>Mulgara Descriptor VCard Example</h1>
+     
+<h2></h2>
+<b></b>
+<h2>Overview</h2>
+This example uses several descriptors to generate a HTML page containing
+all the VCards in a specified Mulgara Model. &nbsp;Furthermore the VCard can
+be exported from Mulgara in VCard format which is used by applications such as
+Netscape Address book, MS Outlook etc.  New VCards can be entered from a HTML interface.<br>
+&nbsp;<br>
+Here is a sample screenshot.<br>
+<br>
+<img src="usage.png" alt="usage" width="636" height="913">
+<br>
+<br>
+<br>
+Clicking on 'export VCard' will send a file similar to the one below to your
+browser, depending on configuration your browser may ask you to save it or
+it may pass it off to an external application such as MS Outlook.<br>
+<br>
+<blockquote>BEGIN:VCARD&nbsp;&nbsp;&nbsp; <br>
+VERSION:2.1<br>
+FN:Corky Crystal<br>
+TITLE:Computer Officer Class 3<br>
+ROLE:Programmer<br>
+ADR;WORK:; 111 Lake Drive ; WonderCity ; 5555 ; Australia <br>
+LABEL;WORK;ENCODING=QUOTED-PRINTABLE: 111 Lake Drive =0D=0A WonderCity =0D=0A
+5555&nbsp; Australia <br>
+EMAIL;PREF;INTERNET:corky@qqq.com<br>
+NOTE:Only works on Mondays and Fridays<br>
+TEL;WORK;VOICE:+61 7 555 5555<br>
+END:VCARD <br>
+</blockquote>
+This example uses 7 descriptors which perform a variety of tasks, clicking
+on the link will show the descriptor source in a new window.<br>
+<ol>
+  <li><a href="../../descriptors/vcard/vcardlisthtml.xsl"
+ target="_blank">Given a Model show all VCards in that model as HTML</a></li>
+  <li><a href="../../descriptors/vcard/vcardlist.xsl" target="_blank">Given
+a Model return a list of VCards URIs in that model as XML</a></li>
+  <li><a href="../../descriptors/vcard/vcardhtml.xsl" target="_blank">Given
+a VCard URI return a HTML version of the VCard</a></li>
+  <li><a href="../../descriptors/vcard/vcardxml.xsl" target="_blank">Given
+a VCard URI return a XML version of the VCard</a></li>
+  <li><a href="../../descriptors/vcard/vcard.xsl" target="_blank">Given a
+VCard URI return a VCard Format version of the VCard</a><br></li>
+  <li><a href="../../descriptors/vcard/vcardinsert.xsl" target="_blank">Given VCard 
+    parameters insert a VCard into a Mulgara model</a><br></li>
+  <li><a href="../../descriptors/vcard/vcardinserthtml.xsl" target="_blank">Given a model
+ return a HTML page which will take VCard parameters and insert them into Mulgara model</a><br></li>
+</ol>
+The descriptors are part of the default descriptor installation in Mulgara and
+are available from the List descriptors task on the <a href="../../">Descriptor
+management page</a>.<br>
+<br>
+The diagram below shows some of the the relationships between these descriptors which
+demonstrate reusability.<br>
+<br>
+<img src="flow.png" alt="flow diagram" width="921" height="1117">
+<br>
+<br>
+<br>
+<br>
+<br>
+Note that Descriptor 4 (Given a VCard URI return the VCard as XML) is used
+by both browser tasks. &nbsp;This is to demonstrate the reusability of well
+designed descriptors.
+<h2>Try the Example</h2>
+First you must load some VCard RDF into a model. &nbsp;Using the command
+line iTQL client or the <a href="/webui/">Mulgara Web UI</a> create a model for
+storing the VCards e.g.<br>
+<br>
+iTQL&gt; create &lt;rmi://localhost/server1#vcard&gt;;<br>
+<br>
+<b>NOTE</b> replace localhost with the fully qualified hostname of your
+Mulgara server.<br>
+<br>
+Load some VCard RDF into this model, here is a sample file: <a href="vcards.rdf">vcards.rdf</a>.  
+Copy the link address  and load it into the vcard model using an iTQL command such as this:
+<p/>
+iTQL&gt; load &lt;http://localhost:8080/webservices/descriptor/examples/vcard/vcards.rdf&gt; into &lt;rmi://localhost/server1#vcard&gt;;<br>
+If you want to add more vcards download the rdf file, edit it and load it in using a file URL.
+<br>
+Make sure the default descriptors are loaded, this is a task available from the <a href="../../" target="descriptor">descriptor management page</a>.  &nbsp;<br>
+Now locate the Descriptor "Given a Model show all VCards in that
+model as HTML" from the task list of descriptors available from&nbsp; the
+<a href="../../" target="descriptor">descriptor management page</a>.  &nbsp;<br>
+Enter rmi://localhost/server1#vcard (replace localhost with the fully qualified
+hostname of your Mulgara server) as the model parameter and invoke and instance
+of the descriptor.<br>
+<br>
+   
+</div></div>
+</body>
+</html>

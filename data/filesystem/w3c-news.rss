@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="http://www.w3.org/2000/08/w3c-synd/style.css" type="text/css"?>
+<rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:hr="http://www.w3.org/2000/08/w3c-synd/#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://purl.org/rss/1.0/">
+<channel rdf:about="http://www.w3.org/2000/08/w3c-synd/home.rss">
+<title>The World Wide Web Consortium</title>
+<description>Leading the Web to its Full
+Potential...</description>
+<link>http://www.w3.org/</link>
+<dc:date>2002-02-11T18:50:26Z</dc:date>
+<items>
+<rdf:Seq>
+<rdf:li rdf:resource="http://www.w3.org/News/2002#item12"/>
+<rdf:li rdf:resource="http://www.w3.org/News/2002#item18"/>
+<rdf:li rdf:resource="http://www.w3.org/News/2002#item17"/>
+<rdf:li rdf:resource="http://www.w3.org/News/2002#item16"/>
+<rdf:li rdf:resource="http://www.w3.org/News/2002#item15"/>
+<rdf:li rdf:resource="http://www.w3.org/News/2002#item14"/>
+<rdf:li rdf:resource="http://www.w3.org/News/2002#item13"/>
+</rdf:Seq>
+</items>
+</channel>
+<item rdf:about="http://www.w3.org/News/2002#item12">
+<title>W3C Launches Web Services Activity</title>
+<description>25 January 2002: W3C is pleased to announce the creation of the Web Services Activity. Initially composed of three Working Groups and a Coordination Group and folding in the former W3C XML Protocol Activity, the new Activity will develop a set of interfaces for application to application communication on the Web. Chartered to build three Recommendations, Web services work is conducted publicly. Read more in the Web Services Activity statement. (News archive)</description>
+<link>http://www.w3.org/News/2002#item12</link>
+<dc:date>2002-01-25</dc:date>
+</item>
+<item rdf:about="http://www.w3.org/News/2002#item18">
+<title>P3P Deployment Guide Updated</title>
+<description>11 February 2002: The Platform for Privacy Preferences 1.0 Deployment Guide has been updated. Written for content owners and Webmasters, the guide explains how to write a machine-readable privacy policy, and gives step-by-step instructions for deploying your privacy policy on popular Web servers. Read the answers to frequently asked questions about P3P and more about the W3C Privacy Activity. (News archive)</description>
+<link>http://www.w3.org/News/2002#item18</link>
+<dc:date>2002-02-11</dc:date>
+</item>
+<item rdf:about="http://www.w3.org/News/2002#item17">
+<title>DOM Level 3 Working Drafts Published</title>
+<description>8 February 2002: The Document Object Model (DOM) Working Group has released two updated Working Drafts. DOM Level 3 XPath provides functionalities to access a DOM tree using XPath 1.0. DOM Level 3 Events is an interface that allows programs and scripts to dynamically update the content, structure, and style of documents. Comments are welcome. Read about the W3C DOM Activity. (News archive)</description>
+<link>http://www.w3.org/News/2002#item17</link>
+<dc:date>2002-02-08</dc:date>
+</item>
+<item rdf:about="http://www.w3.org/News/2002#item16">
+<title>QA Framework First Public Working Drafts Published</title>
+<description>4 February 2002: The QA Working Group has released the first public Working Draft of the QA Framework: Introduction. This draft introduces the goals and structure of the overall W3C Quality Assurance (QA) framework and includes a first version of the Process &amp; Operational Guidelines for promoting and facilitating the quality practices of W3C Working Groups. Comments are welcome. Visit the QA Working Group home page. (News archive)</description>
+<link>http://www.w3.org/News/2002#item16</link>
+<dc:date>2002-02-04</dc:date>
+</item>
+<item rdf:about="http://www.w3.org/News/2002#item15">
+<title>W3C Team Presentations in February</title>
+<description>1 February 2002: Representing the W3C Team at PAGE2002 in Tokyo, Japan: on 7 February, Norio Touyama gives an Introduction to W3C Activities and Max Froumentin speaks on Web-based publishing using XSL, and on 8 February Martin J. Dürst speaks on Metadata and the Semantic Web (in Japanese). Charles McCathieNevile gives a series of talks in Finland including a two-day workshop at Mlab/UIAH in Helsinki on 5-6 February. On 12-14 February, Thierry Michel and Vincent Hardy give SVG and SMIL demos at the W3C booth at IMAGINA.02 held at the Grimaldi Forum, Monaco. On 25 February, Ivan Herman presents a tutorial 2D Web Graphics: SVG at the Web3D 2002 Symposium in Tempe, Arizona, USA. (News archive)</description>
+<link>http://www.w3.org/News/2002#item15</link>
+<dc:date>2002-02-01</dc:date>
+</item>
+<item rdf:about="http://www.w3.org/News/2002#item14">
+<title>XHTML+SMIL Profile Published</title>
+<description>31 January 2002: The SYMM Working Group has published XHTML+SMIL Profile as a W3C Note integrating a subset of the SMIL 2.0 specification with XHTML. The profile includes modules for animation, content control, media objects, timing and synchronization, time manipulations, and transition effects. Read about the W3C Synchronized Multimedia Activity. (News archive)</description>
+<link>http://www.w3.org/News/2002#item14</link>
+<dc:date>2002-01-31</dc:date>
+</item>
+<item rdf:about="http://www.w3.org/News/2002#item13">
+<title>Platform for Privacy Preferences (P3P) Becomes a W3C Proposed Recommendation</title>
+<description>28 January 2002: W3C is pleased to announce the advancement of the The Platform for Privacy Preferences 1.0 (P3P1.0) Specification to Proposed Recommendation. P3P is a simple automated way for users to gain control over the use of their personal information on Web sites they visit. Comments are welcome through 25 February. Read the answers to frequently asked questions about P3P and more about the W3C Privacy Activity. (News archive)</description>
+<link>http://www.w3.org/News/2002#item13</link>
+<dc:date>2002-01-28</dc:date>
+</item>
+</rdf:RDF>

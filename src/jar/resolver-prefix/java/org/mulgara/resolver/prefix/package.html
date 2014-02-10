@@ -1,0 +1,10 @@
+<html>
+  <head>
+    <title>Prefix Resolver</title>
+  </head>
+  <body>
+    <h1>Prefix Resolver.</h1>
+    <p>This package is an internal resolver for extracting all elements with a specified prefix from RDF.  In particular, this is useful for sequence elements from RDF.  These elements are referred to with predicates of the form <code>rdf:_<i>n</i></code>, where <i>n</i> is the number of the element in the sequence.</p>
+    <p>This resolver searches the string pool for all nodes starting with a prefix, and returns the results.  The remainders of <code>rdf:_</code> strings are guaranteed to be numbers, simply because there are no other options defined in the rdf namespace.</p>
+  </body>
+</html>

@@ -1,0 +1,166 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Inferencing Examples Using SOFA and iTQL</title>
+    <meta name="keywords" content="Inferencing, Examples, SOFA,iTQL, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+ 
+		<a href="/inferencing/inferexample.html#o2734">iTQL Inferencing</a> &#124;
+		<a href="/inferencing/inferexample.html#o2735">SOFA Inferencing</a> &#124;
+		<a href="/inferencing/inferexample.html#o2736">SOFA or iTQL?</a>
+   
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/inferencing/sofa.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/overview/legalinfo.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/inferencing/index.html">Inferencing</a></p>
+<p class="relateditem"><a href="/inferencing/inferintro.html">Introduction to Inferencing</a></p>
+<p class="relateditem"><a href="/inferencing/infermulgara.html">Inferencing and Mulgara</a></p>
+<p class="relateditem"><a href="/inferencing/owl.html">OWL-Lite Operations Using iTQL</a></p>
+<p class="relateditem"><a href="/inferencing/sofa.html">SOFA</a></p>
+
+ -->
+
+
+
+
+<h2>Inferencing Examples Using SOFA and iTQL</h2>
+
+<p>This tutorial explains two approaches to using inferencing capabilities of Mulgara: <a class="internetlinktemplate" title="" href="https://sofa.dev.java.net/">SOFA</a> and the iTQL<sup>TM</sup> <code><a id="h1610" class="documentlinktemplate" title="Traversing a Graph (walk Function)" href="/itqlcommands/select.html#o1532">walk</a></code> command.</p>
+
+<p>The same camera phone ontology, as used in the <a id="h2682" class="documentlinktemplate" title="SOFA" href="/inferencing/sofa.html">SOFA tutorial</a>, is used here. This camera phone ontology is an extension of the classic Camera Ontology, with two new classes: Phones and Camera Phones. This example shows how to retrieve the superclasses of the Camera Phone class.</p>
+
+<p>The SOFA API documentation, including the Mulgara classes that provide persistence storage for SOFA objects, is located in <code><a class="internetlinktemplate" title="" href="api/sofa/index.html">&lt;Mulgara install&gt;/docs/api/sofa</a></code>.</p>
+
+
+<div class="anchor"><a name="o2734">&nbsp;</a></div>
+<h3>iTQL Inferencing</h3>
+
+<p>A running Mulgara server and the <code>CameraPhone.owl</code> ontology are need to complete this tutorial. The <code>CameraPhone.owl</code> file is available in the <code>Resources</code> directory of your Mulgara installation. You can issue the following iTQL commands using either the <a id="h551" class="documentlinktemplate" title="iTQL Shell" href="/system/itqlshell.html">iTQL shell</a>, the <a id="h788" class="documentlinktemplate" title="Mulgara Viewer" href="/tutorial/viewer.html">Mulgara Viewer</a><sup><a id="h788_2" class="documentlinktemplate" title="Mulgara Viewer" href="/tutorial/viewer.html">TM</a></sup> or the TMC<sup>TM</sup>.</p>
+
+<p class="note"><strong>Note -</strong> In the iTQL commands listed below, replace <code>example.com</code> with the fully qualified hostname for your Mulgara server.</p>
+<div class="anchor"><a name="o3207">&nbsp;</a></div>
+
+
+<p>Complete the following steps:</p>
+<ol><li>Create the camera phone model and load in the ontology:
+<p class="listcontinuecommandtext">iTQL&gt; create &lt;rmi://example.com/server1#cameraphone&gt;;<br />
+iTQL&gt; load &lt;file:/PATH/TO/TKS/Resources/CameraPhone.owl&gt; into &lt;rmi://example.com/server1#cameraphone&gt;;</p>
+</li><li>Create aliases for RDF Schema and the camera ontology:
+<p class="listcontinuecommandtext">iTQL&gt; alias &lt;http://www.w3.org/2000/01/rdf-schema#&gt; as rdfs;<br />
+iTQL&gt; alias &lt;http://www.xfront.com/owl/ontologies/camera/#&gt; as camera;</p>
+</li><li>Perform the following query to retrieve the superclasses:
+<p class="listcontinuecommandtext">iTQL&gt; select&nbsp;$s &lt;rdfs:subClassOf&gt; $o from &lt;rmi://example.com/server1#cameraphone&gt; where <br />
+  walk(&lt;camera:CameraPhone&gt; &lt;rdfs:subClassOf&gt; $o and $s &lt;rdfs:subClassOf&gt; $o);</p>
+</li></ol>
+<p>The query should return the following (namespaces have been compacted for clarity):</p>
+
+<p class="commandtext">[ camera:Phone, rdfs:subClassOf, camera:PurchaseableItem ]<br />
+[ camera:CameraPhone, rdfs:subClassOf, camera:Phone ]<br />
+[ camera:CameraPhone, rdfs:subClassOf, camera:Digital ]<br />
+[ camera:Camera, rdfs:subClassOf, camera:PurchaseableItem ]<br />
+[ camera:Digital, rdfs:subClassOf, camera:Camera ]</p>
+
+<p>These are the superclasses of a Camera Phone in descending order.</p>
+<div class="anchor"><a name="o2735">&nbsp;</a></div>
+<h3>SOFA Inferencing</h3>
+
+<p>Sofa API documentation is available in the <code>docs/api/sofa</code> directory of your Mulgara installation.</p>
+
+<p>The following class is a simple class that lists the superclasses of a Camera Phone. It is available as <code>CameraPhoneInferenceExample.java</code> in the <code>Resources</code> directory of your Mulgara installation.</p>
+
+<p class="commandtext">package org.mulgara.sofa.example;<br />
+<br />
+/**<br />
+&nbsp;* Camera Phone Inference Example<br />
+&nbsp;*/<br />
+import java.util.*;<br />
+import net.java.dev.sofa.*;<br />
+import net.java.dev.sofa.impl.*;<br />
+import org.mulgara.sofa.serialize.owl.*;<br />
+<br />
+public class CameraPhoneInferenceExample {<br />
+<br />
+&nbsp; public static void main(String[] args) {<br />
+<br />
+&nbsp;&nbsp;&nbsp; try {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create in memory based Ontology, use TKS ontology model&nbsp; for persistence<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ontology ontology = OntoConnector.getInstance().createOntology(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;http://www.xfront.com/owl/ontologies/camera/&quot;);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Load Camera Phone Ontology<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OWLReader.getReader().read(ontology, &quot;file:CameraPhone.owl &quot;);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Get camera phone<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Concept cameraPhone = ontology.getConcept(&quot;CameraPhone&quot;);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Show super classes<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (Iterator sc = cameraPhone.getSuperConcepts(true).iterator(); sc.hasNext();) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Concept superConcept = (Concept) sc.next();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(superConcept.getId());<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; } catch (Exception e) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp; }<br />
+}</p>
+<div class="anchor"><a name="o3208">&nbsp;</a></div>
+
+
+<p>To run this example:</p>
+<ol><li>Retrieve it from the <code>Resources</code> directory of your Mulgara installation and place it in a directory hierarchy like the one shown below:
+<p class="listcontinuecommandtext">example/sofa/java/org/mulgara/sofa/example/CameraPhoneInferenceExample.java</p>
+</li><li>Compile it from the directory in which you created the above hierarchy:
+<p class="listcontinuecommandtext">javac -classpath &lt;Mulgara directory&gt;/Resources/driver-2.1.jar<br />
+  example/sofa/java/org/mulgara/sofa/example/CameraPhoneInferenceExample.java</p>
+</li><li>Run this example from the Mulgara installation directory,with the following command:
+<p class="listcontinuecommandtext">java -classpath &lt;Mulgara directory&gt;/Resources/driver-1.1.0.jar:example/sofa/java<br />
+  org.mulgara.sofa.example.CameraPhoneInferenceExample</p>
+</li></ol>
+<p>The following displays on the screen:</p>
+
+<p class="commandtext">Phone<br />
+Camera<br />
+Digital<br />
+PurchaseableItem</p>
+
+<p>These are the superclasses of a Camera Phone in ascending order</p>
+<div class="anchor"><a name="o2736">&nbsp;</a></div>
+<h3>Should I use SOFA or iTQL?</h3>
+
+<p>Broadly speaking, iTQL is probably more familiar to developers who have built applications around SQL queries in the past. It is also a very hands on, iterative and interactive way of working with Mulgara.</p>
+
+<p>SOFA might appeal more to API programmers who have accessed databases through Object Oriented databases such as Hibernate and J2EE Entity Beans.&nbsp;SOFA is a pure java technology, although it closely models OWL idioms, which are language agnostic.</p>
+
+<p>iTQL can be accessed from a variety of programming languages and technologies, such as web services and might be a better fit in a heterogeneous computing environment. iTQL is currently a more scalable solution when working with very large data sets, although SOFA will be just as scalable in future versions of Mulgara.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

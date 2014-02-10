@@ -1,0 +1,99 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - backup</title>
+    <meta name="keywords" content="export, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+<!--
+<p><a href="/itqlcommands/alias.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/itqlcommands/comment.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/itqlcommands/index.html">iTQL Commands</a></p>
+<p class="relateditem"><a href="/itqlcommands/alias.html">alias</a></p>
+<p class="relateditem"><a href="/itqlcommands/comment.html">comment (#)</a></p>
+<p class="relateditem"><a href="/itqlcommands/commit.html">commit</a></p>
+<p class="relateditem"><a href="/itqlcommands/create.html">create</a></p>
+<p class="relateditem"><a href="/itqlcommands/delete.html">delete</a></p>
+<p class="relateditem"><a href="/itqlcommands/drop.html">drop</a></p>
+<p class="relateditem"><a href="/itqlcommands/execute.html">execute</a></p>
+<p class="relateditem"><a href="/itqlcommands/help.html">help</a></p>
+<p class="relateditem"><a href="/itqlcommands/insert.html">insert</a></p>
+<p class="relateditem"><a href="/itqlcommands/load.html">load</a></p>
+<p class="relateditem"><a href="/itqlcommands/quit.html">quit</a></p>
+<p class="relateditem"><a href="/itqlcommands/restore.html">restore</a></p>
+<p class="relateditem"><a href="/itqlcommands/rollback.html">rollback</a></p>
+<p class="relateditem"><a href="/itqlcommands/select.html">select</a></p>
+<p class="relateditem"><a href="/itqlcommands/set.html">set</a></p>
+
+ -->
+
+
+
+<h2>export</h2>
+
+<p>Directs a Mulgara server to export the contents of an RDF graph into an RDF/XML file. The general syntax is as follows:</p>
+
+<p class="commandtext">export server#graph to [local|remote] file;</p>
+
+<p>Where:</p>
+<ul><li><code>server</code> is the URI of the Mulgara server that stores the graph.</li><li><code>#graph</code> is an individual graph to export.</li><li><code>local</code> or <code>remote</code> specifies that the exported file is written locally on the client or remotely on server's filesystem, respectively. If not specified, the default is <code>remote</code>.</li><li><code>file</code> is the URI of the exported file.</li></ul>
+<p class="note"><strong>Note -</strong> The <code>server#graph</code> notation for graph URI's is not required.  The <code>export</code> command also supports exporting graphs with opaque URI's, in which case the export command will be sent to the server running locally at <code>rmi://localhost/server1</code>.</p>
+
+<p>For example:</p>
+
+<p class="indentcommandtext">export &lt;rmi://mysite.com/server1#mygraph&gt; to &lt;file:/tmp/graphexport.rdf&gt;;</p>
+
+<p class="indent">and</p>
+
+<p class="indentcommandtext">export &lt;rmi://mysite.com/server1#mygraph&gt; to remote &lt;file:/tmp/graphexport.rdf&gt;;</p>
+
+<p class="indent">are equivalent. Both commands write the exported RDF/XML file remotely on the server's filesystem.</p>
+
+<p class="indentcommandtext">export &lt;rmi://mysite.com/server1#mygraph&gt; to local &lt;file:/tmp/graphexport.rdf&gt;;</p>
+
+<p class="indent">writes the exported RDF/XML file locally on the client.</p>
+
+<p class="indentcommandtext">export &lt;urn:graph1234&gt; to &lt;file:/tmp/graphexport.rdf&gt;;</p>
+
+<p class="indent">tells the server running at <code>rmi://localhost/server1</code> to export the graph with the opaque URI <code>urn:graph1234</code>.</p>
+
+<p>Use the <code><a id="h1523" class="documentlinktemplate" title="create" href="/itqlcommands/create.html">create</a></code> and <code><a id="h1524" class="documentlinktemplate" title="load" href="/itqlcommands/load.html">load</a></code> commands to restore graph exports.</p>
+
+<p>For example:</p>
+
+<p class="commandtext">create &lt;rmi://mysite.com/server1#newgraph&gt;;<br />
+load &lt;file:/tmp/graphbackup.rdf&gt; into &lt;rmi://mysite.com/server1#newgraph&gt;;</p>
+
+
+			
+    
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

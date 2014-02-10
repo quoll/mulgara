@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Parsers </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Parsers, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="2707.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="2951.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h4 class="heading4">Parsers</h4>
+<p class="bodytext">The content handler takes data from files and converts it into RDF triples that can be navigated using the <code class="monospace">Statements</code> interface. Usually the data contained in the target file is not in a natural RDF format so the content handler must convert the data for it to be relevant. Whether this is a matter of parsing text or converting binary data is up to the implementer. The MP3 resolver uses a parser package that transforms the ID3 tags into meaningful RDF triples, which the <code class="monospace">Statements</code> implementation can then navigate.</p>
+<p class="bodytext">When parsing the data you need to decide on what kind of temporary storage to use for the RDF triples. Remember that the <code class="monospace">Statements</code> object navigates through triples in a list style so the storage method used must be able to accommodate this.</p>
+<p class="bodytext">You also need to consider how the triples should be stored across queries against the URL. Should you cache them to save time if the URL is queried again? Should you store the data in memory (you can only process small files but has faster access) or on disk (you can handle large files but with slower access)? For the purposes of the MP3 parser, a JRDF graph stores the triples in memory, as ID3 tags are small.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="2701.htm#o2704" target="_self">Configuration and Initialisation</a></p><p class="relateditem"><a href="2701.htm#o2705" target="_self">Processing ID3 Tags into RDF</a></p><p class="relateditem"><a href="2701.htm#o2706" target="_self">Storing Data</a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="3184.htm" target="_self">Developing Content Handlers</a></p><p class="relateditem"><a href="2707.htm" target="_self">Content Handlers</a></p><p class="relateditem"><a href="2951.htm" target="_self">Statements</a></p></td>
+</tr>
+</table>
+
+<a name="o2704"></a><h5 class="heading5">Configuration and Initialisation</h5>
+<p class="bodytext">How the parsing section of the handler is set up is up to the developer. The way the data is added is irrelevant, only the fact that the data is added in a <code class="monospace">Statements</code> API navigable format is important. Some configuration for your parsing solution might be required. For the MP3 resolver there is a configuration file with properties telling the factory where to find the implementations of the ID3 tag parsing classes.</p>
+<p class="bodytext">The properties file looks like the following (see the <code class="monospace">parserfactory.conf</code> file in the <code class="monospace">conf/resolvers/mp3/</code> directory of your Mulgara installation):</p>
+<p class="commandtext">id3parser.class = org.mulgara.resolver.mp3.parser.ID3ParserImpl<br />id3v1parser.class = org.mulgara.resolver.mp3.parser.ID3v1ParserImpl<br />id3v2parser.class = org.mulgara.resolver.mp3.parser.ID3v2ParserImpl</p>
+<p class="bodytext">The properties file with name value pairs is read into the factory's properties by the following lines of code (see <code class="monospace">ParserFactory.java</code>):</p>
+<p class="commandtext">// Initialise our properties<br />properties = new Properties();<br /><br />// Retrieve the resource url for our configuration file<br />URL parserConfiguration = this.getClass().getResource(&quot;/parserfactory.conf&quot;);<br /><br />try {<br /><br />  // Load the properties for the parser factory using the stream from the URL<br />  properties.load(parserConfiguration.openStream());<br />} catch (IOException ioException) {<br /><br />  throw new FactoryException(&quot;Unable to load the parser factory &quot; +<br />                             &quot;configuration from: &quot; +<br />                             parserConfiguration.toString(), ioException);<br />}</p>
+<p class="bodytext">No other configuration is required for the parser.</p>
+<a name="o2705"></a><h5 class="heading5">Processing ID3 Tags into RDF</h5>
+<p class="bodytext">Since parsers vary depending on the content of what they are parsing, only a summary of the steps are included here, highlighting the process of data conversion. The actual implementation of this process is in the the <code class="monospace">src/jar/content-mp3/java/org/mulgara/content/mp3/parser/</code> directory of your Mulgara installation.</p>
+<p class="bodytext">ID3 tags are passed into the <code class="monospace">ID3Parser</code> class using the <code class="monospace">MP3Conversion</code> container bean. Within the general <code class="monospace">ID3Parser</code> class, the version 2 and version 1 tags are separately parsed with the <code class="monospace">ID3v2Parser</code> and <code class="monospace">ID3v1Parser</code> implementation classes respectively. Within the <code class="monospace">MP3Conversion</code> object there is a <code class="monospace">JRDF Graph</code> object that stores the statements pertaining to the ID3 tag data. Available to each <code class="monospace">MP3Conversion</code> object's graph is a dictionary of RDF predicates, which correspond to each of the tag headers that might be found in ID3 tags (see <code class="monospace">IdentifierProcessor.java</code>).</p>
+<p class="bodytext">Both ID3 tag parsers (<code class="monospace">ID3v1ParserImpl.java</code> and <code class="monospace">ID3v2ParserImpl.java</code>) contain a method called <code class="monospace">parseRDF()</code> that is used to generate the RDF triples that the ID3 tags parse to. Each tag set belongs to its own resource, unified under a single MP3 resource unique to the original file. As tag identifiers are processed, the respective resources have triples which contain the tag's resource ID, the predicate mapping for the current identifier and the literal value from the tag added. After completion of this parsing process the conversion is then handed back to the calling object (<code class="monospace">MP3Statements</code>) for processing of the <code class="monospace">Graph</code> object.</p>
+<a name="o2706"></a><h5 class="heading5">Storing Data</h5>
+<p class="bodytext">As described above, all triples are added to the graph and are then passed to the <code class="monospace">MP3Statements</code> object for navigation when the resolver resolves the constraints. Everything is done in memory and is relatively fast. The drawback to this is that the triples are lost once the resolver has finished constraining the statements. Since ID3 tags are relatively small, this is not too much of a problem. However, in something like an MBox handler, file sizes and message counts are larger so caching of the graph occurs to prevent the duplication of processing. It also means that the data is persisted across executions.</p>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

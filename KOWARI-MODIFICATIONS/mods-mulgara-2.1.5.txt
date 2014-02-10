@@ -1,0 +1,436 @@
+------------------------------------------------------------------------
+r1874 | pag | 2009-12-10 14:51:41 -0500 (Thu, 10 Dec 2009) | 1 line
+Changed paths:
+   A /trunk/KOWARI-MODIFICATIONS/mods-mulgara-2.1.5.txt
+
+Checking in a log of all modifications for 2.1.5
+------------------------------------------------------------------------
+r1873 | pag | 2009-12-10 14:47:46 -0500 (Thu, 10 Dec 2009) | 1 line
+Changed paths:
+   M /trunk/LEGAL.txt
+
+Updated to track the changes in lib
+------------------------------------------------------------------------
+r1872 | pag | 2009-12-10 14:35:45 -0500 (Thu, 10 Dec 2009) | 1 line
+Changed paths:
+   M /trunk/common.properties
+
+Moving to 2.1.5
+------------------------------------------------------------------------
+r1871 | pag | 2009-12-10 12:02:12 -0500 (Thu, 10 Dec 2009) | 1 line
+Changed paths:
+   M /trunk/.project
+   R /trunk/KOWARI-MODIFICATIONS/mods-mulgara-2.1.3.txt (from /branches/distinct_queries/KOWARI-MODIFICATIONS/mods-mulgara-2.1.3.txt:1870)
+   R /trunk/KOWARI-MODIFICATIONS/mods-mulgara-2.1.4.txt (from /branches/distinct_queries/KOWARI-MODIFICATIONS/mods-mulgara-2.1.4.txt:1870)
+   A /trunk/jxdata/iTQL/distinct (from /branches/distinct_queries/jxdata/iTQL/distinct:1870)
+   R /trunk/jxdata/iTQL/distinct/queryResult1.txt (from /branches/distinct_queries/jxdata/iTQL/distinct/queryResult1.txt:1870)
+   R /trunk/jxdata/iTQL/distinct/queryResult2.txt (from /branches/distinct_queries/jxdata/iTQL/distinct/queryResult2.txt:1870)
+   R /trunk/jxdata/iTQL/distinct/queryResult3.txt (from /branches/distinct_queries/jxdata/iTQL/distinct/queryResult3.txt:1870)
+   R /trunk/jxdata/iTQL/distinct/result1.txt (from /branches/distinct_queries/jxdata/iTQL/distinct/result1.txt:1870)
+   R /trunk/jxdata/iTQL/distinct/test.jxu (from /branches/distinct_queries/jxdata/iTQL/distinct/test.jxu:1870)
+   A /trunk/jxdata/iTQL/people.rdf (from /branches/distinct_queries/jxdata/iTQL/people.rdf:1870)
+   A /trunk/jxdata/iTQL/unique.rdf (from /branches/distinct_queries/jxdata/iTQL/unique.rdf:1870)
+   A /trunk/jxdata/iTQL/unique2.rdf (from /branches/distinct_queries/jxdata/iTQL/unique2.rdf:1870)
+   R /trunk/jxdata/iTQL/vargraph (from /branches/distinct_queries/jxdata/iTQL/vargraph:1870)
+   R /trunk/jxdata/iTQL/vargraph/queryResult1.txt (from /branches/distinct_queries/jxdata/iTQL/vargraph/queryResult1.txt:1870)
+   R /trunk/jxdata/iTQL/vargraph/queryResult2.txt (from /branches/distinct_queries/jxdata/iTQL/vargraph/queryResult2.txt:1870)
+   R /trunk/jxdata/iTQL/vargraph/queryResult3.txt (from /branches/distinct_queries/jxdata/iTQL/vargraph/queryResult3.txt:1870)
+   R /trunk/jxdata/iTQL/vargraph/result1.txt (from /branches/distinct_queries/jxdata/iTQL/vargraph/result1.txt:1870)
+   R /trunk/jxdata/iTQL/vargraph/result2.txt (from /branches/distinct_queries/jxdata/iTQL/vargraph/result2.txt:1870)
+   R /trunk/jxdata/iTQL/vargraph/result3.txt (from /branches/distinct_queries/jxdata/iTQL/vargraph/result3.txt:1870)
+   R /trunk/jxdata/iTQL/vargraph/test.jxu (from /branches/distinct_queries/jxdata/iTQL/vargraph/test.jxu:1870)
+   R /trunk/lib/apache-mime4j-0.5.jar (from /branches/distinct_queries/lib/apache-mime4j-0.5.jar:1870)
+   R /trunk/lib/commons-logging-1.1.1.jar (from /branches/distinct_queries/lib/commons-logging-1.1.1.jar:1870)
+   R /trunk/lib/httpclient-4.0-beta2.jar (from /branches/distinct_queries/lib/httpclient-4.0-beta2.jar:1870)
+   R /trunk/lib/httpcore-4.0-beta3.jar (from /branches/distinct_queries/lib/httpcore-4.0-beta3.jar:1870)
+   R /trunk/lib/httpmime-4.0-beta2.jar (from /branches/distinct_queries/lib/httpmime-4.0-beta2.jar:1870)
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/Parser.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/Parser.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/RDFXMLWriter.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/TestStatementsComparator.java
+   M /trunk/src/jar/krule/java/org/mulgara/krule/KruleLoader.java
+   M /trunk/src/jar/krule/java/org/mulgara/krule/QueryStruct.java
+   M /trunk/src/jar/query/java/org/mulgara/connection/ConnectionFactoryUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/jena/PatternMulgara.java
+   M /trunk/src/jar/query/java/org/mulgara/query/AbstractConstraintExpression.java
+   M /trunk/src/jar/query/java/org/mulgara/query/AskQuery.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintAssignment.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintDifference.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintExpression.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintFalse.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintFilter.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintIn.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintOperation.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintTrue.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstructQuery.java
+   R /trunk/src/jar/query/java/org/mulgara/query/FunctionResolverRegistry.java (from /branches/distinct_queries/src/jar/query/java/org/mulgara/query/FunctionResolverRegistry.java:1870)
+   M /trunk/src/jar/query/java/org/mulgara/query/Query.java
+   M /trunk/src/jar/query/java/org/mulgara/query/QueryUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/SingleTransitiveConstraint.java
+   M /trunk/src/jar/query/java/org/mulgara/query/TransitiveConstraint.java
+   M /trunk/src/jar/query/java/org/mulgara/query/WalkConstraint.java
+   R /trunk/src/jar/query/java/org/mulgara/query/functions (from /branches/distinct_queries/src/jar/query/java/org/mulgara/query/functions:1870)
+   R /trunk/src/jar/query/java/org/mulgara/query/functions/MulgaraFunction.java (from /branches/distinct_queries/src/jar/query/java/org/mulgara/query/functions/MulgaraFunction.java:1870)
+   R /trunk/src/jar/query/java/org/mulgara/query/functions/MulgaraFunctionGroup.java (from /branches/distinct_queries/src/jar/query/java/org/mulgara/query/functions/MulgaraFunctionGroup.java:1870)
+   R /trunk/src/jar/query/java/org/mulgara/query/functions/MulgaraFunctionResolver.java (from /branches/distinct_queries/src/jar/query/java/org/mulgara/query/functions/MulgaraFunctionResolver.java:1870)
+   R /trunk/src/jar/query/java/org/mulgara/query/functions/MulgaraUnsafeFunctionResolver.java (from /branches/distinct_queries/src/jar/query/java/org/mulgara/query/functions/MulgaraUnsafeFunctionResolver.java:1870)
+   R /trunk/src/jar/query/java/org/mulgara/query/functions/MulgaraXFunctionGroup.java (from /branches/distinct_queries/src/jar/query/java/org/mulgara/query/functions/MulgaraXFunctionGroup.java:1870)
+   R /trunk/src/jar/query/java/org/mulgara/query/operation/ListAlias.java (from /branches/distinct_queries/src/jar/query/java/org/mulgara/query/operation/ListAlias.java:1870)
+   R /trunk/src/jar/query/java/org/mulgara/query/xpath (from /branches/distinct_queries/src/jar/query/java/org/mulgara/query/xpath:1870)
+   R /trunk/src/jar/query/java/org/mulgara/query/xpath/FnFunctionGroup.java (from /branches/distinct_queries/src/jar/query/java/org/mulgara/query/xpath/FnFunctionGroup.java:1870)
+   R /trunk/src/jar/query/java/org/mulgara/query/xpath/MulgaraXPathFunctionResolver.java (from /branches/distinct_queries/src/jar/query/java/org/mulgara/query/xpath/MulgaraXPathFunctionResolver.java:1870)
+   R /trunk/src/jar/query/java/org/mulgara/query/xpath/OpFunctionGroup.java (from /branches/distinct_queries/src/jar/query/java/org/mulgara/query/xpath/OpFunctionGroup.java:1870)
+   R /trunk/src/jar/query/java/org/mulgara/query/xpath/SparqlFunctionGroup.java (from /branches/distinct_queries/src/jar/query/java/org/mulgara/query/xpath/SparqlFunctionGroup.java:1870)
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/ItqlInterpreterBeanUnitTest.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/ItqlSession.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlInterpreter.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlSession.java
+   R /trunk/src/jar/querylang/java/org/mulgara/protocol/http/PartialFailureException.java (from /branches/distinct_queries/src/jar/querylang/java/org/mulgara/protocol/http/PartialFailureException.java:1870)
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/PatternMapper.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/SparqlInterpreter.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/AbstractNaryOperator.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/IRIReference.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Triple.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/TripleList.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Variable.java
+   R /trunk/src/jar/querylang/java/org/mulgara/store/jxunit/SparqlQueryJX.java (from /branches/distinct_queries/src/jar/querylang/java/org/mulgara/store/jxunit/SparqlQueryJX.java:1870)
+   M /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser/SparqlParser.java
+   M /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser/SparqlParser.jj
+   M /trunk/src/jar/querylang/sablecc/itql.grammar
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/AdvDatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/BasicDatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseOperationContext.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSessionListQueryUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DefaultConstraintHandlers.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ExternalTransactionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/JotmTransactionStandaloneTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/LocalJRDFDatabaseSession.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/LocalQueryResolver.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/XADatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/NetworkDelegator.java
+   M /trunk/src/jar/resolver-gis/java/org/mulgara/resolver/gis/WritableGISResolver.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneConstraint.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalConstraint.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalResolverUnitTest.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ConjunctiveTransformerUnitTest.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/QueryEvaluationContext.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/SumOfProductExpansionTransformer.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/store/statement/StatementStoreAbstractUnitTest.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa11/XA11StatementStoreImpl.java
+   M /trunk/src/jar/resolver-test/java/org/mulgara/resolver/test/TestConstraint.java
+   M /trunk/src/jar/resolver-test/java/org/mulgara/resolver/test/TestResolverUnitTest.java
+   M /trunk/src/jar/resolver-view/java/org/mulgara/resolver/view/ViewResolverUnitTest.java
+   M /trunk/src/jar/resolver-xsd/java/org/mulgara/resolver/xsd/IntervalConstraint.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDecimalImpl.java
+   M /trunk/src/jar/store-stringpool-memory/java/org/mulgara/store/stringpool/memory/MemoryStringPoolImpl.java
+   M /trunk/src/jar/swrl/java/org/mulgara/swrl/SWRLLoader.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/LeftJoin.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperations.java
+   M /trunk/src/jar/util/java/org/mulgara/util/Bootstrap.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryServlet.java
+
+This is a merge of 1774:1870 from branches/distinct_queries. This introduces DISTINCT to SPARQL and NONDISTINCT to TQL, along with numerous UNION optimizations.
+------------------------------------------------------------------------
+r1870 | pag | 2009-12-10 09:14:43 -0500 (Thu, 10 Dec 2009) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara-config.xml
+   M /trunk/conf/mulgara-rmi.policy
+
+Added reference for the unsafe function resolver, commented out
+------------------------------------------------------------------------
+r1865 | pag | 2009-12-08 03:23:30 -0500 (Tue, 08 Dec 2009) | 1 line
+Changed paths:
+   M /trunk/.classpath
+   M /trunk/build.properties
+   M /trunk/common.xml
+   A /trunk/lib/apache-mime4j-0.5.jar
+   D /trunk/lib/commons-logging-1.0.3.jar
+   A /trunk/lib/commons-logging-1.1.1.jar
+   A /trunk/lib/httpclient-4.0-beta2.jar
+   A /trunk/lib/httpcore-4.0-beta3.jar
+   A /trunk/lib/httpmime-4.0-beta2.jar
+
+Updated http client libs, which required commons-logging to be updated as well
+------------------------------------------------------------------------
+r1864 | pag | 2009-12-07 18:48:24 -0500 (Mon, 07 Dec 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/store/jxunit/SparqlQueryJX.java
+
+Fixed up reading of parameters to deal with empty, but not bull values
+------------------------------------------------------------------------
+r1863 | pag | 2009-12-07 08:30:33 -0500 (Mon, 07 Dec 2009) | 1 line
+Changed paths:
+   A /trunk/src/jar/querylang/java/org/mulgara/store/jxunit/SparqlQueryJX.java
+
+New test step for doing SPARQL queries rather than just TQL queries
+------------------------------------------------------------------------
+r1839 | pag | 2009-11-13 14:19:50 -0500 (Fri, 13 Nov 2009) | 1 line
+Changed paths:
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/http/PartialFailureException.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+
+Added better responses to errors in single files when uploading multiple files
+------------------------------------------------------------------------
+r1838 | pag | 2009-11-13 14:18:33 -0500 (Fri, 13 Nov 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/Parser.java
+
+added to description for bad URI exceptions
+------------------------------------------------------------------------
+r1835 | alexhall | 2009-11-12 09:32:28 -0500 (Thu, 12 Nov 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ModifyGraphOperation.java
+
+Allow any ConstructQuery to be used as the basis for an insert/select or delete/select, not just those with 3 terms in the pattern.  This is not accessible through parsed TQL or SPARQL queries, but can be easily done via the Connection API.
+------------------------------------------------------------------------
+r1833 | alexhall | 2009-11-07 03:03:09 -0500 (Sat, 07 Nov 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintIn.java
+
+Include the graph expression when getting the variable set.
+------------------------------------------------------------------------
+r1832 | pag | 2009-10-28 03:57:39 -0400 (Wed, 28 Oct 2009) | 1 line
+Changed paths:
+   A /trunk/jxdata/iTQL/vargraph
+   A /trunk/jxdata/iTQL/vargraph/queryResult1.txt
+   A /trunk/jxdata/iTQL/vargraph/queryResult2.txt
+   A /trunk/jxdata/iTQL/vargraph/queryResult3.txt
+   A /trunk/jxdata/iTQL/vargraph/result1.txt
+   A /trunk/jxdata/iTQL/vargraph/result2.txt
+   A /trunk/jxdata/iTQL/vargraph/result3.txt
+   A /trunk/jxdata/iTQL/vargraph/test.jxu
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa11/XA11StatementStoreImpl.java
+
+Fixed bug in graph scanning for XA11
+------------------------------------------------------------------------
+r1831 | pag | 2009-10-28 03:56:39 -0400 (Wed, 28 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/rdf/Mulgara.java
+   M /trunk/src/jar/resolver-prefix/java/org/mulgara/resolver/prefix/PrefixResolver.java
+   M /trunk/src/jar/resolver-prefix/java/org/mulgara/resolver/prefix/PrefixResolverFactory.java
+
+Added string searching support to the prefix resolver
+------------------------------------------------------------------------
+r1830 | pag | 2009-10-27 07:32:47 -0400 (Tue, 27 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/Query.java
+
+Downgraded a log to debug
+------------------------------------------------------------------------
+r1829 | pag | 2009-10-21 17:21:17 -0400 (Wed, 21 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa11/XA11StatementStoreImpl.java
+
+Bugfix on index searching for specific triples in a variable graph
+------------------------------------------------------------------------
+r1828 | pag | 2009-10-21 17:19:57 -0400 (Wed, 21 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser/SparqlParser.java
+
+Fix to the grammar updated this generated file
+------------------------------------------------------------------------
+r1827 | pag | 2009-10-21 14:19:54 -0400 (Wed, 21 Oct 2009) | 1 line
+Changed paths:
+   A /trunk/KOWARI-MODIFICATIONS/mods-mulgara-2.1.4.txt
+
+This should have been in the last release
+------------------------------------------------------------------------
+r1826 | alexhall | 2009-10-20 08:52:09 -0400 (Tue, 20 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/DataInputTx.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/DataOutputTx.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Export.java
+
+Correcting the copyright on files created by me that Paul accidentally changed when re-licensing his contributions.
+------------------------------------------------------------------------
+r1825 | alexhall | 2009-10-20 08:26:21 -0400 (Tue, 20 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/connection/ConnectionFactoryUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/RdfXmlEmitter.java
+   M /trunk/src/jar/query/java/org/mulgara/query/rdf/SWRL.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ExportOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/OutputOperation.java
+   M /trunk/src/jar/swrl/java/org/mulgara/swrl/SWRLLoader.java
+   M /trunk/src/jar/swrl/java/org/mulgara/swrl/SWRLStructureException.java
+
+Relicensing files to Apache 2.0
+------------------------------------------------------------------------
+r1824 | pag | 2009-10-19 09:42:02 -0400 (Mon, 19 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/connection/CommandExecutor.java
+   M /trunk/src/jar/query/java/org/mulgara/connection/Connection.java
+   M /trunk/src/jar/query/java/org/mulgara/connection/ConnectionException.java
+   M /trunk/src/jar/query/java/org/mulgara/connection/ConnectionFactory.java
+   M /trunk/src/jar/query/java/org/mulgara/connection/DummyConnection.java
+   M /trunk/src/jar/query/java/org/mulgara/connection/JenaConnection.java
+   M /trunk/src/jar/query/java/org/mulgara/connection/JenaConnectionImpl.java
+   M /trunk/src/jar/query/java/org/mulgara/connection/SessionConnection.java
+   M /trunk/src/jar/query/java/org/mulgara/query/AskQuery.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintDifference.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintOptionalJoin.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstructQuery.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/AddAlias.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/ApplyRules.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Backup.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/BooleanSetCommand.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Command.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Commit.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/CreateGraph.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/DataInputTx.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/DataOutputTx.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/DataTx.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Deletion.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/DropGraph.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/ExecuteScript.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Export.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Help.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Insertion.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Load.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/LocalCommand.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Modification.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/NullOp.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Quit.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Restore.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Rollback.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/ServerCommand.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/SetAutoCommit.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/SetCommand.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/SetTime.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/SetUser.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/TransactionCommand.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/TxOp.java
+   M /trunk/src/jar/query/java/org/mulgara/query/rdf/XSDAbbrev.java
+
+Relicensed files I have control of to Apache 2.0
+------------------------------------------------------------------------
+r1823 | pag | 2009-10-19 08:58:58 -0400 (Mon, 19 Oct 2009) | 1 line
+Changed paths:
+   A /trunk/src/jar/query/java/org/mulgara/query/operation/ListAlias.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlInterpreter.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlJSONObject.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlXMLObject.java
+
+Alias command now returned as a dictionary rather than text. Also fixed JSON encoding.
+------------------------------------------------------------------------
+r1822 | pag | 2009-10-19 08:58:01 -0400 (Mon, 19 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/xa/BlockCacheLine.java
+
+Changed info messages to debug
+------------------------------------------------------------------------
+r1821 | pag | 2009-10-19 08:56:42 -0400 (Mon, 19 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/build.properties
+   M /trunk/build.xml
+
+Added Xalan to the default build
+------------------------------------------------------------------------
+r1820 | alexhall | 2009-10-16 07:08:08 -0400 (Fri, 16 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser/SparqlParser.jj
+
+Fix SPARQL parser to correctly handle ASC and DESC modifiers
+------------------------------------------------------------------------
+########################################################################
+######### The following comes from the nondistinct branch. #############
+######### See r1871 above for details on the merge. ####################
+########################################################################
+------------------------------------------------------------------------
+r1869 | pag | 2009-12-10 08:30:10 -0500 (Thu, 10 Dec 2009) | 1 line
+
+Added a test for the new nondistinct keyword in TQL
+------------------------------------------------------------------------
+r1868 | pag | 2009-12-09 09:57:09 -0500 (Wed, 09 Dec 2009) | 1 line
+
+Added toString methods for debugging
+------------------------------------------------------------------------
+r1867 | pag | 2009-12-09 09:56:41 -0500 (Wed, 09 Dec 2009) | 1 line
+
+Changed the graph to load to a general URI, and not in the RMI scheme
+------------------------------------------------------------------------
+r1866 | pag | 2009-12-08 13:39:03 -0500 (Tue, 08 Dec 2009) | 1 line
+
+Merged 1836:1865 from trunk
+------------------------------------------------------------------------
+r1862 | pag | 2009-12-02 13:53:21 -0500 (Wed, 02 Dec 2009) | 1 line
+
+Removed comment that was protecting the new code
+------------------------------------------------------------------------
+r1861 | pag | 2009-12-01 03:55:51 -0500 (Tue, 01 Dec 2009) | 1 line
+
+Fixed associativity of this operation
+------------------------------------------------------------------------
+r1860 | pag | 2009-11-30 14:08:47 -0500 (Mon, 30 Nov 2009) | 1 line
+
+All constraints are now marked as either associative or not. This allows an associativity optimization to be applied to those binary operations that are associative, without affecting binary operations like minus
+------------------------------------------------------------------------
+r1859 | pag | 2009-11-30 14:07:25 -0500 (Mon, 30 Nov 2009) | 1 line
+
+Changed a now common event from a warning to a debug message. This has become common due to filters being introduced.
+------------------------------------------------------------------------
+r1858 | pag | 2009-11-30 14:06:27 -0500 (Mon, 30 Nov 2009) | 1 line
+
+format change in a comment
+------------------------------------------------------------------------
+r1850 | pag | 2009-11-19 07:08:01 -0500 (Thu, 19 Nov 2009) | 1 line
+
+Accidental keypress wiped out part of the class name.
+------------------------------------------------------------------------
+r1849 | pag | 2009-11-19 07:02:22 -0500 (Thu, 19 Nov 2009) | 1 line
+
+Removed stack traces from warnings and error identified by the parser. Added debug logs to look at these stack frames instead.
+------------------------------------------------------------------------
+r1848 | pag | 2009-11-19 06:57:44 -0500 (Thu, 19 Nov 2009) | 1 line
+
+Fixed problem where added graphs from a phase to be committed were not being propagated to the immediately following phase since they had not finished the commit process yet. Now manually updating the new phase, and then telling the phase to scan for this data manually if the prepare operation fails.
+------------------------------------------------------------------------
+r1847 | pag | 2009-11-19 06:55:54 -0500 (Thu, 19 Nov 2009) | 1 line
+
+Downgraded warning of empty tuples to a debug message
+------------------------------------------------------------------------
+r1846 | pag | 2009-11-19 06:55:02 -0500 (Thu, 19 Nov 2009) | 1 line
+
+Changed graph names and contents to be relatively unique, due to the nature of the tests and the undesirability of conflicting with data from other tests
+------------------------------------------------------------------------
+r1845 | pag | 2009-11-19 06:53:50 -0500 (Thu, 19 Nov 2009) | 1 line
+
+Added unsignedLong to the list of numeric types for 0
+------------------------------------------------------------------------
+r1844 | pag | 2009-11-13 14:31:38 -0500 (Fri, 13 Nov 2009) | 1 line
+
+Merging from trunk 1774:1836
+------------------------------------------------------------------------
+r1843 | pag | 2009-11-13 14:29:46 -0500 (Fri, 13 Nov 2009) | 1 line
+
+Removing + character when parsing integers. Also, correctly comparing to unknown literals that claim to be decimal
+------------------------------------------------------------------------
+r1842 | pag | 2009-11-13 14:28:16 -0500 (Fri, 13 Nov 2009) | 1 line
+
+Alex's fix for ordering priority, plus removing + character when parsing literal integers
+------------------------------------------------------------------------
+r1841 | pag | 2009-11-13 14:26:41 -0500 (Fri, 13 Nov 2009) | 1 line
+
+Now expanding namespaces in datatypes
+------------------------------------------------------------------------
+r1840 | pag | 2009-11-13 14:25:26 -0500 (Fri, 13 Nov 2009) | 1 line
+
+Expanded queries on literal integers to handle all integral types
+------------------------------------------------------------------------
+r1836 | pag | 2009-11-12 13:26:47 -0500 (Thu, 12 Nov 2009) | 1 line
+
+removed deprecation warnings due to using toURL on Files
+------------------------------------------------------------------------
+r1834 | pag | 2009-11-12 04:07:54 -0500 (Thu, 12 Nov 2009) | 1 line
+
+Added new algebraic TODO comment
+------------------------------------------------------------------------
+r1775 | pag | 2009-08-13 14:33:16 -0400 (Thu, 13 Aug 2009) | 1 line
+
+Initial cut at full distinct vs non-distinct capabilities. Some optimization still needed in the SumOfProductExpansionTransformer as mentioned in the top comment
+------------------------------------------------------------------------
+r1774 | pag | 2009-08-13 13:39:34 -0400 (Thu, 13 Aug 2009) | 2 lines
+
+This branch is for differentiating between distinct and non-distinct queries. Non-distinct queries should be much faster.
+
+------------------------------------------------------------------------

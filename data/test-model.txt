@@ -1,0 +1,40 @@
+To permit unique results from all ModelExpressions:
+
+Model 1.      Model 2.      Model 3.
+S1 P1 On      S1 P2 On      S1 P3  On
+S2 P4 On      S2 P4 On      S2 P4  On
+S2 P5 On      S2 P5 On        ----  
+S2 P6 On        ----        S2 P6  On
+  ----        S2 P7 On      S2 P7  On
+S2 P8 On        ----          ----  
+  ----        S2 P9 On        ----  
+  ----          ----        S2 P10 On
+
+M1 u (M2 u M3) => S1 {P1, P2, P3} On
+               => S2 {P4, P5, P6, P7, P8, P9, P10} On
+
+M1 u (M2 n M3) => S1 {P1} On
+               => S2 {P4, P5, P6, P7, P8} On
+
+M1 n (M2 u M3) => S1 {} On => Empty
+               => S2 {P4, P5, P6} On
+
+M1 n (M2 n M3) => S1 {} On => Empty
+               => S2 {P4} On => S2 P4 On
+
+Each predicate is then split into 3 to allow On to be defined similarly.
+This allows unique results from all ConstraintExpressions:
+
+(S2|P41|$O)   (S2|P42|$O)   (S2|P43|$O)
+    O1            O2            O3
+    O4            O4            O4
+    O5            05            --
+    O6            --            O6
+    --            O7            O7
+    O8            --            --
+    --            O9            --
+    --            --            O10
+
+
+Anticpated test definition:
+  M1 n (M2 n M3) . C1 v (C2 ^ C3) => {P4}

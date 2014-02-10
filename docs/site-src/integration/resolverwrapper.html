@@ -1,0 +1,1021 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Content Wrappers</title>
+    <meta name="keywords" content="Content Wrappers, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+    	<a href="/integration/resolverwrapper.html#o2700">Implementing the Interface</a>
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/integration/resolverfactories.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/integration/resolverwrite.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/integration/resolveprot.html">Developing Protocol Resolvers</a></p>
+<p class="relateditem"><a href="/integration/resolverfactories.html">Factories</a></p>
+<p class="relateditem"><a href="/integration/resolverwrite.html">Resolvers</a></p>
+
+ -->
+
+
+
+
+<h4>Content Wrappers</h4>
+
+<p>Once the factory is created to handle the creation of resolver objects, an implementation of the <code>Content</code> interface should be written that can be sent to a <code>ContentHandler</code> object. This is used by the resolver to encapsulate the content of files being resolved under the specific protocol, providing a common format that the handler can read data from without worrying about the protocol. It also provides a URI to the original resource, if required, and a map of blank nodes to their respective values for usage across constraints on the same resource.</p>
+
+<p><code>Content</code> implementations do not require any knowledge about the file types that are to be used with the resolver. The two main considerations are converting the content object's URI source to an input stream and the management of blank node mappings.</p>
+
+
+<div class="anchor"><a name="o2700">&nbsp;</a></div>
+<h5>Implementing the Interface</h5>
+
+<p><code>Content</code> implementations are compulsory for any protocol resolver. Without one the resolver has no way of allowing a handler access to the data that needs converting to <code>Statements</code>. Normally you can use the connection methods on the URL class to obtain an input stream from the source content, but you are also managing the https protocol, which is more advanced. To overcome this, the <code>HttpConnection</code> class of the apache commons <code>httpclient</code> is used to instantiate and maintain a connection to the content source. The implementation looks something like the following (extracted from <code>HttpContent.java</code>):</p>
+
+<p class="commandtext">package org.mulgara.resolver.http;<br />
+
+<br />
+
+//Local packages<br />
+
+import org.mulgara.content.Content;<br />
+
+<br />
+
+// Java 2 standard packages<br />
+
+import java.io.*;<br />
+
+import java.net.URI;<br />
+
+import java.net.URISyntaxException;<br />
+
+import java.net.URL;<br />
+
+import java.net.MalformedURLException;<br />
+
+import java.net.UnknownHostException;<br />
+
+import java.util.*;<br />
+
+<br />
+
+// Apache HTTP Client<br />
+
+import org.apache.commons.httpclient.*;<br />
+
+import org.apache.commons.httpclient.protocol.Protocol;<br />
+
+import org.apache.commons.httpclient.methods.*;<br />
+
+import org.apache.log4j.Logger;<br />
+
+<br />
+
+// Java 2 enterprise packages<br />
+
+import javax.activation.MimeType;<br />
+
+import javax.activation.MimeTypeParseException;<br />
+
+<br />
+
+//Third party packages<br />
+
+import org.apache.log4j.Logger;<br />
+
+<br />
+
+public class HttpContent implements Content {<br />
+
+<br />
+
+  /** Logger. */<br />
+
+  private final static Logger logger = Logger.getLogger(HttpContent.class<br />
+
+      .getName());<br />
+
+<br />
+
+  /** The URI version of the URL */<br />
+
+  private URI httpUri;<br />
+
+<br />
+
+  /**<br />
+
+   * A map containing any format-specific blank node mappings from previous<br />
+
+   * parses of this file.<br />
+
+   */<br />
+
+  private Map blankNodeMap = new HashMap();<br />
+
+<br />
+
+  /**<br />
+
+   * Connection host host<br />
+
+   */<br />
+
+  private String host;<br />
+
+<br />
+
+  /**<br />
+
+   * port to make connection to<br />
+
+   */<br />
+
+  private int port;<br />
+
+<br />
+
+  /**<br />
+
+   * Schema for connection schema<br />
+
+   */<br />
+
+  private String schema;<br />
+
+<br />
+
+  /**<br />
+
+   * A container for HTTP attributes that may persist from request to request<br />
+
+   */<br />
+
+  private HttpState state = new HttpState();<br />
+
+<br />
+
+  /**<br />
+
+   * Http connection<br />
+
+   */<br />
+
+  private HttpConnection connection = null;<br />
+
+<br />
+
+  /**<br />
+
+   * To obtain the http headers only<br />
+
+   */<br />
+
+  private static final int HEAD = 1;<br />
+
+<br />
+
+  /**<br />
+
+   * To obtain the response body<br />
+
+   */<br />
+
+  private static final int GET = 2;<br />
+
+<br />
+
+  /**<br />
+
+   * Max. number of redirects<br />
+
+   */<br />
+
+  private static final int MAX_NO_REDIRECTS = 10;<br />
+
+<br />
+
+  public HttpContent(URI uri) throws URISyntaxException, MalformedURLException {<br />
+
+    this(uri.toURL());<br />
+
+  }<br />
+
+<br />
+
+<br />
+
+  /**<br />
+
+   * Constructor.<br />
+
+   *<br />
+
+   * @param url The URL this object will be representing<br />
+
+   * the content of<br />
+
+   */<br />
+
+  public HttpContent(URL url) throws URISyntaxException {<br />
+
+<br />
+
+    // Validate &quot;url&quot; parameter<br />
+
+    if (url == null) {<br />
+
+<br />
+
+      throw new IllegalArgumentException(&quot;Null \&quot;url\&quot; parameter&quot;);<br />
+
+    }<br />
+
+<br />
+
+    initialiseSettings(url);<br />
+
+  }<br />
+
+<br />
+
+  /**<br />
+
+   * Initialise the basic settings for a connection<br />
+
+   *<br />
+
+   * @param url<br />
+
+   *          location of source<br />
+
+   * @throws URISyntaxException<br />
+
+   *           invalid URI<br />
+
+   */<br />
+
+  private void initialiseSettings(URL url) throws URISyntaxException {<br />
+
+<br />
+
+    // Convert the URL to a Uri<br />
+
+    httpUri = new URI(url.toExternalForm());<br />
+
+<br />
+
+    // obtain basic details for connections<br />
+
+    host = httpUri.getHost();<br />
+
+    port = httpUri.getPort();<br />
+
+    schema = httpUri.getScheme();<br />
+
+<br />
+
+  }<br />
+
+<br />
+
+  /**<br />
+
+   * Retrieves the node map used to ensure that blank nodes are consistent.<br />
+
+   *<br />
+
+   * @return The node map used to ensure that blank nodes are consistent<br />
+
+   */<br />
+
+  public Map getBlankNodeMap() {<br />
+
+<br />
+
+    return blankNodeMap;<br />
+
+  }<br />
+
+<br />
+
+  /**<br />
+
+   * Obtain the approrpriate connection method<br />
+
+   *<br />
+
+   * @param methodType<br />
+
+   *          can be HEAD or GET<br />
+
+   * @return HttpMethodBase method<br />
+
+   */<br />
+
+  private HttpMethod getConnectionMethod(int methodType) {<br />
+
+<br />
+
+    if (methodType != GET &amp;&amp; methodType != HEAD) {<br />
+
+      throw new IllegalArgumentException(<br />
+
+          &quot;Invalid method base supplied for connection&quot;);<br />
+
+    }<br />
+
+<br />
+
+    Protocol protocol = Protocol.getProtocol(schema);<br />
+
+<br />
+
+    connection = new HttpConnection(host, port, protocol);<br />
+
+<br />
+
+    String proxyHost = System.getProperty(&quot;mulgara.httpcontent.proxyHost&quot;);<br />
+
+<br />
+
+    if (proxyHost != null &amp;&amp; proxyHost.length() &gt; 0) {<br />
+
+      connection.setProxyHost(proxyHost);<br />
+
+    }<br />
+
+<br />
+
+    String proxyPort = System.getProperty(&quot;mulgara.httpcontent.proxyPort&quot;);<br />
+
+    if (proxyPort != null &amp;&amp; proxyPort.length() &gt; 0) {<br />
+
+      connection.setProxyPort(Integer.parseInt(proxyPort));<br />
+
+    }<br />
+
+<br />
+
+    // default timeout to 30 seconds<br />
+
+    connection.setConnectionTimeout(Integer.parseInt(System.getProperty(<br />
+
+        &quot;mulgara.httpcontent.timeout&quot;, &quot;30000&quot;)));<br />
+
+<br />
+
+    String proxyUserName = System<br />
+
+        .getProperty(&quot;mulgara.httpcontent.proxyUserName&quot;);<br />
+
+    if (proxyUserName != null) {<br />
+
+      state.setCredentials(System.getProperty(&quot;mulgara.httpcontent.proxyRealm&quot;),<br />
+
+          System.getProperty(&quot;mulgara.httpcontent.proxyRealmHost&quot;),<br />
+
+          new UsernamePasswordCredentials(proxyUserName, System<br />
+
+              .getProperty(&quot;mulgara.httpcontent.proxyPassword&quot;)));<br />
+
+    }<br />
+
+<br />
+
+    HttpMethod method = null;<br />
+
+    if (methodType == HEAD) {<br />
+
+      method = new HeadMethod(httpUri.toString());<br />
+
+    }<br />
+
+    else {<br />
+
+      method = new GetMethod(httpUri.toString());<br />
+
+    }<br />
+
+<br />
+
+    if (connection.isProxied() &amp;&amp; connection.isSecure()) {<br />
+
+      method = new ConnectMethod(method);<br />
+
+    }<br />
+
+<br />
+
+    // manually follow redirects due to the<br />
+
+    // strictness of http client implementation<br />
+
+<br />
+
+    method.setFollowRedirects(false);<br />
+
+<br />
+
+    return method;<br />
+
+  }<br />
+
+<br />
+
+  /**<br />
+
+   * Obtain a valid connection and follow redirects if neccessary<br />
+
+   *<br />
+
+   * @param methodType<br />
+
+   *          request the headders (HEAD) or body (GET)<br />
+
+   * @return valid connection method. Can be null.<br />
+
+   * @throws IOException<br />
+
+   * @throws URISyntaxException<br />
+
+   */<br />
+
+  private HttpMethod establishConnection(int methodType) throws IOException {<br />
+
+<br />
+
+    HttpMethod method = this.getConnectionMethod(methodType);<br />
+
+    Header header = null;<br />
+
+<br />
+
+    if (method != null) {<br />
+
+      method.execute(state, connection);<br />
+
+      if (!isValidStatusCode(method.getStatusCode())) {<br />
+
+        throw new UnknownHostException(&quot;Unable to obtain connection to &quot;<br />
+
+            + httpUri + &quot;. Returned status code &quot; + method.getStatusCode());<br />
+
+      }<br />
+
+      else {<br />
+
+        // has a redirection been issued<br />
+
+        int numberOfRedirection = 0;<br />
+
+        while (isRedirected(method.getStatusCode())<br />
+
+            &amp;&amp; numberOfRedirection &lt;= MAX_NO_REDIRECTS) {<br />
+
+<br />
+
+          // release the existing connection<br />
+
+          method.releaseConnection();<br />
+
+<br />
+
+          //attempt to follow the redirects<br />
+
+          numberOfRedirection++;<br />
+
+<br />
+
+          // obtain the new location<br />
+
+          header = method.getResponseHeader(&quot;location&quot;);<br />
+
+          if (header != null) {<br />
+
+            try {<br />
+
+              initialiseSettings(new URL(header.getValue()));<br />
+
+              if (logger.isInfoEnabled()) {<br />
+
+                logger.info(&quot;Redirecting to &quot; + header.getValue());<br />
+
+              }<br />
+
+<br />
+
+              // attempt a new connection to this location<br />
+
+              method = this.getConnectionMethod(methodType);<br />
+
+              method.execute(state, connection);<br />
+
+              if (!isValidStatusCode(method.getStatusCode())) {<br />
+
+                throw new UnknownHostException(<br />
+
+                    &quot;Unable to obtain connection to &quot; + &quot; the redirected site &quot;<br />
+
+                        + httpUri + &quot;. Returned status code &quot;<br />
+
+                        + method.getStatusCode());<br />
+
+              }<br />
+
+            }<br />
+
+            catch (URISyntaxException ex) {<br />
+
+              throw new IOException(&quot;Unable to follow redirection to &quot;<br />
+
+                  + header.getValue() + &quot; Not a valid URI&quot;);<br />
+
+            }<br />
+
+          }<br />
+
+          else {<br />
+
+            throw new IOException(&quot;Unable to obtain redirecting detaild from &quot;<br />
+
+                + httpUri);<br />
+
+          }<br />
+
+        }<br />
+
+      }<br />
+
+    }<br />
+
+    return method;<br />
+
+  }<br />
+
+<br />
+
+  /*<br />
+
+   * @see org.mulgara.content.Content#getContentType()<br />
+
+   */<br />
+
+  public MimeType getContentType() {<br />
+
+<br />
+
+    MimeType mimeType = null;<br />
+
+    HeadMethod method = null;<br />
+
+    String contentType = null;<br />
+
+<br />
+
+    try {<br />
+
+<br />
+
+      // obtain connection and retrieve the headers<br />
+
+      method = (HeadMethod) establishConnection(HEAD);<br />
+
+      Header header = method.getResponseHeader(&quot;Content-Type&quot;);<br />
+
+      if (header != null) {<br />
+
+        contentType = header.getValue();<br />
+
+        mimeType = new MimeType(contentType);<br />
+
+        if (logger.isInfoEnabled()) {<br />
+
+          logger.info(&quot;Obtain content type &quot; + mimeType + &quot;  from &quot; + httpUri);<br />
+
+        }<br />
+
+      }<br />
+
+    }<br />
+
+    catch (MimeTypeParseException e) {<br />
+
+      logger.warn(&quot;Unable to parse &quot; + contentType + &quot; as a content type for &quot;<br />
+
+          + httpUri);<br />
+
+    }<br />
+
+    catch (IOException e) {<br />
+
+      logger.info(&quot;Unable to obtain content type for &quot; + httpUri);<br />
+
+    }<br />
+
+    catch (java.lang.IllegalStateException e) {<br />
+
+      logger.info(&quot;Unable to obtain content type for &quot; + httpUri);<br />
+
+    }<br />
+
+    finally {<br />
+
+      if (method != null) {<br />
+
+        method.releaseConnection();<br />
+
+      }<br />
+
+      if (connection != null) {<br />
+
+        connection.close();<br />
+
+      }<br />
+
+    }<br />
+
+    return mimeType;<br />
+
+  }<br />
+
+<br />
+
+  /**<br />
+
+   * Retrieves the URI for the actual content.<br />
+
+   *<br />
+
+   * @return The URI for the actual content<br />
+
+   */<br />
+
+  public URI getURI() {<br />
+
+<br />
+
+    return httpUri;<br />
+
+  }<br />
+
+<br />
+
+  /**<br />
+
+   * Creates an input stream to the resource whose content we are representing.<br />
+
+   *<br />
+
+   * @return An input stream to the resource whose content we are representing<br />
+
+   * @throws IOException<br />
+
+   */<br />
+
+  public InputStream newInputStream() throws IOException {<br />
+
+<br />
+
+    // Create an input stream by opening the URL's input stream<br />
+
+    GetMethod method = null;<br />
+
+    InputStream inputStream = null;<br />
+
+<br />
+
+    // obtain connection and retrieve the headers<br />
+
+    method = (GetMethod) establishConnection(GET);<br />
+
+    inputStream = method.getResponseBodyAsStream();<br />
+
+    if (inputStream == null) {<br />
+
+      throw new IOException(&quot;Unable to obtain inputstream from &quot; + httpUri);<br />
+
+    }<br />
+
+    return inputStream;<br />
+
+  }<br />
+
+<br />
+
+  private boolean isValidStatusCode(int status) {<br />
+
+    return (status == HttpStatus.SC_OK || isRedirected(status));<br />
+
+  }<br />
+
+<br />
+
+  private boolean isRedirected(int status) {<br />
+
+    return (status == HttpStatus.SC_TEMPORARY_REDIRECT<br />
+
+        || status == HttpStatus.SC_MOVED_TEMPORARILY<br />
+
+        || status == HttpStatus.SC_MOVED_PERMANENTLY || status == HttpStatus.SC_SEE_OTHER);<br />
+
+  }<br />
+
+<br />
+
+}</p>
+
+<p>An analysis of the class is as follows:</p>
+
+<p class="indentcommandtext">package org.mulgara.resolver.http;<br />
+
+<br />
+
+//Local packages<br />
+
+import org.mulgara.content.Content;<br />
+
+<br />
+
+// Java 2 standard packages<br />
+
+import java.io.*;<br />
+
+import java.net.URI;<br />
+
+import java.net.URISyntaxException;<br />
+
+import java.net.URL;<br />
+
+import java.net.MalformedURLException;<br />
+
+import java.net.UnknownHostException;<br />
+
+import java.util.*;<br />
+
+<br />
+
+// Apache HTTP Client<br />
+
+import org.apache.commons.httpclient.*;<br />
+
+import org.apache.commons.httpclient.protocol.Protocol;<br />
+
+import org.apache.commons.httpclient.methods.*;<br />
+
+import org.apache.log4j.Logger;<br />
+
+<br />
+
+// Java 2 enterprise packages<br />
+
+import javax.activation.MimeType;<br />
+
+import javax.activation.MimeTypeParseException;<br />
+
+<br />
+
+//Third party packages<br />
+
+import org.apache.log4j.Logger;</p>
+
+<p class="indent">The packaging for the content implementation is not required to be of any particular format. However, for the sake of neatness and ease of coding, it is recommended that the implementation be in the same package as your resolver implementation. The <code>org.mulgara.content.Content</code> package requires importing to provide access to the <code>Content</code> interface, along with the packages <code>java.io.InputStream</code>, <code>java.io.IOException</code>, <code>java.util.Map</code>, <code>javax.activation.MimeType</code> and <code>java.net.URI</code>, which are used in the interface. Any other imports depend on your implementation of the interface.</p>
+
+<p class="indentcommandtext">          public class HttpContent implements Content {</p>
+
+<p class="indent">All <code>Content</code> implementation classes must implement the <code>Content</code> interface. It is possible that you are extending another content object, in which case the implementation is not necessary as long as the superclass handles the implementation.</p>
+
+<p class="indentcommandtext">  /**<br />
+
+   * Constructor.<br />
+
+   *<br />
+
+   * @param url The URL this object will be representing<br />
+
+   * the content of<br />
+
+   */<br />
+
+  public HttpContent(URL url) throws URISyntaxException {<br />
+
+<br />
+
+    // Validate &quot;url&quot; parameter<br />
+
+    if (url == null) {<br />
+
+<br />
+
+      throw new IllegalArgumentException(&quot;Null \&quot;url\&quot; parameter&quot;);<br />
+
+    }<br />
+
+<br />
+
+    initialiseSettings(url);<br />
+
+  }</p>
+
+<p class="indent">Constructors for <code>Content</code> implementations have no specific requirements as all instantiation is handled by the resolver. As long as the resolver knows how to create an instance, the format is not set. The main consideration for this method is what format your resource locations should be passed in as, since this determines how you create an input stream and transform the location into an URI. For http and https protocols, you can use URLs that are in a natural URI format. Since there is no exception handling on the <code>getURI()</code> method, we have to perform our URL to URI conversion during our constructor. We also initialize the blank node map object as a <code>HashMap</code> so that there will be a valid object when <code>getBlankNodeMap()</code> is called.</p>
+
+<p class="indentcommandtext">  /**<br />
+
+   * Retrieves the node map used to ensure that blank nodes are consistent.<br />
+
+   *<br />
+
+   * @return The node map used to ensure that blank nodes are consistent<br />
+
+   */<br />
+
+  public Map getBlankNodeMap() {<br />
+
+<br />
+
+    return blankNodeMap;<br />
+
+  }</p>
+
+<p class="indent">The <code>getBlankNodeMap()</code> method usually returns the variable containing our map object, unless some pre-processing is required. In the case of http content, you can get away with just returning the <code>HashMap</code> containing the mappings.</p>
+
+<p class="indentcommandtext">  /**<br />
+
+
+* Retrieves the URI for the actual content.<br />
+
+   *<br />
+
+   * @return The URI for the actual content<br />
+
+   */<br />
+
+  public URI getURI() {<br />
+
+<br />
+
+    return httpUri;<br />
+
+  }</p>
+
+<p class="indent"><code>Content</code> objects allow access to the original URI and should not throw any exceptions when the <code>getURI</code> method is called. If an exception does occur during the conversion of the resource's source object (for example, <code>java.net.URL</code>), then the URI creation should occur during the constructor and this method should return a global variable.</p>
+
+<p class="indentcommandtext">/*<br />
+
+   * @see org.mulgara.content.Content#getContentType()<br />
+
+   */<br />
+
+  public MimeType getContentType() {<br />
+
+<br />
+
+    MimeType mimeType = null;<br />
+
+    HeadMethod method = null;<br />
+
+    String contentType = null;<br />
+
+<br />
+
+    try {<br />
+
+<br />
+
+      // obtain connection and retrieve the headers<br />
+
+      method = (HeadMethod) establishConnection(HEAD);<br />
+
+      Header header = method.getResponseHeader(&quot;Content-Type&quot;);<br />
+
+      if (header != null) {<br />
+
+        contentType = header.getValue();<br />
+
+        mimeType = new MimeType(contentType);<br />
+
+        if (logger.isInfoEnabled()) {<br />
+
+          logger.info(&quot;Obtain content type &quot; + mimeType + &quot;  from &quot; + httpUri);<br />
+
+        }<br />
+
+      }<br />
+
+    }<br />
+
+    catch (MimeTypeParseException e) {<br />
+
+      logger.warn(&quot;Unable to parse &quot; + contentType + &quot; as a content type for &quot;<br />
+
+          + httpUri);<br />
+
+    }<br />
+
+    catch (IOException e) {<br />
+
+      logger.info(&quot;Unable to obtain content type for &quot; + httpUri);<br />
+
+    }<br />
+
+    catch (java.lang.IllegalStateException e) {<br />
+
+      logger.info(&quot;Unable to obtain content type for &quot; + httpUri);<br />
+
+    }<br />
+
+    finally {<br />
+
+      if (method != null) {<br />
+
+        method.releaseConnection();<br />
+
+      }<br />
+
+      if (connection != null) {<br />
+
+        connection.close();<br />
+
+      }<br />
+
+    }<br />
+
+    return mimeType;<br />
+
+  }</p>
+
+<p class="indent">Most content handlers are written to handle content of a certain type, which subsequently has a mime type associated with it. When the resolver receives a model to resolve, it cycles through the list of registered content handlers and when it finds one that can parse the data, it hands over the content object for parsing. To find out if a content object can be handled by the handler, the <code>getContentType()</code> method can be invoked to retrieve the file's mime type. For http resources, you can use the connection headers to determine the mime type.</p>
+
+<p class="indentcommandtext">  /**<br />
+
+   * Creates an input stream to the resource whose content we are representing.<br />
+
+   *<br />
+
+   * @return An input stream to the resource whose content we are representing<br />
+
+   * @throws IOException<br />
+
+   */<br />
+
+  public InputStream newInputStream() throws IOException {<br />
+
+<br />
+
+    // Create an input stream by opening the URL's input stream<br />
+
+    GetMethod method = null;<br />
+
+    InputStream inputStream = null;<br />
+
+<br />
+
+    // obtain connection and retrieve the headers<br />
+
+    method = (GetMethod) establishConnection(GET);<br />
+
+    inputStream = method.getResponseBodyAsStream();<br />
+
+    if (inputStream == null) {<br />
+
+      throw new IOException(&quot;Unable to obtain inputstream from &quot; + httpUri);<br />
+
+    }<br />
+
+    return inputStream;<br />
+
+  }</p>
+
+<p class="indent"><code>ContentHandler</code> implementations require some way to access the actual content of a resource in order to convert it to RDF triples. This is done in the form of an <code>InputStream</code>. This means that the resource pointer the <code>Content</code> object is based around should be able to be create an <code>InputStream</code> in some way. As previously stated, you could normally use the <code>openStream()</code> method of the URL class to create an input stream from the resource, but the https support requires a more complex method. Using the <code>HttpConnection</code> class of the apache commons <code>httpclient</code> jar you are able to use a <code>GET</code> method call to the server to stream the data to the handler.</p>
+
+<p class="indent">The other methods in the class not outlined here are all unique to the http content object and irrelevant to other content types.</p>
+
+			
+<br />
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

@@ -1,0 +1,272 @@
+------------------------------------------------------------------------
+r1818 | pag | 2009-10-07 14:34:54 -0400 (Wed, 07 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/UnorderedProjection.java
+
+Changed info message to debug
+------------------------------------------------------------------------
+r1817 | pag | 2009-10-06 23:04:28 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   A /trunk/src/jar/query/java/org/mulgara/query/functions/MulgaraFunctionResolver.java
+   A /trunk/src/jar/query/java/org/mulgara/query/functions/MulgaraUnsafeFunctionResolver.java
+   A /trunk/src/jar/query/java/org/mulgara/query/functions/MulgaraXFunctionGroup.java
+
+The new 'unsafe' set of functions that missed the checking in r1816. Documentation on the use of these functions is at http://mulgara.org/trac/wiki/UnsafeFunctions
+------------------------------------------------------------------------
+r1816 | pag | 2009-10-06 23:02:38 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   A /trunk/src/jar/query/java/org/mulgara/query/functions
+   A /trunk/src/jar/query/java/org/mulgara/query/functions/MulgaraFunction.java (from /trunk/src/jar/query/java/org/mulgara/query/xpath/MulgaraFunction.java:1797)
+   A /trunk/src/jar/query/java/org/mulgara/query/functions/MulgaraFunctionGroup.java (from /trunk/src/jar/query/java/org/mulgara/query/xpath/MulgaraFunctionGroup.java:1797)
+   M /trunk/src/jar/query/java/org/mulgara/query/xpath/FnFunctionGroup.java
+   D /trunk/src/jar/query/java/org/mulgara/query/xpath/MulgaraFunction.java
+   D /trunk/src/jar/query/java/org/mulgara/query/xpath/MulgaraFunctionGroup.java
+   M /trunk/src/jar/query/java/org/mulgara/query/xpath/MulgaraXPathFunctionResolver.java
+   M /trunk/src/jar/query/java/org/mulgara/query/xpath/OpFunctionGroup.java
+   M /trunk/src/jar/query/java/org/mulgara/query/xpath/SparqlFunctionGroup.java
+
+Refactored out common function loading code into MulgaraFunctionResolver. This meant changing static methods to instance methods (but that's OK, since they are only instantiated once). Also, took the completely abstract class of MulgaraFunctionGroup and converted to an interface. Common code was then moved to a new functions package. Finally, a new 'unsafe' set of functions was created. Documentation on the use of these functions is at http://mulgara.org/trac/wiki/UnsafeFunctions
+------------------------------------------------------------------------
+r1815 | pag | 2009-10-06 22:57:04 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/FunctionResolverRegistry.java
+
+Changed the registry to use a list instead of a set, so that preference can be provided to the functions that are loaded first
+------------------------------------------------------------------------
+r1814 | pag | 2009-10-06 02:45:58 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/StringPoolSession.java
+
+No longer canonicalizing URIs if they don't appear in the rmi scheme. The only exception is the system graph, which is always stored as relative.
+------------------------------------------------------------------------
+r1813 | pag | 2009-10-06 02:44:48 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara-config.xml
+
+Added Xalan and Mulgara function libraries
+------------------------------------------------------------------------
+r1812 | pag | 2009-10-06 02:44:13 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/build.xml
+
+No longer allowing extra XML files to be loaded into JAR files that are created in the build
+------------------------------------------------------------------------
+r1811 | pag | 2009-10-06 02:43:18 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+
+Loading up XPathFunctionResolvers, as specified in the config files
+------------------------------------------------------------------------
+r1810 | pag | 2009-10-06 02:42:20 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/IRI.java
+
+Added support for IRIs to carry QNames with them
+------------------------------------------------------------------------
+r1809 | pag | 2009-10-06 02:41:42 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/ExternalFn.java
+
+Added support for calling external functions, provided through XPathFunctionResolvers and identified by QName
+------------------------------------------------------------------------
+r1808 | pag | 2009-10-06 02:40:35 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara-embedded.xsd
+   M /trunk/src/jar/server/java/org/mulgara/server/MulgaraUserConfig.java
+
+Added field for XpathFunctionResolvers
+------------------------------------------------------------------------
+r1807 | pag | 2009-10-06 02:39:27 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa/TripleAVLFileUnitTest.java
+
+removed warnings
+------------------------------------------------------------------------
+r1806 | pag | 2009-10-06 02:38:39 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa/XAStatementStoreImplUnitTest.java
+
+added generics and refactored a fixed IF statement to remove warnings
+------------------------------------------------------------------------
+r1805 | pag | 2009-10-06 02:37:07 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa/TripleWriteThread.java
+
+Added generics to avoid warnings
+------------------------------------------------------------------------
+r1804 | pag | 2009-10-06 02:36:36 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa/TripleAVLFile.java
+
+removed stack traces from phases to save on memory
+------------------------------------------------------------------------
+r1803 | pag | 2009-10-06 02:35:20 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/AbstractMulgaraResultSet.java
+
+removed unnecessary annotations
+------------------------------------------------------------------------
+r1802 | pag | 2009-10-06 02:34:38 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/FilterMapper.java
+
+Providing external functions with QNames and not just a URI
+------------------------------------------------------------------------
+r1801 | pag | 2009-10-06 02:33:44 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/QueryStructureImpl.java
+
+Provides hints to IRIs to find QNames
+------------------------------------------------------------------------
+r1800 | pag | 2009-10-06 02:32:47 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/IRIReference.java
+
+Now includes QNames. Also scanning known namespaces to attempt to build up QNames
+------------------------------------------------------------------------
+r1799 | pag | 2009-10-06 02:31:49 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/TypedLiteral.java
+
+allowing unknown types to be converted to strings instead of throwing an error
+------------------------------------------------------------------------
+r1798 | pag | 2009-10-06 02:30:35 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/rdf/Mulgara.java
+
+Added namespace data
+------------------------------------------------------------------------
+r1797 | pag | 2009-10-06 02:29:59 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   A /trunk/src/jar/query/java/org/mulgara/query/xpath
+   A /trunk/src/jar/query/java/org/mulgara/query/xpath/FnFunctionGroup.java
+   A /trunk/src/jar/query/java/org/mulgara/query/xpath/MulgaraFunction.java
+   A /trunk/src/jar/query/java/org/mulgara/query/xpath/MulgaraFunctionGroup.java
+   A /trunk/src/jar/query/java/org/mulgara/query/xpath/MulgaraXPathFunctionResolver.java
+   A /trunk/src/jar/query/java/org/mulgara/query/xpath/OpFunctionGroup.java
+   A /trunk/src/jar/query/java/org/mulgara/query/xpath/SparqlFunctionGroup.java
+
+Initial implementation of a set of functions for Mulgara, and the XPathFunctionResolver
+------------------------------------------------------------------------
+r1796 | pag | 2009-10-06 02:28:57 -0400 (Tue, 06 Oct 2009) | 1 line
+Changed paths:
+   A /trunk/src/jar/query/java/org/mulgara/query/FunctionResolverRegistry.java
+
+Added a central registry for loading XPathFunctionResolvers
+------------------------------------------------------------------------
+r1795 | pag | 2009-09-26 11:23:34 -0400 (Sat, 26 Sep 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/ServerInfoRef.java
+
+Extended findSetter method to look for supertypes on provided parameters
+------------------------------------------------------------------------
+r1794 | pag | 2009-09-24 19:39:23 -0400 (Thu, 24 Sep 2009) | 1 line
+Changed paths:
+   M /trunk/common.properties
+
+Moving to new version early
+------------------------------------------------------------------------
+r1793 | pag | 2009-09-24 19:38:37 -0400 (Thu, 24 Sep 2009) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara-rmi.policy
+   M /trunk/conf/mulgara-test.policy
+
+Added permission for Apple systems to access the keychain for HTTPS requests
+------------------------------------------------------------------------
+r1792 | pag | 2009-09-24 19:13:24 -0400 (Thu, 24 Sep 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/FreeList.java
+
+Moved stack traces out of the Phase constructor and into the Phase.use method. Stack traces are not debug only
+------------------------------------------------------------------------
+r1791 | pag | 2009-09-24 19:12:38 -0400 (Thu, 24 Sep 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseOperationContext.java
+
+Moved stack traces out of the Phase constructor and into the Phase.use method. Stack traces are not debug only
+------------------------------------------------------------------------
+r1790 | pag | 2009-09-24 19:10:48 -0400 (Thu, 24 Sep 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/C.java
+
+Added string join() methods for lists
+------------------------------------------------------------------------
+r1789 | pag | 2009-09-24 17:33:53 -0400 (Thu, 24 Sep 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/LocalTriple.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/MulgaraServlet.java
+
+Fixed license
+------------------------------------------------------------------------
+r1788 | pag | 2009-09-24 10:56:54 -0400 (Thu, 24 Sep 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperations.java
+
+Tweaking weighted terms for operand ordering. This definitely helps Topaz queries.
+------------------------------------------------------------------------
+r1787 | pag | 2009-09-12 01:41:24 -0400 (Sat, 12 Sep 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/N3WriterUnitTest.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedN3Answer.java
+
+Added the option to set the charset encoding, with a default of UTF-8
+------------------------------------------------------------------------
+r1786 | pag | 2009-09-12 01:39:37 -0400 (Sat, 12 Sep 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/AbstractStreamedAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/AbstractStreamedXMLAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlJSONAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlXMLAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlXMLAnswerUnitTest.java
+
+Changed default encoding to UTF-8, added encoding to the XML header, and added constructor variants to set the encoding
+------------------------------------------------------------------------
+r1785 | alexhall | 2009-08-26 12:53:58 -0400 (Wed, 26 Aug 2009) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara.policy
+
+Accidentally committed with the wrong permissions.
+------------------------------------------------------------------------
+r1784 | alexhall | 2009-08-26 12:49:41 -0400 (Wed, 26 Aug 2009) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara-rmi.policy
+   M /trunk/conf/mulgara.policy
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ContentFactory.java
+
+Fix handling of content with an https: URL
+------------------------------------------------------------------------
+r1783 | alexhall | 2009-08-26 11:16:52 -0400 (Wed, 26 Aug 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ContentFactory.java
+
+Add generics and fix warnings.
+------------------------------------------------------------------------
+r1782 | pag | 2009-08-20 09:48:04 -0400 (Thu, 20 Aug 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneConstraint.java
+
+removed unused variables
+------------------------------------------------------------------------
+r1781 | pag | 2009-08-20 09:47:45 -0400 (Thu, 20 Aug 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+
+Added stack trace to exceptions that are not being chained to their cause
+------------------------------------------------------------------------
+r1780 | pag | 2009-08-20 01:11:03 -0400 (Thu, 20 Aug 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexException.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexUnitTest.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneConstraint.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneIndexerCache.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolverUnitTest.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ResolverException.java
+
+Removed warnings by adding serialization IDs and removing unused variables. Also fixed some TODO Javadocs and cleaned up some of the formatting
+------------------------------------------------------------------------
+r1779 | pag | 2009-08-20 01:09:53 -0400 (Thu, 20 Aug 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+
+Removed exception chains for FullTextStringIndexExceptions as these may not be instantiated at the client side.
+------------------------------------------------------------------------

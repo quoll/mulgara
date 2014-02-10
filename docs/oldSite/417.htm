@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Loading Existing RDF Data </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Loading Existing RDF Data, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="415.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="3074.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h2 class="heading2">Loading Existing RDF Data</h2>
+<p class="bodytext">Existing RDF data is loaded into Mulgara using the iTQL<sup class="superscript">TM</sup> <code class="monospace"><a id="h249" class="documentlinktemplate" title="load" href="183.htm" target="_self">load</a></code> command. The model must already exist. The steps are as follows:</p>
+<ol class="listnumber"><li class="listnumber">Create a model.&nbsp;For example, to create a model called <code class="monospace">mymodel</code> on a Mulgara server running on <code class="monospace">mysite.com</code>, use the following iTQL command:<p class="listcontinuecommandtext">create &lt;rmi://mysite.com/server1#mymodel&gt;;</p>
+<p class="listnote"><strong class="strong">Note -</strong> To determine your systems host name, at a command line type <code class="monospace">ipconfig</code> (Windows) or <code class="monospace">hostname</code> (Unix or Linux)</p>
+</li><li class="listnumber">Load an RDF file into the model just created.&nbsp;The specified file must have a <code class="monospace">file:</code> or <code class="monospace">http:</code> URL. For example, to load the file <code class="monospace">file:/tmp/mydata.rdf</code>, use the following iTQL command:<p class="listcontinuecommandtext">load &lt;file:/tmp/mydata.rdf&gt; into &lt;rmi://mysite.com/server1#mymodel&gt;;</p>
+<p class="listnote"><strong class="strong">Note -</strong> In Windows, the file specification would look something like <code class="monospace">&lt;file:/C:/temp/mydata.rdf&gt;</code>.</p>
+</li></ol><p class="bodytext">The two steps above can be competed at the same time using the Mulgara Viewer<sup class="superscript">TM</sup>, as shown below.</p>
+<p class="bodytext"><img src="loadexistingrdf.gif" alt="Load Existing RDF" height="448" width="700" vspace="2" hspace="2" align="bottom" border="1" /></p>
+<p class="bodytext">Alternatively, you can create the model first then create the <code class="monospace">load</code> command by clicking on using the Browse button to find the RDF file.</p>
+<p class="bodytext">Once the RDF data is loaded into a Mulgara model, you can query and manipulate it using other iTQL commands.</p>
+<p class="bodytext">See the <a id="h894" class="documentlinktemplate" title="RDF Data" href="752.htm#o759" target="_self">RDF Data section</a> for links to data sources for testing purposes.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="1225.htm" target="_self">Mulgara Tutorial</a></p><p class="relateditem"><a href="1226.htm" target="_self">System Requirements</a></p><p class="relateditem"><a href="1227.htm" target="_self">Starting a Mulgara Semantic Store Server</a></p><p class="relateditem"><a href="1232.htm" target="_self">iTQL</a></p><p class="relateditem"><a href="230.htm" target="_self">Basic iTQL Operations</a></p><p class="relateditem"><a href="230.htm#o1234" target="_self"></a></p><p class="relateditem"><a href="1236.htm" target="_self">Example iTQL Shell Session</a></p><p class="relateditem"><a href="415.htm" target="_self">Mulgara Viewer</a></p><p class="relateditem"><a href="415.htm#o1255" target="_self"></a></p><p class="relateditem"><a href="415.htm#o416" target="_self">Mulgara Sample Data</a></p><p class="relateditem"><a href="3074.htm" target="_self">Converting Data in Relational Databases to RDF</a></p><p class="relateditem"><a href="419.htm" target="_self">Converting XML Data to RDF</a></p></td>
+</tr>
+</table>
+
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

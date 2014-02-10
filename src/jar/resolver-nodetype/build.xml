@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="resolver-nodetype" default="resolver-nodetype.jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="resolver-nodetype-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${resolver.dist.dir}/${resolver.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${driver.dist.dir}/${driver.jar}"/>
+    <fileset file="${store-nodepool-memory.dist.dir}/${store-nodepool-memory.jar}"/>
+    <fileset file="${store-nodepool-xa.dist.dir}/${store-nodepool-xa.jar}"/>
+    <fileset file="${store-stringpool-memory.dist.dir}/${store-stringpool-memory.jar}"/>
+    <fileset file="${store-stringpool-xa.dist.dir}/${store-stringpool-xa.jar}"/>
+    <fileset file="${resolver-file.dist.dir}/${resolver-file.jar}"/>
+    <fileset file="${resolver-http.dist.dir}/${resolver-http.jar}"/>
+    <fileset file="${resolver-lucene.dist.dir}/${resolver-lucene.jar}"/>
+    <fileset file="${resolver-memory.dist.dir}/${resolver-memory.jar}"/>
+    <fileset file="${resolver-store.dist.dir}/${resolver-store.jar}"/>
+    <fileset file="${resolver-url.dist.dir}/${resolver-url.jar}"/>
+    <fileset file="${resolver-view.dist.dir}/${resolver-view.jar}"/>
+    <fileset file="${content-rdfxml.dist.dir}/${content-rdfxml.jar}"/>
+    <fileset file="${content-mp3.dist.dir}/${content-mp3.jar}"/>
+    <fileset file="${content-mbox.dist.dir}/${content-mbox.jar}"/>
+    <fileset file="${server-rmi.dist.dir}/${server-rmi.jar}"/>
+    <fileset file="${server-local.dist.dir}/${server-local.jar}"/>
+    <fileset file="${tuples-hybrid.dist.dir}/${tuples-hybrid.jar}"/>
+  </path>
+
+  <path id="resolver-nodetype-test-classpath">
+
+    <path refid="resolver-nodetype-classpath"/>
+
+    <fileset file="${resolver-nodetype.dist.dir}/${resolver-nodetype.jar}"/>
+  </path>
+
+  <target name="resolver-nodetype-clean"
+          description="Removes all compile generated files for the resolver-nodetype">
+
+    <tstamp/>
+
+    <delete dir="${resolver-nodetype.obj.dir}"/>
+    <delete dir="${resolver-nodetype.test.dir}"/>
+    <delete dir="${resolver-nodetype.dist.dir}"/>
+  </target>
+
+  <target name="-resolver-nodetype-prepare"
+          description="Creates all directories associated with the resolver-nodetype's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${resolver-nodetype.obj.dir}"/>
+    <mkdir dir="${resolver-nodetype.test.dir}"/>
+    <mkdir dir="${resolver-nodetype.dist.dir}"/>
+    <mkdir dir="${resolver-nodetype.obj.dir}/classes"/>
+  </target>
+
+  <target name="resolver-nodetype-compile"
+          depends="-resolver-nodetype-prepare, server-local-jar, 
+                   store-nodepool-memory-jar, store-nodepool-xa-jar,
+                   store-stringpool-xa-jar, content-rdfxml-jar,
+                   content-mp3-jar, content-mbox-jar, resolver-spi-jar,
+                   resolver-http-jar, resolver-lucene-jar, resolver-memory-jar,
+                   resolver-store-jar, resolver-url-jar, resolver-view-jar,
+                   tuples-hybrid-jar"
+          description="Compiles all resolver-nodetype related files included generated
+                       source code">
+
+    <javac destdir="${resolver-nodetype.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="resolver-nodetype-classpath"/>
+
+      <src path="${resolver-nodetype.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="resolver-nodetype-jar"
+    depends="resolver-nodetype-compile, -resolver-nodetype-jar-uptodate"
+    unless="resolver-nodetype.jar.uptodate"
+    description="Builds the NodeType Resolver JAR">
+
+    <jar jarfile="${resolver-nodetype.dist.dir}/${resolver-nodetype.jar}">
+      <fileset dir="${resolver-nodetype.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-resolver-nodetype-jar-uptodate">
+
+    <uptodate property="resolver-nodetype.jar.uptodate"
+              targetfile="${resolver-nodetype.dist.dir}/${resolver-nodetype.jar}">
+      <srcfiles dir="${resolver-nodetype.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="resolver-nodetype-dist"
+          depends="resolver-nodetype-jar"
+          unless="resolver-nodetype.uptodate"
+          description="Performs all tasks related to finalising this resolver-nodetype
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the resolver-nodetype library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="resolver-nodetype-test"
+          depends="resolver-nodetype-jar, resolver-file-jar, resolver-http-jar"
+          description="Carries out unit testing for this resolver-nodetype">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="resolver-nodetype-test-classpath"/>
+      <param name="dir" value="${resolver-nodetype.src.dir}"/>
+      <param name="jar" value="${resolver-nodetype.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-nodetype-javadoc"
+          depends="resolver-nodetype-jar"
+          description="Creates the javadoc for this resolver-nodetype">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.resolver.nodetype.*"/>
+      <param name="javadoc.classpath" value="resolver-nodetype-classpath"/>
+      <param name="javadoc.sourcepath" value="${resolver-nodetype.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-nodetype-help"
+          description="Displays the help information for this resolver-nodetype">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this resolver-nodetype -->
+
+    <echo message="Welcome to the build script for ${resolver-nodetype.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${resolver-nodetype.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

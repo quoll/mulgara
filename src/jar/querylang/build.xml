@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="querylang" default="querylang-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="querylang-classpath">
+    <path refid="common-classpath"/>
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${driver.dist.dir}/${driver.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${server.dist.dir}/${server.jar}"/>
+  </path>
+  <path id="querylang-test-classpath">
+    <path refid="querylang-classpath"/>
+    <path refid="driver-classpath"/>
+    <fileset file="${lib.dir}/commons-discovery-1.2.jar"/>
+    <fileset file="${bin.dir}/${rmi.jar}"/>
+    <fileset file="${querylang.dist.dir}/${querylang.jar}"/>
+    <fileset file="${server.dist.dir}/${server.jar}"/>
+  </path>
+
+  <target name="querylang-clean" description="Removes all compile generated files for the querylang">
+    <tstamp/>
+    <delete dir="${querylang.obj.dir}"/>
+    <delete dir="${querylang.test.dir}"/>
+    <delete dir="${querylang.dist.dir}"/>
+  </target>
+
+  <target name="-querylang-prepare" description="Creates all directories associated with the querylang's compilation"
+      depends="-prepare-build">
+    <mkdir dir="${querylang.obj.dir}"/>
+    <mkdir dir="${querylang.test.dir}"/>
+    <mkdir dir="${querylang.dist.dir}"/>
+    <mkdir dir="${querylang.obj.dir}/classes"/>
+    <mkdir dir="${querylang.obj.dir}/java"/>
+  </target>
+
+  <target name="gen-tql-parser" depends="-querylang-prepare, querylang-parser-uptodate, sablecc" unless="tql-parser-uptodate">
+    <sablecc src="${querylang.src.dir}/sablecc" outputdirectory="${querylang.obj.dir}/java">
+      <include name="itql.grammar"/>
+    </sablecc>
+  </target>
+
+  <target name="gen-sparql-parser" description="Build the JavaCC generated files">
+    <javacc target="${querylang.src.dir}/javacc/org/mulgara/sparql/parser/SparqlParser.jj" javacchome="${lib.dir}" />
+  </target>
+
+  <target name="querylang-parser-uptodate" depends="-prepare-build">
+    <uptodate property="tql-parser-uptodate"
+        targetfile="${obj.dir}/jar/querylang/java/org/mulgara/itql/analysis/DepthFirstAdapter.java">
+      <srcfiles dir="${querylang.src.dir}/sablecc" includes="itql.grammar"/>
+    </uptodate>
+  </target>
+
+  <target name="-querylang-token-build-label" depends="-querylang-token-build-label-uptodate" unless="querylang.token.build.label.uptodate">
+    <replace file="${querylang.obj.dir}/java/org/mulgara/itql/TqlSession.java" token="@@build.label@@" value="${build.label}"/>
+  </target>
+  <target name="-querylang-token-build-label-uptodate">
+    <uptodate property="querylang.token.build.label.uptodate" targetfile="${querylang.obj.dir}/java/org/mulgara/itql/TqlSession.java">
+      <srcfiles dir="${querylang.src.dir}" includes="**/TqlSession.java"/>
+    </uptodate>
+  </target>
+
+  <target name="querylang-compile" depends="-querylang-prepare, gen-tql-parser, gen-sparql-parser, driver-jar" description="Compiles all query language related files included generated source code">
+    <copy todir="${querylang.obj.dir}/java/" preservelastmodified="yes">
+      <fileset dir="${querylang.src.dir}/java/" includes="**/*.java"/>
+      <fileset dir="${querylang.src.dir}/javacc/" includes="**/*.java"/>
+    </copy>
+    <antcall target="-querylang-token-build-label"/>
+    <javac destdir="${querylang.obj.dir}/classes" debug="on" deprecation="on" source="1.5" classpathref="querylang-classpath">
+      <src path="${querylang.obj.dir}/java"/>
+    </javac>
+  </target>
+
+  <!-- This is the manifest for the system that starts the ITQL interpreter by default -->
+  <target name="-querylang-create-manifest">
+    <mkdir dir="${obj.dir}/META-INF"/>
+    <manifest file="${obj.dir}/META-INF/MANIFEST_QUERYLANG_BASE.MF">
+      <attribute name="Main-Class" value="org.mulgara.itql.TqlSession"/>
+    </manifest>
+    <manifest file="${obj.dir}/META-INF/MANIFEST_QUERYLANG_BOOTSTRAP.MF">
+      <attribute name="Main-Class" value="org.mulgara.util.Bootstrap"/>
+      <attribute name="Embedded-Jar" value="${query.jar}, ${driver.jar}, ${querylang.jar},${util.jar}, ${server-rmi.jar}, apache-soap-2.2.jar, log4j-1.2.15.jar,jargs-0.2.jar, ${saaj.jar}, ${emory-util.jar}, ${sesame-model.jar}"/>
+      <attribute name="Embedded-Main-Class" value="org.mulgara.itql.TqlSession"/>
+    </manifest>
+  </target>
+
+  <target name="querylang-jar" depends="querylang-compile, -querylang-create-manifest, -querylang-jar-uptodate" unless="querylang.jar.uptodate" description="Creates the querylang's jar/s">
+    <jar jarfile="${querylang.dist.dir}/${querylang.jar}"
+         manifest="${obj.dir}/META-INF/MANIFEST_QUERYLANG_BASE.MF">
+      <fileset dir="${querylang.obj.dir}/classes" excludes="**/*.java"/>
+      <fileset dir="${querylang.obj.dir}/java" includes="**/*.dat"/>
+    </jar>
+  </target>
+
+  <target name="-querylang-jar-uptodate">
+    <uptodate property="querylang.jar.uptodate" targetfile="${querylang.dist.dir}/${querylang.jar}">
+      <srcfiles dir="${querylang.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="querylang-dist"
+          depends="querylang-uptodate, querylang-jar, server-rmi-jar"
+          unless="querylang.uptodate"
+          description="Performs all tasks related to finalising this querylang and readying it for distribution">
+
+    <mkdir dir="${obj.dir}/META-INF"/>
+
+    <manifest file="${obj.dir}/META-INF/querylang-MANIFEST.MF">
+      <attribute name="Main-Class" value="org.mulgara.itql.TqlSession"/>
+    </manifest>
+
+    <jar jarfile="${dist.dir}/${querylang.jar}"
+         manifest="${obj.dir}/META-INF/querylang-MANIFEST.MF">
+
+      <fileset dir="${conf.dir}" includes="log4j-tql.xml"/>
+      <fileset dir="${querylang.src.dir}/itql"
+               includes="default-pre.itql, default-post.itql"/>
+
+      <zipfileset src="${driver.dist.dir}/${driver.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${querylang.dist.dir}/${querylang.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${query.dist.dir}/${query.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${server-rmi.dist.dir}/${server-rmi.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${util.dist.dir}/${util.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${activation.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${commons-logging.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${concurrent.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${jargs.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${sesame-model.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${log4j.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${saaj.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${emory-util.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${jta.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${axis.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${jline.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${jena.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${interruptiblermi.jar}" excludes="META-INF/**"/>
+    </jar>
+  </target>
+
+  <target name="querylang-uptodate">
+
+    <uptodate property="querylang.uptodate"
+              targetfile="${dist.dir}/${querylang.jar}">
+
+      <srcfiles dir="${querylang.dist.dir}" includes="${querylang.jar}"/>
+      <srcfiles dir="${driver.dist.dir}" includes="${driver.jar}"/>
+      <srcfiles dir="${query.dist.dir}" includes="${query.jar}"/>
+      <srcfiles dir="${server-rmi.dist.dir}" includes="${server-rmi.jar}"/>
+      <srcfiles dir="${util.dist.dir}" includes="${util.jar}"/>
+    </uptodate>
+  </target>
+
+  <target name="querylang-test"
+          depends="querylang-jar, test-data"
+          description="Carries out unit testing for this querylang">
+
+    <!-- start the Mulgara server -->
+    <antcall target="start"/>
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="querylang-test-classpath"/>
+      <param name="dir" value="${querylang.src.dir}"/>
+      <param name="jar" value="${querylang.jar}"/>
+    </antcall>
+
+    <!-- stop the Mulgara server -->
+    <antcall target="stop"/>
+  </target>
+
+  <target name="querylang-test2"
+          depends="querylang-jar, test-data"
+          description="Carries out unit testing for this querylang">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="querylang-test-classpath"/>
+      <param name="dir" value="${querylang.src.dir}"/>
+      <param name="jar" value="${querylang.jar}"/>
+    </antcall>
+
+  </target>
+
+  <target name="querylang-javadoc"
+          depends="querylang-jar"
+          description="Creates the javadoc for this querylang">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.itql.*,
+                                           org.mulgara.store.*"/>
+      <param name="javadoc.classpath" value="querylang-classpath"/>
+      <param name="javadoc.sourcepath" value="${querylang.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="querylang-help"
+          description="Displays the help information for this querylang">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this querylang -->
+
+    <echo message="Welcome to the build script for ${querylang.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${querylang.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

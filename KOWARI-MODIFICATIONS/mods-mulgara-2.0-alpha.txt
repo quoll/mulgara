@@ -1,0 +1,830 @@
+------------------------------------------------------------------------
+r946 | pag | 2008-05-15 12:43:06 -0500 (Thu, 15 May 2008) | 1 line
+Changed paths:
+   M /trunk/common.properties
+
+updated to the proposed release number
+------------------------------------------------------------------------
+r945 | pag | 2008-05-15 12:41:59 -0500 (Thu, 15 May 2008) | 1 line
+Changed paths:
+   M /trunk/LEGAL.txt
+
+Added a licence reference for the SPARQL parser
+------------------------------------------------------------------------
+r944 | pag | 2008-05-15 01:43:07 -0500 (Thu, 15 May 2008) | 1 line
+Changed paths:
+   M /trunk/tools/src/org/mulgara/tools/Sparql.java
+
+Added in some trivial logging configuration
+------------------------------------------------------------------------
+r943 | pag | 2008-05-15 01:42:30 -0500 (Thu, 15 May 2008) | 1 line
+Changed paths:
+   D /trunk/jxdata/iTQL/backup_restore/backup1QueryResult4.txt
+   D /trunk/jxdata/iTQL/backup_restore/backup1QueryResult5.txt
+   M /trunk/jxdata/iTQL/backup_restore/backup1TestResult1.txt
+   M /trunk/jxdata/iTQL/backup_restore/backup1TestResult2.txt
+   M /trunk/jxdata/iTQL/backup_restore/queryResult4.txt
+   M /trunk/jxdata/iTQL/backup_restore/queryResult5.txt
+   D /trunk/jxdata/iTQL/backup_restore/testResult1.txt
+   D /trunk/jxdata/iTQL/backup_restore/testResult2.txt
+   M /trunk/jxdata/iTQL/data_types/binary/base64Binary/queryResult2.txt
+   M /trunk/jxdata/iTQL/data_types/binary/base64Binary/queryResult3.txt
+   M /trunk/jxdata/iTQL/data_types/binary/base64Binary/test.jxu
+   M /trunk/jxdata/iTQL/data_types/binary/hexBinary/queryResult2.txt
+   M /trunk/jxdata/iTQL/data_types/binary/hexBinary/queryResult3.txt
+   M /trunk/jxdata/iTQL/data_types/binary/hexBinary/test.jxu
+   M /trunk/jxdata/iTQL/data_types/boolean/queryResult2.txt
+   M /trunk/jxdata/iTQL/data_types/boolean/test.jxu
+   M /trunk/jxdata/iTQL/data_types/dateTime/queryResult1.txt
+   M /trunk/jxdata/iTQL/data_types/dateTime/queryResult10.txt
+   M /trunk/jxdata/iTQL/data_types/dateTime/queryResult12.txt
+   M /trunk/jxdata/iTQL/data_types/dateTime/queryResult13.txt
+   M /trunk/jxdata/iTQL/data_types/dateTime/queryResult14.txt
+   M /trunk/jxdata/iTQL/data_types/dateTime/queryResult15.txt
+   M /trunk/jxdata/iTQL/data_types/dateTime/queryResult2.txt
+   M /trunk/jxdata/iTQL/data_types/dateTime/queryResult3.txt
+   M /trunk/jxdata/iTQL/data_types/dateTime/queryResult6.txt
+   M /trunk/jxdata/iTQL/data_types/dateTime/queryResult7.txt
+   M /trunk/jxdata/iTQL/data_types/dateTime/queryResult8.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult10.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult12.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult13.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult14.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult15.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult17.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult18.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult19.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult2.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult20.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult22.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult23.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult24.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult25.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult3.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult4.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult5.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult7.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult8.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/queryResult9.txt
+   M /trunk/jxdata/iTQL/data_types/gDates/test.jxu
+   M /trunk/jxdata/iTQL/data_types/queryResult10.txt
+   M /trunk/jxdata/iTQL/data_types/queryResult11.txt
+   M /trunk/jxdata/iTQL/data_types/queryResult12.txt
+   M /trunk/jxdata/iTQL/data_types/queryResult15.txt
+   M /trunk/jxdata/iTQL/data_types/queryResult2.txt
+   M /trunk/jxdata/iTQL/data_types/queryResult3.txt
+   M /trunk/jxdata/iTQL/data_types/queryResult31.txt
+   M /trunk/jxdata/iTQL/data_types/queryResult4.txt
+   M /trunk/jxdata/iTQL/data_types/queryResult5.txt
+   M /trunk/jxdata/iTQL/data_types/queryResult8.txt
+   M /trunk/jxdata/iTQL/data_types/queryResult9.txt
+   M /trunk/jxdata/iTQL/data_types/test.jxu
+   M /trunk/jxdata/iTQL/views/queryResult5.txt
+   M /trunk/jxdata/iTQL/views/queryResult8.txt
+   M /trunk/jxdata/iTQL/views/view-result1.txt
+   M /trunk/jxdata/iTQL/views/view-result2.txt
+   M /trunk/jxdata/iTQL/views/view-result3.txt
+   M /trunk/jxdata/iTQL/views/view-result4.txt
+   M /trunk/jxdata/iTQL/views/view1.rdf
+   M /trunk/jxdata/iTQL/views/view2.rdf
+   M /trunk/jxdata/iTQL/views/view3.rdf
+   M /trunk/jxdata/iTQL/views/view4.rdf
+
+Updates to deal with language codes now being included
+------------------------------------------------------------------------
+r942 | pag | 2008-05-15 01:41:13 -0500 (Thu, 15 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalResolverUnitTest.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPObjectFactoryImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPStringImpl.java
+
+Added in language codes for untyped literals
+------------------------------------------------------------------------
+r941 | pag | 2008-05-15 01:40:37 -0500 (Thu, 15 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-view/java/org/mulgara/resolver/view/ViewResolver.java
+   M /trunk/src/jar/resolver-view/java/org/mulgara/resolver/view/ViewResolverFactory.java
+
+Removed the 'enabled' property in the descriptive graphs
+------------------------------------------------------------------------
+r940 | pag | 2008-05-14 21:34:38 -0500 (Wed, 14 May 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/query/java/org/mulgara/query/ConstraintBinaryOperation.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintConjunction.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintDifference.java
+   D /trunk/src/jar/query/java/org/mulgara/query/ConstraintFilteredOperation.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintOperation.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintOptionalJoin.java
+
+Refactored out the notion of 'Binary Operation' from ConstraintOptionalJoin so that ConstraintDifference would share these properties. This meant changing a method in ConstraintFilteredOperation to a static method in ConstraintOperation. This is a better location as the method was simply a utility and did not deserve to be in a common inherited class.
+------------------------------------------------------------------------
+r939 | pag | 2008-05-14 21:30:19 -0500 (Wed, 14 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/CreateModelOperation.java
+
+Removed testing of graph URIs for all but the known protocols
+------------------------------------------------------------------------
+r937 | pag | 2008-05-14 00:01:12 -0500 (Wed, 14 May 2008) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara-config.xml
+
+Added the null resolver
+------------------------------------------------------------------------
+r936 | pag | 2008-05-14 00:00:33 -0500 (Wed, 14 May 2008) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara-embedded.dtd
+   M /trunk/conf/mulgara-embedded.xsd
+
+Added the option for a default graph
+------------------------------------------------------------------------
+r935 | pag | 2008-05-13 23:14:17 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+
+added the null resolver and the SPARQL test tool
+------------------------------------------------------------------------
+r934 | pag | 2008-05-13 23:11:21 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   M /trunk/tools/src/org/mulgara/tools/Sparql.java
+
+Added the null graph as a default
+------------------------------------------------------------------------
+r933 | pag | 2008-05-13 23:05:24 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   M /trunk/jxdata/iTQL/node_types/test.jxu
+   M /trunk/jxdata/iTQL/prefix/test.jxu
+   D /trunk/jxdata/iTQL/rdfs/rdfs-container-membership-superProperty/configResult.txt
+   M /trunk/jxdata/iTQL/rdfs/rdfs-container-membership-superProperty/test.jxu
+   D /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/configResult.txt
+   M /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/test.jxu
+   D /trunk/jxdata/iTQL/rdfs/rdfs-no-cycles-in-subClassOf/configResult.txt
+   M /trunk/jxdata/iTQL/rdfs/rdfs-no-cycles-in-subClassOf/test.jxu
+   D /trunk/jxdata/iTQL/rdfs/rdfs-no-cycles-in-subPropertyOf/configResult.txt
+   M /trunk/jxdata/iTQL/rdfs/rdfs-no-cycles-in-subPropertyOf/test.jxu
+   D /trunk/jxdata/iTQL/rdfs/rdfs-subPropertyOf-semantics/configResult.txt
+   M /trunk/jxdata/iTQL/rdfs/rdfs-subPropertyOf-semantics/test.jxu
+   D /trunk/jxdata/iTQL/rdfs/statement-entailment/configResult.txt
+   M /trunk/jxdata/iTQL/rdfs/statement-entailment/test.jxu
+   M /trunk/rules/rdfs-krule.rdf
+
+Updated rules to no longer require hard-coded system graphs
+------------------------------------------------------------------------
+r932 | pag | 2008-05-13 23:03:40 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   M /trunk/build.xml
+
+Added the serializer lib for ARQ and the null resolver
+------------------------------------------------------------------------
+r931 | pag | 2008-05-13 23:00:56 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   M /trunk/build.properties
+
+Added serializer for the ARQ parser
+------------------------------------------------------------------------
+r930 | pag | 2008-05-13 22:59:48 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   A /trunk/lib/serializer-2.7.0.jar
+
+Needed by the SAX parser
+------------------------------------------------------------------------
+r929 | pag | 2008-05-13 22:58:47 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/Database.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseResolverFactoryInitializer.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSession.java
+
+Added support for creating default graphs when needed, and re-creating the graphs when necessary after a database has been restored
+------------------------------------------------------------------------
+r928 | pag | 2008-05-13 22:53:00 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/CacheResolverFactory.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/InternalResolverFactory.java
+
+Added Default Graph support
+------------------------------------------------------------------------
+r927 | pag | 2008-05-13 22:51:33 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/resolver/java/org/mulgara/resolver/CreateDefaultGraphOperation.java
+
+New operation to create a Default Graph for a resolver. This is a different mechanism to standard graph creation, as it is a bootstrap operation.
+------------------------------------------------------------------------
+r926 | pag | 2008-05-13 22:46:12 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/krule/java/org/mulgara/krule/KruleLoader.java
+
+Changed to use the system graphs rather than looking graphs up by type
+------------------------------------------------------------------------
+r925 | pag | 2008-05-13 22:44:28 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/DistributedResolverFactory.java
+   M /trunk/src/jar/resolver-file/java/org/mulgara/resolver/file/FileResolverFactory.java
+   M /trunk/src/jar/resolver-filesystem/java/org/mulgara/resolver/filesystem/FileSystemResolverFactory.java
+   M /trunk/src/jar/resolver-gis/java/org/mulgara/resolver/gis/GISResolverFactory.java
+   M /trunk/src/jar/resolver-http/java/org/mulgara/resolver/http/HttpResolverFactory.java
+   M /trunk/src/jar/resolver-jar/java/org/mulgara/resolver/jar/JarResolverFactory.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolverFactory.java
+   M /trunk/src/jar/resolver-memory/java/org/mulgara/resolver/memory/MemoryResolverFactory.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalResolverFactory.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ConjunctiveTransformerUnitTest.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ResolverFactory.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ResolverFactoryInitializer.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/resolver/store/StatementStoreResolverFactory.java
+   M /trunk/src/jar/resolver-test/java/org/mulgara/resolver/test/TestResolverFactory.java
+   M /trunk/src/jar/resolver-url/java/org/mulgara/resolver/url/URLResolverFactory.java
+   M /trunk/src/jar/resolver-view/java/org/mulgara/resolver/view/ViewResolverFactory.java
+   M /trunk/src/jar/resolver-xsd/java/org/mulgara/resolver/xsd/XSDResolverFactory.java
+
+Added support for default graph creation
+------------------------------------------------------------------------
+r924 | pag | 2008-05-13 22:43:00 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-nodetype/java/org/mulgara/resolver/nodetype/NodeTypeResolverFactory.java
+
+Added support for default graph creation and changed model to graph
+------------------------------------------------------------------------
+r923 | pag | 2008-05-13 22:40:25 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-nodetype/java/org/mulgara/resolver/nodetype/NodeTypeResolver.java
+
+Removed warnings, and changed the model to graph
+------------------------------------------------------------------------
+r922 | pag | 2008-05-13 22:33:21 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-nodetype/java/org/mulgara/resolver/nodetype/TuplesWrapperResolution.java
+
+Added generics and removed warnings
+------------------------------------------------------------------------
+r921 | pag | 2008-05-13 22:27:47 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-prefix/java/org/mulgara/resolver/prefix/PrefixResolverFactory.java
+
+Added in support for default graph creation
+------------------------------------------------------------------------
+r920 | pag | 2008-05-13 22:14:08 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-prefix/java/org/mulgara/resolver/prefix/TuplesWrapperResolution.java
+
+Added generics and removed warnings
+------------------------------------------------------------------------
+r919 | pag | 2008-05-13 22:11:21 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-prefix/java/org/mulgara/resolver/prefix/PrefixResolver.java
+
+Removed unused elements
+------------------------------------------------------------------------
+r918 | pag | 2008-05-13 22:06:37 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/resolver-null
+   A /trunk/src/jar/resolver-null/build.xml
+   A /trunk/src/jar/resolver-null/java
+   A /trunk/src/jar/resolver-null/java/org
+   A /trunk/src/jar/resolver-null/java/org/mulgara
+   A /trunk/src/jar/resolver-null/java/org/mulgara/resolver
+   A /trunk/src/jar/resolver-null/java/org/mulgara/resolver/nullres
+   A /trunk/src/jar/resolver-null/java/org/mulgara/resolver/nullres/NullResolution.java
+   A /trunk/src/jar/resolver-null/java/org/mulgara/resolver/nullres/NullResolver.java
+   A /trunk/src/jar/resolver-null/java/org/mulgara/resolver/nullres/NullResolverFactory.java
+   A /trunk/src/jar/resolver-null/java/org/mulgara/resolver/nullres/package.html
+   A /trunk/src/jar/resolver-null/resolver-null-build.properties
+
+New NULL resolver for appearing as an always empty graph
+------------------------------------------------------------------------
+r917 | pag | 2008-05-13 22:05:00 -0500 (Tue, 13 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/rdf/Mulgara.java
+
+Added system graph names
+------------------------------------------------------------------------
+r913 | pag | 2008-05-09 00:45:42 -0500 (Fri, 09 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSession.java
+
+Changed info to debug, debug to trace. Shifted some vertical space
+------------------------------------------------------------------------
+r912 | pag | 2008-05-08 19:00:14 -0500 (Thu, 08 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseFactoryInitializer.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseResolverFactoryInitializer.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/PrimitiveConstraintDescriptor.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalConstraintDescriptor.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ConstraintDescriptor.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/DatabaseMetadata.java
+   M /trunk/src/jar/resolver-test/java/org/mulgara/resolver/test/TestConstraintDescriptor.java
+   M /trunk/src/jar/resolver-xsd/java/org/mulgara/resolver/xsd/IntervalConstraintDescriptor.java
+
+Cleanup up code and added generics
+------------------------------------------------------------------------
+r911 | pag | 2008-05-08 18:16:52 -0500 (Thu, 08 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseResolverFactoryInitializer.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ResolverFactoryInitializer.java
+
+Added the addDefaultGraph method, and some compression cleanup to the interface.
+------------------------------------------------------------------------
+r910 | pag | 2008-05-08 17:53:53 -0500 (Thu, 08 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseFactory.java
+
+Cleaned up formating and added a little generics
+------------------------------------------------------------------------
+r909 | pag | 2008-05-07 19:09:35 -0500 (Wed, 07 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-store/java/org/mulgara/resolver/store/StatementStoreDuplicateResolution.java
+
+Introduced functionality to work with 2 variables, and not just a single repeated variable. This has been a long-standing bug (mentioned in previous TODO comment). Needed to be fixed now for SPARQL compatibility
+------------------------------------------------------------------------
+r908 | pag | 2008-05-07 19:06:50 -0500 (Wed, 07 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/store/statement/StatementStore.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa/XAStatementStoreImpl.java
+
+Punched a new query hole into the API. This permits choosing which ordering you want when there are sufficient variables to have multiple indexes that will suit a query. This can avoid the need to re-order Tuples in some circumstances. The current implementation is asymmetric, as the use case for it was restricted, but it can be expanded to being completely symmetric if it proves to be useful.
+------------------------------------------------------------------------
+r907 | pag | 2008-05-07 09:30:50 -0500 (Wed, 07 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DefaultConstraintHandlers.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/LeftJoinUnitTest.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperations.java
+
+Using the new ConstraintOptionalJoin/LeftJoin code which includes filters
+------------------------------------------------------------------------
+r906 | pag | 2008-05-07 09:29:35 -0500 (Wed, 07 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintOptionalJoin.java
+
+Added a filter parameter, and prevented this binary structure from being flattened into an n-ary structure
+------------------------------------------------------------------------
+r905 | pag | 2008-05-07 09:28:27 -0500 (Wed, 07 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/sparql-interpreter/java/org/mulgara/sparql/PatternMapper.java
+
+Optional joins now parameterize the filter inside the join operation for scoping compatibility. Conjunctions and disjunctions are now factored out if they have a single element
+------------------------------------------------------------------------
+r904 | pag | 2008-05-07 09:26:04 -0500 (Wed, 07 May 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/sparql-interpreter/java/org/mulgara/sparql/PatternTransformer.java
+
+Provides transformation operations, as per http://www.w3.org/TR/rdf-sparql-query/#convertGraphPattern
+------------------------------------------------------------------------
+r903 | pag | 2008-05-07 09:24:02 -0500 (Wed, 07 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/N3ContentHandler.java
+   M /trunk/src/jar/resolver-nodetype/java/org/mulgara/resolver/nodetype/TuplesWrapperResolution.java
+   M /trunk/src/jar/resolver-prefix/java/org/mulgara/resolver/prefix/TuplesWrapperResolution.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/TuplesContext.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/TuplesWrapperResolution.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa/TripleAVLFile.java
+   M /trunk/src/jar/store-stringpool-memory/java/org/mulgara/store/stringpool/memory/MemoryStringPoolImpl.java
+   M /trunk/src/jar/store-stringpool-xa/java/org/mulgara/store/stringpool/xa/XAStringPoolImpl.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/AbstractTuples.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/FilteredTuples.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/Tuples.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/WrappedTuples.java
+   M /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/xa/HybridTuples.java
+
+Added a method to allow possibly filtered Tuples to provide access to the raw unfiltered data
+------------------------------------------------------------------------
+r902 | pag | 2008-05-07 09:19:46 -0500 (Wed, 07 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/LeftJoin.java
+
+updated to handle inner filters
+------------------------------------------------------------------------
+r901 | pag | 2008-05-06 10:30:31 -0500 (Tue, 06 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/Parser.java
+
+Update the parser to handle unquoted numbers
+------------------------------------------------------------------------
+r897 | pag | 2008-05-06 00:00:19 -0500 (Tue, 06 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/NumberUtil.java
+
+Had to include the XSD URIs directly in this class to avoid a dependency loop on the query package
+------------------------------------------------------------------------
+r896 | pag | 2008-05-05 23:01:14 -0500 (Mon, 05 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/Parser.java
+
+Fixed formatting
+------------------------------------------------------------------------
+r895 | pag | 2008-05-05 22:42:25 -0500 (Mon, 05 May 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/util/java/org/mulgara/util/NumberUtil.java
+
+A set of utilities for converting strings to numbers, and converting between Java types and XSD datatypes.
+------------------------------------------------------------------------
+r894 | pag | 2008-05-02 22:13:08 -0500 (Fri, 02 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/SubqueryAnswer.java
+
+expanded to accept variables not present in the tuples
+------------------------------------------------------------------------
+r893 | pag | 2008-05-02 11:40:22 -0500 (Fri, 02 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/SubqueryAnswer.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/SubqueryAnswerUnitTest.java
+
+Fixed formatting and generics
+------------------------------------------------------------------------
+r892 | pag | 2008-05-02 10:59:30 -0500 (Fri, 02 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/FilteredTuples.java
+
+Errors during a filter test are now treated as a failing test.
+------------------------------------------------------------------------
+r891 | pag | 2008-05-01 13:08:13 -0500 (Thu, 01 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/ExternalFn.java
+
+Added casting functions, but no XPath fn: functions yet
+------------------------------------------------------------------------
+r890 | pag | 2008-05-01 13:07:20 -0500 (Thu, 01 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/AbstractComparableLiteral.java
+
+Update on a comment describing typeMap
+------------------------------------------------------------------------
+r889 | pag | 2008-05-01 13:06:28 -0500 (Thu, 01 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/TypedLiteral.java
+
+Creating a literal can now throw a QueryException due to casting incompatible types. This is reflected in the numeric types which now throw QueryException instead of returning 0 for unparsable values. Added casting operations for the numeric types. Finally, added in support for the xsd: prefix when the XSD namespace has been ommited, via inclusion of XSDAbbrev
+------------------------------------------------------------------------
+r888 | pag | 2008-05-01 13:01:33 -0500 (Thu, 01 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/NumericLiteral.java
+
+Added a constructor that can take pre-parsed numbers with a provided type (this should be tested for and correct before calling). Added functions for testing URIs for numeric types, and casting numbers based on URI. Also changed to using XSD URIs and not creating the URIs here
+------------------------------------------------------------------------
+r887 | pag | 2008-05-01 12:58:19 -0500 (Thu, 01 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/IRI.java
+
+Added an equals() method to test for IRI equality based on value and not reference
+------------------------------------------------------------------------
+r886 | pag | 2008-05-01 12:57:17 -0500 (Thu, 01 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/AbstractComparable.java
+
+introduced more rigorous testing of type compatibility before proceeding with a comparison. Throws a QueryException when incompatible types are detected.
+------------------------------------------------------------------------
+r885 | pag | 2008-05-01 12:55:57 -0500 (Thu, 01 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/Bool.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/DateTime.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/SimpleLiteral.java
+
+Using the URIs defined in XSD
+------------------------------------------------------------------------
+r884 | pag | 2008-05-01 12:53:25 -0500 (Thu, 01 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/AbstractFilterValue.java
+
+increased visibility of the operands so inheriting classes outside of this package can see them. Needed for ExternalFn
+------------------------------------------------------------------------
+r883 | pag | 2008-05-01 12:51:53 -0500 (Thu, 01 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/AbstractIsIriFnUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/AbstractLogicUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/BoundFnUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/EqualityComparisonUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/IsBlankFnUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/IsLiteralFnUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/AbstractOperationUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/UnaryMinusUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/DataTypeFnUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/LangFnUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/NumericLiteralUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/StrFnUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/TypedLiteralUnitTest.java
+
+Changed to use the XSD namespace values directly out of XSD
+------------------------------------------------------------------------
+r882 | pag | 2008-05-01 12:51:40 -0500 (Thu, 01 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/BinaryComparisonUnitTest.java
+
+Updated to use the XSD datatype values and introduced a test for general XSD types that was passing when it should have failed
+------------------------------------------------------------------------
+r881 | pag | 2008-05-01 12:48:38 -0500 (Thu, 01 May 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/query/java/org/mulgara/query/filter/value/ExternalFnUnitTest.java
+
+New test for the new casting functions
+------------------------------------------------------------------------
+r880 | pag | 2008-05-01 12:46:18 -0500 (Thu, 01 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/sparql-interpreter/java/org/mulgara/sparql/FilterMapper.java
+
+Handling a new exception from the TypedLiteral.newLiteral method
+------------------------------------------------------------------------
+r879 | pag | 2008-05-01 12:42:27 -0500 (Thu, 01 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPBase64BinaryFactory.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPBooleanFactory.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDateFactory.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDateTimeFactory.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDecimalFactory.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDoubleFactory.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPFloatFactory.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGDayFactory.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGMonthDayFactory.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGMonthFactory.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGYearFactory.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGYearMonthFactory.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPHexBinaryFactory.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPTypedLiteralRegistry.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPXMLLiteralFactory.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPXMLLiteralImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPXSDStringFactory.java
+
+Added the raw xsd: prefix into the type URIs to handle data that has not been declared with the appropriate namespace
+------------------------------------------------------------------------
+r878 | pag | 2008-05-01 12:40:50 -0500 (Thu, 01 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/SPTypedLiteralFactory.java
+
+Updated getTypeURIs with generics to return a set of URI, and not just a set
+------------------------------------------------------------------------
+r877 | pag | 2008-05-01 12:38:17 -0500 (Thu, 01 May 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/query/java/org/mulgara/query/rdf/XSDAbbrev.java
+
+Copy of XSD which refers to the XSD namespace tag directly. This is a hack to deal with all that data out there that forgot to declare the XSD namespace before using xsd: everywhere.
+------------------------------------------------------------------------
+r876 | pag | 2008-05-01 12:36:10 -0500 (Thu, 01 May 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/rdf/XSD.java
+
+Added all numeric types, and a test for those types that are numeric
+------------------------------------------------------------------------
+r870 | pag | 2008-04-29 17:58:09 -0500 (Tue, 29 Apr 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+
+removed source directory as it has now been merged into org.mulgara.query
+------------------------------------------------------------------------
+r857 | pag | 2008-04-25 21:48:46 -0500 (Fri, 25 Apr 2008) | 1 line
+Changed paths:
+   A /trunk/tools
+   A /trunk/tools/README.txt
+   A /trunk/tools/src
+   A /trunk/tools/src/org
+   A /trunk/tools/src/org/mulgara
+   A /trunk/tools/src/org/mulgara/tools
+   A /trunk/tools/src/org/mulgara/tools/Sparql.java
+
+Added some example code that is also a useful tool for working with SPARQL
+------------------------------------------------------------------------
+r856 | pag | 2008-04-25 21:17:54 -0500 (Fri, 25 Apr 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+   M /trunk/build.properties
+   M /trunk/build.xml
+   M /trunk/common.xml
+   A /trunk/lib/mulgara-sparql-0.0.1.jar (from /branches/mgr-61-sparql/lib/mulgara-sparql-0.0.1.jar:855)
+   M /trunk/src/jar/itql/build.xml
+   M /trunk/src/jar/krule/java/org/mulgara/krule/Rule.java
+   D /trunk/src/jar/parser/java
+   M /trunk/src/jar/query/java/org/mulgara/connection/CommandExecutor.java
+   A /trunk/src/jar/query/java/org/mulgara/query/ConstraintFilter.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/ConstraintFilter.java:855)
+   A /trunk/src/jar/query/java/org/mulgara/query/ConstraintIn.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/ConstraintIn.java:855)
+   A /trunk/src/jar/query/java/org/mulgara/query/ConstraintOptionalJoin.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/ConstraintOptionalJoin.java:855)
+   A /trunk/src/jar/query/java/org/mulgara/query/ModelVariable.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/ModelVariable.java:855)
+   M /trunk/src/jar/query/java/org/mulgara/query/Variable.java
+   A /trunk/src/jar/query/java/org/mulgara/query/filter (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/AbstractBooleanFn.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/AbstractBooleanFn.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/AbstractContextOwner.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/AbstractContextOwner.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/AbstractFilterValue.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/AbstractFilterValue.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/AbstractIsIriFnUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/AbstractIsIriFnUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/AbstractLogicUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/AbstractLogicUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/And.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/And.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/AndUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/AndUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/BinaryComparisonFilter.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/BinaryComparisonFilter.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/BinaryComparisonUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/BinaryComparisonUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/BinaryTestFilter.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/BinaryTestFilter.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/BoundFn.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/BoundFn.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/BoundFnUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/BoundFnUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/Context.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/Context.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/ContextOwner.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/ContextOwner.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/EqualityComparisonUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/EqualityComparisonUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/Equals.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/Equals.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/Filter.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/Filter.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/GreaterThan.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/GreaterThan.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/GreaterThanEqualTo.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/GreaterThanEqualTo.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/IsBlankFn.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/IsBlankFn.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/IsBlankFnUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/IsBlankFnUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/IsIRIFnUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/IsIRIFnUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/IsIriFn.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/IsIriFn.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/IsLiteralFn.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/IsLiteralFn.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/IsLiteralFnUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/IsLiteralFnUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/IsURIFnUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/IsURIFnUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/IsUriFn.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/IsUriFn.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/LangMatches.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/LangMatches.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/LangMatchesUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/LangMatchesUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/LessThan.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/LessThan.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/LessThanEqualTo.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/LessThanEqualTo.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/NAryOperatorFilter.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/NAryOperatorFilter.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/Not.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/Not.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/NotEquals.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/NotEquals.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/NotUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/NotUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/Or.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/Or.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/OrUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/OrUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/RDFTerm.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/RDFTerm.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/RegexFn.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/RegexFn.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/RegexFnUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/RegexFnUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/SameTerm.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/SameTerm.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/TestContext.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/TestContext.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/TestContextOwner.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/TestContextOwner.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/arithmetic:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/AbstractNumericOperation.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/arithmetic/AbstractNumericOperation.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/AbstractOperationUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/arithmetic/AbstractOperationUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/AddOperation.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/arithmetic/AddOperation.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/AddOperationUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/arithmetic/AddOperationUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/BinaryOperation.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/arithmetic/BinaryOperation.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/DivideOperation.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/arithmetic/DivideOperation.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/DivideOperationUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/arithmetic/DivideOperationUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/MinusOperation.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/arithmetic/MinusOperation.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/MinusOperationUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/arithmetic/MinusOperationUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/MultiplyOperation.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/arithmetic/MultiplyOperation.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/MultiplyOperationUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/arithmetic/MultiplyOperationUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/UnaryMinus.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/arithmetic/UnaryMinus.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/UnaryMinusUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/arithmetic/UnaryMinusUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/AbstractAccessorFn.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/AbstractAccessorFn.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/AbstractComparable.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/AbstractComparable.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/AbstractComparableLiteral.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/AbstractComparableLiteral.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/BlankNodeValue.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/BlankNodeValue.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/BlankNodeValueUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/BlankNodeValueUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/Bool.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/Bool.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/BoolUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/BoolUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/ComparableExpression.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/ComparableExpression.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/DataTypeFn.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/DataTypeFn.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/DataTypeFnUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/DataTypeFnUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/DateTime.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/DateTime.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/DateTimeUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/DateTimeUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/ExternalFn.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/ExternalFn.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/IRI.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/IRI.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/LangFn.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/LangFn.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/LangFnUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/LangFnUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/NumericExpression.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/NumericExpression.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/NumericLiteral.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/NumericLiteral.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/NumericLiteralUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/NumericLiteralUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/SimpleLiteral.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/SimpleLiteral.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/StrFn.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/StrFn.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/StrFnUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/StrFnUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/TypedLiteral.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/TypedLiteral.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/TypedLiteralUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/TypedLiteralUnitTest.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/ValueLiteral.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/ValueLiteral.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/Var.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/Var.java:855)
+   R /trunk/src/jar/query/java/org/mulgara/query/filter/value/VarUnitTest.java (from /branches/mgr-61-sparql/src/jar/query/java/org/mulgara/query/filter/value/VarUnitTest.java:855)
+   M /trunk/src/jar/query/java/org/mulgara/query/rdf/XSD.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ConstraintOperations.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DefaultConstraintHandlers.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/LocalQueryResolver.java
+   A /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/TuplesContext.java (from /branches/mgr-61-sparql/src/jar/resolver-spi/java/org/mulgara/resolver/spi/TuplesContext.java:855)
+   A /trunk/src/jar/sparql-interpreter (from /branches/mgr-61-sparql/src/jar/sparql-interpreter:855)
+   R /trunk/src/jar/sparql-interpreter/build.xml (from /branches/mgr-61-sparql/src/jar/sparql-interpreter/build.xml:855)
+   R /trunk/src/jar/sparql-interpreter/java (from /branches/mgr-61-sparql/src/jar/sparql-interpreter/java:855)
+   R /trunk/src/jar/sparql-interpreter/java/org (from /branches/mgr-61-sparql/src/jar/sparql-interpreter/java/org:855)
+   R /trunk/src/jar/sparql-interpreter/java/org/mulgara (from /branches/mgr-61-sparql/src/jar/sparql-interpreter/java/org/mulgara:855)
+   R /trunk/src/jar/sparql-interpreter/java/org/mulgara/sparql (from /branches/mgr-61-sparql/src/jar/sparql-interpreter/java/org/mulgara/sparql:855)
+   R /trunk/src/jar/sparql-interpreter/java/org/mulgara/sparql/FilterMapper.java (from /branches/mgr-61-sparql/src/jar/sparql-interpreter/java/org/mulgara/sparql/FilterMapper.java:855)
+   R /trunk/src/jar/sparql-interpreter/java/org/mulgara/sparql/PatternMapper.java (from /branches/mgr-61-sparql/src/jar/sparql-interpreter/java/org/mulgara/sparql/PatternMapper.java:855)
+   R /trunk/src/jar/sparql-interpreter/java/org/mulgara/sparql/SparqlInterpreter.java (from /branches/mgr-61-sparql/src/jar/sparql-interpreter/java/org/mulgara/sparql/SparqlInterpreter.java:855)
+   R /trunk/src/jar/sparql-interpreter/sparql-interpreter-build.properties (from /branches/mgr-61-sparql/src/jar/sparql-interpreter/sparql-interpreter-build.properties:855)
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/Difference.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/DifferenceUnitTest.java
+   A /trunk/src/jar/tuples/java/org/mulgara/store/tuples/FilteredTuples.java (from /branches/mgr-61-sparql/src/jar/tuples/java/org/mulgara/store/tuples/FilteredTuples.java:855)
+   A /trunk/src/jar/tuples/java/org/mulgara/store/tuples/LeftJoin.java (from /branches/mgr-61-sparql/src/jar/tuples/java/org/mulgara/store/tuples/LeftJoin.java:855)
+   A /trunk/src/jar/tuples/java/org/mulgara/store/tuples/LeftJoinUnitTest.java (from /branches/mgr-61-sparql/src/jar/tuples/java/org/mulgara/store/tuples/LeftJoinUnitTest.java:855)
+   A /trunk/src/jar/tuples/java/org/mulgara/store/tuples/PartialColumnComparator.java (from /branches/mgr-61-sparql/src/jar/tuples/java/org/mulgara/store/tuples/PartialColumnComparator.java:855)
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperations.java
+
+Added SPARQL support! This is a merge of branch mgr-61-sparql. Several features are still needed for Mulgara to fully support SPARQL, but most of the functionality is present. The main area of work is in Mulgara's storage and handling of LiteralImpl, with some other work needed for the default and empty graphs. Also a scripting framework is needed to run the SPARQL test suite.
+------------------------------------------------------------------------
+r803 | pag | 2008-04-21 17:30:10 -0500 (Mon, 21 Apr 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/itql/java/org/mulgara/itql/TqlSession.java
+   M /trunk/src/jar/itql/java/org/mulgara/itql/TqlSessionUI.java
+
+Now handles partial commands that share a line with a previous command
+------------------------------------------------------------------------
+r802 | pag | 2008-04-21 17:12:40 -0500 (Mon, 21 Apr 2008) | 3 lines
+Changed paths:
+   M /trunk/src/jar/itql/java/org/mulgara/itql/TqlAutoInterpreter.java
+   M /trunk/src/jar/itql/java/org/mulgara/itql/TqlInterpreter.java
+   M /trunk/src/jar/itql/java/org/mulgara/itql/TqlSession.java
+   M /trunk/src/jar/itql/java/org/mulgara/itql/TqlSessionUI.java
+
+Fixes #93
+Incomplete commands are now detected and individual lines are accumulated until a complete command is available.
+TODO: partial commands which share a single line
+------------------------------------------------------------------------
+r800 | andrae | 2008-04-18 03:44:31 -0500 (Fri, 18 Apr 2008) | 6 lines
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/AdvDatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraInternalTransactionFactory.java
+
+#refs 100
+
+Fixes bug in transaction logic that could release the writelock prematurely if a
+pre-existing query from the same session was completed.
+
+
+------------------------------------------------------------------------
+r796 | andrae | 2008-04-17 21:15:03 -0500 (Thu, 17 Apr 2008) | 12 lines
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/AdvDatabaseSessionUnitTest.java
+
+refs #100
+
+Adds a test for a transaction bug found by James Leigh.
+
+setAutoCommit(true);
+query() -> answer;
+setAutoCommit(false);
+answer.close();
+commit(); // fails attempting to reserveWriteLock.
+setAutoCommit(true);
+
+
+------------------------------------------------------------------------
+r794 | alexhall | 2008-04-16 14:55:04 -0500 (Wed, 16 Apr 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+   M /trunk/src/jar/util/java/org/mulgara/util/MappedIntFile.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/MappedBlockFile.java
+
+Explicitly clean MappedByteBuffers to resolve Windows backup/restore issue.
+------------------------------------------------------------------------
+r778 | pag | 2008-04-13 17:52:33 -0500 (Sun, 13 Apr 2008) | 1 line
+Changed paths:
+   M /trunk/LEGAL.txt
+   M /trunk/build.properties
+   D /trunk/lib/emory-util-1.2-remote.jar
+   A /trunk/lib/emory-util-2.1-remote.jar (from /trunk/lib/emory-util-1.2-remote.jar:777)
+
+Accidentally reversed the version number
+------------------------------------------------------------------------
+r777 | pag | 2008-04-13 17:48:23 -0500 (Sun, 13 Apr 2008) | 1 line
+Changed paths:
+   M /trunk/build.properties
+   A /trunk/lib/emory-util-1.2-remote.jar
+   D /trunk/lib/emory-util.jar
+
+Updated the Emory utilities to version 1.2
+------------------------------------------------------------------------
+r776 | pag | 2008-04-11 21:08:08 -0500 (Fri, 11 Apr 2008) | 12 lines
+Changed paths:
+   M /trunk/LEGAL.txt
+   M /trunk/build.properties
+   M /trunk/build.xml
+   M /trunk/conf/mulgara-config.xml
+   M /trunk/conf/mulgara-embedded.xsd
+   D /trunk/lib/castor-0.9.3.9-xml.jar
+   A /trunk/lib/castor-1.2-codegen.jar
+   A /trunk/lib/castor-1.2-xml-schema.jar
+   A /trunk/lib/castor-1.2-xml.jar
+   A /trunk/lib/velocity-1.5.jar
+   M /trunk/src/jar/config/build.xml
+   M /trunk/src/jar/demo-mp3/build.xml
+   M /trunk/src/jar/server-http/build.xml
+
+Updated the Castor library to remove some of the warnings received in Java 1.5 and above.
+Castor is now in several parts, which required updates to classpaths for code generation tasks,
+and a new entry point is being called as well.
+The configuration is now using XSD and not DTD. This needed some updates, as it has a strict
+ordering requirement on the configuration file in conf.
+Also, "class" properties were being converted to "type", so that Database and DatabaseFactory
+could call getType on the configuration objects. However, this does not happen in the latest
+Castor, meaning that "class" peroperties lead to a name clash on the getClass method. To avoid
+this, the configuration has now been changed to use a property of "type". This lets the source
+code stay unchanged, though now classes are identified by type="package.ClassName" instead of
+class="package.ClassName" in the conf/mulgara-config.xml file.
+
+------------------------------------------------------------------------
+r775 | pag | 2008-04-11 14:40:04 -0500 (Fri, 11 Apr 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/test/ClientGraphUnitTest.java
+   M /trunk/src/jar/demo-mp3/java/org/mulgara/demo/mp3/swing/Mp3Application.java
+   M /trunk/src/jar/util/java/org/mulgara/util/AbstractMulgaraResultSet.java
+   M /trunk/src/jar/util/java/org/mulgara/util/MulgaraResultSet.java
+   M /trunk/src/jar/util/java/org/mulgara/util/RowList.java
+   M /trunk/src/jar/util/java/org/mulgara/util/TestResultSet.java
+   M /trunk/src/jar/util/java/org/mulgara/util/TestResultSetTest.java
+   M /trunk/src/jar/util/java/org/mulgara/util/UIDGeneratorUnitTest.java
+
+Cleaned up deprecated references, formatting, and warnings
+------------------------------------------------------------------------
+r773 | pag | 2008-04-11 08:46:51 -0500 (Fri, 11 Apr 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+   M /trunk/build.xml
+   D /trunk/src/jar/connection
+   D /trunk/src/jar/connector
+   M /trunk/src/jar/query/build.xml
+
+Removed unused and redundant packages
+------------------------------------------------------------------------

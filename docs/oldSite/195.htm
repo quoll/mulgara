@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> set </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="set, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="187.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="254.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h2 class="heading2">set</h2>
+<p class="bodytext">Sets a property in the interpreter. The general syntax is:</p>
+<p class="commandtext">set option [on | off];</p>
+<p class="bodytext">Where <code class="monospace">option</code> is one of the following:</p>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">time</code><p class="listcontinue">Prints the time a command takes to execute (in seconds). For example:</p>
+<p class="listcontinuecommandtext">set time on ;<br />Command timing on<br />Command execution time - 0.019 seconds<br />alias &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; as rdfns ;<br />Successfully aliased http://www.w3.org/1999/02/22-rdf-syntax-ns# as rdfns<br />Command execution time - 0.0050 seconds<br />set time off ;<br />Command timing off<br />alias &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; as rdfns ;<br />Successfully aliased http://www.w3.org/1999/02/22-rdf-syntax-ns# as rdfns</p>
+</li><li class="listbullet"><code class="monospace">autocommit</code><p class="listcontinue">The default setting is <code class="monospace">on</code>. Setting this option off specifies that all subsequent iTQL<sup class="superscript">TM</sup> commands that modify the database are isolated in a logical unit of work. That is, modifications are not visible to other iTQL sessions until either <code class="monospace">autocommit</code> is set back on or a <code class="monospace">commit</code> command is performed. For example:</p>
+<p class="listcontinuecommandtext">set autocommit off ;<br />insert &lt;ns:subject&gt; &lt;ns:predicate1&gt; 'object' into &lt;rmi://mysite.com/server1#model&gt; ;<br />insert &lt;ns:subject&gt; &lt;ns:predicate2&gt; 'object2' into &lt;rmi://mysite.com/server1#model&gt; ; <br />set autocommit on ;</p>
+</li></ul><p class="bodytext">If a session with <code class="monospace">autocommit</code> set <code class="monospace">off</code> is idle for a period greater than three minutes, and a second session attempts a write, then a rollback of the first session's uncommitted transactions occurs. The first session's next iTQL command then reports an error indicating that the transactions were lost.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="271.htm" target="_self">iTQL Commands</a></p><p class="relateditem"><a href="170.htm" target="_self">alias</a></p><p class="relateditem"><a href="171.htm" target="_self">backup</a></p><p class="relateditem"><a href="223.htm" target="_self">comment (#)</a></p><p class="relateditem"><a href="174.htm" target="_self">commit</a></p><p class="relateditem"><a href="176.htm" target="_self">create</a></p><p class="relateditem"><a href="178.htm" target="_self">delete</a></p><p class="relateditem"><a href="179.htm" target="_self">drop</a></p><p class="relateditem"><a href="180.htm" target="_self">execute</a></p><p class="relateditem"><a href="181.htm" target="_self">help</a></p><p class="relateditem"><a href="182.htm" target="_self">insert</a></p><p class="relateditem"><a href="183.htm" target="_self">load</a></p><p class="relateditem"><a href="184.htm" target="_self">quit</a></p><p class="relateditem"><a href="185.htm" target="_self">restore</a></p><p class="relateditem"><a href="186.htm" target="_self">rollback</a></p><p class="relateditem"><a href="187.htm" target="_self">select</a></p></td>
+</tr>
+</table>
+
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

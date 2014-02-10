@@ -1,0 +1,6 @@
+External Contributors to Mulgara
+================================
+* Chris Wilper (cwilper@cs.cornell.edu) - KModel (http://www.fedora.info/~cwilper/kmodel/)
+a client/server version of Jena using Kowari (became
+org.kowari.client.jena).
+* Edwin Shin - A millisecond precision to xsd:datetime.

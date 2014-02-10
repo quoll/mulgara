@@ -1,0 +1,377 @@
+------------------------------------------------------------------------
+r1235 | pag | 2008-09-04 14:54:08 -0500 (Thu, 04 Sep 2008) | 1 line
+Changed paths:
+   D /trunk/lib/plankton-1.2.6.jar
+
+Removed the Plakton jar, since this was part of Barracuda
+------------------------------------------------------------------------
+r1234 | pag | 2008-09-04 14:39:43 -0500 (Thu, 04 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/LEGAL.txt
+
+Updated version numbers on some libs, and removed several entries now that the jars are gone
+------------------------------------------------------------------------
+r1233 | pag | 2008-09-04 14:24:03 -0500 (Thu, 04 Sep 2008) | 1 line
+Changed paths:
+   A /trunk/KOWARI-MODIFICATIONS/mods-mulgara-2.0.4.txt
+
+Commit logs for 2.0.4 release
+------------------------------------------------------------------------
+r1232 | pag | 2008-09-04 14:10:32 -0500 (Thu, 04 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/build.xml
+
+Updated the core-dist target to take on the role of basic-raw-dist
+------------------------------------------------------------------------
+r1231 | pag | 2008-09-04 02:35:40 -0500 (Thu, 04 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/build.properties
+   M /trunk/common.properties
+   D /trunk/lib/activation-1.0.2.jar
+   A /trunk/lib/activation-1.1.1.jar
+   D /trunk/lib/commons-httpclient-3.0.1.jar
+   A /trunk/lib/commons-httpclient-3.1.jar
+
+updated activation.jar and commons-httpclient.jar. Moving to version 2.0.4
+------------------------------------------------------------------------
+r1230 | pag | 2008-09-04 02:07:48 -0500 (Thu, 04 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/build.properties
+   M /trunk/build.xml
+   D /trunk/lib/barracuda-1.2.6.jar
+   D /trunk/lib/barracuda-ant-1.2.6.jar
+   D /trunk/lib/xmlc-all-runtime-2.2.jar
+   D /trunk/lib/xmlc-taskdef-2.2.jar
+   D /trunk/lib/xmlc-xerces.jar
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+   M /trunk/src/jar/server-http/build.xml
+   D /trunk/src/war/webui
+
+Removed the WebUI War, and all Barracuda Jars, replacing it with the lighter WebQuery servlet. This servlet has now been shifted in to the /webui URL
+------------------------------------------------------------------------
+r1229 | pag | 2008-09-04 01:23:10 -0500 (Thu, 04 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/build.properties
+   M /trunk/build.xml
+
+Added 2 new targets: raw-dist and basic-raw-dist
+------------------------------------------------------------------------
+r1228 | pag | 2008-09-04 01:22:00 -0500 (Thu, 04 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlJSONAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlJSONAnswerUnitTest.java
+
+JSON results tested
+------------------------------------------------------------------------
+r1227 | pag | 2008-09-03 17:07:00 -0500 (Wed, 03 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/build.xml
+   M /trunk/common.xml
+
+Removed dependency on Bootstrap
+------------------------------------------------------------------------
+r1226 | pag | 2008-09-03 17:06:07 -0500 (Wed, 03 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ResolverFactoryFactory.java
+
+Created sensible messages/exceptions when unable to dynamically load classes
+------------------------------------------------------------------------
+r1225 | pag | 2008-09-03 17:05:30 -0500 (Wed, 03 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+
+Protected against being unable to start web services
+------------------------------------------------------------------------
+r1224 | pag | 2008-09-03 09:57:06 -0500 (Wed, 03 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+   M /trunk/build.properties
+   M /trunk/build.xml
+   D /trunk/lib/jsr173_07_api.jar
+   D /trunk/lib/jsr173_07_ri.jar
+   M /trunk/src/jar/querylang/build.xml
+
+Removed jsr173
+------------------------------------------------------------------------
+r1223 | pag | 2008-09-03 09:56:28 -0500 (Wed, 03 Sep 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/AbstractStreamedAnswer.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/AbstractStreamedXMLAnswer.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedAnswer.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedJSONAnswer.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlJSONAnswer.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlJSONAnswerUnitTest.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlXMLAnswer.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlXMLAnswerUnitTest.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedTqlXMLAnswer.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedTqlXMLAnswerUnitTest.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedXMLAnswer.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/XMLAnswer.java
+
+Streaming results for queries. JSON not yet being tested
+------------------------------------------------------------------------
+r1222 | pag | 2008-09-01 00:14:57 -0500 (Mon, 01 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/store/jxunit/LoadDataJX.java
+   M /trunk/src/jar/querylang/java/org/mulgara/store/jxunit/QueryJX.java
+   M /trunk/src/jar/querylang/java/org/mulgara/store/jxunit/TimeZoneSubstituteJX.java
+
+Removed warnings, mostly due to not using Generics. This was unfortunately forced by JXTest.
+------------------------------------------------------------------------
+r1221 | pag | 2008-09-01 00:01:33 -0500 (Mon, 01 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+
+Missed the removal of the external SPARQL library
+------------------------------------------------------------------------
+r1220 | pag | 2008-08-31 23:54:13 -0500 (Sun, 31 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+   M /trunk/build.xml
+
+Imported the sparql parser library
+------------------------------------------------------------------------
+r1219 | pag | 2008-08-31 23:54:04 -0500 (Sun, 31 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/build.xml
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/QueryStructure.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/QueryStructureImpl.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/QueryType.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/VarNameAllocator.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/AbstractBinaryOperator.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/AbstractNaryOperator.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/AbstractUnaryOperator.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/AndExpression.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/AnnotatedNode.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/ArgList.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/AssociativeNumericOpExpression.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/BasicGraphPattern.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/BicBound.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/BicDatatype.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/BicIsBlank.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/BicIsIri.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/BicIsLiteral.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/BicIsUri.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/BicLang.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/BicLangMatches.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/BicRegEx.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/BicSameTerm.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/BicStr.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/BlankNode.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/BooleanLiteral.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/BuiltInCall.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/DecimalLiteral.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Divide.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/DoubleLiteral.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/EmptyGraphPattern.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Equals.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Expression.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/FunctionCall.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/GraphList.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/GraphPatternConjunction.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/GraphPatternDisjunction.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/GraphPatternOptional.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/GreaterThan.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/GreaterThanEqual.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/GroupGraphPattern.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/IRIReference.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/IntegerLiteral.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/LessThan.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/LessThanEqual.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/LogicExpression.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Minus.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Multiply.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Nil.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Node.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Not.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/NotEquals.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/NumericExpression.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/NumericLiteral.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/OrExpression.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Ordering.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Plus.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/PrimaryExpression.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/PropertyList.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/RDFLiteral.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/RelationalExpression.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Triple.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/TripleList.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/UnaryMinus.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/UnaryPlus.java
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Variable.java
+   A /trunk/src/jar/querylang/javacc
+   A /trunk/src/jar/querylang/javacc/org
+   A /trunk/src/jar/querylang/javacc/org/mulgara
+   A /trunk/src/jar/querylang/javacc/org/mulgara/sparql
+   A /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser
+   A /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser/ParseException.java
+   A /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser/SimpleCharStream.java
+   A /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser/SparqlParser.java
+   A /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser/SparqlParser.jj
+   A /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser/SparqlParserConstants.java
+   A /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser/SparqlParserTokenManager.java
+   A /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser/Token.java
+   A /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser/TokenMgrError.java
+
+Imported the sparql parser library
+------------------------------------------------------------------------
+r1218 | pag | 2008-08-31 23:19:15 -0500 (Sun, 31 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/build.properties
+
+updated the compiler compiler jar references
+------------------------------------------------------------------------
+r1217 | pag | 2008-08-31 23:18:35 -0500 (Sun, 31 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/common.xml
+
+Updated the sableCC reference to handle the reference from the properties file
+------------------------------------------------------------------------
+r1216 | pag | 2008-08-31 23:17:43 -0500 (Sun, 31 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/common.properties
+
+Updated versions to distinguish the multiple changes
+------------------------------------------------------------------------
+r1215 | pag | 2008-08-31 23:16:56 -0500 (Sun, 31 Aug 2008) | 1 line
+Changed paths:
+   A /trunk/lib/javacc-4.0.jar
+   M /trunk/lib/javacc.jar
+   D /trunk/lib/mulgara-sparql-0.0.2.jar
+
+Updated javacc
+------------------------------------------------------------------------
+r1214 | pag | 2008-08-31 13:43:08 -0500 (Sun, 31 Aug 2008) | 1 line
+Changed paths:
+   D /trunk/data/sample-tql.xml
+   M /trunk/docs/site-src/notes.xml
+   M /trunk/jxdata/iTQL/filesystem/queryResult1.txt
+   M /trunk/src/jar/resolver-filesystem/build.xml
+
+Removed references to beep
+------------------------------------------------------------------------
+r1213 | pag | 2008-08-31 13:42:45 -0500 (Sun, 31 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+
+Moved sparql-interpreter out of its own module, and into the querylang module
+------------------------------------------------------------------------
+r1212 | pag | 2008-08-31 13:35:41 -0500 (Sun, 31 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/build.xml
+   M /trunk/src/jar/querylang/build.xml
+   A /trunk/src/jar/querylang/java/org/mulgara/sparql (from /trunk/src/jar/sparql-interpreter/java/org/mulgara/sparql:1208)
+   D /trunk/src/jar/sparql-interpreter
+
+Moved sparql-interpreter out of its own module, and into the querylang module
+------------------------------------------------------------------------
+r1211 | pag | 2008-08-31 01:04:09 -0500 (Sun, 31 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+
+Removed sofa and beep
+------------------------------------------------------------------------
+r1210 | pag | 2008-08-30 22:43:08 -0500 (Sat, 30 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+   M /trunk/build.properties
+   M /trunk/build.xml
+   D /trunk/lib/beepcore-0.9.08.jar
+   D /trunk/lib/sofa-1.0-alpha.jar
+   M /trunk/src/jar/driver/build.xml
+   M /trunk/src/jar/querylang/build.xml
+   D /trunk/src/jar/querylang/java/org/mulgara/itql/examples
+   M /trunk/src/jar/rdql/build.xml
+   D /trunk/src/jar/server-beep
+   D /trunk/src/jar/sofa
+   D /trunk/src/jar/sparql-protocol
+   M /trunk/webdocs.xml
+
+Removed the SOFA and BEEP modules, as neither are used any more
+------------------------------------------------------------------------
+r1209 | pag | 2008-08-30 13:35:13 -0500 (Sat, 30 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/tools/src/org/mulgara/tools/Tql.java
+
+Fixed an import into this tool.
+------------------------------------------------------------------------
+r1208 | pag | 2008-08-30 02:33:19 -0500 (Sat, 30 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+   M /trunk/build.properties
+   M /trunk/build.xml
+   M /trunk/common.xml
+   M /trunk/src/jar/client-jrdf/build.xml
+   M /trunk/src/jar/descriptor/build.xml
+   M /trunk/src/jar/driver/build.xml
+   D /trunk/src/jar/itql
+   M /trunk/src/jar/krule/build.xml
+   A /trunk/src/jar/querylang (from /branches/mgr-143/src/jar/querylang:1207)
+   R /trunk/src/jar/querylang/build.xml (from /branches/mgr-143/src/jar/querylang/build.xml:1207)
+   R /trunk/src/jar/querylang/itql (from /branches/mgr-143/src/jar/querylang/itql:1207)
+   R /trunk/src/jar/querylang/itql/default-post.itql (from /branches/mgr-143/src/jar/querylang/itql/default-post.itql:1207)
+   R /trunk/src/jar/querylang/itql/default-pre.itql (from /branches/mgr-143/src/jar/querylang/itql/default-pre.itql:1207)
+   R /trunk/src/jar/querylang/java (from /branches/mgr-143/src/jar/querylang/java:1207)
+   R /trunk/src/jar/querylang/java/org (from /branches/mgr-143/src/jar/querylang/java/org:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara (from /branches/mgr-143/src/jar/querylang/java/org/mulgara:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/Aliasing.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/Aliasing.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/Collaborator.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/Collaborator.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/CollaboratorUnitTest.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/CollaboratorUnitTest.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/CommandSplitter.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/CommandSplitter.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/CompoundPredListBuilder.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/CompoundPredListBuilder.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/CompoundPredicate.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/CompoundPredicate.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/ConstraintExpressionBuilder.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/ConstraintExpressionBuilder.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/HelpPrinter.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/HelpPrinter.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/ItqlInterpreterBean.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/ItqlInterpreterBean.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/ItqlInterpreterBeanUnitTest.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/ItqlInterpreterBeanUnitTest.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/ItqlInterpreterException.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/ItqlInterpreterException.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/ItqlInterpreterStressTest.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/ItqlInterpreterStressTest.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/ItqlOptionParser.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/ItqlOptionParser.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/ItqlSession.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/ItqlSession.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/ItqlSessionUI.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/ItqlSessionUI.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/ItqlUtil.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/ItqlUtil.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/Login.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/Login.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/ModelExpressionBuilder.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/ModelExpressionBuilder.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/ObjectListBuilder.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/ObjectListBuilder.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/SableCCInterpreter.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/SableCCInterpreter.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/TqlAutoInterpreter.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/TqlAutoInterpreter.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/TqlCommandSplitter.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/TqlCommandSplitter.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/TqlInterpreter.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/TqlInterpreter.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/TqlSession.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/TqlSession.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/TqlSessionUI.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/TqlSessionUI.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/URIUtil.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/URIUtil.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/VariableBuilder.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/VariableBuilder.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/VariableFactoryImpl.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/VariableFactoryImpl.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/examples (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/examples:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/examples/SimpleClient.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/examples/SimpleClient.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/itql/package.html (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/itql/package.html:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/store (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/store:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/store/jxunit (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/store/jxunit:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/store/jxunit/CopyJX.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/store/jxunit/CopyJX.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/store/jxunit/DebugPrint.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/store/jxunit/DebugPrint.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/store/jxunit/LoadDataJX.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/store/jxunit/LoadDataJX.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/store/jxunit/QueryJX.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/store/jxunit/QueryJX.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/store/jxunit/RestoreDataJX.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/store/jxunit/RestoreDataJX.java:1207)
+   R /trunk/src/jar/querylang/java/org/mulgara/store/jxunit/TimeZoneSubstituteJX.java (from /branches/mgr-143/src/jar/querylang/java/org/mulgara/store/jxunit/TimeZoneSubstituteJX.java:1207)
+   R /trunk/src/jar/querylang/querylang-build.properties (from /branches/mgr-143/src/jar/querylang/querylang-build.properties:1207)
+   R /trunk/src/jar/querylang/sablecc (from /branches/mgr-143/src/jar/querylang/sablecc:1207)
+   R /trunk/src/jar/querylang/sablecc/itql.grammar (from /branches/mgr-143/src/jar/querylang/sablecc/itql.grammar:1207)
+   M /trunk/src/jar/server-beep/build.xml
+   M /trunk/src/jar/server-http/build.xml
+   M /trunk/src/jar/server-local/build.xml
+   M /trunk/src/jar/sofa/build.xml
+   M /trunk/src/jar/sparql-protocol/build.xml
+   M /trunk/src/jar/web/build.xml
+
+Merge into the main trunk of the itql module being renamed to querylang. r1200:1207
+------------------------------------------------------------------------
+r1207 | pag | 2008-08-29 22:09:43 -0500 (Fri, 29 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/tools/src/org/mulgara/tools/Tql.java
+
+Update to Tql tool to handle subAnswers and non-query commands
+------------------------------------------------------------------------

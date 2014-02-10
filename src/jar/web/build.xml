@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="web" default="web-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="web-classpath">
+    <path refid="common-classpath"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${querylang.dist.dir}/${querylang.jar}"/>
+    <fileset file="${server.dist.dir}/${server.jar}"/>
+    <fileset file="${lib.dir}/${jetty.jar}"/>
+    <fileset file="${lib.dir}/${jetty-plus.jar}"/>
+    <fileset file="${lib.dir}/${servlet.jar}"/>
+  </path>
+
+  <path id="web-test-classpath">
+    <path refid="web-classpath"/>
+    <fileset file="${web.dist.dir}/${web.jar}"/>
+  </path>
+
+  <target name="web-clean" description="Removes all compile generated files for the web">
+    <tstamp/>
+    <delete dir="${web.obj.dir}"/>
+    <delete dir="${web.test.dir}"/>
+    <delete dir="${web.dist.dir}"/>
+  </target>
+
+  <target name="-web-prepare"
+          description="Creates all directories associated with the web's compilation"
+          depends="-prepare-build">
+    <mkdir dir="${web.obj.dir}"/>
+    <mkdir dir="${web.test.dir}"/>
+    <mkdir dir="${web.dist.dir}"/>
+    <mkdir dir="${web.obj.dir}/classes"/>
+    <mkdir dir="${web.obj.dir}/classes/conf"/>
+    <mkdir dir="${web.obj.dir}/java"/>
+  </target>
+
+  <target name="-web-unjar-config"
+          depends="-web-unjar-config-uptodate"
+          unless="web.unjar.config.uptodate">
+    <unjar src="${bin.dir}/${config.jar}" dest="${web.obj.dir}/classes"/>
+  </target>
+
+  <target name="-web-unjar-config-uptodate">
+    <available file="${web.obj.dir}/classes/org/mulgara/config/MulgaraConfig.class"
+               property="web.unjar.config.uptodate"/>
+  </target>
+
+  <target name="web-compile"
+          depends="-web-prepare, util-jar, config-jar, querylang-jar, query-jar, -web-unjar-config, server-jar"
+          description="Compiles all web related files included generated
+                       source code"
+          unless="web.classes.uptodate">
+
+    <javac destdir="${web.obj.dir}/classes" debug="on" deprecation="on" source="1.5">
+      <classpath refid="web-classpath"/>
+      <src path="${web.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="web-jar"
+          depends="web-compile, config-database, -web-jar-uptodate"
+          unless="web.jar.uptodate"
+          description="Creates the web's jar/s">
+
+    <jar jarfile="${web.dist.dir}/${web.jar}">
+      <fileset dir="${web.obj.dir}/classes"/>
+      <fileset dir="${web.src.dir}" includes="resources/**/*"/>
+    </jar>
+  </target>
+
+  <target name="-web-jar-uptodate">
+    <uptodate property="web.jar.uptodate"
+              targetfile="${web.dist.dir}/${web.jar}">
+      <srcfiles dir="${web.obj.dir}" includes="**/*"/>
+      <srcfiles dir="${web.src.dir}" includes="resources/**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="web-dist"
+          depends="web-jar"
+          unless="web.uptodate"
+          description="Performs all tasks related to finalising this web
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the web library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="web-test" depends="web-jar"
+          description="Carries out unit testing for this web">
+
+    <antcall target="component-test">
+      <param name="classpath.id" value="web-test-classpath"/>
+      <param name="dir" value="${web.src.dir}"/>
+      <param name="jar" value="${web.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="web-javadoc" depends="web-jar"
+          description="Creates the javadoc for this web">
+    <antcall target="javadoc">
+      <param name="javadoc.package" value="org.mulgara.web.*"/>
+      <param name="javadoc.classpath" value="web-classpath"/>
+      <param name="javadoc.sourcepath" value="${web.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="web-help" description="Displays the help information for this web">
+    <echo message="Welcome to the build script for ${name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+    <java fork="false" classname="org.apache.tools.ant.Main" newenvironment="false">
+      <jvmarg value="${arch.bits}"/>
+      <arg line="-buildfile ${web.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

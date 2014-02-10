@@ -1,0 +1,150 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - views</title>
+    <meta name="keywords" content="views, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+   
+		<a href="/itqloperations/views.html#o3012">Creating</a> &#124;
+		<a href="/itqloperations/views.html#o3013">Querying View Definitions</a> &#124;
+		<a href="/itqloperations/views.html#o256">Limitations</a>
+
+
+ 
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="254.htm"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/itqloperations/fulltextmodels.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="254.htm">Advanced iTQL Operations</a></p>
+<p class="relateditem"><a href="/itqloperations/fulltextmodels.html">Full-Text Models</a></p>
+<p class="relateditem"><a href="/itqloperations/datatypingmodels.html">Datatyping Models</a></p>
+<p class="relateditem"><a href="/itqloperations/nodetyping.html">Nodetyping Models</a></p>
+<p class="relateditem"><a href="/itqloperations/filesysmodel.html">Filesystem Models</a></p>
+ -->
+
+
+
+
+<h2>Views</h2>
+
+<p>Views are special models made up of one or more models or views. The advantages of views include:</p>
+<ul><li>Security permissions are defined and maintained at the nested model and view level.</li><li>Statements can be grouped within logical models for re-use and maintenance. For example, schemas can be maintained in a single model and shared with multiple views.</li><li>You can define model hierarchies. For example, views can support nested views.</li><li>There is an abstraction layer for the end-user application. That is, the application layer may only be concerned about a single view.</li><li>Views are defined in RDF and can be extended to support application specific requirements.</li></ul>
+
+<div class="anchor"><a name="o3012">&nbsp;</a></div>
+<h3>Creating Views</h3>
+
+<p>You can create views by:</p>
+<ol><li>Using the iTQL <code><a id="h1523" class="documentlinktemplate" title="create" href="/itqlcommands/create.html">create</a></code> command, creating a model of type <code>http://mulgara.org/mulgara#ViewModel</code>. This creates the view, plus a view definition model.</li><li>Loading RDF that represents the set of models for the view, into the view definition model. For example, <code>rmi://mysite.com/server1?def#view1</code>.</li></ol>
+<p>Views are a symbolic model expression equivalent to an iTQL<sup>TM</sup> <code><a id="h218" class="documentlinktemplate" title="from Clause" href="/itqlcommands/select.html#o189">from</a></code> clause. Querying a view queries all of the models to which the view refers. When the URI of a view occurs in the <code>from</code> clause of a <code><a id="h207" class="documentlinktemplate" title="select" href="/itqlcommands/select.html">select</a></code> command, the view's model expression is substituted in place of the view URI when the query is processed.</p>
+
+<p>Any modifications applied to the view (by using <code><a id="h212" class="documentlinktemplate" title="insert" href="/itqlcommands/insert.html">insert</a></code>, <code><a id="h214" class="documentlinktemplate" title="delete" href="/itqlcommands/delete.html">delete</a></code> or <code><a id="h249" class="documentlinktemplate" title="load" href="/itqlcommands/load.html">load</a></code> commands, for example) only affect the view's definition and have no effect on the models to which the view refers.</p>
+
+<p>Since a view is a symbolic representation of a combination of models, any modifications to models to which the view refers are visible immediately via the view.</p>
+
+<p>Here is an RDF example, that when loaded into the view definition model, defines the set of models for a view:</p>
+
+<p class="commandtext">&lt;?xml version=&quot;1.0&quot;?&gt;<br />
+&lt;!DOCTYPE rdf:RDF [<br />
+ &lt;!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'&gt;<br />
+ &lt;!ENTITY mulgarav 'http://mulgara.org/mulgara/view#'&gt;<br />
+ &lt;!ENTITY server 'rmi://mysite.com/server1'&gt;<br />
+]&gt;<br />
+&lt;rdf:RDF xml:lang=&quot;en&quot;<br />
+  xmlns:rdf=&quot;&amp;rdf;&quot;<br />
+  xmlns:mulgarav=&quot;&amp;mulgarav;&quot;&gt;<br />
+  &lt;mulgarav:Union rdf:about=&quot;http://mulgara.org/mulgara/view&quot;<br />
+    mulgarav:enabled=&quot;true&quot;&gt;<br />
+    &lt;mulgarav:model rdf:resource=&quot;&amp;server;#model1&quot;/&gt;<br />
+    &lt;mulgarav:expr&gt;<br />
+      &lt;mulgarav:Intersection&gt;<br />
+        &lt;mulgarav:model rdf:resource=&quot;&amp;server;#model2&quot;/&gt;<br />
+        &lt;mulgarav:model rdf:resource=&quot;&amp;server;#model3&quot;/&gt;<br />
+      &lt;/mulgarav:Intersection&gt;<br />
+    &lt;/mulgarav:expr&gt;<br />
+    &lt;mulgarav:expr&gt;<br />
+      &lt;mulgarav:Intersection&gt;<br />
+        &lt;mulgarav:model rdf:resource=&quot;&amp;server;#model4&quot;/&gt;<br />
+        &lt;mulgarav:model rdf:resource=&quot;&amp;server;#model5&quot;/&gt;<br />
+      &lt;/mulgarav:Intersection&gt;<br />
+    &lt;/mulgarav:expr&gt;<br />
+  &lt;/mulgarav:Union&gt;<br />
+&lt;/rdf:RDF&gt;</p>
+
+<p>Which generates the following triples:</p>
+
+<p class="commandtext">http://mulgara.org/mulgara/view http://mulgara.org/mulgara/view#enabled 'true'<br />
+http://mulgara.org/mulgara/view http://mulgara.org/mulgara/view#expr rmi://mysite.com/server1#node32<br />
+http://mulgara.org/mulgara/view http://mulgara.org/mulgara/view#expr rmi://mysite.com/server1#node35<br />
+http://mulgara.org/mulgara/view http://mulgara.org/mulgara/view#model rmi://mysite.com/server1#model1<br />
+http://mulgara.org/mulgara/view http://www.w3.org/1999/02/22-rdf-syntax-ns#type<br />
+   http://mulgara.org/mulgara/view#Union<br />
+rmi://mysite.com/server1#node32 http://mulgara.org/mulgara/view#model rmi://mysite.com/server1#model2<br />
+rmi://mysite.com/server1#node32 http://mulgara.org/mulgara/view#model rmi://mysite.com/server1#model3<br />
+rmi://mysite.com/server1#node32 http://www.w3.org/1999/02/22-rdf-syntax-ns#type<br />
+   http://mulgara.org/mulgara/view#Intersection<br />
+rmi://mysite.com/server1#node35 http://mulgara.org/mulgara/view#model rmi://mysite.com/server1#model4<br />
+rmi://mysite.com/server1#node35 http://mulgara.org/mulgara/view#model rmi://mysite.com/server1#model5<br />
+rmi://mysite.com/server1#node35 http://www.w3.org/1999/02/22-rdf-syntax-ns#type<br />
+   http://mulgara.org/mulgara/view#Intersection</p>
+
+<p>The RDF is equivalent to the following <code>from</code> clause:</p>
+
+<p class="commandtext">... from &lt;rmi://mysite.com/server1#model1&gt; or<br />
+      (&lt;rmi://mysite.com/server1#model2&gt; and<br />
+      &lt;rmi://mysite.com/server1#model3&gt;) or<br />
+      (&lt;rmi://mysite.com/server1#model4&gt; and<br />
+      &lt;rmi://somewhere.com/server1#model5&gt;) ...</p>
+
+<p>If the above RDF is loaded into the view definition model, <code>rmi://mysite.com/server1?def#view1</code>, then the following <code>from</code> clause is equivalent to the preceding one:</p>
+
+<p class="commandtext">... from &lt;rmi://mysite.com/server1#view1&gt; ...</p>
+<div class="anchor"><a name="o3013">&nbsp;</a></div>
+<h3>Querying View Definitions</h3>
+
+<p>You can query the definition of a view by adding <code>?def</code> to the view name. For example:</p>
+
+<p class="commandtext">select $s $p $o <br />
+  from &lt;rmi://mysite.com/server1?def#view1&gt;<br />
+  where $s $p $o;</p>
+
+<p>The <code>?def</code> query string can be used in the model URIs that are referenced by a view definition. That is, views can reference other views.</p>
+
+<p class="note"><strong>Note -</strong> Since views can reference other views, make sure you don't define views that reference each other.</p>
+<div class="anchor"><a name="o256">&nbsp;</a></div>
+<h3>Limitations of Views</h3>
+
+<p>The current limitations of views are as follows:</p>
+<ul><li>Views may not be used for the <code>in</code> clause within a <code><a id="h1297" class="documentlinktemplate" title="where Clause" href="/itqlcommands/select.html#o197">where</a></code> clause of a <code><a id="h1298" class="documentlinktemplate" title="select Clause" href="/itqlcommands/select.html#o188">select</a></code> command.</li><li>Mutually referential views and reference loops are not detected.</li></ul>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

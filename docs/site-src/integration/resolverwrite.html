@@ -1,0 +1,293 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Resolvers</title>
+    <meta name="keywords" content="Resolvers, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+    	<a href="/integration/resolverwrite.html#o2950">Writing a Resolver</a>
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/integration/resolverwrapper.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/integration/contenthandlersdev.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/integration/resolveprot.html">Developing Protocol Resolvers</a></p>
+<p class="relateditem"><a href="/integration/resolverfactories.html">Factories</a></p>
+<p class="relateditem"><a href="/integration/resolverwrapper.html">Content Wrappers</a></p>
+
+ -->
+
+
+
+
+<h4>Resolvers</h4>
+
+<p>Once the <a id="h2947" class="documentlinktemplate" title="Factories" href="/integration/resolverfactories.html">factory</a> and <a id="h2948" class="documentlinktemplate" title="Content Wrappers" href="/integration/resolverwrapper.html">content wrapper</a> are written, the final step is to create the resolver. Resolver instances are created on an as required basis by the resolver factory and are responsible for taking a model URI and performing model creation, deletion, modification, or querying against constraints.</p>
+
+<p>Most often a resolver is written to resolve constraints against a file or store that is not naturally in RDF, with the protocol managed by a <code>Resolver</code> implementation, and the content to triples conversion managed by a <code>ContentHandler</code> implementation. For this reason, if a new mime type is to be resolved then a <code>ContentHandler</code> should be written instead of a <code>Resolver</code>, and vice versa for new protocols.</p>
+
+<p>Most of the design decisions should already have been made during the creation of the factory and content classes, leaving the process of actually resolving a query for the resolver. However, you do need to decide what operations are permitted on models of this protocol type. Since querying a model is compulsory (as it is the main purpose of a resolver) that leaves model creation, modification of data and removal of models. For the moment you want the protocol resolver to just read and resolve constraints against the triples without any model manipulation. If you are writing an <a id="h2564" class="documentlinktemplate" title="Internal Resolvers" href="/resolvers/resolverdbclass.html#o2559">internal resolver</a>, then it is important to implement these methods.</p>
+
+<div class="anchor"><a name="o2950">&nbsp;</a></div>
+<h5>Writing a Resolver</h5>
+
+<p>A <code>Resolver</code> implementation requires two classes, the <code>Content</code> implementation for handling content under the resolver's protocol and the <code>Resolver</code> implementation itself. Instances of the class are created by the factory and are given constraints to resolve the query against which are used in conjunction with <code>Statements</code> found by the <code>ContentHandler</code>, which matches the mime type of the resource. In addition to query resolution, it should also handle model creation, deletion, or content modification if required.</p>
+
+<p>The following source is how the http protocol resolver is written (extracted from <code>HttpResolver.java</code>):</p>
+
+<p class="commandtext">package org.mulgara.resolver.http;<br />
+<br />
+// Java 2 standard packages<br />
+import java.net.*;<br />
+import java.util.*;<br />
+<br />
+// Third party packages<br />
+import org.apache.log4j.Logger;<br />
+import org.jrdf.graph.Node;<br />
+import org.jrdf.graph.URIReference;<br />
+<br />
+// Locally written packages<br />
+import org.mulgara.content.Content;<br />
+import org.mulgara.content.ContentHandler;<br />
+import org.mulgara.content.ContentHandlerManager;<br />
+import org.mulgara.content.ContentHandlerException;<br />
+import org.mulgara.content.ContentResolver;<br />
+import org.mulgara.resolver.spi.*;<br />
+<br />
+public class HttpResolver extends ContentResolver {<br />
+  /**<br />
+   * Logger.<br />
+   */<br />
+  private static Logger logger = Logger.getLogger(HttpResolver.class.getName());<br />
+<br />
+  /**<br />
+   * Construct a resolver.<br />
+   *<br />
+   * @param resolverSession  the session this resolver is associated with<br />
+   * @param contentHandlers  the available {@link ContentHandler}s<br />
+   * @throws IllegalArgumentException  if resolverSession is<br />
+   *   null<br />
+   */<br />
+  HttpResolver(ResolverSession resolverSession,<br />
+               Resolver systemResolver,<br />
+               ContentHandlerManager contentHandlers) {<br />
+<br />
+    super(resolverSession, systemResolver, contentHandlers);<br />
+  }<br />
+<br />
+  //<br />
+  // Methods implementing ContentResolver<br />
+  //<br />
+<br />
+  /**<br />
+   * Convert a local node number representing a http: model into<br />
+   * {@link HttpContent}.<br />
+   *<br />
+   * @param model  the local node number of a http: URL<br />
+   * @throws ResolverException if the model doesn't correspond to a<br />
+   *   {@link URL} with the http: protocol.<br />
+   */<br />
+  protected Content toContent(long model) throws ResolverException {<br />
+<br />
+    // Container for our model's URI<br />
+    URI modelURI;<br />
+<br />
+    // Container for our globalised node<br />
+    Node globalModel = null;<br />
+<br />
+    try {<br />
+<br />
+      // Globalise the model<br />
+      globalModel = resolverSession.globalize(model);<br />
+    } catch (GlobalizeException e) {<br />
+<br />
+      throw new ResolverException(&quot;Couldn't globalize http model&quot;, e);<br />
+    }<br />
+<br />
+    if (!(globalModel instanceof URIReference)) {<br />
+<br />
+      // Check that our node is a URIReference<br />
+      throw new ResolverException(<br />
+          &quot;Model parameter &quot; + globalModel + &quot; isn't a URI reference&quot;);<br />
+    }<br />
+<br />
+    // Get the URI from the globalised node<br />
+    modelURI = ((URIReference) globalModel).getURI();<br />
+<br />
+    assert modelURI != null;<br />
+<br />
+    // Validate the URI<br />
+    if (!modelURI.getScheme().toLowerCase().startsWith(&quot;http&quot;)) {<br />
+<br />
+      throw new ResolverException(modelURI + &quot; doesn't use the http(s): scheme&quot;);<br />
+    }<br />
+<br />
+    // Container for our URL<br />
+    URL modelURL = null;<br />
+<br />
+    try {<br />
+<br />
+      // Convert the URI to a URL<br />
+      modelURL = modelURI.toURL();<br />
+    } catch (MalformedURLException malformedURLException) {<br />
+<br />
+      throw new ResolverException(<br />
+          &quot;Failed to convert the model's URI to a valid URL [&quot; +<br />
+          modelURI +&quot;]&quot;, malformedURLException);<br />
+    }<br />
+<br />
+    try {<br />
+      return new HttpContent(modelURL);<br />
+    }<br />
+    catch (URISyntaxException e) {<br />
+      throw new ResolverException(<br />
+        &quot;Couldn't create HttpContent from &quot; + modelURL, e<br />
+      );<br />
+    }<br />
+  }<br />
+}</p>
+
+<p>An analysis of the class is as follows:</p>
+
+<p class="indentcommandtext">package org.mulgara.resolver.http;<br />
+<br />
+// Java 2 standard packages<br />
+import java.net.*;<br />
+import java.util.*;<br />
+<br />
+// Third party packages<br />
+import org.apache.log4j.Logger;<br />
+import org.jrdf.graph.Node;<br />
+import org.jrdf.graph.URIReference;<br />
+<br />
+// Locally written packages<br />
+import org.mulgara.content.Content;<br />
+import org.mulgara.content.ContentHandler;<br />
+import org.mulgara.content.ContentHandlerManager;<br />
+import org.mulgara.content.ContentHandlerException;<br />
+import org.mulgara.content.ContentResolver;<br />
+import org.mulgara.resolver.spi.*;</p>
+
+<p class="indent">Due to the way resolvers are constructed, the packaging should be set up so that they are always in the same package as their factory. Resolvers also require access to the <code>Resolver</code> SPI and tuples packages. Extra imports depend on your specific implementation.</p>
+
+<p class="indentcommandtext">          public class HttpResolver implements ContentResolver {</p>
+
+<p class="indent">Most of the implementation for resolvers is already managed in the <code>ContentResolver</code> class, which should be extended for a protocol resolver or any other resolver involving <code>Content</code> implementations. If the resolver being written is not a protocol resolver, then a proper implementation of the <code>Resolver</code> interface should be written. This is not covered in this tutorial.</p>
+
+<p class="indentcommandtext">  /**<br />
+   * Construct a resolver.<br />
+   *<br />
+   * @param resolverSession  the session this resolver is associated with<br />
+   * @param contentHandlers  the available {@link ContentHandler}s<br />
+   * @throws IllegalArgumentException  if resolverSession is<br />
+   *   null<br />
+   */<br />
+  HttpResolver(ResolverSession resolverSession,<br />
+               Resolver systemResolver,<br />
+               ContentHandlerManager contentHandlers) {<br />
+<br />
+    super(resolverSession, systemResolver, contentHandlers);<br />
+  }</p>
+
+<p class="indent">Resolver constructors should be package specific as all creation and instantiation occurs within the factory and nowhere else. To comply with the super class, they require a <code>ResolverSession</code> to allow for globalization and localization of nodes, a link to the system resolver and the <code>ContentHandlerManager</code> object, which contains a list all the content handlers available in the database. Extra parameters can be used as long as the factory is set up to manage them. Usually a resolver only needs to call the super constructor, but if extra initialization needs to be carried out then it can also be done in the constructor.</p>
+
+<p class="indentcommandtext">  /**<br />
+   * Convert a local node number representing a http: model into<br />
+   * {@link HttpContent}.<br />
+   *<br />
+   * @param model  the local node number of a http: URL<br />
+   * @throws ResolverException if the model doesn't correspond to a<br />
+   *   {@link URL} with the http: protocol.<br />
+   */<br />
+  protected Content toContent(long model) throws ResolverException {<br />
+<br />
+    // Container for our model's URI<br />
+    URI modelURI;<br />
+<br />
+    // Container for our globalised node<br />
+    Node globalModel = null;<br />
+<br />
+    try {<br />
+<br />
+      // Globalise the model<br />
+      globalModel = resolverSession.globalize(model);<br />
+    } catch (GlobalizeException e) {<br />
+<br />
+      throw new ResolverException(&quot;Couldn't globalize http model&quot;, e);<br />
+    }<br />
+<br />
+    if (!(globalModel instanceof URIReference)) {<br />
+<br />
+      // Check that our node is a URIReference<br />
+      throw new ResolverException(<br />
+          &quot;Model parameter &quot; + globalModel + &quot; isn't a URI reference&quot;);<br />
+    }<br />
+<br />
+    // Get the URI from the globalised node<br />
+    modelURI = ((URIReference) globalModel).getURI();<br />
+<br />
+    assert modelURI != null;<br />
+<br />
+    // Validate the URI<br />
+    if (!modelURI.getScheme().toLowerCase().startsWith(&quot;http&quot;)) {<br />
+<br />
+      throw new ResolverException(modelURI + &quot; doesn't use the http(s): scheme&quot;);<br />
+    }<br />
+<br />
+    // Container for our URL<br />
+    URL modelURL = null;<br />
+<br />
+    try {<br />
+<br />
+      // Convert the URI to a URL<br />
+      modelURL = modelURI.toURL();<br />
+    } catch (MalformedURLException malformedURLException) {<br />
+<br />
+      throw new ResolverException(<br />
+          &quot;Failed to convert the model's URI to a valid URL [&quot; +<br />
+          modelURI +&quot;]&quot;, malformedURLException);<br />
+    }<br />
+<br />
+    try {<br />
+      return new HttpContent(modelURL);<br />
+    }<br />
+    catch (URISyntaxException e) {<br />
+      throw new ResolverException(<br />
+        &quot;Couldn't create HttpContent from &quot; + modelURL, e<br />
+      );<br />
+    }<br />
+  }</p>
+
+<p class="indent">The only compulsory method for a resolver is the <code>toContent(long)</code> method, which is used by the super class to obtain a content object that is suitable for the desired protocol. It is responsible for taking the model node id passed in and creating a <code>Content</code> object that encapsulates the data represented by the model for resolving against the constraints. Since models are passed in as a node id, they should be globalized to obtain the proper URI that can then be verified and used in a <code>Content</code> object.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

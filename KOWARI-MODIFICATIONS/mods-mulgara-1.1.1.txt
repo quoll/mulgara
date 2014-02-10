@@ -1,0 +1,246 @@
+revision 557
+U   trunk/docs/oldSite/krule.htm
+U   trunk/docs/site-src/tutorial/krule.html
+pag
+2007-11-15 14:39:27 -0600 (Thu, 15 Nov 2007)
+73
+removed version numbers from the docs so that they don't fall out of date
+
+revision 556
+U   trunk/src/jar/config/build.xml
+U   trunk/src/jar/itql/build.xml
+pag
+2007-11-15 14:38:43 -0600 (Thu, 15 Nov 2007)
+69
+some minor dependency fixes to make building a little more consistent
+
+revision 464
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraTransaction.java
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraTransactionManager.java
+andrae
+2007-10-10 01:01:19 -0500 (Wed, 10 Oct 2007)
+130
+svn merge -r 426:430 ../branches/mgr-70
+
+Resolves mgr-70 - Using a database-session in multiple threads can deadlock the
+server.
+
+
+
+revision 463
+U   trunk/src/jar/query/java/org/mulgara/query/ModelOperation.java
+pag
+2007-10-05 14:02:51 -0500 (Fri, 05 Oct 2007)
+34
+Inverted test in the equals method
+
+revision 452
+U   trunk/src/jar/tuples-hybrid/java/org/mulgara/store/xa/HybridTuples.java
+pag
+2007-09-25 22:37:33 -0500 (Tue, 25 Sep 2007)
+107
+trivial update to call the correct delete method for a blockfile, rather than accessing the object directly
+
+revision 451
+U   trunk/src/jar/itql/java/org/mulgara/itql/ItqlInterpreter.java
+pag
+2007-09-25 22:34:53 -0500 (Tue, 25 Sep 2007)
+96
+Fixed a bug where ending a transaction as the final answer would show an error in the client log
+
+revision 443
+U   trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/RDFXMLWriter.java
+ronald
+2007-09-19 05:30:55 -0500 (Wed, 19 Sep 2007)
+54
+Another continuation of r389: more closing of tuples.
+
+
+revision 442
+U   trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/TestStatementsComparator.java
+ronald
+2007-09-19 05:29:30 -0500 (Wed, 19 Sep 2007)
+25
+Fix use of wrong tuples.
+
+
+revision 441
+U   trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalResolution.java
+U   trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/d2rq/Definition.java
+ronald
+2007-09-19 04:39:47 -0500 (Wed, 19 Sep 2007)
+84
+Fixes some more unclosed-tuples leaks. This is a continuation of the fixes in
+r389.
+
+
+revision 440
+U   trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperations.java
+ronald
+2007-09-19 04:37:15 -0500 (Wed, 19 Sep 2007)
+85
+Fix duplicate close() when UnboundJoin's are involved. This bug got exposed
+by r389.
+
+
+revision 431
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/ConstraintOperations.java
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseOperationContext.java
+A   trunk/src/jar/resolver/java/org/mulgara/resolver/DefaultConstraintHandlers.java
+D   trunk/src/jar/resolver/java/org/mulgara/resolver/LocalQuery.java
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/LocalQueryResolver.java
+andrae
+2007-09-13 00:09:28 -0500 (Thu, 13 Sep 2007)
+188
+svn  merge -r 422:424 ../branches/mgr-69/
+
+For some reason the previous merge missed revisions 423 and 424 - which delete
+LocalQuery and complete the refactorings associated with mgr-69.
+
+
+
+revision 429
+U   trunk/src/jar/query/java/org/mulgara/query/Query.java
+andrae
+2007-09-12 00:17:42 -0500 (Wed, 12 Sep 2007)
+64
+Opps sorry about that, left some debugging info in by mistake.
+
+
+
+revision 425
+U   trunk/src/jar/query/java/org/mulgara/query/ModelExpression.java
+U   trunk/src/jar/query/java/org/mulgara/query/ModelIntersection.java
+U   trunk/src/jar/query/java/org/mulgara/query/ModelLiteral.java
+U   trunk/src/jar/query/java/org/mulgara/query/ModelOperation.java
+U   trunk/src/jar/query/java/org/mulgara/query/ModelPartition.java
+U   trunk/src/jar/query/java/org/mulgara/query/ModelResource.java
+U   trunk/src/jar/query/java/org/mulgara/query/ModelUnion.java
+U   trunk/src/jar/query/java/org/mulgara/query/Query.java
+D   trunk/src/jar/query/java/org/mulgara/query/Transformable.java
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/AppendAggregateTuples.java
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/Database.java
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseOperationContext.java
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/LocalQuery.java
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/LocalQueryResolver.java
+A   trunk/src/jar/resolver/java/org/mulgara/resolver/MutableLocalQueryImpl.java
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/SubqueryAnswer.java
+andrae
+2007-09-11 07:33:31 -0500 (Tue, 11 Sep 2007)
+141
+svn merge -r408:COMMITTED ../branches/mgr-69/
+
+Refactor to eliminate LocalQuery and provide a single path for simple constraint
+resolution.
+
+
+
+revision 389
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/LocalQueryResolver.java
+U   trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperations.java
+ronald
+2007-08-28 20:21:25 -0500 (Tue, 28 Aug 2007)
+314
+Fix file-descriptor leak: close tuples after use. TuplesOperations methods such
+as append(), join(), and subtract() make copies of the input tuples, so those
+inputs need to be explicitly closed. The missing closes were causing a file
+leak (and eventually a too-many-open-files error) in materialized HybridTuples.
+
+
+revision 388
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/ModifyModelOperation.java
+ronald
+2007-08-28 20:16:15 -0500 (Tue, 28 Aug 2007)
+140
+Improve fix in rev 217: only need the writable string pool for insert/select,
+not for delete/select (i.e. don't "create" values on delete).
+
+
+revision 375
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraTransaction.java
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraTransactionManager.java
+andrae
+2007-08-24 01:49:41 -0500 (Fri, 24 Aug 2007)
+256
+Reviewed ronald's fix to the transaction manager;
+Extracted a one line function to document the intent better;
+Added two lines of cleanup to the transaction abort cascade to allow for the
+implicitRollback control flow to now be truncated by an exception.
+
+
+
+revision 345
+U   trunk/.classpath
+U   trunk/build.properties
+U   trunk/build.xml
+U   trunk/common.xml
+U   trunk/jxdata/iTQL/data_types/dateTime/queryResult17.txt
+U   trunk/jxdata/iTQL/data_types/dateTime/queryResult18.txt
+U   trunk/jxdata/iTQL/data_types/dateTime/test.jxu
+A   trunk/jxdata/iTQL/having_queries/queryResult15-2.txt
+U   trunk/jxdata/iTQL/having_queries/test.jxu
+A   trunk/lib/commons-codec-1.3.jar
+D   trunk/lib/commons-httpclient-2.0.2.jar
+A   trunk/lib/commons-httpclient-3.0.1.jar
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/StreamContent.java
+U   trunk/src/jar/resolver-file/java/org/mulgara/resolver/file/FileContent.java
+U   trunk/src/jar/resolver-http/java/org/mulgara/resolver/http/HttpContent.java
+U   trunk/src/jar/resolver-http/java/org/mulgara/resolver/http/HttpContentUnitTest.java
+U   trunk/src/jar/resolver-http/java/org/mulgara/resolver/http/HttpResolver.java
+U   trunk/src/jar/resolver-http/java/org/mulgara/resolver/http/HttpResolverFactory.java
+U   trunk/src/jar/resolver-jar/java/org/mulgara/resolver/jar/JarContent.java
+U   trunk/src/jar/resolver-spi/java/org/mulgara/content/Content.java
+A   trunk/src/jar/util/java/java/
+D   trunk/src/jar/util/java/java/sql/
+A   trunk/src/jar/util/java/java/sql/
+D   trunk/src/jar/util/java/java/sql/NClob.java
+A   trunk/src/jar/util/java/java/sql/NClob.java
+D   trunk/src/jar/util/java/java/sql/RowId.java
+A   trunk/src/jar/util/java/java/sql/RowId.java
+D   trunk/src/jar/util/java/java/sql/SQLXML.java
+A   trunk/src/jar/util/java/java/sql/SQLXML.java
+U   trunk/src/jar/util/java/org/mulgara/util/ResultSetMetaDataImpl.java
+U   trunk/src/jar/util/java/org/mulgara/util/TestResultSet.java
+pag
+2007-08-08 23:09:07 -0500 (Wed, 08 Aug 2007)
+122
+Merged Java 1.6 compatibility into the trunk on r318:344.  Still some failing tests, but this is a problems with the tests
+
+revision 333
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraTransaction.java
+ronald
+2007-08-04 17:19:26 -0500 (Sat, 04 Aug 2007)
+302
+Fix error handling in implicit rollback. Since any error here will lead to
+abortTransaction() being invoked, clearing the manager in the error case will
+lead to a NPE in abortTransaction(). Furthermore, since abortTransaction()
+cleans everything up it seems better to leave the error handling to that.
+
+
+revision 332
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/AdvDatabaseSessionUnitTest.java
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraTransactionManager.java
+ronald
+2007-08-04 16:57:52 -0500 (Sat, 04 Aug 2007)
+177
+Fix write-lock acquisition bug and created test cases for it. The logic error
+was causing a second transaction to steal the write-lock instead of waiting
+for it to be released.
+
+
+revision 331
+U   trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraTransactionManager.java
+ronald
+2007-08-04 16:54:50 -0500 (Sat, 04 Aug 2007)
+148
+Invert logic of writeLockReserved() to better match the method name. At least
+I found the original confusing it made the locking bug harder to see.
+
+
+revision 326
+U   trunk/docs/site-src/index.html
+pag
+2007-07-28 10:18:22 -0500 (Sat, 28 Jul 2007)
+72
+Fixed the version number in the doc.  This should be updated dynamically
+

@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<project name="Docs" default="help" basedir=".">
+
+  <property file="common.properties"/>
+
+  <target name="help" description="Print this help message">
+    <echo message="Targets..."/>
+    <echo message="docs:  Build the docs directory."/>
+    <echo message="help:  This message."/>
+  </target>
+
+  <target name="-webpage-includes-uptodate">
+    <uptodate property="webpage-includes-uptodate">
+      <srcfiles dir="${template.src.docs.dir}"/>
+      <globmapper from="*" to="${src.docs.dir}/*"/>
+    </uptodate>
+  </target>
+
+  <target name="webpage-includes" description="Creates the webpages directory and does the includes"
+      depends="-webpage-includes-uptodate" unless="webpage-includes-uptodate">
+    <copy todir="${src.docs.dir}">
+      <fileset dir="${template.src.docs.dir}"/>
+    </copy>
+
+    <replace dir="${src.docs.dir}" token="@@includeTop@@">
+      <include name="**/*.html"/>
+      <replacevalue><![CDATA[<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="language" content="en" /> 
+    <link rel="icon" type="text/png" href="/img-layout/siteicon.png" />
+    <link rel="shortcut icon" type="text/png" href="/img-layout/siteicon.png" />]]></replacevalue>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@includeMiddle@@">
+      <include name="**/*.html"/>
+      <replacevalue><![CDATA[<meta name="description" content="Mulgara semantic store is a scalable RDF database written entirely in Java. It is an Open Source fork of Kowari metastore." />
+	<meta name="copyright" content="Copyright &copy; 2006, Mulgara Project" />
+	
+	<meta name="DC.Title" content="mulgara semantic store" />
+    <meta name="DC.Subject" content="mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+    <meta name="DC.Description" content="Mulgara semantic store is a scalable RDF database written entirely in Java. It is an Open Source fork of Kowari metastore." />
+    <meta name="DC.Creator" content="Tom Adams" />
+    <meta name="DC.Contributor" content="Paul Gearon" />
+    <meta name="DC.Contributor" content="David Wood" />
+    <meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+    <meta name="DC.Modified" scheme="iso8601" content="2006-10-01" />
+    <meta name="DC.Language" scheme="rfc1766" content="en" />
+    <meta name="DC.Type" scheme="http://memory.loc.gov/ammem/award99/icuhtml/dcguide.html" content="Text.Homepage.Organizational" />
+    <meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+    <meta name="DC.Rights" scheme="URI" content="http://opensource.org/licenses/osl-3.0.php" />
+    
+	<script type="text/javascript" src="/script/styleswitcher.js"></script>
+	<!-- <script type="text/javascript" src="/script/rollover.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="/style/style.css"/>
+	<link rel="stylesheet" type="text/css" href="/style/fixed.css" title="fixed" />
+	<link rel="alternate stylesheet" type="text/css" href="/style/fluid.css" title="fluid" />
+	<link rel="alternate stylesheet" type="text/css" href="/style/straight.css" title="straight" />
+	
+	<!--[if lte IE 6]><style type="text/css">@import url(/style/styleIE6.css);</style><![endif]-->
+	<!--[if gte IE 7]><style type="text/css">@import url(/style/styleIE7.css);</style><![endif]-->
+	<!--[if gte IE 7]><link rel="alternate stylesheet" type="text/css" href="/style/straightIE7.css" title="straight" /><![endif]-->
+</head>
+
+ <body>
+	<div id="top"><a name="top"></a></div>
+	<div id="logo"><img src="/img-layout/logomulgaraV2.png" width="450" height="55" class="ieOpacity" alt="mulgara semantic store" /></div>
+	<div class="textonlymode">
+		<h1>mulgara - semantic store</h1>
+		<p><a href="#textonlynav">skip navigation</a></p>
+	</div>
+	<div id="verticalLine"></div>      
+
+<!-- PROJECT NAVIGATION STARTS HERE -->
+	<div id="navProject"><!--
+	--><a href="http://mulgara.org/index.html" id="home" class="ieOpacity"><img src="/img-layout/blank.gif" alt="WebSite Home" width="50" height="50" /></a>	
+		<a href="/index.html" id="docs" class="ieOpacity"><img src="/img-layout/blank.gif" alt="Documentation" width="50" height="50" /></a>
+		<a href="http://mulgara.org/confluence"  id="wiki" class="ieOpacity"><img src="/img-layout/blank.gif" alt="Development Wiki" width="50" height="50" /></a>
+		<a href="http://mulgara.org/jira" id="bugs" class="ieOpacity"><img src="/img-layout/blank.gif" alt="Issue Tracker" width="50" height="50" /></a>
+	</div>  
+<!-- PROJECT NAVIGATION ENDS HERE -->      
+
+<!-- SITE NAVIGATION STARTS HERE --> 
+<div id="pulldowner">SHOW SITE NAV
+<div id="navMain">
+	<div id="navSite">
+  @@includeTOC@@
+	</div>
+</div>	
+</div>
+<!-- SITE NAVIGATION ENDS HERE -->
+
+
+<!-- STYLE SWITCHING STARTS HERE
+<div id="styleSwitch">
+	<div id="fixed"><a href="#" onclick="setActiveStyleSheet('fixed'); return false" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('fixed','','/img-layout/fixed2.png',1)"><img src="/img-layout/blank.gif" alt="fixed" width="50" height="50" name="fixed" /></a></div>
+	<div id="fluid"><a href="#" onclick="setActiveStyleSheet('fluid'); return false" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('fluid','','/img-layout/fluid2.png',1)"><img src="/img-layout/blank.gif" alt="fluid" width="50" height="50" name="fluid" /></a></div>
+	<div id="straight"><a href="#" onclick="setActiveStyleSheet('straight'); return false" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('straight','','/img-layout/straight2.png',1)"><img src="/img-layout/blank.gif" alt="straight" width="50" height="50" name="straight" /></a></div>
+</div> -->
+<!-- STYLE SWITCHING STARTS HERE -->
+<div id="styleSwitch">
+	<div id="fixed"><a href="#" onclick="setActiveStyleSheet('fixed'); return false"><img src="/img-layout/blank.gif" alt="fixed" width="50" height="50" /></a></div>
+	<div id="fluid"><a href="#" onclick="setActiveStyleSheet('fluid'); return false"><img src="/img-layout/blank.gif" alt="fluid" width="50" height="50" /></a></div>
+	<div id="straight"><a href="#" onclick="setActiveStyleSheet('straight'); return false"><img src="/img-layout/blank.gif" alt="straight" width="50" height="50" /></a></div>
+</div>
+<!--STYLE SWITCHING ENDS HERE -->]]></replacevalue>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@includeTOC@@">
+      <include name="**/*.html"/>
+      <replacevalue><![CDATA[<!-- class=section marks the sections reflecting the directory structure
+			 class=toc means these parts only show up in the big toc page but are hidden in the left hand navigation
+			 class=toc is applied to so called anchors, which aid navigation within long pages -->
+		
+		
+		<!-- index -->
+		<ul class="section toc">
+			<li class="secindex"><a href="/index.html">Documentation Home</a></li>
+			<li class="ulcontainer toc"><ul class="toc">
+					<li><a href="/index.html#o1011">Downloads</a></li>
+					<li><a href="/index.html#o1015">Support</a></li>
+					<li><a href="/index.html#o1013">License</a></li>
+			</ul></li>
+		</ul>
+
+		<!-- overview -->
+		<ul class="section">
+			<li class="secindex"><a href="/overview/index.html"><span class="toc">Mulgara </span>Overview</a></li>
+      @@overviewTOC@@
+		</ul>
+		
+		
+		<!-- tutorial -->
+		<ul class="section">
+			<li class="secindex"><a href="/tutorial/index.html"><span class="toc">Mulgara </span>Tutorial</a></li>
+      @@tutorialTOC@@
+		</ul>
+		
+		<div class="navtocseperator"></div>
+	
+		<!-- system -->
+		<ul class="section">		
+			<li class="secindex"><a href="/system/index.html">System Architecture</a></li>
+      @@systemTOC@@
+		</ul>
+	
+	
+		<!-- resolvers -->
+		<ul class="section">	
+			<li class="secindex"><a href="/resolvers/index.html">Resolvers</a></li>
+      @@resolversTOC@@
+		</ul>
+	
+	
+		<!-- descriptors -->
+		<ul class="section">			
+			<li class="secindex"><a href="/descriptors/index.html">Descriptors</a></li>
+      @@descriptorsTOC@@
+		</ul>
+	
+	
+		<!-- integration -->
+		<ul class="section">	
+			<li class="secindex"><a href="/integration/index.html">Integration Tutorials</a></li>
+      @@integrationTOC@@
+		</ul>
+		
+		<div class="navtocseperator"></div>
+
+		<!-- itqlcommands -->
+		<ul class="section">	
+			<li class="secindex"><a href="/itqlcommands/index.html">iTQL Commands</a></li>
+      @@itqlcommandsTOC@@
+		</ul>
+	
+	
+		<!-- itqloperations -->
+		<ul class="section">	
+			<li class="secindex"><a href="/itqloperations/index.html">Advanced iTQL<span class="toc"> Operations</span></a></li>
+      @@itqloperationsTOC@@
+		</ul>
+	
+	
+		<!-- inferencing -->
+		<ul class="section">	
+			<li class="secindex"><a href="/inferencing/index.html">Inferencing</a></li>
+      @@inferencingTOC@@
+		</ul>
+		
+		<div class="navtocseperator"></div>
+		
+		<!-- therest -->
+		<ul class="section">	
+			<li class="secindex2"><a href="/toc.html">Table of Contents</a></li>
+			<li class="secindex2"><a href="/backofbook.html">Index</a></li>
+		</ul>]]></replacevalue>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@includeBottom@@">
+      <include name="**/*.html"/>
+      <replacevalue><![CDATA[
+
+	<div id="validator">
+		<a href="http://validator.w3.org/check?uri=referer"><img src="/img-layout/w3xhtml10.gif" alt="Valid XHTML 1.0 Transitional" height="21" width="66" /></a><!--
+		--><a class="right" href="http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Fmulgara.org%2Fstyle%2Fstyle.css&amp;warning=1&amp;profile=css3&amp;usermedium=all"><img src="/img-layout/w3css30.gif" alt="Valid CSS 3.0!" height="21" width="66" /></a>
+	</div>
+	<div id="footer">
+		Copyright 2006-2007 The Mulgara Project. Some rights reserved. <a href="/overview/legal.html">MORE&nbsp;&gt;</a>
+	</div>
+
+</body>
+</html>]]></replacevalue>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@overviewTOC@@" value="">
+      <exclude name="overview/*.html"/>
+      <exclude name="toc.html"/>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@overviewTOC@@">
+      <include name="overview/*.html"/>
+      <include name="toc.html"/>
+      <replacevalue><![CDATA[<li class="ulcontainer toc"><ul class="toc">
+						<li><a href="/overview/index.html#o1028">General</a></li>
+						<li><a href="/overview/index.html#o1033">Performance and Scalability</a></li>
+						<li><a href="/overview/index.html#o1035">Reliability</a></li>
+						<li><a href="/overview/index.html#o1025">Connectivity</a></li>
+						<li><a href="/overview/index.html#o1029">Manageability</a></li>
+						<li><a href="/overview/index.html#o1026">Cross OS/Platform Support</a></li>
+						<li><a href="/overview/index.html#o1020">Scalability</a></li>
+						<li class="ulcontainer toc"><ul class="toc">
+									<li><a href="/overview/index.html#o1024">64-bit Data Structures</a></li>
+									<li><a href="/overview/index.html#o1030">Multiple Sessions with no Lock Contention</a></li>
+									<li><a href="/overview/index.html#o1032">On-Line Backups</a></li>
+									<li><a href="/overview/index.html#o1034">Permanent Integrity</a></li>
+									<li><a href="/overview/index.html#o1036">Use of Java NIO</a></li>
+						</ul></li>
+				</ul></li>
+				<li class="ulcontainer"><ul>
+					<li><a href="/overview/about.html">About the Mulgara Project</a></li>
+					<li class="ulcontainer"><ul>
+							<li><a href="/overview/legalinfo.html">Legal Information</a></li>
+							<li><a href="/overview/legal.html">Mulgara Legal Statements</a></li>
+							<li><a href="/overview/trademarks.html">Trademarks</a></li>
+							<li>Components</li>
+							<li class="ulcontainer"><ul>
+									<li><a href="/overview/oscomponents.html">Open Source<span class="toc"> Components</span></a></li>
+									<li><a href="/overview/suncomponents.html">Sun<span class="toc"> Microsystems Components</span></a></li>
+									<li><a href="/overview/optcomponents.html"><span class="toc">Supporting </span>Optional<span class="toc"> Packages</span></a></li>
+							</ul></li>
+							<li><a href="/overview/history.html">Documentation History</a></li>
+							<li><a href="/overview/aboutsite.html">About this site</a></li>
+							<li class="ulcontainer toc"><ul class="toc">
+									<li><a href="/overview/aboutsite.html#copyright">Copyright</a></li>
+									<li><a href="/overview/aboutsite.html#htmlcss">HTML and CSS</a></li>
+									<li><a href="/overview/aboutsite.html#access">Accessibility</a></li>
+							</ul></li>
+							<!-- <li><a href="http://mulgara.org/index.html">Mulgara Project HomePage</a></li> -->
+					</ul></li>
+					<li><a href="/overview/contact.html">Contact<span class="toc"> Information</span></a></li>
+					<li class="ulcontainer toc"><ul class="toc">
+							<li><a href="/overview/contact.html#support">Support</a></li>
+							<li><a href="/overview/contact.html#mailing">Mailing Lists</a></li>
+							<li><a href="/overview/contact.html#bugs">Bug Reports and Feature Requests</a></li>
+							<li><a href="/overview/contact.html#developers">Developers</a></li>
+					</ul></li>
+					<li><a href="/overview/faq.html">FAQ<span class="toc"> - Frequently Asked Questions</span></a></li>
+					<li class="ulcontainer toc"><ul class="toc">
+							<li><a href="/overview/faq.html#o1068">What is Mulgara?</a></li>
+							<li><a href="/overview/faq.html#o1053">Available Versions</a></li>
+							<li><a href="/overview/faq.html#o1062">Mulgara Lite</a></li>
+							<li><a href="/overview/faq.html#o1059">Is Mulgara secure?</a></li>
+							<li><a href="/overview/faq.html#o1063">Operating systems</a></li>
+							<li><a href="/overview/faq.html#o1056">Hardware</a></li>
+							<li><a href="/overview/faq.html#o1066">Technologies</a></li>
+							<li><a href="/overview/faq.html#o1064">Relational databases</a></li>
+							<li><a href="/overview/faq.html#o1060">Mulgara and RDF</a></li>
+							<li><a href="/overview/faq.html#o1051">Applications built with Mulgara</a></li>
+							<li><a href="/overview/faq.html#o1054">Building applications with Mulgara</a></li>
+							<li><a href="/overview/faq.html#o1052">Available APIs</a></li>
+							<li><a href="/overview/faq.html#o1055">Downloading</a></li>
+							<li><a href="/overview/faq.html#o1058">Installation</a></li>
+							<li><a href="/overview/faq.html#o1065">Running Mulgara</a></li>
+							<li><a href="/overview/faq.html#o1067">What is a Mulgara?</a></li>
+							<li><a href="/overview/faq.html#o1057">How do I pronounce it?</a></li>
+					</ul></li>
+					<li><a href="/overview/links.html">Links<span class="toc"> to Other Resources</span></a></li>
+					<li class="ulcontainer toc"><ul class="toc">
+							<li><a href="/overview/links.html#o753">RDF Training</a></li>
+							<li><a href="/overview/links.html#o759">RDF Data</a></li>
+					</ul></li>
+					<li><a href="/overview/downloads.html">Mulgara Downloads</a></li>
+					<li><a href="/overview/install.html">Installation Guide</a></li>
+					<li class="ulcontainer toc"><ul class="toc">
+							<li><a href="/overview/install.html#o1141">Installing Java</a></li>
+							<li><a href="/overview/install.html#o1142">Checkout Setup</a></li>
+							<li><a href="/overview/install.html#o1143">Build Targets</a></li>
+							<li><a href="/overview/install.html#o1144">Generating Mulgara javadoc</a></li>
+							<li><a href="/overview/install.html#o1145">Generating the Server and the iTQL Shell</a></li>
+							<li><a href="/overview/install.html#o1146">Running a Mulgara Server</a></li>
+							<li><a href="/overview/install.html#o402">Mulgara Configuration File</a></li>
+							<li><a href="/overview/install.html#o2581">Mulgara Command Line Options</a></li>
+							<li><a href="/overview/install.html#o1256">Java System Properties</a></li>
+							<li><a href="/overview/install.html#o1148">Running the Test Cases</a></li>
+					</ul></li>
+					<li><a href="/overview/tools.html"><span class="toc">Viewer and Descriptor </span>Tools</a></li>
+				</ul></li>
+    ]]></replacevalue>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@tutorialTOC@@" value="">
+      <exclude name="tutorial/*.html"/>
+      <exclude name="toc.html"/>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@tutorialTOC@@">
+      <include name="tutorial/*.html"/>
+      <include name="toc.html"/>
+      <replacevalue><![CDATA[<li class="ulcontainer"><ul>
+			<li><a href="/tutorial/sysreq.html">System Requirements</a></li>
+			<li><a href="/tutorial/starting.html">Starting<span class="toc"> a</span> Mulgara<span class="toc"> Server</span></a></li>
+			<li><a href="/tutorial/itql.html">iTQL</a></li>
+			<li><a href="/tutorial/itqlbasics.html">Basic iTQL Operations</a></li>
+			<li><a href="/tutorial/itqlshellsession.html">Example iTQL Shell Session</a></li>
+			<li><a href="/tutorial/krule.html">Rules Engine (Krule) Users Guide</a></li>
+			<li><a href="/tutorial/viewer.html">Mulgara Viewer</a></li>
+			<li class="ulcontainer toc"><ul class="toc">
+					<li><a href="/tutorial/viewer.html#o416">Mulgara Sample Data</a></li>
+					<li><a href="/tutorial/viewer.html#o738">Example Commands</a></li>
+			</ul></li>
+			<li><a href="/tutorial/loadingrdf.html">Loading Existing RDF Data</a></li>
+			<li><a href="/tutorial/convertrdbms.html">Converting Data in RDBMS to RDF</a></li>
+			<li><a href="/tutorial/convertingxml.html">Converting XML Data to RDF</a></li>
+	</ul></li>]]></replacevalue>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@systemTOC@@" value="">
+      <exclude name="system/*.html"/>
+      <exclude name="toc.html"/>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@systemTOC@@">
+      <include name="system/*.html"/>
+      <include name="toc.html"/>
+      <replacevalue><![CDATA[
+				<li class="ulcontainer"><ul>
+						<li><a href="/system/jsptaglib.html">JSP <span class="toc">JavaServer Pages </span>Tag Library</a></li>
+						<li class="ulcontainer toc"><ul class="toc">
+								<li><a href="/system/jsptaglib.html#o486">Software Requirements</a></li>
+								<li><a href="/system/jsptaglib.html#o487">Configuring your Web Application</a></li>
+								<li><a href="/system/jsptaglib.html#o493">answer</a></li>
+								<li><a href="/system/jsptaglib.html#o492">execute</a></li>
+								<li><a href="/system/jsptaglib.html#o488">init</a></li>
+								<li><a href="/system/jsptaglib.html#o491">query</a></li>
+								<li><a href="/system/jsptaglib.html#o489">render</a></li>
+								<li><a href="/system/jsptaglib.html#o490">statement</a></li>
+						</ul></li>
+						<li><a href="/system/itqlshell.html">iTQL Shell</a></li>
+						<li><a href="/system/soap.html">SOAP<span class="toc"> Simple Object Access Protocol</span></a></li>
+						<li><a href="/system/itqlbean.html">iTQL Bean</a></li>
+						<li><a href="/system/driver.html">Mulgara Driver</a></li>
+						<li><a href="/system/jrdf.html">Java RDF (JRDF)</a></li>
+						<li class="ulcontainer"><ul>
+								<li><a href="/system/jrdfapis.html">JRDF APIs</a></li>
+								<li><a href="/system/jrdfgraphs.html">JRDF Graphs</a></li>
+								<li class="ulcontainer toc"><ul class="toc">
+										<li><a href="/system/jrdfgraphs.html#o2470">Triples</a></li>
+										<li><a href="/system/jrdfgraphs.html#o2471">SubjectNodes</a></li>
+										<li><a href="/system/jrdfgraphs.html#o2472">PredicateNodes</a></li>
+										<li><a href="/system/jrdfgraphs.html#o2473">ObjectNodes</a></li>
+										<li><a href="/system/jrdfgraphs.html#o2474">URIReferences</a></li>
+										<li><a href="/system/jrdfgraphs.html#o2475">BlankNodes</a></li>
+										<li><a href="/system/jrdfgraphs.html#o2476">Literals</a></li>
+										<li><a href="/system/jrdfgraphs.html#o2478">GraphElementFactory</a></li>
+										<li><a href="/system/jrdfgraphs.html#o2479">Querying a JRDF Graph</a></li>
+								</ul></li>
+								<li><a href="/system/jrdfmemory.html">JRDF Memory Implementation</a></li>
+								<li><a href="/system/jrdfconcol.html">Containers and Collections</a></li>
+								<li class="ulcontainer toc"><ul class="toc">
+										<li><a href="/system/jrdfconcol.html#o2527">Triple Factory</a></li>
+								</ul></li>
+								<li><a href="/system/jrdfvisitor.html">Built-in Visitor Pattern</a></li>
+								<li class="ulcontainer toc"><ul class="toc">
+										<li><a href="/system/jrdfvisitor.html#o2529">TypedNodeVisitable</a></li>
+										<li><a href="/system/jrdfvisitor.html#o2530">TypedNodeVisitor</a></li>
+								</ul></li>
+								<li><a href="/system/jrdfexamples.html">Examples</a></li>
+								<li class="ulcontainer toc"><ul class="toc">
+										<li><a href="/system/jrdfexamples.html#o2514">JRDF Graph (Memory)</a></li>
+										<li class="ulcontainer"><ul>
+												<li><a href="/system/jrdfexamples.html#o2515">Create a JRDF Graph and add Triples</a></li>
+												<li><a href="/system/jrdfexamples.html#o2516">Query the JRDF Graph</a></li>
+												<li><a href="/system/jrdfexamples.html#o2517">Remove a Triple from the JRDF Graph</a></li>
+										</ul></li>	
+										<li><a href="/system/jrdfexamples.html#o2518">Mulgara Backed JRDF Graph (Client)</a></li>
+										<li class="ulcontainer"><ul>	
+												<li><a href="/system/jrdfexamples.html#o2519">Create a Mulgara Session</a></li>
+												<li><a href="/system/jrdfexamples.html#o2520">Create a Mulgara Backed JRDF Graph</a></li>
+										</ul></li>
+										<li><a href="/system/jrdfexamples.html#o2521">Display iTQL Results as an JRDF Graph</a></li>
+										<li class="ulcontainer"><ul>
+												<li><a href="/system/jrdfexamples.html#o2523">Execute an iTQL Query</a></li>
+												<li><a href="/system/jrdfexamples.html#o2524">Create a JRDF Graph from the Results</a></li>
+										</ul></li>
+								</ul></li>
+						</ul></li>
+				</ul></li>]]></replacevalue>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@resolversTOC@@" value="">
+      <exclude name="resolvers/*.html"/>
+      <exclude name="toc.html"/>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@resolversTOC@@">
+      <include name="resolvers/*.html"/>
+      <include name="toc.html"/>
+      <replacevalue><![CDATA[<li class="ulcontainer"><ul>
+						<li><a href="/resolvers/resolverdbclass.html">Resolver Database Class</a></li>
+						<li class="ulcontainer toc"><ul class="toc">
+								<li><a href="/resolvers/resolverdbclass.html#o2554">Node Pools</a></li>
+								<li><a href="/resolvers/resolverdbclass.html#o2555">String Pools</a></li>
+								<li><a href="/resolvers/resolverdbclass.html#o2556">Temporary Pools</a></li>
+								<li><a href="/resolvers/resolverdbclass.html#o2557">Persistent Pools</a></li>
+								<li><a href="/resolvers/resolverdbclass.html#o2558">System Resolver Factory</a></li>
+						</ul></li>
+						<li><a href="/resolvers/resolverdbclass.html#o2559">Internal Resolvers</a></li>
+						<li><a href="/resolvers/resolverdbclass.html#o2560">External Resolvers</a></li>
+				</ul></li>]]></replacevalue>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@descriptorsTOC@@" value="">
+      <exclude name="descriptors/*.html"/>
+      <exclude name="toc.html"/>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@descriptorsTOC@@">
+      <include name="descriptors/*.html"/>
+      <include name="toc.html"/>
+      <replacevalue><![CDATA[<li class="ulcontainer"><ul>
+						<li><a href="/descriptors/descwhat.html">What are Descriptors?</a></li>
+						<li><a href="/descriptors/descadvantages.html">Advantages and Disadvantages<span class="toc"> of Descriptors</span></a></li>
+						<li><a href="/descriptors/nsdesc.html">Namespaces<span class="toc"> and Descriptors</span></a></li>
+						<li><a href="/descriptors/querytag.html">The &lt;query&gt; Tag</a></li>
+						<li><a href="/descriptors/descriptortag.html">The &lt;descriptor&gt; Tag</a></li>
+						<li><a href="/descriptors/reserved.html">Reserved Parameters</a></li>
+						<li><a href="/descriptors/descriptorsfaq.html">Descriptors FAQ</a></li>
+						<li><a href="/descriptors/mistakes.html">Common Mistakes</a></li>
+						<li><a href="/descriptors/descriptorex.html">Descriptor Examples</a></li>
+						<li class="ulcontainer"><ul>
+								<li><a href="/descriptors/descriptorhw.html">Hello World<span class="toc"> Descriptor</span></a></li>
+								<li><a href="/descriptors/descriptorlist.html">List Models<span class="toc"> Descriptor</span></a></li>
+								<li><a href="/descriptors/descriptorvcard.html">VCard<span class="toc"> Descriptors</span></a></li>
+						</ul></li>
+				</ul></li>]]></replacevalue>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@integrationTOC@@" value="">
+      <exclude name="integration/*.html"/>
+      <exclude name="toc.html"/>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@integrationTOC@@">
+      <include name="integration/*.html"/>
+      <include name="toc.html"/>
+      <replacevalue><![CDATA[<li class="ulcontainer"><ul>
+						<li><a href="/integration/resolverhttpmp3.html">HTTP Resolver and MP3 Content Handler Tutorial</a></li>
+						<li class="ulcontainer"><ul>
+								<li><a href="/integration/resolverpre.html">Prerequisites</a></li>
+								<li><a href="/integration/resolveprot.html">Developing Protocol Resolvers</a></li>
+								<li class="ulcontainer"><ul>
+										<li><a href="/integration/resolverfactories.html">Factories</a></li>
+										<li class="ulcontainer toc"><ul class="toc">
+												<li><a href="/integration/resolverfactories.html#o2692">Writing a Factory</a></li>
+										</ul></li>
+										<li><a href="/integration/resolverwrapper.html">Content Wrappers</a></li>
+										<li class="ulcontainer toc"><ul class="toc">
+												<li><a href="/integration/resolverwrapper.html#o2700">Implementing the Interface</a></li>
+										</ul></li>
+										<li><a href="/integration/resolverwrite.html">Resolvers</a></li>
+										<li class="ulcontainer toc"><ul class="toc">	
+												<li><a href="/integration/resolverwrite.html#o2950">Writing a Resolver</a></li>
+										</ul></li>
+								</ul></li>
+								<li><a href="/integration/contenthandlersdev.html">Developing Content Handlers</a></li>
+								<li class="ulcontainer"><ul>
+										<li><a href="/integration/contenthandlers.html">Content Handlers</a></li>
+										<li class="ulcontainer toc"><ul class="toc">
+												<li><a href="/integration/contenthandlers.html#o2710">Configuration and Initialisation</a></li>
+												<li><a href="/integration/contenthandlers.html#o2711">Implementing the Interface</a></li>
+										</ul></li>
+										<li><a href="/integration/parsers.html">Parsers</a></li>
+										<li class="ulcontainer toc"><ul class="toc">
+												<li><a href="/integration/parsers.html#o2704">Configuration and Initialisation</a></li>
+												<li><a href="/integration/parsers.html#o2705">Processing ID3 Tags into RDF</a></li>
+												<li><a href="/integration/parsers.html#o2706">Storing Data</a></li>
+										</ul></li>
+										<li><a href="/integration/statements.html">Statements</a></li>
+										<li class="ulcontainer toc"><ul class="toc">
+												<li><a href="/integration/statements.html#o2952">Implementing the Interface</a></li>
+										</ul></li>
+								</ul></li>
+								<li><a href="/integration/compiling.html">Compiling with Ant</a></li>
+								<li><a href="/integration/integrate.html">Integrating into Mulgara</a></li>
+						</ul></li>
+						<li><a href="/integration/jena.html">Jena</a></li>
+						<li class="ulcontainer toc"><ul class="toc">
+								<li><a href="/integration/jena.html#o3186">Creating Sessions</a></li>
+								<li><a href="/integration/jena.html#o3187">Available Jena Interfaces</a></li>
+								<li><a href="/integration/jena.html#o3188">Using the Jena Maker Interfaces</a></li>
+								<li><a href="/integration/jena.html#o949">Using Iterators</a></li>
+								<li><a href="/integration/jena.html#o950">Exceptions and Logging</a></li>
+								<li><a href="/integration/jena.html#o951">Threading</a></li>
+								<li><a href="/integration/jena.html#o952">Porting an Existing Jena Application</a></li>
+						</ul></li>
+						<li><a href="/integration/perl.html">Perl</a></li>
+						<li><a href="/integration/jsptutorial.html">JSP<span class="toc"> JavaServer Pages</span> Tag Library</a></li>
+						<li class="ulcontainer toc"><ul class="toc">
+								<li><a href="/integration/jsptutorial.html#o991">Before you Begin</a></li>
+								<li><a href="/integration/jsptutorial.html#o993">Load the Sample Data</a></li>
+								<li><a href="/integration/jsptutorial.html#o994">Develop the JSPs</a></li>
+								<li><a href="/integration/jsptutorial.html#o995">Deploy the JSPs</a></li>
+								<li><a href="/integration/jsptutorial.html#o996">Open the Application</a></li>
+						</ul></li>
+						<li><a href="/integration/jrdftutorial.html">JRDF Tutorial</a></li>
+						<li class="ulcontainer"><ul>
+								<li><a href="/integration/jrdfprereq.html">Prerequisites</a></li>
+								<li class="ulcontainer toc"><ul class="toc">
+										<li><a href="/integration/jrdfprereq.html#o2898">Obtaining a Session from a Mulgara Server</a></li>
+										<li><a href="/integration/jrdfprereq.html#o2899">Comparison of JRDF Graph Implementations</a></li>
+								</ul></li>
+								<li><a href="/integration/jrdfcreategraph.html">Creating the Graph</a></li>
+								<li class="ulcontainer toc"><ul class="toc">
+										<li><a href="/integration/jrdfcreategraph.html#o2901">JRDF Graph (Memory Graph)</a></li>
+										<li><a href="/integration/jrdfcreategraph.html#o3189">Server-side JRDF Graph (Server Graph)</a></li>
+										<li><a href="/integration/jrdfcreategraph.html#o2902">Server Backed JRDF Graph (Client Graph)</a></li>
+										<li><a href="/integration/jrdfcreategraph.html#o2903">Read Only iTQL Result JRDF Graph (iTQL Graph)</a></li>
+								</ul></li>
+								<li><a href="/integration/jrdfcreatenodes.html">Creating Nodes and Triples</a></li>
+								<li><a href="/integration/jrdfaddtriples.html">Adding Triples<span class="toc"> to the Graph</span></a></li>
+								<li><a href="/integration/searchgraph.html">Searching the Graph</a></li>
+								<li><a href="/integration/jrdfreify.html">Reify Triples</a></li>
+								<li><a href="/integration/jrdfremove.html">Removing Triples<span class="toc"> from the Graph</span></a></li>
+						</ul></li>
+					</ul></li>]]></replacevalue>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@itqlcommandsTOC@@" value="">
+      <exclude name="itqlcommands/*.html"/>
+      <exclude name="toc.html"/>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@itqlcommandsTOC@@">
+      <include name="itqlcommands/*.html"/>
+      <include name="toc.html"/>
+      <replacevalue><![CDATA[<li class="ulcontainer"><ul>
+						<li><a href="/itqlcommands/alias.html">alias</a></li>
+						<li><a href="/itqlcommands/backup.html">backup</a></li>
+						<li><a href="/itqlcommands/comment.html">comment (#)</a></li>
+						<li><a href="/itqlcommands/commit.html">commit</a></li>
+						<li><a href="/itqlcommands/create.html">create</a></li>
+						<li><a href="/itqlcommands/delete.html">delete</a></li>	
+						<li><a href="/itqlcommands/drop.html">drop</a></li>	
+						<li><a href="/itqlcommands/execute.html">execute</a></li>	
+						<li><a href="/itqlcommands/export.html">export</a></li>	
+						<li><a href="/itqlcommands/help.html">help</a></li>	
+						<li><a href="/itqlcommands/insert.html">insert</a></li>	
+						<li><a href="/itqlcommands/load.html">load</a></li>	
+						<li><a href="/itqlcommands/quit.html">quit</a></li>	
+						<li><a href="/itqlcommands/restore.html">restore</a></li>	
+						<li><a href="/itqlcommands/rollback.html">rollback</a></li>	
+						<li><a href="/itqlcommands/select.html">select</a></li>
+						<li class="ulcontainer toc"><ul class="toc">
+								<li><a href="/itqlcommands/select.html#o188">select Clause</a></li>
+								<li><a href="/itqlcommands/select.html#o189">from Clause</a></li>
+								<li><a href="/itqlcommands/select.html#o197">where Clause</a></li>
+								<li class="ulcontainer toc"><ul class="toc">
+										<li><a href="/itqlcommands/select.html#o1530">in Specifier</a></li>
+										<li><a href="/itqlcommands/select.html#o1531">Assigning a Value to a Variable (mulgara:is)</a></li>
+										<li><a href="/itqlcommands/select.html#o1532">Traversing a Graph (walk Function)</a></li>
+										<li><a href="/itqlcommands/select.html#o1535">Transitive Closure (trans Function)</a></li>
+										<li><a href="/itqlcommands/select.html#oxxminusxx">Graph Difference (minus) Function</a></li>
+										<li><a href="/itqlcommands/select.html#o2768">exclude Function</a></li>
+								</ul></li>
+								<li><a href="/itqlcommands/select.html#o190">order by Clause</a></li>
+								<li><a href="/itqlcommands/select.html#o191">limit Clause</a></li>
+								<li><a href="/itqlcommands/select.html#o192">offset Clause</a></li>
+								<li><a href="/itqlcommands/select.html#o193">subquery Function</a></li>
+								<li><a href="/itqlcommands/select.html#o194">count Function</a></li>
+								<li><a href="/itqlcommands/select.html#o2776">having Clause</a></li>
+						</ul></li>
+						<li><a href="/itqlcommands/set.html">set</a></li>
+				</ul></li>]]></replacevalue>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@itqloperationsTOC@@" value="">
+      <exclude name="itqloperations/*.html"/>
+      <exclude name="toc.html"/>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@itqloperationsTOC@@">
+      <include name="itqloperations/*.html"/>
+      <include name="toc.html"/>
+      <replacevalue><![CDATA[<li class="ulcontainer"><ul>
+						<li><a href="/itqloperations/views.html">Views</a></li>
+						<li class="ulcontainer toc"><ul class="toc">
+								<li><a href="/itqloperations/views.html#o3012">Creating Views</a></li>
+								<li><a href="/itqloperations/views.html#o3013">Querying View Definitions</a></li>
+								<li><a href="/itqloperations/views.html#o256">Limitations of Views</a></li>
+						</ul></li>
+						<li><a href="/itqloperations/fulltextmodels.html">Full-Text Models</a></li>
+						<li class="ulcontainer toc"><ul class="toc">
+								<li><a href="/itqloperations/fulltextmodels.html#o258">Creating Full-Text Models</a></li>
+								<li><a href="/itqloperations/fulltextmodels.html#o259">Modifying Full-Text Models</a></li>
+								<li><a href="/itqloperations/fulltextmodels.html#o260">Querying Full-Text Models</a></li>
+								<li><a href="/itqloperations/fulltextmodels.html#o261">Limitations of Full-Text Models</a></li>
+						</ul></li>
+						<li><a href="/itqloperations/datatypingmodels.html">Datatyping Models</a></li>
+						<li class="ulcontainer toc"><ul class="toc">
+								<li><a href="/itqloperations/datatypingmodels.html#o263">Creating Datatyping Models</a></li>
+								<li><a href="/itqloperations/datatypingmodels.html#o264">Loading Datatyping Models</a></li>
+								<li><a href="/itqloperations/datatypingmodels.html#o265">Querying Datatyping Models</a></li>
+								<li><a href="/itqloperations/datatypingmodels.html#o266">Limitations of Datatyping Models</a></li>
+						</ul></li>
+						<li><a href="/itqloperations/nodetyping.html">Nodetyping Models</a></li>
+						<li class="ulcontainer toc"><ul class="toc">
+								<li><a href="/itqloperations/nodetyping.html#o2780">Creating Nodetyping Models</a></li>
+								<li><a href="/itqloperations/nodetyping.html#o2781">Querying Nodetyping Models</a></li>
+						</ul></li>
+						<li><a href="/itqloperations/filesysmodel.html">Filesystem Models</a></li>
+						<li class="ulcontainer toc"><ul class="toc">
+								<li><a href="/itqloperations/filesysmodel.html#o3202">Creating Filesystem Models</a></li>
+								<li><a href="/itqloperations/filesysmodel.html#o3204">Updating Filesystem Models</a></li>
+								<li><a href="/itqloperations/filesysmodel.html#o3203">Querying Filesystem Models</a></li>
+						</ul></li>
+				</ul></li>]]></replacevalue>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@inferencingTOC@@" value="">
+      <exclude name="inferencing/*.html"/>
+      <exclude name="toc.html"/>
+    </replace>
+
+    <replace dir="${src.docs.dir}" token="@@inferencingTOC@@">
+      <include name="inferencing/*.html"/>
+      <include name="toc.html"/>
+      <replacevalue><![CDATA[<li class="ulcontainer"><ul>
+						<li><a href="/inferencing/inferintro.html">Introduction<span class="toc"> to Inferencing</span></a></li>
+						<li class="ulcontainer"><ul>
+								<li><a href="/inferencing/infersitu.html">Current Situation</a></li>
+								<li class="ulcontainer toc"><ul class="toc">
+										<li><a href="/inferencing/infersitu.html#o3015">First Search</a></li>
+										<li><a href="/inferencing/infersitu.html#o3016">Second Search</a></li>
+										<li><a href="/inferencing/infersitu.html#o3017">Third Search</a></li>
+								</ul></li>
+								<li><a href="/inferencing/infersemweb.html">Semantic Web</a></li>
+								<li class="ulcontainer toc"><ul class="toc">
+										<li><a href="/inferencing/infersemweb.html#o2644">Elements of the Semantic Web</a></li>
+										<li class="ulcontainer"><ul>
+												<li><a href="/inferencing/infersemweb.html#o2645">Classes</a></li>
+												<li><a href="/inferencing/infersemweb.html#o2646">Properties</a></li>
+												<li><a href="/inferencing/infersemweb.html#o3019">Ranges</a></li>
+												<li><a href="/inferencing/infersemweb.html#o3018">Domains</a></li>
+												<li><a href="/inferencing/infersemweb.html#o2647">Additional Features for Describing Classes and Properties</a></li>
+										</ul></li>
+										<li><a href="/inferencing/infersemweb.html#o2648">Implementing Inferencing</a></li>
+								</ul></li>
+								<li><a href="/inferencing/infersummary.html">Summary</a></li>
+						</ul></li>
+						<li><a href="/inferencing/infermulgara.html">Inferencing and Mulgara</a></li>
+						<li class="ulcontainer toc"><ul class="toc">
+								<li><a href="/inferencing/infermulgara.html#o2726">Models Required</a></li>
+								<li class="ulcontainer"><ul>
+										<li><a href="/inferencing/infermulgara.html#o2727">Base Model</a></li>
+										<li><a href="/inferencing/infermulgara.html#o2728">Schema Model</a></li>
+										<li><a href="/inferencing/infermulgara.html#o2729">Inference Model</a></li>
+								</ul></li>
+								<li><a href="/inferencing/infermulgara.html#o2730">An Example</a></li>
+						</ul></li>
+						<li><a href="/inferencing/owl.html">OWL-Lite Operations Using iTQL</a></li>
+						<li class="ulcontainer"><ul>
+								<li><a href="/inferencing/entailment.html">Entailment</a></li>
+								<li class="ulcontainer toc"><ul class="toc">
+										<li><a href="/inferencing/entailment.html#o2802">owl:AllDifferent</a></li>
+										<li><a href="/inferencing/entailment.html#o2803">owl:distinctMembers</a></li>
+										<li><a href="/inferencing/entailment.html#o2804">owl:Class</a></li>
+										<li><a href="/inferencing/entailment.html#o2805">owl:FunctionalProperty</a></li>
+										<li><a href="/inferencing/entailment.html#o2930">owl:sameAs</a></li>
+										<li class="ulcontainer"><ul>
+												<li><a href="/inferencing/entailment.html#o2931">Transitivity</a></li>
+												<li><a href="/inferencing/entailment.html#o2932">Reflexivity</a></li>
+												<li><a href="/inferencing/entailment.html#o2933">Symmetry</a></li>
+												<li><a href="/inferencing/entailment.html#o2934">Class Equivalence</a></li>
+												<li><a href="/inferencing/entailment.html#o2935">Property Equivalence</a></li>
+												<li><a href="/inferencing/entailment.html#o2936">Inconsistencies</a></li>
+												<li><a href="/inferencing/entailment.html#o2937">Note on Consistency Checking and Inferences</a></li>
+										</ul></li>
+										<li><a href="/inferencing/entailment.html#o2807">owl:InverseFunctionalProperty</a></li>
+										<li><a href="/inferencing/entailment.html#o2808">owl:differentFrom</a></li>
+										<li class="ulcontainer"><ul>
+												<li><a href="/inferencing/entailment.html#o2945">Symmetry</a></li>
+												<li><a href="/inferencing/entailment.html#o2946">Inconsistencies</a></li>
+										</ul></li>
+										<li><a href="/inferencing/entailment.html#o2809">owl:inverseOf</a></li>
+										<li><a href="/inferencing/entailment.html#o2811">owl:SymmetricProperty</a></li>
+										<li><a href="/inferencing/entailment.html#o2812">owl:TransitiveProperty</a></li>
+										<li><a href="/inferencing/entailment.html#o2813">owl:equivalentClass</a></li>
+										<li><a href="/inferencing/entailment.html#o2814">owl:equivalentProperty</a></li>
+										<li><a href="/inferencing/entailment.html#o2815">owl:intersectionOf</a></li>
+								</ul></li>
+								<li><a href="/inferencing/consistency.html">Consistency Checking</a></li>
+								<li class="ulcontainer toc"><ul class="toc">
+										<li><a href="/inferencing/consistency.html#o2817">Restricting Data Types</a></li>
+										<li class="ulcontainer"><ul>
+												<li><a href="/inferencing/consistency.html#o2818">owl:allValuesFrom</a></li>
+												<li><a href="/inferencing/consistency.html#o2819">owl:someValuesFrom</a></li>
+										</ul></li>
+										<li><a href="/inferencing/consistency.html#o2820">Cardinality Operations</a></li>
+										<li class="ulcontainer"><ul>
+												<li><a href="/inferencing/consistency.html#o2821">owl:cardinality</a></li>
+												<li><a href="/inferencing/consistency.html#o2822">owl:minimumCardinality</a></li>
+												<li><a href="/inferencing/consistency.html#o2823">owl:maximumCardinality</a></li>
+										</ul></li>
+										<li><a href="/inferencing/consistency.html#o2824">owl:Nothing</a></li>
+										<li><a href="/inferencing/consistency.html#o2825">owl:Restriction</a></li>
+										<li><a href="/inferencing/consistency.html#o2826">owl:Thing</a></li>
+								</ul></li>
+						</ul></li>
+						<li><a href="/inferencing/ontomanage.html">Ontology Management</a></li>
+						<li class="ulcontainer toc"><ul class="toc">
+								<li><a href="/inferencing/ontomanage.html#o2828">owl:AnnotationProperty</a></li>
+								<li><a href="/inferencing/ontomanage.html#o2829">owl:backwardCompatibleWith</a></li>
+								<li><a href="/inferencing/ontomanage.html#o2830">owl:DeprecatedClass</a></li>
+								<li><a href="/inferencing/ontomanage.html#o2831">owl:DeprecatedProperty</a></li>
+								<li><a href="/inferencing/ontomanage.html#o2832">owl:imports</a></li>
+								<li><a href="/inferencing/ontomanage.html#o2833">owl:incompatibleWith</a></li>		
+								<li><a href="/inferencing/ontomanage.html#o2834">owl:Ontology</a></li>
+								<li><a href="/inferencing/ontomanage.html#o2835">owl:OntologyProperty</a></li>		
+								<li><a href="/inferencing/ontomanage.html#o2836">owl:priorVersion</a></li>		
+								<li><a href="/inferencing/ontomanage.html#o2837">owl:versionInfo</a></li>		
+						</ul></li>
+				</ul></li>]]></replacevalue>
+    </replace>
+
+  </target>
+
+</project>

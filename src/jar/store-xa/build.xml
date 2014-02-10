@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="store-xa" default="store-xa-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="store-xa-classpath">
+    <path refid="common-classpath"/>
+    <fileset file="${store.dist.dir}/${store.jar}"/>
+    <fileset file="${store-nodepool.dist.dir}/${store-nodepool.jar}"/>
+    <fileset file="${store-stringpool.dist.dir}/${store-stringpool.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+  </path>
+
+  <path id="store-xa-test-classpath">
+    <path refid="store-xa-classpath"/>
+  </path>
+
+  <target name="store-xa-clean"
+          description="Removes all compile generated files for the store-xa">
+    <tstamp/>
+    <delete dir="${store-xa.obj.dir}"/>
+    <delete dir="${store-xa.test.dir}"/>
+    <delete dir="${store-xa.dist.dir}"/>
+  </target>
+
+  <target name="-store-xa-prepare"
+          description="Creates all directories associated with the store-xa's
+                       compilation"
+          depends="-prepare-build">
+    <mkdir dir="${store-xa.obj.dir}"/>
+    <mkdir dir="${store-xa.test.dir}"/>
+    <mkdir dir="${store-xa.dist.dir}"/>
+    <mkdir dir="${store-xa.obj.dir}/classes"/>
+  </target>
+
+  <target name="store-xa-compile"
+          depends="-store-xa-prepare, store-jar, store-nodepool-jar,
+                   store-stringpool-jar, resolver-spi-jar, query-jar"
+          description="Compiles all store-xa related files included generated
+                       source code">
+
+    <javac destdir="${store-xa.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="store-xa-classpath"/>
+
+      <src path="${store-xa.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="store-xa-jar"
+          depends="store-xa-compile, -store-xa-jar-uptodate"
+          unless="store-xa.jar.uptodate"
+          description="Builds the store-xa JAR">
+
+    <jar jarfile="${store-xa.dist.dir}/${store-xa.jar}">
+      <fileset dir="${store-xa.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-store-xa-jar-uptodate">
+
+    <uptodate property="store-xa.jar.uptodate"
+              targetfile="${store-xa.dist.dir}/${store-xa.jar}">
+      <srcfiles dir="${store-xa.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="store-xa-dist"
+          depends="store-xa-jar"
+          unless="store-xa.uptodate"
+          description="Performs all tasks related to finalising this store-xa
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the store-xa library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="store-xa-test">
+    <antcall target="component-test">
+      <param name="classpath.id" value="store-xa-test-classpath"/>
+      <param name="dir" value="${store-xa.src.dir}"/>
+      <param name="jar" value="${store-xa.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="store-xa-javadoc"
+          depends="store-xa-jar"
+          description="Creates the javadoc for this store-xa">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.store-xa.*"/>
+      <param name="javadoc.classpath" value="store-xa-classpath"/>
+      <param name="javadoc.sourcepath" value="${store-xa.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="store-xa-help"
+          description="Displays the help information for this store-xa">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this store-xa -->
+
+    <echo message="Welcome to the build script for ${store-xa.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${store-xa.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

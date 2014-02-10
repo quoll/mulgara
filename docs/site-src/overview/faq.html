@@ -1,0 +1,229 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Frequently Asked Questions</title>
+    <meta name="keywords" content="FAQ, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+    
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+
+		<a href="/overview/faq.html#o1068">What</a> &#124;
+		<a href="/overview/faq.html#o1053">Versions</a> &#124;
+		<a href="/overview/faq.html#o1062">Lite</a> &#124;
+		<a href="/overview/faq.html#o1059">Secure</a> &#124;
+		<a href="/overview/faq.html#o1063">OS</a> &#124;
+		<a href="/overview/faq.html#o1056">Hardware</a> &#124;
+		<a href="/overview/faq.html#o1066">Technologies</a> &#124;
+		<a href="/overview/faq.html#o1064">RDBMS</a> &#124;
+		<a href="/overview/faq.html#o1060">RDF</a> &#124;
+		<a href="/overview/faq.html#o1051">Applications</a> &#124;
+		<a href="/overview/faq.html#o1054">Building</a> &#124;
+		<a href="/overview/faq.html#o1052">APIs</a> &#124;
+		<a href="/overview/faq.html#o1055">Downloading</a> &#124;
+		<a href="/overview/faq.html#o1058">Installation</a> &#124;
+		<a href="/overview/faq.html#o1065">Running</a> &#124;
+		<a href="/overview/faq.html#o1067">Mulgara</a> &#124;
+		<a href="/overview/faq.html#o1057">Pronounciation</a> 
+		   
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="1081.htm"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/overview/downloads.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+ -->
+
+
+
+
+<h1>Mulgara FAQ</h1>
+
+<p class="relatedheading">&nbsp;</p>
+<p class="relateditem"><a href="/overview/faq.html#o1068">What is Mulgara?</a></p>
+<p class="relateditem"><a href="/overview/faq.html#o1053">Available Versions</a></p>
+<p class="relateditem"><a href="/overview/faq.html#o1062">Mulgara Lite</a></p>
+<p class="relateditem"><a href="/overview/faq.html#o1059">Is Mulgara secure?</a></p>
+<p class="relateditem"><a href="/overview/faq.html#o1063">Operating systems</a></p>
+<p class="relateditem"><a href="/overview/faq.html#o1056">Hardware</a></p>
+<p class="relateditem"><a href="/overview/faq.html#o1066">Technologies</a></p>
+<p class="relateditem"><a href="/overview/faq.html#o1064">Relational databases</a></p>
+<p class="relateditem"><a href="/overview/faq.html#o1060">Mulgara and RDF</a></p>
+<p class="relateditem"><a href="/overview/faq.html#o1051">Applications built with Mulgara</a></p>
+<p class="relateditem"><a href="/overview/faq.html#o1054">Building applications with Mulgara</a></p>
+<p class="relateditem"><a href="/overview/faq.html#o1052">Available APIs</a></p>
+<p class="relateditem"><a href="/overview/faq.html#o1055">Downloading</a></p>
+<p class="relateditem"><a href="/overview/faq.html#o1058">Installation</a></p>
+<p class="relateditem"><a href="/overview/faq.html#o1065">Running Mulgara</a></p>
+<p class="relateditem"><a href="/overview/faq.html#o1067">What is a Mulgara?</a></p>
+<p class="relateditem"><a href="/overview/faq.html#o1057">How do I pronounce it?</a></p>
+
+<div class="anchor"><a name="o1068">&nbsp;</a></div>
+<h2>What is Mulgara?</h2>
+
+<p>Mulgara<sup>TM</sup> is an Open Source, massively scalable, transaction-safe, purpose-built database for the storage and retrieval of metadata.</p>
+
+<p>Much like a relational database, one stores information in Mulgara and retrieves it via a query language. Unlike a relational database, Mulgara is optimized for the storage and retrieval of many short statements (in the form of subject-predicate-object, like &quot;Mulgara is fun&quot; or &quot;Mulgara imports RDF&quot;). Mulgara is not based on a relational database due to the large numbers of table joins encountered by relational systems when dealing with metadata. Instead, Mulgara is a completely new database optimized for metadata management.</p>
+
+<p>Mulgara is a fork of the <a href="http://sourceforge.net/projects/kowari/">Kowari project</a>. The Mulgara fork commenced work in July 2006.</p>
+
+<p class="backtotop"><a id="h1366" class="" title="Mulgara FAQ" href="/overview/faq.html">Back to Top</a></p>
+
+
+<div class="anchor"><a name="o1053">&nbsp;</a></div>
+<h2>Available Versions</h2>
+
+<p>A complete version of Mulgara is available as a source download. This version requires knowledge of Java<sup>TM</sup> development to build. A smaller version containing only core components is also available - Mulgara Lite<sup>TM</sup>. More information <a id="h1159" class="documentlinktemplate" title="Mulgara Lite" href="/overview/faq.html#o1062">is available below</a>.</p>
+
+<p class="backtotop"><a id="h1366_2" class="" title="Mulgara FAQ" href="/overview/faq.html">Back to Top</a></p>
+
+
+<div class="anchor"><a name="o1062">&nbsp;</a></div>
+<h2>Mulgara Lite</h2>
+
+<p>Kowari 1.0.2 introduced a new &quot;lite&quot; version. This is available as a binary download below. Mulgara Lite is not a <em>complete</em> Mulgara distribution - it only includes core components - nor is it a binary distribution in the conventional sense. Mulgara Lite is available in binary format only and is aimed at developers wanting a smaller footprint datastore without additional functionality.</p>
+
+<p>Mulgara Lite includes the core APIs - iTQL, RDQL, JRDF, Jena, CLI, etc. - but does not include additional tools such as Descriptors or SOAP bindings. Removing these components from the distribution reduces the file size dramatically.</p>
+
+<p class="backtotop"><a id="h1366_3" class="" title="Mulgara FAQ" href="/overview/faq.html">Back to Top</a></p>
+
+
+<div class="anchor"><a name="o1059">&nbsp;</a></div>
+<h2>Is Mulgara secure?</h2>
+
+<p>The commercial code that Mulgara and Kowari were originally based on, contained both transport layer security (SSL/TLS), and store level authentication and authorization. The open source releases of Kowari and Mulgara contain no security infrastructure.</p>
+
+<p class="backtotop"><a id="h1366_4" class="" title="Mulgara FAQ" href="/overview/faq.html">Back to Top</a></p>
+
+
+<div class="anchor"><a name="o1063">&nbsp;</a></div>
+<h2>Operating systems</h2>
+
+<p>Mulgara will run on operating systems that support Java 1.5 and above. It has been tested for use on Sun<sup>TM</sup> Solaris<sup>TM</sup>, Debian and RedHat versions of Linux<sup>&reg;</sup>, and Microsoft<sup>&reg;</sup> Windows NT<sup>&reg;</sup> and Windows<sup>&reg;</sup> 2000 and XP. Mulgara also runs on Mac OS<sup>&reg;</sup> 10.2 or higher. Mac OS X is the platform used by most of the developers.</p>
+
+<p class="backtotop"><a id="h1366_5" class="" title="Mulgara FAQ" href="/overview/faq.html">Back to Top</a></p>
+
+
+<div class="anchor"><a name="o1056">&nbsp;</a></div>
+<h2>Hardware</h2>
+
+<p>Mulgara may be deployed on standard personal computers based on a 32-bit architecture (e.g. Intel<sup>&reg;</sup> Pentium<sup>&reg;</sup> II or III processors and 64 MB of memory) or midrange servers utilizing 32 or 64-bit architectures (e.g. Sun Enterprise<sup>TM</sup>, Cobalt<sup>TM</sup> or Netra<sup>TM</sup> range of servers). Mulgara can explicitly take advantage of 64-bit architectures when they are available to it.</p>
+
+<p class="backtotop"><a id="h1366_6" class="" title="Mulgara FAQ" href="/overview/faq.html">Back to Top</a></p>
+
+
+<div class="anchor"><a name="o1066">&nbsp;</a></div>
+<h2>Technologies</h2>
+
+<p>Mulgara is implemented in the Java programming language and is 100% Java. It depends on standard Java packages available from Sun Microsystems<sup>TM</sup>. Mulgara also includes Java code from other projects. Details may be found on the <a id="h1158" class="documentlinktemplate" title="Legal Information" href="/overview/legalinfo.html">Legal</a> page.</p>
+
+<p class="backtotop"><a id="h1366_7" class="" title="Mulgara FAQ" href="/overview/faq.html">Back to Top</a></p>
+
+
+<div class="anchor"><a name="o1064">&nbsp;</a></div>
+<h2>Relational databases</h2>
+
+<p>Mulgara is not implemented on top of a relation database such as an Oracle<sup>&reg;</sup> database or Microsoft SQL Server. It is a new type of database, optimized from the ground up for the storage and management of metadata. More information can be found on the <a id="h1047" class="documentlinktemplate" title="Mulgara Overview" href="/overview/index.html#overview">Overview</a> page.</p>
+
+<p>General purpose databases may hold any type of data. Metadata, on the other hand, is held in a particular form of short subject-predicate-object statements. By optimizing Mulgara for this type of data, great efficiencies may be realized. Relational databases are excellent for storing data where the schema is well defined and stable and the type of queries are unlikely to change. Data warehouses attempt to work around these limitations by indexing all data, but they are expensive and used for non-transactional operations. Large metadata stores must be able to have full transactional capabilities on rapidly changing data structures.</p>
+
+<p>Object databases create an object for each metadata statement, resulting in very large memory requirements and slow processing. Metadata stores often hold huge numbers of small metadata statements, making them particularly unsuited to OO databases.</p>
+
+<p>XML databases store hierarchical and ordered data; metadata is neither. Most vendors of XML databases base their product on OO or relational databases and hence suffer some of the same problems.</p>
+
+<p class="backtotop"><a id="h1366_8" class="" title="Mulgara FAQ" href="/overview/faq.html">Back to Top</a></p>
+
+
+<div class="anchor"><a name="o1060">&nbsp;</a></div>
+<h2>Mulgara and RDF</h2>
+
+<p>Mulgara implements many of the W3C's Semantic Web concepts (see <a class="internetlinktemplate" title="" href="http://www.w3c.org/2001/sw">http://www.w3c.org/2001/sw</a> and <a class="internetlinktemplate" title="" href="http://www.w3.org/rdf/">http://www.w3.org/RDF/</a> for more details). Mulgara models hold metadata in the form of short subject-predicate-object statements, much like the W3C's Resource Description Framework (RDF) standard. Metadata may be imported into or exported from Mulgara in RDF or <a class="internetlinktemplate" title="" href="http://www.w3.org/2001/sw/rdfcore/ntriples/">N3</a> form.</p>
+
+<p class="backtotop"><a id="h1366_9" class="" title="Mulgara FAQ" href="/overview/faq.html">Back to Top</a></p>
+
+
+<div class="anchor"><a name="o1051">&nbsp;</a></div>
+<h2>Applications built with Mulgara</h2>
+
+<p>Mulgara has been used as the basis for several commercial activities including data mining activities and litigation support services.</p>
+
+<p class="backtotop"><a id="h1366_10" class="" title="Mulgara FAQ" href="/overview/faq.html">Back to Top</a></p>
+<div class="anchor"><a name="o1054">&nbsp;</a></div>
+<h2>Building applications with Mulgara</h2>
+
+<p>Developers can use, extend or modify Mulgara components via a wide range of APIs.</p>
+
+<p class="backtotop"><a id="h1366_11" class="" title="Mulgara FAQ" href="/overview/faq.html">Back to Top</a></p>
+<div class="anchor"><a name="o1052">&nbsp;</a></div>
+<h2>Available APIs</h2>
+<ul><li><a class="jumptemplate" title="" href="http://www.hpl.hp.com/semweb/jena.htm">Jena</a></li><li><a class="jumptemplate" title="" href="http://jrdf.sourceforge.net/">JRDF</a></li><li>Interactive user (command line) shell</li><li>Web-based query interface</li><li>SOAP</li><li>iTQL JavaBean<sup>TM</sup></li><li>Descriptors (transform metadata to XML, HTML, etc. using XSLT)</li></ul>
+<p class="backtotop"><a id="h1366_12" class="" title="Mulgara FAQ" href="/overview/faq.html">Back to Top</a></p>
+
+
+<div class="anchor"><a name="o1055">&nbsp;</a></div>
+<h2>Downloading</h2>
+
+<p>Information on downloading Mulgara in source form can be found on the <a id="h1260" class="documentlinktemplate" title="Mulgara Downloads" href="/overview/downloads.html">Downloads page</a>. Mulgara binaries are not currently available.</p>
+
+<p class="backtotop"><a id="h1366_13" class="" title="Mulgara FAQ" href="/overview/faq.html">Back to Top</a></p>
+
+
+<div class="anchor"><a name="o1058">&nbsp;</a></div>
+<h2>Installation</h2>
+
+<p>Information on installing Mulgara is available in the documentation.</p>
+
+<p class="backtotop"><a id="h1366_14" class="" title="Mulgara FAQ" href="/overview/faq.html">Back to Top</a></p>
+
+
+<div class="anchor"><a name="o1065">&nbsp;</a></div>
+<h2>Running Mulgara</h2>
+
+<p>More information on running Mulgara will be available shortly.</p>
+
+<p class="backtotop"><a id="h1366_15" class="" title="Mulgara FAQ" href="/overview/faq.html">Back to Top</a></p>
+
+
+<div class="anchor"><a name="o1067">&nbsp;</a></div>
+<h2>What is a Mulgara?</h2>
+
+<p>The mulgara is a small carnivorous marsupial weighing about 130 g (4.6 oz). It is found in the deserts of central and Western Australian. The mulgara's diet consists of insects, arachnids, and small vertebrates such as rodents. It does not need to drink water - it gets all of the moisture it needs from its food. Mulgara are primarily nocturnal, probably more so in the summer to avoid the heat; however some mulgara will enjoy the sun on warmer winter days. Breeding season occurs during the winter months. It is believed that gestation lasts for at least one month. A single littler can produce up to eight young.  They are closely related to the Kowari.</p>
+
+<p>Source: <a class="internetlinktemplate" title="" href="http://www.australianfauna.com/mulgara.php">http://www.australianfauna.com/mulgara.php</a>.</p>
+
+<p>A picture can be found <a class="internetlinktemplate" title="" href="http://www.abc.net.au/nature/australasia/ep2_pic6a.htm">here</a>.</p>
+
+<p class="backtotop"><a id="h1366_16" class="" title="Mulgara FAQ" href="/overview/faq.html">Back to Top</a></p>
+<div class="anchor"><a name="o1057">&nbsp;</a></div>
+<h2>How do I pronounce it?</h2>
+
+<p>Mulgara is pronounced in three syllables - Mul-garr-ra; Mul - as in &quot;mull&quot;, garr - as in &quot;car&quot;, ra - as in &quot;huh&quot;.</p>
+
+<p class="backtotop"><a id="h1366_17" class="" title="Mulgara FAQ" href="/overview/faq.html">Back to Top</a></p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

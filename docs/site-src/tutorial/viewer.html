@@ -1,0 +1,119 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Mulgara Viewer</title>
+    <meta name="keywords" content="Mulgara Viewer, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/tutorial/itqlshellsession.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/tutorial/loadingrdf.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+ -->
+
+
+
+
+<h2>Mulgara Viewer</h2>
+
+<p>The Mulgara Viewer<sup>TM</sup> is a web-based query interface for Mulgara. It allows you to execute iTQL<sup>TM</sup> commands and then view the results in formatted HTML.</p>
+
+<p>With Mulgara is running, you can access the Mulgara Viewer by opening your web browser and entering a URL of <code>http://&lt;host name&gt;:&lt;port&gt;/webui/</code> where <code>&lt;host name&gt;</code> is the server name and <code>&lt;port&gt;</code> is the HTTP port you started TKS with. The default port is 8080. For example, with Mulgara running on your local system on port 8080, the URL is <code><a class="" title="" href="http://localhost:8080/webui/">http://localhost:8080/webui/</a></code>.</p>
+
+<p>See the <a id="h1427" class="documentlinktemplate" title="Mulgara Command Line Options" href="/overview/install.html#o2581">Mulgara Configuration File section</a> in the Administrator Guide for more information on starting Mulgara with a different host name and port.</p>
+
+<p>The resources displayed from queries made to the Mulgara Viewer are links, that when clicked on allow you to traverse the RDF graph in the model.</p>
+
+<p>Clicking on a resource in a query result executes three additional queries, with each query varying the role of the resource as a constraint on the subject, predicate and object. This allows you to see where the resource has been used in any statement in the model. Literals only ever form the object part of an RDF statement so clicking on a literal causes the execution of just one query which shows all statements in which the literal is the object.</p>
+
+<p><img src="/img/viewerscreen.gif" alt="TKS Viewer First Screen" height="445" width="700" vspace="2" hspace="2" align="bottom" border="1" /></p>
+
+<p>The Mulgara Viewer screen (shown above) includes the following elements:</p>
+<ul><li>Model URI field
+<p class="listcontinue">Allows you to specify a model name. The field defaults to <code>sampledata</code> on your local system.</p>
+</li><li>Example Queries field
+<p class="listcontinue">A drop-down list with eight sample iTQL functions. Running through the functions in order step you through a simple iTQL tutorial.</p>
+</li></ul>
+<div class="anchor"><a name="o1255">&nbsp;</a></div>
+
+<ul><li>Query Text field
+<p class="listcontinue">Edit the iTQL command displayed as a result of selecting one of the eight sample queries. You can also type your own iTQL commands in this field.</p>
+</li><li>Submit Query button
+<p class="listcontinue">Executes the iTQL command.</p>
+</li><li>Clear Query button
+<p class="listcontinue">Clear the Query Text field.</p>
+</li></ul>
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/tutorial/viewer.html#o416">Mulgara Sample Data</a></p>
+<p class="relateditem"><a href="/tutorial/loadingrdf.html">Loading Existing RDF Data</a></p>
+<p class="relateditem"><a href="/tutorial/convertingxml.html">Converting XML Data to RDF</a></p>
+
+<div class="anchor"><a name="o416">&nbsp;</a></div>
+<h2>Mulgara Sample Data</h2>
+
+<p>As stated previously, the Example Queries field contains eight example iTQL<sup>TM</sup> commands that allow you to:</p>
+<ul><li>Create models</li><li>Load sample data into models
+<p class="listcontinue">The sample data contains Rich Site Summary (RSS) news feed data from the World Wide Web Consortium's Web site.&nbsp;RSS is a precursor to RDF and is often used to publish headlines and links to important stories on Web sites so that other sites can automatically syndicate the information.</p>
+</li><li>View data in models</li><li>Drop models</li></ul>
+<p>Executing the example commands in order walks you through a simple tutorial on how to use the Mulgara Viewer<sup>TM</sup> and iTQL.</p>
+
+<p>Each time you select one of the example commands, the Mulgara Viewer places a command into the Query Text field.&nbsp;You can edit the command as required, before submitting it with the Submit Query button.</p>
+<div class="anchor"><a name="o738">&nbsp;</a></div>
+<h3>Example Commands</h3>
+
+<p>The first example command, Step 1. Create a Model, creates a new model called <code>sampledata</code> in the Mulgara database on your local system.</p>
+
+<p>A model in an RDF database is analogous to a table in a relational database.&nbsp;That is, it is a container to hold data. Models group RDF statements together, allowing you to manage the metadata.</p>
+
+<p><img src="/img/viewerstep1.gif" alt="Viewer Step 1" height="445" width="700" vspace="2" hspace="2" align="bottom" border="1" /></p>
+
+<p>Click on the Submit Query button to submit this query and create the model.</p>
+
+<p><img src="/img/viewerstep1result.gif" alt="Viewer Step 1 Result" height="445" width="700" vspace="2" hspace="2" align="bottom" border="1" /></p>
+
+<p>The second example command, Step 2. Load Data into the Model, loads sample data into the Mulgara model just created.&nbsp;The sample data is embedded in the Mulgara JAR file, so the URL used in the iTQL<sup>TM</sup> command is a JAR URL with an embedded <code>file:</code> URL.</p>
+
+<p><img src="/img/viewerstep2.gif" alt="Viewer Step 2" height="445" width="700" vspace="2" hspace="2" align="bottom" border="1" /></p>
+
+<p>The third example command, Step 3. List Everything in the Model, lists all the statements just loaded.</p>
+
+<p><img src="/img/viewerstep3.gif" alt="Viewer Step 3" height="445" width="700" vspace="2" hspace="2" align="bottom" border="1" /></p>
+
+<p>The fourth example command, Step 4. List the News Articles, lists the RSS news summaries in the model.</p>
+
+<p><img src="/img/viewerstep4.gif" alt="Viewer Step 4" height="445" width="700" vspace="2" hspace="2" align="bottom" border="1" /></p>
+
+<p>The remaining example commands (Steps 5 to 8) demonstrate how to load RDF Schemas and use them in iTQL commands, and then drop all created models, which also removes all data stored in them.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

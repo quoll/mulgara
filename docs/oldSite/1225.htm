@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Mulgara Tutorial </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Mulgara Tutorial, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="1139.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="1226.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h1 class="heading1">Mulgara Tutorial</h1>
+<p class="bodytext">This document presents a tutorial on the usage of the Mulgara Semantic Store. It guides the reader from setting up a server through to using the iTQL<sup class="superscript">TM</sup> command line shell. Before starting this tutorial you should read the <a id="h1231" class="documentlinktemplate" title="Installation Guide" href="1139.htm" target="_self">installation guide</a> for information on how to build Mulgara from the source distribution. </p>
+<p class="bodytext">The examples in this tutorial all refer to the host &quot;localhost&quot;. Where this appears, you should substitute this with the fully qualified domain name (FQDN) of your machine. You can find this out as follows. </p>
+<p class="bodytext">On a system running a UNIX<sup class="superscript">&reg;</sup> or Linux<sup class="superscript">&reg;</sup> operating system:</p>
+<p class="commandtext">$ hostname &#0150;f<br />foo.bar.com</p>
+<p class="bodytext">On a system running a Windows<sup class="superscript">&reg;</sup> operating system:</p>
+<p class="commandtext">C:\&gt;ipconfig /all<br /><br />Windows 2000 IP Configuration<br /><br />        Host Name . . . . . . . . . . . . : foo<br />        Primary DNS Suffix  . . . . . . . :<br />        Node Type . . . . . . . . . . . . : Broadcast<br />        IP Routing Enabled. . . . . . . . : No<br />        WINS Proxy Enabled. . . . . . . . : No<br />        DNS Suffix Search List. . . . . . : bar.com<br /><br />Ethernet adapter Local Area Connection:<br /><br />        Connection-specific DNS Suffix  . : bar.com<br />        Description . . . . . . . . . . . : AMD PCNET Family PCI Ethernet Adapter<br />        Physical Address. . . . . . . . . : 00-50-56-A6-14-53<br />        DHCP Enabled. . . . . . . . . . . : Yes<br />        Autoconfiguration Enabled . . . . : Yes<br />        IP Address. . . . . . . . . . . . : 0.0.0.0<br />        Subnet Mask . . . . . . . . . . . : 0.0.0.0<br />        Default Gateway . . . . . . . . . : 0.0.0.0<br />        DHCP Server . . . . . . . . . . . : 0.0.0.0<br />        DNS Servers . . . . . . . . . . . : 0.0.0.0<br />                                            0.0.0.0<br />        Lease Obtained. . . . . . . . . . : Monday, 22 April 2002 5:57:07 PM<br />        Lease Expires . . . . . . . . . . : Tuesday, 7 May 2002 5:57:07 PM</p>
+<p class="bodytext">Under Windows 2000, you'll have to add the &quot;Host Name&quot; with the &quot;Connection-specific DNS Suffix&quot; to obtain your FQDN. </p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "453.6">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="1226.htm" target="_self">System Requirements</a></p><p class="relateditem"><a href="1227.htm" target="_self">Starting a Mulgara Semantic Store Server</a></p><p class="relateditem"><a href="1232.htm" target="_self">iTQL</a></p><p class="relateditem"><a href="230.htm" target="_self">Basic iTQL Operations</a></p><p class="relateditem"><a href="230.htm#o1234" target="_self"></a></p><p class="relateditem"><a href="1236.htm" target="_self">Example iTQL Shell Session</a></p><p class="relateditem"><a href="415.htm" target="_self">Mulgara Viewer</a></p><p class="relateditem"><a href="415.htm#o1255" target="_self"></a></p><p class="relateditem"><a href="415.htm#o416" target="_self">Mulgara Sample Data</a></p><p class="relateditem"><a href="417.htm" target="_self">Loading Existing RDF Data</a></p><p class="relateditem"><a href="3074.htm" target="_self">Converting Data in Relational Databases to RDF</a></p><p class="relateditem"><a href="419.htm" target="_self">Converting XML Data to RDF</a></p></td>
+</tr>
+</table>
+
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

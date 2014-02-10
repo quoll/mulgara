@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Mulgara Viewer </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Mulgara Viewer, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="bodytext"><a href="1236.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="bodytext"><a href="417.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h2 class="heading2">Mulgara Viewer</h2>
+<p class="bodytext">The Mulgara Viewer<sup class="superscript">TM</sup> is a web-based query interface for Mulgara. It allows you to execute iTQL<sup class="superscript">TM</sup> commands and then view the results in formatted HTML.</p>
+<p class="bodytext">With Mulgara is running, you can access the Mulgara Viewer by opening your web browser and entering a URL of <code class="monospace">http://&lt;host name&gt;:&lt;port&gt;/webui/</code> where <code class="monospace">&lt;host name&gt;</code> is the server name and <code class="monospace">&lt;port&gt;</code> is the HTTP port you started TKS with. The default port is 8080. For example, with Mulgara running on your local system on port 8080, the URL is <code class="monospace"><a class="" title="" href="http://localhost:8080/webui/" target="_blank">http://localhost:8080/webui/</a></code>.</p>
+<p class="bodytext">See the <a id="h1427" class="documentlinktemplate" title="Mulgara Command Line Options" href="1139.htm#o2581" target="_self">Mulgara Configuration File section</a> in the Administrator Guide for more information on starting Mulgara with a different host name and port.</p>
+<p class="bodytext">The resources displayed from queries made to the Mulgara Viewer are links, that when clicked on allow you to traverse the RDF graph in the model.</p>
+<p class="bodytext">Clicking on a resource in a query result executes three additional queries, with each query varying the role of the resource as a constraint on the subject, predicate and object. This allows you to see where the resource has been used in any statement in the model. Literals only ever form the object part of an RDF statement so clicking on a literal causes the execution of just one query which shows all statements in which the literal is the object.</p>
+<p class="bodytext"><img src="firstviewerscreen.gif" alt="TKS Viewer First Screen" height="445" width="700" vspace="2" hspace="2" align="bottom" border="1" /></p>
+<p class="bodytext">The Mulgara Viewer screen (shown above) includes the following elements:</p>
+<ul class="listbullet"><li class="listbullet">Model URI field<p class="listcontinue">Allows you to specify a model name. The field defaults to <code class="monospace">sampledata</code> on your local system.</p>
+</li><li class="listbullet">Example Queries field<p class="listcontinue">A drop-down list with eight sample iTQL functions. Running through the functions in order step you through a simple iTQL tutorial.</p>
+</li></ul>
+<a name="o1255"></a>
+<ul class="listbullet"><li class="listbullet">Query Text field<p class="listcontinue">Edit the iTQL command displayed as a result of selecting one of the eight sample queries. You can also type your own iTQL commands in this field.</p>
+</li><li class="listbullet">Submit Query button<p class="listcontinue">Executes the iTQL command.</p>
+</li><li class="listbullet">Clear Query button<p class="listcontinue">Clear the Query Text field.</p>
+</li></ul><table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="415.htm#o416" target="_self">Mulgara Sample Data</a></p><p class="relateditem"><a href="417.htm" target="_self">Loading Existing RDF Data</a></p><p class="relateditem"><a href="419.htm" target="_self">Converting XML Data to RDF</a></p></td>
+</tr>
+</table>
+
+<a name="o416"></a><h2 class="heading2">Mulgara Sample Data</h2>
+<p class="bodytext">As stated previously, the Example Queries field contains eight example iTQL<sup class="superscript">TM</sup> commands that allow you to:</p>
+<ul class="listbullet"><li class="listbullet">Create models</li><li class="listbullet">Load sample data into models<p class="listcontinue">The sample data contains Rich Site Summary (RSS) news feed data from the World Wide Web Consortium's Web site.&nbsp;RSS is a precursor to RDF and is often used to publish headlines and links to important stories on Web sites so that other sites can automatically syndicate the information.</p>
+</li><li class="listbullet">View data in models</li><li class="listbullet">Drop models</li></ul><p class="bodytext">Executing the example commands in order walks you through a simple tutorial on how to use the Mulgara Viewer<sup class="superscript">TM</sup> and iTQL.</p>
+<p class="bodytext">Each time you select one of the example commands, the Mulgara Viewer places a command into the Query Text field.&nbsp;You can edit the command as required, before submitting it with the Submit Query button.</p>
+<a name="o738"></a><h3 class="heading3">Example Commands</h3>
+<p class="bodytext">The first example command, Step 1. Create a Model, creates a new model called <code class="monospace">sampledata</code> in the Mulgara database on your local system.</p>
+<p class="bodytext">A model in an RDF database is analogous to a table in a relational database.&nbsp;That is, it is a container to hold data. Models group RDF statements together, allowing you to manage the metadata.</p>
+<p class="bodytext"><img src="viewerstep1.gif" alt="Viewer Step 1" height="445" width="700" vspace="2" hspace="2" align="bottom" border="1" /></p>
+<p class="bodytext">Click on the Submit Query button to submit this query and create the model.</p>
+<p class="bodytext"><img src="viewerstep1result.gif" alt="Viewer Step 1 Result" height="445" width="700" vspace="2" hspace="2" align="bottom" border="1" /></p>
+<p class="bodytext">The second example command, Step 2. Load Data into the Model, loads sample data into the Mulgara model just created.&nbsp;The sample data is embedded in the Mulgara JAR file, so the URL used in the iTQL<sup class="superscript">TM</sup> command is a JAR URL with an embedded <code class="monospace">file:</code> URL.</p>
+<p class="bodytext"><img src="viewerstep2.gif" alt="Viewer Step 2" height="445" width="700" vspace="2" hspace="2" align="bottom" border="1" /></p>
+<p class="bodytext">The third example command, Step 3. List Everything in the Model, lists all the statements just loaded.</p>
+<p class="bodytext"><img src="viewerstep3.gif" alt="Viewer Step 3" height="445" width="700" vspace="2" hspace="2" align="bottom" border="1" /></p>
+<p class="bodytext">The fourth example command, Step 4. List the News Articles, lists the RSS news summaries in the model.</p>
+<p class="bodytext"><img src="viewerstep4.gif" alt="Viewer Step 4" height="445" width="700" vspace="2" hspace="2" align="bottom" border="1" /></p>
+<p class="bodytext">The remaining example commands (Steps 5 to 8) demonstrate how to load RDF Schemas and use them in iTQL commands, and then drop all created models, which also removes all data stored in them.</p>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

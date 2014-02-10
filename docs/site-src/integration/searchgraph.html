@@ -1,0 +1,115 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Searching the Graph</title>
+    <meta name="keywords" content="Search, Graph, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/integration/jrdfaddtriples.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/integration/jrdfreify.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/integration/jrdftutorial.html">JRDF Tutorial</a></p>
+<p class="relateditem"><a href="/integration/jrdfprereq.html">Prerequisites</a></p>
+<p class="relateditem"><a href="/integration/jrdfprereq.html#o2898">Obtaining a Session from a Mulgara Server</a></p>
+<p class="relateditem"><a href="/integration/jrdfprereq.html#o2899">Comparison of JRDF Graph Implementations</a></p>
+<p class="relateditem"><a href="/integration/jrdfcreategraph.html">Creating the Graph</a></p>
+<p class="relateditem"><a href="/integration/jrdfcreatenodes.html">Creating Nodes and Triples</a></p>
+<p class="relateditem"><a href="/integration/jrdfaddtriples.html">Adding Triples to the Graph</a></p>
+<p class="relateditem"><a href="/integration/jrdfreify.html">Reify Triples</a></p>
+<p class="relateditem"><a href="/integration/jrdfremove.html">Removing Triples from the Graph</a></p>
+
+
+ -->
+
+
+
+
+<h3>Searching the Graph</h3>
+
+<p>You can search a graph using it's <code>find(Triple triple)</code> method. The nodes in the triple are used to match the nodes in the graph. Any null nodes in the triple are treated as wildcards and match to any node in the graph.</p>
+
+<p>Triples are returned in the form of a <code>ClosableIterator,</code> which extends <code>Iterator</code> and has a <code>close()</code> method that is used to free resources. Calling <code>next()</code> on a <code>ClosableIterator</code> returns a triple object. Triples are not guaranteed to be returned in any specific order.</p>
+
+<p>The following code examples demonstrate using the <code>find(Triple triple)</code> method to search a graph.</p>
+
+<p>To search for all triples:</p>
+
+<p class="commandtext">//get all Triples&nbsp; <br />
+Triple findAll = elementFactory.createTriple(null, null, null);&nbsp; <br />
+ClosableIterator allTriples = graph.find(findAll);</p>
+
+<p>This returns:</p>
+
+<p class="commandtext">http://example.org/staffid#85740&nbsp; http://example.org/terms#address&nbsp;&nbsp;&nbsp;&nbsp; _blankNode123<br />
+_blankNode123&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; http://example.org/terms#street&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;1501 Grant Avenue&quot;<br />
+_blankNode123&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; http://example.org/terms#city&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;Bedford&quot;<br />
+_blankNode123&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; http://example.org/terms#state&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;Massachusetts&quot;<br />
+_blankNode123&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; http://example.org/terms#postalCode&nbsp; &quot;01730&quot;</p>
+
+<p>To search for all addresses:</p>
+
+<p class="commandtext">//search for address (as a subject)<br />
+Triple findAddress = elementFactory.createTriple(address, null, null);<br />
+ClosableIterator addressSubject = graph.find(findAddress);</p>
+
+<p>This returns:</p>
+
+<p class="commandtext">_blankNode123&nbsp; http://example.org/terms#street&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;1501 Grant Avenue&quot;<br />
+_blankNode123&nbsp; http://example.org/terms#city&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;Bedford&quot;<br />
+_blankNode123&nbsp; http://example.org/terms#state&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;Massachusetts&quot;<br />
+_blankNode123&nbsp; http://example.org/terms#postalCode&nbsp; &quot;01730&quot;</p>
+
+<p>To search for a city:</p>
+
+<p class="commandtext">//search for the city: &quot;Bedford&quot;<br />
+Triple findCity = elementFactory.createTriple(null, null, city);<br />
+ClosableIterator bedfordCity = graph.find(findCity);</p>
+
+<p>This returns:</p>
+
+<p class="commandtext">_blankNode123&nbsp; http://example.org/terms#city&nbsp; &quot;Bedford&quot;</p>
+
+<p>To search for subjects with an address property:</p>
+
+<p class="commandtext">//search for any subject that has an address<br />
+Triple findAddresses = elementFactory.createTriple(null, hasAddress, null);<br />
+ClosableIterator addresses = graph.find(findAddresses);</p>
+
+<p>This returns:</p>
+
+<p class="commandtext">http://example.org/staffid#85740&nbsp; http://example.org/terms#address&nbsp;&nbsp;&nbsp;&nbsp; _blankNode123</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

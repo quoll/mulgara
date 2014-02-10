@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Installation Guide </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Installation Guide, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="1350.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="1225.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h1 class="heading1">Installation Guide</h1>
+<p class="bodytext">Mulgara is shipped in two forms, Mulgara Lite is shipped as binary files only or the full version as a source code download. If you have downloaded the binary files <code class="monospace">mulgara-1.0.0.jar</code> and <code class="monospace">itql-1.0.0.jar</code> please proceed with <a id="h1262" class="" title="Installing Java" href="1139.htm#o1141" target="_self">Installing Java</a> and then skip to <a id="h1263" class="" title="Running a Mulgara Server" href="1139.htm#o1146" target="_self">Running a Mulgara server</a>. If you have obtained source code, you will need to build the binary files from a build environment by completing all sections in this document. All users should take note of the hints given in the latest set of Release Notes.</p>
+<p class="note"><strong class="strong"><strong class="strong">Note -</strong></strong> Throughout this document, <code class="monospace">$MULGARA_HOME</code> is used to refer to the directory containing either the server or iTQL<sup class="superscript">TM</sup> shell binary JAR file, or the directory containing the source code. Where examples refer to <code class="monospace">$MULGARA_HOME</code> below, you should substitute in this location.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "453.6">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="1139.htm#o1141" target="_self">Installing Java</a></p><p class="relateditem"><a href="1139.htm#o1142" target="_self">Checkout Setup</a></p><p class="relateditem"><a href="1139.htm#o1143" target="_self">Build Targets</a></p><p class="relateditem"><a href="1139.htm#o1144" target="_self">Generating Mulgara javadoc</a></p><p class="relateditem"><a href="1139.htm#o1145" target="_self">Generating the Server and the iTQL Shell</a></p><p class="relateditem"><a href="1139.htm#o1146" target="_self">Running a Mulgara Server</a></p><p class="relateditem"><a href="1139.htm#o402" target="_self">Mulgara Configuration File</a></p><p class="relateditem"><a href="1139.htm#o2581" target="_self">Mulgara Command Line Options</a></p><p class="relateditem"><a href="1139.htm#o1256" target="_self">Java System Properties</a></p><p class="relateditem"><a href="1139.htm#o3030" target="_self"></a></p><p class="relateditem"><a href="1139.htm#o1148" target="_self">Running the Test Cases</a></p></td>
+</tr>
+</table>
+
+<a name="o1141"></a><h2 class="heading2">Installing Java</h2>
+<p class="bodytext">Download a J2SE<sup class="superscript">TM</sup> 1.4.0 or above for your platform from <a class="jumptemplate" title="" href="http://java.sun.com/j2se/1.4/" target="_blank">http://java.sun.com/j2se/</a>, and install it. Installation instructions for <a class="jumptemplate" title="" href="http://java.sun.com/j2se/1.4/install-windows.html" target="_blank">Windows</a><sup class="superscript"><a class="jumptemplate" title="" href="http://java.sun.com/j2se/1.4/install-windows.html" target="_blank">&reg;</a></sup> and <a class="jumptemplate" title="" href="http://java.sun.com/j2se/1.4/install-linux.html" target="_blank">Linux</a><sup class="superscript"><a class="jumptemplate" title="" href="http://java.sun.com/j2se/1.4/install-linux.html" target="_blank">&reg;</a></sup> operating systems are available. You should then check that the installation added the java commands to your path by typing: </p>
+<p class="commandtext"><code class="monospace">$ java -version</code></p>
+<p class="bodytext">You should get the following: </p>
+<p class="commandtext"><code class="monospace">java version &quot;1.4.2&quot;<br />Java(TM) 2 Runtime Environment, Standard Edition (build 1.4.0-b28)<br />Java HotSpot(TM) Client VM (build 1.4.2-b28, mixed mode)</code></p>
+<p class="bodytext">If your shell reports that it cannot find the command, add <code class="monospace">&lt;JAVA_HOME&gt;/bin</code> (where <code class="monospace">JAVA_HOME</code> is the location where you installed J2SE to) to your path in the appropriate way for your shell.</p>
+<p class="bodytext">Note. You <strong class="strong">must</strong> use J2SE 1.4.0 or higher for compiling and running Mulgara.</p>
+<a name="o1142"></a><h2 class="heading2">Checkout Setup</h2>
+<p class="bodytext">After you've obtained a checkout of the Mulgara Semantic Store project, you'll need Add a <code class="monospace">JAVA_HOME</code> environment variable pointing to the place that you have java installed to get your checkout working.</p>
+<p class="bodytext">From a Windows command line:</p>
+<p class="commandtext"><code class="monospace">$ set JAVA_HOME=C:\jdk1.4.2</code></p>
+<p class="bodytext">The installation program should have set this setting automatically.</p>
+<p class="bodytext">Under bash:</p>
+<p class="commandtext"><code class="monospace">$ export JAVA_HOME=/usr/local/java</code></p>
+<p class="bodytext">Note. <code class="monospace">$MULGARA_HOME</code> refers to the place where you checked out the Mulgara module from CVS. The version of the junit JAR file listed above may be different from the version included with your checkout.</p>
+<p class="note"><strong class="strong">Note -</strong> Under a Windows operating system you could set these environment variables in Control Panel -&gt; System -&gt; Advanced -&gt; Environment Variables instead of in each shell. On most other versions of Windows you'll probably want to add these to your <code class="monospace">autoexec.bat</code> file.</p>
+<a name="o1143"></a><h2 class="heading2">Build Targets</h2>
+<p class="bodytext">To get a list of the available targets in the build script, do the following: </p>
+<ol class="listnumber"><li class="listnumber">Change to the Mulgara home directory: <p class="listcontinuecommandtext">$ cd $MULGARA_HOME</p>
+</li><li class="listnumber">To list the targets on a system running a UNIX<sup class="superscript">&reg;</sup> operating system:<p class="listcontinuecommandtext">$ ./build.sh -projecthelp</p>
+<p class="listcontinue">To list the targets on a system running a Windows<sup class="superscript">&reg;</sup> operating system:</p>
+<p class="listcontinuecommandtext">$ build -projecthelp</p>
+</li></ol><p class="bodytext">You can chain targets together instead of invoking ant multiple times. This saves the JVM startup time associated with each ant run. So for example, suppose that you made a change to the source, and wanted a clean build. You may want to bring the build back to an original state (no generated files), and generate all distributable files. Instead of two commands, you could type:</p>
+<p class="commandtext">$ ./build.sh clean dist</p>
+<p class="bodytext">Or, for systems running a Windows operating system: </p>
+<p class="commandtext">$ build.bat clean dist</p>
+<a name="o1144"></a><h2 class="heading2">Generating Mulgara javadoc</h2>
+<p class="bodytext">To generate the Mulgara javadoc you'll need to perform the following steps:</p>
+<ol class="listnumber"><li class="listnumber">Change to the Mulgara home directory:<p class="listcontinuecommandtext">$ cd $MULGARA_HOME</p>
+</li><li class="listnumber">Run the javadoc target.<p class="listcontinue">For systems running a UNIX operating system:</p>
+<p class="listcontinuecommandtext">$ ./build.sh javadoc</p>
+<p class="listcontinue">For systems running a Windows operating system:</p>
+<p class="listcontinuecommandtext">$ build javadoc</p>
+</li></ol><p class="bodytext">You should then be able to view the Mulgara javadoc.</p>
+<a name="o1145"></a><h2 class="heading2">Generating the Server and the iTQL Shell</h2>
+<p class="bodytext">To generate the server and iTQL Shell you'll need to perform the following steps:</p>
+<ol class="listnumber"><li class="listnumber">Change to the Mulgara home directory: <p class="listcontinuecommandtext">$ cd $MULGARA_HOME</p>
+</li><li class="listnumber">The logging files are located in $MULGARA_HOME/conf and are named log4j-&lt;component&gt;.xml. To configure the logging system, you'll need to set the path to which logging information is sent. For example the default configuration for the iTQL component is: <p class="listcontinuecommandtext">&lt;!-- Log to a file --&gt;<br />&lt;appender name=&quot;LOGFILE&quot; class=&quot;org.apache.log4j.FileAppender&quot;&gt;<br />&lt;param name=&quot;File&quot; value=&quot;./itql.log&quot;/&gt;<br />&lt;layout class=&quot;org.apache.log4j.PatternLayout&quot;&gt;<br />&lt;param name=&quot;ConversionPattern&quot; value=&quot;%d %-5p [%t] %C{2} - %m%n&quot;/&gt;<br />&lt;/layout&gt;<br />&lt;/appender&gt;</p>
+<p class="listcontinue">Which sends logging information to a log file named <code class="monospace">./itql.log</code>, which will create a logging file in the directory from where you run the interpreter. This may not be appropriate for your environment, so you may need to change this to a more sensible path.</p>
+</li><li class="listnumber">Run the dist target.<p class="listcontinue">For systems running a UNIX operating system:</p>
+<p class="listcontinuecommandtext">$ ./build.sh dist</p>
+<p class="listcontinue">For systems running a Windows operating system:</p>
+<p class="listcontinuecommandtext">$ build dist</p>
+<p class="listcontinue">This creates the two binary files called <code class="monospace">itql-1.0.0.jar</code> and <code class="monospace">mulgara-1.0.0.jar</code> in <code class="monospace">$MULGARA_HOME/dist</code> directory.</p>
+</li><li class="listnumber">Run the executable (the version number for your installation may be different): <p class="listcontinuecommandtext">$ java -jar dist/itql-<code class="monospace">1.0.0</code>.jar</p>
+</li></ol><p class="bodytext">If the iTQL Shell starts correctly, you get a prompt back. Enter the quit command at the prompt to exit the interpreter.</p>
+<p class="commandtext">ITQL&gt; quit ;</p>
+<a name="o1146"></a><h2 class="heading2">Running a Mulgara Server</h2>
+<p class="bodytext">Executing an executable JAR file runs the server. To start Mulgara you'll need to do the following:</p>
+<ol class="listnumber"><li class="listnumber">Change to the directory (folder) into which you downloaded Mulgara: <p class="listcontinuecommandtext">$ cd $MULGARA_HOME</p>
+</li><li class="listnumber">Start the executable JAR:<p class="listcontinuecommandtext">$ java -jar <code class="monospace">mulgara-1.0.0.jar</code>.jar</p>
+<p class="listcontinue">You should see the following line when the server is starting, identifying the build number:</p>
+<p class="listcontinuecommandtext">1 [main] INFO EmbeddedMulgaraServer - Mulgara Semantic Store version 1.0 Build (v<code class="monospace">1.0.0</code>)</p>
+<p class="listcontinue">Once you see a line similar to the following display in the console the server is ready to be used.</p>
+<p class="listcontinuecommandtext">INFO EmbeddedMulgaraServer - Successfully started Mulgara server at <br />rmi://localhost/server1 in directory /usr/local/mulgara/server1</p>
+<p class="listcontinue">However, if the following message displays then the HTTP port is already occupied by another process. See the <a id="h2634" class="documentlinktemplate" title="Mulgara Command Line Options" href="1139.htm#o2581" target="_self">Command Line Options section</a> for more information on how to change this.</p>
+<p class="listcontinuecommandtext">ERROR EmbeddedMulgaraServer - java.net.BindException: Address already in use</p>
+<p class="listcontinue">If you see the following message, you may not have started the RMI registry correctly. As stated previously, see the <a id="h2634_2" class="documentlinktemplate" title="Mulgara Command Line Options" href="1139.htm#o2581" target="_self">Command Line Options section</a> for more information on how to change this..</p>
+<p class="listcontinuecommandtext">ERROR EmbeddedMulgaraServer - javax.naming.ServiceUnavailableException <br />    [Root exception is java.rmi.ConnectException:<br />    Connection refused to host: localhost; nested exception is:<br />    java.net.ConnectException: Connection refused]</p>
+</li><li class="listnumber">To verify your installation is working correctly open your web browser and enter the following URL:<p class="listcontinuecommandtext">http://localhost:8080</p>
+<p class="listnote"><strong class="strong">Note -</strong> Your HTTP port may be different if you have supplied a <code class="monospace">-p</code> option.</p>
+<p class="listcontinue">Follow the links to the user documentation to learn more about using Mulgara.</p>
+</li></ol>
+<a name="o402"></a><h2 class="heading2">Mulgara Configuration File</h2>
+<p class="bodytext">A default XML configuration file, packaged within the Mulgara executable JAR file, configures how Mulgara runs. This file is shown below.</p>
+<p class="commandtext">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br /><br />&lt;!--<br />Mulgara Semantic Store configuration file.<br />--&gt;<br /><br />&lt;MulgaraConfig&gt;<br /><br />  &lt;!-- Paths to external component configuration, relative to JAR file --&gt;<br />  &lt;ExternalConfigPaths&gt;<br />    &lt;MulgaraLogging&gt;conf/log4j-tks.xml&lt;/MulgaraLogging&gt;<br />    &lt;WebDefault&gt;conf/webdefault.xml&lt;/WebDefault&gt;<br />  &lt;/ExternalConfigPaths&gt;<br /><br />  &lt;!--<br />    The hostname to bind Mulgara to<br /><br />    Note. Not setting will cause Mulgara to bind to the canonical local machine name<br />  --&gt;<br />  &lt;!--&lt;MulgaraHost&gt;localhost&lt;/MulgaraHost&gt;--&gt;<br /><br />  &lt;!--<br />    Configuration for the Jetty servlet container<br /><br />    Note. Not setting the &quot;Host&quot; parameter will cause Jetty to listen on<br />          all interfaces<br />  --&gt;<br />  &lt;Jetty&gt;<br />    &lt;Listener&gt;<br />      &lt;!--&lt;Host&gt;localhost&lt;/Host&gt;--&gt;<br />      &lt;Port&gt;8080&lt;/Port&gt;<br />      &lt;MinThreads&gt;5&lt;/MinThreads&gt;<br />      &lt;MaxThreads&gt;255&lt;/MaxThreads&gt;<br />      &lt;MaxIdleTimeMs&gt;60000&lt;/MaxIdleTimeMs&gt;<br />      &lt;MaxReadTimeMs&gt;60000&lt;/MaxReadTimeMs&gt;<br />      &lt;LowResourcePersistTimeMs&gt;5000&lt;/LowResourcePersistTimeMs&gt;<br />    &lt;/Listener&gt;<br />  &lt;/Jetty&gt;<br /><br />  &lt;!-- The name of the server, used for RMI binding --&gt;<br />  &lt;ServerName&gt;server1&lt;/ServerName&gt;<br /><br />  &lt;!-- RMI registry port --&gt;<br />  &lt;RMIPort&gt;1099&lt;/RMIPort&gt;<br /><br />  &lt;!--<br />    The path to persist data to, one of:<br />    + . - current directory (directory from which Mulgara JAR was run)<br />    + temp - default system temporary directory<br />    + &lt;path&gt; - user defined (OS dependant) path<br />  --&gt;<br />  &lt;PersistancePath&gt;.&lt;/PersistancePath&gt;<br /><br />  &lt;!--<br />    Database implementation to use, one of:<br />    org.mulgara.store.xa.XADatabaseImpl<br />      (Metaphasic transactional triple store)<br />  --&gt;<br />  &lt;TripleStoreImplementation&gt;org.mulgara.store.xa.XADatabaseImpl&lt;/TripleStoreImplementation&gt;<br /><br />  &lt;!--<br />    Implementations of the persistent and temporary string and node pools to use,<br />    as well as the resolver class to use as the System Resolver.<br />    (NOT available in the TKS 2.1 beta 1 testing period.)<br />  --&gt;<br />  &lt;PersistentNodePoolClass&gt;org.mulgara.store.nodepool.xa.XANodePoolFactory<br />  &lt;/PersistentNodePoolClass&gt;<br />  &lt;TemporaryNodePoolClass&gt;org.mulgara.store.nodepool.memory.MemoryNodePoolFactory<br />  &lt;/TemporaryNodePoolClass&gt;<br />  &lt;PersistentStringPoolClass&gt;org.mulgara.store.stringpool.xa.XAStringPoolFactory<br />  &lt;/PersistentStringPoolClass&gt;<br />  &lt;TemporaryStringPoolClass&gt;org.mulgara.store.stringpool.memory.MemoryStringPoolFactory<br />  &lt;/TemporaryStringPoolClass&gt;<br />  &lt;SystemResolverClass&gt;org.mulgara.resolver.store.StatementStoreResolverFactory<br />  &lt;/SystemResolverClass&gt;<br /><br />  &lt;!--<br />    Implementations of the ContentHandler interface to use for resolving mime<br />    types. (NOT available in the TKS 2.1 beta 1 testing period.)<br />  --&gt;<br />  &lt;ContentHandlerClass&gt;org.mulgara.content.rdfxml.RDFXMLContentHandler&lt;/ContentHandlerClass&gt;<br />  &lt;ContentHandlerClass&gt;org.mulgara.content.mp3.MP3ContentHandler&lt;/ContentHandlerClass&gt;<br /><br />  &lt;!--<br />    The factories to use for generating resolver objects.<br />    (NOT available in the TKS 2.1 beta 1 testing period.)<br />  --&gt;<br />  &lt;!--ResolverFactoryClass&gt;org.mulgara.resolver.file.FileResolverFactory&lt;/ResolverFactoryClass--&gt;<br />  &lt;ResolverFactoryClass&gt;org.mulgara.resolver.lucene.LuceneResolverFactory&lt;/ResolverFactoryClass&gt;<br />  &lt;!--ResolverFactoryClass&gt;org.mulgara.resolver.http.HttpResolverFactory&lt;/ResolverFactoryClass--&gt;<br />  &lt;ResolverFactoryClass&gt;org.mulgara.resolver.url.URLResolverFactory&lt;/ResolverFactoryClass&gt;<br />  &lt;ResolverFactoryClass&gt;org.mulgara.resolver.view.ViewResolverFactory&lt;/ResolverFactoryClass&gt;<br /><br />  &lt;!-- iTQL script to run on startup --&gt;<br />  &lt;StartupScript&gt;foo.itql&lt;/StartupScript&gt;<br />  &lt;!-- smtp server for email notifications<br />    mail.xyz.com<br />  --&gt;<br />  &lt;Smtp&gt;&lt;/Smtp&gt;<br /><br />&lt;/MulgaraConfig&gt;</p>
+<p class="bodytext"></p>
+<a name="o2581"></a><h2 class="heading2">Mulgara Command Line Options</h2>
+<p class="bodytext">You can override the default configuration file with individual command line options or with an external configuration file (specified via a command line option).</p>
+<p class="bodytext">The individual command line options you can specify are as follows:</p>
+<a name="o3109"></a>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">-h</code> or <code class="monospace">--help</code><p class="listcontinue">Display a list of the command line options available.</p>
+<p class="listcontinue">For example, <code class="monospace">java -jar mulgara-1.0.0.jar --help</code>, displays the following:</p>
+<p class="listcontinuecommandtext"> <br />  -h, --help          display this help screen<br />  -n, --normi         disable automatic starting of the RMI registry<br />  -x, --shutdown      shutdown the local running server<br />  -l, --logconfig     use an external logging configuration file<br />  -c, --serverconfig  use an external server configuration file<br />  -k, --serverhost    the hostname to bind the server to<br />  -o, --httphost      the hostname for HTTP requests<br />  -p, --port          the port for HTTP requests<br />  -r, --rmiport       the RMI registry port<br />  -s, --servername    the (RMI) name of the server<br />  -a, --path          the path server data will persist to, specifying<br />                      '.' or 'temp' will use the current working directory<br />                      or the system temporary directory respectively<br />  -m, --smtp          the SMTP server for email notification</p>
+</li></ul>
+<a name="o3110"></a>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">-n</code> or <code class="monospace">--normi</code><p class="listcontinue">Do not start an RMI server when you start Mulgara.</p>
+<p class="listcontinue">By default, Mulgara automatically starts an RMI server, if one does not already exist, on port 1099, or the port specified by the <code class="monospace">--rmiport</code> option. In situations where you expect an RMI server to exist already (that is, you are running another Mulgara server on the same host) and you do not want to automatically start another RMI server, use this option.</p>
+<p class="listcontinue">When running multiple Mulgara servers on the same host, it is recommended that you:</p>
+<ol class="listnumber2"><li class="listnumber2">Start an RMI server separately, via the command line using the <code class="monospace">rmiregistry</code> program supplied by the Java SDK.</li><li class="listnumber2">Start each Mulgara server with the <code class="monospace">--normi</code> option.</li></ol></li></ul>
+<a name="o3111"></a>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">-x</code> or <code class="monospace">--shutdown</code><p class="listcontinue">Shutdown the running Mulgara server.</p>
+<p class="listcontinue">For example, <code class="monospace">java -jar mulgara-1.0.0.jar --shutdown</code>.</p>
+</li></ul>
+<a name="o3112"></a>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">-l</code> or <code class="monospace">--logconfig</code><p class="listcontinue">Specify a log4j configuration file to enable fine grain control on logging.</p>
+<p class="listcontinue">For example, <code class="monospace">java -jar mulgara-1.0.0.jar --logconfig file:&lt;installation directory&gt;/Resources/log4j-template.xml</code>.</p>
+<p class="listcontinue">See the Logging section for more information on the <code class="monospace">--logconfig</code> option.</p>
+</li></ul>
+<a name="o3113"></a>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">-c</code> or <code class="monospace">--serverconfig</code><p class="listcontinue">Specify an external configuration file to override the default configuration file.</p>
+<p class="listcontinue">For example, <code class="monospace">java -jar mulgara-1.0.0.jar --serverconfig file:&lt;installation directory&gt;/Resources/Mulgara-config.xml</code>.</p>
+</li></ul>
+<a name="o3114"></a>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">-k</code> or <code class="monospace">--serverhost</code><p class="listcontinue">Specify the fully qualified host name for the embedded RMI server used for incoming iTQL queries. The default is the host name of your machine, automatically determined by your operating system's name resolution order.</p>
+<p class="listcontinue">See the <code class="monospace">--httphost</code> option for more information.</p>
+</li></ul>
+<a name="o3115"></a>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">-o</code> or <code class="monospace">--httphost</code><p class="listcontinue">Specify the host name for the embedded HTTP server used for web services, the MulgaraViewer and Descriptors. The default is the host name of your machine (the same as the RMI server).</p>
+<p class="listcontinue">You can find the host name bound to Mulgara from the:</p>
+<ul class="listbullet2"><li class="listbullet2">Console output at startup</li><li class="listbullet2">Mulgara Viewer (the server URI)</li><li class="listbullet2">TMC (the server URI)</li><li class="listbullet2"><code class="monospace">ipconfig -all</code> command (for systems running a Windows operating system)</li><li class="listbullet2"><code class="monospace">/sbin/ifconfig</code> command (for systems running a Linux or UNIX operating system)</li><li class="listbullet2"><code class="monospace">/etc/hosts</code> file (for systems running a Linux or UNIX operating system)<p class="listcontinue">If you are unsure as to what your fully qualified host name is, consult your network administrator.</p>
+<p class="listnote"><strong class="strong">Note -</strong> Machines with multiple host names can have problems with the RMI and HTTP servers binding to the wrong host name. If your machine has multiple host names, or fails to detect the correct host name during host name resolution, you can force binding to a specific host by using the --serverhost and --httphost options, either individually or together.<br /><br />For example, <code class="monospace">java -jar mulgara-1.0.0.jar --serverhost localhost --httphost localhost</code>.</p>
+</li></ul></li></ul>
+<a name="o3116"></a>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">-p</code> or <code class="monospace">--port</code><p class="listcontinue">Specify the port number for the embedded HTTP server. The default is 8080. A conflict occurs if this port is in use (by another application or another Mulgara server).</p>
+<p class="listcontinue">For example, <code class="monospace">java -jar mulgara-1.0.0.jar --port 8081</code>.</p>
+</li></ul>
+<a name="o3117"></a>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">-r</code> or <code class="monospace">--rmiport</code><p class="listcontinue">Specify the port number for the embedded RMI server. The default is 1099. A conflict occurs if this port is in use (by another application or another Mulgara server).</p>
+<p class="listcontinue">For example, <code class="monospace">java -jar mulgara-1.0.0.jar --rmiport 1299</code>.</p>
+</li></ul>
+<a name="o3118"></a>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">-s</code> or <code class="monospace">--servername</code><p class="listcontinue">Specify the RMI server name. The default is server1 (that is, <code class="monospace">rmi://mysite.com/server1</code>). If you are running multiple servers on the same host, you must specify a new server name.</p>
+<p class="listcontinue">For example, <code class="monospace">java -jar mulgara-1.0.0.jar --servername server2</code>.</p>
+</li></ul>
+<a name="o3119"></a>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">-a</code> or <code class="monospace">--path</code><p class="listcontinue">Specify the location where Mulgara database files are stored. The default is the <code class="monospace">server1</code> directory (or the name specified using the <code class="monospace">--servername</code> option) of your Mulgara installation.</p>
+<p class="listcontinue">For example, <code class="monospace">java -jar mulgara-1.0.0.jar --path /usr/local/mulgara</code>. For systems running a Windows operating system, <code class="monospace">java -jar mulgara-1.0.0.jar --path c:\mulgara</code>.</p>
+<p class="listnote"><strong class="strong">Note -</strong> The directory you specify is the directory containing the <code class="monospace">server1</code><em class="emphasis"> </em>directory (or the name specified using the <code class="monospace">--servername</code> option). <em class="emphasis">Do not</em> specify the <code class="monospace">server1</code> portion of the directory name, as Mulgara appends this automatically to the directory you specify.</p>
+</li></ul>
+<a name="o3120"></a>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">-m</code> or <code class="monospace">--smtp</code><p class="listcontinue">Specify an SMTP server to which e-mail notifications are sent.</p>
+<p class="listcontinue">For example, <code class="monospace">java -jar mulgara-1.0.0.jar --smtp mail-mysite.com</code>.</p>
+</li></ul>
+<a name="o3121"></a>
+<p class="bodytext">If you specify an external configuration file or individual command line options, they are evaluated in the following order:</p>
+<ol class="listnumber"><li class="listnumber">Default configuration file</li><li class="listnumber">External configuration file</li><li class="listnumber">Command line options</li></ol>
+<a name="o1256"></a><h2 class="heading2">Java System Properties</h2>
+<p class="bodytext">In addition to the command line options when starting Mulgara, there are also Java<sup class="superscript">TM</sup> system properties that control how Mulgara runs. These are the <code class="monospace">-D</code> and <code class="monospace">-X</code> options specified when you run the Mulgara executable jar file.</p>
+<p class="note"><strong class="strong">Note -</strong> The <code class="monospace">-D</code> and <code class="monospace">-X</code> options must appear before <code class="monospace">-jar</code> option.</p>
+<p class="bodytext">The Java system properties are as follows:</p>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">mulgara.xa.useByteOrder</code></li><li class="listbullet"><code class="monospace">mulgara.xa.defaultIOType</code></li><li class="listbullet"><code class="monospace">mulgara.xa.forceIOType</code><p class="listcontinue">The above properties control file input and output in the Mulgara data store. See the Controlling File Input and Output in Mulgara section for more information on these properties.</p>
+</li></ul>
+<a name="o3030"></a>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">itql.command.log</code><p class="listcontinue">Specifies the log file that iTQL<sup class="superscript">TM</sup> commands are written to by the client application interacting with the ItqlInterpreterBean.</p>
+<p class="listcontinue">For example, <code class="monospace">java -Ditql.command.log=/tmp/itql.log -jar mulgara-1.0.0.jar</code></p>
+</li><li class="listbullet"><code class="monospace">shutdownhook.port</code><p class="listcontinue">Specifies the port listening for a shutdown. If not specified, the default is 6789. Specifying this property is useful when running multiple Mulgara servers on the same machine and you don't want to risk shutting down the wrong one.</p>
+<p class="listcontinue">For example, <code class="monospace">java -Dshutdownhook.port=6790 -jar mulgara-1.0.0.jar</code> starts Mulgara with a shutdown port of 6790.</p>
+<p class="listcontinue">While <code class="monospace">java -Dshutdownhook.port=6790 -jar mulgara-1.0.0.jar --shutdown</code> performs a shutdown of this Mulgara server.</p>
+</li><li class="listbullet"><code class="monospace">mulgara.rmi.prefetchsize</code></li><li class="listbullet"><code class="monospace">mulgara.rmi.pagetimeout</code><p class="listcontinue">The above properties control how the server returns query results to a client.</p>
+<p class="listcontinue">The server returns query result rows in groups, known as <em class="emphasis">pages</em>, in order to reduce network traffic. The <code class="monospace">mulgara.rmi.prefetchsize</code> property sets the size of a page. That is, the number of rows in a page. The default page size is 1000.</p>
+<p class="listcontinue">If this were the only mechanism in place, each new page fetch would result in a delay as the rows that make up the page are gathered. Reducing the page size reduces the delay, but increases the network traffic. To overcome this, a background thread fetches the next page before it is required.</p>
+<p class="listcontinue">When the next page is requested:</p>
+<ol class="listnumber2"><li class="listnumber2">The system checks if the next page has already been requested on the background thread. If it has, and it is available, it is returned immediately. That is, there is no delay.</li><li class="listnumber2">If the next page has already been requested, but it is not yet available, the system waits for a specified number of milliseconds before it decides the page cannot be returned, and the query times out.<p class="listcontinue2">The <code class="monospace">mulgara.rmi.pagetimeout</code> property specifies the time the system waits for the next page before timing out. The default is 60000 milliseconds (60 seconds).</p>
+</li><li class="listnumber2">If the next page has not yet been requested on the background thread, it is requested.</li></ol></li><li class="listbullet"><code class="monospace">mulgara.sp.cachesize</code><p class="listcontinue">Internally, the system maintains resources as numbers in order to optimize joins and storage space. For example, 1293969 could represent the URI <code class="monospace">http://purl.org/dc/elements/1.1/title</code>. However, when the system needs to order or stream resources to the client, the system performs a lookup to convert the numbers to resources. In most situations a collection of statements have repeating subjects or predicates, and to reduce the amount of duplicate I/O requests, cache memory is used.</p>
+<p class="listcontinue">The <code class="monospace">mulgara.sp.cachesize</code> property sets this cache size. The default is 1000 entries.</p>
+</li><li class="listbullet"><code class="monospace">mulgara.rmi.compression</code><p class="listcontinue">When a query result returns to the client, the content can be compressed in order to reduce bandwidth consumption. The acceptable values for this system property range from 0 to 9, where 0 is no compression and 9 is maximum compression. The higher the compression, the greater the load on the CPU to perform the compression. The default value is 1, which gives maximum performance at about 70% compression.</p>
+</li><li class="listbullet"><code class="monospace">Xms</code> and <code class="monospace">Xmx</code><p class="listcontinue">The above two properties are Java Virtual Machine (JVM) specific settings that specify the minimum and maximum amount of memory allocate to the JVM, respectively.</p>
+<p class="listcontinue">Increasing the value of the <code class="monospace">mulgara.sp.cachesize</code> or <code class="monospace">mulgara.rmi.prefetchsize</code> properties, or if you have a large number of concurrent users, you can exceed the amount of memory allocated to the JVM (the default maximum is 64 MB) and an <em class="emphasis">out of memory exception</em> occurs. You then need to increase the amount of memory allocated to the JVM.</p>
+<p class="listcontinue">For example, the following sets the minimum memory allocated to 64 MB and the maximum to 128 MB.</p>
+<p class="listcontinuecommandtext">java -Xms64m -Xmx128m -jar mulgara-1.0.0.jar -d</p>
+<p class="listnote"><strong class="strong">Note -</strong> Do not over allocate memory to the JVM (using too high a value for <code class="monospace">Xmx</code>). Mulgara uses memory mapped files that are managed by the operating system. Over allocating memory to the JVM reduces the available memory available for the operating system, thus reducing its ability to map files efficiently.</p>
+</li></ul>
+<a name="o1148"></a><h2 class="heading2">Running the Test Cases</h2>
+<p class="bodytext">This section is only applicable if you have been supplied the build environment for Mulgara.</p>
+<p class="bodytext">To run the Mulgara test cases you'll need to perform the following steps:</p>
+<ol class="listnumber"><li class="listnumber">Change to the Mulgara home directory:<p class="listcontinuecommandtext">$ cd $MULGARA_HOME/</p>
+</li><li class="listnumber">Run the test target.<p class="listcontinue">For systems running a UNIX operating system:</p>
+<p class="listcontinuecommandtext">$ ./build.sh test</p>
+<p class="listcontinue">For systems running a Windows operating system:</p>
+<p class="listcontinuecommandtext">$ build test</p>
+</li></ol><p class="bodytext">Test output is sent to the <code class="monospace">$MULGARA_HOME/test/ directory</code>. You can view the files in this directory to obtain more information on test runs.</p>
+<p class="note"><strong class="strong">Note -</strong> Individual test cases will usually load up logging configuration from the copy of the template logging configuration file written to <code class="monospace">$MULGARA_HOME/log4j-conf.xml</code>. If you want to change the logging settings for tests, edit this file.</p>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

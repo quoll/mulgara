@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="resolver-store" default="resolver-store-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="resolver-store-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${util-xa.dist.dir}/${util-xa.jar}"/>
+  </path>
+
+  <path id="resolver-store-test-classpath">
+
+    <path refid="resolver-store-classpath"/>
+
+    <fileset file="${tuples-hybrid.dist.dir}/${tuples-hybrid.jar}"/>
+  </path>
+
+  <target name="resolver-store-clean"
+          description="Removes all compile generated files for the resolver-store">
+
+    <tstamp/>
+
+    <delete dir="${resolver-store.obj.dir}"/>
+    <delete dir="${resolver-store.test.dir}"/>
+    <delete dir="${resolver-store.dist.dir}"/>
+  </target>
+
+  <target name="-resolver-store-prepare"
+          description="Creates all directories associated with the resolver-store's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${resolver-store.obj.dir}"/>
+    <mkdir dir="${resolver-store.test.dir}"/>
+    <mkdir dir="${resolver-store.dist.dir}"/>
+    <mkdir dir="${resolver-store.obj.dir}/classes"/>
+  </target>
+
+  <target name="resolver-store-compile"
+          depends="-resolver-store-prepare, resolver-spi-jar, util-xa-jar"
+          description="Compiles all resolver-store related files included
+                       generated source code">
+
+    <javac destdir="${resolver-store.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="resolver-store-classpath"/>
+
+      <src path="${resolver-store.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="resolver-store-jar"
+    depends="resolver-store-compile, -resolver-store-jar-uptodate"
+    unless="resolver-store.jar.uptodate"
+    description="Builds the statement store resolver JAR">
+
+    <jar jarfile="${resolver-store.dist.dir}/${resolver-store.jar}">
+      <fileset dir="${resolver-store.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-resolver-store-jar-uptodate">
+
+    <uptodate property="resolver-store.jar.uptodate"
+              targetfile="${resolver-store.dist.dir}/${resolver-store.jar}">
+      <srcfiles dir="${resolver-store.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="resolver-store-dist"
+          depends="resolver-store-jar"
+          unless="resolver-store.uptodate"
+          description="Performs all tasks related to finalising this resolver-store
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the resolver-store library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="resolver-store-test" depends="resolver-store-jar, tuples-hybrid-jar">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="resolver-store-test-classpath"/>
+      <param name="dir" value="${resolver-store.src.dir}"/>
+      <param name="jar" value="${resolver-store.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-store-javadoc"
+          depends="resolver-store-jar"
+          description="Creates the javadoc for this resolver-store">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.resolver.*,
+                                           org.mulgara.store.*"/>
+      <param name="javadoc.classpath" value="resolver-store-classpath"/>
+      <param name="javadoc.sourcepath" value="${resolver-store.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-store-help"
+          description="Displays the help information for this resolver-store">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this resolver-store -->
+
+    <echo message="Welcome to the build script for ${resolver-store.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${resolver-store.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

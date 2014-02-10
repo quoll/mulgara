@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="resolver-file" default="resolver-file-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="resolver-file-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+  </path>
+
+  <path id="resolver-file-test-classpath">
+
+    <path refid="resolver-file-classpath"/>
+    
+    <fileset file="${resolver-file.dist.dir}/${resolver-file.jar}"/>
+  </path>
+
+  <target name="resolver-file-clean"
+          description="Removes all compile generated files for the resolver-file">
+
+    <tstamp/>
+
+    <delete dir="${resolver-file.obj.dir}"/>
+    <delete dir="${resolver-file.test.dir}"/>
+    <delete dir="${resolver-file.dist.dir}"/>
+  </target>
+
+  <target name="-resolver-file-prepare"
+          description="Creates all directories associated with the resolver-file's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${resolver-file.obj.dir}"/>
+    <mkdir dir="${resolver-file.test.dir}"/>
+    <mkdir dir="${resolver-file.dist.dir}"/>
+    <mkdir dir="${resolver-file.obj.dir}/classes"/>
+  </target>
+
+  <target name="resolver-file-compile"
+          depends="-resolver-file-prepare, resolver-spi-jar, util-jar"
+          description="Compiles all resolver-file related files included generated
+                       source code">
+
+    <javac destdir="${resolver-file.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="resolver-file-classpath"/>
+
+      <src path="${resolver-file.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="resolver-file-jar"
+          depends="resolver-file-compile, -resolver-file-jar-uptodate"
+          unless="resolver-file.jar.uptodate"
+          description="Builds the File Resolver JAR">
+
+    <jar jarfile="${resolver-file.dist.dir}/${resolver-file.jar}">
+      <fileset dir="${resolver-file.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-resolver-file-jar-uptodate">
+
+    <uptodate property="resolver-file.jar.uptodate"
+              targetfile="${resolver-file.dist.dir}/${resolver-file.jar}">
+      <srcfiles dir="${resolver-file.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="resolver-file-dist"
+          depends="resolver-file-jar"
+          unless="resolver-file.uptodate"
+          description="Performs all tasks related to finalising this resolver-file
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the resolver-file library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="resolver-file-test" depends="resolver-file-jar">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="resolver-file-classpath"/>
+      <param name="dir" value="${resolver-file.src.dir}"/>
+      <param name="jar" value="${resolver-file.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-file-javadoc"
+          depends="resolver-file-jar"
+          description="Creates the javadoc for this resolver-file">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.resolver.file.*"/>
+      <param name="javadoc.classpath" value="resolver-file-classpath"/>
+      <param name="javadoc.sourcepath" value="${resolver-file.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-file-help"
+          description="Displays the help information for this resolver-file">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this resolver-file -->
+
+    <echo message="Welcome to the build script for ${resolver-file.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${resolver-file.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

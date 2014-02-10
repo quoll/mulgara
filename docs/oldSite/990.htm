@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> JavaServer Pages Tag Library </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="JavaServer Pages Tag Library, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="746.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="2892.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h2 class="heading2">JavaServer Pages Tag Library</h2>
+<p class="bodytext">This tutorial outlines the steps for creating a simple web-based application using Mulgara JavaServer Pages<sup class="superscript">TM</sup> (JSP) tags.</p>
+<p class="note"><strong class="strong">Note -</strong> Some sections of this tutorial are still under construction.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="990.htm#o991" target="_self">Before you Begin</a></p><p class="relateditem"><a href="990.htm#o993" target="_self">Load the Sample Data</a></p><p class="relateditem"><a href="990.htm#o994" target="_self">Develop the JSPs</a></p><p class="relateditem"><a href="990.htm#o995" target="_self">Deploy the JSPs</a></p><p class="relateditem"><a href="990.htm#o996" target="_self">Open the Application</a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="1565.htm" target="_self">Integration Tutorials</a></p><p class="relateditem"><a href="2686.htm" target="_self">HTTP Resolver and MP3 Content Handler Tutorial</a></p><p class="relateditem"><a href="947.htm" target="_self">Jena</a></p><p class="relateditem"><a href="746.htm" target="_self">Perl</a></p><p class="relateditem"><a href="2892.htm" target="_self">JRDF Tutorial</a></p></td>
+</tr>
+</table>
+
+<a name="o991"></a><h3 class="heading3">Before you Begin</h3>
+<p class="bodytext">Before you begin this tutorial, you should be familiar with <a class="internetlinktemplate" title="" href="http://java.sun.com/products/jsp/" target="_blank">JSP</a> development, including topics such as using tag libraries, deploying JSP pages and creating WAR files. You should also read the <a id="h1309" class="documentlinktemplate" title="JavaServer Pages Tag Library" href="485.htm" target="_self">JavaServer Pages Tag Library section</a> for detailed information on using the JSP tags used in this tutorial.</p>
+<p class="bodytext">You also need Mulgara to be running.</p>
+<a name="o993"></a><h3 class="heading3">Load the Sample Data</h3>
+<p class="bodytext">This tutorial uses sample vCards in RDF/XML format. Complete the following steps:</p>
+<ol class="listnumber"><li class="listnumber">Copy the following RDF and paste it into a file called <code class="monospace">vcards.rdf</code>.<p class="listcontinuecommandtext">&lt;?xml version=&quot;1.0&quot;?&gt;<br />&lt;rdf:RDF xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;<br />         xmlns:vCard =&quot; http://www.w3.org/2001/vcard-rdf/3.0#&quot;&gt;<br /><br />&lt;rdf:Description rdf:about =&quot; http://qqq.com/staff/ataylor&quot; &gt;<br />  &lt;vCard:FN&gt;Alex Taylor &lt;/vCard:FN&gt;<br />  &lt;vCard:N rdf:parseType=&quot;Resource&quot;&gt;<br />   &lt;vCard:Family&gt;Taylor&lt;/vCard:Family&gt;<br />   &lt;vCard:Given&gt;Alex&lt;/vCard:Given&gt;<br />   &lt;vCard:Other&gt;Perry&lt;/vCard:Other&gt;<br />   &lt;vCard:Prefix&gt;Mr&lt;/vCard:Prefix&gt;<br />  &lt;/vCard:N&gt;<br />  &lt;vCard:BDAY&gt;1981-01-01&lt;/vCard:BDAY&gt;<br />  &lt;vCard:TITLE&gt;Project Manager&lt;/vCard:TITLE&gt;<br />  &lt;vCard:ROLE&gt;Management of projects&lt;/vCard:ROLE&gt;<br />  &lt;vCard:TEL rdf:parseType=&quot;Resource&quot;&gt;<br />   &lt;rdf:value&gt;+61 7 455 234&lt;/rdf:value&gt;<br />   &lt;rdf:type rdf:resource =&quot;http://imc.org/vCard/3.0#work&quot; /&gt;<br />   &lt;rdf:type rdf:resource =&quot;http://imc.org/vCard/3.0#voice&quot; /&gt;<br />  &lt;/vCard:TEL&gt;<br />  &lt;vCard:EMAIL&gt;<br />   &lt;vCard:internet rdf:value=&quot;ataylor@qqq.com&quot;/&gt;<br />  &lt;/vCard:EMAIL&gt;<br />  &lt;vCard:ADR rdf:parseType=&quot;Resource&quot;&gt;<br />   &lt;vCard:Street&gt;45 Peterson Drive &lt;/vCard:Street&gt;<br />   &lt;vCard:Locality&gt;Brisbane&lt;/vCard:Locality&gt;<br />   &lt;vCard:Pcode&gt;4066&lt;/vCard:Pcode&gt;<br />   &lt;vCard:Country&gt;Australia &lt;/vCard:Country&gt;<br />  &lt;/vCard:ADR&gt;<br />  &lt;vCard:NOTE&gt;Interested in eXtreme Programing&lt;/vCard:NOTE&gt;<br />&lt;/rdf:Description&gt;<br /><br />&lt;rdf:Description rdf:about =&quot; http://qqq.com/staff/ppan&quot; &gt;<br />  &lt;vCard:FN&gt;Peter Pan&lt;/vCard:FN&gt;<br />  &lt;vCard:N rdf:parseType=&quot;Resource&quot;&gt;<br />   &lt;vCard:Family&gt;Pan&lt;/vCard:Family&gt;<br />   &lt;vCard:Given&gt;Peter&lt;/vCard:Given&gt;<br />   &lt;vCard:Prefix&gt;Mr&lt;/vCard:Prefix&gt;<br />  &lt;/vCard:N&gt;<br />  &lt;vCard:TITLE&gt;Deck hand&lt;/vCard:TITLE&gt;<br />  &lt;vCard:ROLE&gt;Actor&lt;/vCard:ROLE&gt;<br />  &lt;vCard:TEL rdf:parseType=&quot;Resource&quot;&gt;<br />   &lt;rdf:value&gt;+61 4193 34223&lt;/rdf:value&gt;<br />   &lt;rdf:type rdf:resource =&quot;http://imc.org/vCard/3.0#mobile&quot; /&gt;<br />  &lt;/vCard:TEL&gt;<br />  &lt;vCard:EMAIL&gt;<br />   &lt;vCard:internet rdf:value=&quot;peter@qqq.com&quot;/&gt;<br />  &lt;/vCard:EMAIL&gt;<br />  &lt;vCard:ADR rdf:parseType=&quot;Resource&quot;&gt;<br />   &lt;vCard:Street&gt; Ocean Rd&lt;/vCard:Street&gt;<br />   &lt;vCard:Locality&gt;Morton Bay&lt;/vCard:Locality&gt;<br />   &lt;vCard:Pcode&gt;4239&lt;/vCard:Pcode&gt;<br />   &lt;vCard:Country&gt;Australia&lt;/vCard:Country&gt;<br />  &lt;/vCard:ADR&gt;<br />  &lt;vCard:NOTE&gt;Mobile phone maybe out-of-range during week days&lt;/vCard:NOTE&gt;<br />&lt;/rdf:Description&gt;<br /><br />&lt;rdf:Description rdf:about =&quot; http://qqq.com/staff/bsimpson&quot; &gt;<br />  &lt;vCard:FN&gt;Bart Simpson&lt;/vCard:FN&gt;<br />  &lt;vCard:N rdf:parseType=&quot;Resource&quot;&gt;<br />   &lt;vCard:Family&gt;Simpson&lt;/vCard:Family&gt;<br />   &lt;vCard:Given&gt;Bart&lt;/vCard:Given&gt;<br />   &lt;vCard:Prefix&gt;Master&lt;/vCard:Prefix&gt;<br />  &lt;/vCard:N&gt;<br />  &lt;vCard:TITLE&gt;Comic character&lt;/vCard:TITLE&gt;<br />  &lt;vCard:ROLE&gt;Cause mayhem&lt;/vCard:ROLE&gt;<br />  &lt;vCard:TEL rdf:parseType=&quot;Resource&quot;&gt;<br />   &lt;rdf:value&gt;+61 045 45665 456&lt;/rdf:value&gt;<br />   &lt;rdf:type rdf:resource =&quot;http://imc.org/vCard/3.0#mobile&quot; /&gt;<br />  &lt;/vCard:TEL&gt;<br />  &lt;vCard:EMAIL&gt;<br />   &lt;vCard:internet rdf:value=&quot;bart@simpsons.com&quot;/&gt;<br />  &lt;/vCard:EMAIL&gt;<br />  &lt;vCard:ADR rdf:parseType=&quot;Resource&quot;&gt;<br />   &lt;vCard:Street&gt;Jackson Rd&lt;/vCard:Street&gt;<br />   &lt;vCard:Locality&gt;New York&lt;/vCard:Locality&gt;<br />   &lt;vCard:Pcode&gt;4249&lt;/vCard:Pcode&gt;<br />   &lt;vCard:Country&gt;US&lt;/vCard:Country&gt;<br />  &lt;/vCard:ADR&gt;<br />  &lt;vCard:NOTE&gt;Possesses little brains&lt;/vCard:NOTE&gt;<br />&lt;/rdf:Description&gt;<br /><br />&lt;rdf:Description rdf:about =&quot; http://qqq.com/staff/lsimpson&quot; &gt;<br />  &lt;vCard:FN&gt;Lisa Simpson&lt;/vCard:FN&gt;<br />  &lt;vCard:N rdf:parseType=&quot;Resource&quot;&gt;<br />   &lt;vCard:Family&gt;Simpson&lt;/vCard:Family&gt;<br />   &lt;vCard:Given&gt;Lisa&lt;/vCard:Given&gt;<br />   &lt;vCard:Prefix&gt;Ms&lt;/vCard:Prefix&gt;<br />  &lt;/vCard:N&gt;<br />  &lt;vCard:ROLE&gt;Smart Responsible Student&lt;/vCard:ROLE&gt;<br />  &lt;vCard:TEL rdf:parseType=&quot;Resource&quot;&gt;<br />   &lt;rdf:value&gt;+61 045 45665 456&lt;/rdf:value&gt;<br />   &lt;rdf:type rdf:resource =&quot;http://imc.org/vCard/3.0#mobile&quot; /&gt;<br />  &lt;/vCard:TEL&gt;<br />  &lt;vCard:EMAIL&gt;<br />   &lt;vCard:internet rdf:value=&quot;lisa@simpsons.com&quot;/&gt;<br />  &lt;/vCard:EMAIL&gt;<br />  &lt;vCard:ADR rdf:parseType=&quot;Resource&quot;&gt;<br />   &lt;vCard:Street&gt;Jackson Rd&lt;/vCard:Street&gt;<br />   &lt;vCard:Locality&gt;New York&lt;/vCard:Locality&gt;<br />   &lt;vCard:Pcode&gt;4249&lt;/vCard:Pcode&gt;<br />   &lt;vCard:Country&gt;US&lt;/vCard:Country&gt;<br />  &lt;/vCard:ADR&gt;<br />  &lt;vCard:NOTE&gt;Possesses mostly of brains&lt;/vCard:NOTE&gt;<br />&lt;/rdf:Description&gt;<br /><br />&lt;/rdf:RDF&gt;</p>
+</li><li class="listnumber">Using the Mulgara Viewer<sup class="superscript">TM</sup> or the iTQL<sup class="superscript">TM</sup> command line interface, create a model to store the vCard data. Use the following iTQL command:<p class="listcontinuecommandtext">create &lt;rmi://mysite.com/server1#vcards&gt;;</p>
+<p class="listcontinue">The following message displays:</p>
+<p class="listcontinuecommandtext">Successfully created model rmi://mysite.com/server1#vcard</p>
+</li><li class="listnumber">Load the sample vCard data into the model just created, using the following iTQL command:<p class="listcontinuecommandtext">load &lt;file:/home/user/jspdemo/vcards.rdf&gt; into<br />  &lt;rmi://mysite.com/server1#vcard&gt;;</p>
+<p class="listcontinue">The following message displays:</p>
+<p class="listcontinuecommandtext">Successfully loaded 78 statements from file:/home/user/jspdemo/vcards2.rdf<br />  into rmi://localhost/server1#vcard</p>
+</li><li class="listnumber"></li><li class="listnumber"></li><li class="listnumber"></li><li class="listnumber"></li><li class="listnumber"></li></ol>
+<a name="o994"></a><h3 class="heading3">Develop the JSPs</h3>
+<a name="o995"></a><h3 class="heading3">Deploy the JSPs</h3>
+<a name="o996"></a><h3 class="heading3">Open the Application</h3>
+<p class="bodytext">When you have developed the application, connect to it with your web browser by opening the page, <a class="internetlinktemplate" title="" href="http://localhost/jspdemo/index.jsp" target="_blank">http://localhost/jspdemo/index.jsp</a>.</p>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

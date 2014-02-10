@@ -1,0 +1,70 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Resolvers</title>
+    <meta name="keywords" content="Resolvers, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/tutorial/convertingxml.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/resolvers/resolverdbclass.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+
+<a href="/resolvers/resolverdbclass.html">Resolver Database Class</a> &#124;
+<a href="/resolvers/resolverdbclass.html#o2559">Internal Resolvers</a> &#124;
+<a href="/resolvers/resolverdbclass.html#o2560">External Resolvers</a>
+
+ -->
+
+
+
+
+<h1>Resolvers</h1>
+
+<p>Mulgara is capable of querying any type of data source by using <em>Resolvers</em>. Resolvers accept and process queries against data contained in a file, a database or some other data source. In most cases, the data being queried against is not in a meaningful format (that is, it is not RDF) so the resolver must convert the data first. Whether this is done by parsing the contents of a file, or converting rows of a database, it is left up to the inner workings of the resolver.</p>
+
+<p>The resolver architecture is a query layer that sits between the Mulgara transport and storage layers. All resolvers are pluggable. That is, you can write new resolvers that cater for new protocols or file types, or provide a bridge to a particular store in the storage layer.</p>
+
+<p>The resolver architecture consists of three layers, which are the:</p>
+<ol><li>Resolver API</li><li>Resolver SPI (service provider interface)</li><li>Content SPI</li></ol>
+<p>The Resolver SPI and Content SPI are of interest to developers who want to incorporate new stores or file types into the query layer, or to modify existing ones. The Resolver API is of interest to developers who want to interface with the query layer.</p>
+
+<p>Queries passed to a Resolver API contain:</p>
+<ul><li>A list of variables to find</li><li>The data store URI to query from</li><li>A set of constraints to limit the number and content of triples returned</li></ul>
+<p>The Resolver API first checks if the data store is a Mulgara model. If it is, the query is resolved against the internal resolver set, otherwise it is resolved against the external resolver set, based on the data store's protocol (extracted from its URI). Once the constraints are resolved, they are collapsed until only the tuples containing the required variables remain. The results are passed back to the API to be passed across the transport layer.</p>
+
+<p>Mulgara provides resolvers for querying different types of data stores, including:</p>
+<ul><li>Local and remote TKS data stores</li><li><code>file:</code> and <code>HTTP:</code> protocol files</li><li>JRDF files</li><li>MP3 files</li><li>RDF/XML files</li><li>MBox files</li></ul>
+<p>See the <a id="h3050" class="documentlinktemplate" title="HTTP Resolver and MP3 Content Handler Tutorial" href="/integration/resolverhttpmp3.html">MP3 Resolver Tutorial section</a> for information on how to develop your own resolvers.</p>
+		
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

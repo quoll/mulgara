@@ -1,0 +1,101 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - iTQL Bean</title>
+    <meta name="keywords" content="iTQL Bean, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/system/soap.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/system/driver.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/system/index.html">System Architecture</a></p>
+<p class="relateditem"><a href="/system/jsptaglib.html">JavaServer Pages Tag Library</a></p>
+<p class="relateditem"><a href="/system/itqlshell.html">iTQL Shell</a></p>
+<p class="relateditem"><a href="/system/soap.html">Simple Object Access Protocol (SOAP)</a></p>
+<p class="relateditem"><a href="/system/driver.html">Mulgara Driver</a></p>
+<p class="relateditem"><a href="/system/jrdf.html">Java RDF (JRDF)</a></p>
+
+
+ -->
+
+
+
+
+<h2>iTQL Bean</h2>
+
+<p>The iTQL<sup>TM</sup> bean provides a level of abstraction above that of the iTQL interpreter, providing convenience methods for executing commands and queries on Mulgara servers, and obtaining their results. It is a <a class="internetlinktemplate" title="" href="http://java.sun.com/products/javabeans/">JavaBean</a><sup><a class="internetlinktemplate" title="" href="http://java.sun.com/products/javabeans/">TM</a></sup> that implements the <a class="internetlinktemplate" title="" href="http://java.sun.com/products/javabeans/docs/spec.html">JavaBeans 1.01 specification</a> making it the ideal choice for graphical development using Integrated Development Environments (IDEs).</p>
+
+<p>The iTQL bean is suitable for integration with text-based console applications, graphical user interfaces (swing applications, for example) and JavaServer Pages<sup>TM</sup> (JSP).</p>
+
+<p>As well as the standard JavaBean properties and methods, the iTQL bean exposes the methods as listed in the file <a class="" title="" href="api/org/mulgara/itql/ItqlInterpreterBean.html">ItqlInterpreterBean</a>.</p>
+
+<p>The following example uses the iTQL bean to query a Mulgara server and list the contents of a Mulgara model.</p>
+
+<p class="commandtext">// Standard Java Packages<br />
+import java.sql.*;<br />
+<br />
+// Mulgara packages<br />
+import org.mulgara.itql.ItqlInterpreterBean;<br />
+import org.mulgara.query.Answer;<br />
+<br />
+try {<br />
+<br />
+  // Query to select all subject-predicate-object statements from the model<br />
+  String query = &quot;select $s $p $o from &lt;&quot;+modelName+&quot;&gt; where $s $p $o ;&quot;;<br />
+<br />
+  // Do the query<br />
+  Answer answer = interpreter.executeQuery(query);<br />
+<br />
+  // Print out the results<br />
+  <br />
+  System.out.println(&quot;Query Results:&quot;);<br />
+<br />
+  while (answer.next()) {<br />
+<br />
+    Object subject = answer.getObject(0);<br />
+    Object predicate = answer.getObject(1);<br />
+    Object object = answer.getObject(2);<br />
+<br />
+    System.out.println(&quot;Subject: &quot;+subject+&quot;, Predicate:&quot;+predicate+<br />
+                       &quot;, Object: &quot;+object);<br />
+  }<br />
+  answer.close();<br />
+}<br />
+catch (Exception e) {<br />
+  System.out.println(&quot;An Exception occurred: &quot;+e);<br />
+}</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

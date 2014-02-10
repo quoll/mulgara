@@ -1,0 +1,128 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Semantic Web</title>
+    <meta name="keywords" content="Semantic Web, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+    
+		<a href="/inferencing/infersemweb.html#o2644">Semantic Web</a> &#124;
+		<a href="/inferencing/infersemweb.html#o2648">Implementing Inferencing</a>
+
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/inferencing/infersitu.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/inferencing/infersummery.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/inferencing/inferintro.html">Introduction to Inferencing</a></p>
+<p class="relateditem"><a href="/inferencing/infersitu.html">Current Situation</a></p>
+<p class="relateditem"><a href="/inferencing/infersummery.html">Summary</a></p>
+
+ -->
+
+
+
+
+<h3>Semantic Web</h3>
+
+<p>Now imagine that all the information on the World Wide Web (about bicycles and everything else), currently locked away in a series of unrelated HTML files, was somehow organized and linked in such a way as to be processable by computer applications. These computer applications could wade through the mountains of information available and present to you the specific information you require, in the format you desire. This is the vision of what people call <em>The Semantic Web</em>.</p>
+
+<p>Going back to the bicycle example, this time using a Semantic Web browser (which does not exist yet, by the way), you specify the following criteria for the bicycle you want to buy:</p>
+<ul><li>Road bicycle (as opposed to a mountain, recreational, BMX or child's bicycle)</li><li>Price range</li><li>Gender (some bicycle are built especially for women, for example)</li><li>Height and weight (so that the bicycle is suitable for your body size)</li><li>Your address and a maximum distance radius that you are prepared to travel to visit a bicycle shop
+<p class="listcontinue">Alternatively, you could order on-line, but it is recommended that you do test rides before you buy.</p>
+</li><li>The color red (nice, but not essential)</li></ul>
+<p>Your Semantic Web browser returns for you:</p>
+<ul><li>A list of bicycles that meet your requirements (type, price, gender, size and color) along with full specifications, recommended retail prices and pictures to view</li><li>A list of bicycle shops (within your specified distance radius) that sell the above bicycles, their advertised prices, whether the bicycles are currently in stock, and address and contact details</li><li>Directions on how to get to each of the shops from your address</li></ul>
+<p>How did the Semantic Web browser determine all this? First of all, the available information was organized and categorized in such a way as to be computer application processable. Secondly, using rules associated with the information, and the criteria you specified, <em>inferences</em> were made to determine the information to present to you.</p>
+
+<div class="anchor"><a name="o2644">&nbsp;</a></div>
+<h4>Elements of the Semantic Web</h4>
+
+<p>How is data on the Semantic Web linked and organized? What are the rules and how are they specified?</p>
+
+<p>All data on the Semantic Web is described using (among other things) <em>Classes</em>, <em>SubClasses</em>, <em>Properties</em> and <em>Subproperties</em>. How classes and properties fit together is described using <em>Ranges</em> and <em>Domains</em>.</p>
+<div class="anchor"><a name="o2645">&nbsp;</a></div>
+<h5>Classes</h5>
+
+<p><em>Classes</em> refer to a type or a category of something. Classes that are a subset of one or more classes are called <em>subclasses</em>. Individual resources that belong to a class are called <em>instances</em> of that class. Instances of a class, which is a subclass of another class, are automatically instances of the higher level class.</p>
+
+<p>Using the bicycle example again, we have the following definitions:</p>
+<ul><li>Four classes: <code>HumanPoweredVehicle</code>, <code>Bicycle</code>, <code>RoadBicycle</code> and <code>MountatinBicycle</code></li><li>The <code>Bicycle</code> class is a subclass of the <code>HumanPoweredVehicle</code> class</li><li>The <code>RoadBicycle</code> and <code>MountainBicycle</code> classes are subclasses of the <code>Bicycle</code> class</li></ul>
+<p>Automatically, without any further definitions, we know that all instances of the <code>RoadBicycle</code> class also belong to the <code>Bicycle</code> class and the <code>HumanPoweredVehicle</code> class.</p>
+
+<p>This is an example of inferencing. Knowing that a resource belongs to a class, which is a subclass of another class, we can deduce, or <em>infer</em>, that the resource also belongs to the higher level class.</p>
+<div class="anchor"><a name="o2646">&nbsp;</a></div>
+<h5>Properties</h5>
+
+<p>Now that we have classes of things, we need to be able to describe them. <em>Properties</em> are the characteristics, or descriptions, of classes. Properties of high level classes also apply to all subclasses of the class.</p>
+<div class="anchor"><a name="o3019">&nbsp;</a></div>
+<h5>Ranges</h5>
+
+<p>The values a property can have are specified using <em>Ranges</em>. Properties can have zero or more ranges (where ranges are in fact defined as classes).</p>
+
+<p>For example, we have the following definitions:</p>
+<ul><li>A property of <code>Color</code></li><li>Three classes: <code>Red</code>, <code>White</code> and <code>Blue</code></li></ul>
+<p>In order to specify the possible values for the <code>Color</code> property (red, white or blue), we define that the:</p>
+<ul><li><code>Color</code> property has range of <code>Red</code> class</li><li><code>Color</code> property has range of <code>White</code> class</li><li><code>Color</code> property has range of <code>Blue</code> class</li></ul>
+<div class="anchor"><a name="o3018">&nbsp;</a></div>
+<h5>Domains</h5>
+
+<p>Properties are assigned to classes using <em>Domains</em>.</p>
+
+<p>For example, to assign the <code>Color</code> property to the <code>Bicycle</code> class, we define that the <code>Color</code> property is in the domain of the <code>Bicycle</code> class. That is, bicycles have color.</p>
+
+<p>Based on the above range and domain definitions, we have stated that all bicycles have color, and the color can be red, white or blue. From this, we can <em>infer</em> that all bicycles (road and mountain bicycles) come in three colors and three colors only: red, white and blue.</p>
+
+<p class="note"><strong>Note -</strong> There are no definitions regarding the other types of human powered vehicles besides bicycles. With no rules specified, we can not make any inferences about the color, for example, of row boats, kayaks or any other instances of the <code>HumanPoweredVehicle</code> class.</p>
+<div class="anchor"><a name="o2647">&nbsp;</a></div>
+<h5>Additional Features for Describing Classes and Properties</h5>
+
+<p>There are many other features used in inferencing, some of which include:</p>
+<ul><li>Equivalent classes. That is, where two classes are equivalent, the instances of one class are also instances of the other, and vice versa.
+<p class="listcontinue">For example, the <code>Bicycle</code> and <code>TwoWheeledHumanPoweredVehicle</code> classes are equivalent, and the instances of one class are automatically instances of the other.</p>
+</li><li>Equivalent properties. That is, where two properties are equivalent, an instance of a class with a property also has the equivalent property.
+<p class="listcontinue">For example, <code>BicycleSize</code> and <code>FrameSize</code> are equivalent properties. An instance of the <code>Bicycle</code> class has a <code>BicycleSize</code> property, and from this you can infer that the instance also has the <code>FrameSize</code> property.</p>
+</li><li>Cardinality. That is, the number of values for a property associated with a class.
+<p class="listcontinue">For example, if the <code>Color</code> property has a <em>minimum</em> Cardinality of one with respect to the <code>Bicycle</code> class, then you can infer that all bicycles must have at least one color. They might have two, three or more colors, but they must have at least one.</p>
+
+<p class="listcontinue">If the <code>Color</code> property has a <em>maximum</em> Cardinality of one with respect to the <code>Bicycle</code> class, then you can infer that all bicycles must have <em>only one</em> color.</p>
+</li></ul>
+<div class="anchor"><a name="o2648">&nbsp;</a></div>
+<h4>Implementing Inferencing</h4>
+
+<p>The Semantic Web and inferencing is implemented using the features of the following languages:</p>
+<ul><li>RDF (Resource Description Framework). Originally developed by the World-Wide Web Consortium (W3C) as a standard way of describing resources on the Web. As well as resources <em>on</em> the Web, RDF can be used to describe resources that <em>could</em> be on the Web. This means that for any resource (such as a person, a bicycle, or even a concept), whether it exists on the Web or not, provided it can be <em>identified</em> as being on the Web, it can be described using RDF.</li><li>RDF Schema (or RDFS). Provides the vocabulary for defining and describing classes and properties with regards to RDF.</li><li>OWL (Web Ontology Language). Extends the RDFS vocabulary for describing classes and properties, including relationships between classes and properties, equality and inequality, and cardinality.</li></ul>
+<p>The intent of this document is only to introduce the concept of inferencing. If you want to know more about inferencing and other Semantic Web related topics, the Semantic Web Best Practices and Deployment Working Group's <a class="internetlinktemplate" title="" href="http://www.w3.org/2001/sw/BestPractices/Tutorials">Semantic Web Tutorials site</a> provides many links to RDF, OWL, SOFA and other sources of information.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

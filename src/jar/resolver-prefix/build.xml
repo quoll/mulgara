@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="resolver-prefix" default="resolver-prefix.jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="resolver-prefix-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${resolver.dist.dir}/${resolver.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${driver.dist.dir}/${driver.jar}"/>
+    <fileset file="${store-nodepool-memory.dist.dir}/${store-nodepool-memory.jar}"/>
+    <fileset file="${store-nodepool-xa.dist.dir}/${store-nodepool-xa.jar}"/>
+    <fileset file="${store-stringpool-memory.dist.dir}/${store-stringpool-memory.jar}"/>
+    <fileset file="${store-stringpool-xa.dist.dir}/${store-stringpool-xa.jar}"/>
+    <fileset file="${resolver-file.dist.dir}/${resolver-file.jar}"/>
+    <fileset file="${resolver-http.dist.dir}/${resolver-http.jar}"/>
+    <fileset file="${resolver-lucene.dist.dir}/${resolver-lucene.jar}"/>
+    <fileset file="${resolver-memory.dist.dir}/${resolver-memory.jar}"/>
+    <fileset file="${resolver-store.dist.dir}/${resolver-store.jar}"/>
+    <fileset file="${resolver-url.dist.dir}/${resolver-url.jar}"/>
+    <fileset file="${resolver-view.dist.dir}/${resolver-view.jar}"/>
+    <fileset file="${content-rdfxml.dist.dir}/${content-rdfxml.jar}"/>
+    <fileset file="${content-mp3.dist.dir}/${content-mp3.jar}"/>
+    <fileset file="${content-mbox.dist.dir}/${content-mbox.jar}"/>
+    <fileset file="${server-rmi.dist.dir}/${server-rmi.jar}"/>
+    <fileset file="${server-local.dist.dir}/${server-local.jar}"/>
+    <fileset file="${tuples-hybrid.dist.dir}/${tuples-hybrid.jar}"/>
+  </path>
+
+  <path id="resolver-prefix-test-classpath">
+
+    <path refid="resolver-prefix-classpath"/>
+
+    <fileset file="${resolver-prefix.dist.dir}/${resolver-prefix.jar}"/>
+  </path>
+
+  <target name="resolver-prefix-clean"
+          description="Removes all compile generated files for the resolver-prefix">
+
+    <tstamp/>
+
+    <delete dir="${resolver-prefix.obj.dir}"/>
+    <delete dir="${resolver-prefix.test.dir}"/>
+    <delete dir="${resolver-prefix.dist.dir}"/>
+  </target>
+
+  <target name="-resolver-prefix-prepare"
+          description="Creates all directories associated with the resolver-prefix's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${resolver-prefix.obj.dir}"/>
+    <mkdir dir="${resolver-prefix.test.dir}"/>
+    <mkdir dir="${resolver-prefix.dist.dir}"/>
+    <mkdir dir="${resolver-prefix.obj.dir}/classes"/>
+  </target>
+
+  <target name="resolver-prefix-compile"
+          depends="-resolver-prefix-prepare, server-local-jar, 
+                   store-nodepool-memory-jar, store-nodepool-xa-jar,
+                   store-stringpool-xa-jar, content-rdfxml-jar,
+                   content-mp3-jar, content-mbox-jar, resolver-spi-jar,
+                   resolver-http-jar, resolver-lucene-jar, resolver-memory-jar,
+                   resolver-store-jar, resolver-url-jar, resolver-view-jar,
+                   tuples-hybrid-jar"
+          description="Compiles all resolver-prefix related files included generated
+                       source code">
+
+    <javac destdir="${resolver-prefix.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="resolver-prefix-classpath"/>
+
+      <src path="${resolver-prefix.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="resolver-prefix-jar"
+    depends="resolver-prefix-compile, -resolver-prefix-jar-uptodate"
+    unless="resolver-prefix.jar.uptodate"
+    description="Builds the NodeType Resolver JAR">
+
+    <jar jarfile="${resolver-prefix.dist.dir}/${resolver-prefix.jar}">
+      <fileset dir="${resolver-prefix.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-resolver-prefix-jar-uptodate">
+
+    <uptodate property="resolver-prefix.jar.uptodate"
+              targetfile="${resolver-prefix.dist.dir}/${resolver-prefix.jar}">
+      <srcfiles dir="${resolver-prefix.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="resolver-prefix-dist"
+          depends="resolver-prefix-jar"
+          unless="resolver-prefix.uptodate"
+          description="Performs all tasks related to finalising this resolver-prefix
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the resolver-prefix library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="resolver-prefix-test"
+          depends="resolver-prefix-jar, resolver-file-jar, resolver-http-jar"
+          description="Carries out unit testing for this resolver-prefix">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="resolver-prefix-test-classpath"/>
+      <param name="dir" value="${resolver-prefix.src.dir}"/>
+      <param name="jar" value="${resolver-prefix.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-prefix-javadoc"
+          depends="resolver-prefix-jar"
+          description="Creates the javadoc for this resolver-prefix">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.resolver.prefix.*"/>
+      <param name="javadoc.classpath" value="resolver-prefix-classpath"/>
+      <param name="javadoc.sourcepath" value="${resolver-prefix.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-prefix-help"
+          description="Displays the help information for this resolver-prefix">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this resolver-prefix -->
+
+    <echo message="Welcome to the build script for ${resolver-prefix.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${resolver-prefix.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

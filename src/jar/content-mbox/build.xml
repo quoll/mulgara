@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="content-mbox" default="content-mbox-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="content-mbox-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset dir="${lib.dir}"
+      includes="concurrent-1.3.4.jar"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${resolver.dist.dir}/${resolver.jar}"/>
+  </path>
+
+  <path id="content-mbox-test-classpath">
+
+    <path refid="content-mbox-classpath"/>
+
+    <fileset file="${content-mbox.dist.dir}/${resolver-file.jar}"/>
+    <fileset file="${content-mbox.dist.dir}/${resolver-http.jar}"/>
+    <fileset file="${content-mbox.dist.dir}/${content-mbox.jar}"/>
+  </path>
+
+  <target name="content-mbox-clean"
+          description="Removes all compile generated files for the content-mbox">
+
+    <tstamp/>
+
+    <delete dir="${content-mbox.obj.dir}"/>
+    <delete dir="${content-mbox.test.dir}"/>
+    <delete dir="${content-mbox.dist.dir}"/>
+  </target>
+
+  <target name="-content-mbox-prepare"
+          description="Creates all directories associated with the content-mbox's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${content-mbox.obj.dir}"/>
+    <mkdir dir="${content-mbox.test.dir}"/>
+    <mkdir dir="${content-mbox.dist.dir}"/>
+    <mkdir dir="${content-mbox.obj.dir}/classes"/>
+  </target>
+
+  <target name="content-mbox-configure"
+          depends="-content-mbox-prepare, -content-mbox-configuration-uptodate"
+          description="Prepares any configuration files/generated code for the
+                       content-mbox"
+          unless="content-mbox.configuration.uptodate">
+
+    <copy file="${content-mbox.conf.dir}/modelfactory.conf"
+          tofile="${content-mbox.obj.dir}/classes/modelfactory.conf"/>
+  </target>
+
+  <target name="-content-mbox-configuration-uptodate">
+
+    <uptodate property="content-mbox.configuration.uptodate"
+              targetfile="${content-mbox.obj.dir}/classes/modelfactory.conf">
+      <srcfiles dir="${content-mbox.conf.dir}" includes="**/modelfactory.conf"/>
+    </uptodate>
+  </target>
+
+  <target name="content-mbox-compile"
+          depends="content-mbox-configure, resolver-spi-jar, resolver-jar"
+          description="Compiles all content-mbox related files included generated
+                       source code">
+
+    <javac destdir="${content-mbox.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="content-mbox-classpath"/>
+
+      <src path="${content-mbox.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="content-mbox-jar"
+          depends="content-mbox-compile, -content-mbox-jar-uptodate"
+          unless="content-mbox.jar.uptodate"
+          description="Creates the content-mbox's jar/s">
+
+    <jar jarfile="${content-mbox.dist.dir}/${content-mbox.jar}">
+      <fileset dir="${content-mbox.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-content-mbox-jar-uptodate">
+
+    <uptodate property="content-mbox.jar.uptodate"
+              targetfile="${content-mbox.dist.dir}/${content-mbox.jar}">
+      <srcfiles dir="${content-mbox.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="content-mbox-dist"
+          depends="content-mbox-jar"
+          unless="content-mbox.uptodate"
+          description="Performs all tasks related to finalising this content-mbox
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the content-mbox library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="content-mbox-test"
+          depends="content-mbox-jar, resolver-file-jar, resolver-http-jar"
+          description="Carries out unit testing for this content-mbox">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="content-mbox-test-classpath"/>
+      <param name="dir" value="${content-mbox.src.dir}"/>
+      <param name="jar" value="${content-mbox.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="content-mbox-javadoc"
+          depends="content-mbox-jar"
+          description="Creates the javadoc for this content-mbox">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.content.mbox.*"/>
+      <param name="javadoc.classpath" value="content-mbox-classpath"/>
+      <param name="javadoc.sourcepath" value="${content-mbox.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="content-mbox-help"
+          description="Displays the help information for this content-mbox">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this content-mbox -->
+
+    <echo message="Welcome to the build script for ${content-mbox.name}."/>
+    <echo message="The mbox content handler is a pluggable content handler for"/>
+    <echo message="mbox files which allows querying a model representing the "/>
+    <echo message="header and attachment information for messages."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${content-mbox.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

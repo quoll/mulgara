@@ -1,0 +1,119 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - JRDF Graphs</title>
+    <meta name="keywords" content="JRDF Graphs, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+
+		<a href="/system/jrdfgraphs.html#o2470">Triples</a> &#124;
+		<a href="/system/jrdfgraphs.html#o2471">SubjectNodes</a> &#124;
+		<a href="/system/jrdfgraphs.html#o2472">PredicateNodes</a> &#124;
+		<a href="/system/jrdfgraphs.html#o2473">ObjectNodes</a> &#124;
+		<a href="/system/jrdfgraphs.html#o2474">URIReferences</a> &#124;
+		<a href="/system/jrdfgraphs.html#o2475">BlankNodes</a> &#124;
+		<a href="/system/jrdfgraphs.html#o2476">Literals</a> &#124;
+		<a href="/system/jrdfgraphs.html#o2478">GraphElementFactory</a>
+		
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/system/jrdfapis.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/system/jrdftks.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/system/jrdf.html">Java RDF (JRDF)</a></p>
+<p class="relateditem"><a href="/system/jrdfapis.html">JRDF APIs</a></p>
+<p class="relateditem"><a href="/system/jrdfgraphs.html#o2479">Querying a JRDF Graph</a></p>
+<p class="relateditem"><a href="/system/jrdftks.html">TKS Client Support</a></p>
+<p class="relateditem"><a href="/system/jrdfmemory.html">JRDF Memory Implementation</a></p>
+<p class="relateditem"><a href="/system/jrdfconcol.html">Containers and Collections</a></p>
+<p class="relateditem"><a href="/system/jrdfvisitor.html">Built-in Visitor Pattern</a></p>
+<p class="relateditem"><a href="/system/jrdfexamples.html">Examples</a></p>
+
+ -->
+
+
+
+<h3>JRDF Graphs</h3>
+
+<p>JRDF graphs are made up of triples (RDF statements). JRDF graphs can also represent parts of other JRDF graphs (known as subgraphs). JRDF graphs can create graph elements and be queried using triples.</p>
+
+<div class="anchor"><a name="o3128">&nbsp;</a></div>
+
+
+<p>The elements (classes) that make up a JRDF graph are as follows:</p>
+<ul><li>Triples</li><li>Nodes</li><li>SubjectNodes</li><li>PredicateNodes</li><li>ObjectNodes</li><li>URIReferences</li><li>BlankNodes</li><li>Literals</li></ul>
+<p>The following diagram shows the relationships between the different elements.</p>
+
+<p><img src="/img/jrdfgraphs2490.gif" alt="Triple" height="219" width="633" vspace="0" hspace="0" align="bottom" border="0" /></p>
+
+<p>JRDF graph elements are created using a GraphElementFactory.</p>
+<div class="anchor"><a name="o2470">&nbsp;</a></div>
+<h4>Triples</h4>
+
+<p>Triples are made up of three nodes, a SubjectNode, PredicateNode and ObjectNode, representing an RDF statement.</p>
+<div class="anchor"><a name="o2471">&nbsp;</a></div>
+<h4>SubjectNodes</h4>
+
+<p>A SubjectNode represents an RDF resource (that is, the subject you are describing) and can be either a URIReference or BlankNode. A Literal cannot be a SubjectNode.</p>
+<div class="anchor"><a name="o2472">&nbsp;</a></div>
+<h4>PredicateNodes</h4>
+
+<p>A PredicateNode represents a property (that is, a characteristic or attribute) of a resource. A PredicateNode can only be a URIReference. A PredicateNode describes the relationship between a SubjectNode and an ObjectNode and cannot be a BlankNode or a Literal.</p>
+<div class="anchor"><a name="o2473">&nbsp;</a></div>
+<h4>ObjectNodes</h4>
+
+<p>An ObjectNode represents the value of a property. ObjectNodes can be either URIReferences, BlankNodes or Literals.</p>
+<div class="anchor"><a name="o2474">&nbsp;</a></div>
+<h4>URIReferences</h4>
+
+<p>A URIReference combines a URI (Uniform Resource Identifier) and an optional fragment identifier to identify or represent a SubjectNode, PredicateNode or ObjectNode in a Triple.</p>
+<div class="anchor"><a name="o2475">&nbsp;</a></div>
+<h4>BlankNodes</h4>
+
+<p>BlankNodes represent intermediate nodes used for representing structured information. For example, an address can be represented either by using a Literal for the whole address, or with a BlankNode as the SubjectNode and subsequent PredicateNodes and ObjectNodes for the different address elements.</p>
+
+<p>Unlike other RDF representations, JRDF does not support labelled BlankNodes.</p>
+<div class="anchor"><a name="o2476">&nbsp;</a></div>
+<h4>Literals</h4>
+
+<p>A Literal represents a constant value (for example &quot;some literal text&quot;). Literals can optionally have either a datatype URI (for example, <code>http://www.w3.org/2001/XMLSchema#integer</code>) or a language label (for example, <code>en</code> for english), but not both.</p>
+<div class="anchor"><a name="o2478">&nbsp;</a></div>
+<h4>GraphElementFactory</h4>
+
+<p>Graph elements are created using a GraphElementFactory. A GraphElementFactory creates URIReferences, BlankNodes and Literals that are used to create triples.</p>
+<div class="anchor"><a name="o2479">&nbsp;</a></div>
+<h3>Querying a JRDF Graph</h3>
+
+<p>Using a triple as a constraint, JRDF graphs can be queried to find all of the triples that match the constraint. Null values are used as wildcards. Querying a JRDF graph using null SubjectNodes, PredicateNodes and ObjectNodes returns all the triples in the graph.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

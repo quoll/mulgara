@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="tag" default="tag-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="tag-classpath">
+
+    <path refid="common-classpath"/>
+
+    <pathelement path="${query.dist.dir}/${query.jar}"/>
+
+    <pathelement location="${lib.dir}/${jsp-core.jar}"/>
+    <pathelement location="${lib.dir}/${jsp-el.jar}"/>
+    <pathelement location="${lib.dir}/${jsp-ecj.jar}"/>
+    <pathelement location="${lib.dir}/${jsp-javax-el.jar}"/>
+    <pathelement location="${lib.dir}/${jsp-javax-jstl.jar}"/>
+    <pathelement location="${lib.dir}/${jsp-javax-jsp.jar}"/>
+    <pathelement location="${lib.dir}/${jsp-jetty.jar}"/>
+    <pathelement location="${lib.dir}/${jsp-glassfish.jar}"/>
+    <pathelement location="${lib.dir}/${jsp-glassfish-taglibs.jar}"/>
+ </path>
+
+  <path id="tag-test-classpath">
+
+    <path refid="tag-classpath"/>
+
+    <fileset file="${tag.dist.dir}/${tag.jar}"/>
+  </path>
+
+  <target name="tag-clean"
+          description="Removes all compile generated files for the tag library">
+
+    <tstamp/>
+
+    <delete dir="${tag.obj.dir}"/>
+    <delete dir="${tag.test.dir}"/>
+    <delete dir="${tag.dist.dir}"/>
+  </target>
+
+  <target name="-tag-prepare"
+          description="Creates all directories associated with the tag library's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${tag.obj.dir}"/>
+    <mkdir dir="${tag.test.dir}"/>
+    <mkdir dir="${tag.dist.dir}"/>
+    <mkdir dir="${tag.obj.dir}/classes"/>
+  </target>
+
+  <target name="tag-compile"
+          depends="-tag-prepare, query-jar"
+          description="Compiles all tag related files included generated
+                       source code">
+
+    <javac destdir="${tag.obj.dir}/classes" debug="on" deprecation="on">
+
+      <classpath refid="tag-classpath"/>
+
+      <src path="${tag.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="tag-jar"
+          depends="tag-compile, -tag-jar-uptodate"
+          unless="tag.jar.uptodate"
+          description="Creates the tag's jar/s">
+
+    <copy file="${tag.src.dir}/tld/mulgara.tld" tofile="${bin.dir}/taglib.tld"
+          overwrite="yes"/>
+
+    <delete file="${tag.dist.dir}/${tag.jar}"/>
+
+    <jar jarfile="${tag.dist.dir}/${tag.jar}">
+
+      <zipfileset dir="${tag.dist.dir}" prefix="META-INF"
+                  includes="taglib.tld"/>
+
+      <fileset dir="${tag.obj.dir}/classes" excludes="**/extractor/**"/>
+    </jar>
+
+    <jar jarfile="${tag.dist.dir}/${tag.jar}">
+      <fileset dir="${tag.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-tag-jar-uptodate">
+
+    <uptodate property="tag.jar.uptodate"
+              targetfile="${tag.dist.dir}/${tag.jar}">
+
+      <srcfiles dir="${tag.src.dir}" includes="tld/mulgara.tld"/>
+      <srcfiles dir="${tag.obj.dir}/classes" excludes="**/extractor/**"/>
+    </uptodate>
+  </target>
+
+  <target name="tag-dist"
+          depends="tag-jar"
+          description="Performs all tasks related to finalising this tag
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the tag library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="tag-test"
+          depends="tag-jar"
+          description="Carries out unit testing for this tag">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="tag-test-classpath"/>
+      <param name="dir" value="${tag.src.dir}"/>
+      <param name="jar" value="${tag.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="tag-javadoc"
+          depends="tag-jar"
+          description="Creates the javadoc for this tag">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.extractor.*,
+                                           org.mulgara.tag.*,
+                                           org.mulgara.util.*"/>
+      <param name="javadoc.classpath" value="tag-classpath"/>
+      <param name="javadoc.sourcepath" value="${tag.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="tag-help"
+          description="Displays the help information for this tag">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this tag -->
+
+    <echo message="Welcome to the build script for ${tag.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${tag.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

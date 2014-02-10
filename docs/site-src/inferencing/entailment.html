@@ -1,0 +1,1119 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Entailment</title>
+    <meta name="keywords" content="Entailment, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+ 
+		<a href="/inferencing/entailment.html#o2802">AllDifferent</a> &#124;
+		<a href="/inferencing/entailment.html#o2803">distinctMembers</a> &#124;
+		<a href="/inferencing/entailment.html#o2804">Class</a> &#124;
+		<a href="/inferencing/entailment.html#o2805">FunctionalProperty</a> &#124;
+		<a href="/inferencing/entailment.html#o2930">sameAs</a> &#124;
+		<a href="/inferencing/entailment.html#o2807">InverseFunctionalProperty</a> &#124;
+		<a href="/inferencing/entailment.html#o2808">differentFrom</a> &#124;
+		<a href="/inferencing/entailment.html#o2809">inverseOf</a> &#124;
+		<a href="/inferencing/entailment.html#o2811">SymmetricProperty</a> &#124;
+		<a href="/inferencing/entailment.html#o2812">TransitiveProperty</a> &#124;
+		<a href="/inferencing/entailment.html#o2813">equivalentClass</a> &#124;
+		<a href="/inferencing/entailment.html#o2814">equivalentProperty</a> &#124;
+		<a href="/inferencing/entailment.html#o2815">intersectionOf</a>
+   
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/inferencing/owl.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/inferencing/consistency.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also &#124;\r\†<a href="/inferencing/owl.html">OWL-Lite Operations Using iTQL</a> &#124;\r\†<a href="/inferencing/consistency.html">Consistency Checking</a></p>
+
+ -->
+
+
+
+<h3>Entailment</h3>
+
+<p>Entailment operations determine the truth of the data you have.</p>
+
+<div class="anchor"><a name="o2802">&nbsp;</a></div>
+<h4>owl:AllDifferent</h4>
+
+<p>Available in next release.</p>
+<div class="anchor"><a name="o2803">&nbsp;</a></div>
+<h4>owl:distinctMembers</h4>
+
+<p>Available in next release.</p>
+<div class="anchor"><a name="o2804">&nbsp;</a></div>
+<h4>owl:Class</h4>
+
+<p>All Owl types share this type.</p>
+<div class="anchor"><a name="o2805">&nbsp;</a></div>
+<h4>owl:FunctionalProperty</h4>
+
+<p>The <code>owl:FunctionalProperty</code> declaration specifies that a predicate is functional. That is, there is only one possible object when a predicate is used on a given subject. If the predicate is used to refer to the subject again, then the object in the new statement must be the same object as was in the previous statement.</p>
+
+<p>An example of a functional predicate is <code>has-Father</code>. For any given individual, there can only be one father.</p>
+
+<p>The camera ontology declares the following:</p>
+
+<p class="commandtext">&lt;owl:ObjectProperty rdf:ID=&quot;viewFinder&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;&amp;owl;FunctionalProperty&quot;/&gt;<br />
+  &lt;rdfs:domain rdf:resource=&quot;#Camera&quot;/&gt;<br />
+  &lt;rdfs:range rdf:resource=&quot;#Viewer&quot;/&gt;<br />
+&lt;/owl:ObjectProperty&gt;</p>
+
+<p>This means that the predicate <code>viewFinder</code> is a functional property. This statement declares that cameras have view finders of type <code>Viewer</code>, and that each camera can only have a single viewer.</p>
+
+<p>An example of the use of this functional property is shown here:</p>
+
+<p class="commandtext">&lt;rdf:Description rdf:about=&quot;#duplicateWindow&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Camera&quot;/&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Digital&quot;/&gt;<br />
+  &lt;body&gt;<br />
+    &lt;Body/&gt;<br />
+  &lt;/body&gt;<br />
+  &lt;lens&gt;<br />
+    &lt;Lens/&gt;<br />
+  &lt;/lens&gt;<br />
+  &lt;viewFinder rdf:resource=&quot;#ThroughTheLens&quot;/&gt;<br />
+  &lt;viewFinder&gt;<br />
+    &lt;rdf:Description/&gt;<br />
+  &lt;/viewFinder&gt;<br />
+&lt;/rdf:Description&gt;</p>
+
+<p>This declares a camera with two view finders. The first view finder is the object <code>ThroughTheLens</code>, while the second one is a blank node. That is, an unidentified node. Because <code>viewFinder</code> is functional, the second view finder must be the same object as the first.</p>
+
+<p>Inferring that these nodes are equivalent can be done using the following iTQL:</p>
+
+<p class="commandtext">select $object1 &lt;owl:sameAs&gt; $object2<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $predicate &lt;rdf:type&gt; &lt;owl:FunctionalProperty&gt;<br />
+  and $subject $predicate $object1<br />
+  and $subject $predicate $object2;</p>
+
+<p>The query finds all predicates of type <code>owl:FunctionalProperty</code>. It then finds all statements that use one subject and this predicate, and puts the objects into the variables <code>$object1</code> and <code>$object2</code>. Unfortunately, iTQL has no way of preventing <code>$object1</code> and <code>$object2</code> from equaling each other, but it is not strictly invalid to find these statements. The result of the query is a triple the states that <code>$object1</code> and <code>$object2</code> are the same individuals.</p>
+
+<p>The query returns the following:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#ThroughTheLens, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#ThroughTheLens ]<br />
+[ _node534, http://www.w3.org/2002/07/owl#sameAs, http://www.xfront.com/owl/ontologies/camera/#ThroughTheLens ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#ThroughTheLens, http://www.w3.org/2002/07/owl#sameAs, _node534 ]<br />
+[ _node534, http://www.w3.org/2002/07/owl#sameAs, _node534 ]</p>
+
+<p>This shows that <code>ThroughTheLens</code> and the blank node are the same object. It also reports that the blank node is the same as itself and that <code>ThroughTheLens</code> is the same as itself. While these statements are redundant, they are still correct.</p>
+
+<p>If the redundant statements are acceptable, this query can be used in an <code><a id="h1325" class="documentlinktemplate" title="insert" href="/itqlcommands/insert.html">insert</a></code> command to feed the inferred statements back into a model. Otherwise, the non-redundant data and be programmatically extracted and inserted.</p>
+<div class="anchor"><a name="o2930">&nbsp;</a></div>
+<h4>owl:sameAs</h4>
+
+<p>The <code>owl:sameAs</code> declaration specifies that an instance of a type is the same instance as another object. For example, in a system where <code>President of the United States (1992-2000)</code> and <code>Bill Clinton</code> are declared separately, <code>owl:sameAs</code> declares that one is the same as the other.</p>
+
+<p>The camera ontology declares the following:</p>
+
+<p class="commandtext">&lt;owl:Class rdf:ID=&quot;Modern&quot;&gt;<br />
+  &lt;owl:sameAs rdf:resource=&quot;#Digital&quot;/&gt;<br />
+&lt;/owl:Class&gt;<br />
+<br />
+&lt;owl:Class rdf:ID=&quot;badClass&quot;&gt;<br />
+  &lt;owl:sameAs rdf:resource=&quot;#part&quot;/&gt;<br />
+&lt;/owl:Class&gt;<br />
+<br />
+&lt;owl:ObjectProperty rdf:ID=&quot;piece&quot;&gt;<br />
+  &lt;owl:sameAs rdf:resource=&quot;#part&quot;/&gt;<br />
+&lt;/owl:ObjectProperty&gt;<br />
+<br />
+&lt;owl:ObjectProperty rdf:ID=&quot;badProperty&quot;&gt;<br />
+  &lt;owl:sameAs rdf:resource=&quot;#CarryStrap&quot;/&gt;<br />
+&lt;/owl:ObjectProperty&gt;</p>
+
+<p>This describes a <code>Modern </code>class and a <code>piece </code>property that are the same as the <code>Digital </code>class and <code>part </code>property, respectively. It also describes <code>badClass</code> and <code>badProperty</code>, which are erroneously the same as a class and a property respectively. These errors are highlighted in the Inconsistency section, later in the document.</p>
+
+<p>In the camera data there are the following three cameras:</p>
+
+<p class="commandtext">&lt;rdf:Description rdf:about=&quot;#SinarM&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Digital&quot;/&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Simple-Large-Format&quot;/&gt;<br />
+  &lt;body&gt;<br />
+    &lt;BodyWithNonAdjustableShutterSpeed about=&quot;#SinarMbody&quot;&gt;<br />
+      &lt;matchingPart&gt;<br />
+        &lt;Lens rdf:about=&quot;#SinaronDigital4.5/45DB&quot;/&gt;<br />
+      &lt;/matchingPart&gt;<br />
+    &lt;/BodyWithNonAdjustableShutterSpeed&gt;<br />
+  &lt;/body&gt;<br />
+  &lt;lens&gt;<br />
+    &lt;Lens rdf:about=&quot;#SinaronDigital4.5/45DB&quot;&gt;<br />
+      &lt;aperture&gt;4.5&lt;/aperture&gt;<br />
+      &lt;focal-length&gt;45mm&lt;/focal-length&gt;    &lt;/Lens&gt;<br />
+  &lt;/lens&gt;<br />
+&lt;/rdf:Description&gt;<br />
+<br />
+&lt;rdf:Description rdf:about=&quot;#SinarMedium&quot;&gt;<br />
+  &lt;owl:sameAs rdf:resource=&quot;#SinarM&quot;/&gt;<br />
+  &lt;lens&gt;<br />
+    &lt;Lens rdf:about=&quot;#Sinaron-SD&quot;&gt;<br />
+      &lt;owl:sameAs rdf:resource=&quot;#SinaronDigital4.5/45DB&quot;/&gt;<br />
+    &lt;/Lens&gt;<br />
+  &lt;/lens&gt;<br />
+&lt;/rdf:Description&gt;<br />
+<br />
+&lt;rdf:Description rdf:about=&quot;#MediumSinar&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Digital&quot;/&gt;<br />
+  &lt;owl:sameAs rdf:resource=&quot;#SinarMedium&quot;/&gt;<br />
+&lt;/rdf:Description&gt;<br />
+<br />
+&lt;rdf:Description rdf:about=&quot;#SameCamera&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Digital&quot;/&gt;<br />
+  &lt;owl:sameAs rdf:resource=&quot;#DifferentCamera&quot;/&gt;<br />
+&lt;/rdf:Description&gt;<br />
+<br />
+&lt;rdf:Description rdf:about=&quot;#DifferentCamera&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Digital&quot;/&gt;<br />
+  &lt;owl:differentFrom rdf:resource=&quot;#SameCamera&quot;/&gt;<br />
+&lt;/rdf:Description&gt;<br />
+<br />
+&lt;rdf:Description rdf:about=&quot;#badClassCamera&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Digital&quot;/&gt;<br />
+  &lt;owl:sameAs rdf:resource=&quot;#Body&quot;/&gt;<br />
+&lt;/rdf:Description&gt;<br />
+  <br />
+&lt;rdf:Description rdf:about=&quot;#badPropertyCamera&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Digital&quot;/&gt;<br />
+  &lt;owl:sameAs rdf:resource=&quot;#lens&quot;/&gt;<br />
+&lt;/rdf:Description&gt;</p>
+
+<p>This declares a camera <code>SinarM</code> with a body and a lens. It also declares a camera <code>SinarMedium</code> with a lens <code>Sinaron-SD</code>. <code>SinarMedium</code> is the same as <code>SinarM</code>, and the <code>Sinaron-SD</code> lens is the same as the lens for <code>SinarM</code>. Finally, there is a camera <code>MediumSinar,</code> which is the same as <code>SinarMedium</code>.</p>
+
+<p>The next two cameras are <code>SameCamera</code> and <code>BadCamera</code>. These erroneously refer to each other as being the same and different. This is checked for, along with the ontology, later on in the <a id="h2938" class="documentlinktemplate" title="Inconsistencies" href="/inferencing/entailment.html#o2936">Inconsistencies section</a>.</p>
+
+<p>The last two cameras declared are <code>badClassCamera</code> and <code>badPropertyCamera</code>. These declare themselves to be the same as a class (<code>Body</code>) and a property (<code>lens</code>), which is an error. This is also checked for in the <a id="h2938_2" class="documentlinktemplate" title="Inconsistencies" href="/inferencing/entailment.html#o2936">Inconsistencies section</a>.</p>
+
+<p>The <code>owl:sameAs</code> statements are found directly with the following iTQL command:</p>
+
+<p class="commandtext">select $x &lt;owl:sameAs&gt; $y<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $x &lt;owl:sameAs&gt; $y;</p>
+
+<p>This returns:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#Modern, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#Digital ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#badProperty, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#CarryStrap ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#badClass, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#part ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#piece, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#part ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#badClassCamera, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#Body ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#badPropertyCamera, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#lens ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#SameCamera, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#DifferentCamera ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#MediumSinar, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#SinarMedium ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#Sinaron-SD, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#SinaronDigital4.5/45DB ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#SinarMedium, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#SinarM ]</p>
+<div class="anchor"><a name="o2931">&nbsp;</a></div>
+<h5>Transitivity</h5>
+
+<p><code>owl:sameAs</code> is a transitive predicate. For example, because <code>MediumSinar</code> is the same as <code>SinarMedium</code>, and <code>SinarMedium</code> is the same as <code>SinarM</code>, it is valid to say that <code>MediumSinar</code> is the same as <code>SinarM</code>.</p>
+
+<p>Inferred statements based on the transitivity of <code>owl:sameAs</code> are created with the following iTQL command:</p>
+
+<p class="commandtext">select $x &lt;owl:sameAs&gt; $z<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where trans($x &lt;owl:sameAs&gt; $z);</p>
+
+<p>The query returns the following:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#MediumSinar, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#SinarM ]</p>
+<div class="anchor"><a name="o2932">&nbsp;</a></div>
+<h5>Reflexivity</h5>
+
+<p><code>owl:sameAs</code> is also a reflexive predicate. That is, any instance is the same as itself. For example, it is valid to say <code>X &lt;owl:sameAs&gt; X</code> for any value of X that is an instance.</p>
+
+<p>Statements of this form are generated with the following iTQL:</p>
+
+<p class="commandtext">select $x &lt;owl:sameAs&gt; $x<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $x &lt;rdf:type&gt; $c<br />
+  and $c &lt;rdf:type&gt; &lt;owl:Class&gt;;</p>
+
+<p>The query returns a statement for every instance in the system. The results are too large to show here, but an example row is as follows:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#SinarF2, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#SinarF2 ]</p>
+<div class="anchor"><a name="o2933">&nbsp;</a></div>
+<h5>Symmetry</h5>
+
+<p><code>owl:sameAs</code> is also a symmetric predicate. That is, if one item is declared the same as a second item, then the second item must also be the same as the first item.</p>
+
+<p>New statements to this effect are generated with the following iTQL:</p>
+
+<p class="commandtext">select $x &lt;owl:sameAs&gt; $y<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $y &lt;owl:sameAs&gt; $x;</p>
+
+<p>The query returns the following:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#Digital, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#Modern ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#CarryStrap, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#badProperty ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#part, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#badClass ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#part, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#piece ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#Body, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#badClassCamera ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#lens, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#badPropertyCamera ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#DifferentCamera, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#SameCamera ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#SinarMedium, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#MediumSinar ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#SinaronDigital4.5/45DB, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#Sinaron-SD ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#SinarM, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#SinarMedium ]</p>
+
+<p>Another effect of this symmetry is that all properties applying to an instance also apply to everything that is the same as that instance. These statements are inferred with the following iTQL:</p>
+
+<p class="commandtext">select $y $p $z<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $x $p $z<br />
+  and ($x &lt;owl:sameAs&gt; $y<br />
+    or $y &lt;owl:sameAs&gt; $x);</p>
+
+<p>The <code>or</code> statement at the end of the <code>where</code> clause finds <code>owl:sameAs</code> statements that point both ways. If the inferred statements from the previous symmetry query have already been inserted, then it is not necessary to have both options here.</p>
+
+<p>The query generates 45 new statements, 5 of which are as follows:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#Digital, http://www.w3.org/1999/02/22-rdf-syntax-ns#type,<br />
+  http://www.w3.org/2002/07/owl#Class ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#Modern, http://www.w3.org/2000/01/rdf-schema#subClassOf,<br />
+  http://www.xfront.com/owl/ontologies/camera/#Camera ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#badClass, http://www.w3.org/2000/01/rdf-schema#range,<br />
+  http://www.xfront.com/owl/ontologies/camera/#PurchaseableItem ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#badPropertyCamera, http://www.w3.org/2000/01/rdf-schema#range,<br />
+  http://www.xfront.com/owl/ontologies/camera/#Lens ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#badPropertyCamera, http://www.w3.org/2000/01/rdf-schema#domain,<br />
+  http://www.xfront.com/owl/ontologies/camera/#Camera ]</p>
+
+<p>Similarly, if X is the same as Y, then any statements that refer to X as a property need to be duplicated to refer to Y as well, using the following iTQL:</p>
+
+<p class="commandtext">select $z $p $x<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $z $p $y <br />
+  and ($x &lt;owl:sameAs&gt; $y<br />
+    or $y &lt;owl:sameAs&gt; $x);</p>
+
+<p>Again, the <code>or</code> part of the query can be skipped if the symmetry statements have already been inserted.</p>
+<div class="anchor"><a name="o2934">&nbsp;</a></div>
+<h5>Class Equivalence</h5>
+
+<p><code>owl:sameAs</code> can also be used to indicate that two classes are equivalent. Since <code>owl:equivalentClass</code> does this as well, then these predicates can be inferred from <code>owl:sameAs</code> statements, with the following iTQL:</p>
+
+<p class="commandtext">select $x &lt;owl:equivalentClass&gt; $y<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where ($x &lt;owl:sameAs&gt; $y<br />
+    or $y &lt;owl:sameAs&gt; $x)<br />
+  and ($x &lt;rdf:type&gt; &lt;owl:Class&gt;<br />
+   or $y &lt;rdf:type&gt; &lt;owl:Class&gt;);</p>
+
+<p>The query returns the following:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#Modern, http://www.w3.org/2002/07/owl#equivalentClass,<br />
+  http://www.xfront.com/owl/ontologies/camera/#Digital ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#Digital, http://www.w3.org/2002/07/owl#equivalentClass,<br />
+  http://www.xfront.com/owl/ontologies/camera/#Modern ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#badProperty, http://www.w3.org/2002/07/owl#equivalentClass,<br />
+  http://www.xfront.com/owl/ontologies/camera/#CarryStrap ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#part, http://www.w3.org/2002/07/owl#equivalentClass,<br />
+  http://www.xfront.com/owl/ontologies/camera/#badClass ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#badClass, http://www.w3.org/2002/07/owl#equivalentClass,<br />
+  http://www.xfront.com/owl/ontologies/camera/#part ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#badClassCamera, http://www.w3.org/2002/07/owl#equivalentClass,<br />
+  http://www.xfront.com/owl/ontologies/camera/#Body ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#Body, http://www.w3.org/2002/07/owl#equivalentClass,<br />
+  http://www.xfront.com/owl/ontologies/camera/#badClassCamera ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#CarryStrap, http://www.w3.org/2002/07/owl#equivalentClass,<br />
+  http://www.xfront.com/owl/ontologies/camera/#badProperty ]</p>
+
+<p class="note"><strong>Note -</strong> The inclusion of <code>badProperty</code> in the result is detected in the inconsistency checks later.</p>
+<div class="anchor"><a name="o2935">&nbsp;</a></div>
+<h5>Property Equivalence</h5>
+
+<p>Like class equivalence, property equivalence is described by both <code>owl:sameAs</code> and by <code>owl:equivalentProperty</code>. Because there are seven possible declaration types that refer to properties, the iTQL for the inferred statements is longer than usual:</p>
+
+<p class="commandtext">select $x &lt;owl:equivalentProperty&gt; $y<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where ($x &lt;owl:sameAs&gt; $y<br />
+    or $y &lt;owl:sameAs&gt; $x)<br />
+  and ($x &lt;rdf:type&gt; &lt;rdf:Property&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;rdf:Property&gt;<br />
+    or $x &lt;rdf:type&gt; &lt;owl:ObjectProperty&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;owl:ObjectProperty&gt;<br />
+    or $x &lt;rdf:type&gt; &lt;owl:DatatypeProperty&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;owl:DatatypeProperty&gt;<br />
+    or $x &lt;rdf:type&gt; &lt;owl:FunctionalProperty&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;owl:FunctionalProperty&gt;<br />
+    or $x &lt;rdf:type&gt; &lt;owl:InverseFunctionalProperty&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;owl:InverseFunctionalProperty&gt;<br />
+    or $x &lt;rdf:type&gt; &lt;owl:TransitiveProperty&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;owl:TransitiveProperty&gt;<br />
+    or $x &lt;rdf:type&gt; &lt;owl:SymmetricProperty&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;owl:SymmetricProperty&gt;);</p>
+
+<p>The query returns the following:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#CarryStrap, http://www.w3.org/2002/07/owl#equivalentProperty,<br />
+  http://www.xfront.com/owl/ontologies/camera/#badProperty ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#badClass, http://www.w3.org/2002/07/owl#equivalentProperty,<br />
+  http://www.xfront.com/owl/ontologies/camera/#part ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#badPropertyCamera, http://www.w3.org/2002/07/owl#equivalentProperty,<br />
+  http://www.xfront.com/owl/ontologies/camera/#lens ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#part, http://www.w3.org/2002/07/owl#equivalentProperty,<br />
+  http://www.xfront.com/owl/ontologies/camera/#badClass ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#part, http://www.w3.org/2002/07/owl#equivalentProperty,<br />
+  http://www.xfront.com/owl/ontologies/camera/#piece ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#piece, http://www.w3.org/2002/07/owl#equivalentProperty,<br />
+  http://www.xfront.com/owl/ontologies/camera/#part ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#lens, http://www.w3.org/2002/07/owl#equivalentProperty,<br />
+  http://www.xfront.com/owl/ontologies/camera/#badPropertyCamera ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#badProperty, http://www.w3.org/2002/07/owl#equivalentProperty,<br />
+  http://www.xfront.com/owl/ontologies/camera/#CarryStrap ]</p>
+<div class="anchor"><a name="o2936">&nbsp;</a></div>
+<h5>Inconsistencies</h5>
+
+<p>There are four types of inconsistencies associated with <code>owl:sameAs</code>:</p>
+<ol><li>Objects declaring themselves to be the same and different at the same time.</li><li>An instance and a class declared to be the same.</li><li>An instance and a property declared to be the same.</li><li>A class and a property declared to be the same.</li></ol>
+<p>These are all illegal in OWL-Lite.</p>
+
+<p>The first inconsistency (objects declaring themselves to be both the same and different at the same time) is checked for with the following iTQL:</p>
+
+<p class="commandtext">select $x $y<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where ($x &lt;owl:sameAs&gt; $y<br />
+    or $y &lt;owl:sameAs&gt; $x)<br />
+  and ($x &lt;owl:differentFrom&gt; $y<br />
+    or $y &lt;owl:differentFrom&gt; $x);</p>
+
+<p>The query returns the following:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#SameCamera, http://www.xfront.com/owl/ontologies/camera/#DifferentCamera ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#DifferentCamera, http://www.xfront.com/owl/ontologies/camera/#SameCamera ]</p>
+
+<p>The data declares that <code>SameCamera</code> is the same as <code>DifferentCamera</code>, while at the same time declaring <code>DifferentCamera</code> is different from <code>SameCamera</code>.</p>
+
+<p>The second inconsistency (an instance and a class declared to be the same) is checked for with the following:</p>
+
+<p class="commandtext">select $x $y<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $x &lt;rdf:type&gt; $c<br />
+  and $c &lt;rdf:type&gt; &lt;owl:Class&gt;<br />
+  and $y &lt;rdf:type&gt; &lt;owl:Class&gt;<br />
+  and ($x &lt;owl:sameAs&gt; $y<br />
+    or $y &lt;owl:sameAs&gt; $x);</p>
+
+<p>The query returns the following:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#badClassCamera, http://www.xfront.com/owl/ontologies/camera/#Body ]</p>
+
+<p>This data is inconsistent because <code>badClassCamera</code> is an instance of the <code>Digital</code> class, <code>Body</code> is a class, and there is a statement declaring them to be the same as each other.</p>
+
+<p>The third inconsistency (an instance and a property declared to be the same) needs a longer test, in order to find all the property types. The query is as follows:</p>
+
+<p class="commandtext">select $x $y<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $x &lt;rdf:type&gt; $c<br />
+  and $c &lt;rdf:type&gt; &lt;owl:Class&gt;<br />
+  and ($x &lt;owl:sameAs&gt; $y<br />
+    or $y &lt;owl:sameAs&gt; $x)<br />
+  and ($y &lt;rdf:type&gt; &lt;rdf:Property&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;owl:ObjectProperty&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;owl:DatatypeProperty&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;owl:FunctionalProperty&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;owl:InverseFunctionalProperty&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;owl:TransitiveProperty&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;owl:SymmetricProperty&gt;);</p>
+
+<p>The query returns the following:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#badPropertyCamera, http://www.xfront.com/owl/ontologies/camera/#lens ]</p>
+
+<p>This data is inconsistent because <code>badPropertyCamera</code> is an instance of the <code>Digital</code> class, <code>lens</code> is a property, and there is a statement declaring them to be the same as each other.</p>
+
+<p>The last inconsistency (a class and a property declared to be the same) is checked for with the following:</p>
+
+<p class="commandtext">select $x $y<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $x &lt;rdf:type&gt; &lt;owl:Class&gt;<br />
+  and ($x &lt;owl:sameAs&gt; $y<br />
+    or $y &lt;owl:sameAs&gt; $x)<br />
+  and ($y &lt;rdf:type&gt; &lt;rdf:Property&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;owl:ObjectProperty&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;owl:DatatypeProperty&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;owl:FunctionalProperty&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;owl:InverseFunctionalProperty&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;owl:TransitiveProperty&gt;<br />
+    or $y &lt;rdf:type&gt; &lt;owl:SymmetricProperty&gt;);</p>
+
+<p>The query returns the following:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#CarryStrap, http://www.xfront.com/owl/ontologies/camera/#badProperty ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#badClass, http://www.xfront.com/owl/ontologies/camera/#part ]</p>
+
+<p>This shows that the:</p>
+<ul><li><code>badProperty</code> property is declared to be the same as the <code>CarryStrap</code> class</li><li><code>badClass</code> class is declared to be the same as the <code>part</code> property</li></ul>
+<div class="anchor"><a name="o2937">&nbsp;</a></div>
+<h5>Note on Consistency Checking and Inferences</h5>
+
+<p>Like all inconsistency checks, the only way to test every possible condition is to infer all possible statements first. Otherwise, non-obvious inconsistencies are not shown.</p>
+<div class="anchor"><a name="o2807">&nbsp;</a></div>
+<h4>owl:InverseFunctionalProperty</h4>
+
+<p>The <code>owl:InverseFunctionalProperty</code> declaration specifies that a predicate is inverse functional. That is, there is only one possible subject when a predicate is used to refer to a given object. If the predicate is used to refer to the object again, then the subject in the new statement must be the same subject as was in the previous statement.</p>
+
+<p>An example of a functional predicate is an e-mail address. While individuals can have several e-mail addresses, each individual e-mail address can only refer to a single person.</p>
+
+<p>The camera ontology declares the following:</p>
+
+<p class="commandtext">&lt;owl:InverseFunctionalProperty rdf:ID=&quot;serial-id&quot;&gt; <br />
+  &lt;rdfs:domain rdf:resource=&quot;#Body&quot;/&gt; <br />
+  &lt;rdfs:range rdf:resource=&quot;#SerialID&quot;/&gt;<br />
+&lt;/owl:InverseFunctionalProperty&gt;</p>
+
+<p>This means that the predicate <code>serial-id</code> is an inverse functional property. This statement declares that <code>SerialID</code> uniquely identify a Body.</p>
+
+<p>An example of the use of this inverse functional property is shown here:</p>
+
+<p class="commandtext">&lt;rdf:Description rdf:about=&quot;#doubleSerial&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Digital&quot;/&gt;<br />
+  &lt;body&gt;<br />
+    &lt;Body rdf:about=&quot;#sharedBody&quot;&gt;<br />
+      &lt;serial-id&gt;<br />
+        &lt;SerialID rdf:about=&quot;#3302656895&quot;&gt;<br />
+          &lt;serialType&gt;numeric&lt;/serialType&gt;<br />
+          &lt;serialValue&gt;3302656895&lt;/serialValue&gt;<br />
+        &lt;/SerialID&gt;<br />
+      &lt;/serial-id&gt;<br />
+    &lt;/Body&gt;<br />
+  &lt;/body&gt;<br />
+  &lt;lens&gt;<br />
+    &lt;Lens rdf:about=&quot;#Sinaron-S&quot;&gt;<br />
+      &lt;focal-length&gt;135mm&lt;/focal-length&gt;<br />
+    &lt;/Lens&gt;<br />
+  &lt;/lens&gt;<br />
+&lt;/rdf:Description&gt;<br />
+&lt;rdf:Description rdf:about=&quot;#doubleSerial2&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Digital&quot;/&gt;<br />
+  &lt;body&gt;<br />
+    &lt;Body&gt;<br />
+      &lt;serial-id&gt;<br />
+        &lt;SerialID rdf:about=&quot;#3302656895&quot;&gt;<br />
+          &lt;serialType&gt;numeric&lt;/serialType&gt;<br />
+          &lt;serialValue&gt;3302656895&lt;/serialValue&gt;<br />
+        &lt;/SerialID&gt;<br />
+      &lt;/serial-id&gt;<br />
+    &lt;/Body&gt;<br />
+  &lt;/body&gt;<br />
+  &lt;lens&gt;<br />
+    &lt;Lens rdf:about=&quot;#Sinaron-SW&quot;&gt;<br />
+      &lt;focal-length&gt;120mm&lt;/focal-length&gt;<br />
+    &lt;/Lens&gt;<br />
+  &lt;/lens&gt;<br />
+&lt;/rdf:Description&gt;</p>
+
+<p>This declares two cameras with bodies that have the same serial ID. The first body has the name <code>sharedBody</code>. Because <code>serial-id</code> is inverse functional, the second camera body must be the same as the first.</p>
+
+<p>Inferring that these bodies are the same can be done using the following iTQL:</p>
+
+<p class="commandtext">select $subject1 &lt;owl:sameAs&gt; $subject2<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $predicate &lt;rdf:type&gt; &lt;owl:InverseFunctionalProperty&gt;<br />
+  and $subject1 $predicate $object<br />
+  and $subject2 $predicate $object;</p>
+
+<p>This query finds all predicates of type <code>owl:InverseFunctionalProperty</code>. It then finds all statements that use an object and this predicate, and puts the subjects into the variables <code>$subject1</code> and <code>$subject2</code>. Unfortunately, iTQL has no way of preventing <code>$subject1</code> and <code>$subject2</code> from equaling each other, but it is not strictly invalid to find these statements. The result of the query is a triple that states that <code>$subject1</code> and <code>$subject2</code> are the same individuals.</p>
+
+<p>The query returns the following:</p>
+
+<p class="commandtext">[ _node249, http://www.w3.org/2002/07/owl#sameAs, _node249 ]<br />
+[ _node249, http://www.w3.org/2002/07/owl#sameAs, http://www.xfront.com/owl/ontologies/camera/#sharedBody ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#sharedBody, http://www.w3.org/2002/07/owl#sameAs, _node249 ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#sharedBody, http://www.w3.org/2002/07/owl#sameAs,<br />
+  http://www.xfront.com/owl/ontologies/camera/#sharedBody ]</p>
+
+<p>This shows that <code>sharedBody</code> and the blank node are the same object. It also reports that the blank node is the same as itself and that <code>sharedBody</code> is the same as itself. While these statements are redundant, they are still correct.</p>
+
+<p>If the redundant statements are acceptable, then this query can be used in an <code><a id="h1325_2" class="documentlinktemplate" title="insert" href="/itqlcommands/insert.html">insert</a></code> command to feed the inferred statements back into a model. Otherwise, the non-redundant data and be programmatically extracted and inserted.</p>
+<div class="anchor"><a name="o2808">&nbsp;</a></div>
+<h4>owl:differentFrom</h4>
+
+<p>The <code>owl:differentFrom</code> declaration specifies that a node is different from another node. It can be used on any kind of node, including classes, properties, and instance data. Nodes of dissimilar types are naturally different, so this predicate is guaranteed to be used consistently in these cases. Where <code>owl:differentFrom</code> is more useful, is for nodes of the same type, to make it absolutely clear that two nodes cannot be considered the same as each other.</p>
+
+<p>The camera ontology declares the following:</p>
+
+<p class="commandtext">&lt;rdf:Description rdf:about=&quot;#SinarP2&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Simple-Large-Format&quot;/&gt;<br />
+  &lt;body&gt;<br />
+    &lt;BodyWithNonAdjustableShutterSpeed/&gt;<br />
+  &lt;/body&gt;<br />
+  &lt;lens&gt;<br />
+    &lt;Lens rdf:about=&quot;#Sinaron-S&quot;&gt;<br />
+      &lt;focal-length&gt;135mm&lt;/focal-length&gt;<br />
+    &lt;/Lens&gt;<br />
+  &lt;/lens&gt;<br />
+&lt;/rdf:Description&gt;<br />
+<br />
+&lt;rdf:Description rdf:about=&quot;#SinarM&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Digital&quot;/&gt;<br />
+  &lt;owl:differentFrom rdf:resource=&quot;#SinarP2&quot;/&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Simple-Large-Format&quot;/&gt;<br />
+  &lt;body&gt;<br />
+    &lt;BodyWithNonAdjustableShutterSpeed about=&quot;#SinarMbody&quot;&gt;<br />
+      &lt;matchingPart&gt;<br />
+        &lt;Lens rdf:about=&quot;#SinaronDigital4.5/45DB&quot;/&gt;<br />
+      &lt;/matchingPart&gt;<br />
+    &lt;/BodyWithNonAdjustableShutterSpeed&gt;<br />
+  &lt;/body&gt;<br />
+  &lt;lens&gt;<br />
+    &lt;Lens rdf:about=&quot;#SinaronDigital4.5/45DB&quot;&gt;<br />
+      &lt;aperture&gt;4.5&lt;/aperture&gt;<br />
+      &lt;focal-length&gt;45mm&lt;/focal-length&gt;<br />
+    &lt;/Lens&gt;<br />
+  &lt;/lens&gt;<br />
+&lt;/rdf:Description&gt;<br />
+<br />
+&lt;rdf:Description rdf:about=&quot;#SameCamera&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Digital&quot;/&gt;<br />
+  &lt;owl:sameAs rdf:resource=&quot;#DifferentCamera&quot;/&gt;<br />
+&lt;/rdf:Description&gt;<br />
+<br />
+&lt;rdf:Description rdf:about=&quot;#DifferentCamera&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Digital&quot;/&gt;<br />
+  &lt;owl:differentFrom rdf:resource=&quot;#SameCamera&quot;/&gt;<br />
+&lt;/rdf:Description&gt;</p>
+
+<p>This describes two cameras, <code>SinarP2</code> and <code>SinarM</code>. There is an explicit declaration in the definition of <code>SinarM</code> that says it is a different object from <code>SinarP2</code>.</p>
+
+<p>There are also two cameras that are declared for consistency checking. <code>SameCamera</code> declares that it is the same as <code>DifferentCamera</code>, while <code>DifferentCamera</code> declares that it is different from <code>SameCamera</code>. These are inconsistent declarations.</p>
+<div class="anchor"><a name="o2945">&nbsp;</a></div>
+<h5>Symmetry</h5>
+
+<p><code>owl:differentFrom</code> is a symmetric predicate. That is, for every statement declaring that one object is different from another, you can infer a reversed statement. These statements are generated with the following iTQL:</p>
+
+<p class="commandtext">select $x &lt;owl:differentFrom&gt; $y<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $y &lt;owl:differentFrom&gt; $x;</p>
+
+<p>The query returns the following:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#SameCamera, http://www.w3.org/2002/07/owl#differentFrom,<br />
+  http://www.xfront.com/owl/ontologies/camera/#DifferentCamera ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#SinarP2, http://www.w3.org/2002/07/owl#differentFrom,<br />
+  http://www.xfront.com/owl/ontologies/camera/#SinarM ]</p>
+<div class="anchor"><a name="o2946">&nbsp;</a></div>
+<h5>Inconsistencies</h5>
+
+<p>An object that is different from another object may not also be declared to be the same as the other object. The following query returns all objects that violate this rule:</p>
+
+<p class="commandtext">select $x $y<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where ($x &lt;owl:sameAs&gt; $y<br />
+    or $y &lt;owl:sameAs&gt; $x)<br />
+  and ($x &lt;owl:differentFrom&gt; $y<br />
+    or $y &lt;owl:differentFrom&gt; $x);</p>
+
+<p>Because both <code><a id="h2944" class="" title="owl:sameAs" href="/inferencing/entailment.html#o2930">owl:sameAs</a></code> and <code>owl:differentFrom</code> are symmetric, it is necessary for this query to test for the use of the predicate in each direction. For this reason, conflicting objects show up twice, in reversed order from each other.</p>
+
+<p>This query returns the following:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#SameCamera, http://www.xfront.com/owl/ontologies/camera/#DifferentCamera ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#DifferentCamera, http://www.xfront.com/owl/ontologies/camera/#SameCamera ]</p>
+
+<p>Since this checks both <code>owl:sameAs</code> and <code>owl:differentFrom</code>, the test is also shown in the <a id="h2938_3" class="documentlinktemplate" title="Inconsistencies" href="/inferencing/entailment.html#o2936">Inconsistencies section</a> for <code>owl:sameAs</code>.</p>
+<div class="anchor"><a name="o2809">&nbsp;</a></div>
+<h4>owl:inverseOf</h4>
+
+<p><code>owl:inverseOf</code> is a convenience used to declare reversed relationships. For example, a <code>hasParent</code> property has an inverse property of <code>hasChild</code>. In all cases, where a statement is made using one of these properties, a reversed statement can be made with the inverse property.</p>
+
+<p><code>owl:inverseOf</code> is a symmetric property. That is, since <code>hasParent</code> is the inverse of <code>hasChild</code>, then <code>hasChild</code> is the inverse of <code>hasParent</code>.</p>
+
+<p><code>owl:inverseOf</code> only applies to items of type <code>owl:ObjectProperty</code>.</p>
+
+<p>The ontology describes the following:</p>
+
+<p class="commandtext">&lt;owl:InverseFunctionalProperty rdf:ID=&quot;serial-id&quot;&gt;<br />
+  &lt;rdfs:domain rdf:resource=&quot;#Body&quot;/&gt;<br />
+  &lt;rdfs:range rdf:resource=&quot;#SerialID&quot;/&gt;<br />
+&lt;/owl:InverseFunctionalProperty&gt;<br />
+<br />
+&lt;owl:FunctionalProperty rdf:ID=&quot;id-for&quot;&gt;<br />
+  &lt;rdfs:domain rdf:resource=&quot;#SerialID&quot;/&gt;<br />
+  &lt;rdfs:range rdf:resource=&quot;#Body&quot;/&gt;<br />
+  &lt;owl:inverseOf rdf:resource=&quot;#serial-id&quot;/&gt;<br />
+&lt;/owl:FunctionalProperty&gt;</p>
+
+<p>This describes the <code>serial-id</code> property, which describes the relationship between a <code>Body</code> and a <code>SerialID</code> object. It also describes the <code>id-for</code> relationship, which is the inverse relationship between the two. Note that because <code>serial-id</code> is an <code>owl:InverseFunctionalProperty</code>, then <code>id-for</code> must necessarily be an <code>owl:FunctionalProperty</code>. That is, in both cases, a <code>SerialID</code> uniquely identifies a <code>Body</code>.</p>
+
+<p>In the camera data there are the following two cameras:</p>
+
+<p class="commandtext">&lt;rdf:Description rdf:about=&quot;#doubleSerial&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Digital&quot;/&gt;<br />
+  &lt;body&gt;<br />
+    &lt;Body rdf:about=&quot;#sharedBody&quot;&gt;<br />
+      &lt;serial-id&gt;<br />
+        &lt;SerialID rdf:about=&quot;#3302656895&quot;&gt;<br />
+          &lt;serialType&gt;numeric&lt;/serialType&gt;<br />
+          &lt;serialValue&gt;3302656895&lt;/serialValue&gt;<br />
+        &lt;/SerialID&gt;<br />
+      &lt;/serial-id&gt;<br />
+    &lt;/Body&gt;<br />
+  &lt;/body&gt; <br />
+  &lt;lens&gt;  <br />
+    &lt;Lens rdf:about=&quot;#Sinaron-S&quot;&gt;<br />
+      &lt;focal-length&gt;135mm&lt;/focal-length&gt;<br />
+    &lt;/Lens&gt;<br />
+  &lt;/lens&gt;<br />
+&lt;/rdf:Description&gt;<br />
+<br />
+&lt;rdf:Description rdf:about=&quot;#doubleSerial2&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Digital&quot;/&gt;<br />
+  &lt;body&gt;<br />
+    &lt;Body&gt;<br />
+      &lt;serial-id&gt;<br />
+        &lt;SerialID rdf:about=&quot;#3302656895&quot;&gt;<br />
+          &lt;serialType&gt;numeric&lt;/serialType&gt;<br />
+          &lt;serialValue&gt;3302656895&lt;/serialValue&gt;<br />
+        &lt;/SerialID&gt;<br />
+      &lt;/serial-id&gt;<br />
+    &lt;/Body&gt;<br />
+  &lt;/body&gt;<br />
+  &lt;lens&gt;<br />
+    &lt;Lens rdf:about=&quot;#Sinaron-SW&quot;&gt;<br />
+      &lt;focal-length&gt;120mm&lt;/focal-length&gt;<br />
+    &lt;/Lens&gt;<br />
+  &lt;/lens&gt;<br />
+&lt;/rdf:Description&gt;</p>
+
+<p>This declares a camera called <code>doubleSerial</code> with an anonymous body, and a camera called <code>doubleSerial2</code> with a body called <code>3302656895</code>. These cameras are also described in the section for <code>owl:InverseFunctionalProperty</code>, where it is inferred that the two bodies must be the same object</p>
+
+<p>The statements subject to inversion are found with:</p>
+
+<p class="commandtext">select $x $p2 $y<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $p1 &lt;owl:inverseOf&gt; $p2<br />
+  and $x $p2 $y;</p>
+
+<p>This returns:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#sharedBody, http://www.xfront.com/owl/ontologies/camera/#serial-id,<br />
+  http://www.xfront.com/owl/ontologies/camera/#3302656895 ]<br />
+<br />
+[ _node157, http://www.xfront.com/owl/ontologies/camera/#serial-id,<br />
+  http://www.xfront.com/owl/ontologies/camera/#3302656895 ]</p>
+
+<p>This shows the <code>sharedBody</code> object and the anonymous body object both referring to their <code>serialID</code>.</p>
+
+<p>The following generates the inverted statements:</p>
+
+<p class="commandtext">select $y $p1 $x<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $p1 &lt;owl:inverseOf&gt; $p2<br />
+  and $x $p2 $y;</p>
+
+<p>This returns:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#3302656895, http://www.xfront.com/owl/ontologies/camera/#id-for,<br />
+  http://www.xfront.com/owl/ontologies/camera/#sharedBody ]<br />
+<br />
+[ http://www.xfront.com/owl/ontologies/camera/#3302656895, http://www.xfront.com/owl/ontologies/camera/#id-for,<br />
+  _node157 ]</p>
+<div class="anchor"><a name="o2811">&nbsp;</a></div>
+<h4>owl:SymmetricProperty</h4>
+
+<p>The owl:SymmetricProperty declaration specifies that a property or predicate is symmetric. That is, if one instance uses this predicate to refer to another instance, then it is valid for the second instance to use that predicate to refer back to the first. For example, <code>has-friend</code> is a symmetric predicate. If the statement <code>Fred has-friend Barney</code> is true, then we can infer that <code>Barney has-friend Fred</code> is also true. Since we know the second statement is true, even if it does not exist in the model, then this is an inferred statement.</p>
+
+<p>The camera ontology declares the following:</p>
+
+<p class="commandtext">&lt;owl:SymmetricProperty rdf:ID=&quot;matchingPart&quot;&gt;<br />
+  &lt;rdfs:domain rdf:resource=&quot;#PurchaseableItem&quot;/&gt;<br />
+  &lt;rdfs:range rdf:resource=&quot;#PurchaseableItem&quot;/&gt;<br />
+&lt;/owl:SymmetricProperty&gt;</p>
+
+<p>This means that the predicate <code>matchingPart</code> is a symmetric property. It is used for <code>PurchaseableItems</code> to refer to other <code>PurchaseableItems</code>. Note that for a symmetric property, the domain and range must necessarily be the same.</p>
+
+<p>An example of the use of this symmetric property is as follows:</p>
+
+<p class="commandtext">&lt;rdf:Description rdf:about=&quot;&amp;camera;SinarM&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Digital&quot;/&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Simple-Large-Format&quot;/&gt;<br />
+  &lt;body&gt;<br />
+    &lt;BodyWithNonAdjustableShutterSpeed about=&quot;SinarMbody&quot;&gt;<br />
+      &lt;matchingPart&gt;<br />
+        &lt;Lens rdf:about=&quot;SinaronDigital4.5/45DB&quot;/&gt;<br />
+      &lt;/matchingPart&gt;<br />
+    &lt;/BodyWithNonAdjustableShutterSpeed&gt;<br />
+  &lt;/body&gt;<br />
+  &lt;lens&gt;<br />
+    &lt;Lens rdf:about=&quot;SinaronDigital4.5/45DB&quot;&gt;<br />
+      &lt;aperture&gt;4.5&lt;/aperture&gt;<br />
+      &lt;focal-length&gt;45mm&lt;/focal-length&gt;<br />
+    &lt;/Lens&gt;<br />
+  &lt;/lens&gt;<br />
+&lt;/rdf:Description&gt;</p>
+
+<p>This declares a camera with a body called <code>SinarMbody</code> and a lens called <code>SinaronDigital4.5/45DB</code>. The <code>SinarMbody</code> instance declares that it is a <code>matchingPart</code> for <code>SinaronDigital4.5/45DB</code>. Since <code>matchingPart</code> is symmetric, then this means that <code>SinaronDigital4.5/45DB</code> is also a <code>matchingPart</code> for <code>SinarMbody</code>.</p>
+
+<p>Valid inferences like this can be found using the following iTQL:</p>
+
+<p class="commandtext">select $subject $predicate $object<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $predicate &lt;rdf:type&gt; &lt;owl:SymmetricProperty&gt;<br />
+  and $object $predicate $subject;</p>
+
+<p>This finds all the predicates declared to be symmetric, then finds all statements that use these predicates. It then reverses the order of the subject and object for the <code>select</code> clause.</p>
+
+<p>The query returns the following:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/SinaronDigital4.5/45DB, <br />
+http://www.xfront.com/owl/ontologies/camera/#matchingPart, <br />
+http://www.xfront.com/owl/ontologies/camera/SinarMbody ]</p>
+
+<p>Inferences like this can be inserted back into the model as new statements. In this case, the result is in subject predicate object format, so it can be used as the basis of a <code>select insert</code> query.</p>
+<div class="anchor"><a name="o2812">&nbsp;</a></div>
+<h4>owl:TransitiveProperty</h4>
+
+<p>The <code>owl:TransitiveProperty</code> declaration specifies that a predicate is transitive. That is, if instance A uses this predicate to refer to instance B, and B uses the same predicate to refer to instance C, then it is valid for instance A to use that predicate to refer to instance C. For example, <code>has-ancestor</code> is a transitive predicate. So if the statement <code>Enoch has-ancestor Cain</code> is true, and <code>Cain has-ancestor Adam</code> is also true, then we can infer that <code>Enoch has-ancestor Adam</code> is also true. Since we know the last statement is true even if it does not exist in the model, then this is an inferred statement.</p>
+
+<p>The camera ontology declares the following:</p>
+
+<p class="commandtext">&lt;owl:TransitiveProperty rdf:ID=&quot;compatibleLens&quot;&gt;<br />
+  &lt;rdfs:domain rdf:resource=&quot;#Lens&quot;/&gt;<br />
+  &lt;rdfs:range rdf:resource=&quot;#Lens&quot;/&gt;<br />
+&lt;/owl:TransitiveProperty&gt;</p>
+
+<p>This means that the predicate <code>compatibleLens</code> is a transitive property. It is used for Lenses to refer to other Lenses.  Note that for a transitive property, the domain and range must have a non-empty intersection.  That is, the domain and range must overlap or else it would not be possible to get the chain of statements necessary to define transitivity. Typically, the domain and range will be equal.</p>
+
+<p>An example of the use of the transitive property is shown here:</p>
+
+<p class="commandtext">&lt;rdf:Description rdf:about=&quot;&amp;camera;SinarF2&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Large-Format&quot;/&gt;<br />
+  &lt;body&gt;<br />
+    &lt;BodyWithNonAdjustableShutterSpeed/&gt;<br />
+  &lt;/body&gt;<br />
+  &lt;lens&gt;<br />
+    &lt;Lens rdf:about=&quot;Sinaron-SE&quot;&gt;<br />
+      &lt;focal-length&gt;360mm&lt;/focal-length&gt;<br />
+      &lt;compatibleLens&gt;<br />
+        &lt;Lens rdf:about=&quot;Sinaron-S&quot;/&gt;<br />
+      &lt;/compatibleLens&gt;<br />
+    &lt;/Lens&gt;<br />
+  &lt;/lens&gt;<br />
+  &lt;lens&gt;<br />
+    &lt;Lens rdf:about=&quot;Sinaron-S&quot;&gt;<br />
+      &lt;compatibleLens&gt;<br />
+        &lt;Lens rdf:about=&quot;Sinaron-W&quot;/&gt;<br />
+      &lt;/compatibleLens&gt;<br />
+    &lt;/Lens&gt;<br />
+  &lt;lens&gt;<br />
+  &lt;/lens&gt;<br />
+    &lt;Lens rdf:about=&quot;Sinaron-W&quot;&gt;<br />
+      &lt;focal-length&gt;200mm&lt;/focal-length&gt;<br />
+    &lt;/Lens&gt;<br />
+  &lt;/lens&gt;<br />
+&lt;/rdf:Description&gt;</p>
+
+<p>This declares a camera with three lenses, <code>Sinaron-SE</code>, <code>Sinaron-S</code> and <code>Sinaron-W</code>. The <code>Sinaron-SE</code> lens declares that it is a <code>compatibleLens</code> with <code>Sinaron-S</code>, and <code>Sinaron-S</code> declares that it is a <code>compatibleLens</code> with <code>Sinaron-W</code>.  Since <code>compatibleLens</code> is a transitive predicate, <code>Sinaron-SE</code> is a <code>compatibleLens</code> with <code>Sinaron-W</code>.</p>
+
+<p>Valid inferences like this can be found using the following iTQL:</p>
+
+<p class="commandtext">select $predicate subquery(<br />
+    select $subject $object<br />
+    from &lt;rmi://mysite.com/server1#camera&gt;<br />
+    where trans($subject $predicate $object)<br />
+)<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $predicate &lt;rdf:type&gt; &lt;owl:TransitiveProperty&gt;;</p>
+
+<p>This starts by finding all predicates declared to be transitive. So that long chains of transitive statements can be found in a single query, the <code>trans</code> operation is used. At this time, <code>trans</code> requires that a predicate be fixed, so it is not possible to simply use the <code>$predicate</code> variable as the predicate. Instead, a subquery is executed for each predicate that is found. Inside the subquery, the <code>$predicate</code> variable only has a single value, so it is safe to use within <code>trans</code>.</p>
+
+<p>The query returns the following:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#compatibleLens, [$subject $object]<br />
+[http://www.xfront.com/owl/ontologies/camera/Sinaron-SE http://www.xfront.com/owl/ontologies/camera/Sinaron-W] ]</p>
+
+<p>This says that for the predicate <code>compatibleLens</code>, there is a single subject-object pair of <code>Sinaron-SE</code> and <code>Sinaron-W</code>, which is exactly what is expected.</p>
+
+<p>Inferences like this can be inserted back into the model as new statements. At this stage, some external code is required to put the result into a form that is acceptable for insertion. In the future, insertions like this will be possible using only iTQL.</p>
+<div class="anchor"><a name="o2813">&nbsp;</a></div>
+<h4>owl:equivalentClass</h4>
+
+<p>The <code>owl:equivalentClass</code> declaration specifies that one class is equivalent to another class. That is, any instance of a class is treated as an instance of an equivalent class, and vice versa.</p>
+
+<p>The camera ontology declares the following:</p>
+
+<p class="commandtext">&lt;owl:Class rdf:ID=&quot;Body&quot;&gt;<br />
+  &lt;rdfs:subClassOf rdf:resource=&quot;#PurchaseableItem&quot;/&gt;<br />
+&lt;/owl:Class&gt;<br />
+     <br />
+&lt;owl:Class rdf:ID=&quot;CameraBody&quot;&gt;<br />
+  &lt;owl:equivalentClass rdf:resource=&quot;#Body&quot;/&gt;<br />
+&lt;/owl:Class&gt;</p>
+
+<p>This declares two classes, <code>CameraBody</code> and <code>Body</code>, which are equivalent to each other.</p>
+
+<p>An example using the <code>CameraBody</code> class is as follows:</p>
+
+<p class="commandtext">&lt;rdf:Description rdf:about=&quot;#Pentax-OptioS50&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Digital&quot;/&gt;<br />
+  &lt;lens&gt;<br />
+    &lt;Lens&gt;<br />
+      &lt;focal-length&gt;35.6-107mm&lt;/focal-length&gt;<br />
+      &lt;aperture&gt;2.6-4.8&lt;/aperture&gt;<br />
+    &lt;/Lens&gt;<br />
+  &lt;/lens&gt;<br />
+  &lt;body&gt;<br />
+    &lt;CameraBody&gt;<br />
+      &lt;shutter-speed rdf:parseType=&quot;Resource&quot;&gt;<br />
+        &lt;min&gt;0.0005&lt;/min&gt;<br />
+        &lt;max&gt;4.0&lt;/max&gt;<br />
+        &lt;units&gt;seconds&lt;/units&gt;<br />
+      &lt;/shutter-speed&gt;<br />
+    &lt;/CameraBody&gt;<br />
+  &lt;/body&gt;<br />
+  &lt;cost rdf:parseType=&quot;Resource&quot;&gt;<br />
+    &lt;rdf:value&gt;300&lt;/rdf:value&gt;<br />
+    &lt;currency&gt;USD&lt;/currency&gt;<br />
+  &lt;/cost&gt;<br />
+&lt;/rdf:Description&gt;</p>
+
+<p>This declares a digital camera <code>Pentax-OptioS50</code>, with a lens, a cost, and a body of type <code>CameraBody</code>. Since <code>CameraBody</code> is the equivalent of <code>Body</code>, then the body is also of type <code>Body</code>.</p>
+
+<p>For simple cases it is possible to copy some of the <code>Body</code> information over to the <code>CameraBody</code> instance. However, when complex operations such as restrictions are applied to the <code>Body</code> class, the complexity for the <code>CameraBody</code> instance to meet every possible situation for <code>Body</code> can become unbounded. In these cases you cannot write iTQL to capture every possibility.</p>
+
+<p>In order for instances of <code>CameraBody</code> to pick up all the information and constraints associated with being of type <code>Body</code>, it is necessary to declare that it is of type <code>Body</code>. Once this is done, all <code>Body</code> properties and restrictions are automatically applied to the object. The iTQL to create these declarative statements is as follows:</p>
+
+<p class="commandtext">select $instance &lt;owl:type&gt; $otherclass<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $instance &lt;rdf:type&gt; $class<br />
+  and $otherclass &lt;owl:equivalentClass&gt; $class;</p>
+
+<p>Since <code>owl:equivalentClass</code> is symmetric, the statement can also be declared in the opposite order. The iTQL to find both statements at once is as follows:</p>
+
+<p class="commandtext">select $instance &lt;owl:type&gt; $otherclass<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $instance &lt;rdf:type&gt; $class<br />
+  and ($class &lt;owl:equivalentClass&gt; $otherclass<br />
+    or $otherclass &lt;owl:equivalentClass&gt; $class);</p>
+
+<p>This query returns data similar to the following:</p>
+
+<p class="commandtext">[ _node250, http://www.w3.org/2002/07/owl#type, http://www.xfront.com/owl/ontologies/camera/#CameraBody ]<br />
+[ _node338, http://www.w3.org/2002/07/owl#type, http://www.xfront.com/owl/ontologies/camera/#CameraBody ]<br />
+[ _node378, http://www.w3.org/2002/07/owl#type, http://www.xfront.com/owl/ontologies/camera/#CameraBody ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#sharedBody, http://www.w3.org/2002/07/owl#type, <br />
+http://www.xfront.com/owl/ontologies/camera/#CameraBody ]<br />
+[ _node453, http://www.w3.org/2002/07/owl#type, http://www.xfront.com/owl/ontologies/camera/#CameraBody ]<br />
+[ _node457, http://www.w3.org/2002/07/owl#type, http://www.xfront.com/owl/ontologies/camera/#CameraBody ]<br />
+[ _node482, http://www.w3.org/2002/07/owl#type, http://www.xfront.com/owl/ontologies/camera/#CameraBody ]<br />
+[ _node496, http://www.w3.org/2002/07/owl#type, http://www.xfront.com/owl/ontologies/camera/#CameraBody ]<br />
+[ _node509, http://www.w3.org/2002/07/owl#type, http://www.xfront.com/owl/ontologies/camera/#CameraBody ]<br />
+[ _node519, http://www.w3.org/2002/07/owl#type, http://www.xfront.com/owl/ontologies/camera/#Body ]</p>
+
+<p>Since the declaration is <code>&lt;camera:CameraBody&gt; &lt;owl:equivalentClass&gt; &lt;camera:Body&gt;</code>, the first nine statements result from the constraint <code>($otherclass &lt;owl:equivalentClass&gt; $class)</code>, and the last statement results from the constraint <code>($class &lt;owl:equivalentClass&gt; $otherclass)</code>.</p>
+
+<p>While these queries establish the required relationships for the instance data, they do not make inferences on any ontology data. The first inference to make is based on the OWL definition that classes are considered to be subclasses of themselves. Using this information, you can infer that if two classes subclass each other, then they must be equivalent classes. This is shown in the following ontology data:</p>
+
+<p class="commandtext">&lt;owl:Class rdf:ID=&quot;NonPurchaseableItem&quot;&gt;<br />
+  &lt;rdfs:subClassOf rdf:resource=&quot;&amp;owl;Thing&quot;/&gt;<br />
+  &lt;rdfs:subClassOf rdf:resource=&quot;#IncludedItem&quot;/&gt;<br />
+&lt;/owl:Class&gt;<br />
+<br />
+&lt;owl:Class rdf:ID=&quot;IncludedItem&quot;&gt;<br />
+  &lt;rdfs:subClassOf rdf:resource=&quot;#NonPurchaseableItem&quot;/&gt;<br />
+&lt;/owl:Class&gt;</p>
+
+<p>The query to find this information is as follows:</p>
+
+<p class="commandtext">select $x &lt;owl:equivalentClass&gt; $y<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $x &lt;rdfs:subClassOf&gt; $y and $y &lt;rdfs:subClassOf&gt; $x;</p>
+
+<p>This returns:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#NonPurchaseableItem, http://www.w3.org/2002/07/owl#equivalentClass, <br />
+http://www.xfront.com/owl/ontologies/camera/#IncludedItem ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#IncludedItem, http://www.w3.org/2002/07/owl#equivalentClass, <br />
+http://www.xfront.com/owl/ontologies/camera/#NonPurchaseableItem ]</p>
+
+<p>Another inference that can be made is that every class is equivalent to itself. While this is redundant information, it can be important when performing a query to find all classes that are equivalent to a given class. This is because it would be an error to exclude the given class from such a list.</p>
+
+<p>The iTQL for this is as follows:</p>
+
+<p class="commandtext">select $x &lt;owl:equivalentClass&gt; $x<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $x &lt;rdf:type&gt; &lt;owl:Class&gt;;</p>
+
+<p>The results of this query are not shown here. They just state that every class in the system is equivalent to itself.</p>
+<div class="anchor"><a name="o2814">&nbsp;</a></div>
+<h4>owl:equivalentProperty</h4>
+
+<p>The <code>owl:equivalentProperty</code> declaration specifies that one property is equivalent to another property. That is, any usage of this property is treated as a usage of the equivalent property, and vice versa.</p>
+
+<p>The camera ontology declares the following:</p>
+
+<p class="commandtext">&lt;owl:DatatypeProperty rdf:ID=&quot;aperture&quot;&gt;<br />
+  &lt;rdfs:domain rdf:resource=&quot;#Lens&quot;/&gt;<br />
+  &lt;rdfs:range rdf:resource=&quot;&amp;xsd;string&quot;/&gt;<br />
+&lt;/owl:DatatypeProperty&gt;<br />
+<br />
+&lt;owl:DatatypeProperty rdf:ID=&quot;f-stop&quot;&gt;<br />
+  &lt;owl:equivalentProperty rdf:resource=&quot;#aperture&quot;/&gt;<br />
+  &lt;rdfs:domain rdf:resource=&quot;#Lens&quot;/&gt;<br />
+  &lt;rdfs:range rdf:resource=&quot;&amp;xsd;string&quot;/&gt;<br />
+&lt;/owl:DatatypeProperty&gt;</p>
+
+<p>This declares two properties, <code>aperture</code> and <code>f-stop</code>, which are equivalent to each other. These properties are of type <code>owl:DatatypeProperty</code>, but <code>owl:equivalentProperty</code> applies equally to <code>owl:ObjectProperty</code>.</p>
+
+<p>Both of these properties are used regularly throughout the data. An example is as follows:</p>
+
+<p class="commandtext">&lt;rdf:Description rdf:about=&quot;#SinarM&quot;&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Digital&quot;/&gt;<br />
+  &lt;rdf:type rdf:resource=&quot;#Simple-Large-Format&quot;/&gt;<br />
+  &lt;body&gt;<br />
+    &lt;BodyWithNonAdjustableShutterSpeed about=&quot;#SinarMbody&quot;&gt;<br />
+      &lt;matchingPart&gt;<br />
+        &lt;Lens rdf:about=&quot;#SinaronDigital4.5/45DB&quot;/&gt;<br />
+      &lt;/matchingPart&gt;<br />
+    &lt;/BodyWithNonAdjustableShutterSpeed&gt;<br />
+  &lt;/body&gt;<br />
+  &lt;lens&gt;<br />
+    &lt;Lens rdf:about=&quot;#SinaronDigital4.5/45DB&quot;&gt;<br />
+      &lt;aperture&gt;4.5&lt;/aperture&gt;<br />
+      &lt;focal-length&gt;45mm&lt;/focal-length&gt;<br />
+    &lt;/Lens&gt;<br />
+  &lt;/lens&gt;<br />
+&lt;/rdf:Description&gt;</p>
+
+<p>This declares a camera <code>SinarM</code>, with a <code>SinaronDigital4.5/45DB</code> lens. The lens has an aperture of 4.5.</p>
+
+<p>In order for all the attributes of the <code>f-stop</code> property to apply equally to the <code>aperture</code> property, the new property needs to be applied in parallel to the existing property. The iTQL to create these declarative statements is as follows:</p>
+
+<p class="commandtext">select $x $property2 $y<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $x $property1 $y<br />
+  and $property1 &lt;owl:equivalentProperty&gt; $property2;</p>
+
+<p>Since <code>owl:equivalentProperty</code> is symmetric, the statement can also be declared in the opposite order. The iTQL to find both statements at once is as follows:</p>
+
+<p class="commandtext">select $x $property2 $y<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $x $property1 $y<br />
+  and ($property1 &lt;owl:equivalentProperty&gt; $property2<br />
+    or $property2 &lt;owl:equivalentProperty&gt; $property1);</p>
+
+<p>The query returns data similar to the following:</p>
+
+<p class="commandtext">[ _node349, http://www.xfront.com/owl/ontologies/camera/#aperture, 4.5-5.6 ]<br />
+[ _node437, http://www.xfront.com/owl/ontologies/camera/#aperture, 4.5-5.6 ]<br />
+[ _node511, http://www.xfront.com/owl/ontologies/camera/#aperture, 4.5-5.6 ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#SinaronDigital4.5/45DB, <br />
+http://www.xfront.com/owl/ontologies/camera/#f-stop, 4.5 ]<br />
+[ _node463, http://www.xfront.com/owl/ontologies/camera/#f-stop, 2.8-3.5 ]<br />
+[ _node270, http://www.xfront.com/owl/ontologies/camera/#f-stop, 2.6-4.8 ]<br />
+[ _node316, http://www.xfront.com/owl/ontologies/camera/#f-stop, 2.6-4.8 ]</p>
+
+<p>Since the declaration is <code>&lt;camera:f-stop&gt; &lt;owl:equivalentProperty&gt; &lt;camera:aperture&gt;</code>, the first three statements result from the constraint <code>($property1 &lt;owl:equivalentProperty&gt; $property2)</code> and the next four statements result from the constraint <code>($property2 &lt;owl:equivalentClass&gt; $property1)</code>.</p>
+
+<p>While these queries establish the required relationships for the instance data, they do not make inferences on any ontology data. The first inference to make is based on the OWL definition that properties are considered to be subproperties of themselves. Using this information, you can infer that if two properties are subproperties of each other, then they must be equivalent properties. This is shown in the following ontology data:</p>
+
+<p class="commandtext">&lt;owl:DatatypeProperty rdf:ID=&quot;size&quot;&gt;<br />
+  &lt;rdfs:subPropertyOf rdf:resource=&quot;#focal-length&quot;/&gt;<br />
+  &lt;rdfs:domain rdf:resource=&quot;#Lens&quot;/&gt;<br />
+  &lt;rdfs:range rdf:resource=&quot;&amp;xsd;string&quot;/&gt;<br />
+&lt;/owl:DatatypeProperty&gt;<br />
+<br />
+&lt;owl:DatatypeProperty rdf:ID=&quot;focal-length&quot;&gt;<br />
+  &lt;rdfs:subPropertyOf rdf:resource=&quot;#size&quot;/&gt;<br />
+  &lt;rdfs:domain rdf:resource=&quot;#Lens&quot;/&gt;<br />
+  &lt;rdfs:range rdf:resource=&quot;&amp;xsd;string&quot;/&gt;<br />
+&lt;/owl:DatatypeProperty&gt;</p>
+
+<p>The query to find this information is as follows:</p>
+
+<p class="commandtext">select $x &lt;owl:equivalentProperty&gt; $y<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $x &lt;rdfs:subPropertyOf&gt; $y and $y &lt;rdfs:subPropertyOf&gt; $x;</p>
+
+<p>This returns:</p>
+
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#size, http://www.w3.org/2002/07/owl#equivalentProperty, <br />
+http://www.xfront.com/owl/ontologies/camera/#focal-length ]<br />
+[ http://www.xfront.com/owl/ontologies/camera/#focal-length, http://www.w3.org/2002/07/owl#equivalentProperty, <br />
+http://www.xfront.com/owl/ontologies/camera/#size ]</p>
+
+<p>Another inference that can be made is that every property is equivalent to itself. While this is redundant information it can be important when performing a query to find all properties that are equivalent to a given property. It would be an error to exclude the given property from such a list.</p>
+
+<p>The iTQL for this is as follows:</p>
+
+<p class="commandtext">select $x &lt;owl:equivalentProperty&gt; $x<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $x &lt;rdf:type&gt; &lt;rdf:Property&gt;;</p>
+
+<p>Without an inferencing rule to first declare that objects of all the owl property types also have type <code>rdf:Property</code>, then it is necessary to expand this query, as follows:</p>
+
+<p class="commandtext">select $x &lt;owl:equivalentProperty&gt; $x<br />
+  from &lt;rmi://mysite.com/server1#camera&gt;<br />
+  where $x &lt;rdf:type&gt; &lt;rdf:Property&gt;<br />
+  or $x &lt;rdf:type&gt; &lt;owl:ObjectProperty&gt;<br />
+  or $x &lt;rdf:type&gt; &lt;owl:DatatypeProperty&gt;<br />
+  or $x &lt;rdf:type&gt; &lt;owl:FunctionalProperty&gt;<br />
+  or $x &lt;rdf:type&gt; &lt;owl:InverseFunctionalProperty&gt;<br />
+  or $x &lt;rdf:type&gt; &lt;owl:TransitiveProperty&gt;<br />
+  or $x &lt;rdf:type&gt; &lt;owl:SymmetricProperty&gt;;</p>
+
+<p>Some methods of declaring the various property types in RDF/XML result in more than one type of property type statement, but other methods result in a single statement, making all of these type constraints necessary. iTQL eliminates duplicates in results, so this is not a problem.</p>
+
+<p>The results of this query are not shown here. They just state that every property in the system is equivalent to itself.</p>
+<div class="anchor"><a name="o2815">&nbsp;</a></div>
+<h4>owl:intersectionOf</h4>
+
+<p>Available in next release.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

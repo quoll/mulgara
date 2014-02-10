@@ -1,0 +1,37 @@
+/*
+#navProject	{
+	left: 10px;
+	top: 109px;
+	}	
+#navMain	{
+	left: 10px;
+	top: 109px;
+	border-top: 0;
+	}
+#navSite	{
+	width: 160px;
+	}	
+#navSite  ul.section li.ulcontainer{
+	margin-top:-1em;
+	}
+		
+#navPage	{
+	border-bottom: 0;
+	left: 212px;
+	height: 1.2em;
+	}
+	
+	*/
+#content ol, #content ul {
+	margin-left: 2em;
+	padding-left: 0em;
+	}
+
+#content	{
+	top: 93px;
+	left: 210px;
+	}	
+	
+#verticalLine	{
+	display: none;
+	}

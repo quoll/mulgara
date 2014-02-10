@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="resolver-filesystem" default="resolver-filesystem-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="resolver-filesystem-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${store-nodepool-memory.dist.dir}/${store-nodepool-memory.jar}"/>
+    <fileset file="${resolver-memory.dist.dir}/${resolver-memory.jar}"/>
+    <fileset file="${store-nodepool-xa.dist.dir}/${store-nodepool-xa.jar}"/>
+    <fileset file="${store-stringpool-xa.dist.dir}/${store-stringpool-xa.jar}"/>
+    <fileset file="${resolver-store.dist.dir}/${resolver-store.jar}"/>
+    <fileset file="${resolver-url.dist.dir}/${resolver-url.jar}"/>
+    <fileset file="${store-stringpool-memory.dist.dir}/${stringpool-memory.jar}"/>
+    <fileset file="${tuples-hybrid.dist.dir}/${tuples-hybrid.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${resolver.dist.dir}/${resolver.jar}"/>
+    <fileset file="${util-xa.dist.dir}/${util-xa.jar}"/>
+  </path>
+
+  <path id="resolver-filesystem-test-classpath">
+
+    <path refid="resolver-filesystem-classpath"/>
+
+    <fileset file="${resolver-filesystem.dist.dir}/${resolver-filesystem.jar}"/>
+  </path>
+
+  <target name="resolver-filesystem-clean"
+          description="Removes all compile generated files for the resolver-filesystem">
+
+    <tstamp/>
+
+    <delete dir="${resolver-filesystem.obj.dir}"/>
+    <delete dir="${resolver-filesystem.test.dir}"/>
+    <delete dir="${resolver-filesystem.dist.dir}"/>
+  </target>
+
+  <target name="-resolver-filesystem-prepare"
+          description="Creates all directories associated with the resolver-filesystem's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${resolver-filesystem.obj.dir}"/>
+    <mkdir dir="${resolver-filesystem.test.dir}"/>
+    <mkdir dir="${resolver-filesystem.dist.dir}"/>
+    <mkdir dir="${resolver-filesystem.obj.dir}/classes"/>
+  </target>
+
+  <target name="resolver-filesystem-compile"
+          depends="-resolver-filesystem-prepare, resolver-jar, 
+                   store-nodepool-memory-jar,
+                   resolver-memory-jar, store-nodepool-xa-jar, store-stringpool-xa-jar,
+                   resolver-store-jar, resolver-url-jar, store-stringpool-memory-jar,
+                   tuples-hybrid-jar"
+          description="Compiles all resolver-filesystem related files included generated
+                       source code">
+
+    <javac destdir="${resolver-filesystem.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="resolver-filesystem-classpath"/>
+
+      <src path="${resolver-filesystem.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="resolver-filesystem-jar"
+    depends="resolver-filesystem-compile, -resolver-filesystem-jar-uptodate"
+    unless="resolver-filesystem.jar.uptodate"
+    description="Builds the filesystem Resolver JAR">
+
+    <jar jarfile="${resolver-filesystem.dist.dir}/${resolver-filesystem.jar}">
+      <fileset dir="${resolver-filesystem.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-resolver-filesystem-jar-uptodate">
+
+    <uptodate property="resolver-filesystem.jar.uptodate"
+              targetfile="${resolver-filesystem.dist.dir}/${resolver-filesystem.jar}">
+      <srcfiles dir="${resolver-filesystem.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="resolver-filesystem-dist"
+          depends="resolver-filesystem-jar"
+          description="Performs all tasks related to finalising this resolver-filesystem
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the resolver-filesystem library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="resolver-filesystem-test" depends="resolver-filesystem-jar,
+                                             resolver-filesystem-test-data">
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="resolver-filesystem-classpath"/>
+      <param name="dir" value="${resolver-filesystem.src.dir}"/>
+      <param name="jar" value="${resolver-filesystem.jar}"/>
+    </antcall>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Filter filesystem definitions in test data                                -->
+  <!-- =================================================================== -->
+  <target name="resolver-filesystem-test-data" depends="set.host.name, uri">
+
+    <filter token="baseuri" value="${baseuri}"/>
+    <filter token="server" value="rmi://${host.name}/server1"/>
+    <filter token="server2" value="rmi://${host.name}/server2"/>
+    <filter token="point-version" value="${point-version}"/>
+
+    <mkdir dir="${tmp.dir}/filesystem"/>
+    <touch file="${tmp.dir}/filesystem/camera.n3"/>
+    <touch file="${tmp.dir}/filesystem/camera.owl"/>
+    <touch file="${tmp.dir}/filesystem/CameraPhone.owl"/>
+    <touch file="${tmp.dir}/filesystem/dc.rdfs"/>
+    <copy file="${data.dir}/ical.rdf" tofile="${tmp.dir}/filesystem/ical.rdf"/>
+    <touch file="${tmp.dir}/filesystem/kamera.owl"/>
+    <touch file="${tmp.dir}/filesystem/mulgara.rdfs"/>
+    <touch file="${tmp.dir}/filesystem/numbers.rdf.gz"/>
+    <touch file="${tmp.dir}/filesystem/rdfs.rdfs"/>
+    <touch file="${tmp.dir}/filesystem/RDF-Test-Cases-2001-09-12.zip"/>
+    <touch file="${tmp.dir}/filesystem/rdql-tests-jena-2.0.zip"/>
+    <touch file="${tmp.dir}/filesystem/rss-1.0.rdfs"/>
+    <touch file="${tmp.dir}/filesystem/test0014.nt"/>
+    <touch file="${tmp.dir}/filesystem/test0014.rdf"/>
+    <touch file="${tmp.dir}/filesystem/test001.nt"/>
+    <touch file="${tmp.dir}/filesystem/test001.rdf"/>
+    <touch file="${tmp.dir}/filesystem/test1.itql"/>
+    <touch file="${tmp.dir}/filesystem/test2.itql"/>
+    <touch file="${tmp.dir}/filesystem/test3.itql"/>
+    <touch file="${tmp.dir}/filesystem/test4.itql"/>
+    <touch file="${tmp.dir}/filesystem/test-model10.rdf"/>
+    <touch file="${tmp.dir}/filesystem/test-model11.rdf"/>
+    <touch file="${tmp.dir}/filesystem/test-model1.rdf"/>
+    <touch file="${tmp.dir}/filesystem/test-model2.rdf"/>
+    <touch file="${tmp.dir}/filesystem/test-model3.rdf"/>
+    <touch file="${tmp.dir}/filesystem/test-model4.rdf"/>
+    <touch file="${tmp.dir}/filesystem/test-model5.rdf"/>
+    <touch file="${tmp.dir}/filesystem/test-model6.rdf"/>
+    <touch file="${tmp.dir}/filesystem/test-model7.rdf"/>
+    <touch file="${tmp.dir}/filesystem/test-model8.rdf"/>
+    <touch file="${tmp.dir}/filesystem/test-model9.rdf"/>
+    <touch file="${tmp.dir}/filesystem/test-model.txt"/>
+    <touch file="${tmp.dir}/filesystem/mulgara.rdfs"/>
+    <touch file="${tmp.dir}/filesystem/w3c-news.rss"/>
+    <mkdir dir="${tmp.dir}/filesystem/CVS"/>
+    <touch file="${tmp.dir}/filesystem/CVS/Entries"/>
+    <touch file="${tmp.dir}/filesystem/CVS/Repository"/>
+    <touch file="${tmp.dir}/filesystem/CVS/Root"/>
+    <mkdir dir="${tmp.dir}/filesystem/examples"/>
+    <touch file="${tmp.dir}/filesystem/examples/camera.owl"/>
+    <touch file="${tmp.dir}/filesystem/examples/camera.rdf"/>
+    <mkdir dir="${tmp.dir}/filesystem/examples/CVS"/>
+    <touch file="${tmp.dir}/filesystem/examples/CVS/Entries"/>
+    <touch file="${tmp.dir}/filesystem/examples/CVS/Repository"/>
+    <touch file="${tmp.dir}/filesystem/examples/CVS/Root"/>
+    <mkdir dir="${tmp.dir}/filesystem/fullTextTestData"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_001.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_002.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_003.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_004.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_005.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_006.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_007.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_008.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_009.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_010.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_011.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_012.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_013.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_014.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_015.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_016.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_017.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_018.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_019.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_020.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_021.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_022.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_023.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_024.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_025.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_026.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_027.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_028.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_029.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_030.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_031.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_032.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_033.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_034.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_035.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_036.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_037.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_038.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_039.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_040.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_041.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_042.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_043.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_044.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_045.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_046.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_047.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_048.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_049.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_050.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_051.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_052.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_053.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_054.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_055.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_056.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_057.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_058.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_059.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_060.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_061.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_062.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_063.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_064.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_065.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_066.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_067.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_068.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_069.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_070.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_071.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_072.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_073.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_074.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_075.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_076.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_077.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_078.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_079.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_080.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_081.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_082.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_083.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_084.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_085.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_086.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_087.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_088.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_089.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_090.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_091.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_092.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_093.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_094.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_095.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_096.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_097.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_098.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_099.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_100.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_101.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_102.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_103.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_104.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_105.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_106.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_107.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_108.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_109.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_110.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_111.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_112.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_113.txt"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/hounds_114.txt"/>
+    <mkdir dir="${tmp.dir}/filesystem/fullTextTestData/CVS"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/CVS/Entries"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/CVS/Repository"/>
+    <touch file="${tmp.dir}/filesystem/fullTextTestData/CVS/Root"/>
+    <mkdir dir="${tmp.dir}/filesystem/LocalAnswer"/>    
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/AppendAllCommonAnswer.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/AppendAllCommonTableA.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/AppendAllCommonTableB.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/AppendNoCommonAnswer.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/AppendNoCommonTableA.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/AppendNoCommonTableB.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/AppendSomeCommonAnswer.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/AppendSomeCommonTableA.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/AppendSomeCommonTableB.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinAllCommonFourColsAnswer.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinAllCommonFourColsTableA.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinAllCommonFourColsTableB.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinAllCommonOneColAnswer.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinAllCommonOneColTableA.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinAllCommonOneColTableB.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinAllCommonThreeColsAnswer.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinAllCommonThreeColsTableA.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinAllCommonThreeColsTableB.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinAllCommonTwoColsAnswer.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinAllCommonTwoColsTableA.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinAllCommonTwoColsTableB.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinEmptyTableAnswer.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinEmptyTableTableA.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinEmptyTableTableB.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinNoCommonAnswer.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinNoCommonTableA.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinNoCommonTableB.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinNormalAnswer.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinNormalTableA.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/JoinNormalTableB.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/NotJoinEmptyFirstTableAnswer.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/NotJoinEmptyFirstTableTableA.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/NotJoinEmptyFirstTableTableB.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/NotJoinEmptySecondTableAnswer.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/NotJoinEmptySecondTableSecondCommonAnswer.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/NotJoinEmptySecondTableSecondCommonTableA.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/NotJoinEmptySecondTableSecondCommonTableB.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/NotJoinEmptySecondTableTableA.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/NotJoinEmptySecondTableTableB.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/NotJoinNoCommonAnswer.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/NotJoinNoCommonTableA.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/NotJoinNoCommonTableB.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/NotJoinNormalAnswer.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/NotJoinNormalTableA.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/NotJoinNormalTableB.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/NotJoinSecondTableAllCommonAnswer.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/NotJoinSecondTableAllCommonTableA.txt"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/NotJoinSecondTableAllCommonTableB.txt"/>
+    <mkdir dir="${tmp.dir}/filesystem/LocalAnswer/CVS"/>    
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/CVS/Entries"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/CVS/Repository"/>
+    <touch file="${tmp.dir}/filesystem/LocalAnswer/CVS/Root"/>
+    <mkdir dir="${tmp.dir}/filesystem/mbox"/>
+    <touch file="${tmp.dir}/filesystem/mbox/Attachments"/>
+    <touch file="${tmp.dir}/filesystem/mbox/BadSubject"/>
+    <touch file="${tmp.dir}/filesystem/mbox/CouldBe"/>
+    <touch file="${tmp.dir}/filesystem/mbox/Empty"/>
+    <touch file="${tmp.dir}/filesystem/mbox/EmptyHeader"/>
+    <touch file="${tmp.dir}/filesystem/mbox/Invalid"/>
+    <touch file="${tmp.dir}/filesystem/mbox/InvalidAttachments"/>
+    <touch file="${tmp.dir}/filesystem/mbox/Normal"/>
+    <touch file="${tmp.dir}/filesystem/mbox/Trash"/>
+    <mkdir dir="${tmp.dir}/filesystem/mbox/CVS"/>
+    <touch file="${tmp.dir}/filesystem/mbox/CVS/Entries"/>
+    <touch file="${tmp.dir}/filesystem/mbox/CVS/Repository"/>
+    <touch file="${tmp.dir}/filesystem/mbox/CVS/Root"/>
+    <mkdir dir="${tmp.dir}/filesystem/mp3"/>
+    <touch file="${tmp.dir}/filesystem/mp3/Chrono_Trigger_600_AD_in_Piano.mp3"/>
+    <mkdir dir="${tmp.dir}/filesystem/mp3/CVS"/>
+    <touch file="${tmp.dir}/filesystem/mp3/CVS/Entries"/>
+    <touch file="${tmp.dir}/filesystem/mp3/CVS/Repository"/>
+    <touch file="${tmp.dir}/filesystem/mp3/CVS/Root"/>
+  </target>
+
+  <target name="resolver-filesystem-javadoc"
+          depends="resolver-filesystem-jar"
+          description="Creates the javadoc for this resolver-filesystem">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.resolver.filesystem.*"/>
+      <param name="javadoc.classpath" value="resolver-filesystem-classpath"/>
+      <param name="javadoc.sourcepath" value="${resolver-filesystem.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-filesystem-help"
+          description="Displays the help information for this resolver-filesystem">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this resolver-filesystem -->
+
+    <echo message="Welcome to the build script for ${resolver-filesystem.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${resolver-filesystem.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

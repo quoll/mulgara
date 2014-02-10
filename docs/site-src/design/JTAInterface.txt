@@ -1,0 +1,271 @@
+The Mulgara JTA Interface
+
+The Existing Interface
+
+Mulgara originally provided two transactional interfaces, implicit and explicit.
+This mediated via the Session object, and the method used to select between them
+is called setAutoCommit().  When auto-commit is true, all operations on the
+Session use the implicit interface.  Setting auto-commit false initiates an
+explicit (or user-demarcated) transaction.  Irrespective of any commit/rollback,
+once auto-commit is false all transactions are user-demarcated until it is set
+to true again.  While auto-commit is true every operation on the Session will
+initiate a new transaction which will be finalised (either commit or rollback)
+before the operation returns.
+
+All transactions initiated via the explicit interface are read-write, whereas
+only those operations that perform updates initiate implicit read-write
+transactions.  Naturally both interfaces use the same underlying transactional
+mechanisms within Mulgara, including a single shared write-lock that only
+permits a single read-write transaction to proceed at a time.
+
+Explicit transactions are controlled via three methods on the Session interface.
+ - Session::setAutoCommit() allows the developer to select which transactional
+   interface to use, and to initiate a transaction (this does conflate two
+   concepts, but todate that has not proven to be a problem).
+ - Session::commit() commits the current transaction an initiates a new
+   transaction without dropping the write-lock.
+ - Session::rollback() rollbacks the current transaction an initiates a new
+   transaction without dropping the write-lock.
+There are two other ways for a user-demarcated transaction to be terminated.
+ - If an exception is thrown from an operation on the session, or on a query
+   result associated with the transaction, the transaction is rolled back and
+   the write-lock is dropped.
+ - If the transaction timeout expires then the transaction is rolled back and
+   the write-lock is dropped.
+In both cases the session remains in explicit transaction control however as
+all operations start by attempting to activate the transaction, any attempt to
+perform any non-transaction control operation on the session results in an
+exception.
+
+To ensure full transaction isolation/serialisability each answer returned from a
+query holds a reference to the transaction/phase it was performed against.  This
+means that the results of queries performed within an implicit transaction
+remain valid until such a time as either the result or the originating session
+itself is closed.  However due to this reliance on the originating transaction,
+query results obtained from an explicit transaction do not out live it, and are
+invalidated as soon as the transaction is terminated.
+
+This approach greatly simplifies the normal case of an application that is
+performing an atomic insert, delete, or query.  In this case the application
+developer can ignore transactions altogether and the implict transaction control
+will 'do the right thing'.  For more complex applications, the explicit
+transation controls available on session are sufficient for almost all uses of
+mulgara as a standalone store.
+
+Motivation for a new interface
+
+There are however two gaps in the original transaction interface.
+
+The first is that it is impossible to perform a series of transactionally
+consistant queries except by grouping them into a single call to
+Session::query(List); or by first initiating an explicit transaction in order to
+obtain the write-lock, preventing any potentially inconsistent updates.
+Naturally the former is not always possible, and the latter is undesirable,
+especially as mulgara is a multiversion datastore and it therefore should be
+possible to obtain a handle to a given version (phase) and run multiple queries
+against it.
+
+The second is that the interface provides no access to the two-phase commit
+protocol used by mulgara internally.  This isn't a problem when using mulgara as
+a standalone server, however it does make it impossible to incorporate mulgara
+in a distributed transaction with other stores or databases safely.
+
+The Java standard for providing access to a two-phase commit protocol is the
+"Java Transaction API" (JTA).  A java transaction (and slight simplification) of
+the Object Management Group (OMG)'s "Transaction Service Specification" (OTS), which
+is the transaction management specification for CORBA.  The OTS is itself an
+object-oriented mapping of the "DTP/XA Specification" (XA-spec)from X/Open (now The Open
+Group).  The relevant versions of the various specifications are:
+  - JTA : Java Transaction API (JTA), Version 1.1, 2002
+  - OTS : Transaction Service Specification, Version 1.2, 2001
+  - XA-Spec : Distributed Transaction Processing: The XA Specification,
+    XO/CAE/91/300, 1991
+The XA-Spec relies for context on the "DTP/Reference Model" (XA-model), 1991;
+although the mulgara JTA implementation was guided with reference to the more
+recent version 3, 1996.
+  - XA-model : Distribute Transaction Processing: Reference Model Version 3,
+    G504, 1996
+
+While the primary requirement for JTA support is the need to provide a two-phase
+commit interface, the opportunity was also taken to provide explicit control of
+read-only transactions which solves the problem of supporting multiple
+consistent reads as discussed above.
+
+Limitations of the JTA interface
+
+The write-lock is not a consequence of the existing interface, but rather a
+property of the underlying mulgara XA1 store implementation.  As a result the
+use of JTA does not affect the serialisation of write transactions.  It remains
+the case that any attempt to initiate a write-transaction will block until such
+a time as the write-lock becomes available.  The current JTA implementation
+within mulgara does not provide any timeout on this wait, so application
+developers should be aware that calls to start a mulgara transaction may block
+for an arbitary time.  
+
+On restart mulgara automatically and releases (garbage collects) any phases
+(versions) other than the most recently committed.  This startup protocol is
+done without any journal reruns resulting in an instantaneous restart.  On the
+other hand this protocol does mean that mulgara discards any prepared
+transactions on restart, effectively performing a heuristic rollback.  As
+mulgara makes no distinction between prepared and unprepared transactions on
+restart, mulgara does not persist the prepared status of a transaction.  This
+means that the mulgara JTA implementation cannot participate in the JTA recovery
+protocol.  As a result on restart users should consider all transactions to be
+Heuristically Completed (state S5 in XA-spec 6.3), with status XA_HEURRB in the
+case of a restart prior to a call to commit, and status XA_HEURHAZ on a restart
+during a commit call.  It is apropos here to recall that XA_HEURMIX is only
+possible if an update operation is performed on an external datastore via a
+resolver (at the moment only lucene supports this); atomicity is guaranteed
+with respect to the mulgara rdf-store itself.
+
+The JTA interface is a Java interface that is expected to operate transparently
+over a network.  As with Mulgara's session interface, the JTA interface uses RMI
+to provide network transparency.  This should not be a problem as the RMI based
+JTA implementation can only be obtained via the RMI based session
+implementation, however any interruption to RMI operation will affect 
+transaction control.
+
+Accessing the JTA interface
+
+The fundamental requirement for supporting JTA is providing a way of obtaining
+an XAResource.  JTA requires that each XAResource be associated with a "Resource
+Manager Instance".  When mapping this to Mulgara, and taking into consideration
+the code in the JTA-spec (3.4.9), the Session object was identified as best
+fitting JTA's use of the term RM instance.  The JTA interface therefore adds two
+new methods to Session:
+  Session::getXAResource()
+  Session::getReadOnlyXAResource()
+Both return an XAResource object, associated with the session.  All transactions
+initiated via a call to XAResource::start() will be read-write or read-only
+depending on if the XAResource was obtained via getXAResource or
+getReadOnlyXAResource respectively.
+
+The preexisting interface manages the transaction state transitions internally,
+as compared to the JTA interface which exposes these transitions to the external
+control of an external transaction manager.  Consequently within mulgara
+transactions created via the JTA interface are referred to as "external
+transactions", those by the older implicit and explicit interface as "internal
+transactions".  While JTA 3.4.7 encourages supporting both Local (internal) and
+Global (external) transactions through the same "connection", supporting this
+would drastically increase the number of operation combinations that would need
+to be tested to ensure confidence in the transaction logic.  Therefore the
+current mulgara JTA implementation does not support the use of both internal and
+external transactions on the same session.  To select which interface is active
+on a given session the developer should simply use it.  The first use of a given
+interface (internal or external) disables the other.  This ensures full
+backwards compatibility with existing code while simplifying the process of
+testing and building confidence in the new interface.
+
+Using the JTA interface
+
+It is worth mentioning that none of the underlying transactional machinery has
+changed, consequently all Answer objects still reference their originating
+transaction, and all transactions ultimately must map to a specific phase on the
+store.  As a result it is important to keep in mind that once a JTA mediated
+transaction is terminated via the XAResource, the reference to the phase is
+released and all outstanding Answer objects are invalidated.  In this the JTA
+interface works very similarly to the explict internal interface.
+
+JTA also recommends supporting multiple outstanding transactions on a single RM
+instance.  The mulgara JTA implementation provides full support for this,
+however developers attempting to use this functionality *must* be careful to
+observe the restrictions imposed by the JTA standard.  JTA provides support for
+concurrent transactions on a single resource adaptor via calls to
+XAResource::suspend() and XAResource::resume().  These transition the specified
+transaction from Associated to Suspended states (see JTA-spec 3.4.4, although
+XA-spec Ch.6 is more complete).  JTA requires (as does the mulgara
+implementation) that at most one transaction be associated with the
+transactional resource at any given time.
+
+The following example of concurrent use of JTA transactions on a single session
+is excerpted from org.mulgara.resolver.JotmTransactionStandaloneUnitTest.java
+
+{
+  txManager.begin();
+
+  Session session = sessionFactory.newSession();
+  XAResource roResource = session.getReadOnlyXAResource();
+  XAResource rwResource = session.getXAResource();
+
+  /*
+   * Note: JTA requires that you initiate the global transaction (via mgr::begin()
+   * above), before you enlist a resource.
+   * The call to enlistResource for an XAResource for the first time in a given
+   * global transaction will cause the Transaction Manager to call xa::start() on
+   * the XAResource, initiating a mulgara transaction.
+   * As we are using an XAResource obtained via xa::getXAResource(), this
+   * transaction will be a read-write transaction - note this does mean that
+   * this call could block waiting on the write-lock availability.
+   */
+  txManager.getTransaction().enlistResource(rwResource);
+  session.createModel(...);
+  Transaction tx1 = txManager.suspend();
+  /*
+   * Note: Without the call to mgr::suspend, subsequent calls to enlistResource will
+   * detect that there is an existing transaction and result in a call to
+   * xa::start(TM_JOIN), which is either a no-op (if a read-only 'joins' a
+   * read-write transaction) or an exception (if a read-write attempts to 'join'
+   * a read-only transaction).
+   * With the call to mgr::suspend() the transaction is temporarally
+   * disassociated from this thread, and from this session.  A Consequent call to
+   * mgr::begin() will result in the transaction manager initiating a new
+   * transaction, and an ensuing call to xa::enlistResource a new mulgara
+   * transaction.
+   * It is important to realise that all operations on a session object are
+   * evaluated with respect to the currently associated transaction.  If all
+   * transactions are suspended or completed then operations will result in an
+   * exception.
+   */
+
+  txManager.begin();
+  txManager.getTransaction().enlistResource(roResource);
+  Answer answer = session.query(new Query(...));
+  Transaction tx2 = txManager.suspend();
+
+  /*
+   * Answers carry their own association with the mulgara transaction, so the
+   * transaction does not need to be reassociated with the originating session
+   * to use an Answer object.  This does run counter to assumptions of the JTA
+   * specification, however as the JTA specification assumes a traditional
+   * relational database, many of the capabilities of multiversion datastores
+   * (such as mulgara) flexibility is required in adapting multiversion
+   * transactions to JTA.
+   */
+  answer.beforeFirst();
+  while (answer.next()) {
+    ...
+  }
+
+  txManager.resume(tx1);
+  session.insert(...);
+  tx1 = txManager.suspend();
+  answer.close();
+  txManager.resume(tx1);
+  txManager.commit();
+
+  /*
+   * Note the suport for user-demarcated concurrent read-only transactions.
+   */
+  txManager.begin();
+  txManager.getTransaction().enlistResource(roResource);
+  Answer answer2 = session.query(new Query(...));
+  Transaction tx3 = txManager.suspend();
+
+  // use answer2.
+  answer2.close();
+
+  /*
+   * Note the call to tx3.commit() is performed on a suspended transaction.  As
+   * tx3 is a handle to the transaction it does not need to be reassociated with
+   * the current thread as is required if it is going to be committed via the
+   * transaction manager.  This flexibility is mandated by JTA.
+   */
+  txManager.begin();
+  txManager.getTransaction().enlistResource(rwResource);
+  session.removeModel(...);
+  txManager.commit();
+  txManager.resume(tx2);
+  txManager.commit();
+  tx3.commit();
+  session.close();
+}

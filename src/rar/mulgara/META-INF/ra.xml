@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE connector PUBLIC
+  "-//Sun Microsystems, Inc.//DTD Connector 1.0//EN"
+  "http://java.sun.com/dtd/connector_1_0.dtd">
+
+<connector>
+  <display-name>Mulgara Semantic Store RAR</display-name>
+  <description>Mulgara Semantic Store Resource Adaptor</description>
+  <icon>
+    <small-icon>Jar16.gif</small-icon>
+    <large-icon>Jar24.gif</large-icon>
+  </icon>
+  <vendor-name>mulgara.org</vendor-name>
+  <spec-version>1.0</spec-version>
+  <eis-type>World Wide Web</eis-type>
+  <version>2.0</version>
+  <license>
+    <description>Mozilla Public License v1.1</description>
+    <license-required>false</license-required>
+  </license>
+  <resourceadapter>
+    <managedconnectionfactory-class>org.mulgara.connector.ManagedDriverFactory</managedconnectionfactory-class>
+    <connectionfactory-interface>org.mulgara.query.SessionFactory</connectionfactory-interface>
+    <connectionfactory-impl-class>org.mulgara.connector.ReferenceableSessionFactory</connectionfactory-impl-class>
+    <connection-interface>org.mulgara.query.Session</connection-interface>
+    <connection-impl-class>org.mulgara.driver.SessionImpl</connection-impl-class>
+    <transaction-support>NoTransaction</transaction-support>
+    <!--
+    <auth-mechanism>
+      <auth-mech-type>basic-password</auth-mech-type>
+      <credential-interface>javax.resource.security.PasswordCredential</credential-interface>
+    </auth-mechanism>
+    -->
+    <reauthentication-support>false</reauthentication-support>
+  </resourceadapter>
+</connector>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="resolver-test" default="resolver-test-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="resolver-test-pkg-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <!-- Need to separate UnitTests into their own hierarchy so we don't pollute the classpath -->
+    <fileset file="${resolver.dist.dir}/${resolver.jar}"/>
+    <fileset file="${store-nodepool-memory.dist.dir}/${store-nodepool-memory.jar}"/>
+    <fileset file="${resolver-memory.dist.dir}/${resolver-memory.jar}"/>
+    <fileset file="${store-nodepool-xa.dist.dir}/${store-nodepool-xa.jar}"/>
+    <fileset file="${store-stringpool-xa.dist.dir}/${store-stringpool-xa.jar}"/>
+    <fileset file="${resolver-store.dist.dir}/${resolver-store.jar}"/>
+    <fileset file="${store-stringpool-memory.dist.dir}/${store-stringpool-memory.jar}"/>
+    <fileset file="${tuples-hybrid.dist.dir}/${tuples-hybrid.jar}"/>
+    <fileset file="${util-xa.dist.dir}/${util-xa.jar}"/>
+    <fileset file="${server.dist.dir}/${server.jar}"/>
+  </path>
+
+  <path id="resolver-test-test-classpath">
+
+    <path refid="resolver-test-pkg-classpath"/>
+
+    <fileset file="${resolver-test.dist.dir}/${resolver-file.jar}"/>
+    <fileset file="${resolver-test.dist.dir}/${resolver-http.jar}"/>
+    <fileset file="${resolver-test.dist.dir}/${resolver-test.jar}"/>
+  </path>
+
+  <target name="resolver-test-clean"
+          description="Removes all compile generated files for the resolver-test">
+
+    <tstamp/>
+
+    <delete dir="${resolver-test.obj.dir}"/>
+    <delete dir="${resolver-test.test.dir}"/>
+    <delete dir="${resolver-test.dist.dir}"/>
+  </target>
+
+  <target name="-resolver-test-prepare"
+          description="Creates all directories associated with the resolver-test's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${resolver-test.obj.dir}"/>
+    <mkdir dir="${resolver-test.test.dir}"/>
+    <mkdir dir="${resolver-test.dist.dir}"/>
+    <mkdir dir="${resolver-test.obj.dir}/classes"/>
+  </target>
+
+  <target name="resolver-test-compile"
+          depends="-resolver-test-prepare, resolver-spi-jar, resolver-jar, store-nodepool-memory-jar,
+                   resolver-memory-jar, store-nodepool-xa-jar, store-stringpool-xa-jar,
+                   resolver-store-jar, resolver-url-jar, store-stringpool-memory-jar,
+                   tuples-hybrid-jar, server-jar"
+          description="Compiles all resolver-test related files included generated
+                       source code">
+
+    <javac destdir="${resolver-test.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="resolver-test-pkg-classpath"/>
+
+      <src path="${resolver-test.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="resolver-test-jar"
+          depends="resolver-test-compile, -resolver-test-jar-uptodate"
+          unless="resolver-test.jar.uptodate"
+          description="Creates the resolver-test's jar/s">
+
+    <jar jarfile="${resolver-test.dist.dir}/${resolver-test.jar}">
+      <fileset dir="${resolver-test.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-resolver-test-jar-uptodate">
+
+    <uptodate property="resolver-test.jar.uptodate"
+              targetfile="${resolver-test.dist.dir}/${resolver-test.jar}">
+      <srcfiles dir="${resolver-test.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="resolver-test-dist"
+          depends="resolver-test-jar"
+          unless="resolver-test.uptodate"
+          description="Performs all tasks related to finalising this resolver-test
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the resolver-test library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="resolver-test-test"
+          depends="resolver-test-jar, resolver-file-jar, resolver-http-jar"
+          description="Carries out unit testing for this resolver-test">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="resolver-test-pkg-classpath"/>
+      <param name="dir" value="${resolver-test.src.dir}"/>
+      <param name="jar" value="${resolver-test.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-test-javadoc"
+          depends="resolver-test-jar"
+          description="Creates the javadoc for this resolver-test">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.resolver.test.*"/>
+      <param name="javadoc.classpath" value="resolver-test-pkg-classpath"/>
+      <param name="javadoc.sourcepath" value="${resolver-test.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-test-help"
+          description="Displays the help information for this resolver-test">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this resolver-test -->
+
+    <echo message="Welcome to the build script for ${resolver-test.name}."/>
+    <echo message="This is a resolver that utilises custom constraints"/>
+    <echo message="registered by the TestResolverFactory to permit"/>
+    <echo message="the creation of unit tests for related code paths."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${resolver-test.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

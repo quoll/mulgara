@@ -1,0 +1,39 @@
+<!ELEMENT MulgaraConfig (ExternalConfigPaths?, MulgaraHost?, Jetty?, ServerName, RMIPort?, PersistencePath, DefaultGraph?, TransactionTimeout?, IdleTimeout?. TripleStoreImplementation, StartupScript?)>
+
+  <!ELEMENT ExternalConfigPaths (MulgaraLogging, WebDefault)>
+
+    <!ELEMENT MulgaraLogging (#PCDATA)>
+    <!ELEMENT WebDefault (#PCDATA)>
+
+  <!ELEMENT MulgaraHost (#PCDATA)>
+
+  <!ELEMENT Jetty (Connector, PublicConnector)>
+
+    <!ELEMENT Connector (Disabled?, Host?, Port?, Acceptors?, MaxThreads?, MaxIdleTimeMs?, LowResourceMaxIdleTimeMs?, MaxFormContentSize?)>
+    <!ELEMENT PublicConnector (Disabled?, Host?, Port?, Acceptors?, MaxThreads?, MaxIdleTimeMs?, LowResourceMaxIdleTimeMs?, MaxFormContentSize?)>
+
+      <!ELEMENT Host (#PCDATA)>
+      <!ELEMENT Port (#PCDATA)>
+      <!ELEMENT Acceptors (#PCDATA)>
+      <!ELEMENT MaxThreads (#PCDATA)>
+      <!ELEMENT MaxIdleTimeMs (#PCDATA)>
+      <!ELEMENT LowResourceMaxIdleTimeMs (#PCDATA)>
+      <!ELEMENT MaxFormContentSize (#PCDATA)>
+
+  <!ELEMENT ServerName (#PCDATA)>
+
+  <!ELEMENT RMIPort (#PCDATA)>
+
+  <!ELEMENT RMIInterrupt (#PCDATA)>
+
+  <!ELEMENT PersistencePath (#PCDATA)>
+
+  <!ELEMENT TransactionTimeout (#PCDATA)>
+
+  <!ELEMENT IdleTimeout (#PCDATA)>
+
+  <!ELEMENT TripleStoreImplementation (#PCDATA)>
+
+  <!ELEMENT StartupScript (#PCDATA)>
+
+  <!ELEMENT Smtp (#PCDATA)>

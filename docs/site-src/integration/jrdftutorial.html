@@ -1,0 +1,92 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - JRDF Tutorial</title>
+    <meta name="keywords" content="JRDF, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/integration/jsptutorial.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/integration/jrdfprereq.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">In This Section</p>
+<p class="relateditem"><a href="/integration/jrdfprereq.html">Prerequisites</a></p>
+<p class="relateditem"><a href="/integration/jrdfprereq.html#o2898">Obtaining a Session from a Mulgara Server</a></p>
+<p class="relateditem"><a href="/integration/jrdfprereq.html#o2899">Comparison of JRDF Graph Implementations</a></p>
+<p class="relateditem"><a href="/integration/jrdfcreategraph.html">Creating the Graph</a></p>
+<p class="relateditem"><a href="/integration/jrdfcreatenodes.html">Creating Nodes and Triples</a></p>
+<p class="relateditem"><a href="/integration/jrdfaddtriples.html">Adding Triples to the Graph</a></p>
+<p class="relateditem"><a href="/integration/searchgraph.html">Searching the Graph</a></p>
+<p class="relateditem"><a href="/integration/jrdfreify.html">Reify Triples</a></p>
+<p class="relateditem"><a href="/integration/jrdfremove.html">Removing Triples from the Graph</a></p>
+
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/integration/index.html">Integration Tutorials</a></p>
+<p class="relateditem"><a href="/integration/resolverhttpmp3.html">HTTP Resolver and MP3 Content Handler Tutorial</a></p>
+<p class="relateditem"><a href="/integration/jena.html">Jena</a></p>
+<p class="relateditem"><a href="/integration/perl.html">Perl</a></p>
+<p class="relateditem"><a href="/integration/jsptutorial.html">JavaServer Pages Tag Library</a></p>
+	
+ -->
+
+
+
+
+<h2>JRDF Tutorial</h2>
+
+<p>JRDF is a set of APIs that provide a concise implementation of the Resource Description Framework (RDF) using standard Java conventions. JRDF offers a highly modular and type safe interface allowing users to create, store and query RDF statements. It includes a default memory implementation that can be used in conjunction with Mulgara<sup>TM</sup> to provide a scalable RDF solution.</p>
+
+<p>The example code provided in this tutorial is from the <code>org.jrdf.mem.JRDFExample</code> class. The <code>JRDFExample</code> class uses an in-memory JRDF graph implementation and can be run by typing at a command line:</p>
+
+<p class="commandtext">java -cp &lt;TKS installation directory&gt;/driver-2.1.jar org.jrdf.mem.JRDFExample</p>
+
+<p>The code for <code>JRDFExample</code> is in the <code>Resources</code> directory of your TKS installation. The JRDF API documentation is in <code><a class="internetlinktemplate" title="" href="api/jrdf/index.html">&lt;TKS install&gt;/docs/api/jrdf</a></code>.</p>
+
+<p>There are four JRDF graph implementations to choose from:</p>
+<ol><li>JRDF graph (memory graph)
+<p class="listcontinue">The JRDF jar provides a memory implementation under 60Kb and is available for download from <code><a class="jumptemplate" title="" href="http://sourceforge.net/projects/jrdf/">http://sourceforge.net/projects/jrdf/</a></code>. The memory graph is easy to create and is useful for small graphs and caching of results from larger graphs (subgraphs). The classes are in the <code>org.jrdf.graph.mem</code> package of the JRDF jar.</p>
+</li><li>Server-side JRDF Graph (server graph)
+<p class="listcontinue">Mulgara provides a server-side JRDF Graph interface for accessing a model. The graph must be created in the same JVM that the Mulgara server is running in.</p>
+
+<p class="listcontinue">Server graphs can be used for direct access to the database using a graph API. This is useful for applications that use Mulgara as an embedded component. The server graph classes are in the <code>org.mulgara.jrdf</code> package of the server jar.</p>
+</li><li>Server backed JRDF graph (client graph)
+<p class="listcontinue">Mulgara also provides a client-side JRDF graph interface for accessing a model. This provides a scalable RDF solution for remote client applications.</p>
+
+<p class="listcontinue">Client graphs can be used in conjunction with memory graphs. Memory implemented nodes and triples can be inserted into, removed from and used to query client graphs. Other JRDF implementations can also be used, but may not be supported. The client graph classes are in the <code>org.mulgara.client.jrdf</code> package of the Driver jar.</p>
+</li><li>Read-only iTQL result JRDF graph (iTQL graph)
+<p class="listcontinue">Mulgara also allows you to create read-only JRDF graphs from the results of an iTQL query. This provides a powerful mechanism for displaying search results as a subgraph. The classes are in the <code>org.mulgara.client.jrdf</code> package of the Driver jar.</p>
+</li></ol>
+<p>Each of these JRDF graph implementations are outlined in the following sections.</p>
+
+ 
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

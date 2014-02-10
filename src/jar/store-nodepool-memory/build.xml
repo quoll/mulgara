@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="store-nodepool-memory" default="store-nodepool-memory-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="store-nodepool-memory-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${store.dist.dir}/${store.jar}"/>
+    <fileset file="${store-nodepool.dist.dir}/${store-nodepool.jar}"/>
+    <fileset file="${store-xa.dist.dir}/${store-xa.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${resolver.dist.dir}/${resolver.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+  </path>
+
+  <path id="store-nodepool-memory-test-classpath">
+
+    <path refid="store-nodepool-memory-classpath"/>
+
+    <fileset file="${store-nodepool-memory.dist.dir}/${store-nodepool-memory.jar}"/>
+  </path>
+
+  <target name="store-nodepool-memory-clean"
+          description="Removes all compile generated files for the store-nodepool-memory">
+
+    <tstamp/>
+
+    <delete dir="${store-nodepool-memory.obj.dir}"/>
+    <delete dir="${store-nodepool-memory.test.dir}"/>
+    <delete dir="${store-nodepool-memory.dist.dir}"/>
+  </target>
+
+  <target name="-store-nodepool-memory-prepare"
+          description="Creates all directories associated with the store-nodepool-memory's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${store-nodepool-memory.obj.dir}"/>
+    <mkdir dir="${store-nodepool-memory.test.dir}"/>
+    <mkdir dir="${store-nodepool-memory.dist.dir}"/>
+    <mkdir dir="${store-nodepool-memory.obj.dir}/classes"/>
+  </target>
+
+  <target name="store-nodepool-memory-compile"
+          depends="-store-nodepool-memory-prepare, store-jar, 
+          store-nodepool-jar, store-xa-jar, resolver-jar"
+          description="Compiles all store-nodepool-memory related files included generated
+                       source code">
+
+    <javac destdir="${store-nodepool-memory.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="store-nodepool-memory-classpath"/>
+
+      <src path="${store-nodepool-memory.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="store-nodepool-memory-jar"
+    depends="store-nodepool-memory-compile, -store-nodepool-memory-jar-uptodate"
+    unless="store-nodepool-memory.jar.uptodate"
+    description="Builds the memory-backed node pool JAR">
+
+    <jar jarfile="${store-nodepool-memory.dist.dir}/${store-nodepool-memory.jar}">
+      <fileset dir="${store-nodepool-memory.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-store-nodepool-memory-jar-uptodate">
+
+    <uptodate property="store-nodepool-memory.jar.uptodate"
+              targetfile="${store-nodepool-memory.dist.dir}/${store-nodepool-memory.jar}">
+      <srcfiles dir="${store-nodepool-memory.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="store-nodepool-memory-dist"
+          depends="store-nodepool-memory-jar"
+          unless="store-nodepool-memory.uptodate"
+          description="Performs all tasks related to finalising this store-nodepool-memory
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the store-nodepool-memory library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="store-nodepool-memory-test"
+          depends="store-nodepool-memory-jar"
+          description="Carries out unit testing for this store-nodepool-memory">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="store-nodepool-memory-test-classpath"/>
+      <param name="dir" value="${store-nodepool-memory.src.dir}"/>
+      <param name="jar" value="${store-nodepool-memory.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="store-nodepool-memory-javadoc"
+          depends="store-nodepool-memory-jar"
+          description="Creates the javadoc for this store-nodepool-memory">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.store.nodepool.memory.*"/>
+      <param name="javadoc.classpath" value="store-nodepool-memory-classpath"/>
+      <param name="javadoc.sourcepath" value="${store-nodepool-memory.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="store-nodepool-memory-help"
+          description="Displays the help information for this store-nodepool-memory">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this store-nodepool-memory -->
+
+    <echo message="Welcome to the build script for ${store-nodepool-memory.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${store-nodepool-memory.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE rdf:RDF [
+  <!ENTITY id3 'http://mulgara.org/mulgara/id3#'>
+  <!ENTITY mulgara 'http://mulgara.org/mulgara#'>
+]>
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+  <rdfs:Class rdf:about="http://mulgara.org/mulgara#MP3"
+              rdfs:label="mp3"
+              rdfs:comment="An mp3 with id3 tag data">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara"/>
+  </rdfs:Class>
+
+  <rdf:Property rdf:about="&id3;audioEncoding"
+                rdfs:label="audioEncoding"
+                rdfs:comment="Specifies the audio encoding">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;uri"
+                rdfs:label="URI"
+                rdfs:comment="Specifies the owning mp3's uri">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;attachedPicture"
+                rdfs:label="attachedPicture"
+                rdfs:comment="Specifies any attached pictures">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;audioSeekPointIndex"
+                rdfs:label="audioSeekPointIndex"
+                rdfs:comment="Specifies the audio seek point index">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;comment"
+                rdfs:label="comment"
+                rdfs:comment="Specifies any comments">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;commercialFrame"
+                rdfs:label="commercialFrame"
+                rdfs:comment="Specifies the commercial frame">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;crm"
+                rdfs:label="crm"
+                rdfs:comment="Specifies the encrypted meta frame">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;encryption"
+                rdfs:label="encryption"
+                rdfs:comment="Specifies the encryption method">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;equalisation2"
+                rdfs:label="equalisation2"
+                rdfs:comment="Specifies any equalisation">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;equalisation"
+                rdfs:label="equalisation"
+                rdfs:comment="Specifies any equalisation (deprecated)">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;timingCodes"
+                rdfs:label="timingCodes"
+                rdfs:comment="Specifies any timing codes">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;encapsulatedObject"
+                rdfs:label="encapsulatedObject"
+                rdfs:comment="Specifies an encapsulated file">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;groupIdentification"
+                rdfs:label="groupIdentification"
+                rdfs:comment="Specifies the id of group registration">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;ipls"
+                rdfs:label="ipls"
+                rdfs:comment="Specifies the people involved in the music">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;linkedInfo"
+                rdfs:label="linkedInfo"
+                rdfs:comment="Specifies links to other files">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://musicbrainz.org/mm/mm-2.1#trmid"
+                rdfs:label="trmid"
+                rdfs:comment="Specifies the source ID">
+    <rdfs:isDefinedBy rdf:resource="http://musicbrainz.org/mm/mm-2.1"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;lookupTable"
+                rdfs:label="lookupTable"
+                rdfs:comment="Specifies the MPEG lookup table">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;ownershipFrame"
+                rdfs:label="ownershipFrame"
+                rdfs:comment="Specifies the ownership of the file">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;playCounter"
+                rdfs:label="playCounter"
+                rdfs:comment="Specifies the number of times the file has been played">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;pic"
+                rdfs:label="pic"
+                rdfs:comment="Specifies an attached picture">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;popularimeter"
+                rdfs:label="popularimeter"
+                rdfs:comment="Specifies the popularity of the file">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;synchFrame"
+                rdfs:label="synchFrame"
+                rdfs:comment="Specifies a synchronisation frame for events">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;privateFrame"
+                rdfs:label="privateFrame"
+                rdfs:comment="Specifies a vendor specific frame">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;recommendedBuffer"
+                rdfs:label="recommendedBuffer"
+                rdfs:comment="Specifies the amount of buffering required">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;relativeVolumeAdj2"
+                rdfs:label="relativeVolumeAdj2"
+                rdfs:comment="Specifies relative channel volume adjustment">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;relativeVolumeAdj"
+                rdfs:label="relativeVolumeAdj"
+                rdfs:comment="Specifies relative channel volume adjustment (deprecated)">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;reverb"
+                rdfs:label="reverb"
+                rdfs:comment="Specifies the reverb/echo settings">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;seekFrame"
+                rdfs:label="seekFrame"
+                rdfs:comment="Specifies the pointer to other frames">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;signatureFrame"
+                rdfs:label="signatureFrame"
+                rdfs:comment="Specifies the signature for grouped frames">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;synchLyricText"
+                rdfs:label="synchLyricText"
+                rdfs:comment="Specifies the synchronization of lyrics/text">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;synchTempoCodes"
+                rdfs:label="synchTempoCodes"
+                rdfs:comment="Specifies the present beat">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;title"
+                rdfs:label="title"
+                rdfs:comment="Specifies the album name">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;bpm"
+                rdfs:label="bpm"
+                rdfs:comment="Specifies the BPM">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://musicbrainz.org/mm/mm-2.1#sortName"
+                rdfs:label="sortName"
+                rdfs:comment="Specifies the composer">
+    <rdfs:isDefinedBy rdf:resource="http://musicbrainz.org/mm/mm-2.1"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://musicbrainz.org/mm/mm-2.1#releaseType"
+                rdfs:label="releaseType"
+                rdfs:comment="Specifies the content type/genre">
+    <rdfs:isDefinedBy rdf:resource="http://musicbrainz.org/mm/mm-2.1"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;copyrightMsg"
+                rdfs:label="copyrightMsg"
+                rdfs:comment="Specifies the copyright message">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;tdat"
+                rdfs:label="tdat"
+                rdfs:comment="Specifies the date of the recording">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;encodingTime"
+                rdfs:label="encodingTime"
+                rdfs:comment="Specifies the time of encoding">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;playlistDelay"
+                rdfs:label="playlistDelay"
+                rdfs:comment="Specifies the amount of silence between songs">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;originalReleaseTime"
+                rdfs:label="originalReleaseTime"
+                rdfs:comment="Specifies the original release time">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;recordingTime"
+                rdfs:label="recordingTime"
+                rdfs:comment="Specifies date and time of recording">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;releaseTime"
+                rdfs:label="releaseTime"
+                rdfs:comment="Specifies the release time">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;taggingTime"
+                rdfs:label="taggingTime"
+                rdfs:comment="Specifies the time of tagging">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;encodedBy"
+                rdfs:label="encodedBy"
+                rdfs:comment="Specifies the encoding entity">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;lyricist"
+                rdfs:label="lyricist"
+                rdfs:comment="Specifies the author of the text and/or lyrics">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;fileType"
+                rdfs:label="fileType"
+                rdfs:comment="Specifies the audio type">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://musicbrainz.org/mm/mm-2.1#duration"
+                rdfs:label="duration"
+                rdfs:comment="Specifies the length of the song">
+    <rdfs:isDefinedBy rdf:resource="http://musicbrainz.org/mm/mm-2.1"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;involvedPeople"
+                rdfs:label="involvedPeople"
+                rdfs:comment="Specifies the general crew involved">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;contentGroupDesc"
+                rdfs:label="contentGroupDesc"
+                rdfs:comment="Specifies the content group">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;titleDesc"
+                rdfs:label="titleDesc"
+                rdfs:comment="Specifies the song name">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;subtitleDesc"
+                rdfs:label="subtitleDesc"
+                rdfs:comment="Specifies the subtitle">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;initialKey"
+                rdfs:label="initialKey"
+                rdfs:comment="Specifies the initial song key">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;language"
+                rdfs:label="language"
+                rdfs:comment="Specifies the language of the track">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://musicbrainz.org/mm/mm-2.1#duration"
+                rdfs:label="duration"
+                rdfs:comment="Specifies the track length">
+    <rdfs:isDefinedBy rdf:resource="http://musicbrainz.org/mm/mm-2.1"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;musicianCredits"
+                rdfs:label="musicianCredits"
+                rdfs:comment="Specifies the list of instruments and musicians">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;mediaType"
+                rdfs:label="mediaType"
+                rdfs:comment="Specifies the original media">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;mood"
+                rdfs:label="mood"
+                rdfs:comment="Specifies the mood of the track">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;originalTitle"
+                rdfs:label="originalTitle"
+                rdfs:comment="Specifies the original track title">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;originalFilename"
+                rdfs:label="originalFilename"
+                rdfs:comment="Specifies the preferred filename">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;originalLyricist"
+                rdfs:label="originalLyricist"
+                rdfs:comment="Specifies the text writer of the original track">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;originalPerformer"
+                rdfs:label="originalPerformer"
+                rdfs:comment="Specifies the original performer of the track">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;tory"
+                rdfs:label="tory"
+                rdfs:comment="Specifies the original recording year">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;licensee"
+                rdfs:label="licensee"
+                rdfs:comment="Specifies the licensee of the file">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;leadPerformer"
+                rdfs:label="leadPerformer"
+                rdfs:comment="Specifies the main artist">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;accompaniment"
+                rdfs:label="accompaniment"
+                rdfs:comment="Specifies any accompanying performers">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;conductor"
+                rdfs:label="conductor"
+                rdfs:comment="Specifies the conductor name">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;interpreter"
+                rdfs:label="interpreter"
+                rdfs:comment="Specifies remixers/rearrangers/interpreters">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;partOfSet"
+                rdfs:label="partOfSet"
+                rdfs:comment="Specifies the part of the set the audio came from">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;producedNotice"
+                rdfs:label="producedNotice"
+                rdfs:comment="Specifies the produced notice frame">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;publisher"
+                rdfs:label="publisher"
+                rdfs:comment="Specifies the publisher">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://musicbrainz.org/mm/mm-2.1#trackNum"
+                rdfs:label="trackNum"
+                rdfs:comment="Specifies the track number">
+    <rdfs:isDefinedBy rdf:resource="http://musicbrainz.org/mm/mm-2.1"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;trda"
+                rdfs:label="trda"
+                rdfs:comment="Specifies the recording date/s (deprecated)">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;IRSName"
+                rdfs:label="IRSName"
+                rdfs:comment="Specifies the internet radio station name">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;IRSOwner"
+                rdfs:label="IRSOwner"
+                rdfs:comment="Specifies the internet radio station owner">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;tsiz"
+                rdfs:label="tsiz"
+                rdfs:comment="Specifies the file size (deprecated)">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#long"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;albumSortOrder"
+                rdfs:label="albumSortOrder"
+                rdfs:comment="Specifies the sort album name">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;performerSortOrder"
+                rdfs:label="performerSortOrder"
+                rdfs:comment="Specifies the performer sort name">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;titleSortOrder"
+                rdfs:label="titleSortOrder"
+                rdfs:comment="Specifies the title sort name">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;ISRC"
+                rdfs:label="ISRC"
+                rdfs:comment="Specifies the International Standard Recording Code">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;encodingSettings"
+                rdfs:label="encodingSettings"
+                rdfs:comment="Specifies the settings used for encoding">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;setSubtitle"
+                rdfs:label="setSubtitle"
+                rdfs:comment="Specifies the subtitle of the part of a set">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;txxx"
+                rdfs:label="txxx"
+                rdfs:comment="Specifies a user defined text frame">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;releaseYear"
+                rdfs:label="releaseYear"
+                rdfs:comment="Specifies the release year">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;uniqueFileID"
+                rdfs:label="uniqueFileID"
+                rdfs:comment="Specifies an unique file identifier">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;useTerms"
+                rdfs:label="useTerms"
+                rdfs:comment="Specifies the use and ownership terms">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;unsynchLyrics"
+                rdfs:label="unsynchLyrics"
+                rdfs:comment="Specifies an unsynchronised text/lyrics listing">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;commercialInfo"
+                rdfs:label="commercialInfo"
+                rdfs:comment="Specifies a link to the commercial information">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;copyrightInfo"
+                rdfs:label="copyrightInfo"
+                rdfs:comment="Specifies a link to the ownership terms">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;fileWebpage"
+                rdfs:label="fileWebpage"
+                rdfs:comment="Specifies a link to a file related webpage">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;artistWebpage"
+                rdfs:label="artistWebpage"
+                rdfs:comment="Specifies a link to the artist's page">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;audioSourceWebpage"
+                rdfs:label="audioSourceWebpage"
+                rdfs:comment="Specifies a link to a page for the source of the audio">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;IRSWebpage"
+                rdfs:label="IRSWebpage"
+                rdfs:comment="Specifies a link to the internet radio station homepage">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;payment"
+                rdfs:label="payment"
+                rdfs:comment="Specifies a link to the page that handles payment for the file">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;publisherWebpage"
+                rdfs:label="publisherWebpage"
+                rdfs:comment="Specifies a link to the publisher's webpage">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;wxxx"
+                rdfs:label="wxxx"
+                rdfs:comment="Specifies any miscellaneaous links">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="&id3;unknown"
+                rdfs:label="unknown"
+                rdfs:comment="Specifies an unknown id3 tag">
+    <rdfs:isDefinedBy rdf:resource="http://mulgara.org/mulgara/id3"/>
+    <rdfs:domain rdf:resource="&mulgara;MP3"/>
+  </rdf:Property>
+</rdf:RDF>

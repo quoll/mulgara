@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="resolver-spi" default="resolver-spi-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="resolver-spi-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${store-stringpool.dist.dir}/${store-stringpool.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+  </path>
+
+  <path id="resolver-spi-test-classpath">
+
+    <path refid="resolver-spi-classpath"/>
+
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+  </path>
+
+  <target name="resolver-spi-clean"
+          description="Removes all compile generated files for the resolver-spi">
+
+    <tstamp/>
+
+    <delete dir="${resolver-spi.obj.dir}"/>
+    <delete dir="${resolver-spi.test.dir}"/>
+    <delete dir="${resolver-spi.dist.dir}"/>
+  </target>
+
+  <target name="-resolver-spi-prepare"
+          description="Creates all directories associated with the resolver-spi's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${resolver-spi.obj.dir}"/>
+    <mkdir dir="${resolver-spi.test.dir}"/>
+    <mkdir dir="${resolver-spi.dist.dir}"/>
+    <mkdir dir="${resolver-spi.obj.dir}/classes"/>
+  </target>
+
+  <target name="resolver-spi-compile"
+          depends="-resolver-spi-prepare, query-jar, store-stringpool-jar, 
+          tuples-jar, util-jar"
+          description="Compiles all resolver-spi related files included generated source code">
+
+    <javac destdir="${resolver-spi.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="resolver-spi-classpath"/>
+
+      <src path="${resolver-spi.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="resolver-spi-jar"
+    depends="resolver-spi-compile, -resolver-spi-jar-uptodate"
+    unless="resolver-spi.jar.uptodate"
+    description="Builds the Resolver SPI JAR">
+
+    <jar jarfile="${resolver-spi.dist.dir}/${resolver-spi.jar}">
+      <fileset dir="${resolver-spi.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-resolver-spi-jar-uptodate">
+
+    <uptodate property="resolver-spi.jar.uptodate"
+              targetfile="${resolver-spi.dist.dir}/${resolver-spi.jar}">
+      <srcfiles dir="${resolver-spi.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="resolver-spi-dist"
+          depends="resolver-spi-jar"
+          description="Performs all tasks related to finalising this resolver-spi
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the resolver-spi library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="resolver-spi-test" depends="resolver-spi-jar">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="resolver-spi-classpath"/>
+      <param name="dir" value="${resolver-spi.src.dir}"/>
+      <param name="jar" value="${resolver-spi.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-spi-javadoc"
+          depends="resolver-spi-jar"
+          description="Creates the javadoc for this resolver-spi">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.content.*,
+                                           org.mulgara.resolver.*,
+                                           org.mulgara.store.*"/>
+      <param name="javadoc.classpath" value="resolver-spi-classpath"/>
+      <param name="javadoc.sourcepath" value="${resolver-spi.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-spi-help"
+          description="Displays the help information for this resolver-spi">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this resolver-spi -->
+
+    <echo message="Welcome to the build script for ${resolver-spi.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${resolver-spi.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

@@ -1,0 +1,49 @@
+rdfs:domain(rdfs:subPropertyOf,rdf:Property).
+rdfs:domain(rdfs:subClassOf,rdfs:Class).
+rdfs:domain(rdfs:domain,rdf:Property).
+rdfs:domain(rdfs:range,rdf:Property).
+rdfs:domain(rdf:subject,rdf:Statement).
+rdfs:domain(rdf:predicate,rdf:Statement).
+rdfs:domain(rdf:object,rdf:Statement).
+rdfs:domain(rdf:first,rdf:List).
+rdfs:domain(rdf:rest,rdf:List).
+rdfs:range(rdfs:subPropertyOf,rdf:Property).
+rdfs:range(rdfs:subClassOf,rdfs:Class).
+rdfs:range(rdfs:domain,rdfs:Class).
+rdfs:range(rdfs:range,rdfs:Class).
+rdfs:range(rdf:type,rdfs:Class).
+rdfs:range(rdfs:comment,rdfs:Literal).
+rdfs:range(rdfs:label,rdfs:Literal).
+rdfs:range(rdf:rest,rdf:List).
+rdfs:subClassOf(rdf:Alt,rdfs:Container).
+rdfs:subClassOf(rdf:Bag,rdfs:Container).
+rdfs:subClassOf(rdf:Seq,rdfs:Container).
+rdfs:subClassOf(rdfs:ContainerMembershipProperty,rdf:Property).
+rdfs:subPropertyOf(rdfs:isDefinedBy,rdfs:seeAlso).
+rdfs:Datatype(rdf:XMLLiteral).
+rdfs:subClassOf(rdfs:Datatype,rdfs:Class).
+rdfs:Class(rdfs:Resource).
+rdfs:Class(rdfs:Literal).
+rdfs:Class(rdf:Statement).
+rdf:List(rdf:nil).
+rdf:Property(rdf:subject).
+rdf:Property(rdf:predicate).
+rdf:Property(rdf:object).
+rdf:Property(rdf:first).
+rdf:Property(rdf:rest).
+
+rdf:Property(A) :- A(X,Y).                                                     -- 1
+Z(X) :- A(X,Y), rdfs:domain(A,Z).                                              -- 2
+Z(U) :- A(X,U), rdfs:range(A,Z).                                               -- 3
+rdfs:Resource(X) :- A(X,Y).                                                    -- 4a
+rdfs:Resource(U) :- A(X,U), mulgara:UriReference(U).                           -- 4b ~rdfs:Literal performed with type model
+rdfs:subPropertyOf(A,B) :- rdfs:subPropertyOf(A,T), rdfs:subPropertyOf(T,B).   -- 5a optimised with transitive constraint
+rdfs:subPropertyOf(X,X) :- rdf:Property(X).                                    -- 5b
+B(X,Y) :- A(X,Y), rdfs:subPropertyOf(A,B).                                     -- 6
+rdfs:subClassOf(X,rdfs:Resource) :- rdfs:Class(X).                             -- 7a
+rdfs:subClassOf(X,X) :- rdfs:Class(X).                                         -- 7b
+rdfs:subClassOf(X,Z) :- rdfs:subClassOf(X,Y), rdfs:subClassOf(Y,Z).            -- 8 optimised with transitive constraint
+Y(A) :- X(A), rdfs:subClassOf(X,Y).                                            -- 9
+rdfs:subPropertyOf(X,rdfs:member) :- rdfs:ContainerMembershipProperty(X).      -- 10
+rdfs:subClassOf(X,rdfs:Literal) :- rdfs:Datatype(X).                           -- 11
+rdfs:ContainerMembershipProperty(I) :- I(X,Y), mulgara:prefix(I,"&rdf;_").     -- XI prefix performed with prefix model

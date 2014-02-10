@@ -1,0 +1,151 @@
+------------------------------------------------------------------------
+r2016 | alexhall | 2011-07-19 20:42:15 -0400 (Tue, 19 Jul 2011) | 1 line
+
+Modified the minimal-dist target to pick up missing classes
+------------------------------------------------------------------------
+r2015 | alexhall | 2011-07-19 19:18:12 -0400 (Tue, 19 Jul 2011) | 1 line
+
+Use ContentHandlerManager to select a writer instead of hard-coding a check for pathnames when exporting. This allows clients writing to an output stream to specify a content type, whereas before it would always be exported as RDF/XML
+------------------------------------------------------------------------
+r2014 | alexhall | 2011-07-19 19:16:06 -0400 (Tue, 19 Jul 2011) | 1 line
+
+Add ANTLR jar to test classpath; required by N3 parser.
+------------------------------------------------------------------------
+r2013 | alexhall | 2011-07-19 18:52:00 -0400 (Tue, 19 Jul 2011) | 1 line
+
+Fix argument validation -- should be checking for null InputStream, not URI.
+------------------------------------------------------------------------
+r2012 | alexhall | 2011-07-19 17:38:40 -0400 (Tue, 19 Jul 2011) | 1 line
+
+Add new constructor to allow clients to set both the content type and base URI when loading content.
+------------------------------------------------------------------------
+r2011 | alexhall | 2011-07-19 17:37:59 -0400 (Tue, 19 Jul 2011) | 1 line
+
+Fix the MBox test - return handler from manager upon successful validation.
+------------------------------------------------------------------------
+r2010 | alexhall | 2011-07-19 16:28:14 -0400 (Tue, 19 Jul 2011) | 1 line
+
+Invert the logic for selecting content handlers by eliminating the ContentHandler.canParse method and making content handlers describe themselves in terms of their supported MIME types and filename extensions, and letting the content handler manager control the selection. This reduces the risk of a misbehaved content handler claiming to support content that it doesn't. Also, modified the StreamContent constructor to allow us to specify both a MIME type and a base URI, which allows us to prefer the MIME type when both are present.
+------------------------------------------------------------------------
+r2009 | alexhall | 2011-07-19 14:22:41 -0400 (Tue, 19 Jul 2011) | 1 line
+
+Removing un-implemented ContentLoader interface and associated SetGraphOperation.preExecute hack
+------------------------------------------------------------------------
+r2008 | alexhall | 2011-07-19 14:15:40 -0400 (Tue, 19 Jul 2011) | 1 line
+
+Modifications to the Content interface - remove unused getBlankNodeMap() method and add isStreaming() method instead of explicit check for content.getClass().equals("org.mulgara.resolver.StreamContent")
+------------------------------------------------------------------------
+r2007 | alexhall | 2011-07-19 11:54:06 -0400 (Tue, 19 Jul 2011) | 1 line
+
+Modified Session.setModel to use URI instead of GraphResource for the source graph
+------------------------------------------------------------------------
+r2006 | pag | 2011-07-19 02:31:20 -0400 (Tue, 19 Jul 2011) | 1 line
+
+Code cleanup, warning removal
+------------------------------------------------------------------------
+r2005 | alexhall | 2011-07-18 20:09:23 -0400 (Mon, 18 Jul 2011) | 1 line
+
+Adding some more test files to svn:ignore
+------------------------------------------------------------------------
+r2004 | alexhall | 2011-07-18 20:01:35 -0400 (Mon, 18 Jul 2011) | 1 line
+
+Fix rollback errors that were happening on Windows due to file mapping problems on that operating system.
+------------------------------------------------------------------------
+r2003 | alexhall | 2011-07-18 17:50:12 -0400 (Mon, 18 Jul 2011) | 1 line
+
+Adding server1 back to svn:ignore
+------------------------------------------------------------------------
+r2002 | alexhall | 2011-07-18 17:45:06 -0400 (Mon, 18 Jul 2011) | 1 line
+
+Adding build artifacts to svn:ignore
+------------------------------------------------------------------------
+r2001 | pag | 2011-07-18 16:46:02 -0400 (Mon, 18 Jul 2011) | 1 line
+
+Added the minimal-dist target, with particular emphasis on the needs of Revelytix
+------------------------------------------------------------------------
+r2000 | pag | 2011-07-18 16:45:50 -0400 (Mon, 18 Jul 2011) | 1 line
+
+Bumped to version 2.1.10
+------------------------------------------------------------------------
+r1999 | pag | 2011-07-18 16:43:30 -0400 (Mon, 18 Jul 2011) | 1 line
+
+Fixed problems in truncating files when the truncation is still larger than the mapped area (thanks to Alex Hall). Added in a method to retrieve the page size
+------------------------------------------------------------------------
+r1998 | pag | 2011-07-18 16:41:56 -0400 (Mon, 18 Jul 2011) | 1 line
+
+Removed warning on use of getURL
+------------------------------------------------------------------------
+r1997 | pag | 2011-07-18 16:41:20 -0400 (Mon, 18 Jul 2011) | 1 line
+
+Added generics and removed other warnings
+------------------------------------------------------------------------
+r1996 | pag | 2011-07-14 23:22:27 -0400 (Thu, 14 Jul 2011) | 1 line
+
+Now handling full transaction rollback
+------------------------------------------------------------------------
+r1995 | pag | 2011-07-14 23:21:49 -0400 (Thu, 14 Jul 2011) | 1 line
+
+Introduced the ability to truncate files that have been memory mapped.
+------------------------------------------------------------------------
+r1994 | pag | 2011-07-14 23:20:20 -0400 (Thu, 14 Jul 2011) | 1 line
+
+Fixed OPTIONAL joins where the RHS is empty. It now returns the LHS projected to include the RHS columns (when possible)
+------------------------------------------------------------------------
+r1993 | pag | 2011-07-14 23:14:44 -0400 (Thu, 14 Jul 2011) | 1 line
+
+Added extra targets to assist in debugging by running tests against an already running store
+------------------------------------------------------------------------
+r1992 | pag | 2011-02-03 15:45:35 -0500 (Thu, 03 Feb 2011) | 1 line
+
+Updated Jetty logging to deal with URIs better, particularly URIs with spaces
+------------------------------------------------------------------------
+r1991 | pag | 2010-12-06 23:36:18 -0500 (Mon, 06 Dec 2010) | 1 line
+
+Changed to handle updates to Dublin Core
+------------------------------------------------------------------------
+r1990 | pag | 2010-12-06 23:35:43 -0500 (Mon, 06 Dec 2010) | 1 line
+
+Testing to ensure that the next answer is valid before interating
+------------------------------------------------------------------------
+r1989 | pag | 2010-10-22 14:04:42 -0400 (Fri, 22 Oct 2010) | 1 line
+
+Removed truncate from rollback, since we can't truncate the mapped portion of a file. It can be cleaned up some time later.
+------------------------------------------------------------------------
+r1986 | pag | 2010-10-01 00:46:00 -0400 (Fri, 01 Oct 2010) | 1 line
+
+log for the 2.1.9 release
+------------------------------------------------------------------------
+r1982 | pag | 2010-10-01 00:32:08 -0400 (Fri, 01 Oct 2010) | 1 line
+
+Updated description of Jars used by Jetty, and the version of Jetty that is now being used.
+------------------------------------------------------------------------
+r1981 | pag | 2010-10-01 00:17:29 -0400 (Fri, 01 Oct 2010) | 10 lines
+
+Added RDFa content handler.
+
+Due to problems during development of the RDFa content handler, Jetty was upgraded to Jetty 7.
+This includes upgrades to all the JSP Jars, including Jasper. Several configuration items had
+to be changed with this upgrade, including some package names and use of APIs. Jetty 7 is now
+broken down into its component Jars, instead of the couple of Jar files that used to contain
+everything. This has led to a much longer classpath in some of the build files, and many more
+entries in the lib directory. Since there are 8 JSP Jar files, these were put into their own
+directory called lib/jsp.
+
+------------------------------------------------------------------------
+r1980 | pag | 2010-10-01 00:11:19 -0400 (Fri, 01 Oct 2010) | 1 line
+
+Added generics to hashmaps
+------------------------------------------------------------------------
+r1979 | pag | 2010-10-01 00:04:07 -0400 (Fri, 01 Oct 2010) | 1 line
+
+Added a finalizer to clean up, plus parameterized the cache for generics
+------------------------------------------------------------------------
+r1978 | pag | 2010-10-01 00:02:51 -0400 (Fri, 01 Oct 2010) | 2 lines
+
+Added an option to get some debug info if a particular comment is present.
+
+------------------------------------------------------------------------
+r1977 | pag | 2010-09-30 22:30:31 -0400 (Thu, 30 Sep 2010) | 1 line
+
+A debugging utility for sending a PrintWriter in two directions
+------------------------------------------------------------------------

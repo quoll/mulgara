@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> VCard Descriptors </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="VCard Descriptors, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="802.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="2737.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h3 class="heading3">VCard Descriptors</h3>
+<p class="bodytext">This example uses several Descriptors to generate an HTML page listing the VCards in a specified Mulgara model. The VCard data can be exported from Mulgara, in VCard format, for use by applications such as Netscape Address book and Microsoft<sup class="superscript">&reg;</sup> Outlook. New VCards can be entered from an HTML interface.</p>
+<p class="bodytext">Here is a sample screen capture.</p>
+<p class="bodytext"><img src="918.gif" alt="" height="722" width="624" vspace="0" hspace="0" align="bottom" border="1" /></p>
+<p class="bodytext">Clicking on the Export VCard button sends a file, similar to the one shown below, to your browser. Depending on your configuration, your browser may ask you to save the file or it may pass the file directly to an external application, such as Microsoft<sup class="superscript">&reg;</sup> Outlook<sup class="superscript">&reg;</sup>.</p>
+<p class="commandtext">BEGIN:VCARD&nbsp;&nbsp;&nbsp; <br />VERSION:2.1<br />FN:Corky Crystal<br />TITLE:Computer Officer Class 3<br />ROLE:Programmer<br />ADR;WORK:; 111 Lake Drive ; WonderCity ; 5555 ; Australia <br />LABEL;WORK;ENCODING=QUOTED-PRINTABLE: 111 Lake Drive =0D=0A WonderCity =0D=0A 5555&nbsp; Australia <br />EMAIL;PREF;INTERNET:corky@qqq.com<br />NOTE:Only works on Mondays and Fridays<br />TEL;WORK;VOICE:+61 7 555 5555<br />END:VCARD</p>
+<p class="bodytext">This example uses seven Descriptors to perform a variety of tasks. Using a browser and clicking on the links below displays the source in a new window.</p>
+<ol class="listnumber"><li class="listnumber"><a class="" title="" href="../../descriptors/vcard/vcardlisthtml.xsl" target="_blank">Given a Model show all VCards in that model as HTML</a></li><li class="listnumber"><a class="" title="" href="../../descriptors/vcard/vcardlist.xsl" target="_blank">Given a Model return a list of VCards URIs in that model as XML</a></li><li class="listnumber"><a class="" title="" href="../../descriptors/vcard/vcardhtml.xsl" target="_blank">Given a VCard URI return an HTML version of the VCard</a></li><li class="listnumber"><a class="" title="" href="../../descriptors/vcard/vcardxml.xsl" target="_blank">Given a VCard URI return a XML version of the VCard</a></li><li class="listnumber"><a class="" title="" href="../../descriptors/vcard/vcard.xsl" target="_blank">Given a VCard URI return a VCard Format version of the VCard</a></li><li class="listnumber"><a class="" title="" href="../../descriptors/vcard/vcardinsert.xsl" target="_blank">Given VCard parameters insert a VCard into a Mulgara </a>database</li><li class="listnumber"><a class="" title="" href="../../descriptors/vcard/vcardinserthtml.xsl" target="_blank">Given a model return an HTML page which will take VCard parameters and insert them into a Mulgara </a>database<p class="listcontinue">The above links are available in the online version of the documentation.</p>
+</li></ol><p class="bodytext">All of these Descriptors are part of the default installation of Mulgara and are available from the List Descriptors task on the <a class="" title="" href="../../descriptors/vcard/vcardinsert.xsl" target="_blank">Descriptor Management page</a>.</p>
+<p class="bodytext">The diagram below outlines the relationships between these Descriptors to demonstrate their reusability.</p>
+<p class="bodytext"><img src="919.png" alt="" height="893.6" width="736.8" vspace="0" hspace="0" align="bottom" border="1" /></p>
+<p class="note"><strong class="strong">Note -</strong> Descriptor 4 (Given a VCard URI return the VCard as XML) is used by both browser tasks. This is to demonstrate the reusability of well designed Descriptors.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="920.htm#o921" target="_self">Try the VCards Example</a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="779.htm" target="_self">Descriptor Examples</a></p><p class="relateditem"><a href="795.htm" target="_self">Hello World Descriptor</a></p><p class="relateditem"><a href="802.htm" target="_self">List Models Descriptor</a></p></td>
+</tr>
+</table>
+
+<a name="o921"></a><h4 class="heading4">Try the VCards Example</h4>
+<p class="bodytext">To try out the VCards example, you need to load VCard RDF into a model.</p>
+<ol class="listnumber"><li class="listnumber">Using the TKS Viewer<sup class="superscript">TM</sup> or the iTQL<sup class="superscript">TM</sup> command line, create a model for storing the VCards. For example:<p class="listcontinuecommandtext">create &lt;rmi://mysite.com/server1#vcard&gt;;</p>
+<p class="listnote"><strong class="strong">Note -</strong> Replace <code class="monospace">mysite.com</code> with the fully qualified hostname of your TKS server.</p>
+</li><li class="listnumber">Load some VCard RDF data into your model.<p class="listcontinue">A sample file, <code class="monospace">vcards.rdf</code>, is included as part of the TKS installation. If you want to use this file, copy the link address for it and load the data into the vcard model. For example:</p>
+<p class="listcontinuecommandtext">load &lt;http://mysite.com:8080/webservices/descriptor/examples/vcard/vcards.rdf&gt;<br />  into &lt;rmi://mysite.com/server1#vcard&gt;;</p>
+<p class="listcontinue">If you want to add more vcards to the file, download it, edit it and load it in using a <code class="monospace">file:</code> URL. Make sure the default Descriptors are loaded (use the Deploy Bundled Descriptors task on the <a class="" title="" href="http://localhost:8080/webservices/descriptor/index.jsp" target="_blank">Descriptor Management page</a>).</p>
+</li><li class="listnumber">Use the See List of Descriptors Available on this Host task from the <a class="" title="" href="http://localhost:8080/webservices/descriptor/index.jsp" target="_blank">Descriptor Management page</a> to locate the Given a Model Show All VCards in that Model as HTML Descriptor.<p class="listcontinue">Enter <code class="monospace">rmi://mysite.com/server1#vcard</code> as the model parameter and click on the Invoke button.</p>
+</li></ol>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

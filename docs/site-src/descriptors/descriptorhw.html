@@ -1,0 +1,169 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Hello World Descriptor</title>
+    <meta name="keywords" content="Hello World Descriptor, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+    
+		<a href="#o796">Where To From Here?</a>
+		
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/descriptors/descriptorex.html"><img src="/img/descriptorhwprevious.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/descriptors/descriptorlist.html"><img src="/img/descriptorhwnext.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">In This Section</p>
+<p class="relateditem"><a href="/descriptors/descriptorhw.html#o796">Where To From Here?</a></p>
+
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/descriptors/descriptorex.html">Descriptor Examples</a></p>
+<p class="relateditem"><a href="/descriptors/descriptorlist.html">List Models Descriptor</a></p>
+<p class="relateditem"><a href="/descriptors/descriptorvcard.html">VCard Descriptors</a></p>
+ -->
+
+
+
+<h3>Hello World Descriptor</h3>
+
+<p>The purpose of this example is to create and deploy a simple Descriptor that returns an HTML page with the text <code>Hello World</code>. The Descriptor does not query a Mulgara database, but the principles outlined in this tutorial also apply to more advanced Descriptor development.</p>
+
+<p>In this example you will to do the following:</p>
+<ul><li>Use the Create Descriptor Using Wizard task.</li><li>Add logic to output <code>Hello World</code> when the Descriptor is invoked.</li><li>Deploy the Descriptor into Mulgara.</li><li>Invoke the Descriptor.</li></ul>
+<p>Complete the following steps:</p>
+<ol><li>Start the Descriptor Wizard.
+<p class="listcontinue">The <a class="" title="" href="http://localhost:8080/webservices/descriptor/index.jsp">Descriptor Management page</a> is available from the <code>/descriptor</code> directory when Mulgara is running.</p>
+
+<p class="listcontinue">Use the Create Descriptor Using Wizard task to begin the Descriptor creation process. The Descriptor Wizard page displays.</p>
+
+<p class="listnote"><strong>Note -</strong> The wizard only creates a template. You need to edit the template, adding logic to issue iTQL<sup>TM</sup> commands or to call other Descriptors.</p>
+</li><li>Enter a Descriptor title.
+<p class="listcontinue">Enter a title that fully describes what the Descriptor does. Include information about the types of data it works on such as dates, people or VCards. Some example titles include:</p>
+<ul><li>Extracts Titles of Documents as XML using a specified URL</li><li>Returns an HTML table with 2 columns specifying the first and last names of all people mentioned in a Document matching a specified URL.</li><li>Returns an XML document showing all Companies mentioned in documents that also contain a specified Date range.
+<p class="listcontinue">For this example enter a title of Example Descriptor Returns 'Hello World' as HTML.</p>
+</li></ul></li><li>Enter Descriptor parameters.
+<p class="listcontinue">Parameters are variables required by the Descriptor or affect how the Descriptor operates. For example, if you want a list of all documents in a model, you can specify the model as a parameter, so that your Descriptor works on different models and machines.</p>
+
+<p class="listcontinue">This Descriptor does not need parameters, but most do.</p>
+
+<p class="listnote"><strong>Note -</strong> There is always one implicit parameter, <code>_self</code>. This parameter must always be the URL of the Descriptor.</p>
+</li><li>Enter the mime type.
+<p class="listcontinue">The mime type allows the Descriptor servlet, if used, to set the appropriate HTTP headers when returning data. Most importantly, it allows other Descriptors or applications to programmatically search for Descriptors that perform certain tasks. For example, an application could ask a Descriptor to find out everything about a certain person. The person Descriptor may return a VCard that the application does not know how to handle or render, so it searches for a Descriptor that works with VCards and returns HTML.</p>
+
+<p class="listcontinue">The mime type is optional but recommended. It should only be set to unknown if the Descriptor itself cannot know what kind of data it will return.</p>
+
+<p class="listcontinue">For this example choose text/html.</p>
+
+<p class="listcontinue">The Descriptor Wizard page should now look similar to the following:</p>
+
+<p class="listcontinue"><img src="/img/descriptorhw791.gif" alt="" height="722.95" width="696.35" vspace="0" hspace="0" align="bottom" border="1" /></p>
+</li><li>Generate the Descriptor Template.
+<p class="listcontinue">Click on the Generate Descriptor Template button.</p>
+
+<p class="listcontinue">If any required fields are blank, the Descriptor Wizard page redisplays.</p>
+</li><li>Save the Descriptor XSL file.
+<p class="listcontinue">Your browser now shows an XSL file, or it may ask you if you want to download it. In either case, save the file where you can edit it. Save it as helloworld.xsl.</p>
+</li><li>Edit the Descriptor XSL file.
+<p class="listcontinue">Using your preferred text editor, edit the Descriptor XSL file. Find the following commented section:</p>
+
+<p class="listcontinuecommandtext">&lt;!-- INSERT DESCRIPTOR LOGIC HERE SUCH AS QUERIES, TRANSFORMATIONS AND CALLING OTHER DESCRIPTORS --&gt;</p>
+
+<p class="listcontinue">Replace this with the following HTML:</p>
+
+<p class="listcontinuecommandtext">&lt;html&gt;<br />
+  &lt;head&gt;<br />
+    &lt;title&gt;My First Descriptor&lt;/title&gt;<br />
+  &lt;/head&gt;<br />
+  &lt;body&gt;<br />
+    Hello World!<br />
+  &lt;/body&gt;<br />
+&lt;/html&gt;</p>
+
+<p class="listcontinue">Save the file. You may want to check that the file is valid XML using a tool such as xmllint.</p>
+</li><li>Deploy the Descriptor in Mulgara.
+<p class="listcontinue">To use a Descriptor it must be deployed in a Mulgara database. The RDF embedded in the Descriptor XSL file is loaded into a model in a Mulgara database.</p>
+
+<p class="listcontinue">Start an iTQL client.</p>
+
+<p class="listcontinue">Check if the Descriptor model already exists by querying for a list of models. For example:</p>
+
+<p class="listcontinuecommandtext">select $model from &lt;rmi://mysite.com/server1#&gt;<br />
+  where $model &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://mulgara.org/mulgara#Model&gt;;</p>
+
+<p class="listnote"><strong>Note -</strong> Replace <code>mysite.com</code> with the fully qualified hostname (FQHN) of your machine/server.</p>
+
+<p class="listcontinue">If the <code>#descriptors</code> model does not exist then you need to deploy the local Descriptors. This will create the Descriptors model and load some useful Descriptors. It is one of the tasks available from the Descriptor Management page.</p>
+
+<p class="listcontinue">Create the Descriptor model. For example:</p>
+
+<p class="listcontinuecommandtext">create &lt;rmi://mysite.com/server1#descriptors&gt;;</p>
+
+<p class="listcontinue">Deploy the Descriptor by loading the Descriptor XSL file into the <code>#descriptor</code> model. For example:</p>
+
+<p class="listcontinuecommandtext">load &lt;file:/helloworld.xsl&gt; into &lt;rmi://mysite.com/server1#descriptors&gt;;</p>
+
+<p class="listnote"><strong>Note -</strong> The location of the Descriptor must be accessible by Mulgara. In Windows, the file specification would look something like <code>&lt;file:/C:/work/helloworld.xsl&gt;</code>.</p>
+
+<p class="listcontinue">If there were no errors in the XSL, then the Descriptor is deployed and available for use. If there were errors check your XML for bad syntax such as unclosed tags. The Descriptor Wizard generates correct XML and XSL.</p>
+</li><li>Invoke the Descriptor.
+<p class="listcontinue">There are several tools available to list, create and invoke Descriptors from the Descriptor Management page. Most of the tools, such as the Descriptor Wizard, are other Descriptors that are run by a Descriptor servlet.</p>
+
+<p class="listcontinue">From the Descriptor Management page choose the Lists all Descriptors on this Host task. The Mulgara Descriptor List displays.</p>
+
+<p class="listcontinue"><img src="/img/descriptorhw792.gif" alt="" height="92.15" width="679.25" vspace="0" hspace="0" align="bottom" border="1" /></p>
+
+<p class="listcontinue">Click on the Usage button for your Descriptor to see details about the Descriptor, similar to the window below.</p>
+
+<p class="listcontinue"><img src="/img/descriptorhw793.gif" alt="" height="728.65" width="682.1" vspace="0" hspace="0" align="bottom" border="1" /></p>
+
+<p class="listcontinue">Since there are no parameters (other than the implicit _self parameter and the usage parameter that returns the RDF of the XSL file), click on the Invoke button to invoke the Descriptor.</p>
+
+<p class="listcontinue">The result displays in a window similar to the following.</p>
+
+<p class="listcontinue"><img src="/img/descriptorhw794.gif" alt="" height="35.15" width="694.45" vspace="0" hspace="0" align="bottom" border="1" /></p>
+
+<p class="listcontinue">You have now successfully developed, deployed and invoked a Mulgara Descriptor.</p>
+</li></ol>
+
+<div class="anchor"><a name="o796">&nbsp;</a></div>
+<h4>Where To From Here?</h4>
+
+<p>The real power of Descriptors is when you query Mulgara databases or call other Descriptor from within your Descriptor. Descriptors are fast, distributable and cross platform. They are capable of creating simple web applications, such as the Descriptor Wizard.</p>
+
+<p>Look at some of the bundled Descriptors for examples of sophisticated usage (you can click on the link to the source from the Descriptor List task from the Descriptor Management page).</p>
+
+<p>See the <a id="h930" class="documentlinktemplate" title="List Models Descriptor" href="/descriptors/descriptorlist.html">List Models</a> example for information on how to issue iTQL commands from within a Descriptor.</p>
+
+<p>See the <a id="h931" class="documentlinktemplate" title="VCard Descriptors" href="/descriptors/descriptorvcard.html">VCard</a> example for information on how to invoke one Descriptor from another.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

@@ -1,0 +1,293 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Basic iTQL Operations</title>
+    <meta name="keywords" content="Basic iTQL Operations, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+<!--
+<p><a href="/tutorial/itql.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/tutorial/itqlshellsession.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/tutorial/index.html">Mulgara Tutorial</a></p>
+<p class="relateditem"><a href="/tutorial/sysreq.html">System Requirements</a></p>
+<p class="relateditem"><a href="/tutorial/starting.html">Starting a Mulgara Semantic Store Server</a></p>
+<p class="relateditem"><a href="/tutorial/itql.html">iTQL</a></p>
+<p class="relateditem"><a href="/tutorial/itqlbasics.html#o1234"></a></p>
+<p class="relateditem"><a href="/tutorial/itqlshellsession.html">Example iTQL Shell Session</a></p>
+<p class="relateditem"><a href="/tutorial/viewer.html">Mulgara Viewer</a></p>
+<p class="relateditem"><a href="/tutorial/viewer.html#o1255"></a></p>
+<p class="relateditem"><a href="/tutorial/viewer.html#o416">Mulgara Sample Data</a></p>
+<p class="relateditem"><a href="/tutorial/loadingrdf.html">Loading Existing RDF Data</a></p>
+<p class="relateditem"><a href="/tutorial/convertrdbms.html">Converting Data in Relational Databases to RDF</a></p>
+<p class="relateditem"><a href="/tutorial/convertingxml.html">Converting XML Data to RDF</a></p>
+ -->
+
+
+
+
+<h2>Basic iTQL Operations</h2>
+
+<p>The types of basic operations you can perform using iTQL<sup>TM</sup> include:</p>
+<ul><li>Creating new models</li><li>Inserting, deleting and loading statements</li><li>Removing models</li><li>Querying models</li></ul>
+<p>Mulgara databases referenced in iTQL commands are identified by URLs that are made up of a:</p>
+<ul><li>Network protocol (<code>rmi</code>)</li><li>DNS name</li><li>Server name</li></ul>
+<p>For example, <code>rmi://mysite.com/server1</code>.</p>
+
+<p><a class="internetlinktemplate" title="Fragment Identifiers" href="http://www.w3.org/Addressing/URL/4_2_Fragments.html">Fragment identifiers</a> added to the URL of a Mulgara database, identifies RDF models stored on the database. For example, <code>rmi://mysite.com/server1#model7</code>.</p>
+
+
+<div class="anchor"><a name="o1234">&nbsp;</a></div>
+
+
+<p>Mulgara has a special server model reserved for use by the system. It contains statements about the models that currently exist on the system. Only Mulgara can modify server models directly. Users modify the server model indirectly by creating or dropping models. Server models have a fragment identifier of just <code>#</code>. For example <code>rmi://mysite.com/server1#</code></p>
+
+<p>The following iTQL <code><a id="h207" class="documentlinktemplate" title="select" href="/itqlcommands/select.html">select</a></code> command lists all models on a newly created Mulgara database, <code>rmi://mysite.com/server1#</code>:</p>
+
+<p class="commandtext">select $model from &lt;rmi://mysite.com/server1#&gt; <br />
+  where $model &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://mulgara.org/mulgara#Model&gt;;<br />
+1 columns: model (1 rows)<br />
+  model=rmi://mysite.com/server1#</p>
+
+<p class="note"><strong>Note -</strong> Since it is a newly created Mulgara database, the query only lists the server model.</p>
+
+<p>In the previous example, the <code><a id="h206" class="documentlinktemplate" title="where Clause" href="/itqlcommands/select.html#o197">where</a></code> clause of the <code>select</code> command lists a fully qualified predicate and object. You can simplify your queries by using the <code><a id="h1223" class="documentlinktemplate" title="alias" href="/itqlcommands/alias.html">alias</a></code> command. The <code>alias</code> command allows you to define aliases to frequently accessed resources. For example:</p>
+
+<p class="commandtext">alias &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; as rdf;<br />
+alias &lt;http://mulgara.org/mulgara#&gt; as mulgara;</p>
+
+<p>You could then write the <code>select</code> command as follows:</p>
+
+<p class="commandtext">select $model from &lt;rmi://mysite.com/server1#&gt; <br />
+  where $model &lt;rdf:type&gt; &lt;mulgara:Model&gt;;</p>
+
+  <p class="note"><strong>Note -</strong> The Mulgara shell automatically defines several <code><a id="h1334" class="documentlinktemplate" title="alias" href="/itqlcommands/alias.html">alias</a>es</code> by default.  These are:<br />
+<br />
+<code>alias &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; as rdf;<br />
+alias &lt;http://www.w3.org/2000/01/rdf-schema#&gt; as rdfs;<br />
+alias &lt;http://www.w3.org/2002/07/owl#&gt; as owl;<br />
+alias &lt;http://mulgara.org/mulgara#&gt; as mulgara;<br />
+alias &lt;http://mulgara.org/owl/krule/#&gt; as krule;</code></p>
+
+<div class="anchor"><a name="o231">&nbsp;</a></div>
+<h3>Creating New Models</h3>
+
+<p>You can create new models using the <code><a id="h209" class="documentlinktemplate" title="create" href="/itqlcommands/create.html">create</a></code> command and remove them using the <code><a id="h213" class="documentlinktemplate" title="drop" href="/itqlcommands/drop.html">drop</a></code> command . With <code>create</code>, you specify the new model name as the fragment identifier of the URL.</p>
+
+<p>For example, to create a new model called <code>model1</code>:</p>
+
+<p class="commandtext">create &lt;rmi://mysite.com/server1#model1&gt;;</p>
+
+<p>Using the <code><a id="h207_2" class="documentlinktemplate" title="select" href="/itqlcommands/select.html">select</a></code> command again to list all models, now displays two models.</p>
+
+<p class="commandtext">select $model from &lt;rmi://mysite.com/server1#&gt; <br />
+  where $model &lt;rdf:type&gt; &lt;mulgara:Model&gt;;<br />
+1 columns: model (2)<br />
+ <br />
+  model=rmi://mysite.com/server1#<br />
+  model=rmi://mysite.com/server1#model1</p>
+
+<div class="anchor"><a name="o232">&nbsp;</a></div>
+<h3>Inserting and Deleting Statements</h3>
+
+<p>Statements are inserted into a model using the <code><a id="h212" class="documentlinktemplate" title="insert" href="/itqlcommands/insert.html">insert</a></code> command. Statements are specified by listing in order their subject, predicate and object.</p>
+
+<p>For example, to insert into a model that John Smith is the creator of the Web page <code>http://www.domain.net/~jsmith/home.html</code>:</p>
+
+<p class="commandtext">insert &lt;http://www.domain.net/~jsmith/home.html&gt; &lt;dc:creator&gt; 'John Smith'<br />
+  into &lt;rmi://mysite.com/server1#model1&gt;;</p>
+
+<p class="note"><strong>Note -</strong> The semantics of creator are defined by the <a class="internetlinktemplate" title="Dublin Core" href="http://www.dublincore.org/documents/2001/09/20/dcmes-xml/">Dublin Core</a>.</p>
+
+<p>Using the <code><a id="h207_3" class="documentlinktemplate" title="select" href="/itqlcommands/select.html">select</a></code> command to list all statements in a model:</p>
+
+<p class="commandtext">select $subject $predicate $object from &lt;rmi://mysite.com/server1#model1&gt;<br />
+  where $subject $predicate $object;<br />
+3 columns: subject predicate object (1 rows)<br />
+  subject=http://www.domain.net/~jsmith/home.html<br />
+  predicate=http://purl.org/dc/elements/1.1/creator<br />
+  object=&quot;John Smith&quot;</p>
+
+<p class="note"><strong>Note -</strong> The predicate, <code>dc:creator</code>, expands out to the longer URL of the Dublin Core creator element. The URI scheme <code>dc:</code> is automatically aliased to the URI prefix <code>http://purl.org/dc/elements/1.1/</code><em> </em>when the iTQL shell starts. For more information, see the <code><a id="h245" class="documentlinktemplate" title="alias" href="/itqlcommands/alias.html">alias</a></code> command in the <a id="h664" class="documentlinktemplate" title="iTQL Commands" href="/itqlcommands/index.html">iTQL Command section</a>.</p>
+
+<p>Statements are deleted from a model using the <code><a id="h214" class="documentlinktemplate" title="delete" href="/itqlcommands/delete.html">delete</a></code> command. For example, to delete the statement just inserted:</p>
+
+<p class="commandtext">delete &lt;http://www.domain.net/~jsmith/home.html&gt; &lt;dc:creator&gt; 'John Smith'<br />
+  from &lt;rmi://mysite.com/server1#model1&gt;;</p>
+
+<p class="note"><strong>Note -</strong> Inserting new statements to a model never deletes or changes any existing statements. In the example above, to change the author of the Web page from John Smith to Mary Jones requires that the original statement be deleted and a new statement inserted.</p>
+
+<p>If the original statement is not deleted, then both statements are present in the model. Models act as mathematical sets, so inserting a statement more than once is permitted.</p>
+<div class="anchor"><a name="o233">&nbsp;</a></div>
+<h3>Loading Statements</h3>
+
+<p>It is usually not practical to insert statements into a model one at a time. The <code><a id="h249" class="documentlinktemplate" title="load" href="/itqlcommands/load.html">load</a></code> command reads statements from a specified <a class="internetlinktemplate" title="XML/RDF" href="http://www.w3.org/TR/2004/REC-rdf-primer-20040210/#rdfxml">RDF/XML</a> or <a class="internetlinktemplate" title="" href="http://www.w3.org/2001/sw/RDFCore/ntriples/">N-Triple</a> file and loads them into a model.</p>
+
+<p>By default, the <code>load</code> command expects an XML/RDF file. To load an N-Triple file, the file must have one of the following file extensions: <code>.n3</code>, <code>.nt</code>, <code>.n3.gz</code>, <code>.nt.gz</code>, <code>.n3.zip</code> or <code>.nt.zip</code>.<code> </code>The <code>load</code> command also accepts zip and GNUzip (gzip) compressed file formats.</p>
+
+<p>Also, when <code>file:</code> URLs are specified, the default <code>load</code> command assumes the file exists on the server. An optional parameter, <code>local</code>, streams the file from the client to the server, ready for loading.</p>
+
+<p>For example:</p>
+
+<p class="commandtext">load &lt;file:/tmp/bookmarks.rdf&gt; into &lt;rmi://mysite.com/server1#model1&gt;;<br />
+load &lt;file:/tmp/ntriple.n3&gt; into &lt;rmi://mysite.com/server1#model1&gt;;</p>
+
+<p>See the <a id="h249_2" class="documentlinktemplate" title="load" href="/itqlcommands/load.html">load</a> command in the <a id="h1995" class="documentlinktemplate" title="iTQL Commands" href="/itqlcommands/index.html">iTQL Commands section</a> for more details.</p>
+
+<p class="note"><strong>Note -</strong> In the above example, for systems running a Windows<sup>&reg;</sup> operating system, the file specification would look something like <code>&lt;file:/C:/temp/bookmarks.rdf&gt;</code>.</p>
+<div class="anchor"><a name="o234">&nbsp;</a></div>
+<h3>Removing Models</h3>
+
+<p>Models are removed using the <code><a id="h213_2" class="documentlinktemplate" title="drop" href="/itqlcommands/drop.html">drop</a></code> command. For example:</p>
+
+<p class="commandtext">drop &lt;rmi://mysite.com/server1#model1&gt;;</p>
+
+<p>A <code><a id="h207_4" class="documentlinktemplate" title="select" href="/itqlcommands/select.html">select</a></code> command confirms that the model no longer exists:</p>
+
+<p class="commandtext">select $model from &lt;rmi://mysite.com/server1#&gt; <br />
+  where $model &lt;rdfns:type&gt; &lt;mulgarans:Model&gt;;<br />
+1 columns: model (2 rows)<br />
+ <br />
+  model=rmi://mysite.com/server1#</p>
+
+<p class="note"><strong>Note -</strong> The above example assumes prior execution of the following <code><a id="h1334_2" class="documentlinktemplate" title="alias" href="/itqlcommands/alias.html">alias</a></code> commands:<br />
+<br />
+<code>alias &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; as rdfns;<br />
+alias &lt;http://mulgara.org/mulgara#&gt; as mulgarans;</code></p>
+<div class="anchor"><a name="o235">&nbsp;</a></div>
+<h3>Queries</h3>
+
+<p>As shown in the previous sections, the <code><a id="h207_5" class="documentlinktemplate" title="select" href="/itqlcommands/select.html">select</a></code> command performs queries against a model.</p>
+
+<p>In its simplest form, a <code>select</code> command has three clauses:</p>
+<ol><li><code><a id="h217" class="documentlinktemplate" title="select Clause" href="/itqlcommands/select.html#o188">select</a></code>
+<p class="listcontinue">Specifies the variables to solve for and the order in which they should appear in the result.</p>
+</li><li><code><a id="h218" class="documentlinktemplate" title="from Clause" href="/itqlcommands/select.html#o189">from</a></code>
+<p class="listcontinue">Specifies the model to be queried.</p>
+</li><li><code><a id="h1296" class="documentlinktemplate" title="where Clause" href="/itqlcommands/select.html#o197">where</a></code>
+<p class="listcontinue">Specifies the constraints for the query. It must always specify the subject, predicate and object sequence of an RDF statement.</p>
+</li></ol>
+<p>For example, the following query is not valid as there are only two elements in the <code>where</code> clause, a subject and an object.</p>
+
+<p class="commandtext">select $x from &lt;rmi://mysite.com/server1#MyModel&gt; where $x 'Title';</p>
+
+<p>The following query is valid. It finds the subjects and predicates of all statements where the object of the statement is the literal 'Title'.</p>
+
+<p class="commandtext">select $x $y from &lt;rmi://mysite.com/server1#MyModel&gt; where $x $y 'Title';</p>
+
+<p>Variables can be any name you specify. In the above query for example, <code>$x</code> and <code>$y</code> could be replaced with something more meaningful:</p>
+
+<p class="commandtext">select $subject $predicate from &lt;rmi://mysite.com/server1#MyModel&gt; <br />
+  where $subject $predicate 'Title';</p>
+
+<p>This is the same query as before, but returns columns named <code>subject</code> and <code>predicate</code>, rather than <code>x</code> and <code>y</code>.</p>
+
+<p>The following command shows everything about the Dublin Core title element:</p>
+
+<p class="commandtext">select $obj $pred from &lt;http://purl.org/dc/elements/1.1/&gt; <br />
+  where &lt;http://purl.org/dc/elements/1.1/title&gt; $pred $obj;<br />
+2 columns: obj pred (8 rows)<br />
+  obj=http://dublincore.org/usage/documents/principles/#element<br />
+          pred=http://purl.org/dc/elements/1.1/type<br />
+  obj=http://dublincore.org/usage/terms/history/#title-004<br />
+          pred=http://purl.org/dc/terms/hasVersion<br />
+  obj=http://www.w3.org/1999/02/22-rdf-syntax-ns#Property<br />
+          pred=http://www.w3.org/1999/02/22-rdf-syntax-ns#type<br />
+  obj=1999-07-02<br />
+          pred=http://purl.org/dc/terms/issued<br />
+  obj=2002-10-04<br />
+          pred=http://purl.org/dc/terms/modified<br />
+  obj=&quot;A name given to the resource.&quot;<br />
+          pred=http://www.w3.org/2000/01/rdf-schema#comment<br />
+  obj=&quot;Title&quot;<br />
+          pred=http://www.w3.org/2000/01/rdf-schema#label<br />
+  obj=&quot;Typically, a Title will be a name by which the resource is formally known.&quot;  <br />
+          pred=http://purl.org/dc/elements/1.1/description</p>
+
+<p>The following commands show the current headlines on <a class="internetlinktemplate" title="Slashdot" href="http://www.slashdot.org/">Slashdot</a>:</p>
+
+<p class="commandtext">alias &lt;http://purl.org/rss/1.0/&gt; as rss;<br />
+select $title from &lt;http://slashdot.org/slashdot.rss&gt; where $url &lt;rss:title&gt; $title;<br />
+1 columns: title (14 rows)<br />
+  title=&quot;A Motherboard That Doesn't Require An OS&quot;<br />
+  title=&quot;Beagle 2 Failure Theories&quot;<br />
+  title=&quot;Building Social Skills in Gifted Youths?&quot;<br />
+  title=&quot;DARPA Grand Challenge Kicks Off March 13th&quot;<br />
+  title=&quot;How The Web Ruined The Encyclopedia Business&quot;<br />
+  title=&quot;Is Windows Worth $45?&quot;<br />
+  title=&quot;PayPal Settles NY Probe, But Faces Others&quot;<br />
+  title=&quot;RMS &amp; FSF Directors To Meet With FSF Members&quot;<br />
+  title=&quot;Search Slashdot&quot;<br />
+  title=&quot;Sandia Builds Micromechanical 'Device Driver'&quot;<br />
+  title=&quot;Measuring The Distance From Earth To Moon&quot;<br />
+  title=&quot;Slashdot&quot;<br />
+  title=&quot;The Implications Of Software Commodity?&quot;<br />
+<code>  title=&quot;Viacom and DishNetwork Battle On Air Over Contract&quot;</code></p>
+
+<p class="note"><strong>Note -</strong> The above titles are current as at the date of the query.</p>
+
+<p>The following command shows not only the titles, but also their corresponding URLs:</p>
+
+<p class="commandtext">alias &lt;http://purl.org/rss/1.0/&gt; as rss;<br />
+select $title $url from &lt;http://slashdot.org/slashdot.rss&gt; <br />
+  where $url &lt;rss:title&gt; $title;<br />
+2 columns: title url (13 rows)<br />
+  title=&quot;A Motherboard That Doesn't Require An OS&quot;<br />
+         url=http://slashdot.org/article.pl?sid=04/03/08/2319215<br />
+  title=&quot;Beagle 2 Failure Theories&quot;<br />
+         url=http://slashdot.org/article.pl?sid=04/03/08/2340206<br />
+  title=&quot;Building Social Skills in Gifted Youths?&quot;<br />
+         url=http://slashdot.org/article.pl?sid=04/03/09/013254<br />
+  title=&quot;DARPA Grand Challenge Kicks Off March 13th&quot;<br />
+         url=http://slashdot.org/article.pl?sid=04/03/09/0356227<br />
+  title=&quot;How The Web Ruined The Encyclopedia Business&quot;<br />
+         url=http://slashdot.org/article.pl?sid=04/03/08/2014231<br />
+  title=&quot;Is Windows Worth $45?&quot;<br />
+         url=http://slashdot.org/article.pl?sid=04/03/09/0032257<br />
+  title=&quot;PayPal Settles NY Probe, But Faces Others&quot;<br />
+         url=http://slashdot.org/article.pl?sid=04/03/08/2357225<br />
+  title=&quot;RMS &amp; FSF Directors To Meet With FSF Members&quot;<br />
+         url=http://slashdot.org/article.pl?sid=04/03/08/1926222<br />
+  title=&quot;Search Slashdot&quot;<br />
+         url=http://slashdot.org/search.pl<br />
+  title=&quot;Slashdot&quot;<br />
+         url=http://images.slashdot.org/topics/topicslashdot.gif<br />
+  title=&quot;Slashdot&quot;<br />
+         url=http://images.slashdot.org/topics/topicslashdot.gif<br />
+  title=&quot;The Implications Of Software Commodity?&quot;<br />
+         url=http://slashdot.org/article.pl?sid=04/03/08/2010215<br />
+  title=&quot;Viacom and DishNetwork Battle On Air Over Contract&quot;<br />
+         url=http://slashdot.org/article.pl?sid=04/03/08/1915243</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

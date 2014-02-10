@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:cas="urn:cas:" xmlns:date="http://mulgara.org/mulgara/tool/DateExtractor#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:document="http://mulgara.org/mulgara/Document#" xmlns:feature="http://mulgara.org/mulgara/tool/FeatureExtractor#" xmlns:med="urn:medline:" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<med:Journal rdf:about="urn:nlm:4"
+<dc:coverage>UNITED STATES</dc:coverage>
+<dc:title>J Wildl Dis</dc:title>
+<med:code>KEM</med:code>
+<med:nlmUniqueID>0244160</med:nlmUniqueID>
+
+<med:issn>0090-3558</med:issn>
+<med:journalIssue>
+<med:JournalIssue rdf:about="urn:nlm:0244160:36:3">
+<med:volume>36</med:volume>
+<med:issue>3</med:issue>
+<med:publicationDate>
+<date:Date>
+<date:year>2000</date:year>
+<date:month>Jul</date:month
+</date:Date>
+</med:publicationDate>
+<med:article>
+<document:Document rdf:about="urn:pmid:10941725">
+<med:creationDate>
+<date:Date>
+<date:year>2000</date:year>
+<date:month>08</date:month>
+<date:day>17</date:day>
+</date:Date>
+</med:creationDate>
+<med:completionDate>
+<date:Date>
+<date:year>2001</date:year>
+<date:month>04</date:month>
+<date:day>05</date:day>
+</date:Date>
+</med:completionDate>
+<document:title>Methylmercury accumulation in tissues and its effects on growth and appetite in captive great egrets.</document:title>
+<document:author>
+<feature:Person>
+<feature:name>L R McDowell</feature:name>
+</feature:Person>
+</document:author>
+<dc:contributor>Department of Pathobiology, College of Veterinary Medicine, University of Florida, Gainesville 32611, USA. rosie@nersp.nerdc.ufl.edu</dc:contributor>
+<dc:language>eng</dc:language>
+<document:subject>Methylmercury Compounds</document:subject>
+<document:subject>
+<cas:Chemical rdf:about="urn:cas:115-09-3">
+<cas:registryNumber>115-09-3</cas:registryNumber>
+<cas:name>methylmercuric chloride</cas:name>
+</cas:Chemical>
+</document:subject>
+<document:subject>Age Factors</document:subject>
+</document:Document>
+</med:article>
+</med:JournalIssue>
+</med:journalIssue>
+</med:Journal>
+</rdf:RDF>
+
+
+
+
+
+

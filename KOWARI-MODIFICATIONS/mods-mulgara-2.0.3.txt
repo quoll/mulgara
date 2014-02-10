@@ -1,0 +1,563 @@
+------------------------------------------------------------------------
+r1204 | pag | 2008-08-29 21:24:42 -0500 (Fri, 29 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/LEGAL.txt
+
+Described new status of JRDF
+------------------------------------------------------------------------
+r1203 | pag | 2008-08-29 21:17:51 -0500 (Fri, 29 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/common.properties
+
+Getting ready for the next release point
+------------------------------------------------------------------------
+r1199 | pag | 2008-08-28 18:44:40 -0500 (Thu, 28 Aug 2008) | 17 lines
+Changed paths:
+   M /trunk/.classpath
+   M /trunk/build.properties
+   M /trunk/build.xml
+   M /trunk/common.properties
+   M /trunk/common.xml
+   M /trunk/conf/mulgara-config-x11.xml
+   M /trunk/conf/mulgara-config.xml
+   D /trunk/lib/jrdf-0.3.4.3.jar
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/test/ItqlGraphUnitTest.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/test/SessionGraphUnitTest.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/writer/MemoryXMLWriter.java
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/N3StatementsUnitTest.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/Parser.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/RDFXMLContentHandler.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/RDFXMLStatements.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/RDFXMLStatementsUnitTest.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/TestResolverSession.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/AbstractWritableStatement.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/BlankNodeWritableStatement.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/LiteralWritableStatement.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/NamespaceMap.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/RDFXMLWriter.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/RDFXMLWriterUnitTest.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/TestResolverSession.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/TestStatementsComparator.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/URIReferenceWritableStatement.java
+   D /trunk/src/jar/content-rio
+   M /trunk/src/jar/driver/build.xml
+   M /trunk/src/jar/itql/build.xml
+   M /trunk/src/jar/jrdf/java/org/mulgara/jrdf/JRDFGraphUnitTest.java
+   M /trunk/src/jar/jrdf/java/org/mulgara/jrdf/JRDFLocalGraphUnitTest.java
+   A /trunk/src/jar/query/java/org/jrdf
+   A /trunk/src/jar/query/java/org/jrdf/graph
+   A /trunk/src/jar/query/java/org/jrdf/graph/AbstractBlankNode.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/AbstractGraphElementFactoryTest.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/AbstractGraphTest.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/AbstractLiteral.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/AbstractTriple.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/AbstractTripleFactory.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/AbstractTripleFactoryTest.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/AbstractURIReference.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/AlreadyReifiedException.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/Alternative.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/Bag.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/BlankNode.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/Collection.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/Container.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/Graph.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/GraphElementFactory.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/GraphElementFactoryException.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/GraphException.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/Literal.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/Node.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/ObjectNode.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/PredicateNode.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/Sequence.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/SubjectNode.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/Triple.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/TripleFactory.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/TripleFactoryException.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/TypedNodeVisitable.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/TypedNodeVisitor.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/TypedNodeVisitorAdapter.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/URIReference.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/AbstractUnorderedContainer.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/BlankNodeImpl.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/EmptyClosableIterator.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/GraphElementFactoryImpl.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/GraphElementFactoryImplUnitTest.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/GraphHandler.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/GraphHandler012.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/GraphHandler120.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/GraphHandler201.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/GraphImpl.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/GraphImplUnitTest.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/GraphIterator.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/LiteralImpl.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/MemNode.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/OneFixedIterator.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/SequenceImpl.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/ThreeFixedIterator.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/TripleFactoryImpl.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/TripleImpl.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/TwoFixedIterator.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/mem/URIReferenceImpl.java
+   A /trunk/src/jar/query/java/org/jrdf/graph/package.html
+   A /trunk/src/jar/query/java/org/jrdf/parser
+   A /trunk/src/jar/query/java/org/jrdf/parser/ParserBlankNodeFactory.java
+   A /trunk/src/jar/query/java/org/jrdf/parser/mem
+   A /trunk/src/jar/query/java/org/jrdf/parser/mem/ParserBlankNodeFactoryImpl.java
+   A /trunk/src/jar/query/java/org/jrdf/util
+   A /trunk/src/jar/query/java/org/jrdf/util/ClosableIterator.java
+   A /trunk/src/jar/query/java/org/jrdf/util/EscapeUtil.java
+   A /trunk/src/jar/query/java/org/jrdf/util/EscapeUtilUnitTest.java
+   A /trunk/src/jar/query/java/org/jrdf/util/UIDGenerator.java
+   A /trunk/src/jar/query/java/org/jrdf/util/UIDGeneratorUnitTest.java
+   A /trunk/src/jar/query/java/org/jrdf/util/package.html
+   A /trunk/src/jar/query/java/org/jrdf/util/param
+   A /trunk/src/jar/query/java/org/jrdf/util/param/EmtpyStringChecker.java
+   A /trunk/src/jar/query/java/org/jrdf/util/param/EmtpyStringCheckerUnitTest.java
+   A /trunk/src/jar/query/java/org/jrdf/util/param/NullChecker.java
+   A /trunk/src/jar/query/java/org/jrdf/util/param/NullCheckerUnitTest.java
+   A /trunk/src/jar/query/java/org/jrdf/util/param/ParameterChecker.java
+   A /trunk/src/jar/query/java/org/jrdf/util/param/ParameterTestUtil.java
+   A /trunk/src/jar/query/java/org/jrdf/util/param/ParameterUtil.java
+   A /trunk/src/jar/query/java/org/jrdf/util/param/ParameterUtilUnitTest.java
+   A /trunk/src/jar/query/java/org/jrdf/util/param/package.html
+   A /trunk/src/jar/query/java/org/jrdf/vocabulary
+   A /trunk/src/jar/query/java/org/jrdf/vocabulary/RDF.java
+   A /trunk/src/jar/query/java/org/jrdf/vocabulary/RDFS.java
+   A /trunk/src/jar/query/java/org/jrdf/vocabulary/Vocabulary.java
+   A /trunk/src/jar/query/java/org/jrdf/vocabulary/package.html
+   M /trunk/src/jar/query/java/org/mulgara/server/SessionFactoryFactory.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSessionListQueryUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/store/exporter/ModelXMLWriter.java
+   M /trunk/src/jar/resolver-relational/build.xml
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalResolverUnitTest.java
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+   M /trunk/src/jar/sparql-protocol/java/org/mulgara/sparql/protocol/StreamAnswer.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPXMLLiteralImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPXMLLiteralUnitTest.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolImpl.java
+   M /trunk/src/jar/store-xa/build.xml
+   D /trunk/src/jar/util/java/org/mulgara/util/C.java
+   A /trunk/src/jar/util/java/org/mulgara/util/ClasspathDesc.java
+   D /trunk/src/jar/util/java/org/mulgara/util/F.java
+   M /trunk/src/jar/util/java/org/mulgara/util/FileUtil.java
+   D /trunk/src/jar/util/java/org/mulgara/util/Fn.java
+   D /trunk/src/jar/util/java/org/mulgara/util/Fn1.java
+   D /trunk/src/jar/util/java/org/mulgara/util/Fn1E.java
+   D /trunk/src/jar/util/java/org/mulgara/util/Fn2.java
+   D /trunk/src/jar/util/java/org/mulgara/util/Fn2E.java
+   D /trunk/src/jar/util/java/org/mulgara/util/FnE.java
+   D /trunk/src/jar/util/java/org/mulgara/util/Pair.java
+   A /trunk/src/jar/util/java/org/mulgara/util/functional
+   A /trunk/src/jar/util/java/org/mulgara/util/functional/C.java (from /trunk/src/jar/util/java/org/mulgara/util/C.java:1182)
+   A /trunk/src/jar/util/java/org/mulgara/util/functional/F.java (from /trunk/src/jar/util/java/org/mulgara/util/F.java:1182)
+   A /trunk/src/jar/util/java/org/mulgara/util/functional/Fn.java (from /trunk/src/jar/util/java/org/mulgara/util/Fn.java:1182)
+   A /trunk/src/jar/util/java/org/mulgara/util/functional/Fn1.java (from /trunk/src/jar/util/java/org/mulgara/util/Fn1.java:1182)
+   A /trunk/src/jar/util/java/org/mulgara/util/functional/Fn1E.java (from /trunk/src/jar/util/java/org/mulgara/util/Fn1E.java:1182)
+   A /trunk/src/jar/util/java/org/mulgara/util/functional/Fn2.java (from /trunk/src/jar/util/java/org/mulgara/util/Fn2.java:1182)
+   A /trunk/src/jar/util/java/org/mulgara/util/functional/Fn2E.java (from /trunk/src/jar/util/java/org/mulgara/util/Fn2E.java:1182)
+   A /trunk/src/jar/util/java/org/mulgara/util/functional/FnE.java (from /trunk/src/jar/util/java/org/mulgara/util/FnE.java:1182)
+   A /trunk/src/jar/util/java/org/mulgara/util/functional/Pair.java (from /trunk/src/jar/util/java/org/mulgara/util/Pair.java:1182)
+
+Imported JRDF into the source tree, removing it from the library. Added generics to remove warnings.
+
+This import has been a common request. It will provide easy access to view the source. It will also
+allow for easy modification for fixing bugs, or extension where we have a need to expand the
+definition. An example of this was the need to add generics, but we have also wanted to work with
+JRDF objects and other objects (like Variables) using some kind of common interface.
+
+The import as allowable as JRDF is licensed mostly with Apache 1.1. However, the RDF/XML parsing
+code was imported from Sesame and was under LGPL. This code had to be removed which in turn had
+an impact on the RIO content handler. Since this content handler was only being used in the unit
+tests for the Relational Resolver, the content handler was removed.
+
+While debugging the new integration some utilities were created and updated. This included a
+Classpath utility, for printing the classpath and copying out jars to a temporary file, and 
+moving the "functional" classes to their own package.
+
+
+------------------------------------------------------------------------
+r1198 | pag | 2008-08-28 18:42:46 -0500 (Thu, 28 Aug 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/web/web-build.properties (from /trunk/src/jar/web/webquery-build.properties:1189)
+   D /trunk/src/jar/web/webquery-build.properties
+
+Changed the name of this directory, so the properties filename changes too
+------------------------------------------------------------------------
+r1197 | pag | 2008-08-28 18:41:45 -0500 (Thu, 28 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryParams.java
+
+Moved functional utilities into their own package
+------------------------------------------------------------------------
+r1196 | pag | 2008-08-28 18:41:23 -0500 (Thu, 28 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryResponsePage.java
+
+Moved functional utilities into their own package
+------------------------------------------------------------------------
+r1195 | pag | 2008-08-28 18:36:22 -0500 (Thu, 28 Aug 2008) | 1 line
+Changed paths:
+   D /trunk/src/jar/webquery
+
+trying to fix svn
+------------------------------------------------------------------------
+r1194 | pag | 2008-08-28 18:36:04 -0500 (Thu, 28 Aug 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/webquery
+   A /trunk/src/jar/webquery/java
+   A /trunk/src/jar/webquery/java/org
+   A /trunk/src/jar/webquery/java/org/mulgara
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/QueryResponsePage.java
+
+trying to fix svn
+------------------------------------------------------------------------
+r1193 | pag | 2008-08-28 18:26:05 -0500 (Thu, 28 Aug 2008) | 1 line
+Changed paths:
+   D /trunk/src/jar/webquery
+
+trying to fix subversion by adding in a directory that Eclipse removed
+------------------------------------------------------------------------
+r1192 | pag | 2008-08-28 18:25:49 -0500 (Thu, 28 Aug 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/webquery
+
+trying to fix subversion by adding in a directory that Eclipse removed
+------------------------------------------------------------------------
+r1191 | pag | 2008-08-28 18:22:51 -0500 (Thu, 28 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryServlet.java
+
+Updated to use new location of function utilities
+------------------------------------------------------------------------
+r1190 | pag | 2008-08-28 18:20:36 -0500 (Thu, 28 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/HtmlElement.java
+
+Updated to use new location of function utilities
+------------------------------------------------------------------------
+r1189 | pag | 2008-08-27 20:23:59 -0500 (Wed, 27 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/build.xml
+   M /trunk/src/jar/server/build.xml
+   A /trunk/src/jar/web (from /trunk/src/jar/webquery:1182)
+   M /trunk/src/jar/web/build.xml
+   M /trunk/src/jar/web/resources/template.html
+   M /trunk/src/jar/web/resources/template_head.html
+   M /trunk/src/jar/web/webquery-build.properties
+   D /trunk/src/jar/webquery
+
+renamed webquery to web
+------------------------------------------------------------------------
+r1188 | pag | 2008-08-27 17:40:50 -0500 (Wed, 27 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDecimalFactory.java
+
+mapping equalivent URIs to the same subtypes
+------------------------------------------------------------------------
+r1187 | pag | 2008-08-27 17:40:19 -0500 (Wed, 27 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDecimalImpl.java
+
+Ensuring that equality is also by type
+------------------------------------------------------------------------
+r1186 | pag | 2008-08-27 17:39:39 -0500 (Wed, 27 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDateImpl.java
+
+Now checking for equality using the timezone information as well
+------------------------------------------------------------------------
+r1185 | pag | 2008-08-27 17:39:10 -0500 (Wed, 27 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDateUnitTest.java
+
+Checking that the SPComparator comparisons are as expected
+------------------------------------------------------------------------
+r1184 | pag | 2008-08-27 17:37:40 -0500 (Wed, 27 Aug 2008) | 1 line
+Changed paths:
+   A /trunk/conf/mulgara-config-x11.xml
+
+An example configuration file for using XA 1.1
+------------------------------------------------------------------------
+r1183 | pag | 2008-08-26 18:32:20 -0500 (Tue, 26 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDateImpl.java
+
+Dates are now inserted into the index using their timezone information as well, meaning that equivalent dates with different representations will show up as different entries. This should close #138
+------------------------------------------------------------------------
+r1182 | pag | 2008-08-26 15:30:01 -0500 (Tue, 26 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/AbstractSPStringComparator.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/SPComparator.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/SPLimit.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPBase64BinaryImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPBase64BinaryUnitTest.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPBinaryComparator.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPBooleanImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPBooleanUnitTest.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPCaseInsensitiveStringComparator.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPCaseInsensitiveStringComparatorUnitTest.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPCaseSensitiveStringComparator.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDateImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDateTimeImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDecimalImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDecimalUnitTest.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDoubleImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPFloatImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGDayImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGDayUnitTest.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGMonthDayImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGMonthDayUnitTest.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGMonthImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGMonthUnitTest.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGYearImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGYearMonthImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGYearMonthUnitTest.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGYearUnitTest.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPHexBinaryUnitTest.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPXMLLiteralUnitTest.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/UnknownSPTypedLiteralFactory.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/UnknownSPTypedLiteralUnitTest.java
+   M /trunk/src/jar/store-stringpool-xa/java/org/mulgara/store/stringpool/xa/XAStringPoolImpl.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/DataAVLComparator.java
+
+Updated SPComparator to take the subtype ID when comparing, so that these may be distinguished when being inserted. Only the Decimal objects will use this, as no other types have subtypes, however all implementations of the comparator needed to be updated to deal with this. This should close #137
+------------------------------------------------------------------------
+r1181 | pag | 2008-08-26 13:31:13 -0500 (Tue, 26 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/AbstractSPObject.java
+
+Added in the compare method that was being duplicated in each of the comparator classes
+------------------------------------------------------------------------
+r1180 | pag | 2008-08-26 13:30:17 -0500 (Tue, 26 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/StringPoolException.java
+
+Removed serial ID warning and added some Javadoc
+------------------------------------------------------------------------
+r1179 | pag | 2008-08-26 13:27:26 -0500 (Tue, 26 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/StringPoolAbstractTest.java
+
+Removed warnings
+------------------------------------------------------------------------
+r1178 | pag | 2008-08-26 13:26:28 -0500 (Tue, 26 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/SPObjectFactory.java
+
+Removed import warning
+------------------------------------------------------------------------
+r1177 | pag | 2008-08-26 00:41:34 -0500 (Tue, 26 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDecimalFactory.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDecimalImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDecimalUnitTest.java
+
+Updated xsd:decimal to handle full decimal values, using BigDecimal as the underlying data type. Now differentiates between xsd:decimal and all the extending types, which can only encode integral value.
+------------------------------------------------------------------------
+r1176 | ronald | 2008-08-25 06:18:25 -0500 (Mon, 25 Aug 2008) | 10 lines
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDateImpl.java
+
+Fix backwards compatibility support added in r1144.
+
+Pre r1081 the date was being stored in local-time, not UTC, i.e. as
+midnight + local-time-offset. Reading that as UTC was then causing
+delete-select to fail because globalization would return a pure date
+with tz-offset 0, but subsequent localization would then not find the
+db entry since the entry has a non-zero time (unless your locale happened
+to be UTC). So now we figure out the tz-offset of the stored value and
+use that instead.
+
+------------------------------------------------------------------------
+r1175 | pag | 2008-08-23 01:03:16 -0500 (Sat, 23 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolImpl.java
+
+Allowing the selectPhase method to be called twice, as it is now being called as a NodePool and then again as a StringPool
+------------------------------------------------------------------------
+r1174 | pag | 2008-08-23 01:02:11 -0500 (Sat, 23 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolFactory.java
+
+Using the same factory for node pools as string pools, since the same pool does both jobs
+------------------------------------------------------------------------
+r1173 | pag | 2008-08-23 01:01:14 -0500 (Sat, 23 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/BlankNodeAllocator.java
+
+off by one bit place in the blank node bit mask
+------------------------------------------------------------------------
+r1172 | pag | 2008-08-23 01:00:32 -0500 (Sat, 23 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/StringPoolSessionFactory.java
+
+Updated to allow for null node pools, in which case the string pool is expected to be its own node pool
+------------------------------------------------------------------------
+r1171 | pag | 2008-08-22 21:04:55 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+
+Added the XA1.1 string pool to the classpath
+------------------------------------------------------------------------
+r1170 | pag | 2008-08-22 21:03:10 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/build.xml
+
+added the XA1.1 string pool package
+------------------------------------------------------------------------
+r1169 | pag | 2008-08-22 21:02:09 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/AVLFile.java
+
+Exposes the current usage of a phase to those objects that are not holding tokens directly, even though they reference the phase
+------------------------------------------------------------------------
+r1168 | pag | 2008-08-22 21:01:08 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/ManagedBlockFile.java
+
+Added in an integrity test for files that do not get managed correctly
+------------------------------------------------------------------------
+r1167 | pag | 2008-08-22 21:00:05 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/StringPoolSessionFactory.java
+
+Using StoreExceptions instead of NodeExceptions as the close and delete methods are present on both XANodePool and XAStringPool
+------------------------------------------------------------------------
+r1166 | pag | 2008-08-22 20:59:26 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/webquery/java/org/mulgara/webquery/QueryServlet.java
+
+Updated use of the FnE functor to Fn1E, now that the name has changed
+------------------------------------------------------------------------
+r1165 | pag | 2008-08-22 20:58:24 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/Database.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseFactory.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseFactoryInitializer.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseUnitTest.java
+
+Updated Databases to handle multiple directories for storing database files. This will be important for distributing the load across multiple disks
+------------------------------------------------------------------------
+r1164 | pag | 2008-08-22 20:56:39 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/StringPoolSession.java
+
+Giving the XANodePool to the XAStringPool so that the string pool can ask for the nodes it needs. This is needed for stringpools that manage their own nodes.
+------------------------------------------------------------------------
+r1163 | pag | 2008-08-22 20:55:15 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-nodepool/java/org/mulgara/store/nodepool/NodePool.java
+
+removed unused method, as it can't be implemented with some schemes
+------------------------------------------------------------------------
+r1162 | pag | 2008-08-22 20:54:23 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-xa/java/org/mulgara/store/xa/XANodePool.java
+
+Using StoreExceptions instead of NodeExceptions as the close and delete methods are present on both XANodePool and XAStringPool
+------------------------------------------------------------------------
+r1161 | pag | 2008-08-22 20:52:53 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-xa/java/org/mulgara/store/xa/XAStringPool.java
+
+updated to allow ownership of a nodepool and to put objects without knowing the gnode beforehand
+------------------------------------------------------------------------
+r1160 | pag | 2008-08-22 20:51:05 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/util/java/org/mulgara/util/Fn.java
+   A /trunk/src/jar/util/java/org/mulgara/util/FnE.java
+
+Zero argument functors
+------------------------------------------------------------------------
+r1159 | pag | 2008-08-22 20:50:23 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/C.java
+   D /trunk/src/jar/util/java/org/mulgara/util/Fn.java
+   A /trunk/src/jar/util/java/org/mulgara/util/Fn1.java (from /trunk/src/jar/util/java/org/mulgara/util/Fn.java:1141)
+   A /trunk/src/jar/util/java/org/mulgara/util/Fn1E.java (from /trunk/src/jar/util/java/org/mulgara/util/FnE.java:1141)
+   D /trunk/src/jar/util/java/org/mulgara/util/FnE.java
+
+Updated class names to allow for single and zero argument functors, and updated parameter names to be a little clearer
+------------------------------------------------------------------------
+r1158 | pag | 2008-08-22 20:48:51 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/util/java/org/mulgara/util/F.java
+
+Added for currying
+------------------------------------------------------------------------
+r1157 | pag | 2008-08-22 20:47:28 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/FactoryInitializer.java
+
+Removed warning on an unparameterized set, and added the getDirectories() method to allow for more than one directory when initializing
+------------------------------------------------------------------------
+r1156 | pag | 2008-08-22 20:46:09 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool-xa/java/org/mulgara/store/stringpool/xa/XAStringPoolImpl.java
+
+Updated the put()/find() interface, added the setNodePool() method (to support the new put/find interface), and cleaned up formatting. Also the reduced the scope of synchronization around transaction operations to allow the node pool to synchronize in its own way.
+------------------------------------------------------------------------
+r1155 | pag | 2008-08-22 20:42:11 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool-memory/java/org/mulgara/store/stringpool/memory/MemoryStringPoolImpl.java
+
+Updated the put() interface, and removed warnings due to lack of generics
+------------------------------------------------------------------------
+r1154 | pag | 2008-08-22 20:39:13 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/AbstractSPObject.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/AbstractSPTypedLiteral.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/SPLimit.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/SPObject.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPBase64BinaryImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPBooleanImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDateImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDateTimeImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDecimalImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDoubleImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPFloatImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGDayImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGMonthDayImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGMonthImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGYearImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGYearMonthImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPHexBinaryImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPStringImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPURIImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPXMLLiteralImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPXSDStringImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/UnknownSPTypedLiteralImpl.java
+
+Updated SPObject to extend Comparable<SPObject> instead of an un-adorned Comparable
+------------------------------------------------------------------------
+r1153 | pag | 2008-08-22 20:32:19 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/StringPoolLoadTest.java
+
+Removed warnings on generics for collections, and cleaned up formatting
+------------------------------------------------------------------------
+r1152 | pag | 2008-08-22 19:43:11 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/store-stringpool-xa11
+   A /trunk/src/jar/store-stringpool-xa11/build.xml
+   A /trunk/src/jar/store-stringpool-xa11/java
+   A /trunk/src/jar/store-stringpool-xa11/java/org
+   A /trunk/src/jar/store-stringpool-xa11/java/org/mulgara
+   A /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store
+   A /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool
+   A /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11
+   A /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/BlankNodeAllocator.java
+   A /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/DataAVLComparator.java
+   A /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/DataCategoryAVLComparator.java
+   A /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/DataCategoryTypeAVLComparator.java
+   A /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/DataStruct.java
+   A /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolFactory.java
+   A /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolImpl.java
+   A /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolImplTest.java
+   A /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolLoadTest.java
+   A /trunk/src/jar/store-stringpool-xa11/store-stringpool-xa11-build.properties
+
+A new take on the string pool. This version uses an integrated node pool (and not a free list) and is designed around write-once-read-many instead of working this way accidentally. So far it operates marginally quicker, though the real test will be in loading very large data sets
+------------------------------------------------------------------------

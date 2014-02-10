@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="server-rmi" default="server-rmi-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="server-rmi-classpath">
+
+    <path refid="common-classpath"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${jrdf.dist.dir}/${jrdf.base.jar}"/>
+    <fileset file="${server.dist.dir}/${server.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+  </path>
+
+  <path id="server-rmi-test-classpath">
+
+    <path refid="server-rmi-classpath"/>
+
+    <fileset file="${server-rmi.dist.dir}/${server-rmi.jar}"/>
+  </path>
+
+  <target name="server-rmi-clean"
+          description="Removes all compile generated files for the server-rmi">
+
+    <tstamp/>
+
+    <delete dir="${server-rmi.obj.dir}"/>
+    <delete dir="${server-rmi.test.dir}"/>
+    <delete dir="${server-rmi.dist.dir}"/>
+  </target>
+
+  <target name="-server-rmi-prepare"
+          description="Creates all directories associated with the server-rmi's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${server-rmi.obj.dir}"/>
+    <mkdir dir="${server-rmi.test.dir}"/>
+    <mkdir dir="${server-rmi.dist.dir}"/>
+    <mkdir dir="${server-rmi.obj.dir}/classes"/>
+  </target>
+
+  <target name="server-rmi-compile"
+          depends="-server-rmi-prepare, resolver-spi-jar, server-jar, jrdf-jar"
+          unless="server-rmi.classes.uptodate"
+          description="Compiles all server-rmi related files included generated
+                       source code">
+
+    <javac destdir="${obj.dir}/jar/server-rmi/classes"
+        debug="on" deprecation="on" source="1.5">
+
+      <classpath refid="server-rmi-classpath"/>
+
+      <src path="${src.dir}/jar/server-rmi/java"/>
+    </javac>
+
+    <rmic classname="org.mulgara.server.rmi.RemoteSessionFactoryImpl"
+      base="${obj.dir}/jar/server-rmi/classes">
+
+      <classpath refid="server-rmi-classpath"/>
+      <classpath path="${obj.dir}/jar/server-rmi/classes"/>
+    </rmic>
+
+    <rmic classname="org.mulgara.server.rmi.SessionWrapperRemoteSession"
+      base="${obj.dir}/jar/server-rmi/classes">
+
+      <classpath refid="server-rmi-classpath"/>
+      <classpath path="${obj.dir}/jar/server-rmi/classes"/>
+    </rmic>
+
+    <rmic classname="org.mulgara.server.rmi.JRDFSessionWrapperRemoteJRDFSession"
+      base="${obj.dir}/jar/server-rmi/classes">
+
+      <classpath refid="server-rmi-classpath"/>
+      <classpath path="${obj.dir}/jar/server-rmi/classes"/>
+    </rmic>
+
+    <rmic classname="org.mulgara.server.rmi.RemoteSessionImpl"
+      base="${obj.dir}/jar/server-rmi/classes">
+
+      <classpath refid="server-rmi-classpath"/>
+      <classpath path="${obj.dir}/jar/server-rmi/classes"/>
+    </rmic>
+
+    <rmic classname="org.mulgara.server.rmi.RemoteJRDFSessionImpl"
+      base="${obj.dir}/jar/server-rmi/classes">
+
+      <classpath refid="server-rmi-classpath"/>
+      <classpath path="${obj.dir}/jar/server-rmi/classes"/>
+    </rmic>
+
+    <rmic classname="org.mulgara.server.rmi.AnswerWrapperRemoteAnswer"
+      base="${obj.dir}/jar/server-rmi/classes">
+
+      <classpath refid="server-rmi-classpath"/>
+      <classpath path="${obj.dir}/jar/server-rmi/classes"/>
+    </rmic>
+
+    <rmic classname="edu.emory.mathcs.util.remote.io.server.impl.RemoteOutputStreamSrvImpl"
+      base="${obj.dir}/jar/server-rmi/classes">
+      <classpath refid="server-rmi-classpath"/>
+    </rmic>
+
+    <rmic classname="edu.emory.mathcs.util.remote.io.server.impl.RemoteInputStreamSrvImpl"
+      base="${obj.dir}/jar/server-rmi/classes">
+      <classpath refid="server-rmi-classpath"/>
+    </rmic>
+  </target>
+
+  <target name="server-rmi-jar"
+          depends="server-rmi-compile, -server-rmi-jar-uptodate"
+          unless="server-rmi.jar.uptodate"
+          description="Creates the server-rmi's jar/s">
+
+    <jar jarfile="${server-rmi.dist.dir}/${server-rmi.jar}">
+      <fileset dir="${server-rmi.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-server-rmi-jar-uptodate">
+
+    <uptodate property="server-rmi.jar.uptodate"
+              targetfile="${server-rmi.dist.dir}/${server-rmi.jar}">
+      <srcfiles dir="${server-rmi.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="server-rmi-dist"
+          depends="server-rmi-jar"
+          unless="server-rmi.uptodate"
+          description="Performs all tasks related to finalising this server-rmi
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the server-rmi library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="server-rmi-test"
+          depends="server-rmi-jar"
+          description="Carries out unit testing for this server-rmi">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="server-rmi-test-classpath"/>
+      <param name="dir" value="${server-rmi.src.dir}"/>
+      <param name="jar" value="${server-rmi.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="server-rmi-javadoc"
+          depends="server-rmi-jar"
+          description="Creates the javadoc for this server-rmi">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.server.rmi.*"/>
+      <param name="javadoc.classpath" value="server-rmi-classpath"/>
+      <param name="javadoc.sourcepath" value="${server-rmi.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="server-rmi-help"
+          description="Displays the help information for this server-rmi">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this server-rmi -->
+
+    <echo message="Welcome to the build script for ${name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${server-rmi.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="client-jrdf" default="client-jrdf-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="client-jrdf-classpath">
+
+    <path refid="common-classpath"/>
+
+    <pathelement path="${query.dist.dir}/${query.jar}"/>
+    <pathelement path="${driver.dist.dir}/${driver.jar}"/>
+    <pathelement path="${util.dist.dir}/${util.jar}"/>
+    <pathelement path="${jrdf.dist.dir}/${jrdf.base.jar}"/>
+    <pathelement path="${server-rmi.dist.dir}/${server-rmi.jar}"/>
+    <pathelement path="${querylang.dist.dir}/${querylang.jar}"/>
+    <pathelement path="${lib.dir}/${jrdf.jar}"/>
+    <pathelement path="${lib.dir}/${sesame-model.jar}"/>
+  </path>
+
+  <path id="client-jrdf-test-classpath">
+
+    <path refid="client-jrdf-classpath"/>
+
+    <fileset file="${client-jrdf.dist.dir}/${client-jrdf.jar}"/>
+  </path>
+
+  <target name="client-jrdf-clean"
+          description="Removes all compile generated files for the client-jrdf">
+
+    <tstamp/>
+
+    <delete dir="${client-jrdf.obj.dir}"/>
+    <delete dir="${client-jrdf.test.dir}"/>
+    <delete dir="${client-jrdf.dist.dir}"/>
+  </target>
+
+  <target name="-client-jrdf-prepare"
+          description="Creates all directories associated with the client-jrdf's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${client-jrdf.obj.dir}"/>
+    <mkdir dir="${client-jrdf.test.dir}"/>
+    <mkdir dir="${client-jrdf.dist.dir}"/>
+    <mkdir dir="${client-jrdf.obj.dir}/classes"/>
+  </target>
+
+  <target name="client-jrdf-compile"
+          depends="-client-jrdf-prepare, driver-jar, querylang-jar, server-jar, jrdf-jar"
+          description="Compiles all client-jrdf related files included generated
+                       source code">
+
+    <javac destdir="${obj.dir}/jar/client-jrdf/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="client-jrdf-classpath"/>
+
+      <src path="${client-jrdf.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="client-jrdf-jar"
+          depends="client-jrdf-compile, -client-jrdf-jar-uptodate"
+          unless="client-jrdf.jar.uptodate"
+          description="Creates the client-jrdf's jar/s">
+
+    <jar jarfile="${client-jrdf.dist.dir}/${client-jrdf.jar}">
+      <fileset dir="${client-jrdf.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-client-jrdf-jar-uptodate">
+
+    <uptodate property="client-jrdf.jar.uptodate"
+              targetfile="${client-jrdf.dist.dir}/${client-jrdf.jar}">
+      <srcfiles dir="${client-jrdf.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="client-jrdf-dist"
+          depends="client-jrdf-jar"
+          unless="client-jrdf.uptodate"
+          description="Performs all tasks related to finalising this client-jrdf
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the client-jrdf library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="client-jrdf-test"
+          depends="client-jrdf-jar"
+          description="Carries out unit testing for this client-jrdf">
+
+    <antcall target="start"/>
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="client-jrdf-test-classpath"/>
+      <param name="dir" value="${client-jrdf.src.dir}"/>
+      <param name="jar" value="${client-jrdf.jar}"/>
+    </antcall>
+
+    <antcall target="stop"/>
+  </target>
+
+  <target name="client-jrdf-javadoc"
+          depends="client-jrdf-jar"
+          description="Creates the javadoc for this client-jrdf">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.client.jrdf.*"/>
+      <param name="javadoc.classpath" value="client-jrdf-classpath"/>
+      <param name="javadoc.sourcepath" value="${client-jrdf.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="client-jrdf-help"
+          description="Displays the help information for this client-jrdf">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this client-jrdf -->
+
+    <echo message="Welcome to the build script for ${client-jrdf.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${client-jrdf.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

@@ -1,0 +1,76 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Advantages and Disadvantages of Descriptors</title>
+    <meta name="keywords" content="Advantages and Disadvantages of Descriptors, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/descriptors/descwhat.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/descriptors/nsdesc.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/descriptors/index.html">Descriptors</a></p>
+<p class="relateditem"><a href="/descriptors/descwhat.html">What are Descriptors?</a></p>
+<p class="relateditem"><a href="/descriptors/nsdesc.html">Namespaces and Descriptors</a></p>
+<p class="relateditem"><a href="/descriptors/querytag.html">The &lt;query&gt; Tag</a></p>
+<p class="relateditem"><a href="/descriptors/descriptortag.html">The &lt;descriptor&gt; Tag</a></p>
+<p class="relateditem"><a href="/descriptors/reserved.html">Reserved Parameters</a></p>
+<p class="relateditem"><a href="/descriptors/descriptorsfaq.html">Descriptors FAQ</a></p>
+<p class="relateditem"><a href="/descriptors/mistakes.html">Common Mistakes</a></p>
+<p class="relateditem"><a href="/descriptors/descriptorex.html">Descriptor Examples</a></p>
+
+ -->
+
+
+
+
+<h2>Advantages and Disadvantages of Descriptors</h2>
+
+<p>The advantages of working with Descriptors over using APIs include:</p>
+<ul><li>You can define an interface for a client while allowing the implementation to evolve, even at runtime. That is, you can have live development using loosely coupled components.</li><li>Descriptors are referenced as URLs, so Mulgara servers can use Descriptors from remote machines.</li><li>Descriptor interfaces are well defined in RDF, so humans or applications can discover Descriptors that meet their needs.</li><li>Descriptors are SOAP accessible and described in WSDL, and are therefore usable from other languages and platforms such as Perl, Microsoft<sup>&reg;</sup> Visual Basic<sup>&reg;</sup> and the Microsoft .NET Framework.</li><li>Descriptors are fast because they use optimized XSL objects and queries are performed on the server. They are not much slower than working with APIs directly.</li></ul>
+<div class="anchor"><a name="o3130">&nbsp;</a></div>
+
+
+<p>The disadvantages of <em>developing</em> Descriptors include:</p>
+<ul><li>Developing Descriptors requires knowledge of XSL.</li><li>Debugging Descriptors is difficult when using deeply embedded Descriptors due to the layers of components involved.</li><li>Large XML results have higher memory and CPU requirements than when using APIs directly.</li></ul>
+<div class="anchor"><a name="o3131">&nbsp;</a></div>
+
+
+<p>The disadvantages of <em>using</em> Descriptors include:</p>
+<ul><li>Only string parameters are allowed, although this may change in the future to support complex data types.</li><li>Session type functionality is not available when developing HTML web applications, unless used from the application server.</li><li>Descriptors declare their input parameters in a machine understandable format, but not their output capabilities.</li></ul>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

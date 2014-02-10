@@ -1,0 +1,517 @@
+------------------------------------------------------------------------
+r1543 | pag | 2009-02-24 22:32:10 -0600 (Tue, 24 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-n3/build.xml
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/N3WriterUnitTest.java
+
+Using UTF-8 when decoding international character sets in tests
+------------------------------------------------------------------------
+r1541 | pag | 2009-02-24 16:37:52 -0600 (Tue, 24 Feb 2009) | 1 line
+Changed paths:
+   A /trunk/KOWARI-MODIFICATIONS/mods-mulgara-2.0.9.txt
+
+Added update log for 2.0.9
+------------------------------------------------------------------------
+r1540 | pag | 2009-02-24 16:27:35 -0600 (Tue, 24 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/common.properties
+
+Updated the 'year' label for the project
+------------------------------------------------------------------------
+r1539 | pag | 2009-02-24 16:25:11 -0600 (Tue, 24 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/LEGAL.txt
+   M /trunk/build.properties
+   M /trunk/build.xml
+   M /trunk/common.xml
+   A /trunk/lib/xml-apis-2.9.1.jar (from /trunk/lib/xmlParserAPIs.jar:1538)
+   D /trunk/lib/xmlParserAPIs.jar
+   M /trunk/src/jar/config/build.xml
+   M /trunk/src/jar/demo-mp3/build.xml
+   M /trunk/src/jar/server-http/build.xml
+
+Updated the XML parser API jar, and gave it a name based on the jar file from the xerces distribution. Also updated the LEGAL reference to the file
+------------------------------------------------------------------------
+r1538 | pag | 2009-02-24 14:29:03 -0600 (Tue, 24 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/lib/xmlParserAPIs.jar
+
+Updated parser API libarary to Xerces 2.9.1
+------------------------------------------------------------------------
+r1537 | alexhall | 2009-02-24 10:43:07 -0600 (Tue, 24 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlSession.java
+
+Flush output to console after each command in JLine shell.
+------------------------------------------------------------------------
+r1536 | alexhall | 2009-02-23 12:18:27 -0600 (Mon, 23 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+
+Refactor the output type enumeration to differentiate graph formats from answer formats in the type definition.  This will make it easier to add future output type definitions.
+------------------------------------------------------------------------
+r1535 | alexhall | 2009-02-20 15:58:37 -0600 (Fri, 20 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+
+Ignore unknown output format parameter values.  Enum.valueOf() throws IllegalArgumentException for unknown enum identifiers instead of returning null.
+------------------------------------------------------------------------
+r1534 | alexhall | 2009-02-20 15:44:47 -0600 (Fri, 20 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+
+Use the correct MIME content type in the SPARQL protocol response.
+------------------------------------------------------------------------
+r1533 | pag | 2009-02-20 13:19:11 -0600 (Fri, 20 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlInterpreter.java
+
+Resetting variable name generation with the parser. These should always happen together, and it wasn't being done in the parseQuery method
+------------------------------------------------------------------------
+r1532 | pag | 2009-02-19 18:10:04 -0600 (Thu, 19 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/.classpath
+   M /trunk/build.properties
+   M /trunk/build.xml
+   M /trunk/common.xml
+   A /trunk/lib/xercesImpl-2.9.1.jar
+   D /trunk/lib/xercesImpl.jar
+   M /trunk/src/jar/config/build.xml
+   M /trunk/src/jar/demo-mp3/build.xml
+   M /trunk/src/jar/server-http/build.xml
+
+Updated references to xerces to use a variable instead of a raw file path. Also changed the Xerces library from 2.6.2 up to the latest, which is 2.9.1.
+------------------------------------------------------------------------
+r1531 | pag | 2009-02-19 18:08:06 -0600 (Thu, 19 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/RegexFn.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/RegexFnUnitTest.java
+
+Updated to use XPath regular expressions instead of Java regular expressions
+------------------------------------------------------------------------
+r1530 | pag | 2009-02-19 10:49:37 -0600 (Thu, 19 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/MimeMultiNamedPart.java
+
+Fixed bug where MIME parts were presumed to be strings. For larger parts they arrive as input streams instead.
+------------------------------------------------------------------------
+r1529 | pag | 2009-02-19 10:44:19 -0600 (Thu, 19 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryServlet.java
+
+Fixed bug in data uplaod where a query was also being executed. Data uploads now include the filename with the mime type, in case the mime type is not recognized (Firefox usually sends an octet stream). Also included better error reporting on load failures.
+------------------------------------------------------------------------
+r1528 | pag | 2009-02-19 10:42:16 -0600 (Thu, 19 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/web/java/org/mulgara/webquery/TutorialServlet.java
+
+Removed unused import
+------------------------------------------------------------------------
+r1527 | alexhall | 2009-02-18 15:42:15 -0600 (Wed, 18 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara-embedded.dtd
+   M /trunk/conf/mulgara-embedded.xsd
+
+Make the "Port" parameter in the JettyConnector optional.  It doesn't make much sense to force the user to specify the port of a connector that is being disabled.  If the connector is enabled and no port is configured, it defaults to 8080 for private and 8081 for public.
+------------------------------------------------------------------------
+r1526 | alexhall | 2009-02-18 15:40:56 -0600 (Wed, 18 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/HttpServices.java
+
+Respect the "disabled" flag in the JettyConnector configuration.  The public and private connectors may now be enabled and disabled independently.
+------------------------------------------------------------------------
+r1525 | alexhall | 2009-02-18 14:50:47 -0600 (Wed, 18 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara-embedded.xsd
+   M /trunk/src/jar/server/java/org/mulgara/server/HttpServices.java
+
+Use a common XSD type to represent the public and private Jetty connectors in mulgara-config.  This elminates the need for a private utility class in HttpServices to wrap the different connector types.
+------------------------------------------------------------------------
+r1524 | alexhall | 2009-02-18 14:16:57 -0600 (Wed, 18 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseOperationContext.java
+
+Eliminate another possible infinite loop when canonicalizing graph URI's.
+------------------------------------------------------------------------
+r1523 | alexhall | 2009-02-18 14:10:30 -0600 (Wed, 18 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/Reflect.java
+
+Fixed a bug where a constructor with the wrong number of arguments may be returned by the findConstructor method.
+------------------------------------------------------------------------
+r1522 | alexhall | 2009-02-17 16:46:59 -0600 (Tue, 17 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseOperationContext.java
+
+Fix a bug that causes an infinite recursion when referring to a non-existent graph absolute URI that is relative to the server URI.  This will account for the fact that the canonical server URI may contain uppercase characters but the hostname aliases are stored in lowercase.
+------------------------------------------------------------------------
+r1521 | alexhall | 2009-02-17 16:27:03 -0600 (Tue, 17 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara-embedded.dtd
+   M /trunk/conf/mulgara-embedded.xsd
+   M /trunk/src/jar/server/java/org/mulgara/server/HttpServices.java
+
+Add a configuration parameter to enable the setting of the maximum thread pool size in the Jetty connector.  This is different from the existing parameter that controls the number of acceptors.  Acceptors simply accept an incoming connection and dispatch it to a worker thread.  Since each acceptor is allocated a thread in the thread pool, increasing the number of acceptors while keeping the maximum number of threads constant may negatively impact performance by decreasing the number of worker threads available to process requests.
+------------------------------------------------------------------------
+r1520 | alexhall | 2009-02-17 15:17:28 -0600 (Tue, 17 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/Database.java
+
+Don't log the database hostname aliases until it has been fully populated.
+------------------------------------------------------------------------
+r1519 | alexhall | 2009-02-17 12:13:52 -0600 (Tue, 17 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/build.properties
+   M /trunk/src/jar/querylang/build.xml
+
+Include libraries for javax.activation.MimeType in querylang.jar to support 1.5 JDK's
+------------------------------------------------------------------------
+r1518 | pag | 2009-02-17 10:11:21 -0600 (Tue, 17 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/HttpServices.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryServlet.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/TutorialServlet.java
+
+Refactored servlets to allow deployment in a WAR file
+------------------------------------------------------------------------
+r1517 | pag | 2009-02-17 10:10:35 -0600 (Tue, 17 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/N3WriterUnitTest.java
+
+Temporarily removed a test for non ASCII characters, as they are not being encoded as expected on a Mac
+------------------------------------------------------------------------
+r1516 | pag | 2009-02-17 10:09:09 -0600 (Tue, 17 Feb 2009) | 1 line
+Changed paths:
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/http/LocalTriple.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/http/LocalTripleUnitTest.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/http/MulgaraServlet.java
+
+Added REST support for creating and deleting graphs and individual statements. Also refactored the servlet to allow for deployment in a WAR
+------------------------------------------------------------------------
+r1515 | pag | 2009-02-17 10:08:15 -0600 (Tue, 17 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/driver/java/org/mulgara/server/driver/SessionFactoryFinder.java
+
+Exposes embedded exception messages when a session factory cannot be found
+------------------------------------------------------------------------
+r1514 | pag | 2009-02-17 10:07:00 -0600 (Tue, 17 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/PublicSparqlServlet.java
+
+Added REST support for creating and deleting graphs and individual statements. Also refactored the servlet to allow for deployment in a WAR
+------------------------------------------------------------------------
+r1513 | pag | 2009-02-17 10:05:29 -0600 (Tue, 17 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/war/mulgara/WEB-INF/web.xml
+
+Added in the SPARQL servlet
+------------------------------------------------------------------------
+r1512 | pag | 2009-02-17 08:39:30 -0600 (Tue, 17 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara.policy
+
+Added permission to receive connections on port 80
+------------------------------------------------------------------------
+r1511 | ronald | 2009-02-17 06:36:16 -0600 (Tue, 17 Feb 2009) | 9 lines
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndex.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexTuples.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+
+Second attempt at allowing lucene-resolver results to be lazy. Split the
+FullTextStringIndexTuples into two, and materialize it for all queries
+except fully unconstrained $s $p $o queries (so that things like export
+can stream the result out). Support for definable-prefixes is now back in,
+albeit in a limited fashion (HybridTuples does not support it, hence it's
+only supported in the non-materialized scenario).
+
+Also added some optimizations like sorting the hits by document-id order
+for faster doc retrieval.
+------------------------------------------------------------------------
+r1509 | ronald | 2009-02-17 05:37:18 -0600 (Tue, 17 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ExportOperation.java
+
+Fixed NPE when no destination-uri is specified (bug introduced in r1507).
+------------------------------------------------------------------------
+r1508 | ronald | 2009-02-17 04:38:13 -0600 (Tue, 17 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndex.java
+
+Fixed copy-paste error that could lead to wrong rows-upper-bound calculation.
+------------------------------------------------------------------------
+r1507 | ronald | 2009-02-17 04:38:08 -0600 (Tue, 17 Feb 2009) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver/build.xml
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ExportOperation.java
+
+Added support for exporting to NTriples. If the filename ends in .n3, .nt, or
+.ttl then the output will be in NTriples, otherwise RDF/XML is used.
+------------------------------------------------------------------------
+r1506 | ronald | 2009-02-17 04:38:04 -0600 (Tue, 17 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ExportOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/OutputOperation.java
+
+Trivial source formatting fix: removed trailing spaces.
+------------------------------------------------------------------------
+r1505 | ronald | 2009-02-17 04:37:59 -0600 (Tue, 17 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/N3ContentHandler.java
+   A /trunk/src/jar/content-n3/java/org/mulgara/content/n3/N3Writer.java
+   A /trunk/src/jar/content-n3/java/org/mulgara/content/n3/N3WriterUnitTest.java
+
+Added ability to write out statements/content as NTriples.
+------------------------------------------------------------------------
+r1504 | ronald | 2009-02-17 04:37:54 -0600 (Tue, 17 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/Parser.java
+
+Parse language tags properly (the language ended up containing the '@').
+------------------------------------------------------------------------
+r1503 | ronald | 2009-02-17 04:37:49 -0600 (Tue, 17 Feb 2009) | 3 lines
+Changed paths:
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/Parser.java
+
+Fixed blank-node allocation error introduced in r1143 that lead to multiple
+occurrences of a given blank-node being parsed as multiple different blank
+nodes.
+------------------------------------------------------------------------
+r1502 | ronald | 2009-02-17 04:37:45 -0600 (Tue, 17 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/N3ContentHandler.java
+
+Minor code formatting fixes.
+------------------------------------------------------------------------
+r1501 | ronald | 2009-02-17 04:37:39 -0600 (Tue, 17 Feb 2009) | 6 lines
+Changed paths:
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/UnorderedProjection.java
+
+Fix hasNoDuplicates() in the case where the projection is adding columns:
+adding columns can never create duplicates, so in this case we only have
+duplicates if the original has duplicates.
+
+This speeds up some queries noticeably (20% or more) by removing the need
+to wrap this tuples in a DistinctTuples.
+------------------------------------------------------------------------
+r1499 | pag | 2009-02-14 00:09:48 -0600 (Sat, 14 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-http/java/org/mulgara/resolver/http/HttpContent.java
+
+Correctly releasing connections, since only a SimpleConnectionManager is used, meaning that only a single connection is available.
+------------------------------------------------------------------------
+r1498 | pag | 2009-02-13 14:21:05 -0600 (Fri, 13 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-http/java/org/mulgara/resolver/http/HttpContent.java
+
+Fixed bug where asking for the mimetype would close a stream. Also avoids an extra HEAD method when not needed.
+------------------------------------------------------------------------
+r1497 | pag | 2009-02-13 14:19:57 -0600 (Fri, 13 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/PatternMapper.java
+
+Allowing relative URIs in queries
+------------------------------------------------------------------------
+r1496 | pag | 2009-02-13 14:19:38 -0600 (Fri, 13 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlInterpreter.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/SparqlInterpreter.java
+
+Allowing relative URIs in queries
+------------------------------------------------------------------------
+r1495 | alexhall | 2009-02-13 13:12:45 -0600 (Fri, 13 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/MortbayLogger.java
+
+Copied the Jetty implementation of the format method to fix an exception that was being thrown.
+------------------------------------------------------------------------
+r1494 | alexhall | 2009-02-13 13:10:32 -0600 (Fri, 13 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/HttpServices.java
+
+Fix some backwards logic when configuring the Jetty connectors.
+------------------------------------------------------------------------
+r1493 | alexhall | 2009-02-13 13:09:34 -0600 (Fri, 13 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/HttpServices.java
+
+Enable the Jetty logging adapter to send log messages to Log4J.  When the adapter is disabled, Jetty still sends it logging messages but these are swallowed.  The to see Jetty log messages, the MortbayLogger class still needs to be added to log4j-mulgara.xml.
+------------------------------------------------------------------------
+r1492 | pag | 2009-02-13 01:12:24 -0600 (Fri, 13 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/model/impl/MBoxManagerImpl.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/DataTx.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Load.java
+   M /trunk/src/jar/query/java/org/mulgara/server/Session.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/ItqlInterpreterBean.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/ItqlInterpreterBeanUnitTest.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseOperationContext.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSession.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/SetGraphOperation.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteSession.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteSessionWrapperSession.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/SessionWrapperRemoteSession.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryServlet.java
+
+Punched a hole through the APIs to expose MIME content types. This allows a content type to be specified with an InputStream, meaning that bogus URIs with filename extensions are no longer needed to indicate the type of data in the stream
+------------------------------------------------------------------------
+r1491 | pag | 2009-02-13 01:08:14 -0600 (Fri, 13 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/ConstraintExpressionBuilder.java
+
+Now permitting relative URIs in TQL queries
+------------------------------------------------------------------------
+r1490 | pag | 2009-02-13 01:06:38 -0600 (Fri, 13 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-mp3/java/org/mulgara/content/mp3/MP3Statements.java
+
+Fixed a problem where all known blank node mappings were being ignored due to using badly typed maps
+------------------------------------------------------------------------
+r1489 | pag | 2009-02-13 01:05:36 -0600 (Fri, 13 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/MBoxContentHandler.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/MBoxStatements.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/MBoxStatementsUnitTest.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/model/impl/MBoxImpl.java
+   M /trunk/src/jar/content-mp3/java/org/mulgara/content/mp3/MP3ContentHandler.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/Parser.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/RDFXMLContentHandler.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ContentHandlerManagerImpl.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/content/ContentResolver.java
+
+Safe printing of content URIs and at fixups
+------------------------------------------------------------------------
+r1488 | pag | 2009-02-13 00:58:23 -0600 (Fri, 13 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/Parser.java
+
+Safe printing of content URI
+------------------------------------------------------------------------
+r1487 | pag | 2009-02-13 00:57:33 -0600 (Fri, 13 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/MimeMessageToPartBean.java
+
+Added generics and formatting fixups
+------------------------------------------------------------------------
+r1486 | pag | 2009-02-13 00:56:17 -0600 (Fri, 13 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/rdf/Mulgara.java
+
+Added a namespace that can be used without a fragment
+------------------------------------------------------------------------
+r1485 | pag | 2009-02-13 00:55:21 -0600 (Fri, 13 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/StreamContent.java
+   M /trunk/src/jar/resolver-file/java/org/mulgara/resolver/file/FileContent.java
+   M /trunk/src/jar/resolver-http/java/org/mulgara/resolver/http/HttpContent.java
+   M /trunk/src/jar/resolver-jar/java/org/mulgara/resolver/jar/JarContent.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/content/Content.java
+
+Added a mechanism to print URIs when the URI may now be set to null due to a stream being present
+------------------------------------------------------------------------
+r1484 | pag | 2009-02-13 00:51:03 -0600 (Fri, 13 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/N3ContentHandler.java
+
+Minor format cleanup
+------------------------------------------------------------------------
+r1483 | ronald | 2009-02-12 12:00:02 -0600 (Thu, 12 Feb 2009) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexTuples.java
+
+Minor code tweaks: no need for fully-qualified class name for imported class,
+and classes can be compared using == .
+------------------------------------------------------------------------
+r1482 | ronald | 2009-02-12 11:59:56 -0600 (Thu, 12 Feb 2009) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraExternalTransaction.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraExternalTransactionFactory.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraInternalTransaction.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraInternalTransactionFactory.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraXAResourceContext.java
+
+Attempting to improve reporting of heuristic rollbacks to application by keeping
+track of the cause for the last error and including that in the exceptions.
+------------------------------------------------------------------------
+r1481 | ronald | 2009-02-12 11:59:50 -0600 (Thu, 12 Feb 2009) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa/TripleWriteThread.java
+
+Fix potential starvation issue if the writer thread completely empties
+the queue while the client is waiting for space in a full queue.
+------------------------------------------------------------------------
+r1480 | andrae | 2009-02-12 05:45:10 -0600 (Thu, 12 Feb 2009) | 6 lines
+Changed paths:
+   D /trunk/src/jar/tuples/java/org/mulgara/store/tuples/ConstrainedNegationTuples.java
+   D /trunk/src/jar/tuples/java/org/mulgara/store/tuples/ConstrainedNegationTuplesUnitTest.java
+   A /trunk/src/jar/tuples/java/org/mulgara/store/tuples/ReorderAnnotation.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperations.java
+
+Cleaned up TuplesOperations.project() prior to fixing project() ordering performance bug.
+Removed left-over krud that used to support exclude().
+
+Took the opportunity to add the ReorderAnnotation class I will require to fix the bug.
+
+
+------------------------------------------------------------------------
+r1479 | pag | 2009-02-06 20:21:08 -0600 (Fri, 06 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara-config.xml
+   M /trunk/conf/mulgara-embedded.dtd
+   M /trunk/conf/mulgara-embedded.xsd
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraOptionParser.java
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+   M /trunk/src/jar/server/java/org/mulgara/server/HttpServices.java
+   M /trunk/src/jar/server/java/org/mulgara/server/ServerInfo.java
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/Pair.java
+
+Added options to start up and configure a public SPARQL endpoint, for read-only access by the public
+------------------------------------------------------------------------
+r1478 | pag | 2009-02-06 20:19:39 -0600 (Fri, 06 Feb 2009) | 1 line
+Changed paths:
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/http/PublicSparqlServlet.java
+
+New servlet for query-only SPARQL operation. Necessary for public access.
+------------------------------------------------------------------------
+r1477 | pag | 2009-02-06 20:18:21 -0600 (Fri, 06 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/N3ContentHandler.java
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/N3Statements.java
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/N3StatementsUnitTest.java
+
+Code cleanup by reformatiing. Fixed warnings by removing redundant imports and using generics
+------------------------------------------------------------------------
+r1476 | pag | 2009-02-06 20:15:09 -0600 (Fri, 06 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/common.properties
+
+move to the next version number
+------------------------------------------------------------------------
+r1475 | pag | 2009-02-02 23:39:13 -0600 (Mon, 02 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/GraphAnswer.java
+
+Now handling graphs built from a multiple of 3 elements, and not just 3
+------------------------------------------------------------------------
+r1474 | pag | 2009-02-02 23:38:08 -0600 (Mon, 02 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/StackTrace.java
+
+Printing the name of an exception class when there is no cause and no message
+------------------------------------------------------------------------
+r1473 | pag | 2009-02-02 23:37:24 -0600 (Mon, 02 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/RegexFn.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/FilterMapper.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/BicRegEx.java
+
+Fixed NPE error caused by the third parameter of RegEx was left as null
+------------------------------------------------------------------------
+r1472 | pag | 2009-02-02 22:59:27 -0600 (Mon, 02 Feb 2009) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara-rmi.policy
+
+Adding in port 80 listen permissions as this is a common request
+------------------------------------------------------------------------

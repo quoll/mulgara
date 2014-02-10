@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="query" default="query-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="query-classpath">
+
+    <path refid="common-classpath"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${lib.dir}/${jenatest.jar}"/>
+  </path>
+
+  <path id="query-test-classpath">
+
+    <path refid="query-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${server-rmi.dist.dir}/${server-rmi.jar}"/>
+    <fileset file="${server-local.dist.dir}/${server-local.jar}"/>
+  </path>
+
+  <target name="query-clean"
+          description="Removes all compile generated files for the query">
+
+    <tstamp/>
+
+    <delete dir="${query.obj.dir}"/>
+    <delete dir="${query.test.dir}"/>
+    <delete dir="${query.dist.dir}"/>
+  </target>
+
+  <target name="-query-prepare"
+          description="Creates all directories associated with the query's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${query.obj.dir}"/>
+    <mkdir dir="${query.test.dir}"/>
+    <mkdir dir="${query.dist.dir}"/>
+    <mkdir dir="${query.obj.dir}/classes"/>
+    <mkdir dir="${query.obj.dir}/classes/conf"/>
+    <mkdir dir="${query.obj.dir}/java"/>
+  </target>
+
+  <target name="-query-unjar-config"
+          depends="-query-unjar-config-uptodate"
+          unless="query.unjar.config.uptodate">
+
+    <unjar src="${bin.dir}/${config.jar}" dest="${query.obj.dir}/classes"/>
+  </target>
+
+  <target name="-query-unjar-config-uptodate">
+
+    <available file="${query.obj.dir}/classes/org/mulgara/config/MulgaraConfig.class"
+               property="query.unjar.config.uptodate"/>
+  </target>
+
+  <target name="query-compile"
+          depends="-query-prepare, util-jar, config-jar, -query-unjar-config"
+          description="Compiles all query related files included generated
+                       source code"
+          unless="query.classes.uptodate">
+
+    <javac destdir="${query.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="query-classpath"/>
+
+      <src path="${driver.src.dir}/java"/>
+      <src path="${query.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="query-jar"
+          depends="query-compile, config-database, -query-jar-uptodate"
+          unless="query.jar.uptodate"
+          description="Creates the query's jar/s">
+
+    <copy file="${obj.dir}/mulgara-x-config.xml"
+          tofile="${query.obj.dir}/classes/conf/mulgara-x-config.xml"/>
+
+    <jar jarfile="${query.dist.dir}/${query.jar}">
+
+      <fileset dir="${query.obj.dir}/classes"/>
+      <fileset dir="${query.obj.dir}/java" includes="**/*.dat"/>
+    </jar>
+  </target>
+
+  <target name="-query-jar-uptodate">
+
+    <uptodate property="query.jar.uptodate"
+              targetfile="${query.dist.dir}/${query.jar}">
+      <srcfiles dir="${query.obj.dir}" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="query-dist"
+          depends="query-jar"
+          unless="query.uptodate"
+          description="Performs all tasks related to finalising this query
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the query library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="query-test"
+          depends="query-jar, server-rmi-jar, server-local-jar"
+          description="Carries out unit testing for this query">
+
+    <sleep seconds="5"/>
+    <antcall target="start"/>
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="query-test-classpath"/>
+      <param name="dir" value="${query.src.dir}"/>
+      <param name="jar" value="${query.jar}"/>
+    </antcall>
+    <antcall target="stop"/>
+  </target>
+
+  <target name="query-javadoc"
+          depends="query-jar"
+          description="Creates the javadoc for this query">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.query.*,
+                                           org.mulgara.server.*"/>
+      <param name="javadoc.classpath" value="query-classpath"/>
+      <param name="javadoc.sourcepath" value="${query.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="query-help"
+          description="Displays the help information for this query">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this query -->
+
+    <echo message="Welcome to the build script for ${name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${query.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

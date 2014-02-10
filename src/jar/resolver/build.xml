@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="resolver" default="resolver-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="resolver-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${jrdf.dist.dir}/${jrdf.base.jar}"/>
+    <fileset file="${resolver-http.dist.dir}/${resolver-http.jar}"/>
+    <fileset file="${resolver-file.dist.dir}/${resolver-file.jar}"/>
+    <fileset file="${resolver-jar.dist.dir}/${resolver-jar.jar}"/>
+    <fileset file="${resolver-url.dist.dir}/${resolver-url.jar}"/>
+    <fileset file="${content-rdfxml.dist.dir}/${content-rdfxml.jar}"/>
+    <fileset file="${content-n3.dist.dir}/${content-n3.jar}"/>
+    <fileset file="${content-rlog.dist.dir}/${content-rlog.jar}"/>
+    <fileset file="${driver.dist.dir}/${driver.jar}"/>
+  </path>
+
+  <path id="resolver-test-classpath">
+
+    <path refid="resolver-classpath"/>
+
+    <fileset file="${resolver-url.dist.dir}/${resolver-url.jar}"/>
+    <fileset file="${resolver-xsd.dist.dir}/${resolver-xsd.jar}"/>
+    <fileset file="${resolver-store.dist.dir}/${resolver-store.jar}"/>
+    <fileset file="${resolver-memory.dist.dir}/${resolver-memory.jar}"/>
+    <fileset file="${store-nodepool-memory.dist.dir}/${store-nodepool-memory.jar}"/>
+    <fileset file="${resolver-memory.dist.dir}/${resolver-memory.jar}"/>
+    <fileset file="${store-nodepool-xa.dist.dir}/${store-nodepool-xa.jar}"/>
+    <fileset file="${store-stringpool-xa.dist.dir}/${store-stringpool-xa.jar}"/>
+    <fileset file="${store-stringpool-memory.dist.dir}/${store-stringpool-memory.jar}"/>
+    <fileset file="${tuples-hybrid.dist.dir}/${tuples-hybrid.jar}"/>
+    <fileset file="${util-xa.dist.dir}/${util-xa.jar}"/>
+
+    <fileset file="${lib.dir}/connector-1_5.jar"/>
+    <fileset file="${lib.dir}/icu4j.jar"/>
+	<fileset file="${lib.dir}/${antlr.jar}"/>
+
+    <fileset file="${resolver.dist.dir}/${resolver.jar}"/>
+  </path>
+
+  <target name="resolver-clean"
+          description="Removes all compile generated files for the resolver">
+
+    <tstamp/>
+
+    <delete dir="${resolver.obj.dir}"/>
+    <delete dir="${resolver.test.dir}"/>
+    <delete dir="${resolver.dist.dir}"/>
+  </target>
+
+  <target name="-resolver-prepare"
+          description="Creates all directories associated with the resolver's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${resolver.obj.dir}"/>
+    <mkdir dir="${resolver.test.dir}"/>
+    <mkdir dir="${resolver.dist.dir}"/>
+    <mkdir dir="${resolver.obj.dir}/classes"/>
+  </target>
+
+  <target name="resolver-compile"
+          depends="-resolver-prepare, resolver-spi-jar,
+                   resolver-http-jar, resolver-file-jar, resolver-url-jar,
+                   resolver-jar-jar, content-rdfxml-jar, content-n3-jar, content-rlog-jar,
+                   client-jrdf-jar, jrdf-jar, resolver-xsd-jar, driver-jar"
+          description="Compiles all resolver related files included generated
+                       source code">
+
+    <javac destdir="${resolver.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="resolver-classpath"/>
+
+      <src path="${resolver.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="resolver-jar"
+          depends="resolver-compile, -resolver-jar-uptodate"
+          unless="resolver.jar.uptodate"
+          description="Builds the Resolver JAR">
+
+    <jar jarfile="${resolver.dist.dir}/${resolver.jar}">
+      <fileset dir="${resolver.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-resolver-jar-uptodate">
+
+    <uptodate property="resolver.jar.uptodate"
+              targetfile="${resolver.dist.dir}/${resolver.jar}">
+      <srcfiles dir="${resolver.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="resolver-dist"
+          depends="resolver-jar"
+          unless="resolver.uptodate"
+          description="Performs all tasks related to finalising this resolver
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the resolver library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="resolver-test"
+          depends="jrdf-jar, store-nodepool-memory-jar, 
+                   resolver-jar, resolver-memory-jar, resolver-xsd-jar,
+                   store-nodepool-xa-jar, store-stringpool-xa-jar, resolver-store-jar,
+                   resolver-url-jar, store-stringpool-memory-jar, tuples-hybrid-jar,
+                   util-jar, util-xa-jar, driver-jar">
+
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="resolver-test-classpath"/>
+      <param name="dir" value="${resolver.src.dir}"/>
+      <param name="jar" value="${resolver.jar}"/>
+    </antcall>
+
+    <antcall target="standalone-test">
+      <param name="classpath.id" value="resolver-test-classpath"/>
+      <param name="dir" value="${resolver.src.dir}"/>
+      <param name="jar" value="${resolver.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-test-debug"
+          depends="jrdf-jar, store-nodepool-memory-jar, 
+                   resolver-jar, resolver-memory-jar, resolver-xsd-jar,
+                   store-nodepool-xa-jar, store-stringpool-xa-jar, resolver-store-jar,
+                   resolver-url-jar, store-stringpool-memory-jar, tuples-hybrid-jar,
+                   util-jar, util-xa-jar, driver-jar">
+    <antcall target="standalone-test-debug">
+      <param name="classpath.id" value="resolver-test-classpath"/>
+      <param name="dir" value="${resolver.src.dir}"/>
+      <param name="jar" value="${resolver.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-javadoc"
+          depends="resolver-jar"
+          description="Creates the javadoc for this resolver">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.resolver.*,
+                                           org.mulgara.store.*"/>
+      <param name="javadoc.classpath" value="resolver-classpath"/>
+      <param name="javadoc.sourcepath" value="${resolver.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-help"
+          description="Displays the help information for this resolver">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this resolver -->
+
+    <echo message="Welcome to the build script for ${resolver.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${resolver.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

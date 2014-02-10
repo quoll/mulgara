@@ -1,0 +1,51 @@
+------------------------------------------------------------------------
+r1245 | alexhall | 2008-09-05 15:11:27 -0500 (Fri, 05 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/NamespaceMap.java
+
+Fix generics in the namespace map for the RDF/XML writer.  The existing implementation mixed URI's and strings which caused the RDF and RDFS namespaces to be mapped twice (once as a string and once as a URI).  This could lead to uses of generated prefixes for predicates in the RDF namespace (e.g. "ns7:type" instead of "rdf:type") in the exported RDF/XML.
+------------------------------------------------------------------------
+r1244 | alexhall | 2008-09-05 13:47:47 -0500 (Fri, 05 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/data/ical.rdf
+
+Always use Unix-style line endings for ical.rdf, since the filesystem test depends on an exact match of the file size.
+------------------------------------------------------------------------
+r1243 | pag | 2008-09-05 13:34:56 -0500 (Fri, 05 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/build.xml
+
+Fixed core-dist to avoid the META-INF files and the javax.xml.parsers.DocumentBuilderFactory file
+------------------------------------------------------------------------
+r1242 | pag | 2008-09-05 11:34:04 -0500 (Fri, 05 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+
+Reverted to previous format, and sorted all libs
+------------------------------------------------------------------------
+r1241 | pag | 2008-09-05 10:41:38 -0500 (Fri, 05 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/build.xml
+   A /trunk/conf/core
+   A /trunk/conf/core/mulgara-x-config.xml
+
+Updated core jar to use a reduced config, along with the default database class
+------------------------------------------------------------------------
+r1240 | alexhall | 2008-09-05 10:24:22 -0500 (Fri, 05 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+
+Fix library references in Eclipse classpath.
+------------------------------------------------------------------------
+r1239 | pag | 2008-09-05 09:42:38 -0500 (Fri, 05 Sep 2008) | 1 line
+Changed paths:
+   D /trunk/lib/javacc-4.0.jar
+
+Removing symlink for javacc
+------------------------------------------------------------------------
+r1236 | pag | 2008-09-04 15:13:41 -0500 (Thu, 04 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/KOWARI-MODIFICATIONS/mods-mulgara-2.0.4.txt
+
+Updated the modifications file due to the removal of the plankton jar
+------------------------------------------------------------------------

@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Prerequisites </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Prerequisites, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="2892.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="2900.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h3 class="heading3">Prerequisites</h3>
+<p class="bodytext">The following prerequisites should be met before this JRDF tutorial can be run:</p>
+<ul class="listbullet"><li class="listbullet">Java<sup class="superscript">TM</sup> software, version 1.4 or higher. You can check the version you have installed by typing at a command line:<p class="listcontinuecommandtext">java -version</p>
+<p class="listcontinue">Something similar to the following should display:</p>
+<p class="listcontinuecommandtext">java version &quot;1.4.2_04&quot;<br />Java(TM) 2 Runtime Environment, Standard Edition (build 1.4.2_04-b05)<br />Java HotSpot(TM) Client VM (build 1.4.2_04-b05, mixed mode)</p>
+<p class="listcontinue">If the above does not display, add <code class="monospace">&lt;JAVA_HOME&gt;/bin</code>, where <code class="monospace">&lt;JAVA_HOME&gt;</code> is the location where J2SE<sup class="superscript">TM</sup> is installed, to your <code class="monospace">PATH </code>(in the appropriate way for your shell).</p>
+<p class="listcontinue">For more information on installing and running Java software, read the&nbsp;<a class="jumptemplate" title="" href="http://java.sun.com/j2se/1.4.2/install.html" target="_blank">J2SE 1.4 Installation guide</a>.</p>
+</li><li class="listbullet">A valid installation of Mulgara. For information on installing Mulgara, see the relevant sections in the Mulgara documentation.</li><li class="listbullet">Basic Java programming experience.</li></ul><table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="2892.htm" target="_self">JRDF Tutorial</a></p><p class="relateditem"><a href="2893.htm#o2898" target="_self">Obtaining a Session from a Mulgara Server</a></p><p class="relateditem"><a href="2893.htm#o2899" target="_self">Comparison of JRDF Graph Implementations</a></p><p class="relateditem"><a href="2900.htm" target="_self">Creating the Graph</a></p><p class="relateditem"><a href="2904.htm" target="_self">Creating Nodes and Triples</a></p><p class="relateditem"><a href="2905.htm" target="_self">Adding Triples to the Graph</a></p><p class="relateditem"><a href="2906.htm" target="_self">Searching the Graph</a></p><p class="relateditem"><a href="2911.htm" target="_self">Reify Triples</a></p><p class="relateditem"><a href="2912.htm" target="_self">Removing Triples from the Graph</a></p></td>
+</tr>
+</table>
+
+<a name="o2898"></a><h3 class="heading3">Obtaining a Session from a Mulgara Server</h3>
+<p class="bodytext">The Mulgara server can be accessed using the the JRDF API using either a local connection (in the same Java Virtual Machine (JVM)) or via a client/server interface.</p>
+<p class="bodytext">The local connection provides the ability to create a new server or start an existing one and access it through the JRDF API. The client/server interface connects to an existing server using RMI, if it exists, or failing this, falls back to creating a new local server. Falling back to local server does not start the RMI registry and other external clients cannot access it unless started manually.</p>
+<p class="bodytext">The Mulgara server has a local implementation of the JRDF API that can be created using a <code class="monospace">LocalJRDFSession</code> and a remote implementation that uses a <code class="monospace">JRDFSession</code>. In order to use these APIs, you must first have the corresponding Session. These Sessions are obtained via a <code class="monospace">SessionFactory</code>. To construct a new <code class="monospace">SessionFactory</code>, the URI of the server is required as well as an optional boolean parameter indicating whether the server is remote or not. If this boolean parameter is not provided, the server is assumed to be local (in the same JVM). For example:</p>
+<p class="commandtext">// Create the host name<br />String hostname = InetAddress.getLocalHost().getCanonicalHostName();<br /><br />// Create the URI of the server<br />serverURI = new URI(&quot;rmi&quot;, hostname, &quot;/&quot; + SERVER_NAME, null);<br /><br />// Create a new session factory, ensure that it's local<br />SessionFactory sessionFactory = SessionFactoryFinder.newSessionFactory(serverURI, false);<br /><br />// Get a local JRDF Session (local)<br />LocalJRDFSession session = (LocalJRDFSession) sessionFactory.newJRDFSession();</p>
+<p class="bodytext">If a local server is created, the server configuration file is used to determine which directory to place the server's files in.</p>
+<p class="bodytext">If a remote <code class="monospace">SessionFactory</code> is used, then the session can only be cast to a <code class="monospace">JRDFSession</code>. For example:</p>
+<p class="commandtext">// Create a new remote session factory<br />SessionFactory sessionFactory = SessionFactoryFinder.newSessionFactory(serverURI, true);<br /><br />// Get a Remote JRDF Session (client/server)<br />JRDFSession session = (JRDFSession) sessionFactory.newJRDFSession();</p>
+<a name="o2899"></a><h3 class="heading3">Comparison of JRDF Graph Implementations</h3>
+<p class="bodytext">The following table outlines the advantages and disadvantages of the different JRDF graph implementations.</p>
+<table width="516" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr>
+<td width="258" height="0"></td>
+<td width="258" height="0"></td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2" width="516"><p class="tableheading">Memory Graph</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tableheading">Advantages</p>
+</td>
+<td width="258"><p class="tableheading">Disadvantages</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tablebodytext">Very fast</p>
+</td>
+<td width="258"><p class="tablebodytext">Not persisted to disk</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tablebodytext">Small footprint</p>
+</td>
+<td width="258"><p class="tablebodytext">Not scalable</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td width="258"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2" width="516"><p class="tableheading">Server Graph</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tableheading">Advantages</p>
+</td>
+<td width="258"><p class="tableheading">Disadvantages</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tablebodytext">No network overhead</p>
+</td>
+<td width="258"><p class="tablebodytext">Slower than memory graph, but faster than client graph</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tablebodytext">Persistent datastore</p>
+</td>
+<td width="258"><p class="tablebodytext">Must be run in the same JVM as the Mulgara server</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tablebodytext">Scalable</p>
+</td>
+<td width="258"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td width="258"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2" width="516"><p class="tableheading">Client Graph</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tableheading">Advantages</p>
+</td>
+<td width="258"><p class="tableheading">Disadvantages</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tablebodytext">Client/server architecture means client can be on different machine to server</p>
+</td>
+<td width="258"><p class="tablebodytext">Slower than memory graph</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tablebodytext">Persistent datastore</p>
+</td>
+<td width="258"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tablebodytext">Full Mulgara server advantages</p>
+</td>
+<td width="258"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tablebodytext">Scalable </p>
+</td>
+<td width="258"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td width="258"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2" width="516"><p class="tableheading">iTQL Graph</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tableheading">Advantages</p>
+</td>
+<td width="258"><p class="tableheading">Disadvantages</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tablebodytext">Client/server architecture means client can be on different machine to server</p>
+</td>
+<td width="258"><p class="tablebodytext">Slower than memory graph and client graph</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tablebodytext">Creates a graph from the results of an iTQL query</p>
+</td>
+<td width="258"><p class="tablebodytext">Read-only (cannot add or remove statements)</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tablebodytext">Persistent datastore</p>
+</td>
+<td width="258"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258"><p class="tablebodytext">Scalable </p>
+</td>
+<td width="258"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+
+</table>
+<p class="allowpagebreak"></p>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="tuples" default="tuples-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="tuples-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+  </path>
+
+  <path id="tuples-test-classpath">
+
+    <path refid="tuples-classpath"/>
+
+    <fileset dir="${bin.dir}" includes="${tuples-hybrid.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util-xa.dist.dir}/${util-xa.jar}"/>
+  </path>
+
+  <target name="tuples-clean"
+          description="Removes all compile generated files for the tuples">
+
+    <tstamp/>
+
+    <delete dir="${tuples.obj.dir}"/>
+    <delete dir="${tuples.test.dir}"/>
+    <delete dir="${tuples.dist.dir}"/>
+  </target>
+
+  <target name="-tuples-prepare"
+          description="Creates all directories associated with the tuples's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${tuples.obj.dir}"/>
+    <mkdir dir="${tuples.test.dir}"/>
+    <mkdir dir="${tuples.dist.dir}"/>
+    <mkdir dir="${tuples.obj.dir}/classes"/>
+  </target>
+
+  <target name="tuples-compile"
+          depends="-tuples-prepare, query-jar, util-jar"
+          description="Compiles all tuples related files included generated
+                       source code">
+
+    <javac destdir="${tuples.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="tuples-classpath"/>
+
+      <src path="${tuples.src.dir}/java"/>
+      <src path="${store.src.dir}/java"/>
+      <src path="${store-xa.src.dir}/java"/>
+      <src path="${store-stringpool.src.dir}/java"/>
+      <src path="${store-nodepool.src.dir}/java"/>
+      <src path="${src.dir}/jar/resolver-spi/java"/>
+    </javac>
+  </target>
+
+  <!-- This component has a dependency on resolver-spi.jar (and by association,
+       on util.jar) which really ought to be removed.  It's caused by the
+       TuplesOperations.resolve method and the associated ConstrainedTuples
+       method, whose functionality should migrate into the Resolution
+       implementations. -->
+  <target name="tuples-jar"
+          depends="tuples-compile, -tuples-jar-uptodate"
+          unless="tuples.jar.uptodate"
+          description="Creates the tuples' jar/s">
+
+    <jar jarfile="${tuples.dist.dir}/${tuples.jar}">
+      <fileset dir="${tuples.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-tuples-jar-uptodate">
+
+    <uptodate property="tuples.jar.uptodate"
+              targetfile="${tuples.dist.dir}/${tuples.jar}">
+      <srcfiles dir="${tuples.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="tuples-dist"
+          depends="tuples-jar"
+          description="Performs all tasks related to finalising this tuples
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the tuples library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="tuples-test" depends="tuples-jar, tuples-hybrid-jar">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="tuples-test-classpath"/>
+      <param name="dir" value="${tuples.src.dir}"/>
+      <param name="jar" value="${tuples.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="tuples-javadoc"
+          depends="tuples-jar"
+          description="Creates the javadoc for this tuples">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.store.tuples.*"/>
+      <param name="javadoc.classpath" value="tuples-classpath"/>
+      <param name="javadoc.sourcepath" value="${tuples.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="tuples-help"
+          description="Displays the help information for this tuples">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this tuples -->
+
+    <echo message="Welcome to the build script for ${tuples.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${tuples.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

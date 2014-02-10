@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="driver" default="driver-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="driver-classpath">
+
+    <path refid="common-classpath"/>
+
+    <pathelement path="${activation.jar}"/>
+    <pathelement path="${query.dist.dir}/${query.jar}"/>
+    <pathelement path="${server.dist.dir}/${server.jar}"/>
+    <pathelement path="${server-http.dist.dir}/${server-http.jar}"/>
+    <pathelement path="${server-local.dist.dir}/${server-local.jar}"/>
+    <pathelement path="${server-rmi.dist.dir}/${server-rmi.jar}"/>
+    <pathelement path="${util.dist.dir}/${util.jar}"/>
+  </path>
+
+  <path id="driver-test-classpath">
+
+    <path refid="driver-classpath"/>
+
+    <fileset file="${driver.dist.dir}/${driver.jar}"/>
+  </path>
+
+  <target name="driver-clean"
+          description="Removes all compile generated files for the driver">
+
+    <tstamp/>
+
+    <delete dir="${driver.obj.dir}"/>
+    <delete dir="${driver.test.dir}"/>
+    <delete dir="${driver.dist.dir}"/>
+  </target>
+
+  <target name="-driver-prepare"
+          description="Creates all directories associated with the driver's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${driver.obj.dir}"/>
+    <mkdir dir="${driver.test.dir}"/>
+    <mkdir dir="${driver.dist.dir}"/>
+    <mkdir dir="${driver.obj.dir}/classes"/>
+  </target>
+
+  <target name="driver-compile"
+          depends="-driver-prepare, query-jar, server-jar"
+          description="Compiles all driver related files included generated
+                       source code">
+
+    <javac destdir="${driver.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="driver-classpath"/>
+
+      <src path="${driver.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="driver-jar"
+          depends="driver-compile, -driver-jar-uptodate"
+          unless="driver.jar.uptodate"
+          description="Creates the driver's jar/s">
+
+    <jar jarfile="${driver.dist.dir}/${driver.jar}">
+      <fileset dir="${driver.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-driver-jar-uptodate">
+
+    <uptodate property="driver.jar.uptodate"
+              targetfile="${driver.dist.dir}/${driver.jar}">
+      <srcfiles dir="${driver.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="driver-dist"
+          depends="driver-jar, driver-jar, querylang-jar, query-jar,
+                   server-jar, server-rmi-jar, util-jar, driver-uptodate"
+          unless="driver.uptodate"
+          description="Performs all tasks related to finalising this driver
+                       and readying it for distribution">
+
+    <jar jarfile="${dist.dir}/${driver.jar}">
+
+      <zipfileset src="${driver.dist.dir}/${driver.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${querylang.dist.dir}/${querylang.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${query.dist.dir}/${query.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${server.dist.dir}/${server.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${server-rmi.dist.dir}/${server-rmi.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${log4j.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${sesame-model.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${saaj.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${emory-util.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${axis.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${commons-logging.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${commons-discovery.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${util.dist.dir}/${util.jar}" excludes="META-INF/**"/>
+    </jar>
+  </target>
+
+  <target name="driver-uptodate">
+
+    <uptodate property="driver.uptodate"
+              targetfile="${dist.dir}/${driver.jar}">
+
+      <srcfiles dir="${driver.dist.dir}" includes="${driver.jar}"/>
+      <srcfiles dir="${querylang.dist.dir}" includes="${querylang.jar}"/>
+      <srcfiles dir="${query.dist.dir}" includes="${query.jar}"/>
+      <srcfiles dir="${server.dist.dir}" includes="${server.jar}"/>
+      <srcfiles dir="${server-rmi.dist.dir}" includes="${server-rmi.jar}"/>
+      <srcfiles dir="${util.dist.dir}" includes="${util.jar}"/>
+    </uptodate>
+  </target>
+
+  <target name="driver-test"
+          depends="driver-jar"
+          description="Carries out unit testing for this driver">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="driver-test-classpath"/>
+      <param name="dir" value="${driver.src.dir}"/>
+      <param name="jar" value="${driver.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="driver-javadoc"
+          depends="driver-jar"
+          description="Creates the javadoc for this driver">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.server.driver.*"/>
+      <param name="javadoc.classpath" value="driver-classpath"/>
+      <param name="javadoc.sourcepath" value="${driver.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="driver-help"
+          description="Displays the help information for this driver">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this driver -->
+
+    <echo message="Welcome to the build script for ${driver.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${driver.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+
+</project>

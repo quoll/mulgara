@@ -1,0 +1,83 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Starting a Mulgara Semantic Store Server</title>
+    <meta name="keywords" content="Starting, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/tutorial/sysreq.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/tutorial/itql.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+ 
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/tutorial/index.html">Mulgara Tutorial</a></p>
+<p class="relateditem"><a href="/tutorial/sysreq.html">System Requirements</a></p>
+<p class="relateditem"><a href="/tutorial/itql.html">iTQL</a></p>
+<p class="relateditem"><a href="/tutorial/itqlbasics.html">Basic iTQL Operations</a></p>
+<p class="relateditem"><a href="/tutorial/itqlbasics.html#o1234"></a></p>
+<p class="relateditem"><a href="/tutorial/itqlshellsession.html">Example iTQL Shell Session</a></p>
+<p class="relateditem"><a href="/tutorial/viewer.html">Mulgara Viewer</a></p>
+<p class="relateditem"><a href="/tutorial/viewer.html#o1255"></a></p>
+<p class="relateditem"><a href="/tutorial/viewer.html#o416">Mulgara Sample Data</a></p>
+<p class="relateditem"><a href="/tutorial/loadingrdf.html">Loading Existing RDF Data</a></p>
+<p class="relateditem"><a href="/tutorial/convertrdbms.html">Converting Data in Relational Databases to RDF</a></p>
+<p class="relateditem"><a href="/tutorial/convertingxml.html">Converting XML Data to RDF</a></p>
+
+
+
+-->
+
+
+
+
+<h2>Starting a Mulgara Semantic Store Server</h2>
+
+<p>Details for building Mulgara are available in the <a id="h1231" class="documentlinktemplate" title="Installation Guide" href="/overview/install.html">installation guide</a>. You should follow the instructions in this document before continuing with this section. </p>
+
+<p>The server comes packaged in a self contained executable JAR file. This file contains all necessary libraries and configuration files needed for it to run. </p>
+
+<p>You'll be able to start the server executable JAR: </p>
+
+<p><code>$ java -jar mulgara-1.0.0.jar</code></p>
+
+<p>If the server fails to start, the exception message may suggest why.</p>
+
+<p class="commandtext"><code>No such file or directory</code></p>
+
+<p>The <code>mulgara-1.0.0.jar</code> file is missing or the path to it is incorrect.</p>
+
+<p>The default configuration creates a server named <code>server1</code>. The URL of the new server is based on the network protocol (always Java<sup>TM</sup> RMI), the DNS name of the machine it runs on, and the configured server name. For example, a server started on a machine with the DNS name <code>site.domain.net</code> would have the URL <code>rmi://server.net/server1</code>. Once the server is started, you use this URL in the <a id="h551" class="documentlinktemplate" title="iTQL Shell" href="/system/itqlshell.html">iTQL shell</a> to direct queries to the server.</p>
+
+<p>Beware that the server will treat URLs as different if you try to refer to it by a different DNS name for the same machine. Because of the trouble this can cause, avoid abbreviations or aliases of the DNS name of a local server. For example, even if you are connecting to a server on the machine <code>myserver.site.domain.net</code> from another machine in the local domain <code>site.domain.net</code>, the URLs <code>rmi://myserver/server1</code> and <code>rmi://localhost/server1</code> are not equivalent to <code>rmi://myserver.site.domain.net/server1</code> and should not be used. </p>
+
+ 
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

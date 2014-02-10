@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="content-mp3" default="content-mp3-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="content-mp3-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset dir="${lib.dir}"
+      includes="jid3-0.34.jar"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+  </path>
+
+  <path id="content-mp3-test-classpath">
+
+    <path refid="content-mp3-classpath"/>
+
+    <fileset file="${content-mbox.dist.dir}/${resolver-file.jar}"/>
+    <fileset file="${content-mbox.dist.dir}/${resolver-http.jar}"/>
+    <fileset file="${content-mp3.dist.dir}/${content-mp3.jar}"/>
+  </path>
+
+  <target name="content-mp3-clean"
+          description="Removes all compile generated files for the content-mp3">
+
+    <tstamp/>
+
+    <delete dir="${content-mp3.obj.dir}"/>
+    <delete dir="${content-mp3.test.dir}"/>
+    <delete dir="${content-mp3.dist.dir}"/>
+  </target>
+
+  <target name="-content-mp3-prepare"
+          description="Creates all directories associated with the content-mp3's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${content-mp3.obj.dir}"/>
+    <mkdir dir="${content-mp3.test.dir}"/>
+    <mkdir dir="${content-mp3.dist.dir}"/>
+    <mkdir dir="${content-mp3.obj.dir}/classes"/>
+  </target>
+
+  <target name="content-mp3-configure"
+          depends="-content-mp3-prepare, -content-mp3-configuration-uptodate"
+          unless="content-mp3.configuration.uptodate"
+          description="Prepares any configuration files/generated code for the
+                       content-mp3">
+
+    <copy file="${content-mp3.conf.dir}/parserfactory.conf"
+          tofile="${content-mp3.obj.dir}/classes/parserfactory.conf"/>
+  </target>
+
+  <target name="-content-mp3-configuration-uptodate">
+
+    <uptodate property="content-mp3.configuration.uptodate"
+              targetfile="${content-mp3.obj.dir}/classes/parserfactory.conf">
+      <srcfiles dir="${content-mp3.conf.dir}" includes="**/parserfactory.conf"/>
+    </uptodate>
+  </target>
+
+  <target name="content-mp3-compile"
+          depends="content-mp3-configure, resolver-spi-jar"
+          unless="content-mp3.classes.uptodate"
+          description="Compiles all content-mp3 related files included generated
+                       source code">
+
+    <javac destdir="${obj.dir}/jar/content-mp3/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="content-mp3-classpath"/>
+
+      <src path="${content-mp3.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="content-mp3-jar"
+          depends="content-mp3-compile, -content-mp3-jar-uptodate"
+          unless="content-mp3.jar.uptodate"
+          description="Creates the content-mp3's jar/s">
+
+    <jar jarfile="${content-mp3.dist.dir}/${content-mp3.jar}">
+      <fileset dir="${content-mp3.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-content-mp3-jar-uptodate">
+
+    <uptodate property="content-mp3.jar.uptodate"
+              targetfile="${content-mp3.dist.dir}/${content-mp3.jar}">
+      <srcfiles dir="${content-mp3.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="content-mp3-dist"
+          depends="content-mp3-jar"
+          unless="content-mp3.uptodate"
+          description="Performs all tasks related to finalising this content-mp3
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the content-mp3 library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="content-mp3-test"
+          depends="content-mp3-jar, resolver-file-jar, resolver-http-jar"
+          description="Carries out unit testing for this content-mp3">
+
+    <!-- Copy test files to tmp dir so we don't modify CVS versions -->
+    <mkdir dir="${tmp.dir}/mp3"/>
+    <copy file="${data.dir}/mp3/Chrono_Trigger_600_AD_in_Piano.mp3"
+     todir="${tmp.dir}/mp3"/>
+    <copy file="${data.dir}/mp3/kp068-karaoke-tundra-02-green-parrot.mp3"
+     todir="${tmp.dir}/mp3"/>
+   
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="content-mp3-test-classpath"/>
+      <param name="dir" value="${content-mp3.src.dir}"/>
+      <param name="jar" value="${content-mp3.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="content-mp3-javadoc"
+          depends="content-mp3-jar"
+          description="Creates the javadoc for this content-mp3">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.content.mp3.*"/>
+      <param name="javadoc.classpath" value="content-mp3-classpath"/>
+      <param name="javadoc.sourcepath" value="${content-mp3.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="content-mp3-help"
+          description="Displays the help information for this content-mp3">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this content-mp3 -->
+
+    <echo message="Welcome to the build script for ${content-mp3.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${content-mp3.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

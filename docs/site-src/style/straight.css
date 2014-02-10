@@ -1,0 +1,164 @@
+/* straight style */
+@media screen
+{
+	#pulldowner	{
+		visibility: visible;
+		display: block;
+		position: fixed;
+		left: 68px;
+		top: 0;
+		font-size: x-small;
+		font-weight: bold;
+		width: 121px;
+		height: auto;
+		background-color: #F93;
+		color: #C03;
+		height: auto;
+		padding: 0.2em 2px 3px 10px;
+		overflow-y: visible;
+		border: 0;
+		margin: 0;
+		}
+	#navMain	{
+		display: none;
+		}
+	#pulldowner:hover #navMain {
+		visibility: visible;
+		display: block;
+		}
+
+	#footer, #validator, #content, #navPage, #navMain, #navSite {
+		opacity: 1;
+		}
+	#styleSwitch, #navProject	{ 
+		opacity: 0.4; 
+		}
+	
+	.anchor		{ 
+		height: 30px;
+		}
+
+	#content, #footer {
+		min-width: 300px;
+		max-width: 1000px;
+		}
+
+				
+	/* positioning */		
+	#logo, #verticalLine, #navProject, #styleSwitch { 
+		position: absolute; 
+		}		
+	#content, #footer, #validator { 
+		position: relative; 
+		}
+	#navPage, #navMain { 
+		position: fixed; 
+		}		
+		
+	body { 
+		background-image: none;
+		}
+		
+	#logo	{
+		top: 30px;
+		left: 0;
+		background-image: none;
+		}
+		
+	#verticalLine	{
+		display: none;
+		}
+	#navProject  {
+		left: 12px;
+		top: 100px;
+		}
+	#navMain 	{
+		width: 151px;
+		left: 68px;
+		top:  1.7em;
+		height: 1em;
+		padding: 0;
+		margin: 0;
+		}
+	#navSite	{
+		left: 0;
+		top:  0;
+		width: 127px;
+		padding: 3px 3px 3px 3px;
+		margin: 0;
+		overflow: hidden;
+		border-right-width: 0px;
+		}
+	#navPage 	{
+		left: 220px;
+		top: 0;
+		height: auto;
+		padding: 0.2em 12px 3px 10px;
+		overflow-y: visible;
+		border-left-width: 0;
+		}		
+		
+	#styleSwitch {
+		top: 380px;
+		left: 11px;
+		width: 50px;
+		height: 150px;
+		margin: 0;
+		padding: 0;
+		}
+	#styleSwitch img {
+		margin: 0 0 10px 0;
+		}
+	div#fixed	{
+		background-image: url(/img-layout/fixed1.png);
+		background-repeat: no-repeat;
+		}
+	div#fluid	{
+		background-image: url(/img-layout/fluid1.png);
+		background-repeat: no-repeat;
+		}
+	div #straight	{
+		background-image: url(/img-layout/straight3.png);
+		background-repeat: no-repeat;
+		}
+	
+	#content	{ 
+		left: 0;
+		right: 0;
+		top: 0;
+		margin: 100px 30px 30px 60px;
+		padding: 0;
+		border-width: 0;
+		border-style: solid;
+		border-left-width: 0;
+		border-left-color: #fff;
+		background-color: #fff;	
+		border-color:#fff;
+		}
+	#footer {
+		bottom: inherit;
+		margin: 8px 0 12px 60px;
+		} 
+	#validator	{
+		left: inherit;
+		bottom: inherit;
+		margin-left: 60px;
+		top: 0;
+		}
+	#validator img	{
+		padding: 0 1px 0 0;
+		}
+		
+	#content, #footer {
+		min-width: inherit;
+		max-width: none;
+		}
+
+
+
+
+
+
+
+
+}

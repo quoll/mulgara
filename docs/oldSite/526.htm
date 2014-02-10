@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> iTQL Shell </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="iTQL Shell, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="485.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="527.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h2 class="heading2">iTQL Shell</h2>
+<p class="bodytext">The iTQL<sup class="superscript">TM</sup> shell is a console-based, interactive shell, allowing users to issue iTQL commands to Mulgara. Alternatively, multiple commands can be executed sequentially using iTQL script files.</p>
+<p class="bodytext">The interpreter supports several command line options that make working with large numbers of queries easier. You can run the shell as a stand-alone application (packaged in a fully-self-contained executable JAR file), or invoke it directly via API calls. iTQL commands sent to the iTQL interpreter return results directly to the console, whereas iTQL commands sent via the communication methods listed above return answers as native Java objects (in the case of direct API calls) or in XML.</p>
+<p class="bodytext">You must have the correct version of Java<sup class="superscript">TM</sup> software installed in order to run Mulgara and the iTQL shell. You can check the version you have installed by typing at a command line:</p>
+<p class="commandtext">$ java -version</p>
+<p class="bodytext">Something similar to the following should display:</p>
+<p class="commandtext">java version &quot;1.4.2_04&quot;<br />Java(TM) 2 Runtime Environment, Standard Edition (build 1.4.2_04-b05)<br />Java HotSpot(TM) Client VM (build 1.4.2_04-b05, mixed mode)</p>
+<p class="bodytext">If the above does not display, add <code class="monospace">&lt;JAVA_HOME&gt;/bin</code>, where <code class="monospace">&lt;JAVA_HOME&gt;</code> is the location where J2SE<sup class="superscript">TM</sup> is installed, to your <code class="monospace">PATH </code>(in the appropriate way for your shell).</p>
+<p class="note"><strong class="strong">Note -</strong> You must use J2SE 1.4.2 or higher. Mulgara does not run on beta 2 or prior.</p>
+<p class="bodytext">How you start the iTQL shell depends on your platform. To start the iTQL shell from a:</p>
+<ul class="listbullet"><li class="listbullet">Windows<sup class="superscript">&reg;</sup> interface, choose Start <strong class="buttons">»</strong> Programs <strong class="buttons">»</strong> TKS <strong class="buttons">»</strong> iTQL CLI</li><li class="listbullet">Windows command line:<p class="listcontinuecommandtext">cd &lt;tks drive&gt;:\&lt;tks folder&gt;<br />itql</p>
+</li><li class="listbullet">UNIX<sup class="superscript">&reg;</sup> or Linux<sup class="superscript">&reg;</sup> command line:<p class="listcontinuecommandtext">cd &lt;tks directory&gt;<br />java -jar itql-2.1.jar</p>
+<p class="listcontinue">or</p>
+<p class="listcontinuecommandtext">./itql</p>
+</li></ul><p class="bodytext">Starting iTQL with the executable jar file allows you to pass arguments to the shell, changing the way iTQL operates. See the iTQL Shell Options section for more information about these arguments.</p>
+<p class="bodytext">After starting iTQL, a message similar to the following displays:</p>
+<p class="commandtext">iTQL Command Line Interface<br />Copyright (C) 2001-2004 Tucana Technologies Inc.<br /><br />Type "help ;", then enter for help.<br /><br />iTQL&gt;</p>
+<p class="bodytext">The last line is the iTQL prompt. This is where you issue iTQL commands.</p>
+<p class="bodytext">To display a list of iTQL commands:</p>
+<p class="commandtext">iTQL&gt;help;</p>
+<p class="bodytext">To display detailed help for a particular command:</p>
+<p class="commandtext">iTQL&gt;help command;</p>
+<p class="bodytext">Where <code class="monospace">command</code> is the name of the iTQL command.</p>
+<p class="bodytext">The following example queries a model named <code class="monospace">documents</code> on a Mulgara server on the machine <code class="monospace">mysite.com</code><em class="emphasis"> </em>to find the URLs and titles of all documents.</p>
+<p class="commandtext">iTQL&gt;select $url $title<br />  from &lt;rmi://mysite.com/server1#documents&gt;<br />  where ($url $y &lt;http://mulgara.org/mulgara/Document#Document&gt; )<br />  and ( $url &lt;http://mulgara.org/mulgara/Document#hasHtml&gt; $node )<br />  and ( $node &lt;http://mulgara.org/mulgara/tool/HtmlExtractor#title&gt; $title );</p>
+<p class="note"><strong class="strong">Note -</strong> iTQL supports the <code class="monospace">AND</code> and <code class="monospace">OR</code> operators as well as standards such as <a class="internetlinktemplate" title="" href="http://www.w3.org/tr/rec-xml-names" target="_blank">XML namespaces</a> and <a class="internetlinktemplate" title="" href="http://www.ietf.org/rfc/rfc2396.txt" target="_blank">URIs</a>.</p>
+<p class="bodytext">The following is an example of submitting the above query to the iTQL shell.</p>
+<p class="commandtext">iTQL&gt;select $url $title<br />  from rmi://mysite.com/server1#documents<br />  where ($url $y &lt;http://mulgara.org/mulgara/Document#Document&gt; )<br />  and ( $url &lt;http://mulgara.org/mulgara/Document#hasHtml&gt; $node )<br />  and ( $node &lt;http://mulgara.org/mulgara/tool/HtmlExtractor#title&gt; $title ) ;<br /><br />2 columns: url title (2 rows)<br />   url=http://mulgara.org/projects/mulgara/data/docs/doc95.htm<br />     title=&quot;Expect lower rate of gain in the value of homes&quot;<br />   url=http://mulgara.org/projects/mulgara/data/docs/doc49.htm<br />     title=&quot;District Court refuses to certify class alleging notice violations&quot;</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="1246.htm" target="_self">System Architecture</a></p><p class="relateditem"><a href="485.htm" target="_self">JavaServer Pages Tag Library</a></p><p class="relateditem"><a href="527.htm" target="_self">Simple Object Access Protocol (SOAP)</a></p><p class="relateditem"><a href="528.htm" target="_self">iTQL Bean</a></p><p class="relateditem"><a href="530.htm" target="_self">Mulgara Driver</a></p><p class="relateditem"><a href="2466.htm" target="_self">Java RDF (JRDF)</a></p></td>
+</tr>
+</table>
+
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

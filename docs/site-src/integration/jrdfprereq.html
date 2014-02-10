@@ -1,0 +1,298 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Prerequisites</title>
+    <meta name="keywords" content="Prerequisites, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/integration/jrdftutorial.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/integration/jrdfcreategraph.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/integration/jrdftutorial.html">JRDF Tutorial</a></p>
+<p class="relateditem"><a href="/integration/jrdfprereq.html#o2898">Obtaining a Session from a Mulgara Server</a></p>
+<p class="relateditem"><a href="/integration/jrdfprereq.html#o2899">Comparison of JRDF Graph Implementations</a></p>
+<p class="relateditem"><a href="/integration/jrdfcreategraph.html">Creating the Graph</a></p>
+<p class="relateditem"><a href="/integration/jrdfcreatenodes.html">Creating Nodes and Triples</a></p>
+<p class="relateditem"><a href="/integration/jrdfaddtriples.html">Adding Triples to the Graph</a></p>
+<p class="relateditem"><a href="/integration/searchgraph.html">Searching the Graph</a></p>
+<p class="relateditem"><a href="/integration/jrdfreify.html">Reify Triples</a></p>
+<p class="relateditem"><a href="/integration/jrdfremove.html">Removing Triples from the Graph</a></p>
+
+ -->
+
+
+
+
+<h3>Prerequisites</h3>
+
+<p>The following prerequisites should be met before this JRDF tutorial can be run:</p>
+<ul><li>Java<sup>TM</sup> software, version 1.4 or higher. You can check the version you have installed by typing at a command line:
+<p class="listcontinuecommandtext">java -version</p>
+
+<p class="listcontinue">Something similar to the following should display:</p>
+
+<p class="listcontinuecommandtext">java version &quot;1.4.2_04&quot;<br />
+Java(TM) 2 Runtime Environment, Standard Edition (build 1.4.2_04-b05)<br />
+Java HotSpot(TM) Client VM (build 1.4.2_04-b05, mixed mode)</p>
+
+<p class="listcontinue">If the above does not display, add <code>&lt;JAVA_HOME&gt;/bin</code>, where <code>&lt;JAVA_HOME&gt;</code> is the location where J2SE<sup>TM</sup> is installed, to your <code>PATH </code>(in the appropriate way for your shell).</p>
+
+<p class="listcontinue">For more information on installing and running Java software, read the&nbsp;<a class="jumptemplate" title="" href="http://java.sun.com/j2se/1.4.2/install.html">J2SE 1.4 Installation guide</a>.</p>
+</li><li>A valid installation of Mulgara. For information on installing Mulgara, see the relevant sections in the Mulgara documentation.</li><li>Basic Java programming experience.</li></ul>
+<div class="anchor"><a name="o2898">&nbsp;</a></div>
+<h3>Obtaining a Session from a Mulgara Server</h3>
+
+<p>The Mulgara server can be accessed using the the JRDF API using either a local connection (in the same Java Virtual Machine (JVM)) or via a client/server interface.</p>
+
+<p>The local connection provides the ability to create a new server or start an existing one and access it through the JRDF API. The client/server interface connects to an existing server using RMI, if it exists, or failing this, falls back to creating a new local server. Falling back to local server does not start the RMI registry and other external clients cannot access it unless started manually.</p>
+
+<p>The Mulgara server has a local implementation of the JRDF API that can be created using a <code>LocalJRDFSession</code> and a remote implementation that uses a <code>JRDFSession</code>. In order to use these APIs, you must first have the corresponding Session. These Sessions are obtained via a <code>SessionFactory</code>. To construct a new <code>SessionFactory</code>, the URI of the server is required as well as an optional boolean parameter indicating whether the server is remote or not. If this boolean parameter is not provided, the server is assumed to be local (in the same JVM). For example:</p>
+
+<p class="commandtext">// Create the host name<br />
+String hostname = InetAddress.getLocalHost().getCanonicalHostName();<br />
+<br />
+// Create the URI of the server<br />
+serverURI = new URI(&quot;rmi&quot;, hostname, &quot;/&quot; + SERVER_NAME, null);<br />
+<br />
+// Create a new session factory, ensure that it's local<br />
+SessionFactory sessionFactory = SessionFactoryFinder.newSessionFactory(serverURI, false);<br />
+<br />
+// Get a local JRDF Session (local)<br />
+LocalJRDFSession session = (LocalJRDFSession) sessionFactory.newJRDFSession();</p>
+
+<p>If a local server is created, the server configuration file is used to determine which directory to place the server's files in.</p>
+
+<p>If a remote <code>SessionFactory</code> is used, then the session can only be cast to a <code>JRDFSession</code>. For example:</p>
+
+<p class="commandtext">// Create a new remote session factory<br />
+SessionFactory sessionFactory = SessionFactoryFinder.newSessionFactory(serverURI, true);<br />
+<br />
+// Get a Remote JRDF Session (client/server)<br />
+JRDFSession session = (JRDFSession) sessionFactory.newJRDFSession();</p>
+<div class="anchor"><a name="o2899">&nbsp;</a></div>
+<h3>Comparison of JRDF Graph Implementations</h3>
+
+<p>The following table outlines the advantages and disadvantages of the different JRDF graph implementations.</p>
+<table width="516" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr>
+<td width="258" height="0"></td>
+<td width="258" height="0"></td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2" width="516">
+<p class="tableheading">Memory Graph</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p class="tableheading">Advantages</p>
+</td>
+<td width="258">
+<p class="tableheading">Disadvantages</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p>Very fast</p>
+</td>
+<td width="258">
+<p>Not persisted to disk</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p>Small footprint</p>
+</td>
+<td width="258">
+<p>Not scalable</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p>&nbsp;</p>
+</td>
+<td width="258">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2" width="516">
+<p class="tableheading">Server Graph</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p class="tableheading">Advantages</p>
+</td>
+<td width="258">
+<p class="tableheading">Disadvantages</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p>No network overhead</p>
+</td>
+<td width="258">
+<p>Slower than memory graph, but faster than client graph</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p>Persistent datastore</p>
+</td>
+<td width="258">
+<p>Must be run in the same JVM as the Mulgara server</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p>Scalable</p>
+</td>
+<td width="258">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p>&nbsp;</p>
+</td>
+<td width="258">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2" width="516">
+<p class="tableheading">Client Graph</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p class="tableheading">Advantages</p>
+</td>
+<td width="258">
+<p class="tableheading">Disadvantages</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p>Client/server architecture means client can be on different machine to server</p>
+</td>
+<td width="258">
+<p>Slower than memory graph</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p>Persistent datastore</p>
+</td>
+<td width="258">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p>Full Mulgara server advantages</p>
+</td>
+<td width="258">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p>Scalable </p>
+</td>
+<td width="258">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p>&nbsp;</p>
+</td>
+<td width="258">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2" width="516">
+<p class="tableheading">iTQL Graph</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p class="tableheading">Advantages</p>
+</td>
+<td width="258">
+<p class="tableheading">Disadvantages</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p>Client/server architecture means client can be on different machine to server</p>
+</td>
+<td width="258">
+<p>Slower than memory graph and client graph</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p>Creates a graph from the results of an iTQL query</p>
+</td>
+<td width="258">
+<p>Read-only (cannot add or remove statements)</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p>Persistent datastore</p>
+</td>
+<td width="258">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="258">
+<p>Scalable </p>
+</td>
+<td width="258">
+<p>&nbsp;</p>
+</td>
+</tr>
+
+</table>
+
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

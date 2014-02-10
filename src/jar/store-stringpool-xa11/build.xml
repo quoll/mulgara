@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="store-stringpool-xa11" default="store-stringpool-xa11-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="store-stringpool-xa11-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${util-xa.dist.dir}/${util-xa.jar}"/>
+  </path>
+
+  <path id="store-stringpool-xa11-test-classpath">
+
+    <path refid="store-stringpool-xa11-classpath"/>
+
+    <fileset file="${store-stringpool-xa11.dist.dir}/${store-stringpool-xa11.jar}"/>
+  </path>
+
+  <target name="store-stringpool-xa11-clean"
+          description="Removes all compile generated files for the store-stringpool-xa11">
+
+    <tstamp/>
+
+    <delete dir="${store-stringpool-xa11.obj.dir}"/>
+    <delete dir="${store-stringpool-xa11.test.dir}"/>
+    <delete dir="${store-stringpool-xa11.dist.dir}"/>
+  </target>
+
+  <target name="-store-stringpool-xa11-prepare"
+          description="Creates all directories associated with the
+                       store-stringpool-xa11's compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${store-stringpool-xa11.obj.dir}"/>
+    <mkdir dir="${store-stringpool-xa11.test.dir}"/>
+    <mkdir dir="${store-stringpool-xa11.dist.dir}"/>
+    <mkdir dir="${store-stringpool-xa11.obj.dir}/classes"/>
+  </target>
+
+  <target name="store-stringpool-xa11-compile"
+          depends="-store-stringpool-xa11-prepare, 
+                   resolver-spi-jar, util-xa-jar"
+          description="Compiles all store-stringpool-xa11 related files included
+                       generated source code">
+
+    <javac destdir="${store-stringpool-xa11.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="store-stringpool-xa11-classpath"/>
+
+      <src path="${store-stringpool-xa11.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="store-stringpool-xa11-jar"
+          depends="store-stringpool-xa11-compile, -store-stringpool-xa11-jar-uptodate"
+          unless="store-stringpool-xa11.jar.uptodate"
+          description="Builds the memory-backed node pool JAR">
+
+    <jar jarfile="${store-stringpool-xa11.dist.dir}/${store-stringpool-xa11.jar}">
+      <fileset dir="${store-stringpool-xa11.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-store-stringpool-xa11-jar-uptodate">
+
+    <uptodate property="store-stringpool-xa11.jar.uptodate"
+              targetfile="${store-stringpool-xa11.dist.dir}/${store-stringpool-xa11.jar}">
+      <srcfiles dir="${store-stringpool-xa11.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="store-stringpool-xa11-dist"
+          depends="store-stringpool-xa11-jar"
+          description="Performs all tasks related to finalising this
+                       store-stringpool-xa11 and readying it for distribution">
+
+    <!-- All that's involved in the final version of the store-stringpool-xa11 library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="store-stringpool-xa11-test"
+          depends="store-stringpool-xa11-jar">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="store-stringpool-xa11-test-classpath"/>
+      <param name="dir" value="${store-stringpool-xa11.src.dir}"/>
+      <param name="jar" value="${store-stringpool-xa11.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="store-stringpool-xa11-loadtest" depends="store-stringpool-xa11-jar">
+    <antcall target="component-loadtest">
+      <param name="classpath.id" value="store-stringpool-xa11-classpath"/>
+      <param name="dir" value="${store-stringpool-xa11.src.dir}"/>
+      <param name="jar" value="${store-stringpool-xa11.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="store-stringpool-xa11-javadoc"
+          depends="store-stringpool-xa11-jar"
+          description="Creates the javadoc for this store-stringpool-xa11">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.store.stringpool.xa.*"/>
+      <param name="javadoc.classpath" value="store-stringpool-xa11-classpath"/>
+      <param name="javadoc.sourcepath" value="${store-stringpool-xa11.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="store-stringpool-xa11-help"
+          description="Displays the help information for this store-stringpool-xa11">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this store-stringpool-xa11 -->
+
+    <echo message="Welcome to the build script for ${store-stringpool-xa11.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${store-stringpool-xa11.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

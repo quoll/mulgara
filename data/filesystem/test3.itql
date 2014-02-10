@@ -1,0 +1,36 @@
+# Set aliases
+alias http://purl.org/dc/elements/1.1/ as dc ;
+alias http://www.w3.org/2000/01/rdf-schema# as rdfs ;
+alias http://mulgara.org/mulgara/tool# as tool ;
+alias http://mulgara.org/mulgara/tool/DateExtractor# as date ;
+alias http://mulgara.org/mulgara/tool/EmailExtractor# as email ;
+alias http://mulgara.org/mulgara/tool/FeatureExtractor# as feature ;
+
+# Create the model
+create rmi://localhost/server1#model1 ;
+
+# Populate the model
+load file:@basedir@/../data/schema/rdfs.rdfs into rmi://localhost/server1#model1 ;
+load file:@basedir@/../data/schema/dc.rdfs into rmi://localhost/server1#model1 ;
+load file:@basedir@/../data/schema/mulgara.rdfs into rmi://localhost/server1#model1 ;
+load file:@basedir@/data/tmex-sample.rdf into rmi://localhost/server1#model1 ;
+
+# We don't have synthetic properties yet, so...
+insert http://www.w3.org/1999/02/22-rdf-syntax-ns#_1 http://www.w3.org/1999/02/22-rdf-syntax-ns#type rdfs:ContainerMembershipProperty into rmi://localhost/server1#model1 ;
+insert http://www.w3.org/1999/02/22-rdf-syntax-ns#_2 http://www.w3.org/1999/02/22-rdf-syntax-ns#type rdfs:ContainerMembershipProperty into rmi://localhost/server1#model1 ;
+insert http://www.w3.org/1999/02/22-rdf-syntax-ns#_3 http://www.w3.org/1999/02/22-rdf-syntax-ns#type rdfs:ContainerMembershipProperty into rmi://localhost/server1#model1 ;
+
+# Query the model directly
+select $name $value from rmi://localhost/server1#model1 where http://www.comtex.com/22114123.xml $property $value and $property rdfs:label $name ;
+
+# Query the model via rdf:value
+select $name $value from rmi://localhost/server1#model1 where http://www.comtex.com/22114123.xml $property $resource and $property rdfs:label $name and $resource http://www.w3.org/1999/02/22-rdf-syntax-ns#value $value ;
+
+# Query the model via rdf:li and rdf:value
+select $name $value from rmi://localhost/server1#model1 where http://www.comtex.com/22114123.xml $property $container and $property rdfs:label $name and $container $contains $resource and $contains http://www.w3.org/1999/02/22-rdf-syntax-ns#type rdfs:ContainerMembershipProperty and $resource http://www.w3.org/1999/02/22-rdf-syntax-ns#value $value ;
+
+# Remove the model
+drop rmi://localhost/server1#model1 ;
+
+# Exit the session cleanly
+quit ;

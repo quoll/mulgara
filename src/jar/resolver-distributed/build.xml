@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="resolver-distributed" default="resolver-distributed.jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="resolver-distributed-classpath">
+    <path refid="common-classpath"/>
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${resolver.dist.dir}/${resolver.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${driver.dist.dir}/${driver.jar}"/>
+    <fileset file="${store-nodepool-memory.dist.dir}/${store-nodepool-memory.jar}"/>
+    <fileset file="${store-nodepool-xa.dist.dir}/${store-nodepool-xa.jar}"/>
+    <fileset file="${store-stringpool-memory.dist.dir}/${store-stringpool-memory.jar}"/>
+    <fileset file="${store-stringpool-xa.dist.dir}/${store-stringpool-xa.jar}"/>
+    <fileset file="${server.dist.dir}/${server.jar}"/>
+    <fileset file="${server-rmi.dist.dir}/${server-rmi.jar}"/>
+    <fileset file="${server-local.dist.dir}/${server-local.jar}"/>
+    <fileset file="${tuples-hybrid.dist.dir}/${tuples-hybrid.jar}"/>
+  </path>
+
+  <path id="resolver-distributed-test-classpath">
+    <path refid="resolver-distributed-classpath"/>
+    <fileset file="${resolver-distributed.dist.dir}/${resolver-distributed.jar}"/>
+  </path>
+
+  <target name="resolver-distributed-clean" description="Removes all compile generated files for the resolver-distributed">
+    <tstamp/>
+    <delete dir="${resolver-distributed.obj.dir}"/>
+    <delete dir="${resolver-distributed.test.dir}"/>
+    <delete dir="${resolver-distributed.dist.dir}"/>
+  </target>
+
+  <target name="-resolver-distributed-prepare"
+          description="Creates all directories associated with the resolver-distributed's
+                       compilation"
+          depends="-prepare-build">
+    <mkdir dir="${resolver-distributed.obj.dir}"/>
+    <mkdir dir="${resolver-distributed.test.dir}"/>
+    <mkdir dir="${resolver-distributed.dist.dir}"/>
+    <mkdir dir="${resolver-distributed.obj.dir}/classes"/>
+  </target>
+
+  <target name="resolver-distributed-compile"
+        depends="-resolver-distributed-prepare,
+                 query-jar,
+                 resolver-spi-jar,
+                 resolver-jar,
+                 util-jar,
+                 tuples-jar,
+                 driver-jar,
+                 server-rmi-jar, 
+                 server-local-jar, 
+                 tuples-hybrid-jar"
+          description="Compiles all resolver-distributed related files included generated source code">
+    <javac destdir="${resolver-distributed.obj.dir}/classes" debug="on" deprecation="on" source="1.5">
+      <classpath refid="resolver-distributed-classpath"/>
+      <src path="${resolver-distributed.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="resolver-distributed-jar"
+        depends="resolver-distributed-compile, -resolver-distributed-jar-uptodate"
+        unless="resolver-distributed.jar.uptodate"
+        description="Builds the distributed Resolver JAR">
+    <jar jarfile="${resolver-distributed.dist.dir}/${resolver-distributed.jar}">
+      <fileset dir="${resolver-distributed.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-resolver-distributed-jar-uptodate">
+    <uptodate property="resolver-distributed.jar.uptodate"
+              targetfile="${resolver-distributed.dist.dir}/${resolver-distributed.jar}">
+      <srcfiles dir="${resolver-distributed.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="resolver-distributed-dist"
+          depends="resolver-distributed-jar"
+          unless="resolver-distributed.uptodate"
+          description="Performs all tasks related to finalising this resolver-distributed and readying it for distribution">
+
+    <!-- All that's involved in the final version of the resolver-distributed library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="resolver-distributed-test"
+          depends="resolver-distributed-jar, resolver-file-jar, resolver-http-jar"
+          description="Carries out unit testing for this resolver-distributed">
+    <antcall target="component-test">
+      <param name="classpath.id" value="resolver-distributed-test-classpath"/>
+      <param name="dir" value="${resolver-distributed.src.dir}"/>
+      <param name="jar" value="${resolver-distributed.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-distributed-javadoc"
+          depends="resolver-distributed-jar"
+          description="Creates the javadoc for this resolver-distributed">
+    <antcall target="javadoc">
+      <param name="javadoc.package" value="org.mulgara.resolver.distributed.*"/>
+      <param name="javadoc.classpath" value="resolver-distributed-classpath"/>
+      <param name="javadoc.sourcepath" value="${resolver-distributed.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-distributed-help"
+          description="Displays the help information for this resolver-distributed">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this resolver-distributed -->
+
+    <echo message="Welcome to the build script for ${resolver-distributed.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main" newenvironment="false">
+      <jvmarg value="${arch.bits}"/>
+      <arg line="-buildfile ${resolver-distributed.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+
+</project>

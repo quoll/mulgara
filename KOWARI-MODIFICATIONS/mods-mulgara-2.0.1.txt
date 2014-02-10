@@ -1,0 +1,337 @@
+------------------------------------------------------------------------
+r1137 | pag | 2008-08-09 21:19:40 -0500 (Sat, 09 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+
+Added in the new webquery module, and re-sorted some of the other modules
+------------------------------------------------------------------------
+r1136 | pag | 2008-08-09 21:17:12 -0500 (Sat, 09 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/build.xml
+
+Added the webquery module into the build process
+------------------------------------------------------------------------
+r1135 | pag | 2008-08-09 21:16:21 -0500 (Sat, 09 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/build.properties
+
+Removed the unused parser.jar
+------------------------------------------------------------------------
+r1134 | pag | 2008-08-09 21:15:09 -0500 (Sat, 09 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/build.xml
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+
+Added in the QueryServlet context to the web server. This is brought in by reflection, since it wants to ask the Mulgara Server for Connections, and the mutual dependencies this would create cannot be handled by Ant.
+------------------------------------------------------------------------
+r1133 | pag | 2008-08-09 21:12:34 -0500 (Sat, 09 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RmiServer.java
+
+Catching exceptions during shutdown and printing a more appropriate report. If a server is interrupted in some way (eg the host goes to sleep) then the RMI registry does not respond when we want to stop. This isn't really a problem, since we only stop on shutdown anyway
+------------------------------------------------------------------------
+r1132 | pag | 2008-08-09 21:09:55 -0500 (Sat, 09 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/itql/java/org/mulgara/itql/TqlInterpreter.java
+
+Updated the lexer to store parsed commands, so they can be attached to all generated Command objects.
+------------------------------------------------------------------------
+r1131 | pag | 2008-08-09 21:08:11 -0500 (Sat, 09 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/itql/java/org/mulgara/itql/HelpPrinter.java
+
+Removed unused method
+------------------------------------------------------------------------
+r1130 | pag | 2008-08-09 21:07:39 -0500 (Sat, 09 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/Query.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Command.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/LocalCommand.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/ServerCommand.java
+
+Added a method to Commands to save and retrieve the text that generated the command.
+------------------------------------------------------------------------
+r1129 | pag | 2008-08-09 21:06:35 -0500 (Sat, 09 Aug 2008) | 1 line
+Changed paths:
+   D /trunk/src/jar/parser
+
+Not used
+------------------------------------------------------------------------
+r1128 | pag | 2008-08-09 21:06:08 -0500 (Sat, 09 Aug 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/webquery
+   A /trunk/src/jar/webquery/build.xml
+   A /trunk/src/jar/webquery/java
+   A /trunk/src/jar/webquery/java/org
+   A /trunk/src/jar/webquery/java/org/mulgara
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/QueryParams.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/QueryResponsePage.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/QueryServlet.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/RequestException.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/ResourceBinaryFile.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/ResourceFile.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/ResourceTextFile.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/Template.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/html
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/html/Anchor.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/html/Break.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/html/Div.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/html/Emphasis.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/html/HtmlElement.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/html/Paragraph.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/html/Span.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/html/Strong.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/html/Table.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/html/TableAbstr.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/html/TableBody.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/html/TableData.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/html/TableHeader.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/html/TableRow.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/html/TableStructure.java
+   A /trunk/src/jar/webquery/java/org/mulgara/webquery/html/Text.java
+   A /trunk/src/jar/webquery/resources
+   A /trunk/src/jar/webquery/resources/debug.html
+   A /trunk/src/jar/webquery/resources/images
+   A /trunk/src/jar/webquery/resources/images/logo.jpg
+   A /trunk/src/jar/webquery/resources/styles
+   A /trunk/src/jar/webquery/resources/styles/ui.css
+   A /trunk/src/jar/webquery/resources/template.html
+   A /trunk/src/jar/webquery/resources/template_head.html
+   A /trunk/src/jar/webquery/resources/template_more_tail.html
+   A /trunk/src/jar/webquery/resources/template_tail.html
+   A /trunk/src/jar/webquery/webquery-build.properties
+
+A new query UI provided as a web service. This is simpler than the webui WAR file, and has no dependencies on XMLC or Barracuda
+------------------------------------------------------------------------
+r1127 | pag | 2008-08-09 21:04:03 -0500 (Sat, 09 Aug 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/util/java/org/mulgara/util/Fn.java
+   A /trunk/src/jar/util/java/org/mulgara/util/Fn2.java
+   A /trunk/src/jar/util/java/org/mulgara/util/Fn2E.java
+   A /trunk/src/jar/util/java/org/mulgara/util/FnE.java
+
+Some standard interfaces to make functors easier to write. The versions with an 'E' suffix indicate that the class is expected to throw an exception in its methods.
+------------------------------------------------------------------------
+r1126 | pag | 2008-08-09 21:02:45 -0500 (Sat, 09 Aug 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/util/java/org/mulgara/util/Pair.java
+
+Duplicates the Pair class in the C++ ATL. Just a little more convenient than an array of Object[2]
+------------------------------------------------------------------------
+r1125 | pag | 2008-08-09 21:01:41 -0500 (Sat, 09 Aug 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/util/java/org/mulgara/util/C.java
+
+A set of static functions to providing some usually-standard functionality for Collection methods. Not complete, but handy so far.
+------------------------------------------------------------------------
+r1124 | pag | 2008-08-09 20:59:58 -0500 (Sat, 09 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/StackTrace.java
+
+Added in a static utility method to print an arbitrary throwable's stack trace to a string
+------------------------------------------------------------------------
+r1123 | pag | 2008-08-09 20:58:55 -0500 (Sat, 09 Aug 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/util/java/org/mulgara/util/MortbayLogger.java
+
+Implementation of a logger class for Mortbay libraries (specifically, Jetty) so we can control what goes where. Just a trivial redirection to a Log4J logger, with the ability to disable all logging.
+------------------------------------------------------------------------
+r1122 | pag | 2008-08-05 14:54:51 -0500 (Tue, 05 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-nodepool-xa/java/org/mulgara/store/nodepool/xa/XANodePoolFactory.java
+   M /trunk/src/jar/store-stringpool-xa/java/org/mulgara/store/stringpool/xa/XAStringPoolFactory.java
+
+Removed warnings. The warning on not using the logger was fixed by adding in a helpful error log.
+------------------------------------------------------------------------
+r1121 | alexhall | 2008-08-04 14:34:05 -0500 (Mon, 04 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/jxdata/iTQL/backup_restore/export1Result1.txt
+   M /trunk/jxdata/iTQL/backup_restore/export1Result2.txt
+   M /trunk/jxdata/iTQL/backup_restore/export1TestResult1.txt
+   M /trunk/jxdata/iTQL/backup_restore/export1TestResult2.txt
+   M /trunk/jxdata/iTQL/backup_restore/result1.txt
+   M /trunk/jxdata/iTQL/backup_restore/result2.txt
+   M /trunk/jxdata/iTQL/data_types/boolean/result2.txt
+   M /trunk/jxdata/iTQL/data_types/queryResult10.txt
+   M /trunk/jxdata/iTQL/data_types/queryResult11.txt
+   A /trunk/jxdata/iTQL/data_types/queryResult38.txt
+   M /trunk/jxdata/iTQL/data_types/queryResult4.txt
+   M /trunk/jxdata/iTQL/data_types/queryResult9.txt
+   M /trunk/jxdata/iTQL/data_types/result2.txt
+   M /trunk/jxdata/iTQL/data_types/test.jxu
+   M /trunk/jxdata/iTQL/numbers.rdf
+   M /trunk/src/jar/resolver-xsd/java/org/mulgara/resolver/xsd/IntervalConstraintDescriptor.java
+
+Replace Double.MAX_VALUE and Double.MIN_VALUE with Double.POSITIVE_INFINITY and Double.NEGATIVE_INFINITY in IntervalConstraintDescriptor to fix constraints with open bounds in the XSD Resolver.
+------------------------------------------------------------------------
+r1120 | ronald | 2008-08-04 03:26:14 -0500 (Mon, 04 Aug 2008) | 3 lines
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraInternalTransaction.java
+
+Make inXACompletion "sticky", i.e. once set it's never reset. Thanks to
+Andrae for suggesting this.
+
+------------------------------------------------------------------------
+r1119 | ronald | 2008-08-04 03:26:02 -0500 (Mon, 04 Aug 2008) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraTransactionFactory.java
+
+Applied formatting fixes from r1104 .
+
+------------------------------------------------------------------------
+r1118 | pag | 2008-08-01 00:15:37 -0500 (Fri, 01 Aug 2008) | 26 lines
+Changed paths:
+   M /trunk/.classpath
+   M /trunk/build.properties
+   M /trunk/build.xml
+   M /trunk/common.properties
+   M /trunk/common.xml
+   M /trunk/conf/mulgara-config.xml
+   M /trunk/conf/mulgara-embedded.dtd
+   M /trunk/conf/mulgara-embedded.xsd
+   M /trunk/conf/mulgara-rmi.policy
+   A /trunk/lib/core-3.1.1.jar
+   D /trunk/lib/javax.servlet-2.3.jar
+   A /trunk/lib/jetty-6.1.11.jar
+   A /trunk/lib/jetty-util-6.1.11.jar
+   A /trunk/lib/jsp-2.1.jar
+   A /trunk/lib/jsp-api-2.1.jar
+   D /trunk/lib/org.mortbay.jetty-4.2.19.jar
+   D /trunk/lib/org.mortbay.jetty.plus-4.2.19.jar
+   A /trunk/lib/servlet-api-2.5-6.1.11.jar
+   M /trunk/src/jar/descriptor/build.xml
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+   M /trunk/src/jar/tag/build.xml
+
+This is an integrated checkin, since each modification needs the others in
+order to work.
+
+EmbeddedMulgaraServer has been extensively reshaped. This is not its final
+form, but hopefully it is easier to understand and refactor.
+
+All static documents have been removed from the web server. This may result
+in the tutorial in the webui needing to be updated since the documents to be
+loaded may be elsewhere. The web server can also be disabled, either by
+setting <Disabled>false</Disabled> in the Jetty section of the config file
+or by defining "mulgara.http.disable" in the system properties.
+
+The web server has also been updated from Jetty 4.2.19 to Jetty 6.1.11. This
+resulted in changes to the Jetty configuration. For details see:
+  * conf/mulgara-embedded.dtd (not actually used anywhere)
+  * conf/mulgara-embedded.xsd (the definition)
+  * conf/mulgara-config.xml (The default configuration)
+
+The library updates also required a few updates to the build scripts in
+"descriptor" and "tag".
+
+Also updated the main build scripts to NOT delete the SableCC and
+ideSupport.jar files when building the "clean" target. If you want to remove
+these, then use the new "mrclean" target.
+
+
+------------------------------------------------------------------------
+r1117 | pag | 2008-07-28 19:18:09 -0500 (Mon, 28 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraOptionParser.java
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+
+Added in a new command line switch (and not just a system property) for turning off the http server
+------------------------------------------------------------------------
+r1116 | pag | 2008-07-28 18:22:31 -0500 (Mon, 28 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/build.xml
+
+Changed clean to not remove dist/ideSupport.jar and the SableCC generated files. Use the 'mrclean' target to do a full clean. Also removed the static HTML docs from the distribution.
+------------------------------------------------------------------------
+r1115 | pag | 2008-07-28 18:18:48 -0500 (Mon, 28 Jul 2008) | 32 lines
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+
+Restructured this file to treat each of the components in a more transparent
+way.
+
+Now the main() method simply loads the configuration, and uses this to
+instantiate an EmbeddedMulgaraServer instance. The server creates a ServerMBean
+for building the Database along with an RMI service. It then checks if an http
+server is required, and if so it creates a Jetty server, and registers the
+known web applications. 
+
+The main method then starts the EmbeddedMulgaraServer, which in turn starts the
+Mulgara and HTTP servers.
+
+The EmbeddedMulgaraServer object also used to double as a Thread so that it
+could be registered as a shutdown handler. This functionality has been moved
+into a new inner class devoted to this function.
+
+Since the EmbeddedMulgaraServer is never accessed from outside of its own
+main() method, many of the public methods have been changed to private. This
+helped define what was being called and what wasn't, allowing many unnecessary
+methods to be eliminated. Also, most of the public accessors were used for
+accessing static data that was duplicated in ServerInfo. This duplication has
+been removed, with ServerInfo now being the sole location for this data. The
+accessors for this data were also removed.
+
+Ultimately, this class should be replaced with one that has flexible
+configuration for each possible service, with each service being attached to
+shared Database instances (instead of an RMIServer instance). When multiple
+services are made possible in this way, ServerInfo will no longer be static
+and will be attached to a Database, instead of holding global data as it does
+now.
+
+
+------------------------------------------------------------------------
+r1114 | pag | 2008-07-28 18:04:07 -0500 (Mon, 28 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/ServerInfo.java
+
+Provided default port values here, rather than EmbeddedMulgaraServer. Also, hostnames is pre-initialized, so it can accept a single hostname before the rest of them are provided. The setHostnameAliases method used to use the uninitialized state to check that aliases weren't added twice, but this was simply an assertion that the code was built as expected. Also added a toStaticString() method to get the full state in a string, useful for debugging.
+------------------------------------------------------------------------
+r1113 | pag | 2008-07-28 17:59:46 -0500 (Mon, 28 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraOptionParser.java
+
+Added the SHUTDOWN option back in. I don't know when this was removed, but it still appears in the help text. Also took advantage of the update to reformat the file
+------------------------------------------------------------------------
+r1112 | pag | 2008-07-28 17:56:33 -0500 (Mon, 28 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/server-beep/java/org/mulgara/server/beep/BEEPServer.java
+
+Changed server state to an enumeration
+------------------------------------------------------------------------
+r1111 | pag | 2008-07-28 17:56:11 -0500 (Mon, 28 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/AbstractServer.java
+   M /trunk/src/jar/server/java/org/mulgara/server/ServerMBean.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RmiServer.java
+
+Changed server state to an enumeration
+------------------------------------------------------------------------
+r1110 | pag | 2008-07-28 17:51:23 -0500 (Mon, 28 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara-config.xml
+   M /trunk/conf/mulgara-embedded.xsd
+
+Allowed the Jetty server to be disabled
+------------------------------------------------------------------------
+r1109 | alexhall | 2008-07-24 12:31:39 -0500 (Thu, 24 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/war/webui/java/org/mulgara/webui/viewer/ViewerScreen.java
+
+Fix NullPointerException caused by new language tagging of literals.
+------------------------------------------------------------------------
+r1108 | ronald | 2008-07-24 02:14:53 -0500 (Thu, 24 Jul 2008) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ExternalTransactionUnitTest.java
+
+Interrupt may lead to a QueryException too.
+
+------------------------------------------------------------------------
+r1107 | ronald | 2008-07-24 02:14:28 -0500 (Thu, 24 Jul 2008) | 3 lines
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraTransactionFactory.java
+
+Revert r1104 and instead call purge() on the timer-task to force the release
+of the cancelled task and the associated transaction object.
+
+------------------------------------------------------------------------

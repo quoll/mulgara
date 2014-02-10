@@ -1,0 +1,392 @@
+------------------------------------------------------------------------
+r1468 | ronald | 2009-01-30 23:55:58 -0600 (Fri, 30 Jan 2009) | 2 lines
+Changed paths:
+   M /trunk/jxdata/iTQL/standard_queries/queryResult3.txt
+
+Replaced hardcoded local ip-address introduced in r1465 with macro.
+This fixes the build.
+------------------------------------------------------------------------
+r1466 | pag | 2009-01-30 16:01:08 -0600 (Fri, 30 Jan 2009) | 1 line
+Changed paths:
+   A /trunk/KOWARI-MODIFICATIONS/mods-mulgara-2.0.8.txt
+
+Changelog for 2.0.8
+------------------------------------------------------------------------
+r1465 | pag | 2009-01-30 15:28:52 -0600 (Fri, 30 Jan 2009) | 1 line
+Changed paths:
+   M /trunk/jxdata/iTQL/having_queries/queryResult10.txt
+   M /trunk/jxdata/iTQL/having_queries/queryResult15-2.txt
+   M /trunk/jxdata/iTQL/having_queries/queryResult15.txt
+   M /trunk/jxdata/iTQL/standard_queries/queryResult17.txt
+   M /trunk/jxdata/iTQL/standard_queries/queryResult18.txt
+   M /trunk/jxdata/iTQL/standard_queries/queryResult3.txt
+   M /trunk/jxdata/iTQL/transitive/result13.txt
+   M /trunk/jxdata/iTQL/transitive/result14.txt
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseOperationContext.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSession.java
+
+Increased detail in exception messages
+------------------------------------------------------------------------
+r1464 | pag | 2009-01-30 15:27:51 -0600 (Fri, 30 Jan 2009) | 1 line
+Changed paths:
+   M /trunk/common.properties
+
+Updated to new version number
+------------------------------------------------------------------------
+r1463 | pag | 2009-01-30 15:27:05 -0600 (Fri, 30 Jan 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/Parser.java
+
+Added support for 'a', lists, and =. Also fixed a bug where generated blank nodes were not being identified separately from explicit _:node syntax, meaning these nodes could override each other
+------------------------------------------------------------------------
+r1462 | pag | 2009-01-30 15:24:24 -0600 (Fri, 30 Jan 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/AnswerOperationsUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/AnswerUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ArrayAnswer.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ArrayAnswerUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintBinaryOperation.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintHaving.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstructQuery.java
+   M /trunk/src/jar/query/java/org/mulgara/query/GivenConstraint.java
+   M /trunk/src/jar/query/java/org/mulgara/query/GraphResourceUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/LocalNode.java
+   M /trunk/src/jar/query/java/org/mulgara/query/MulgaraTransactionException.java
+   M /trunk/src/jar/query/java/org/mulgara/query/SpecialPredicates.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/AbstractBooleanFn.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/AbstractFilterValue.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/BinaryComparisonFilter.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/BinaryTestFilter.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/NAryOperatorFilter.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/AbstractNumericOperation.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/BinaryOperation.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/AbstractAccessorFn.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/AbstractComparable.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/AbstractComparableLiteral.java
+   M /trunk/src/jar/query/java/org/mulgara/query/rdf/LiteralImplUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/rdf/URIReferenceImpl.java
+   M /trunk/src/jar/query/java/org/mulgara/query/rdf/VariableNodeImpl.java
+
+Removed warnings by using generics, adding serialization IDs, suppressing warnings on unused loggers, and removing redundant imports and warning suppressions
+------------------------------------------------------------------------
+r1461 | pag | 2009-01-30 15:21:34 -0600 (Fri, 30 Jan 2009) | 1 line
+Changed paths:
+   A /trunk/src/jar/query/java/org/jrdf/vocabulary/OWL.java
+   M /trunk/src/jar/query/java/org/jrdf/vocabulary/RDF.java
+   M /trunk/src/jar/query/java/org/jrdf/vocabulary/RDFS.java
+   M /trunk/src/jar/query/java/org/jrdf/vocabulary/Vocabulary.java
+
+Added OWL vocabulary, and distinguished classes from proprties
+------------------------------------------------------------------------
+r1460 | pag | 2009-01-30 15:20:39 -0600 (Fri, 30 Jan 2009) | 1 line
+Changed paths:
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedN3Answer.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedRdfXmlAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/SparqlServlet.java
+
+Handling N3 and RDF/XML output for CONSTRUCT queries
+------------------------------------------------------------------------
+r1459 | pag | 2009-01-30 15:19:48 -0600 (Fri, 30 Jan 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/IRIReference.java
+
+Now allowing relative URIs. This particularly helps refer to the system graph
+------------------------------------------------------------------------
+r1458 | ronald | 2009-01-27 20:46:44 -0600 (Tue, 27 Jan 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/URIUtil.java
+
+Fix alias expansion to not drop the fragment in the original uri.
+------------------------------------------------------------------------
+r1457 | pag | 2009-01-24 01:03:51 -0600 (Sat, 24 Jan 2009) | 1 line
+Changed paths:
+   M /trunk/.project
+   M /trunk/conf/core/mulgara-x-config.xml
+   M /trunk/src/jar/jrdf/java/org/mulgara/jrdf/JRDFGraphUnitTest.java
+   D /trunk/src/jar/query/java/org/mulgara/query/ConstraintNegation.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/ConstraintExpressionBuilder.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/ItqlInterpreterBeanUnitTest.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/SparqlServlet.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/TqlServlet.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/IdentityTransformer.java
+   M /trunk/src/jar/querylang/sablecc/itql.grammar
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/BackupOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/BootstrapOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/Database.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/OutputOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/RestoreOperation.java
+   A /trunk/src/jar/resolver/java/org/mulgara/resolver/TuplesBasedOperation.java (from /branches/xa11/src/jar/resolver/java/org/mulgara/resolver/TuplesBasedOperation.java:1456)
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexTuples.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneTransformer.java
+   M /trunk/src/jar/resolver-memory/java/org/mulgara/resolver/memory/MemoryResolver.java
+   M /trunk/src/jar/resolver-nodetype/java/org/mulgara/resolver/nodetype/TuplesWrapperResolution.java
+   M /trunk/src/jar/resolver-null/java/org/mulgara/resolver/nullres/NullResolution.java
+   M /trunk/src/jar/resolver-prefix/java/org/mulgara/resolver/prefix/TuplesWrapperResolution.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ReresolvableResolution.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/SystemResolver.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/store/statement/StatementStore.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/store/statement/StatementStoreAbstractUnitTest.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/store/statement/StatementStoreException.java
+   D /trunk/src/jar/resolver-store/java/org/mulgara/resolver/store/StatementStoreDuplicateResolution.java
+   D /trunk/src/jar/resolver-store/java/org/mulgara/resolver/store/StatementStoreDuplicateResolutionUnitTest.java
+   D /trunk/src/jar/resolver-store/java/org/mulgara/resolver/store/StatementStoreInverseResolution.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/resolver/store/StatementStoreResolution.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/resolver/store/StatementStoreResolver.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/resolver/store/StatementStoreResolverFactory.java
+   A /trunk/src/jar/resolver-store/java/org/mulgara/resolver/store/XA11StatementStoreResolverFactory.java (from /branches/xa11/src/jar/resolver-store/java/org/mulgara/resolver/store/XA11StatementStoreResolverFactory.java:1456)
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa/TripleAVLFile.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa/XAStatementStoreImpl.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa/XAStatementStoreImplUnitTest.java
+   A /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa11 (from /branches/xa11/src/jar/resolver-store/java/org/mulgara/store/statement/xa11:1456)
+   R /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa11/LiteralGraphTuples.java (from /branches/xa11/src/jar/resolver-store/java/org/mulgara/store/statement/xa11/LiteralGraphTuples.java:1456)
+   R /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa11/XA11StatementStoreImpl.java (from /branches/xa11/src/jar/resolver-store/java/org/mulgara/store/statement/xa11/XA11StatementStoreImpl.java:1456)
+   R /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa11/XA11StatementStoreImplUnitTest.java (from /branches/xa11/src/jar/resolver-store/java/org/mulgara/store/statement/xa11/XA11StatementStoreImplUnitTest.java:1456)
+   M /trunk/src/jar/store-stringpool-memory/java/org/mulgara/store/stringpool/memory/MemoryStringPoolImpl.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolImpl.java
+   M /trunk/src/jar/store-xa/java/org/mulgara/store/xa/XAStatementStore.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/AbstractTuples.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/DefinablePrefixAnnotation.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/LeftJoin.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/OrderedAppend.java
+   A /trunk/src/jar/tuples/java/org/mulgara/store/tuples/OrderedStoreAppend.java (from /branches/xa11/src/jar/tuples/java/org/mulgara/store/tuples/OrderedStoreAppend.java:1456)
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/Tuples.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperations.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/WrappedTuples.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/AVLNode.java
+
+Merging XA1.1 branch into trunk. Keeping the default configuration at XA 1
+------------------------------------------------------------------------
+r1452 | ronald | 2009-01-22 05:17:12 -0600 (Thu, 22 Jan 2009) | 5 lines
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+
+Effectively undoing most of r1446 (lazy-evaluation of the result). It turns
+out that in some common cases running multiple higher constrained lucene
+queries is far slower than running one less constrained one. If we could
+figure out the best strategy to use at runtime that would be great, but I
+don't see how without some global query planner.
+------------------------------------------------------------------------
+r1451 | ronald | 2009-01-22 05:17:07 -0600 (Thu, 22 Jan 2009) | 2 lines
+Changed paths:
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/RDFXMLWriter.java
+
+RDFXMLWriter should not be closing the passed in statements. This was leading
+to duplicate-close exceptions during export.
+------------------------------------------------------------------------
+r1450 | ronald | 2009-01-22 05:17:02 -0600 (Thu, 22 Jan 2009) | 3 lines
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndex.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexTuples.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexUnitTest.java
+
+Don't load fields in the lucene result Documents that won't be needed, i.e.
+all fields that were not variables in the constraint. This halves the query
+time in some cases.
+------------------------------------------------------------------------
+r1449 | ronald | 2009-01-21 23:14:21 -0600 (Wed, 21 Jan 2009) | 3 lines
+Changed paths:
+   M /trunk/jxdata/iTQL/fulltext_queries/test.jxu
+
+Disabled check of exported data from lucene because the xml differs slightly
+on different jvm's (e.g. the order of the attributes). This was causing the
+build to break after r1448 under some jvm's.
+------------------------------------------------------------------------
+r1448 | ronald | 2009-01-21 06:45:04 -0600 (Wed, 21 Jan 2009) | 10 lines
+Changed paths:
+   A /trunk/jxdata/iTQL/fulltext_queries/exportData1.txt
+   A /trunk/jxdata/iTQL/fulltext_queries/exportResult1.txt
+   A /trunk/jxdata/iTQL/fulltext_queries/queryResult20.txt
+   A /trunk/jxdata/iTQL/fulltext_queries/queryResult21.txt
+   M /trunk/jxdata/iTQL/fulltext_queries/test.jxu
+   M /trunk/log4j-conf.xml
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndex.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexTuples.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolverFactory.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolverUnitTest.java
+
+Added support for variables in the object position of the constraint when
+querying lucene graphs. I.e. one can query now with
+"... where $s <foo:title> $o in <lucene:graph>" or use a delete-select like
+"delete select <foo:1> $p $o from <lucene:graph> where <foo:1> $p $o from
+<lucene:graph>" to delete all entries for a given subject.
+
+One of the implications of this is that lucene graphs may now be exported.
+
+If a score is being requested, then a concrete value must still be supplied
+for the object.
+------------------------------------------------------------------------
+r1447 | ronald | 2009-01-21 06:44:57 -0600 (Wed, 21 Jan 2009) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexTuples.java
+
+Added support for DefinablePrefixAnnotation and MandatoryBindingAnnotation,
+including being able to supply the lucene query-string from some other graph.
+------------------------------------------------------------------------
+r1446 | ronald | 2009-01-21 06:44:47 -0600 (Wed, 21 Jan 2009) | 3 lines
+Changed paths:
+   M /trunk/jxdata/iTQL/fulltext_queries/queryResult17.txt
+   M /trunk/jxdata/iTQL/fulltext_queries/queryResult18.txt
+   M /trunk/jxdata/iTQL/fulltext_queries/queryResult19.txt
+   M /trunk/jxdata/iTQL/fulltext_queries/test.jxu
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndex.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexTuples.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+
+Changed LuceneResolver to lazy-evaluate the result (FullTextStringIndexTuples).
+This allows other parts of the query to produce results first which are then
+used to limit the search results.
+------------------------------------------------------------------------
+r1445 | alexhall | 2009-01-19 13:31:23 -0600 (Mon, 19 Jan 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/Var.java
+
+Eliminate duplicate call to getLocalContext() in resolveLocal().
+------------------------------------------------------------------------
+r1444 | alexhall | 2009-01-19 12:23:27 -0600 (Mon, 19 Jan 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/AbstractIsIriFnUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/EqualityComparisonUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/IsBlankFnUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/IsLiteralFnUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/LangMatchesUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/RegexFnUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/Var.java
+
+Add an explicit check for unbound when resolving variables in a filter.  This operation is a type error in SPARQL, which should trigger a QueryException in Mulgara.  Without this check, resolving an unbound variable would result in the special Tuples.NONE node ID to be passed to the string pool for globalizing.  This was throwing an uncaught IllegalArgumentException.
+------------------------------------------------------------------------
+r1443 | ronald | 2009-01-19 05:28:22 -0600 (Mon, 19 Jan 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/UnboundJoin.java
+
+Fixed wrong index check that could lead to ArrayIndexOutOfBoundsException.
+------------------------------------------------------------------------
+r1442 | ronald | 2009-01-19 05:28:16 -0600 (Mon, 19 Jan 2009) | 3 lines
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+
+Improved transaction management a bit: the list of fulltext-indexers is now
+properly per transaction; the only per-resolver-instance hack left is purely
+for the abort() case.
+------------------------------------------------------------------------
+r1441 | ronald | 2009-01-19 05:28:12 -0600 (Mon, 19 Jan 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperations.java
+
+Minor tweak: removed unnecessary cast and avoid extra array creation.
+------------------------------------------------------------------------
+r1440 | ronald | 2009-01-19 05:28:08 -0600 (Mon, 19 Jan 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndex.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexTuples.java
+
+Fixed cloning of FullTextStringIndexTuples to clone the hits properly.
+------------------------------------------------------------------------
+r1439 | ronald | 2009-01-19 05:28:03 -0600 (Mon, 19 Jan 2009) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexTuples.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneConstraint.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolverUnitTest.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneTransformer.java
+
+Fix embarassing screwup in r1366: lucene constraints may now again contain
+literals in the subject position. Added tests for this.
+------------------------------------------------------------------------
+r1438 | ronald | 2009-01-19 05:27:58 -0600 (Mon, 19 Jan 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryResponsePage.java
+
+Chain the underlying exceptions when creating new ones.
+------------------------------------------------------------------------
+r1437 | ronald | 2009-01-19 05:27:54 -0600 (Mon, 19 Jan 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+   M /trunk/src/jar/util/java/org/mulgara/util/TempDir.java
+
+Avoid a deadlock (hang) during shutdown if the tempDir went away.
+------------------------------------------------------------------------
+r1436 | ronald | 2009-01-19 05:27:48 -0600 (Mon, 19 Jan 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/TempDir.java
+
+Code formatting and imports cleanup.
+------------------------------------------------------------------------
+r1435 | alexhall | 2009-01-16 12:43:46 -0600 (Fri, 16 Jan 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/Or.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/OrUnitTest.java
+
+Fixed a logic error that affected handling of type errors with SPARQL logical-or filters.
+------------------------------------------------------------------------
+r1424 | pag | 2008-12-24 01:21:57 -0600 (Wed, 24 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/tools/src/org/mulgara/tools/Tql.java
+
+Corrected an incorrect comment about SPARQL, which should have said TQL
+------------------------------------------------------------------------
+r1423 | pag | 2008-12-16 14:11:02 -0600 (Tue, 16 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/jrdf/graph/AbstractURIReference.java
+
+Changed hashCode to the hash of the string and not the URI
+------------------------------------------------------------------------
+r1422 | pag | 2008-12-16 03:13:51 -0600 (Tue, 16 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/SetGraphOperation.java
+
+Removed unneeded imports
+------------------------------------------------------------------------
+r1421 | pag | 2008-12-16 03:13:02 -0600 (Tue, 16 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/DataInputTx.java
+
+sendMarshalledData now tests if it needs to wrap an InputStream in a RemoteInputStream. Also updated getLocalInputStream to protected to allow Load to access it
+------------------------------------------------------------------------
+r1420 | pag | 2008-12-16 03:08:28 -0600 (Tue, 16 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryServlet.java
+
+removed an unneeded warning suppression
+------------------------------------------------------------------------
+r1419 | pag | 2008-12-16 03:06:19 -0600 (Tue, 16 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/krule/java/org/mulgara/krule/KruleLoader.java
+
+Added better logging for exceptions, and made debug logs optional
+------------------------------------------------------------------------
+r1418 | pag | 2008-12-16 03:03:01 -0600 (Tue, 16 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteSessionWrapperSession.java
+
+Correctly reporting rule exceptions which were never reported correctly. Also removed an unneeded warning suppression
+------------------------------------------------------------------------
+r1417 | ronald | 2008-12-14 22:05:22 -0600 (Sun, 14 Dec 2008) | 6 lines
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseOperationContext.java
+
+Fix local-URI creation when canonocalizing the graph URI. Previously it was
+ignoring the port, causing graph-lookup failures whenever the server was
+running on a non-default RMI port and being accessed using anything but the
+canonical hostname.
+
+This fix also makes sure any user-info and query gets preserved too.
+------------------------------------------------------------------------
+r1416 | ronald | 2008-12-14 22:05:14 -0600 (Sun, 14 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ConstraintOperations.java
+
+Trivial formatting fix in debug log message.
+------------------------------------------------------------------------
+r1415 | pag | 2008-12-07 21:02:00 -0600 (Sun, 07 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/Parser.java
+
+Handling the "a" keyword
+------------------------------------------------------------------------
+r1414 | pag | 2008-12-07 21:00:41 -0600 (Sun, 07 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Load.java
+
+Wrapped the source URI in <> in the textual representation of this command.
+------------------------------------------------------------------------

@@ -1,0 +1,81 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Containers and Collections</title>
+    <meta name="keywords" content="Containers, Collections, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+    
+		<a href="/system/jrdfconcol.html#o2527">Triple Factory</a>
+		
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/system/jrdfmemory.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/system/jrdfvisitor.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/system/jrdf.html">Java RDF (JRDF)</a></p>
+<p class="relateditem"><a href="/system/jrdfapis.html">JRDF APIs</a></p>
+<p class="relateditem"><a href="/system/jrdfgraphs.html">JRDF Graphs</a></p>
+<p class="relateditem"><a href="/system/jrdfgraphs.html#o2479">Querying a JRDF Graph</a></p>
+<p class="relateditem"><a href="/system/jrdftks.html">TKS Client Support</a></p>
+<p class="relateditem"><a href="/system/jrdfmemory.html">JRDF Memory Implementation</a></p>
+<p class="relateditem"><a href="/system/jrdfvisitor.html">Built-in Visitor Pattern</a></p>
+<p class="relateditem"><a href="/system/jrdfexamples.html">Examples</a></p>
+
+ -->
+
+
+
+<h3>Containers and Collections</h3>
+
+<p>JRDF supports RDF collections and containers, which are added using the JRDF graph's TripleFactory.</p>
+
+<p>JRDF containers implement the <code>java.util.Collection</code> interface and include:</p>
+<ul><li>Alternative
+<p class="listcontinue">An unordered list of statements with no duplicates. It represents a set of objects that are semantically the same.</p>
+</li><li>Bag
+<p class="listcontinue">An unordered list of statements allowing duplicates.</p>
+</li><li>Sequence
+<p class="listcontinue">An ordered list of statements allowing duplicates. Statements are returned in a first in, first out (FIFO) order.</p>
+</li></ul>
+<p>JRDF collections hold all the statements of a particular group and are represented as a linked list. Collections do not implement <code>java.util.Collection</code>.</p>
+
+
+<div class="anchor"><a name="o2527">&nbsp;</a></div>
+<h4>Triple Factory</h4>
+
+<p>A TripleFactory, obtained from a JRDF graph, is used to insert collections and containers, and for reification of triples for the graph.</p>
+
+<p>Triples are reified by providing a SubjectNode and the triple to be reified.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

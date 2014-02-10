@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  RDF Schema declaration for the EMiR 0.2
+  revision 1.3 [2001/08/29 17:48pm PST]
+
+  changes:
+  changed name from Metamail to EMiR
+    EMiR: Email Modelled in RDF
+  changed URI references to point to http://xmlns.filsa.org/emir/0.2/
+  lowercased all property lables in accordance with conventions
+
+  comments, etc. to phil@filsa.net
+  See http://wiki.filsa.net/cms/moin.cgi/MaiListSchema for more dev info
+  This schema lives at http://xmlns.filsa.org/emir/0.2/
+-->
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:wn="http://xmlns.com/wordnet/1.6/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <!-- CLASS DEFINITIONS:
+      Message
+      MailingList
+  -->
+  <rdfs:Class rdf:about="http://xmlns.filsa.net/emir/0.2/#Message" rdfs:label="message" rdfs:comment="a metamail subclass of wordnet Email, an email message.">
+    <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Email"/>
+    <rdfs:isDefinedBy rdf:resource="http://xmlns.filsa.org/emir/0.2/"/>
+  </rdfs:Class>
+  <rdfs:Class rdf:about="http://xmlns.filsa.net/emir/0.2/#Attachment" rdfs:label="message" rdfs:comment="a subclass of an email message which represents an attachement">
+    <rdfs:subClassOf rdf:resource="#Message"/>
+    <rdfs:isDefinedBy rdf:resource="http://xmlns.filsa.org/emir/0.2/"/>
+  </rdfs:Class>
+  <rdfs:Class rdf:about="http://xmlns.filsa.net/emir/0.2/#Mailing_List" rdfs:label="mailing list" rdfs:comment="a metamail subclass of wordnet Mailing_List">
+    <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Mailing_List"/>
+    <rdfs:isDefinedBy rdf:resource="http://xmlns.filsa.org/emir/0.2/"/>
+  </rdfs:Class>
+  <!-- PROPERTY DEFINITIONS:
+      Subject
+      Date
+      To, From, Cc
+      MessageId, InReplyTo, References
+      ArchiveURL
+      Body <- not sure about this one.... redundant w/ ArchiveUrl?
+  -->
+  <rdf:Property rdf:about="http://xmlns.filsa.net/emir/0.2/#subject" rdfs:label="subject" rdfs:comment="Subject of the message">
+    <rdfs:isDefinedBy rdf:resource="http://xmlns.filsa.org/emir/0.2/"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/title"/>
+  </rdf:Property>
+  <rdf:Property rdf:about="http://xmlns.filsa.net/emir/0.2/#date" rdfs:label="date" rdfs:comment="Message Date">
+    <rdfs:isDefinedBy rdf:resource="http://xmlns.filsa.org/emir/0.2/"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/date"/>
+  </rdf:Property>
+  <rdf:Property rdf:about="http://xmlns.filsa.net/emir/0.2/#to" rdfs:label="to" rdfs:comment="the recipient[s] of the Message">
+    <rdfs:isDefinedBy rdf:resource="http://xmlns.filsa.org/emir/0.2/"/>
+  </rdf:Property>
+  <rdf:Property rdf:about="http://xmlns.filsa.net/emir/0.2/#from" rdfs:label="from" rdfs:comment="the  sender[s] of the Message">
+    <rdfs:isDefinedBy rdf:resource="http://xmlns.filsa.org/emir/0.2/"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/contributor"/>
+  </rdf:Property>
+  <rdf:Property rdf:about="http://xmlns.filsa.net/emir/0.2/#cc" rdfs:label="cc" rdfs:comment="Carbon copy recipients of the Message">
+    <rdfs:isDefinedBy rdf:resource="http://xmlns.filsa.org/emir/0.2/"/>
+  </rdf:Property>
+  <rdf:Property rdf:about="http://xmlns.filsa.net/emir/0.2/#bcc" rdfs:label="bcc" rdfs:comment="Blind carbon copy recipients of the Message">
+    <rdfs:isDefinedBy rdf:resource="http://xmlns.filsa.org/emir/0.2/"/>
+  </rdf:Property>
+  <rdf:Property rdf:about="http://xmlns.filsa.net/emir/0.2/#messageid" rdfs:label="messageId" rdfs:comment="The unique Message-Id">
+    <rdfs:isDefinedBy rdf:resource="http://xmlns.filsa.org/emir/0.2/"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/identifier"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:Property>
+  <rdf:Property rdf:about="http://xmlns.filsa.net/emir/0.2/#inreplyto" rdfs:label="inReplyTo" rdfs:comment="In-Reply-To header. The message id of the parent message">
+    <rdfs:isDefinedBy rdf:resource="http://xmlns.filsa.org/emir/0.2/"/>
+  </rdf:Property>
+  <rdf:Property rdf:about="http://xmlns.filsa.net/emir/0.2/#references" rdfs:label="references" rdfs:comment="References. A message-id of a related message. may have multiple references.">
+    <rdfs:isDefinedBy rdf:resource="http://xmlns.filsa.org/emir/0.2/"/>
+  </rdf:Property>
+  <rdf:Property rdf:about="http://xmlns.filsa.net/emir/0.2/#archiveurl" rdfs:label="archiveUrl" rdfs:comment="Archive URL: the url where this message is archived. may have more than one archive location.">
+    <rdfs:isDefinedBy rdf:resource="http://xmlns.filsa.org/emir/0.2/"/>
+  </rdf:Property>
+  <rdf:Property rdf:about="http://xmlns.filsa.net/emir/0.2/#body" rdfs:label="body" rdfs:comment="Body of the message. can be a literal or a resource location of the body.">
+    <rdfs:isDefinedBy rdf:resource="http://xmlns.filsa.org/emir/0.2/"/>
+  </rdf:Property>
+  <rdf:Property rdf:about="http://xmlns.filsa.net/emir/0.2/#hasAttachment" rdfs:label="hasAttachment" rdfs:comment="Denotes that there is an attachment.">
+    <rdfs:isDefinedBy rdf:resource="http://xmlns.filsa.org/emir/0.2/"/>
+    <rdfs:domain rdf:resource="#Message"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://xmlns.filsa.net/emir/0.2/#size" rdfs:label="size" rdfs:comment="Size of an attachment.  Double.">
+    <rdfs:isDefinedBy rdf:resource="http://xmlns.filsa.org/emir/0.2/"/>
+    <rdfs:domain rdf:resource="#Attachment"/>
+    <rdfs:range>
+      <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#double"/>
+    </rdfs:range>
+  </rdf:Property>
+  <rdf:Property rdf:about="http://xmlns.filsa.net/emir/0.2/#filename" rdfs:label="filename" rdfs:comment="File name of an attachment.  Always a literal and may represent improper URIs.">
+    <rdfs:isDefinedBy rdf:resource="http://xmlns.filsa.org/emir/0.2/"/>
+    <rdfs:domain rdf:resource="#Attachment"/>
+  </rdf:Property>
+  <!-- Properties we should handle....
+
+Subject: [Literal, dc:Title?]
+Date: [check rfc @@]
+,118.44
+
+subclass of eMail address
+To: [mail-address]
+From: [mail-address]
+Cc: [list [mail address]]
+
+eMail address properties
+mail address: [mbox, label]
+mbox: [addr-spec]
+
+Internet Message ID [check rfc @@]
+References:
+In-Reply-To:
+Message-Id:
+
+Mailing List related Headers: not sure how many of these actually need suport, just listing them for completeness' sake.
+Some mailers/ml softwar use variants of these...
+
+List-name:
+List-subscribe:
+List-unsubscribe:
+List-archive: (also X-List-archive:)
+List-software:
+List-Digest:
+Thread-Topic:
+Thread-Index: -->
+</rdf:RDF>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<project name="resolver-null" default="resolver-null-jar" basedir="../../..">
+
+  <path id="resolver-null-classpath">
+
+    <path refid="common-classpath"/>
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+  </path>
+
+  <path id="resolver-null-test-classpath">
+    <path refid="resolver-null-classpath"/>
+    <fileset file="${resolver-null.dist.dir}/${resolver-null.jar}"/>
+  </path>
+
+  <target name="resolver-null-clean" description="Removes all compile generated files for the resolver-null">
+    <tstamp/>
+    <delete dir="${resolver-null.obj.dir}"/>
+    <delete dir="${resolver-null.test.dir}"/>
+    <delete dir="${resolver-null.dist.dir}"/>
+  </target>
+
+  <target name="-resolver-null-prepare" description="Creates all directories associated with the resolver-null's compilation"
+          depends="-prepare-build">
+    <mkdir dir="${resolver-null.obj.dir}"/>
+    <mkdir dir="${resolver-null.test.dir}"/>
+    <mkdir dir="${resolver-null.dist.dir}"/>
+    <mkdir dir="${resolver-null.obj.dir}/classes"/>
+  </target>
+
+  <target name="resolver-null-compile" depends="-resolver-null-prepare, resolver-spi-jar, util-jar"
+          description="Compiles all resolver-null related files included generated source code">
+    <javac destdir="${resolver-null.obj.dir}/classes" debug="on" deprecation="on" source="1.5">
+      <classpath refid="resolver-null-classpath"/>
+      <src path="${resolver-null.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="resolver-null-jar" depends="resolver-null-compile, -resolver-null-jar-uptodate"
+          unless="resolver-null.jar.uptodate" description="Builds the File Resolver JAR">
+    <jar jarfile="${resolver-null.dist.dir}/${resolver-null.jar}">
+      <fileset dir="${resolver-null.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-resolver-null-jar-uptodate">
+    <uptodate property="resolver-null.jar.uptodate" targetfile="${resolver-null.dist.dir}/${resolver-null.jar}">
+      <srcfiles dir="${resolver-null.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="resolver-null-dist" depends="resolver-null-jar" unless="resolver-null.uptodate"
+          description="Performs all tasks related to finalising this resolver-null and readying it for distribution">
+  </target>
+
+  <target name="resolver-null-test" depends="resolver-null-jar">
+    <antcall target="component-test">
+      <param name="classpath.id" value="resolver-null-classpath"/>
+      <param name="dir" value="${resolver-null.src.dir}"/>
+      <param name="jar" value="${resolver-null.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-null-javadoc" depends="resolver-null-jar" description="Creates the javadoc for this resolver-null">
+    <antcall target="javadoc">
+      <param name="javadoc.package" value="org.mulgara.resolver.file.*"/>
+      <param name="javadoc.classpath" value="resolver-null-classpath"/>
+      <param name="javadoc.sourcepath" value="${resolver-null.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-null-help" description="Displays the help information for this resolver-null">
+    <echo message="Welcome to the build script for ${resolver-null.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+    <java fork="false" classname="org.apache.tools.ant.Main" newenvironment="false">
+      <jvmarg value="${arch.bits}"/>
+      <arg line="-buildfile ${resolver-null.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+
+</project>

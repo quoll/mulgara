@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+
+  <!-- ==================================================================== -->
+  <!-- Project settings                                                     -->
+  <!-- ==================================================================== -->
+  <display-name>Mulgara Semantic Store</display-name>
+  <description>
+    WAR wrapper for a Mulgara server.
+  </description>
+
+
+  <!-- ==================================================================== -->
+  <!-- Parameters                                                           -->
+  <!-- ==================================================================== -->
+  <context-param>
+    <param-name>mulgara.security.policy</param-name>
+    <param-value>/WEB-INF/conf/mulgara.policy</param-value>
+  </context-param>
+  <context-param>
+    <param-name>mulgara.security.ldap</param-name>
+    <param-value>/WEB-INF/conf/ldap.conf</param-value>
+  </context-param>
+  <context-param>
+    <param-name>mulgara.log4j.config</param-name>
+    <param-value>/WEB-INF/conf/log4j-mulgara-war.properties</param-value>
+  </context-param>
+  <context-param>
+    <param-name>mulgara.config.hostname</param-name>
+    <param-value>localhost</param-value>
+  </context-param>
+  <context-param>
+    <param-name>mulgara.config.servername</param-name>
+    <param-value>server1</param-value>
+  </context-param>
+  <context-param>
+    <param-name>mulgara.config.persistencepath</param-name>
+    <param-value>/tmp/mulgara</param-value>
+  </context-param>
+  <context-param>
+    <param-name>lucene.index.dir</param-name>
+    <param-value>/tmp/mulgara/text_index</param-value>
+  </context-param>
+
+
+  <!-- ==================================================================== -->
+  <!-- Mulgara servlets                                                       -->
+  <!-- ==================================================================== -->
+  <servlet>
+    <servlet-name>Mulgara</servlet-name>
+    <servlet-class>org.mulgara.server.ServletMulgaraServer</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet>
+    <servlet-name>SPARQL</servlet-name>
+    <servlet-class>org.mulgara.protocol.http.SparqlServlet</servlet-class>
+    <!-- <servlet-class>org.mulgara.protocol.http.PublicSparqlServlet</servlet-class> -->
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+
+  <servlet>
+    <servlet-name>TQL</servlet-name>
+    <servlet-class>org.mulgara.protocol.http.TqlServlet</servlet-class>
+    <load-on-startup>3</load-on-startup>
+  </servlet>
+
+  <servlet>
+    <servlet-name>MulgaraWebUI</servlet-name>
+    <servlet-class>org.mulgara.webquery.QueryServlet</servlet-class>
+    <load-on-startup>4</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>SPARQL</servlet-name>
+    <url-pattern>/sparql/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>TQL</servlet-name>
+    <url-pattern>/tql/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>MulgaraWebUI</servlet-name>
+    <url-pattern>/webui/*</url-pattern>
+  </servlet-mapping>
+
+  <!-- ==================================================================== -->
+  <!-- Servlet container settings                                           -->
+  <!-- ==================================================================== -->
+  <session-config>
+    <session-timeout>15</session-timeout>
+  </session-config>
+
+  
+</web-app>

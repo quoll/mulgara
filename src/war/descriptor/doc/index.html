@@ -1,0 +1,640 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.o../xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+  <title>Mulgara Descriptor Tutorials</title>
+<link media="all" href="/all.css" type="text/css" title="Default" rel="stylesheet">
+<link media="screen" href="/default.css" type="text/css" title="Default" rel="stylesheet">
+<link media="print" href="/print.css" type="text/css" rel="stylesheet">
+<link href="/burnt.css" title="Burnt" media="screen" type="text/css" rel="alternate stylesheet">
+<link rel="icon" type="text/png" href="/images/icons/siteicon.png">
+<link rel="shortcut icon" type="text/png" href="/images/icons/siteicon.png">
+</head>
+
+<body>
+<div id="container">
+
+  <!-- Banner -->
+  <div id="banner">
+    <h1>mulgara.sourceforge.net</h1>
+  </div>
+
+  <div id="content">
+    <div id="breadcrumb">
+      [ Location:
+      <ul>
+        <li> <a href="/webservices/descriptor/" title="descriptors">descriptors</a> </li>
+          <ul>
+            <li>documentation</li>
+          </ul>
+      </ul>  ]
+  </div>  
+<h1>Mulgara Descriptors</h1>
+   
+<ul>
+    <li>Introduction<br>
+   </li>
+   <li>Namespaces<br>
+   </li>
+   <li>XSL query tag</li>
+    <li>XSL descriptor tag</li>
+   <li>Reserved Parameters - _self, _target, _source</li>
+   <li>FAQ - Frequently Asked Questions</li>
+   <li>Common Problems<br>
+   </li>
+   
+</ul>
+   
+<h2>Introduction</h2>
+ Descriptors are composed of several components:<br>
+ 
+<ul>
+   <li>Extensions to XSL&nbsp;</li>
+   
+  <ul>
+     <li>query tag enables Mulgara iTQL queries to be performed in XSL stylesheets</li>
+     <li>descriptor tag enables one descriptor to call another</li>
+   
+  </ul>
+   <li>Java Objects which invoke descriptors and return their results</li>
+   <li>Java Servlets which invoke descriptors using HTTP</li>
+   <li>SOAP endpoints which enable all descriptors to be accessable as a
+SOAP service.</li>
+ 
+</ul>
+ A Descriptor is therefore an XSL stylesheet that performs a specific, well 
+defined task. &nbsp;Useful tasks include<br>
+ 
+<ul>
+   <li>Hide complex Mulgara queries behind a simple interface</li>
+   <li>Complex data can be aggregated by descriptors calling other descriptors</li>
+   <li>HTML front ends to Mulgara queries can be rapidy developed</li>
+   <li>Descriptors are fast, not much slower than working with the API directly.<br>
+   </li>
+ 
+</ul>
+ Advantages to working with descriptors over using an API include<br>
+ 
+<ul>
+   <li>Defining an interface for client while allowing the implementation 
+to evolve, even at runtime (live development)</li>
+   <li>Descriptors are referenced as URLs, so Mulgara servers may use descriptors 
+from remote machines.</li>
+   <li>Descriptor interfaces are well defined in RDF so humans or applications 
+can discover descriptors that meet their needs.</li>
+   <li>Descriptors are SOAP accessable and are therefore usable from other 
+languages and platforms such as .NET, VB, Perl etc.<br>
+   </li>
+ 
+</ul>
+ Disadvantages when <i>Developing</i> Descriptors are:  
+<ul>
+   <li>Knowledge of XSL required</li>
+   <li>Debugging may be tricky when using deeply embedded descriptors due 
+to layers of components involved.</li>
+   <li>When working with large XML results memory and/or CPU requirements 
+will be higher than using the API directly.</li>
+ 
+</ul>
+ Disadvantages when <i>Using</i> Descriptors are:<br>
+ 
+<ul>
+   <li>Parameters may currently only be strings, this may change in future 
+to support complex types</li>
+   <li>No session type functionality when developing HTML web apps (unless 
+used from application server)</li>
+   <li>Descriptors do currently not declare their capabilties in a machine 
+understandable manner, in future versions this will be rectified.</li>
+   <li>NO DTD or Schema is defined for the data returned, Developer needs 
+to 'eyeball' the structure. &nbsp;This will be changed in a future version 
+of descriptors.<br>
+   </li>
+ 
+</ul>
+ <b></b> 
+<h2>Namespaces<br>
+ </h2>
+ <b>NOTE</b> all tags must be in a certain namespace in order to be recognized 
+as XSL extensions, when using descriptors created by the descriptor Wizard 
+a prefix of mulgaraDescriptor such be used e.g.<br>
+ <br>
+ &lt;mulgaraDescriptor:query&gt;<br>
+ &nbsp;&nbsp;&nbsp; perform Mulgara Query<br>
+ &lt;/mulgaraDescriptor:query&gt;<br>
+ <br>
+ <br>
+ &lt;mulgaraDescriptor:descriptor<br>
+ &nbsp;&nbsp;&nbsp; call Mulgara Descriptor<br>
+ /&gt;<br>
+ <br>
+ The documentation below leaves out these name spaces for clarity. 
+<h2>XSL query Tag</h2>
+ The query tag is an extension to XSL that enables Mulgara queries to be made
+from an XSL stylesheet. &nbsp;<br>
+  <br>
+ &lt;query&gt;<br>
+ &lt;!CDATA[[<br>
+ select $person from &lt;rmi://host/server1#people&gt; where $person &lt;http://foo#hasName&gt; 
+'James Gosling';<br>
+ ]]&gt;<br>
+ &lt;/query&gt;<br>
+ <br>
+ The result of a query is XML with the answer to the query, if any. &nbsp;Answers 
+are normally transformed into something more suitable for the client or into 
+a presentation format such as HTML or PDF. &nbsp; Other descriptors make calls
+on a descriptor to perform a task without needing to know how that task is
+performed, e.g. return the title of a document in between 2 &lt;title&gt; 
+tags.<br>
+ <br>
+ Most queries will need some parameters in order to make the queries reusable 
+across servers and models, e.g. most will take the model as a parameter. &nbsp;The
+model parameter can simply be inserted in several ways as specified in the
+XSL specification, however because the query is in a CDATA segment breaking
+out of it makes the query not easily human readable e.g.<br>
+ <br>
+ &lt;query&gt;<br>
+ &lt;!CDATA[[<br>
+  select $person from &lt;]]&gt;&lt;xsl:variable select="$model"/&gt;&lt;!CDATA[[&gt; 
+where $person &lt;http://foo#hasName&gt; 'James Gosling';<br>
+  ]]&gt;<br>
+ &lt;/query&gt;<br>
+ <br>
+ The query tag has a workaround to avoid having to do this. &nbsp;If any
+string in the CDATA section is surrounded by @@ symbols then the string is
+replaced with the value of an attribute of the same name in the query tag,
+this is best explained by an example:<br>
+ <br>
+ &lt;query model="rmi://host/server1#people"&gt;<br>
+  &lt;!CDATA[[<br>
+  select $person from &lt;@@model@@&gt; where $person &lt;http://foo#hasName&gt; 
+'James Gosling';<br>
+  ]]&gt;<br>
+  &lt;/query&gt;<br>
+ <br>
+ When the descriptor is executing this element it substitutes rmi://host/server1# 
+for @@model@@ before passing the query to Mulgara. &nbsp;By specifing the parameter 
+as an Descriptor parameter the value can be passed in by the client e.g.<br>
+ <br>
+ &lt;query model="{$model}"&gt;<br>
+   &lt;!CDATA[[<br>
+   select $person from &lt;@@model@@&gt; where $person &lt;http://foo#hasName&gt; 
+'James Gosling';<br>
+   ]]&gt;<br>
+   &lt;/query&gt;<br>
+ <br>
+ If the descriptor was created with a model parameter defined as a string 
+this query is now portable across models. &nbsp;The substitution is unrestricted 
+i.e. it is not limited to models, any string can be substituted.<br>
+ 
+<h2>XSL descriptor Tag </h2>
+ The descriptor tag is an extension to XSL that enables a descriptor (i.e. 
+XSL stylesheet) to call another descriptor and operate on the output of the 
+called descriptor. &nbsp;This effectively allows subtasking or delegation 
+of tasks to other descriptors whose implementations may evolve over time.<br>
+ <br>
+ &lt;descriptor _target="http://foo/descriptors/extractPeopleAsHtml.xsl"
+/&gt;<br>
+ <br>
+ The above tag executes the descriptor located at http://foo/descriptors/extractPeopleAsHtml.xsl 
+and returns the output into the output stream of the XSL transformer i.e. 
+it as if the result of the called (target) descriptor was part of the source 
+descriptor.<br>
+ <br>
+ <b>NOTE</b> any attributes being with an underscore '_' are reserved and 
+are internal to the descriptor. &nbsp;<br>
+ <br>
+ The attribute _target specifies the descriptor to invoke, if the descriptors 
+full URL is NOT known but its relative URL is known then a relative URL can 
+be used if the source URL of the source descriptor is included as a _source 
+attribute, e.g.<br>
+ <br>
+ &lt;descriptor _target="extractPeopleAsHtml.xsl"&nbsp; _source="http://foo/descriptors/extractPeopleAndCompaniesAsHTML.xsl" 
+/&gt;<br>
+ <br>
+ This allows the descriptor code to build a complete URL for the target descriptor, 
+however since descriptors do NOT know their URL until invoked (i.e. they are
+told) the tag above is more often used in the form below.<br>
+ <br>
+ &lt;descriptor _target="extractPeopleAsHtml.xsl"&nbsp; _source="{$_self}" 
+/&gt;<br>
+ <br>
+ _self is a special parameter passed to all descriptors on invokation, it 
+is set to the URL of the descriptor, this oddity is due to the fact that descriptors
+have no URL until they are deployed, when they are deployed they assume the
+URL they were loaded in as. &nbsp;Therefore the above descriptor will be
+located as long as it is in the same directory as the calling (source descriptor).<br>
+ <br>
+ Descriptor parameters are specified as attributes on the descriptor tag, 
+using our previous example where we extracted people from a model, where the
+model had to be specifed the tag could look like this.<br>
+ <br>
+ &lt;descriptor _target="extractPeopleAsHtml.xsl"&nbsp; _source="{$_self}" 
+model="{$model}"/&gt;<br>
+ <br>
+ If some attributes are long it is preferable to format the tag like this:<br>
+ <br>
+ &lt;descriptor <br>
+ &nbsp;&nbsp;&nbsp; _target="extractPeopleAsHtml.xsl"&nbsp; <br>
+ &nbsp;&nbsp;&nbsp; _source="{$_self}" <br>
+ &nbsp;&nbsp;&nbsp; model="{$model}"/&gt;<br>
+ <br>
+ 
+<h2>Reserved Parameters<br>
+ </h2>
+ Several parameters have special meanings which may be different depending 
+on the context (Element, XSL, HTTP/SOAP)<br>
+ <br>
+ 
+<table cellpadding="2" cellspacing="2" border="1" width="100%">
+   <tbody>
+     <tr>
+       <th valign="top" align="center">Parameter</th>
+       <th valign="top">Descriptor Element<br>
+       </th>
+       <th valign="top" align="center">XSL<br>
+       </th>
+       <th valign="top" align="center">HTTP/SOAP<br>
+       </th>
+     </tr>
+     <tr>
+       <td valign="top">_self<br>
+       </td>
+       <td valign="top">N/A<br>
+       </td>
+       <td valign="top">Is set to the URL of the descriptor being invoked<br>
+       </td>
+       <td valign="top">Set to the URL of the descriptor to invoke<br>
+       </td>
+     </tr>
+     <tr>
+       <td valign="top">_target<br>
+       </td>
+       <td valign="top">Set to the URL of the descriptor to invoke<br>
+       </td>
+       <td valign="top">N/A<br>
+       </td>
+       <td valign="top">N/A<br>
+       </td>
+     </tr>
+     <tr>
+       <td valign="top">_source<br>
+       </td>
+       <td valign="top">Set to the URL of the current descriptor being invoked<br>
+       </td>
+       <td valign="top">N/A<br>
+       </td>
+       <td valign="top">N/A<br>
+       </td>
+     </tr>
+     <tr>
+       <td valign="top">_cacheClear<br>
+       </td>
+       <td valign="top">see HTTP<br>
+       </td>
+       <td valign="top">see HTTP<br>
+       </td>
+       <td valign="top"><b>DEVELOPMENT ONLY</b><br>
+       <br>
+ if set to any value as a HTTP parameter this causes all cached Descriptors 
+to be cleared. &nbsp;This is useful to a developer when testing a descriptor. 
+&nbsp;Ordinarily descriptors are cached for performance and do not know if 
+they have changed unless the cache is cleared.<br>
+       </td>
+     </tr>
+   
+  </tbody> 
+</table>
+ <br>
+ <b>NOTE</b> depending on context, some variables ARE set (e.g. _self) while 
+others need to BE set (e.g. _target).<br>
+ <br>
+ 
+<h2>FAQ - Frequently Asked Questions<br>
+ </h2>
+ Descriptors depend on a lot of disparate technologies therefore there is 
+no single point of failure which can make debugging a descriptor frustrating 
+unless you have knowledge over the underlying technologies (XSL, Servlets, 
+SOAP). &nbsp;Some of the most common pitfalls and solutions are summarized 
+here. 
+<h3>How do I create a Descriptor ?</h3>
+ Use the Descriptor wizard - available as a task from the <a href="../"
+ target="descriptor">Descriptor Management</a> page. 
+<h3>How do I execute an iTQL query ?</h3>
+ There are 2 ways to execute an iTQL query:<br>
+ <br>
+ 1) use the iTQL command line client<br>
+ 2) use the built in GUI <a href="../webui/" target="webui">Mulgara viewer</a> 
+<h3>How do I deploy the built in Descriptors ?<br>
+ </h3>
+ Use one of the Deploy built in descriptors tasks from the <a
+ href="file:///mnt/home/keith/work/mulgara/src/war/descriptor/"
+ target="descriptor">Descriptor Management</a> page. &nbsp;There are 2 tasks 
+available e to deploy the built in descriptors. &nbsp;One task completely 
+removes all descriptors before redeploying the built in ones, while the other 
+deploys the built in descriptors while preserving the exisiting descriptors 
+- such as the ones you may have developed. 
+<h3>How do I deploy my descriptor ?</h3>
+    To use a descriptor it must be deployed in a Mulgara database. &nbsp;Deployment
+  is simple, all that is required is that the RDF embedded in the descriptor
+  XSL file is loaded into a model in a Mulgara database.<br>
+    <br>
+    Start an iTQL client TODO link.<br>
+    <br>
+    Check if the descriptor model already exists TODO link<br>
+    <br>
+    To deploy simply load the descriptor XSL file into this model:<br>
+    <br>
+    iTQL&gt; load &lt;file:/home/joe/work/helloworld.xsl&gt; into &lt;rmi://localhost/server1#descriptors&gt;;<br>
+    <br>
+ <b>   NOTE</b> the location of the descriptor MUST be readable to the Mulgara 
+server.<br>
+    <br>
+    If the there were no errors in the XSL then the Descriptor is now deployed
+  and available for use, if there were errors check your XML for bad syntax
+  such as unclosed tags. &nbsp;The Descriptor wizard generates correct XML
+ and XSL.<br>
+ <b><br>
+ NOTE </b>the EXACT URL used to load the descriptor is the URL you MUST use 
+when invoking the descriptor from a client (SOAP, Java, descriptor). &nbsp;i.e. 
+you can not load a descriptor using a file URL and then try and use if from 
+a HTTP url - even if its on a web server, if it is to be used from a web server
+then it should be loaded with a HTTP url after it has been put on the webserver
+e.g. if the file above was on a web server under a work directory e.g. /home/joe/work/
+is equivalent to http://foo/joe/work then the descriptor should be deployed
+like this:<br>
+ <br>
+    iTQL&gt; load &lt;http:/foo//joe/work/helloworld.xsl&gt; into &lt;rmi://localhost/server1#descriptors&gt;;<br>
+   <br>
+ When descriptors are deployed as HTTP URL they are accessable by any clients 
+with HTTP access, including anywhere on the internet if accessable through 
+a firewall. 
+<h3><b>I can't invoke my descriptor.</b></h3>
+ First see if the descriptor model exists on the Mulgara server TODO link. &nbsp;If 
+it does then check if your descriptor is deployed TODO link. &nbsp;If you 
+have changed any of the parameters required, their types or anything else 
+from you entered from the Descriptor Wizard then you will have to redeploy, 
+the easiest way to do this is to redeploy the built in descriptors and redeploy 
+your descriptor. 
+<h3><b>How do I check if the descriptor model exists on a Mulgara server ?</b></h3>
+ There are 2 ways to check if the descriptor model exists<br>
+ <br>
+ 1) Use the lists descriptor task from the <a href="../">Descriptor Management 
+</a>page, if it fails no descriptor model exists and the built in descriptor 
+should be deployed TODO link<br>
+ 2) Use an iTQL query <br>
+ <br>
+ Execute this query (see *TODO* here for how to execute an iTQL query.)<br>
+ <br>
+  select $model from &lt;rmi://HOSTNAME/server1#&gt; where $model &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt;
+ &lt;http://tucana.org/tucana#Model&gt;;<br>
+  <br>
+  <b>NOTE</b> replace HOSTNAME with the fully qualified hostname of the Mulgara 
+server e.g. foo.bar.com and not just foo.<br>
+  <br>
+  This query will return all models on the server, if there is no #descriptor 
+model then you should deploy the built in descriptors and any descriptors 
+you have developed. &nbsp; 
+<h3><b>How do I check if my descriptor is deployed ?</b></h3>
+ Descriptors must be deployed before use. &nbsp;The Mulgara code that invokes 
+descriptors looks up the parameters a descriptor uses as well as other information 
+before it invokes a descriptor, if the descriptor has not been deployed then 
+the code &nbsp;does not know how to invoke it and will have errors. <br>
+ <br>
+ First make sure the built in descriptors are deployed TODO link, then select 
+the See List of Descriptor on this host task from the <a href="../">Descriptor 
+Management</a> page. 
+<h3>What is the life cycle of a Descriptor ?</h3>
+ When a descriptor is first invoked the descriptor code retrieves the descriptor 
+from its URL and creates a java object representing that descriptor. &nbsp;The 
+XSL transformer processes the XSL stylesheet into an internal form which only
+happens once. &nbsp;This descriptor object is placed in a free pool for use,
+when used it is placed &nbsp;in a busy pool until it has performed its duty,
+then it is returned to the free pool. &nbsp;If a client requests a descriptor
+and an instance is already in the busy pool and new instance is created and
+made available, both descriptors will eventually return to the free pool.
+&nbsp;Descriptors are NOT currently garbage collected, the pool grows to
+the size needed and stays that size, it is not expected that these pools
+will get very large - especially in comparison to resources in a Mulgara server.
+&nbsp;This may change in future. &nbsp;There is a facility to purge all the
+cached descriptors - see here TODO 
+<h3>How do I empty the Descriptor Cache ?</h3>
+ This task is available from the <a href="../">Descriptor Management</a>
+page. 
+<h3>I've changed my Descriptor XSL code but when invoked it does not notice 
+my changes, whats wrong ?</h3>
+ Descriptors are downloaded and processed into Java Objects which are cached 
+and reused. &nbsp;If you have changed the logic in a descriptor but NOT the 
+parameters, mime type etc. (i.e. everything specified in the Descriptor Wizard) 
+then you need to clear the Descriptor cache. This task is available from the
+<a href="file:///mnt/home/keith/work/mulgara/src/war/descriptor/">Descriptor Management</a>
+page. &nbsp;If you have added or removed a parameter, mime type etc then
+you will need to re deploy your descriptor TODO link.<br>
+ <br>
+ If the descriptor is on a web server have you published it to the web server?<br>
+ 
+<h3>My Descriptor doesn't work, are errors logged anywhere ?<br>
+ </h3>
+ A file called descriptor-errors.log is created where Mulgara was started from, 
+it will contain the reasons for Descriptors failing, it may also write out 
+a stack trace for more detailed error explanations for example when the XML 
+or XSL parser fails. &nbsp; 
+<h3>Can't have more than one ROOT in a DOM ! Error&nbsp;</h3>
+<h3>org.w3c.dom.DOMException: DOM006 Hierarchy request Error</h3>
+This frequently happens when calling one descriptor from another. &nbsp;The 
+descriptor being called is returning XML with more than one root, this is 
+fine but if you try and store this in a variable or pass it to something expecting
+a single root you will get this error e.g.<br>
+ <br>
+ Descriptor A returns<br>
+ <br>
+ &lt;price&gt;17.55&lt;/price&gt;<br>
+ &lt;album&gt;Is This It&lt;/album&gt;<br>
+ &lt;artist&gt;The Strokes&lt;/artist&gt; <br>
+ <br>
+ Descriptor B calls descriptor A and tries to store the result in a variable, 
+it can not since the XML is not in a tree. &nbsp;Descriptor A should return 
+something like:<br>
+ <br>
+ &lt;cd&gt;<br>
+&lt;price&gt;17.55&lt;/price&gt;<br>
+  &lt;album&gt;Is This It&lt;/album&gt;<br>
+  &lt;artist&gt;The Strokes&lt;/artist&gt; <br>
+ &lt;/cd&gt;<br>
+ <br>
+ The XML now has one root.<br>
+ <br>
+ Note that this can happen where there is some text after a node e.g.<br>
+ <br>
+ &lt;price&gt;17.55&lt;/price&gt;<br>
+ The Strokes<br>
+ <br>
+ There is an invisible text node in the above example, it needs outer &lt;cd&gt; 
+tags like the previous example. If the error is the DOM006 Hierarchy request
+error then it usually means the calling descriptors needs to have tags around
+the descriptor its calling e.g.<br>
+<br>
+Descriptor A returns<br>
+<br>
+ &lt;cd&gt;<br>
+ &lt;price&gt;17.55&lt;/price&gt;<br>
+  &lt;album&gt;Is This It&lt;/album&gt;<br>
+  &lt;artist&gt;The Strokes&lt;/artist&gt; <br>
+ &lt;/cd&gt;<br>
+<br>
+Descriptor B calls descriptor A and descriptor C (similar to A) and simply
+copies them to the output stream. &nbsp;There are now 2 root nodes. &nbsp;As
+previously mentioned put a tag around where the 2 descriptors are called.<br>
+<br>
+ 
+<h3>Can I see how other Descriptors work ? Can I get their source ?<br>
+ </h3>
+ Yes, since all descriptors have to be downloaded to be invoked they can
+be downloaded with a web browser or other mechanism. &nbsp;The Descriptor
+List tasks available from the <a
+ href="file:///mnt/home/keith/work/mulgara/src/war/descriptor/">Descriptor Management</a> 
+page allow you to list descriptors available on your host OR other hosts. 
+&nbsp;The page while lists the descriptors includes a link to download the 
+descriptor. &nbsp;<br>
+ <b>NOTE</b> Some browsers have trouble displaying the descriptor so you
+may have to download the link directly using a right mouse button click.<br>
+ <br>
+ <b>NOTE</b> Some links to local desciptor with file URLs such as file:/home/joe/work/helloworld.xsl 
+will NOT work from some browsers, this is a security feature designed to stop
+web pages accessing local files, you should retrieve the file using a local
+file mananger such as Windows Explorer (and not Internet Explorer).<br>
+ <br>
+ 
+<h3>How do I store the result of a Mulgara query in a variable ?</h3>
+ &lt;<span class="start-tag">xsl:variable</span><span
+ class="attribute-name"> name</span>=<span class="attribute-value">"answer"</span>&gt;<br>
+ 
+<blockquote>          &lt;<span class="start-tag">mulgaraDescriptor:query</span><span
+ class="attribute-name"> model</span>=<span class="attribute-value">"{$model}" 
+  </span><span class="attribute-name">node</span>=<span
+ class="attribute-value">"{$node}"</span>&gt;<br>
+   <span class="cdata">&lt;![CDATA[</span><br>
+   <span class="cdata">            select $predicate from &lt;@@model@@&gt; 
+where &lt;@@node@@&gt; $predicate $object;</span><br>
+   <span class="cdata">            ]]&gt;</span><br>
+ &lt;/<span class="end-tag">mulgaraDescriptor:query</span>&gt;<br>
+ </blockquote>
+             &lt;/<span class="end-tag">xsl:variable</span>&gt;<br>
+ <br>
+ 
+<h3>How do I store the returned data from a descriptor invoked from another 
+descriptor ?</h3>
+ &lt;<span class="start-tag">xsl:variable</span><span
+ class="attribute-name"> name</span>=<span class="attribute-value">"answer"</span>&gt;<br>
+ 
+<blockquote>          &lt;<span class="start-tag">mulgaraDescriptor:query</span><span
+ class="attribute-name"> model</span>=<span class="attribute-value">"{$model}" 
+  </span><span class="attribute-name">node</span>=<span
+ class="attribute-value">"{$node}"</span>&gt;<br>
+   <span class="cdata">&lt;![CDATA[</span><br>
+   <span class="cdata">            select $predicate from &lt;@@model@@&gt; 
+where &lt;@@node@@&gt; $predicate $object;</span><br>
+   <span class="cdata">            ]]&gt;</span><br>
+   <br>
+           &lt;/<span class="end-tag">mulgaraDescriptor:query</span>&gt;<br>
+ </blockquote>
+             &lt;/<span class="end-tag">xsl:variable</span>&gt;<br>
+ 
+<h3>What is the 'Can not convert TREEFRAG into NodeSet' Error ?</h3>
+ The Tree fragment must be converted into a Node set using a XALAN extension, 
+see the next step. 
+<h3>How do I apply the current stylesheets rules to XML returned from a query 
+or another descriptor ?</h3>
+ XSL does not directly allow for this, a XALAN extension must be used. &nbsp;The 
+XML must be converted from a Tree fragment to a proper DOM Nodeset. &nbsp;To 
+apply XML to the the style sheet use something like the following.<br>
+  <span class="comment"><br>
+ </span><br>
+           <span class="comment"></span>&lt;<span class="start-tag">xsl:variable</span><span
+ class="attribute-name"> name</span>=<span class="attribute-value">"answer"</span>&gt;<br>
+ 
+<blockquote>          &lt;<span class="start-tag">mulgaraDescriptor:query</span><span
+ class="attribute-name"> model</span>=<span class="attribute-value">"{$model}" 
+  </span><span class="attribute-name">node</span>=<span
+ class="attribute-value">"{$node}"</span>&gt;<br>
+   <span class="cdata">&lt;![CDATA[</span><br>
+   <span class="cdata">            select $predicate from &lt;@@model@@&gt; 
+where &lt;@@node@@&gt; $predicate $object;</span><br>
+   <span class="cdata">            ]]&gt;</span><br>
+ &lt;/<span class="end-tag">mulgaraDescriptor:query</span>&gt;<br>
+ </blockquote>
+                       &lt;/<span class="end-tag">xsl:variable</span>&gt;<br>
+ <br>
+           <span class="comment"></span><span class="comment">&lt;!-- Now 
+apply the templates to the answer --&gt;</span><br>
+           &lt;<span class="start-tag">xsl:apply-templates</span><span
+ class="attribute-name"> select</span>=<span class="attribute-value">"xalan:nodeset($answer)/*"</span><span
+ class="attribute-name">/</span>&gt;<br>
+ <br>
+ 
+<h3>How can I see the raw XML response from a Mulgara query ?</h3>
+ Simply copy the result to the output stream like this:<br>
+ <br>
+ &lt;<span class="start-tag">xsl:variable</span><span
+ class="attribute-name"> name</span>=<span class="attribute-value">"answer"</span>&gt;<br>
+   
+<blockquote>          &lt;<span class="start-tag">mulgaraDescriptor:query</span><span
+ class="attribute-name"> model</span>=<span class="attribute-value">"{$model}" 
+  </span><span class="attribute-name">node</span>=<span
+ class="attribute-value">"{$node}"</span>&gt;<br>
+    <span class="cdata">&lt;![CDATA[</span><br>
+    <span class="cdata">            select $predicate from &lt;@@model@@&gt; 
+where &lt;@@node@@&gt; $predicate $object;</span><br>
+    <span class="cdata">            ]]&gt;</span><br>
+  &lt;/<span class="end-tag">mulgaraDescriptor:query</span>&gt;<br>
+  </blockquote>
+                        &lt;/<span class="end-tag">xsl:variable</span>&gt;<br>
+  <br>
+            <span class="comment"></span><span class="comment">&lt;!-- Now 
+apply the templates to the answer --&gt;</span><br>
+            &lt;<span class="start-tag">xsl:copy-of</span><span
+ class="attribute-name"> select</span>=<span class="attribute-value">"xalan:nodeset($answer)/*"</span><span
+ class="attribute-name">/</span>&gt;<br>
+ <br>
+ If you are viewing the response in a browser the XML tags may not be visible, 
+wrap them in xmp tags to see them i.e.<br>
+ <br>
+ <span class="comment">&lt;!-- Now apply the templates to the answer --&gt;</span><br>
+ &lt;xmp&gt;<br>
+ &lt;<span class="start-tag">xsl:copy-of</span><span
+ class="attribute-name"> select</span>=<span class="attribute-value">"xalan:nodeset($answer)/*"</span><span
+ class="attribute-name">/</span>&gt;<br>
+ &lt;/xmp&gt; 
+<h3>Why are some XSL parameters or variables written like $model and some 
+like {$model} ?</h3>
+ When refering to a parameter from an element in the XSL namespace it is
+sufficent to refer to it using a $ prefix e.g.<br>
+ <br>
+ &lt;h1&gt;&lt;xsl:value-of select="$title"/&gt;&lt;h1&gt;<br>
+ <br>
+ However when refering to parameters from any other namespace it must be
+surrounded with curly braces {} e.g.<br>
+ <br>
+ &lt;xhtml:a href="{$homepage}"&gt;Home Page&lt;/xhtml:a&gt;<br>
+ <br>
+ and even when using no namespace:<br>
+ <br>
+ &lt;a href="{$homepage}"&gt;Home Page&lt;/a&gt; 
+<h2>Common problems</h2>
+ 
+<ul>
+   <li>Forgetting to specify required descriptor parameters. &nbsp;</li>
+   <li>Not specifying a source URL when calling a relative URL from a descriptor 
+Element</li>
+   <li>Changing parameter requirements and not redeploying.</li>
+   <li>XML syntax problems - use a tool like xmllint</li>
+   <li>XSL syntax problems - use a command line XSL processor</li>
+   <li>redeploying built in descriptors and forgetting to redeploy other
+descriptors<br>
+   </li>
+ 
+</ul>
+ </div>
+ 
+<div align="left">&nbsp;</div>
+   <br>
+</body>
+</html>

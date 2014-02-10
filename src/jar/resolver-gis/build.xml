@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="resolver-gis" default="resolver-gis-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="resolver-gis-classpath">
+    <path refid="common-classpath"/>
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${resolver.dist.dir}/${resolver.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <pathelement path="${lib.dir}/${jrdf.jar}"/>
+    <pathelement path="${lib.dir}/${sesame-model.jar}"/>
+  </path>
+
+  <path id="resolver-gis-test-classpath">
+    <path refid="resolver-gis-classpath"/>
+    <fileset dir="${lib.dir}" includes="**/*.jar" />
+    <fileset dir="${bin.dir}" includes="**/*.jar" />
+    <fileset file="${resolver-gis.dist.dir}/${resolver-gis.jar}"/>
+  </path>
+
+  <target name="resolver-gis-clean"
+          description="Removes all compile generated files for the resolver-gis">
+    <tstamp/>
+    <delete dir="${resolver-gis.obj.dir}"/>
+    <delete dir="${resolver-gis.test.dir}"/>
+    <delete dir="${resolver-gis.dist.dir}"/>
+  </target>
+
+  <target name="-resolver-gis-prepare"
+          description="Creates all directories associated with the resolver-gis's
+                       compilation"
+          depends="-prepare-build">
+    <mkdir dir="${resolver-gis.obj.dir}"/>
+    <mkdir dir="${resolver-gis.test.dir}"/>
+    <mkdir dir="${resolver-gis.dist.dir}"/>
+    <mkdir dir="${resolver-gis.obj.dir}/classes"/>
+  </target>
+
+  <target name="resolver-gis-compile"
+          depends="-resolver-gis-prepare, resolver-jar, resolver-spi-jar, query-jar, tuples-jar, util-jar"
+          description="Compiles all resolver-gis related files included generated
+                       source code">
+    <javac destdir="${obj.dir}/jar/resolver-gis/classes" debug="on"
+           deprecation="on" source="1.5">
+      <classpath refid="resolver-gis-classpath"/>
+      <src path="${resolver-gis.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="resolver-gis-jar"
+          depends="resolver-gis-compile, -resolver-gis-jar-uptodate"
+          unless="resolver-gis.jar.uptodate"
+          description="Creates the resolver-gis's jar/s">
+    <jar jarfile="${resolver-gis.dist.dir}/${resolver-gis.jar}">
+      <fileset dir="${resolver-gis.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-resolver-gis-jar-uptodate">
+    <uptodate property="resolver-gis.jar.uptodate"
+              targetfile="${resolver-gis.dist.dir}/${resolver-gis.jar}">
+      <srcfiles dir="${resolver-gis.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="resolver-gis-dist"
+          depends="resolver-gis-jar"
+          unless="resolver-gis.uptodate"
+          description="Performs all tasks related to finalising this resolver-gis
+                       and readying it for distribution">
+    <!-- All that's involved in the final version of the resolver-gis library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="resolver-gis-test"
+          depends="resolver-gis-jar, dist"
+          description="Carries out unit testing for this resolver-gis">
+    <antcall target="start"/>
+    <antcall target="component-test">
+      <param name="classpath.id" value="resolver-gis-test-classpath"/>
+      <param name="dir" value="${resolver-gis.src.dir}"/>
+      <param name="jar" value="${resolver-gis.jar}"/>
+    </antcall>
+    <antcall target="stop"/>
+  </target>
+
+  <target name="resolver-gis-javadoc"
+          depends="resolver-gis-jar"
+          description="Creates the javadoc for this resolver-gis">
+    <antcall target="javadoc">
+      <param name="javadoc.package" value="org.mulgara.client.jrdf.*"/>
+      <param name="javadoc.classpath" value="resolver-gis-classpath"/>
+      <param name="javadoc.sourcepath" value="${resolver-gis.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-gis-help"
+          description="Displays the help information for this resolver-gis">
+    <!-- This is similar to the main project's help except the information
+         is specific to this resolver-gis -->
+    <echo message="Welcome to the build script for ${resolver-gis.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+      <jvmarg value="${arch.bits}"/>
+      <arg line="-buildfile ${resolver-gis.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

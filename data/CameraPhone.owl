@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF 
+  xmlns="http://www.xfront.com/owl/ontologies/camera/#" 
+  xmlns:owl="http://www.w3.org/2002/07/owl#" 
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.xfront.com/owl/ontologies/camera/">
+  <owl:Ontology>
+      <rdfs:comment>
+      Camera Phone OWL Ontology                           
+    
+    This Version: Keith Ahern
+    Original Author: Roger L. Costello                                   
+    Acknowlegements: Many thanks to the following people for    
+                     their invaluable input:                    
+                        Richard McCullough, Yuzhong Qu,         
+                        Leo Sauermann, Brian McBride and        
+                        Jim Farrugia.                           
+      </rdfs:comment>
+      <owl:imports rdf:resource="http://www.w3.org/2002/07/owl" />
+  </owl:Ontology>
+
+  <owl:ObjectProperty rdf:ID="viewFinder">
+    <rdfs:domain rdf:resource="#Camera"/>
+    <rdfs:range rdf:resource="#Viewer"/>
+  </owl:ObjectProperty>
+  <owl:Class rdf:ID="Window"/>
+  <owl:DatatypeProperty rdf:ID="min">
+    <rdfs:domain rdf:resource="#Range"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="f-stop">
+    <rdfs:domain rdf:resource="#Lens"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="focal-length">
+    <rdfs:domain rdf:resource="#Lens"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:ID="standard">
+    <rdfs:domain rdf:resource="#Phone"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:ID="size">
+    <rdfs:domain rdf:resource="#Lens"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:Class rdf:ID="PurchaseableItem"/>
+  <owl:DatatypeProperty rdf:ID="currency">
+    <rdfs:domain rdf:resource="#Money"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:ID="compatibleWith">
+    <rdfs:domain rdf:resource="#Lens"/>
+    <rdfs:range rdf:resource="#Body"/>
+  </owl:ObjectProperty>
+  <owl:Class rdf:ID="Viewer"/>
+  <owl:Class rdf:ID="Lens">
+    <rdfs:subClassOf rdf:resource="#PurchaseableItem"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Digital">
+    <rdfs:subClassOf rdf:resource="#Camera"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="part"/>
+  <owl:ObjectProperty rdf:ID="cost">
+    <rdfs:domain rdf:resource="#PurchaseableItem"/>
+    <rdfs:range rdf:resource="#Money"/>
+  </owl:ObjectProperty>
+  <owl:Class rdf:ID="Body">
+    <rdfs:subClassOf rdf:resource="#PurchaseableItem"/>
+  </owl:Class>
+  <owl:DatatypeProperty rdf:ID="aperture">
+    <rdfs:domain rdf:resource="#Lens"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:Class rdf:ID="Phone">
+    <rdfs:subClassOf rdf:resource="#PurchaseableItem"/>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:maxCardinality="2" owl:minCardinality="1">
+        <owl:onProperty rdf:resource="#standard"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="body">
+    <rdfs:subPropertyOf rdf:resource="#part"/>
+    <rdfs:domain rdf:resource="#Large-Format"/>
+    <rdfs:domain rdf:resource="#Camera"/>
+    <rdfs:range rdf:resource="#Body"/>
+  </owl:ObjectProperty>
+  <owl:Class rdf:ID="Large-Format">
+    <rdfs:subClassOf rdf:resource="#Camera"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#body"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Money"/>
+  <owl:ObjectProperty rdf:ID="shutter-speed">
+    <rdfs:domain rdf:resource="#Body"/>
+    <rdfs:range rdf:resource="#Range"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:ID="units">
+    <rdfs:domain rdf:resource="#Range"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:Class rdf:ID="SLR"/>
+  <owl:Class rdf:ID="Camera">
+    <rdfs:subClassOf rdf:resource="#PurchaseableItem"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="lens">
+    <rdfs:subPropertyOf rdf:resource="#part"/>
+    <rdfs:domain rdf:resource="#Camera"/>
+    <rdfs:range rdf:resource="#Lens"/>
+  </owl:ObjectProperty>
+  <owl:Class rdf:ID="Range"/>
+  <owl:Class rdf:ID="BodyWithNonAdjustableShutterSpeed"/>
+  <owl:Class rdf:ID="CameraPhone">
+    <rdfs:subClassOf rdf:resource="#Phone"/>
+    <rdfs:subClassOf rdf:resource="#Digital"/>
+  </owl:Class>
+  <owl:DatatypeProperty rdf:ID="max">
+    <rdfs:domain rdf:resource="#Range"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:DatatypeProperty>
+</rdf:RDF>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="resolver-http" default="resolver-http-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="resolver-http-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+  </path>
+
+  <path id="resolver-http-test-classpath">
+
+    <path refid="resolver-http-classpath"/>
+
+    <fileset file="${resolver-http.dist.dir}/${resolver-http.jar}"/>
+  </path>
+
+  <target name="resolver-http-clean"
+          description="Removes all compile generated files for the resolver-http">
+
+    <tstamp/>
+
+    <delete dir="${resolver-http.obj.dir}"/>
+    <delete dir="${resolver-http.test.dir}"/>
+    <delete dir="${resolver-http.dist.dir}"/>
+  </target>
+
+  <target name="-resolver-http-prepare"
+          description="Creates all directories associated with the resolver-http's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${resolver-http.obj.dir}"/>
+    <mkdir dir="${resolver-http.test.dir}"/>
+    <mkdir dir="${resolver-http.dist.dir}"/>
+    <mkdir dir="${resolver-http.obj.dir}/classes"/>
+  </target>
+
+  <target name="resolver-http-compile"
+          depends="-resolver-http-prepare, resolver-spi-jar, util-jar"
+          description="Compiles all resolver-http related files included
+                       generated source code">
+
+    <javac destdir="${resolver-http.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="resolver-http-classpath"/>
+
+      <src path="${resolver-http.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="resolver-http-jar"
+    depends="resolver-http-compile, -resolver-http-jar-uptodate"
+    unless="resolver-http.jar.uptodate"
+    description="Builds the File Resolver JAR">
+
+    <jar jarfile="${resolver-http.dist.dir}/${resolver-http.jar}">
+      <fileset dir="${resolver-http.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-resolver-http-jar-uptodate">
+
+    <uptodate property="resolver-http.jar.uptodate"
+              targetfile="${resolver-http.dist.dir}/${resolver-http.jar}">
+      <srcfiles dir="${resolver-http.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="resolver-http-dist"
+          depends="resolver-http-jar"
+          unless="resolver-http.uptodate"
+          description="Performs all tasks related to finalising this resolver-http
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the resolver-http library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="resolver-http-test" depends="resolver-http-jar">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="resolver-http-classpath"/>
+      <param name="dir" value="${resolver-http.src.dir}"/>
+      <param name="jar" value="${resolver-http.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-http-javadoc"
+          depends="resolver-http-jar"
+          description="Creates the javadoc for this resolver-http">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.resolver.http.*"/>
+      <param name="javadoc.classpath" value="resolver-http-classpath"/>
+      <param name="javadoc.sourcepath" value="${resolver-http.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-http-help"
+          description="Displays the help information for this resolver-http">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this resolver-http -->
+
+    <echo message="Welcome to the build script for ${resolver-http.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${resolver-http.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

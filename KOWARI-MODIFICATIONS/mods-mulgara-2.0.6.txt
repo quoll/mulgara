@@ -1,0 +1,699 @@
+------------------------------------------------------------------------
+r1335 | pag | 2008-10-16 14:50:09 -0500 (Thu, 16 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-filesystem/java/org/mulgara/resolver/filesystem/FileSystemResolver.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndex.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+   M /trunk/src/jar/resolver-nodetype/java/org/mulgara/resolver/nodetype/NodeTypeResolver.java
+   M /trunk/src/jar/resolver-prefix/java/org/mulgara/resolver/prefix/PrefixResolver.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalResolver.java
+   M /trunk/src/jar/resolver-view/java/org/mulgara/resolver/view/ViewResolver.java
+   M /trunk/src/jar/resolver-xsd/java/org/mulgara/resolver/xsd/XSDResolver.java
+
+Changed messages of ignoring results to debug level
+------------------------------------------------------------------------
+r1332 | pag | 2008-10-16 14:25:26 -0500 (Thu, 16 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/KOWARI-MODIFICATIONS/mods-mulgara-2.0.6.txt
+
+Damn. I missed the updates file
+------------------------------------------------------------------------
+r1330 | pag | 2008-10-16 14:03:23 -0500 (Thu, 16 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraInternalTransactionFactory.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraXAResourceContext.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/TransactionalAnswer.java
+
+Changed various pieces of logging data from info to debug
+------------------------------------------------------------------------
+r1329 | pag | 2008-10-16 14:01:36 -0500 (Thu, 16 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/OrderByRowComparator.java
+
+Handling negative numbers. Based on a patch submitted by David Smith
+------------------------------------------------------------------------
+r1328 | pag | 2008-10-16 14:00:24 -0500 (Thu, 16 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/SparqlUtil.java
+   M /trunk/src/jar/util/java/org/mulgara/util/SparqlUtilUnitTest.java
+
+Better handling for edge cases when detecting SPARQL vs TQL
+------------------------------------------------------------------------
+r1327 | pag | 2008-10-16 13:59:59 -0500 (Thu, 16 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryResponsePage.java
+
+Using the user specified graph in result links
+------------------------------------------------------------------------
+r1325 | pag | 2008-10-16 00:30:21 -0500 (Thu, 16 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/KOWARI-MODIFICATIONS/mods-mulgara-2.0.6.txt
+
+New updates needed before 2.0.6 could be released
+------------------------------------------------------------------------
+r1324 | pag | 2008-10-16 00:24:28 -0500 (Thu, 16 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/SparqlUtil.java
+   M /trunk/src/jar/util/java/org/mulgara/util/SparqlUtilUnitTest.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/Text.java
+
+Fixed output format to better handle SPARQL queries, and provided better detection of SPARQL
+------------------------------------------------------------------------
+r1323 | pag | 2008-10-16 00:23:20 -0500 (Thu, 16 Oct 2008) | 7 lines
+Changed paths:
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperations.java
+
+Found and fixed a pair of bugs when all variables are shared between two sides of an
+optional join.  Also updated optionalJoin to handle left and right sides not sharing
+variables (a cartesian product), and now handling projection to extra variables when
+the optional part of a join is empty.
+Fixes #152
+Fixes #150
+
+------------------------------------------------------------------------
+r1322 | pag | 2008-10-16 00:14:34 -0500 (Thu, 16 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/rdf/BlankNodeImpl.java
+
+Updated toString to remove the blank node bit when it is present
+------------------------------------------------------------------------
+r1321 | pag | 2008-10-15 02:29:00 -0500 (Wed, 15 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/SparqlInterpreter.java
+
+Added calls to setText on generated queries, so that the original parsed text may be retrieved
+------------------------------------------------------------------------
+r1320 | pag | 2008-10-15 02:05:05 -0500 (Wed, 15 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryResponsePage.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryServlet.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/Template.java
+   M /trunk/src/jar/web/resources/template.html
+   M /trunk/src/jar/web/resources/template_head.html
+
+Updated WebUI to check if a query is SPARQL, and if so, then to use the SPARQL interpreter instead. Also changed references of 'model' to say 'graph'.
+------------------------------------------------------------------------
+r1319 | pag | 2008-10-15 02:03:28 -0500 (Wed, 15 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolImpl.java
+
+Fixed a bug in findGNode on read-only phases where a redundant phase was not being set. Fix submitted by Ronald.
+------------------------------------------------------------------------
+r1318 | pag | 2008-10-15 02:01:57 -0500 (Wed, 15 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa/TripleAVLFile.java
+
+Using an arithmetic shift for halving. Not a big deal, but it's more correct, and it now fixes #68
+------------------------------------------------------------------------
+r1317 | pag | 2008-10-15 01:59:17 -0500 (Wed, 15 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/parser/Interpreter.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlInterpreter.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/SparqlInterpreter.java
+
+Added a method for setting the default graph for an interpreter. This is to be ignored by interpreters that don't require a default graph
+------------------------------------------------------------------------
+r1316 | pag | 2008-10-15 01:57:54 -0500 (Wed, 15 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/jxdata/iTQL/standard_queries/queryResult17.txt
+   M /trunk/jxdata/iTQL/standard_queries/queryResult3.txt
+   M /trunk/jxdata/iTQL/standard_queries/test.jxu
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseOperationContext.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/OperationContext.java
+
+Updated references to 'model' to say 'graph' instead. This doesn't extend to public methods yet.
+------------------------------------------------------------------------
+r1315 | pag | 2008-10-14 22:50:16 -0500 (Tue, 14 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+
+Updated classpath for the new lucene jar
+------------------------------------------------------------------------
+r1314 | ronald | 2008-10-14 21:15:29 -0500 (Tue, 14 Oct 2008) | 6 lines
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndex.java
+
+Fixed removeAll() to work for large indexes with many documents too. A
+lucene wildcard query is expanded into a boolean-query with one term for
+each matched term, which quickly leads to a TooManyTerms exception.
+Instead we now use the proper MatchAllDocsQuery, which should also be
+more efficient.
+
+------------------------------------------------------------------------
+r1313 | ronald | 2008-10-14 21:15:26 -0500 (Tue, 14 Oct 2008) | 3 lines
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolverUnitTest.java
+
+Fixed race condition in tests: was using same TqlIntepreter instance
+everywhere without proper synchronization.
+
+------------------------------------------------------------------------
+r1312 | pag | 2008-10-14 12:35:12 -0500 (Tue, 14 Oct 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/util/java/org/mulgara/util/SparqlUtil.java
+   A /trunk/src/jar/util/java/org/mulgara/util/SparqlUtilUnitTest.java
+
+New utility for looking at SPARQL without processing it
+------------------------------------------------------------------------
+r1311 | ronald | 2008-10-14 08:53:10 -0500 (Tue, 14 Oct 2008) | 17 lines
+Changed paths:
+   A /trunk/data/fullTextTestData/data.n3
+   M /trunk/src/jar/resolver-lucene/build.xml
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndex.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexUnitTest.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolverFactory.java
+   A /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolverUnitTest.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/ReadOnlyLuceneResolver.java
+
+Make lucene-resolver transaction aware.
+
+With this commit not only are changes committed or rolled back as appropriate,
+but changes made in one transaction are not visible to other transactions till
+they are committed, and then only to new transactions. This basically provides
+snapshot isolation, but with one major caveat: changes are also not visible to
+the transaction that made the change! E.g. a query following an insert in the
+same transaction will not return any results that include the just inserted
+data (in the lucene-resolver).
+
+One possible way around the above caveat may be to create a new index for every
+transaction, and then on a commit merge the index back into the main index; it
+is unclear right now how costly that would be in terms of performance, though.
+
+Because IndexReader's and IndexWriter's are now kept open for the duration of
+the transaction, applications that do multiple queries (and/or writes) in a
+transaction should see a noticeable performance improvement.
+------------------------------------------------------------------------
+r1310 | ronald | 2008-10-14 08:53:01 -0500 (Tue, 14 Oct 2008) | 3 lines
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndex.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexUnitTest.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+
+Implement removeModel operation. Note that this can be very slow because it
+iterates over all the documents and removes each one individually; but this
+the only to implement this without disrupting existing readers.
+------------------------------------------------------------------------
+r1309 | ronald | 2008-10-14 08:52:55 -0500 (Tue, 14 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolverFactory.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/ReadOnlyLuceneResolver.java
+
+Remove unused arguments to LuceneResolver constructor, and fixed javadocs.
+------------------------------------------------------------------------
+r1308 | ronald | 2008-10-14 08:52:46 -0500 (Tue, 14 Oct 2008) | 8 lines
+Changed paths:
+   M /trunk/build.properties
+   M /trunk/build.xml
+   D /trunk/lib/lucene-2.0.0.jar
+   A /trunk/lib/lucene-core-2.4.0.jar
+   M /trunk/src/jar/resolver-lucene/build.xml
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndex.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexTuples.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexUnitTest.java
+   D /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LockFailedException.java
+
+Upgraded the lucene resolver to lucene 2.4.0. Some of the changes involved are:
+ * document deletion is now done via the IndexWriter; this should solve the
+   locking problems sporadically seen previously.
+ * opening the IndexReader in read-only mode
+ * re-opening the IndexReader via reopen() instead of closing and creating a
+   new one
+ * replaced various deprecated constructs with appropriate ones, including
+   removing the use of Hits and using a more efficient HitCollector instead
+------------------------------------------------------------------------
+r1307 | ronald | 2008-10-14 08:52:30 -0500 (Tue, 14 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+
+Close full-text index (and hence all lucene indexes) at end of query.
+------------------------------------------------------------------------
+r1306 | ronald | 2008-10-14 08:52:24 -0500 (Tue, 14 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/build.xml
+
+Use test-classpath for tests.
+------------------------------------------------------------------------
+r1305 | ronald | 2008-10-14 08:52:19 -0500 (Tue, 14 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexUnitTest.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+
+Replaced wildcard imports with explicit imports.
+------------------------------------------------------------------------
+r1304 | ronald | 2008-10-14 08:52:13 -0500 (Tue, 14 Oct 2008) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexUnitTest.java
+
+Minor code cleanups (no functional changes): use generics, new for loops, and
+replaced assertTrue(a == b) with assertEquals(a, b).
+------------------------------------------------------------------------
+r1303 | ronald | 2008-10-14 08:52:07 -0500 (Tue, 14 Oct 2008) | 6 lines
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndex.java
+
+Code cleanups (no functional changes):
+ * replaced wildcard imports with explicit imports
+ * replaced StringBuffer with StringBuilder
+ * switched to new for-loop
+ * made inner class static
+ * removed superflous 'this' usage
+------------------------------------------------------------------------
+r1302 | ronald | 2008-10-14 08:52:00 -0500 (Tue, 14 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndex.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexTuples.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexUnitTest.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+
+Code formatting fixes.
+------------------------------------------------------------------------
+r1301 | alexhall | 2008-10-10 16:56:32 -0500 (Fri, 10 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperations.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperationsUnitTest.java
+
+Fixed a bug in TuplesOperations.optionalJoin.  This method should not be closing the tuples that are passed to it, but if TuplesOperations.reSort() actually sorts the optional tuples then it closes it.  An exception is then thrown when the constraint handler that calls optionalJoin() closes the input tuples.  I modified reSort to never close its input tuples, and always return a new tuples.
+------------------------------------------------------------------------
+r1300 | alexhall | 2008-10-10 16:17:17 -0500 (Fri, 10 Oct 2008) | 3 lines
+Changed paths:
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/LiteralTuples.java
+
+Adding an option to LiteralTuples to throw an exception if the tuples is closed more than once, which will match the behavior of HybridTuples.
+
+This is needed to debug and test the TuplesOperations class.  However, there is also real code that uses this class, so I'm not comfortable changing the default behavior.  Therefore I'm adding a new constructor to expose this option; calls to the old constructor will have the existing behavior where multiple closes are allowed.
+------------------------------------------------------------------------
+r1299 | alexhall | 2008-10-09 14:43:22 -0500 (Thu, 09 Oct 2008) | 3 lines
+Changed paths:
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/Tuples.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperations.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperationsUnitTest.java
+
+Fixed an error that was occurring in the re-sort of the optional part in an optional join.  The javadoc for Tuples.getColumnIndex(Variable) incorrectly stated that the method returns Tuples.UNBOUND if the variable is not in the Tuples, when it will really throw a TuplesException (Tuples.UNBOUND = 0, which is a valid return value).
+
+The TuplesOperations.reSort() method was checking the return value from getColumnIndex against Tuples.UNBOUND and throwing an exception, which is incorrect behavior and rejects certain valid arguments.  I removed the offending line, and corrected the Tuples javadoc.
+------------------------------------------------------------------------
+r1298 | pag | 2008-10-08 17:40:03 -0500 (Wed, 08 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraOptionParser.java
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+   M /trunk/src/jar/util/java/org/mulgara/util/Rmi.java
+
+Changed the RMI peer port option name to 'objectPort' in both the system definition and the command line argument
+------------------------------------------------------------------------
+r1296 | pag | 2008-10-06 17:16:42 -0500 (Mon, 06 Oct 2008) | 1 line
+Changed paths:
+   A /trunk/KOWARI-MODIFICATIONS/mods-mulgara-2.0.6.txt
+
+Added changelog for release 2.0.6
+------------------------------------------------------------------------
+r1295 | pag | 2008-10-06 17:09:30 -0500 (Mon, 06 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/common.properties
+
+Moving to new version number
+------------------------------------------------------------------------
+r1293 | pag | 2008-09-30 01:14:45 -0500 (Tue, 30 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara-config.xml
+
+default configuration now uses XA 1.1
+------------------------------------------------------------------------
+r1292 | pag | 2008-09-30 01:14:17 -0500 (Tue, 30 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/jxdata/iTQL/data_types/binary/base64Binary/queryResult1.txt
+   M /trunk/jxdata/iTQL/data_types/binary/hexBinary/queryResult1.txt
+
+Removed erroneous trailing characters from test. These were hiding the fact that the queries were returning bad data
+------------------------------------------------------------------------
+r1291 | pag | 2008-09-30 01:13:01 -0500 (Tue, 30 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPHexBinaryImpl.java
+
+Made data access absolute during construction. This is because the object was behaving erratically - the position on the buffer was set to the limit, and could not be rewound. I could not solve this, though a watch in the debugger could make it reset when asked to (a watch could not be set until the object arrived back from the factor method.
+------------------------------------------------------------------------
+r1290 | pag | 2008-09-30 01:09:57 -0500 (Tue, 30 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPBase64BinaryImpl.java
+
+Added a flip() after building the buffer, to truncate off any extra characters that may have come about due to removing whitespace
+------------------------------------------------------------------------
+r1289 | pag | 2008-09-30 01:07:01 -0500 (Tue, 30 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/BlankNodeAllocator.java
+   A /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/BlankNodeMapper.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/DataAVLComparator.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolImpl.java
+
+Added a blank node mapper to enable backup/restore to work on this stringpool
+------------------------------------------------------------------------
+r1288 | pag | 2008-09-30 01:06:14 -0500 (Tue, 30 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/RestoreOperation.java
+
+Using the new mapper factory methods to have different store types to manage node mapping
+------------------------------------------------------------------------
+r1287 | pag | 2008-09-30 01:05:05 -0500 (Tue, 30 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/BackupOperation.java
+
+Defined some static labels for backup/restore formats
+------------------------------------------------------------------------
+r1286 | pag | 2008-09-30 01:04:20 -0500 (Tue, 30 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/BackupConstants.java
+
+Defined some static labels for backup/restore formats
+------------------------------------------------------------------------
+r1285 | pag | 2008-09-30 01:02:17 -0500 (Tue, 30 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/StringPoolSession.java
+
+Added getRestoreMapper from BackupRestoreSession
+------------------------------------------------------------------------
+r1284 | pag | 2008-09-30 01:00:22 -0500 (Tue, 30 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Restore.java
+
+Updated logging and messages
+------------------------------------------------------------------------
+r1283 | pag | 2008-09-30 00:59:34 -0500 (Tue, 30 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-xa/java/org/mulgara/store/xa/XANodePool.java
+
+Added the getNodeMapper mechanism to the interface, matching the getRestoreMapper from BackupRestoreSession
+------------------------------------------------------------------------
+r1282 | pag | 2008-09-30 00:58:16 -0500 (Tue, 30 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-memory/build.xml
+   M /trunk/src/jar/store-nodepool-memory/build.xml
+   M /trunk/src/jar/store-xa/build.xml
+
+Added utilities to the path
+------------------------------------------------------------------------
+r1281 | pag | 2008-09-30 00:57:33 -0500 (Tue, 30 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlInterpreter.java
+   M /trunk/src/jar/querylang/sablecc/itql.grammar
+
+Made the backup source, and restore destination parameters in TQL optional
+------------------------------------------------------------------------
+r1280 | pag | 2008-09-30 00:56:16 -0500 (Tue, 30 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-memory/java/org/mulgara/resolver/memory/MemoryResolver.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/resolver/store/StatementStoreResolver.java
+
+Added the getRestoreMapper method from the BackupRestoreSession interface
+------------------------------------------------------------------------
+r1279 | pag | 2008-09-30 00:53:36 -0500 (Tue, 30 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-nodepool-xa/java/org/mulgara/store/nodepool/xa/XANodePoolImpl.java
+
+Added the getNodeMapper method from the BackupRestoreSession interface
+------------------------------------------------------------------------
+r1278 | pag | 2008-09-30 00:53:04 -0500 (Tue, 30 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-nodepool-memory/java/org/mulgara/store/nodepool/memory/MemoryNodePoolImpl.java
+
+Added the getNodeMapper method from the BackupRestoreSession interface
+------------------------------------------------------------------------
+r1277 | pag | 2008-09-30 00:51:14 -0500 (Tue, 30 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/MBoxStatementsUnitTest.java
+   D /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/TestResolverSession.java
+   M /trunk/src/jar/content-mp3/java/org/mulgara/content/mp3/MP3StatementsUnitTest.java
+   D /trunk/src/jar/content-mp3/java/org/mulgara/content/mp3/TestResolverSession.java
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/N3StatementsUnitTest.java
+   D /trunk/src/jar/content-n3/java/org/mulgara/content/n3/TestResolverSession.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/RDFXMLStatementsUnitTest.java
+   D /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/TestResolverSession.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/RDFXMLWriterUnitTest.java
+   D /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/TestResolverSession.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/PersistentResolverSession.java
+   D /trunk/src/jar/resolver/java/org/mulgara/resolver/TestResolverSession.java
+   M /trunk/src/jar/resolver-filesystem/java/org/mulgara/resolver/filesystem/FileSystemStatementsUnitTest.java
+   D /trunk/src/jar/resolver-filesystem/java/org/mulgara/resolver/filesystem/TestResolverSession.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/BackupRestoreSession.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ResolverSession.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ResolverSessionFactoryException.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/TestResolverSession.java
+   D /trunk/src/jar/resolver-xsd/java/org/mulgara/resolver/xsd/TestResolverSession.java
+
+Added a node mapper factory to the backup/restore session. Rather than duplicate an implementation of this method in every copy/pasted TestResolverSession, these were all converged into a single implementation (like they should have been in the first place)
+------------------------------------------------------------------------
+r1276 | pag | 2008-09-30 00:47:42 -0500 (Tue, 30 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/IntFile.java
+   M /trunk/src/jar/util/java/org/mulgara/util/MappedIntFile.java
+
+Added LongMapper interface to IntFile, and created an in-memory implementation of the interface
+------------------------------------------------------------------------
+r1275 | pag | 2008-09-28 13:20:55 -0500 (Sun, 28 Sep 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/util/java/org/mulgara/util/MemLongMapper.java
+
+Trivial implementation of LongMapper
+------------------------------------------------------------------------
+r1274 | pag | 2008-09-28 13:19:03 -0500 (Sun, 28 Sep 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/util/java/org/mulgara/util/LongMapper.java
+
+Interface for mapping longs to longs
+------------------------------------------------------------------------
+r1273 | pag | 2008-09-26 18:37:24 -0500 (Fri, 26 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/TestResolverSession.java
+
+Updated this testing class to public
+------------------------------------------------------------------------
+r1272 | pag | 2008-09-26 18:35:59 -0500 (Fri, 26 Sep 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/TestResolverSession.java (from /trunk/src/jar/resolver-xsd/java/org/mulgara/resolver/xsd/TestResolverSession.java:1254)
+
+An implementation of the ResolverSession interface, for testing
+------------------------------------------------------------------------
+r1271 | pag | 2008-09-25 14:14:28 -0500 (Thu, 25 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraOptionParser.java
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+
+Added command line arguments for setting the RMI peer port
+------------------------------------------------------------------------
+r1270 | pag | 2008-09-25 14:14:02 -0500 (Thu, 25 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/Rmi.java
+
+Added a mechanism for loading a default port from system properties
+------------------------------------------------------------------------
+r1269 | pag | 2008-09-24 13:47:03 -0500 (Wed, 24 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/DataInputTx.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/DataOutputTx.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/ItqlInterpreterBeanUnitTest.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/remote/RemotePagerImpl.java
+   M /trunk/src/jar/rules/java/org/mulgara/rules/RulesRefImpl.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/AnswerWrapperRemoteAnswer.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteSessionFactoryImpl.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteXAResourceWrapperXAResource.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RmiServer.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/XAResourceWrapperRemoteXAResource.java
+   A /trunk/src/jar/util/java/org/mulgara/util/Rmi.java
+
+Changed RMI exports through UnicastRemoteObject to work through a new utility class instead. This class ignores the possibility of non-RMI transport, but that is OK as we don't expect to use this mechanism for anything but RMI anyway. The new org.mulgara.util.Rmi is now integrated, but configuration has not yet been set up to tell it to use any but the default ports.
+------------------------------------------------------------------------
+r1268 | pag | 2008-09-23 18:21:08 -0500 (Tue, 23 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+
+Updated reference to the icu4j library
+------------------------------------------------------------------------
+r1267 | pag | 2008-09-22 23:36:54 -0500 (Mon, 22 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+   M /trunk/build.properties
+   M /trunk/build.xml
+   M /trunk/common.xml
+   D /trunk/lib/icu4j.jar
+   A /trunk/lib/icu4j_3_4.jar
+   A /trunk/lib/iri-0.5.jar
+   D /trunk/lib/jena-2.1.jar
+   A /trunk/lib/jena-2.5.6.jar
+   M /trunk/src/jar/server-http/build.xml
+   A /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/AbstractSPGDateTime.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGDayImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGDayUnitTest.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGMonthDayImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGMonthDayUnitTest.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGMonthImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGMonthUnitTest.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGYearImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGYearMonthImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGYearMonthUnitTest.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPGYearUnitTest.java
+
+Updated the Jena libs (this will let us avoid Jena soon, and just keep ARP). Also found and fixed a series of bugs in the Gdate data types, where the lexical form could change depending on the entered timezone, and the timezone of the running system.
+------------------------------------------------------------------------
+r1266 | pag | 2008-09-22 23:32:14 -0500 (Mon, 22 Sep 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/http/MimeMultiNamedPart.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ServletDataSource.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/SparqlServlet.java
+
+Now allows RDF files to be uploaded with an HTTP PUT operation. TODO: RDF/XML files with a missing newline at the end will erroneously give an error.
+------------------------------------------------------------------------
+r1265 | pag | 2008-09-22 23:30:12 -0500 (Mon, 22 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/Timezone.java
+
+Added methods to convert to java.util.TimeZone and to output as a string
+------------------------------------------------------------------------
+r1264 | pag | 2008-09-22 23:28:20 -0500 (Mon, 22 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/SetModelOperation.java
+
+More flexible testing on source and destination graph URIs when inserting data
+------------------------------------------------------------------------
+r1263 | pag | 2008-09-22 23:26:38 -0500 (Mon, 22 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraInternalTransaction.java
+
+Scaled back reporting to the debug level
+------------------------------------------------------------------------
+r1262 | pag | 2008-09-22 23:25:52 -0500 (Mon, 22 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/server-local/java/org/mulgara/server/local/LocalSessionFactoryUnitTest.java
+
+Removed an apparently unnecessary dependency on MetaTestGraph
+------------------------------------------------------------------------
+r1261 | pag | 2008-09-15 23:53:15 -0500 (Mon, 15 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/HttpServices.java
+
+Added the TQL servlet, and updated servlet creation to just require the classname, description, and path where it is to be served from.
+------------------------------------------------------------------------
+r1260 | pag | 2008-09-15 23:52:09 -0500 (Mon, 15 Sep 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/SparqlServlet.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/http/TqlServlet.java
+
+Refactored the SPARQL servlet to an abstract class, and now SPARQL and TQL serlvets are simple extensions of this class. TQL is using SPARQL protocols for much of the return data, with the exception of XML query results, as this schema was already set.
+------------------------------------------------------------------------
+r1259 | ronald | 2008-09-09 04:45:25 -0500 (Tue, 09 Sep 2008) | 5 lines
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ExternalTransactionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraExternalTransaction.java
+
+Added better exception handling for for errors from the internal XAResource's.
+This is now fairly close to the spec.
+
+Also added proper handling of XA_RDONLY return from prepare().
+
+------------------------------------------------------------------------
+r1258 | pag | 2008-09-09 01:07:51 -0500 (Tue, 09 Sep 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlJSONObject.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlXMLObject.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/http
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/http/BadRequestException.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/http/InternalErrorException.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ServiceUnavailableException.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ServletException.java
+   A /trunk/src/jar/querylang/java/org/mulgara/protocol/http/SparqlServlet.java
+   M /trunk/src/jar/server/java/org/mulgara/server/HttpServices.java
+
+Added a new servlet to execute SPARQL queries, and return the results in XML or JSON
+------------------------------------------------------------------------
+r1257 | pag | 2008-09-09 01:06:11 -0500 (Tue, 09 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/SparqlInterpreter.java
+
+Added multiple default graphs
+------------------------------------------------------------------------
+r1256 | pag | 2008-09-09 01:02:54 -0500 (Tue, 09 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+
+Added the SessionFactoryProvider interface
+------------------------------------------------------------------------
+r1255 | pag | 2008-09-09 00:59:04 -0500 (Tue, 09 Sep 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/query/java/org/mulgara/server/SessionFactoryProvider.java
+
+An interface for getting an existing SessionFactoryFactory
+------------------------------------------------------------------------
+r1254 | alexhall | 2008-09-08 13:11:24 -0500 (Mon, 08 Sep 2008) | 7 lines
+Changed paths:
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/NamespaceMap.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/RDFXMLWriter.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Export.java
+   M /trunk/src/jar/query/java/org/mulgara/server/Session.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlInterpreter.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSession.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ExportOperation.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteSession.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteSessionWrapperSession.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/SessionWrapperRemoteSession.java
+
+Added the capability to include a set of user-supplied namespace definitions in an exported RDF/XML file.  This does not change the actual content of the exported RDF/XML, only its presentation.
+
+It is anticipated that this feature may be useful for users working with external tools (such as Protege) that use the RDF/XML namespace definitions to create human-readable prefixed URI's for display purposes.
+
+The ability to define namespace prefixes in the XML is exposed to the client in two ways:
+1. Programatically via the new setNamespacePrefixes method in the Export command.
+2. Through the TQL shell "alias" command - the TqlInterpreter adds any aliases that it knows about to the namespace definitions in the Export command.
+------------------------------------------------------------------------
+r1253 | eddie | 2008-09-08 04:19:40 -0500 (Mon, 08 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/build.xml
+
+removed reference to ${descriptor.jar} which was causing core-dist target to fail with "build.xml:1928: the archive doesn't exist". (do a "clean" first to reproduce the error).
+------------------------------------------------------------------------
+r1252 | pag | 2008-09-08 03:37:51 -0500 (Mon, 08 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/DataStruct.java
+
+Was not guarding seek/reads on data.
+------------------------------------------------------------------------
+r1251 | pag | 2008-09-06 06:51:50 -0500 (Sat, 06 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+   A /trunk/src/jar/server/java/org/mulgara/server/ExceptionList.java
+   A /trunk/src/jar/server/java/org/mulgara/server/HttpServices.java
+   M /trunk/src/jar/server/java/org/mulgara/server/ServletMulgaraServer.java
+   M /trunk/src/war/descriptor/index.jsp
+
+Isolated Http loading into it's own classes
+------------------------------------------------------------------------
+r1250 | pag | 2008-09-06 06:50:30 -0500 (Sat, 06 Sep 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/server/java/org/mulgara/server/ServiceListingServlet.java
+
+Created a servlet for displaying all loaded servlets
+------------------------------------------------------------------------
+r1249 | pag | 2008-09-06 06:46:25 -0500 (Sat, 06 Sep 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/Pair.java
+
+Added a method for easy addition to a Map
+------------------------------------------------------------------------
+r1248 | alexhall | 2008-09-06 01:36:22 -0500 (Sat, 06 Sep 2008) | 7 lines
+Changed paths:
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/RDFXMLContentHandler.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/AbstractWritableStatement.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/BlankNodeWritableStatement.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/LiteralWritableStatement.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/NamespaceMap.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/RDFXMLWriter.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/URIReferenceWritableStatement.java
+
+Preparing the RDF/XML writer's namespace map to handle a user-defined set of initial prefix mappings.  Added a new constructor to NamespaceMap to pre-populate the mappings; this feature is not yet exposed to the client.
+
+This change also contains general house-keeping updates in content-rdfxml related to NamespaceMap which were not practical to separate into their own commit:
+1. Code formatting fixes.
+2. Javadoc corrections and updates.
+3. Replace references to GraphException with QueryException.  GraphException is a JRDF class which indicates an error in a JRDF operation; the RDF/XML writer is not a JRDF class and should not throw these exceptions.
+4. Exception handling: remove unnecessary "throws" clauses, and change private/protected methods to throw something more specific than Exception.
+------------------------------------------------------------------------

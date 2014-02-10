@@ -1,0 +1,136 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - iTQL Shell</title>
+    <meta name="keywords" content="iTQL Shell, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/system/jsptaglib.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/system/soap.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/system/index.html">System Architecture</a></p>
+<p class="relateditem"><a href="/system/jsptaglib.html">JavaServer Pages Tag Library</a></p>
+<p class="relateditem"><a href="/system/soap.html">Simple Object Access Protocol (SOAP)</a></p>
+<p class="relateditem"><a href="/system/itqlbean.html">iTQL Bean</a></p>
+<p class="relateditem"><a href="/system/driver.html">Mulgara Driver</a></p>
+<p class="relateditem"><a href="/system/jrdf.html">Java RDF (JRDF)</a></p>
+
+
+ -->
+
+
+
+
+<h2>iTQL Shell</h2>
+
+<p>The iTQL<sup>TM</sup> shell is a console-based, interactive shell, allowing users to issue iTQL commands to Mulgara. Alternatively, multiple commands can be executed sequentially using iTQL script files.</p>
+
+<p>The interpreter supports several command line options that make working with large numbers of queries easier. You can run the shell as a stand-alone application (packaged in a fully-self-contained executable JAR file), or invoke it directly via API calls. iTQL commands sent to the iTQL interpreter return results directly to the console, whereas iTQL commands sent via the communication methods listed above return answers as native Java objects (in the case of direct API calls) or in XML.</p>
+
+<p>You must have the correct version of Java<sup>TM</sup> software installed in order to run Mulgara and the iTQL shell. You can check the version you have installed by typing at a command line:</p>
+
+<p class="commandtext">$ java -version</p>
+
+<p>Something similar to the following should display:</p>
+
+<p class="commandtext">java version &quot;1.4.2_04&quot;<br />
+Java(TM) 2 Runtime Environment, Standard Edition (build 1.4.2_04-b05)<br />
+Java HotSpot(TM) Client VM (build 1.4.2_04-b05, mixed mode)</p>
+
+<p>If the above does not display, add <code>&lt;JAVA_HOME&gt;/bin</code>, where <code>&lt;JAVA_HOME&gt;</code> is the location where J2SE<sup>TM</sup> is installed, to your <code>PATH </code>(in the appropriate way for your shell).</p>
+
+<p class="note"><strong>Note -</strong> You must use J2SE 1.4.2 or higher. Mulgara does not run on beta 2 or prior.</p>
+
+<p>How you start the iTQL shell depends on your platform. To start the iTQL shell from a:</p>
+<ul><li>Windows<sup>&reg;</sup> interface, choose Start <strong class="buttons">»</strong> Programs <strong class="buttons">»</strong> TKS <strong class="buttons">»</strong> iTQL CLI</li><li>Windows command line:
+<p class="listcontinuecommandtext">cd &lt;tks drive&gt;:\&lt;tks folder&gt;<br />
+itql</p>
+</li><li>UNIX<sup>&reg;</sup> or Linux<sup>&reg;</sup> command line:
+<p class="listcontinuecommandtext">cd &lt;tks directory&gt;<br />
+java -jar itql-2.1.jar</p>
+
+<p class="listcontinue">or</p>
+
+<p class="listcontinuecommandtext">./itql</p>
+</li></ul>
+<p>Starting iTQL with the executable jar file allows you to pass arguments to the shell, changing the way iTQL operates. See the iTQL Shell Options section for more information about these arguments.</p>
+
+<p>After starting iTQL, a message similar to the following displays:</p>
+
+<p class="commandtext">iTQL Command Line Interface<br />
+copyright (C) 2001-2004 Tucana Technologies Inc.<br />
+<br />
+Type "help ;", then enter for help.<br />
+<br />
+iTQL&gt;</p>
+
+<p>The last line is the iTQL prompt. This is where you issue iTQL commands.</p>
+
+<p>To display a list of iTQL commands:</p>
+
+<p class="commandtext">iTQL&gt;help;</p>
+
+<p>To display detailed help for a particular command:</p>
+
+<p class="commandtext">iTQL&gt;help command;</p>
+
+<p>Where <code>command</code> is the name of the iTQL command.</p>
+
+<p>The following example queries a model named <code>documents</code> on a Mulgara server on the machine <code>mysite.com</code><em> </em>to find the URLs and titles of all documents.</p>
+
+<p class="commandtext">iTQL&gt;select $url $title<br />
+  from &lt;rmi://mysite.com/server1#documents&gt;<br />
+  where ($url $y &lt;http://mulgara.org/mulgara/Document#Document&gt; )<br />
+  and ( $url &lt;http://mulgara.org/mulgara/Document#hasHtml&gt; $node )<br />
+  and ( $node &lt;http://mulgara.org/mulgara/tool/HtmlExtractor#title&gt; $title );</p>
+
+<p class="note"><strong>Note -</strong> iTQL supports the <code>AND</code> and <code>OR</code> operators as well as standards such as <a class="internetlinktemplate" title="" href="http://www.w3.org/tr/rec-xml-names">XML namespaces</a> and <a class="internetlinktemplate" title="" href="http://www.ietf.org/rfc/rfc2396.txt">URIs</a>.</p>
+
+<p>The following is an example of submitting the above query to the iTQL shell.</p>
+
+<p class="commandtext">iTQL&gt;select $url $title<br />
+  from rmi://mysite.com/server1#documents<br />
+  where ($url $y &lt;http://mulgara.org/mulgara/Document#Document&gt; )<br />
+  and ( $url &lt;http://mulgara.org/mulgara/Document#hasHtml&gt; $node )<br />
+  and ( $node &lt;http://mulgara.org/mulgara/tool/HtmlExtractor#title&gt; $title ) ;<br />
+<br />
+2 columns: url title (2 rows)<br />
+   url=http://mulgara.org/projects/mulgara/data/docs/doc95.htm<br />
+     title=&quot;Expect lower rate of gain in the value of homes&quot;<br />
+   url=http://mulgara.org/projects/mulgara/data/docs/doc49.htm<br />
+     title=&quot;District Court refuses to certify class alleging notice violations&quot;</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

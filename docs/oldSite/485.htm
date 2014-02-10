@@ -1,0 +1,619 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> JavaServer Pages Tag Library </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="JavaServer Pages Tag Library, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="1246.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="526.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h2 class="heading2">JavaServer Pages Tag Library</h2>
+<p class="bodytext">This section describes the JavaServer Pages<sup class="superscript">TM</sup> (JSP) tags available for creating dynamic web-based applications on top of Mulgara. The tag library includes general tags for communicating with a Mulgara server.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="485.htm#o486" target="_self">Software Requirements</a></p><p class="relateditem"><a href="485.htm#o487" target="_self">Configuring your Web Application</a></p><p class="relateditem"><a href="485.htm#o493" target="_self">answer</a></p><p class="relateditem"><a href="485.htm#o492" target="_self">execute</a></p><p class="relateditem"><a href="485.htm#o488" target="_self">init</a></p><p class="relateditem"><a href="485.htm#o491" target="_self">query</a></p><p class="relateditem"><a href="485.htm#o489" target="_self">render</a></p><p class="relateditem"><a href="485.htm#o490" target="_self">statement</a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="1246.htm" target="_self">System Architecture</a></p><p class="relateditem"><a href="526.htm" target="_self">iTQL Shell</a></p><p class="relateditem"><a href="527.htm" target="_self">Simple Object Access Protocol (SOAP)</a></p><p class="relateditem"><a href="528.htm" target="_self">iTQL Bean</a></p><p class="relateditem"><a href="530.htm" target="_self">Mulgara Driver</a></p><p class="relateditem"><a href="2466.htm" target="_self">Java RDF (JRDF)</a></p></td>
+</tr>
+</table>
+
+<a name="o486"></a><h3 class="heading3">Software Requirements</h3>
+<p class="bodytext">The Mulgara custom tag libraries depend on a servlet container that supports the <a class="internetlinktemplate" title="" href="http://java.sun.com/products/jsp/download.html" target="_blank">JavaServer Pages Specification, version 1.1</a> or higher. Some of the examples listed in this section make use of the <a class="internetlinktemplate" title="" href="http://jakarta.apache.org/taglibs/" target="_blank">Jakarta Taglib</a> libraries.</p>
+<a name="o487"></a><h3 class="heading3">Configuring your Web Application</h3>
+<p class="bodytext">Follow these steps to configure your web application to use the Mulgara tag libraries:</p>
+<ol class="listnumber"><li class="listnumber">Copy the tag library JAR files to the <code class="monospace">/WEB-INF/lib</code> subdirectory of your web application</li><li class="listnumber">Add a <code class="monospace">&lt;taglib&gt;</code> element to your web application deployment Descriptor in <code class="monospace">/WEB-INF/web.xml</code>, as follows:<p class="listcontinuecommandtext">&lt;taglib&gt;<br />  &lt;taglib-uri&gt;http://mulgara.org/mulgara/taglibs/tks&lt;/taglib-uri&gt;<br />  &lt;taglib-location&gt;/WEB-INF/lib/tks-tag-2.1.jar&lt;/taglib-location&gt;<br />&lt;/taglib&gt;</p>
+</li></ol><p class="bodytext">To use the general Mulgara tags from the library in your JSP pages, add the following directive at the top of each page:</p>
+<p class="commandtext">&lt;%@ taglib prefix=&quot;tks&quot; uri=&quot;http://mulgara.org/mulgara/taglibs/tks&quot;%&gt;</p>
+<p class="bodytext">Where <code class="monospace">tks</code> is the tag name prefix you want to use for tags from the Mulgara library. You can change this to any prefix you like, but do not change the URL.</p>
+<p class="note"><strong class="strong">Note -</strong> All the examples in this section assume that the tag libraries are prefixed as shown above.</p>
+<a name="o493"></a><h3 class="heading3">answer</h3>
+<p class="bodytext">Retrieves query answers from a statement.<br /></p>
+<table width="534" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr>
+<td width="89" height="0"></td>
+<td width="90" height="0"></td>
+<td width="78" height="0"></td>
+<td width="144" height="0"></td>
+<td width="6" height="0"></td>
+<td width="126" height="0"></td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">Tag Body</p>
+</td>
+<td colspan="5" width="445"><p class="tablebodytext">JSP</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">Restrictions</p>
+</td>
+<td colspan="5" width="445"><p class="tablebodytext">None</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<th width="89"><p class="tableheading2">Attributes</p>
+</th>
+<th width="91"><p class="tablebodytext"><strong class="strong">Name</strong></p>
+</th>
+<th width="78"><p class="tablebodytext"><strong class="strong">Required</strong></p>
+</th>
+<th width="144"><p class="tablebodytext"><strong class="strong">Runtime Expression Evaluation</strong></p>
+</th>
+<th colspan="2" width="132"><p class="tablebodytext"><strong class="strong">Mulgara Version</strong></p>
+</th>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="91"><p class="tablebodytext"><code class="monospace">id</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="78"><p class="tablebodytext">false</p>
+</td>
+<td bgcolor="#EFEFEF" width="144"><p class="tablebodytext">true</p>
+</td>
+<td bgcolor="#EFEFEF" colspan="2" width="132"><p class="tablebodytext">n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td colspan="5" width="445"><p class="tablebodytext">If set, it saves the specified answer to a variable with this name into the page context. To save the variable to a different context, use the <code class="monospace">scope</code> attribute.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="91"><p class="tablebodytext"><code class="monospace">statement</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="78"><p class="tablebodytext">true</p>
+</td>
+<td bgcolor="#EFEFEF" width="144"><p class="tablebodytext">true</p>
+</td>
+<td bgcolor="#EFEFEF" colspan="2" width="132"><p class="tablebodytext">n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td colspan="5" width="445"><p class="tablebodytext">Specifies the id of the statement to retrieve answers from. If no statement with the id exists, an exception occurs.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="91"><p class="tablebodytext"><code class="monospace">query</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="78"><p class="tablebodytext">true</p>
+</td>
+<td bgcolor="#EFEFEF" width="144"><p class="tablebodytext">true</p>
+</td>
+<td bgcolor="#EFEFEF" colspan="2" width="132"><p class="tablebodytext">n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td colspan="5" width="445"><p class="tablebodytext">The name of query to retrieve the answer of. The query with this id must be contained within the <code class="monospace"><a id="h557" class="documentlinktemplate" title="statement" href="485.htm#o490" target="_self">statement</a></code> tag specified. Returns nothing if a query with that name does not exist.</p>
+<p class="tablebodytext"><strong class="strong">Note -</strong> You must specify the name of the query in the <code class="monospace"><a id="h1305" class="documentlinktemplate" title="execute" href="485.htm#o492" target="_self">execute</a></code> tag for its result to be available in the <code class="monospace">answer</code> tag. This is because by default, the <code class="monospace">statement</code> tag sends queries in a single batch, and receives answers in a single batch.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="91"><p class="tablebodytext"><code class="monospace">scope</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="78"><p class="tablebodytext">false</p>
+</td>
+<td bgcolor="#EFEFEF" width="144"><p class="tablebodytext">true</p>
+</td>
+<td bgcolor="#EFEFEF" colspan="2" width="132"><p class="tablebodytext">n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td colspan="5" width="445"><p class="tablebodytext">The scope of the variable created to hold the answer. Values must be one of <code class="monospace">page</code>, <code class="monospace">request</code>, <code class="monospace">session</code> or <code class="monospace">application</code>. If not defined, the variables are created in the page context.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">Scripting Variables</p>
+</td>
+<td width="91"><p class="tablebodytext"><strong class="strong">Name</strong></p>
+</td>
+<td colspan="3" width="228"><p class="tablebodytext"><strong class="strong">Type</strong></p>
+</td>
+<td width="126"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="91"><p class="tablebodytext"><code class="monospace">[id]</code></p>
+</td>
+<td bgcolor="#EFEFEF" colspan="3" width="228"><p class="tablebodytext"><code class="monospace">org.w3c.dom.Document</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="126"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td colspan="5" width="445"><p class="tablebodytext">If the <code class="monospace">id</code> attribute is set on, the tag <code class="monospace">org.w3c.dom.Document</code> containing the specified answer is set in the page context. You can override the scope of the variable created by setting the <code class="monospace">scope</code> attribute.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading3">Example</p>
+</td>
+<td colspan="5" width="445"><p class="tablecommandtext">&lt;%-- execute a statement (saving a list of answers to a variable named stmt2) --%&gt;<br />&lt;tks:statement id=&quot;stmt2&quot;&gt;<br /><br />&lt;%-- set the iTQL query --%&gt;<br />&lt;tks:query&gt;<br />  select $subj $obj from rmi://mysite.com/server1#dc<br />    where $subj rdfs:label $obj ;<br />&lt;/tks:query&gt;<br /><br />&lt;%-- set another iTQL query --%&gt;<br />&lt;tks:query id=&quot;alltriples&quot;&gt;<br />  select $subj $obj $pred from rmi://mysite.com/server1#foo<br />    where $subj $pred $obj ;<br />&lt;/tks:query&gt;<br /><br />&lt;%-- execute the query --%&gt;<br />&lt;tks:execute/&gt;<br /><br />&lt;%-- execute the query --%&gt;<br />&lt;tks:execute query=&quot;alltriples&quot;/&gt;<br /><br />&lt;/tks:statement&gt;<br /><br />&lt;%-- get the answer to a named query --%&gt;<br />&lt;tks:answer statement=&quot;stmt2&quot; query=&quot;alltriples&quot;/&gt;<br /><br />&lt;%-- save the answer to a named query in a request scoped variable named allTriplesAnswer --%&gt;<br />&lt;tks:answer statement=&quot;stmt2&quot; id=&quot;allTriplesAnswer&quot; query=&quot;alltriples&quot;<br />  scope=&quot;request&quot;/&gt;<br /><br />&lt;%-- the following will not return any results as the execute tag does not specify a query --%&gt;<br />&lt;tks:statement id=&quot;answers2&quot;&gt;<br />  &lt;tks:query id=&quot;query1&quot;&gt;<br />    select $title from rmi://mysite.com/server1#tmex <br />      where (http://mulgara.org/projects/mulgara/data/doc49.htm<br />      $y http://mulgara.org/mulgara/Document#Document ) and <br />      ( $node http://mulgara.org/mulgara/tool/HtmlExtractor#title<br />      $title ) ;<br />  &lt;/tks:query&gt;<br />  &lt;tks:execute/&gt;<br />&lt;/tks:statement&gt;<br /><br />&lt;tks:answer statement=&quot;answers2&quot; query=&quot;query1&quot;/&gt;</p>
+</td>
+</tr>
+
+</table>
+<p class="allowpagebreak"></p>
+<a name="o492"></a><h3 class="heading3">execute</h3>
+<p class="bodytext">Executes queries in a statement.<br /></p>
+<table width="534" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr>
+<td width="89" height="0"></td>
+<td width="72" height="0"></td>
+<td width="90" height="0"></td>
+<td width="150" height="0"></td>
+<td width="132" height="0"></td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">Tag Body</p>
+</td>
+<td colspan="4" width="445"><p class="tablebodytext">Empty</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">Restrictions</p>
+</td>
+<td colspan="4" width="445"><p class="tablebodytext">Must be enclosed in a statement tag</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">Attributes</p>
+</td>
+<td width="73"><p class="tablebodytext"><strong class="strong">Name</strong></p>
+</td>
+<td width="90"><p class="tablebodytext"><strong class="strong">Required</strong></p>
+</td>
+<td width="150"><p class="tablebodytext"><strong class="strong">Runtime Expression Evaluation</strong></p>
+</td>
+<td width="132"><p class="tablebodytext"><strong class="strong">Mulgara Version</strong></p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="73"><p class="tablebodytext"><code class="monospace">query</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="90"><p class="tablebodytext">false</p>
+</td>
+<td bgcolor="#EFEFEF" width="150"><p class="tablebodytext">true</p>
+</td>
+<td bgcolor="#EFEFEF" width="132"><p class="tablebodytext">n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td colspan="4" width="445"><p class="tablebodytext">If set, it denotes the query to execute. The query with this id must be contained within the same enclosing <code class="monospace"><a id="h557_2" class="documentlinktemplate" title="statement" href="485.htm#o490" target="_self">statement</a></code> tag as the <code class="monospace">execute</code> tag specifying it. An exception occurs if no query exists with this id. </p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading3">Example</p>
+</td>
+<td colspan="4" width="445"><p class="tablecommandtext">&lt;%-- set the iTQL query --%&gt;<br />&lt;tks:query&gt;<br />  select $subj $obj from rmi://mysite.com/server1#dc<br />    where $subj rdfs:label $obj ;<br />&lt;/tks:query&gt;<br /><br />&lt;%-- execute the query --%&gt;<br />&lt;tks:execute/&gt;</p>
+</td>
+</tr>
+
+</table>
+<p class="allowpagebreak"></p>
+<a name="o488"></a><h3 class="heading3">init</h3>
+<p class="bodytext">Initializes the Mulgara JSP tag environment, by setting the SOAP endpoint of the Mulgara server.<br /></p>
+<table width="534" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr>
+<td width="89" height="0"></td>
+<td width="72" height="0"></td>
+<td width="96" height="0"></td>
+<td width="144" height="0"></td>
+<td width="132" height="0"></td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">Tag Body</p>
+</td>
+<td colspan="4" width="445"><p class="tablebodytext">Empty</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">Restrictions</p>
+</td>
+<td colspan="4" width="445"><p class="tablebodytext">To be called before using any other Mulgara tag that communicates with a Mulgara server</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">Attributes</p>
+</td>
+<td width="73"><p class="tablebodytext"><strong class="strong">Name</strong></p>
+</td>
+<td width="96"><p class="tablebodytext"><strong class="strong">Required</strong></p>
+</td>
+<td width="144"><p class="tablebodytext"><strong class="strong">Runtime Expression Evaluation</strong></p>
+</td>
+<td width="132"><p class="tablebodytext"><strong class="strong">Mulgara Version</strong></p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="73"><p class="tablebodytext"><code class="monospace">server</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="96"><p class="tablebodytext">true</p>
+</td>
+<td bgcolor="#EFEFEF" width="144"><p class="tablebodytext">true</p>
+</td>
+<td bgcolor="#EFEFEF" width="132"><p class="tablebodytext">n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td colspan="4" width="445"><p class="tablebodytext">The URL of the SOAP endpoint of the Mulgara server containing metadata you are interested in. For example,<em class="emphasis"> </em><code class="monospace">http://&lt;hostname&gt;:&lt;port&gt;/driver/query</code></p>
+<p class="tablebodytext">The URL is stored in the page context (by default) and is accessible as a <code class="monospace">java.net.URL</code> with the key <code class="monospace">tks.server.soapendpoint</code></p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="73"><p class="tablebodytext"><code class="monospace">scope</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="96"><p class="tablebodytext">false</p>
+</td>
+<td bgcolor="#EFEFEF" width="144"><p class="tablebodytext">true</p>
+</td>
+<td bgcolor="#EFEFEF" width="132"><p class="tablebodytext">n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td colspan="4" width="445"><p class="tablebodytext">The scope of the variables created for server and model. Value must be one of <code class="monospace">page</code>, <code class="monospace">request</code>, <code class="monospace">session</code> or <code class="monospace">application</code>. If not defined, the variables are created in the page context</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading3">Example</p>
+</td>
+<td colspan="4" width="445"><p class="tablecommandtext">&lt;%-- initialise the environment --%&gt;<br />&lt;tks:init server=&quot;http://localhost:8080/driver/query&quot;/&gt;<br /><br />&lt;%-- display the SOAP endpoint --%&gt;<br />TKS server SOAP endpoint = &lt;%= pageContext.getAttribute(&quot;tks.server.soapendpoint&quot;) %&gt;<br /><br />&lt;%-- initialise the environment storing variables in session scope --%&gt;<br />&lt;tks:init server=&quot;http://localhost:8080/driver/query&quot; scope=&quot;session&quot;/&gt;<br /><br />&lt;%-- display the TKS server model --%&gt;<br />TKS server = &lt;%= pageContext.getAttribute(&quot;tks.server.soapendpoint&quot;, PageContext.SESSION_SCOPE) %&gt;</p>
+</td>
+</tr>
+
+</table>
+<p class="allowpagebreak"></p>
+<a name="o491"></a><h3 class="heading3">query</h3>
+<p class="bodytext">Adds an iTQL query to a statement.<br /></p>
+<table width="534" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr>
+<td width="89" height="0"></td>
+<td width="72" height="0"></td>
+<td width="96" height="0"></td>
+<td width="144" height="0"></td>
+<td width="132" height="0"></td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">Tag Body</p>
+</td>
+<td colspan="4" width="445"><p class="tablebodytext">JSP</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">Restrictions</p>
+</td>
+<td colspan="4" width="445"><p class="tablebodytext">Must be enclosed in a <code class="monospace"><a id="h557_3" class="documentlinktemplate" title="statement" href="485.htm#o490" target="_self">statement</a></code> tag and the body must contain a single iTQL query. Use multiple <code class="monospace">query</code> tags to issue multiple queries in a single statement</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">Attributes</p>
+</td>
+<td width="73"><p class="tablebodytext"><strong class="strong">Name</strong></p>
+</td>
+<td width="96"><p class="tablebodytext"><strong class="strong">Required</strong></p>
+</td>
+<td width="144"><p class="tablebodytext"><strong class="strong">Runtime Expression Evaluation</strong></p>
+</td>
+<td width="132"><p class="tablebodytext"><strong class="strong">Mulgara Version</strong></p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="73"><p class="tablebodytext"><code class="monospace">id</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="96"><p class="tablebodytext">false</p>
+</td>
+<td bgcolor="#EFEFEF" width="144"><p class="tablebodytext">true</p>
+</td>
+<td bgcolor="#EFEFEF" width="132"><p class="tablebodytext">n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td colspan="4" width="445"><p class="tablebodytext">If set, it can be referenced by an <code class="monospace"><a id="h1305_2" class="documentlinktemplate" title="execute" href="485.htm#o492" target="_self">execute</a></code> tag to execute this query individually</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading3">Example</p>
+</td>
+<td colspan="4" width="445"><p class="tablecommandtext">&lt;%-- set the iTQL query --%&gt;<br />&lt;tks:query id=&quot;query1&quot;&gt;<br />  select $subj $obj from rmi://mysite.com/server1#dc<br />    where $subj rdfs:label $obj ;<br />&lt;/tks:query&gt;<br /><br />&lt;%-- execute the query --%&gt;<br />&lt;tks:execute query=&quot;query1&quot;/&gt;</p>
+</td>
+</tr>
+
+</table>
+<p class="allowpagebreak"></p>
+<a name="o489"></a><h3 class="heading3">render</h3>
+<p class="bodytext">Renders an XML document using a supplied stylesheet.<br /></p>
+<table width="534" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr>
+<td width="89" height="0"></td>
+<td width="96" height="0"></td>
+<td width="72" height="0"></td>
+<td width="144" height="0"></td>
+<td width="132" height="0"></td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">Tag Body</p>
+</td>
+<td colspan="4" width="445"><p class="tablebodytext">JSP</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">Restrictions</p>
+</td>
+<td colspan="4" width="445"><p class="tablebodytext">Must contain a body to transform</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">Attributes</p>
+</td>
+<td width="97"><p class="tablebodytext"><strong class="strong">Name</strong></p>
+</td>
+<td width="72"><p class="tablebodytext"><strong class="strong">Required</strong></p>
+</td>
+<td width="144"><p class="tablebodytext"><strong class="strong">Runtime Expression Evaluation</strong></p>
+</td>
+<td width="132"><p class="tablebodytext"><strong class="strong">Mulgara Version</strong></p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading2">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="97"><p class="tablebodytext"><code class="monospace">stylesheet</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="72"><p class="tablebodytext">true</p>
+</td>
+<td bgcolor="#EFEFEF" width="144"><p class="tablebodytext">true</p>
+</td>
+<td bgcolor="#EFEFEF" width="132"><p class="tablebodytext">n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td colspan="4" width="445"><p class="tablebodytext">The relative path to the XSL stylesheet to use to render the tag body contents</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89"><p class="tableheading3">Example</p>
+</td>
+<td colspan="4" width="445"><p class="tablecommandtext">&lt;%-- render the results of a query --%&gt;<br />&lt;tks:render stylesheet=&quot;/default.xsl&quot;&gt;<br /><br />&lt;%-- execute a statement --%&gt;<br />&lt;tks:statement&gt;<br /><br />&lt;%-- set the iTQL query --%&gt;<br />&lt;tks:query&gt;<br />  select $subj $pred $obj from rmi://mysite.com/server1#foo<br />    where $subj $pred $obj ;<br />&lt;/tks:query&gt;<br /><br />&lt;%-- execute the query --%&gt;<br />&lt;tks:execute/&gt;<br /><br />  &lt;/tks:statement&gt;<br /><br />&lt;/tks:render&gt;</p>
+</td>
+</tr>
+
+</table>
+<p class="allowpagebreak"></p>
+<a name="o490"></a><h3 class="heading3">statement</h3>
+<p class="bodytext">Sends queries to a Mulgara instance.<br /></p>
+<table width="534" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr>
+<td width="90" height="0"></td>
+<td width="72" height="0"></td>
+<td width="84" height="0"></td>
+<td width="156" height="0"></td>
+<td width="132" height="0"></td>
+</tr>
+<tr align="left" valign="top">
+<td width="90"><p class="tableheading2">Tag Body</p>
+</td>
+<td colspan="4" width="444"><p class="tablebodytext">JSP</p>
+<p class="tablebodytext">The body may contain multiple queries, which by default are sent to the Mulgara server (in the order that they appear) in one request, resulting in a single set of results (one SOAP message) being set to the output stream.</p>
+<p class="tablebodytext">If you want to use multiple queries in a single <code class="monospace">statement</code> tag, but do not want them to be sent in a batch, specify an id for each <code class="monospace"><a id="h1304" class="documentlinktemplate" title="query" href="485.htm#o491" target="_self">query</a></code> tag, and use the <code class="monospace"><a id="h1305_3" class="documentlinktemplate" title="execute" href="485.htm#o492" target="_self">execute</a></code> tag with the query attribute set to the id of the query you wish to execute.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90"><p class="tableheading2">Restrictions</p>
+</td>
+<td colspan="4" width="444"><p class="tablebodytext">If called without the server or model attributes set, the <code class="monospace"><a id="h1306" class="documentlinktemplate" title="init" href="485.htm#o488" target="_self">init</a></code> tag must precede the use of this tag.</p>
+<p class="tablebodytext">The body must contain at least one <code class="monospace">query</code> tag.</p>
+<p class="tablebodytext">If you want to see results returned to the output stream, the body must also contain at least one <code class="monospace">execute</code> tag. If not present, no results are returned to the output stream, or assigned to the variable specified with the id attribute.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90"><p class="tableheading2">Attributes</p>
+</td>
+<td width="72"><p class="tablebodytext"><strong class="strong">Name</strong></p>
+</td>
+<td width="84"><p class="tablebodytext"><strong class="strong">Required</strong></p>
+</td>
+<td width="156"><p class="tablebodytext"><strong class="strong">Runtime Expression Evaluation</strong></p>
+</td>
+<td width="132"><p class="tablebodytext"><strong class="strong">Mulgara Version</strong></p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90"><p class="tableheading2">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="72"><p class="tablebodytext"><code class="monospace">id</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="84"><p class="tablebodytext">false</p>
+</td>
+<td bgcolor="#EFEFEF" width="156"><p class="tablebodytext">true</p>
+</td>
+<td bgcolor="#EFEFEF" width="132"><p class="tablebodytext">n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td colspan="4" width="444"><p class="tablebodytext">If set, a <code class="monospace">java.util.List</code> containing <code class="monospace">org.w3c.dom.Documents</code> representing the answers to each execute tag in the statement is set in the page context. The tag does not output the contents of the SOAP responses to the output stream.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90"><p class="tableheading2">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="72"><p class="tablebodytext"><code class="monospace">server</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="84"><p class="tablebodytext">false</p>
+</td>
+<td bgcolor="#EFEFEF" width="156"><p class="tablebodytext">true</p>
+</td>
+<td bgcolor="#EFEFEF" width="132"><p class="tablebodytext">n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td colspan="4" width="444"><p class="tablebodytext">If set, overrides the URL of the SOAP endpoint of the Mulgara server set using the <code class="monospace">init</code> tag.</p>
+<p class="tablebodytext"><strong class="strong">Note -</strong> This does not update the value, rather it sets a new URL for the execution of this tag only.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90"><p class="tableheading2">Scripting Variables</p>
+</td>
+<td width="72"><p class="tablebodytext"><strong class="strong">Name</strong></p>
+</td>
+<td width="84"><p class="tablebodytext"><strong class="strong">Type</strong></p>
+</td>
+<td width="156"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td width="132"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90"><p class="tableheading2">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="72"><p class="tablebodytext"><code class="monospace">[id]</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="84"><p class="tablebodytext">java.util.List</p>
+</td>
+<td bgcolor="#EFEFEF" width="156"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="132"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td colspan="4" width="444"><p class="tablebodytext">If the <code class="monospace">id</code> attribute is set on the tag, a <code class="monospace">java.util.List</code> containing answers to each execute tag in the statement in the form of <code class="monospace">org.w3c.dom.Documents</code> is set in the page context.</p>
+<p class="tablebodytext">This list is ordered according to the ordering of the <code class="monospace">execute</code> tags. So in the example below, the list contains two elements, accessible as follows:</p>
+<p class="tablecommandtext">// get the answer to both queries<br />Document answer1 = (Document) stmt1.get(0);<br /><br />// get the answer to the second query<br />Document answer3 = (Document) stmt1.get(1);</p>
+<p class="tablebodytext">The ordering is shown as an <code class="monospace">execute</code> tag with no query attribute and executes all queries in the corresponding <code class="monospace">statement</code> tag (two of them shown in the example below). The second <code class="monospace">execute</code> tag only executes the second query (all triples). The <code class="monospace">statement</code> tag does not remove duplicates from its list of answers.</p>
+<p class="tablebodytext"><strong class="strong">Note -</strong> That setting the <code class="monospace">id</code> attribute on a query that returns a large answer may impact performance as the SOAP answer is parsed into a document.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90"><p class="tableheading3">Example</p>
+</td>
+<td colspan="4" width="444"><p class="tablecommandtext">&lt;%-- execute a statement --%&gt;<br />&lt;tks:statement&gt; <br /><br />&lt;%-- set the iTQL query --%&gt;<br />&lt;tks:query&gt;<br />  select $subj $obj from rmi://mysite.com/server1#dc <br />    where $subj rdfs:label $obj ;<br />&lt;/tks:query&gt;<br /><br />&lt;%-- set another iTQL query --%&gt;<br />&lt;tks:query id=&quot;alltriples&quot;&gt;<br />  select $subj $obj $pred from rmi://mysite.com/server1#foo<br />    where $subj $pred $obj ;<br />&lt;/tks:query&gt;<br /><br />&lt;%-- execute all queries --%&gt;<br />&lt;tks:execute/&gt;<br /><br />&lt;%-- execute the query --%&gt;<br />&lt;tks:execute query=&quot;alltriples&quot;/&gt;<br /><br />&lt;/tks:statement&gt;</p>
+</td>
+</tr>
+
+</table>
+<p class="allowpagebreak"></p>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

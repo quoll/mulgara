@@ -1,0 +1,98 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - HTTP Resolver and MP3 Content Handler Tutorial</title>
+    <meta name="keywords" content="HTTP, Resolver, MP3, Content, Handler, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/integration/index.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/integration/resolverpre.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">In This Section</p>
+<p class="relateditem"><a href="/integration/resolverhttpmp3.html#o3182"></a></p>
+<p class="relateditem"><a href="/integration/resolverpre.html">Prerequisites</a></p>
+<p class="relateditem"><a href="/integration/resolveprot.html">Developing Protocol Resolvers</a></p>
+<p class="relateditem"><a href="/integration/contenthandlersdev.html">Developing Content Handlers</a></p>
+<p class="relateditem"><a href="/integration/compiling.html">Compiling with Ant</a></p>
+<p class="relateditem"><a href="/integration/integrate.html">Integrating into Mulgara</a></p>
+
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/integration/index.html">Integration Tutorials</a></p>
+<p class="relateditem"><a href="/integration/jena.html">Jena</a></p>
+<p class="relateditem"><a href="/integration/perl.html">Perl</a></p>
+<p class="relateditem"><a href="/integration/jsptutorial.html">JavaServer Pages Tag Library</a></p>
+<p class="relateditem"><a href="/integration/jrdftutorial.html">JRDF Tutorial</a></p>
+
+ -->
+
+
+
+
+<h2>HTTP Resolver and MP3 Content Handler Tutorial</h2>
+
+<p><a id="h2568" class="documentlinktemplate" title="External Resolvers" href="/resolvers/resolverdbclass.html#o2560">External resolvers</a> are usually, but not always, related to parsing content from a file into data that is meaningful to Mulgara. To make it easier to resolve a file's URL (which can be of any protocol) the resolver architecture and construction of statements is split into two parts, the:</p>
+<ol><li>Protocol resolver
+<p class="listcontinue">Protocol resolvers are in charge of communicating with the database via the resolver SPI.</p>
+</li><li>Content handler
+<p class="listcontinue">Content handlers convert the data supplied into statements that can be used for resolving queries against.</p>
+</li></ol>
+<p>The purpose of this tutorial is to show you how to construct a protocol resolver and content handler, which can be used together to query an MP3 file across an http connection.</p>
+
+<p>The following example queries an MP3 file for the data contained within its id3 tags:</p>
+
+<p class="commandtext">select $subject $predicate $object<br />
+  from &lt;http://mp3server.com/mysongs/U2/Vertigo.mp3&gt;<br />
+  where $subject $predicate $object;</p>
+
+<p>This query could return information like the following:</p>
+
+<p class="commandtext">$subject  $predicate                                         $object<br />
+node_2    &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt;  &lt;http://mulgara.org#ID3v1&gt;<br />
+node_2    &lt;http://mulgara.org#comment&gt;                    'The latest hit from U2'<br />
+node_2    &lt;http://mulgara.org#title&gt;                      'Vertigo'<br />
+node_2    &lt;http://musicbrainz.org/mm/mm-2.1#sortName&gt;        'U2'<br />
+node_2    &lt;http://musicbrainz.org/mm/mm-2.1#trackNum&gt;        '1'<br />
+node_2    &lt;http://mulgara.org#releaseYear&gt;                '2004'<br />
+node_2    &lt;http://musicbrainz.org/mm/mm-2.1#trmid&gt;           '78'</p>
+
+<p>This general query is useful for finding out everything about a single MP3 file located on a server. However, using more complex queries, it is possible to query across several MP3 files to discover information such as:</p>
+<ul><li>All songs from a particular artist</li><li>Song from a particular year or period</li><li>The tracks from a particular album</li></ul>
+<div class="anchor"><a name="o3182">&nbsp;</a></div>
+
+
+<p>An RDF schema file (<code>mp3.rdfs</code>) is provided with the tutorial source to allow you to know the available predicates and classes to be able to construct your queries. It is located in the <code>src/jar/content-mp3/rdfs/</code> directory of the your Mulgara installation.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

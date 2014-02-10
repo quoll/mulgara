@@ -1,0 +1,150 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Example iTQL Shell Session</title>
+    <meta name="keywords" content="Example iTQL Shell Session, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/tutorial/itqlbasics.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/tutorial/viewer.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/tutorial/index.html">Mulgara Tutorial</a></p>
+<p class="relateditem"><a href="/tutorial/sysreq.html">System Requirements</a></p>
+<p class="relateditem"><a href="/tutorial/starting.html">Starting a Mulgara Semantic Store Server</a></p>
+<p class="relateditem"><a href="/tutorial/itql.html">iTQL</a></p>
+<p class="relateditem"><a href="/tutorial/itqlbasics.html">Basic iTQL Operations</a></p>
+<p class="relateditem"><a href="/tutorial/itqlbasics.html#o1234"></a></p>
+<p class="relateditem"><a href="/tutorial/viewer.html">Mulgara Viewer</a></p>
+<p class="relateditem"><a href="/tutorial/viewer.html#o1255"></a></p>
+<p class="relateditem"><a href="/tutorial/viewer.html#o416">Mulgara Sample Data</a></p>
+<p class="relateditem"><a href="/tutorial/loadingrdf.html">Loading Existing RDF Data</a></p>
+<p class="relateditem"><a href="/tutorial/convertrdbms.html">Converting Data in Relational Databases to RDF</a></p>
+<p class="relateditem"><a href="/tutorial/convertingxml.html">Converting XML Data to RDF</a></p>
+
+
+ -->
+
+
+
+
+<h2>Example iTQL Shell Session</h2>
+
+<p>The following example illustrates a sample session using the iTQL<sup>TM</sup> Shell. You can type these commands into a running shell, substituting the machine name where your server is running for localhost as described above.</p>
+
+<p class="note"><strong>Note -</strong> You need an Internet connection to continue, as some files referenced need to be downloaded by the server.</p>
+
+<p class="commandtext">Resolving SYSTEM http://jakarta.apache.org/log4j/docs/api/org/apache/log4j/xml/doc-files/log4j.dtd<br />
+  from classpath...resolved.<br />
+Successfully aliased http://purl.org/dc/elements/1.1/ as dcns<br />
+Successfully aliased http://www.w3.org/1999/02/22-rdf-syntax-ns# as rdfns<br />
+Successfully aliased http://www.w3.org/2000/01/rdf-schema# as rdfsns<br />
+Successfully aliased http://kowari.org/kowari# as kowarins<br />
+Kowari Metadata Store  version 1.0 Build 0.226<br />
+Command Line Interface<br />
+copyright (C) 2001-2002 Plugged In Software Pty Ltd<br />
+<br />
+iTQL&gt; create &lt;rmi://mysite.com/server1#dc&gt;;<br />
+Successfully created model rmi://mysite.com/server1#dc<br />
+iTQL&gt; load &lt;http://purl.org/dc/elements/1.1/&gt; into &lt;rmi://mysite.com/server1#dc&gt;;<br />
+Successfully loaded 81 statements from http://purl.org/dc/elements/1.1/<br />
+  into rmi://mysite.com/server1#dc<br />
+iTQL&gt; select $obj $pred from &lt;rmi://mysite.com/server1#dc&gt; where &lt;dcns:title&gt; $pred $obj;<br />
+2 columns: obj pred (5 rows)<br />
+   obj=http://purl.org/dc/elements/1.1/    pred=http://www.w3.org/2000/01/rdf-schema#isDefinedBy<br />
+   obj=http://www.w3.org/1999/02/22-rdf-syntax-ns#Property<br />
+      pred=http://www.w3.org/1999/02/22-rdf-syntax-ns#type<br />
+   obj=&quot;A name given to the resource.&quot;     pred=http://www.w3.org/2000/01/rdf-schema#comment<br />
+   obj=&quot;Title&quot;     pred=http://www.w3.org/2000/01/rdf-schema#label<br />
+   obj=&quot;Typically, a Title will be a name by which the resource is formally known.&quot;<br />
+      pred=http://dublincore.org/2000/03/13/eor#comment<br />
+iTQL&gt; select $subj $obj from &lt;rmi://mysite.com/server1#dc&gt;<br />
+  where $subj &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; $obj;<br />
+2 columns: subj obj (15 rows)<br />
+   subj=http://purl.org/dc/elements/1.1/contributor        obj=&quot;Contributor&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/coverage   obj=&quot;Coverage&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/creator    obj=&quot;Author/Creator&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/date       obj=&quot;Date&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/description        obj=&quot;Description&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/format     obj=&quot;Format&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/identifier obj=&quot;Resource Identifier&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/language   obj=&quot;Language&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/publisher  obj=&quot;Publisher&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/relation   obj=&quot;Relation&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/rights     obj=&quot;Rights&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/source     obj=&quot;Source&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/subject    obj=&quot;Subject&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/title      obj=&quot;Title&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/type       obj=&quot;Resource Type&quot;<br />
+iTQL&gt; alias &lt;http://www.w3.org/2000/01/rdf-schema#&gt; as rdfs;<br />
+Successfully aliased http://www.w3.org/2000/01/rdf-schema# as rdfs<br />
+iTQL&gt; select $subj $obj from &lt;rmi://mysite.com/server1#dc&gt;<br />
+  where $subj &lt;rdfs:label&gt; $obj;<br />
+2 columns: subj obj (15 rows)<br />
+   subj=http://purl.org/dc/elements/1.1/contributor        obj=&quot;Contributor&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/coverage   obj=&quot;Coverage&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/creator    obj=&quot;Author/Creator&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/date       obj=&quot;Date&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/description        obj=&quot;Description&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/format     obj=&quot;Format&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/identifier obj=&quot;Resource Identifier&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/language   obj=&quot;Language&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/publisher  obj=&quot;Publisher&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/relation   obj=&quot;Relation&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/rights     obj=&quot;Rights&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/source     obj=&quot;Source&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/subject    obj=&quot;Subject&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/title      obj=&quot;Title&quot;<br />
+   subj=http://purl.org/dc/elements/1.1/type       obj=&quot;Resource Type&quot;<br />
+iTQL&gt; drop &lt;rmi://mysite.com/server1#dc&gt;;<br />
+Successfully dropped model rmi://mysite.com/server1#dc<br />
+iTQL&gt; create &lt;rmi://mysite.com/server1#foo&gt;;<br />
+Successfully created model rmi://mysite.com/server1#foo<br />
+iTQL&gt; select $x $y $z from &lt;rmi://mysite.com/server1#foo&gt; where $x $y $x;<br />
+3 columns: x y z (0 rows)<br />
+iTQL&gt; insert &lt;http://purl.org/dc/elements/1.1/title&gt;<br />
+             &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; 'Title'<br />
+      into &lt;rmi://mysite.com/server1#foo&gt;;<br />
+Successfully inserted statements into rmi://mysite.com/server1#foo<br />
+iTQL&gt; select $x $y $z from &lt;rmi://mysite.com/server1#foo&gt; where $x $y $x;<br />
+2 columns: x y (1 rows)<br />
+   x=&quot;Title&quot;       y=http://www.w3.org/2000/01/rdf-schema#label<br />
+iTQL&gt; drop &lt;rmi://mysite.com/server1#foo&gt;;<br />
+Successfully dropped model rmi://mysite.com/server1#foo<br />
+iTQL&gt; quit;<br />
+Quitting ITQL session<br />
+Stopping Command Line Interface</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

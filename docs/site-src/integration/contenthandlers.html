@@ -1,0 +1,295 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Content Handlers</title>
+    <meta name="keywords" content=" Handlers, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+    
+		<a href="/integration/contenthandlers.html#o2710">Configuration and Initialisation</a> &#124;
+		<a href="/integration/contenthandlers.html#o2711">Implementing the Interface</a>
+	
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/integration/contenthandlersdev.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/integration/parsers.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/integration/contenthandlersdev.html">Developing Content Handlers</a></p>
+<p class="relateditem"><a href="/integration/parsers.html">Parsers</a></p>
+<p class="relateditem"><a href="/integration/statements.html">Statements</a></p>
+
+ -->
+
+
+
+
+<h4>Content Handlers</h4>
+
+<p>Working in conjunction with resolvers are content handlers that perform the actual conversion of data in a file into RDF triples for the resolver to constrain. All content handlers use an implementation of the <code>Statements</code> interface to hold the triples extracted from the file and allow for navigation of the results.</p>
+
+<p>While the <code>ContentHandler</code> interface is relatively simple, there are important decisions to be made before implementing it.</p>
+
+<div class="anchor"><a name="o3171">&nbsp;</a></div>
+
+
+<p>First, you need to determine the purpose of the content handler. The issue of protocols is dealt with by the <code>Resolver</code> classes, so you can create individual content handlers for each file type without having to worry about which protocol you are using to connect to it. In this case the content handler is for MP3 files.</p>
+<div class="anchor"><a name="o3172">&nbsp;</a></div>
+
+
+<p>Second, you need to decide how the triples are transferred to the <code>Statements</code> object. In the case of the MP3 content handler, it parses directly into an MP3 specific statements container. However, it is possible to parse the triples first and then feed them into the <code>Statements</code> object.</p>
+<div class="anchor"><a name="o3173">&nbsp;</a></div>
+
+
+<p>Finally, in addition to creating the statements, there is the issue of parsing the file. The MP3 content handler uses an ID3 tag parsing utility that is called from the <code>Statements</code> implementation. Whether this is done as part of the content handler or as a separate utility, and whether the statements are generated as a result of parsing or are fed the triples, is up to the implementer.</p>
+<div class="anchor"><a name="o2710">&nbsp;</a></div>
+<h5>Configuration and Initialisation</h5>
+
+<p>Depending on the design choices made (see the <a id="h2723" class="documentlinktemplate" title="Content Handlers" href="/integration/contenthandlers.html">Creating the Content Handler section</a>) configuration might not be done in the <code>ContentHandler</code> class. If pre-configuration of the parser is required, then it can be done in the implementation, however, the class itself does not require any configuration.</p>
+<div class="anchor"><a name="o2711">&nbsp;</a></div>
+<h5>Implementing the Interface</h5>
+
+<p>Once the usage and structure for the handler is set, the interface can be implemented. The MP3 content handler performs its parsing as part of the statements container so not much implementing is required. The implementation looks something like the following (extracted from <code>MP3ContentHandler.java</code>):</p>
+
+<p class="commandtext">package org.mulgara.content.mp3;<br />
+<br />
+// Java 2 standard packages<br />
+import java.io.InputStream;<br />
+import java.net.URI;<br />
+import java.util.Map;<br />
+<br />
+// Java 2 enterprise packages<br />
+import javax.activation.MimeType;<br />
+import javax.activation.MimeTypeParseException;<br />
+<br />
+// Third party packages<br />
+import org.apache.log4j.Logger; // Apache Log4J<br />
+<br />
+// Local packages<br />
+import org.mulgara.content.Content;<br />
+import org.mulgara.content.ContentHandler;<br />
+import org.mulgara.content.ContentHandlerException;<br />
+import org.mulgara.resolver.spi.ResolverSession;<br />
+import org.mulgara.resolver.spi.Statements;<br />
+import org.mulgara.query.TuplesException;<br />
+<br />
+public class MP3ContentHandler implements ContentHandler {<br />
+<br />
+  /** Logger. */<br />
+  private static Logger logger =<br />
+      Logger.getLogger(MP3ContentHandler.class.getName());<br />
+<br />
+  /**<br />
+   * The MIME type of RDF/XML.<br />
+   */<br />
+  private static final MimeType AUDIO_MPEG;<br />
+<br />
+  static {<br />
+    try {<br />
+      AUDIO_MPEG = new MimeType(&quot;audio&quot;, &quot;mpeg&quot;);<br />
+    }<br />
+    catch (MimeTypeParseException e) {<br />
+      throw new ExceptionInInitializerError(e);<br />
+    }<br />
+  }<br />
+<br />
+  /**<br />
+   * Parses the ID3 tags of the MP3 file pointed to by the content object which<br />
+   * are then converted to a statements object.<br />
+   *<br />
+   * @param content The actual content we are going to be parsing<br />
+   * @param resolverSession The session in which this resolver is being used<br />
+   *<br />
+   * @return The parsed statements object<br />
+   *<br />
+   * @throws ContentHandlerException<br />
+   */<br />
+  public Statements parse(Content content, ResolverSession resolverSession) throws<br />
+      ContentHandlerException {<br />
+<br />
+    // Container for our statements<br />
+    MP3Statements statements = null;<br />
+<br />
+    try {<br />
+<br />
+      // Attempt to create the MP3 statements<br />
+      statements = new MP3Statements(content, resolverSession);<br />
+    } catch (TuplesException tuplesException) {<br />
+<br />
+      throw new ContentHandlerException(&quot;Unable to create statements object from &quot; +<br />
+                                        &quot;content object: &quot; + content.getURI().toString(),<br />
+                                        tuplesException);<br />
+    }<br />
+<br />
+    return statements;<br />
+  }<br />
+<br />
+  /**<br />
+   * @return true if the file part of the URI has an<br />
+   *   .mp3 extension<br />
+   */<br />
+  public boolean canParse(Content content)<br />
+  {<br />
+    MimeType contentType = content.getContentType();<br />
+    if (contentType != null &amp;&amp; AUDIO_MPEG.match(contentType)) {<br />
+      return true;<br />
+    }<br />
+<br />
+    if (content.getURI() == null)<br />
+    {<br />
+      return false;<br />
+    }<br />
+<br />
+    // Obtain the path part of the URI<br />
+    String path = content.getURI().getPath();<br />
+    if (path == null) {<br />
+      return false;<br />
+    }<br />
+    assert path != null;<br />
+<br />
+    // We recognize a fixed extension<br />
+    return path.endsWith(&quot;.mp3&quot;);<br />
+  }<br />
+<br />
+}</p>
+
+<p>An analysis of the class is as follows:</p>
+
+<p class="indentcommandtext">package org.mulgara.content.mp3;<br />
+<br />
+// Java 2 standard packages<br />
+import java.io.InputStream;<br />
+import java.net.URI;<br />
+import java.util.Map;<br />
+<br />
+// Java 2 enterprise packages<br />
+import javax.activation.MimeType;<br />
+import javax.activation.MimeTypeParseException;<br />
+<br />
+// Third party packages<br />
+import org.apache.log4j.Logger; // Apache Log4J<br />
+<br />
+// Local packages<br />
+import org.mulgara.content.Content;<br />
+import org.mulgara.content.ContentHandler;<br />
+import org.mulgara.content.ContentHandlerException;<br />
+import org.mulgara.resolver.spi.ResolverSession;<br />
+import org.mulgara.resolver.spi.Statements;<br />
+import org.mulgara.query.TuplesException;</p>
+
+<p class="indent">There are no specific requirements for the packaging of the implementation but it is recommended that related classes be kept in the same package for easier implementing. For the interface, you also need to import:</p>
+<ul><li><code>org.mulgara.content.Content</code></li><li><code>org.mulgara.content.ContentHandler</code></li><li><code>org.mulgara.content.ContentHandlerException</code></li><li><code>org.mulgara.resolver.spi.ResolverSession</code></li><li><code>org.mulgara.resolver.spi.Statements</code></li></ul>
+<p class="indent">In most cases the <code>javax.activation.MimeType</code> class also needs to be imported to do proper mime type handling. Any supporting classes for the implementation should also be imported.</p>
+
+<p class="indentcommandtext">public class MP3ContentHandler implements ContentHandler {</p>
+
+<p class="indent">All content handlers must implement the <code>ContentHandler</code> interface unless they are extending an existing implementation, in which case the superclass should handle the implementation. Any extra interfaces or extensions are valid.</p>
+
+<p class="indentcommandtext">/**<br />
+   * The MIME type of RDF/XML.<br />
+   */<br />
+  private static final MimeType AUDIO_MPEG;<br />
+<br />
+  static {<br />
+    try {<br />
+      AUDIO_MPEG = new MimeType(&quot;audio&quot;, &quot;mpeg&quot;);<br />
+    }<br />
+    catch (MimeTypeParseException e) {<br />
+      throw new ExceptionInInitializerError(e);<br />
+    }<br />
+  }</p>
+
+<p class="indent">Content handlers are written to handle specific content types and most often these have a mime type associated with them that can be used to determine if the handler is able to parse the content. Although not strictly necessary, it is preferable to set up the mime type using a static initialization block for the class, creating a variable that can be used during the <code>canParse()</code> method.</p>
+
+<p class="indentcommandtext">  /**<br />
+   * Parses the ID3 tags of the MP3 file pointed to by the content object which<br />
+   * are then converted to a statements object.<br />
+   *<br />
+   * @param content The actual content we are going to be parsing<br />
+   * @param resolverSession The session in which this resolver is being used<br />
+   *<br />
+   * @return The parsed statements object<br />
+   *<br />
+   * @throws ContentHandlerException<br />
+   */<br />
+  public Statements parse(Content content, ResolverSession resolverSession) throws<br />
+      ContentHandlerException {<br />
+<br />
+    // Container for our statements<br />
+    MP3Statements statements = null;<br />
+<br />
+    try {<br />
+<br />
+      // Attempt to create the MP3 statements<br />
+      statements = new MP3Statements(content, resolverSession);<br />
+    } catch (TuplesException tuplesException) {<br />
+<br />
+      throw new ContentHandlerException(&quot;Unable to create statements object from &quot; +<br />
+                                        &quot;content object: &quot; + content.getURI().toString(),<br />
+                                        tuplesException);<br />
+    }<br />
+<br />
+    return statements;<br />
+  }</p>
+
+<p class="indent">The purpose of the <code>parse(Content, ResolverSession)</code> method is to convert the resource pointed to by the <code>Content</code> object into a series of triples inside a <code>Statements</code> object. This means there are two parts to consider, the parsing of the resource and the conversion of the results into statements. It is possible to perform both operations in the single method, but in the MP3 implementation, the content is parsed directly into the <code>Statements</code> object. The result is that you only need to create a <code>MP3Statements</code> object that handles the parsing and setting up of the statements. See the <a id="h3020" class="documentlinktemplate" title="Statements" href="/integration/statements.html">Creating the Statements section</a> for more information.</p>
+
+<p class="indentcommandtext">  /**<br />
+   * @return true if the file part of the URI has an<br />
+   *   .mp3 extension<br />
+   */<br />
+  public boolean canParse(Content content)<br />
+  {<br />
+    MimeType contentType = content.getContentType();<br />
+    if (contentType != null &amp;&amp; AUDIO_MPEG.match(contentType)) {<br />
+      return true;<br />
+    }<br />
+<br />
+    if (content.getURI() == null)<br />
+    {<br />
+      return false;<br />
+    }<br />
+<br />
+    // Obtain the path part of the URI<br />
+    String path = content.getURI().getPath();<br />
+    if (path == null) {<br />
+      return false;<br />
+    }<br />
+    assert path != null;<br />
+<br />
+    // We recognize a fixed extension<br />
+    return path.endsWith(&quot;.mp3&quot;);<br />
+  }</p>
+
+<p class="indent">Before a <code>Content</code> object is sent to the handler, a search is done through the list of registered handlers to find out which to use to parse it into statements. For the resolver to know which content handlers support which content, it uses the <code>canParse(Content)</code> method. If the method returns <code>true</code> then the content is passed to the <code>parse(Content, ResolverSession)</code> method of that handler. One of the first checks that should be made is whether the content is of the correct mime type. Sometimes the mime type is unavailable (for example, for a file protocol resolver) so you should also check the URI and extensions. If the content is supported by the handler then this method should return <code>true</code>, otherwise <code>false</code>.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

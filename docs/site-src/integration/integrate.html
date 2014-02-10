@@ -1,0 +1,79 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Integrating into Mulgara</title>
+    <meta name="keywords" content="Integrating, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/integration/compiling.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/integration/jena.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/integration/resolverhttpmp3.html">HTTP Resolver and MP3 Content Handler Tutorial</a></p>
+<p class="relateditem"><a href="/integration/resolverhttpmp3.html#o3182"></a></p>
+<p class="relateditem"><a href="/integration/resolverpre.html">Prerequisites</a></p>
+<p class="relateditem"><a href="/integration/resolveprot.html">Developing Protocol Resolvers</a></p>
+<p class="relateditem"><a href="/integration/contenthandlersdev.html">Developing Content Handlers</a></p>
+<p class="relateditem"><a href="/integration/compiling.html">Compiling with Ant</a></p>
+
+
+			
+ -->
+
+
+
+
+<h3>Integrating into Mulgara</h3>
+
+<p>Since the resolver and content handler jars are external, it is difficult to integrate them into the Mulgara jar. Therefore they need to be added to the CLASSPATH environment variable to be accessible when Mulgara runs.</p>
+
+<p>For systems running the Windows<sup>&reg;</sup> operating system, set the <code>classpath</code> as follows:</p>
+
+<p class="commandtext">set CLASSPATH=%CLASSPATH%;&lt;Full jar path&gt;\myResolver.jar;&lt;Full jar path&gt;\myHandler.jar</p>
+
+<p>Where <code>myResolver.jar</code> and <code>myHandler.jar</code> are the names of your compiled jars and <code>&lt;Full jar path&gt;</code> is their fully qualified path (for example, <code>C:\myResolvers</code>).</p>
+
+<p>For systems running a Linux<sup>&reg;</sup> or UNIX<sup>&reg;</sup> operating system, set the <code>classpath</code> as follows:</p>
+
+<p class="commandtext">export CLASSPATH=$CLASSPATH:{Full jar path}/myResolver.jar:{Full jar path}/myHandler.jar</p>
+
+<p>Both the HTTP resolver and MP3 content handler are already packaged in Mulgara so doing this with the jars created by the tutorial have no effect. They are for learning purposes only.</p>
+
+<p>In addition to adding the jars to the <code>classpath</code>, the server also needs to know about the new resolvers and content handlers so it can use them when required. These are stored in the <code>mulgara-config.xml</code> file (see the <a id="h3021" class="documentlinktemplate" title="Mulgara Configuration File" href="/overview/install.html#o402">Mulgara Configuration File section</a>).</p>
+
+<p>To include your resolver or handler in the Mulgara server, use the following steps:</p>
+<ol><li>In the <code>mulgara-config.xml</code> file, find the <code>&lt;TripleStoreImplementation&gt;</code> tag. In this section there may already be some configured resolvers and handlers. The order is not important, so find a suitable place to insert your new resolver or handler.</li><li>For resolvers, add a tag <code>&lt;ResolverFactoryClass&gt;{class name}&lt;/ResolverFactoryClass&gt;</code> where <code>{class name}</code> is the full class name of the resolver's factory class. For example, <code>org.mulgara.resolver.http.HttpResolverFactory</code></li><li>For content handlers, add a tag <code>&lt;ContentHandlerClass&gt;{class name}&lt;/ContentHandlerClass&gt;</code> where <code>{class name}</code> is the full class name of the content handler's implementation class. For example, <code>org.mulgara.content.mp3.MP3ContentHandler</code></li></ol>
+<p>The MP3 content handler and HTTP resolver are already configured as part of Mulgara and should not be added again. They are for learning purposes only.</p>
+
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

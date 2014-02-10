@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="demo" default="demo-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="demo-classpath">
+    <path refid="common-classpath"/>
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${resolver.dist.dir}/${resolver.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <pathelement path="${lib.dir}/${jrdf.jar}"/>
+    <pathelement path="${lib.dir}/${sesame-model.jar}"/>
+  </path>
+
+  <target name="demo-clean"
+          description="Removes all compile generated files for the demo">
+    <tstamp/>
+    <delete dir="${demo.obj.dir}"/>
+    <delete dir="${demo.test.dir}"/>
+    <delete dir="${demo.dist.dir}"/>
+  </target>
+
+  <target name="-demo-prepare"
+          description="Creates all directories associated with the demo's
+                       compilation"
+          depends="-prepare-build">
+    <mkdir dir="${demo.obj.dir}"/>
+    <mkdir dir="${demo.test.dir}"/>
+    <mkdir dir="${demo.dist.dir}"/>
+    <mkdir dir="${demo.obj.dir}/classes"/>
+  </target>
+
+  <target name="demo-compile"
+          depends="-demo-prepare, resolver-jar, resolver-spi-jar, query-jar, tuples-jar, util-jar"
+          description="Compiles all demo related files included generated
+                       source code">
+    <javac destdir="${obj.dir}/jar/demo/classes" debug="on"
+           deprecation="on" source="1.5">
+      <classpath refid="demo-classpath"/>
+      <src path="${demo.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <!-- For now the demo jar is simply a copy of the resolver-gis JAR -->
+  <target name="demo-jar"
+          depends="resolver-gis-jar"
+          description="Creates the demo's jar/s">   
+    <copy file="${resolver-gis.dist.dir}/${resolver-gis.jar}"
+          tofile="${demo.dist.dir}/${demo.jar}"/>
+  </target>
+
+  <target name="-demo-jar-uptodate">
+    <uptodate property="demo.jar.uptodate"
+              targetfile="${demo.dist.dir}/${demo.jar}">
+      <srcfiles dir="${demo.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="demo-dist"
+          depends="demo-jar"
+          unless="demo.uptodate"
+          description="Performs all tasks related to finalising this demo
+                       and readying it for distribution">
+    <!-- All that's involved in the final version of the demo library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="demo-javadoc"
+          depends="demo-jar"
+          description="Creates the javadoc for this demo">
+    <antcall target="javadoc">
+      <param name="javadoc.package" value="org.mulgara.client.jrdf.*"/>
+      <param name="javadoc.classpath" value="demo-classpath"/>
+      <param name="javadoc.sourcepath" value="${demo.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="demo-help"
+          description="Displays the help information for this demo">
+    <!-- This is similar to the main project's help except the information
+         is specific to this demo -->
+    <echo message="Welcome to the build script for ${demo.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+      <jvmarg value="${arch.bits}"/>
+      <arg line="-buildfile ${demo.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

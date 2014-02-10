@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="config" default="config-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!-- Builds the base Mulgara configuration JAR                            -->
+  <!-- =================================================================== -->
+  <target name="-config-generate-uptodate">
+
+    <condition property="config-generate-uptodate">
+      <and>
+        <uptodate targetfile="${config.dist.dir}/${config.jar}">
+          <srcfiles dir="${conf.dir}" includes="mulgara-embedded.xsd"/>
+        </uptodate>
+        <available file="${obj.dir}/jar/config/java" type="dir"/>
+      </and>
+    </condition>
+  </target>
+
+  <target name="config-generate" description="Generates the Mulgara config code"
+      depends="-config-generate-uptodate" unless="config-generate-uptodate">
+
+    <delete dir="${obj.dir}/jar/config/java"/>
+
+    <mkdir dir="${obj.dir}/jar/config/java"/>
+
+    <java fork="true" jvm="${java.home}/bin/java" classname="org.exolab.castor.builder.SourceGeneratorMain" failonerror="yes">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <sysproperty key="java.io.tmpdir" value="${tmp.dir}"/>
+
+      <arg value="-i"/>
+      <arg value="${conf.dir}/mulgara-embedded.xsd"/>
+      <arg value="-package"/>
+      <arg value="org.mulgara.config"/>
+      <arg value="-dest"/>
+      <arg value="${obj.dir}/jar/config/java"/>
+
+      <classpath>
+        <fileset dir="${lib.dir}" includes="${xerces.jar}, ${xmlParserAPIs.jar}, castor*.jar, commons-logging*.jar, velocity*.jar"/>
+      </classpath>
+    </java>
+  </target>
+
+  <target name="config-compile" depends="config-generate"
+      description="Compiles the Mulgara config code">
+
+    <mkdir dir="${obj.dir}/jar/config/classes"/>
+
+    <javac destdir="${obj.dir}/jar/config/classes"
+        debug="on" deprecation="off">
+
+      <classpath refid="project-classpath"/>
+
+      <src path="${obj.dir}/jar/config/java"/>
+    </javac>
+  </target>
+
+  <target name="config-jar" depends="config-compile, config-jar-uptodate"
+      description="Builds the base Mulgara configuration JAR"
+      unless="config.jar-uptodate">
+
+    <mkdir dir="${config.dist.dir}"/>
+
+    <jar jarfile="${config.dist.dir}/${config.jar}">
+      <fileset dir="${obj.dir}/jar/config/classes"/>
+    </jar>
+  </target>
+
+  <target name="config-jar-uptodate">
+    <uptodate property="config.jar.uptodate"
+       targetfile="${config.dist.dir}/${config.jar}">
+      <srcfiles dir="${obj.dir}/jar/config/java" includes="**/*.java"/>
+    </uptodate>
+  </target>
+
+</project>

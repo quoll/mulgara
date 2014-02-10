@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Jena </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Jena, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="2720.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="746.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h2 class="heading2">Jena</h2>
+<p class="bodytext">Jena is a Java<sup class="superscript">TM</sup> API that is commonly used to develop applications using RDF. This tutorial describes any changes or modifications to existing Jena code that are required for it to use Mulgara.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="947.htm#o3186" target="_self">Creating Sessions</a></p><p class="relateditem"><a href="947.htm#o3187" target="_self">Available Jena Interfaces</a></p><p class="relateditem"><a href="947.htm#o3188" target="_self">Using the Jena Maker Interfaces</a></p><p class="relateditem"><a href="947.htm#o949" target="_self">Using Iterators</a></p><p class="relateditem"><a href="947.htm#o950" target="_self">Exceptions and Logging</a></p><p class="relateditem"><a href="947.htm#o951" target="_self">Threading</a></p><p class="relateditem"><a href="947.htm#o952" target="_self">Porting an Existing Jena Application</a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="1565.htm" target="_self">Integration Tutorials</a></p><p class="relateditem"><a href="2686.htm" target="_self">HTTP Resolver and MP3 Content Handler Tutorial</a></p><p class="relateditem"><a href="746.htm" target="_self">Perl</a></p><p class="relateditem"><a href="990.htm" target="_self">JavaServer Pages Tag Library</a></p><p class="relateditem"><a href="2892.htm" target="_self">JRDF Tutorial</a></p></td>
+</tr>
+</table>
+
+<a name="o3186"></a><h3 class="heading3">Creating Sessions</h3>
+<p class="bodytext">The Mulgara server can be accessed using the the Jena API using either a local connection (in the same Java Virtual Machine (JVM)) or via a client/server interface.</p>
+<p class="bodytext">The local connection provides the ability to create a new server or start an existing one and access it through the Jena API. The client/server interface connects to an existing server using RMI, if it exists, or if this fails, falls back to creating a new local server. Falling back to local server does not start the RMI registry and other external clients cannot access it unless started manually.</p>
+<p class="bodytext">The main APIs in Jena are the <code class="monospace">Model</code> and <code class="monospace">Graph</code> interfaces. The Mulgara server has its own implementation of these. To use these APIs you must first have a <code class="monospace">JenaSession</code>. A <code class="monospace">JenaSession</code> first requires a <code class="monospace">SessionFactory</code>. To construct a new <code class="monospace">SessionFactory</code> the URI of the server is required as well as an optional boolean parameter indicating whether the server is remote or not. If this boolean parameter is not provided, the server is assumed to be local (in the same JVM). For example:</p>
+<p class="commandtext">// Create the host name<br />String hostname = InetAddress.getLocalHost().getCanonicalHostName();<br /><br />// Create the URI of the server<br />serverURI = new URI(&quot;rmi&quot;, hostname, &quot;/&quot; + SERVER_NAME, null);<br /><br />// Create a new session factory, ensure that it's local<br />SessionFactory sessionFactory = SessionFactoryFinder.newSessionFactory(serverURI, false);<br /><br />// Get a local Jena session<br />LocalJenaSession session = (LocalJenaSession) sessionFactory.newJenaSession();</p>
+<p class="bodytext">If a local server is created, the server configuration file is used to determine which directory to place the server's files in. See the <a id="h3021" class="documentlinktemplate" title="Mulgara Configuration File" href="1139.htm#o402" target="_self">Mulgara Configuration File section</a> in the Administrator Guide for more information.</p>
+<p class="bodytext">If a remote Session Factory is used, then the session can only be cast to a <code class="monospace">JenaSession</code>. For example:</p>
+<p class="commandtext">// Create a new remote session factory<br />SessionFactory sessionFactory = SessionFactoryFinder.newSessionFactory(serverURI, true);<br /><br />// Get a local Jena<br />JenaSession session = (JenaSession) sessionFactory.newJenaSession();</p>
+<a name="o3187"></a><h3 class="heading3">Available Jena Interfaces</h3>
+<p class="bodytext">The type of session determines which Jena interfaces are available. The client Jena interfaces consist of <code class="monospace">KModel</code> and <code class="monospace">KGraph</code>. The server side Jena interfaces are much larger and include Jena interfaces such as <code class="monospace">GraphMaker</code>, <code class="monospace">ModelMaker</code>, <code class="monospace">BulkUpdateHandler</code> and the interfaces used in querying, reification, and transactions.</p>
+<a name="o3188"></a><h3 class="heading3">Using the Jena Maker Interfaces</h3>
+<p class="bodytext">Jena defines two interfaces responsible for the creation of new models and graphs. Mulgara has its own implementation of these interfaces: <code class="monospace">ModelMulgaraMaker</code> and <code class="monospace">GraphMulgaraMaker</code>.</p>
+<p class="bodytext">Once the session is successfully created you can construct a <code class="monospace">GraphMulgaraMaker</code>, then a <code class="monospace">ModelMulgaraMaker</code> and finally create a new model, as follows:</p>
+<p class="commandtext">GraphMulgaraMaker graphMaker = new GraphMulgaraMaker(session, serverURI, ReificationStyle.Minimal);<br />ModelMulgaraMaker modelMaker = new ModelMulgaraMaker(graphMaker);<br />Model model = modelMaker.createModel(&quot;camera&quot;);</p>
+<p class="bodytext">The above example creates a new model called <code class="monospace">rmi://mysite.com/server1#camera</code>, where <code class="monospace">mysite.com</code> is the fully qualified name of the machine Mulgara is running on.</p>
+<p class="bodytext">If code requires an ontology model, then use the following example:</p>
+<p class="commandtext">// Create a new model with the default specification (OWL_MEM)<br />OntModel newModel = ModelFactory.createOntologyModel();</p>
+<p class="bodytext">Assuming that the database and <code class="monospace">ModelMulgaraMaker</code> are created in a method called <code class="monospace">createMaker</code>, then the code becomes:</p>
+<p class="commandtext">// Get ModelMulgaraMaker<br />ModelMaker maker = createMaker(ReificationStyle.Minimal);<br /><br />// Specify ontology model type (OWL_MEM)<br />OntModelSpec spec = new OntModelSpec(OntModelSpec.OWL_MEM);<br />spec.setModelMaker(maker);<br /><br />// Create a new base model.<br />Model baseModel = maker.createModel();<br /><br />// Create a new ontology model.<br />OntModel m = ModelFactory.createOntologyModel(spec, baseModel);</p>
+<p class="bodytext">The <code class="monospace">GraphMulgaraMaker</code> interface defines the <code class="monospace">removeAll()</code> and <code class="monospace">removeGraph(String)</code> methods. These remove all model entries or an individual model's entry from the server's system model. This means that the models are no longer accessible and the data they were holding is lost.</p>
+<p class="bodytext">Models and Graphs must be closed after use by calling <code class="monospace">close()</code>. This ensures that the files and other resources used are closed correctly. If the objects are not closed, because of a hardware or other unexpected termination of the program, no data is lost and the database cleans up the file data on next start up.</p>
+<p class="bodytext">The database and session that are created to create the Jena object implementations must also have <code class="monospace">close()</code> called on them in order to correctly clean up resources that are being used.</p>
+<p class="bodytext">Two calls are available to shutdown a database cleanly. The first, <code class="monospace">close()</code>, just stops the database. The second, <code class="monospace">delete()</code>, stops the database and removes all files associated with it. This permanently erases the database from the disk.</p>
+<a name="o949"></a><h3 class="heading3">Using Iterators</h3>
+<p class="bodytext">The standard base iterator class for Jena is <code class="monospace">ClosableIterator</code>. This is extended by other iterators such as <code class="monospace">ExtendedIterator</code>, <code class="monospace">StmtIterator</code> and <code class="monospace">TripleIterator</code>. The default iterator implementation used in this Jena implementation is <code class="monospace">TuplesClosableIteratorImpl</code>. It is backed by a Tuples object, which must be closed. Failure to close an iterator could lead to the system eventually running out of files and other resources.</p>
+<p class="bodytext">Most Jena applications do not call <code class="monospace">close()</code> on iterators. Most, but not all, of the standard Jena code does call <code class="monospace">close()</code> on iterators. If you are unable to change the behavior of the code, objects such as <code class="monospace">FileTuples</code>, log warning messages indicating they were not properly closed. To support iterators not being closed, functionality has been added into <code class="monospace">close()</code> on <code class="monospace">GraphMulgaraMaker</code>. It tracks the creation of iterators and closes any un-closed iterators. Best practice, however, is to ensure that iterators are closed as soon as possible.</p>
+<p class="bodytext">In existing Jena code, calling <code class="monospace">listStatements</code> usually takes the following form:</p>
+<p class="commandtext">StmtIterator sti = model.listStatements();<br />while (sti.hasNext()) {<br />  Statement st = (Statement) sti.next();<br />  ...<br />}</p>
+<p class="bodytext">The usual way of ensuring that iterators are always closed is as follows:</p>
+<p class="commandtext">StmtIterator sti = null;<br /><br />try {<br />  sti = model.listStatements();<br />  while (sti.hasNext()) {<br />    Statement st = (Statement) sti.next();<br />    ...<br />  }<br />}<br />finally {<br />  if (sti != null) {<br />    sti.close();<br />  }<br />}</p>
+<p class="bodytext">If an iterator is to be reused you should also set the iterator to null within the <code class="monospace">finally</code> block. For example:</p>
+<p class="commandtext">ExtendedIterator iter = null;<br /><br />// First use of iterator.<br />try {<br />  ...<br />  iter = model.listClasses();<br />  ...<br />}<br />finally {<br />  if (iter != null) {<br />    iter.close();<br />    iter = null;<br />  }<br />}<br /><br />// Next use of the same variable.<br />try {<br />  ...<br />  iter = model.listOntProperties();<br />  ...<br />}<br />finally {<br />  if (iter != null) {<br />    iter.close();<br />  }<br />}</p>
+<a name="o950"></a><h3 class="heading3">Exceptions and Logging</h3>
+<p class="bodytext">The Jena API uses unchecked or runtime exceptions. The exception hierarchy begins with <code class="monospace">JenaException,</code> which extends <code class="monospace">RuntimeException</code> and there are specific exceptions for various parts of the Jena API.</p>
+<p class="bodytext">Mulgara follows the expected Jena semantics on exceptions. For example, <code class="monospace">GraphMulgaraMaker</code> generates an <code class="monospace">AddedDeniedException</code> exception if an <code class="monospace">add(Triple)</code> method fails. However, most of the exceptions generated by the underlying store layers do not have equivalent Jena exceptions. For example, the construction of <code class="monospace">GraphMulgaraMaker</code> generates a <code class="monospace">JenaException</code> if any of the following occurs:</p>
+<ul class="listbullet"><li class="listbullet">The given URI is invalid</li><li class="listbullet">The server is not found</li><li class="listbullet">Acquiring a session failed</li><li class="listbullet">The statement store failed to initialize</li></ul><p class="bodytext">Currently, no new exceptions are created to wrap the semantics of these cases. Only <code class="monospace">JenaException</code> is used.</p>
+<p class="bodytext">In Mulgara, whenever an exception occurs within the store layer it is logged as a warning or error and then rethrown, if appropriate, as a runtime exception. Some interfaces, such as <code class="monospace">ClosableIterator</code>, are not expected to generate an exception so the TKS implementation, <code class="monospace">TuplesClosableIteratorImpl</code>, simply logs the exception and continues. If an exception occurs, it returns null when calling <code class="monospace">next()</code> and false when calling <code class="monospace">hasNext()</code>. This provides the maximum compatibility with existing Jena implementations.</p>
+<a name="o951"></a><h3 class="heading3">Threading</h3>
+<p class="bodytext">The implementation of Jena's Graph is tied to the implementation of the underlying store's session. Each session only supports a one-to-one mapping of threads to instances. This means that one and only one thread should access an instance of Graph.</p>
+<a name="o952"></a><h3 class="heading3">Porting an Existing Jena Application</h3>
+<p class="bodytext">The following example goes through the steps to modify an application called <a class="internetlinktemplate" title="" href="http://www.mindswap.org/2004/SWOOP/" target="_blank">SWOOP (Semantic Web Ontology Overview and Perusal)</a> and present it using the Mulgara implementation of the Jena APIs. The modified source (Swoop-src.zip) is also provided for you in the <code class="monospace">Resources</code> directory of your Mulgara installation.</p>
+<p class="bodytext">SWOOP has two instances where it creates a new model. Both require a way to create <code class="monospace">ModelMulgaraMaker</code>. This is implemented with the static <code class="monospace">createModelMaker</code> added to <code class="monospace">SwoopCode.java</code>:</p>
+<p class="commandtext">...<br />// Static definition of the session<br />static LocalJenaSession session = null;<br />...<br /><br />public static ModelMaker createMaker() {<br />boolean exceptionOccurred = true;<br />try {<br />  String hostname = InetAddress.getLocalHost().getCanonicalHostName();<br />  URI serverURI = new URI(&quot;rmi&quot;, hostname, &quot;/server1&quot;, null);<br /><br />  if (session == null) {<br />    SessionFactory sessionFactory = SessionFactoryFinder.newSessionFactory(serverURI, false);<br />    session = (LocalJenaSession) sessionFactory.newJenaSession();<br />  }<br /><br />  exceptionOccurred = false;<br />  return new ModelMulgaraMaker(new GraphMulgaraMaker(session, serverURI, ReificationStyle.Convenient));<br />}<br />catch (Exception e) {<br /><br />  // You wouldn't normally do this - just for demonstration<br />  // purposes<br />  e.printStackTrace();<br />  return null;<br />}<br />finally {<br />  if ((exceptionOccurred) &amp;&amp; (session != null)) {<br />    session.close();<br />  }<br />}</p>
+<p class="bodytext">If successful, this method creates a <code class="monospace">ModelMulgaraMaker,</code> otherwise it returns null and closes the database if required. The main difference between this and most other Jena implementations is the requirement to set aside a directory to persist the triples in the store. You need to ensure that the current user has exclusive access to the creation of the directory and to the files underneath. Multiple access to the same directory and set of files by separate Java instances is not supported.</p>
+<p class="bodytext">Previously, the SWOOP code initialized the <code class="monospace">OntModel</code> with the <code class="monospace">no-args</code> constructor:</p>
+<p class="commandtext">OntModel newModel = ModelFactory.createOntologyModel();</p>
+<p class="bodytext">Following the example given in the Jena documentation, you construct a persistent ontology using the following code:</p>
+<p class="commandtext">// Default OWL Model Specification<br />OntModelSpec spec = new OntModelSpec(OntModelSpec.OWL_MEM);<br /><br />// Get ModelMaker - assume doesn't return null.<br />ModelMaker maker = createMaker();<br />spec.setModelMaker(maker);<br /><br />// Create a new base model.<br />Model baseModel = maker.createModel();<br />OntModel newModel = ModelFactory.createOntologyModel(spec, baseModel);</p>
+<p class="bodytext">Once the model is created, the SWOOP code lists the statements. Following the standard for iterators, transforms the coding in the following lines of <code class="monospace">SwoopCode.java</code> to become:</p>
+<p class="commandtext">StmtIterator sti = null; <br />try {<br />  sti = model.listStatements();<br />  while (sti.hasNext()) {<br />    Statement st = (Statement) sti.next();<br />    //System.out.println(st.toString());<br />    boolean removeStatement = false;<br />    try {<br />      if (st.getSubject().getURI().startsWith(RDF)) removeStatement = true;<br />      if (st.getSubject().getURI().startsWith(RDFS)) removeStatement = true;<br />      if (st.getSubject().getURI().startsWith(OWL)) removeStatement = true;<br />    }<br />    catch (NullPointerException e) { <br />    }<br /><br />    if (!removeStatement) newModel.add(st);<br />  }<br />}<br />finally { &nbsp;<br />  if (sti != null) { <br />    sti.close();<br />  }<br />}</p>
+<p class="bodytext">As noted in the previous section, this ensures that if an iterator is created, it is always closed even if an exception or other error occurs. Unclosed iterators do not generally cause a problem under normal usage. Under heavy load however, when the garbage collector does not collect the resources quickly enough, you can run out of resources.</p>
+<p class="bodytext">Likewise, changes are made to access the static <code class="monospace">createMaker()</code> from <code class="monospace">SwoopFrame.java</code> in the <code class="monospace">addOntology()</code> method:</p>
+<p class="commandtext">OntModelSpec spec = new OntModelSpec(OntModelSpec.OWL_MEM);<br />ModelMaker maker = SwoopCode.createMaker();<br />spec.setModelMaker(maker);<br /><br />// Create a new base model.<br />Model baseModel = maker.createModel();<br />OntModel newOntologyModel = ModelFactory.createOntologyModel(spec, baseModel);</p>
+<p class="bodytext">The rest of the changes require modifying the use of iterators. They must always be closable iterators when working from the model and Mulgara ensures that they are closed.</p>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

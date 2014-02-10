@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="server-http" default="server-http-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="server-http-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${server.dist.dir}/${server.jar}"/>
+    <fileset file="${querylang.dist.dir}/${querylang.jar}"/>
+    <fileset file="${lib.dir}/javax.servlet-2.3.jar"/>
+  </path>
+
+  <path id="server-http-test-classpath">
+
+    <path refid="server-http-classpath"/>
+
+    <fileset file="${server-http.dist.dir}/${server-http.jar}"/>
+  </path>
+
+  <target name="server-http-clean"
+          description="Removes all compile generated files for the server-http">
+
+    <tstamp/>
+
+    <delete dir="${server-http.obj.dir}"/>
+    <delete dir="${server-http.test.dir}"/>
+    <delete dir="${server-http.dist.dir}"/>
+    <delete dir="${server-http.war.obj.dir}/classes"/>
+  </target>
+
+  <target name="-server-http-prepare"
+          description="Creates all directories associated with the server-http's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${server-http.obj.dir}"/>
+    <mkdir dir="${server-http.test.dir}"/>
+    <mkdir dir="${server-http.dist.dir}"/>
+    <mkdir dir="${server-http.obj.dir}/classes"/>
+    <mkdir dir="${server-http.war.obj.dir}/classes"/>
+  </target>
+
+  <target name="server-http-compile"
+          depends="-server-http-prepare, querylang-jar, server-jar"
+          description="Compiles all server-http related files included generated
+                       source code">
+
+    <javac destdir="${obj.dir}/jar/server-http/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="server-http-classpath"/>
+
+      <src path="${server-http.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="server-http-jar"
+          depends="server-http-compile, -server-http-jar-uptodate"
+          unless="server-http.jar.uptodate"
+          description="Creates the server-http's jar/s">
+
+    <jar jarfile="${server-http.dist.dir}/${server-http.jar}">
+      <fileset dir="${server-http.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-server-http-jar-uptodate">
+
+    <uptodate property="server-http.jar.uptodate"
+              targetfile="${server-http.dist.dir}/${server-http.jar}">
+      <srcfiles dir="${server-http.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="server-http-war-compile"
+          depends="-server-http-prepare, query-jar, querylang-jar, server-jar,
+                   util-jar"
+          description="Compiles all server-http war related files including
+                       generated source code">
+
+    <javac destdir="${server-http.war.obj.dir}/classes"
+           debug="on" deprecation="off">
+
+      <classpath refid="server-http-classpath"/>
+
+      <src path="${server-http.war.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="server-http-war"
+          depends="-server-http-war-uptodate, server-http-war-compile"
+          unless="server-http.war.uptodate"
+          description="Builds the HTTP server WAR">
+
+    <delete file="${server-http.war.dist.dir}/server-http.war"/>
+
+    <war warfile="${server-http.war.dist.dir}/server-http.war"
+         webxml="${server-http.war.src.dir}/WEB-INF/web.xml">
+
+      <classes dir="${server-http.war.obj.dir}/classes"/>
+
+      <lib dir="${server-http.war.dist.dir}" includes="${query.jar},
+                                                       ${querylang.jar},
+                                                       ${util.jar}"/>
+    </war>
+  </target>
+
+  <target name="-server-http-war-uptodate">
+
+    <uptodate property="server-http.war.uptodate"
+              targetfile="${server-http.war.dist.dir}/${server-http.war}">
+      <srcfiles dir="${server-http.war.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="server-http-dist"
+          depends="query-jar, driver-jar, querylang-jar, util-jar, config-jar,
+                   dtd-compile, server-jar, server-http-war, javadoc-dist"
+          description="Performs all tasks related to finalising this server-http
+                       and readying it for distribution">
+
+    <mkdir dir="${obj.dir}/META-INF"/>
+
+    <!-- generate the core manifest -->
+    <manifest file="${obj.dir}/META-INF/MANIFEST_Mulgara_HTTP_BASE.MF">
+      <attribute name="Main-Class" value="org.mulgara.store.Main"/>
+    </manifest>
+
+    <!-- generate the bootstrap manifest -->
+    <manifest file="${obj.dir}/META-INF/MANIFEST_Mulgara_HTTP_BOOTSTRAP.MF">
+
+      <attribute name="Main-Class" value="org.mulgara.util.Bootstrap"/>
+      <attribute name="Embedded-Jar" value="lib/${driver.jar}, lib/${query.jar},lib/${querylang.jar}, lib/${server.jar}, lib/${util.jar}, lib/${config.jar}, lib/activation-1.0.2.jar, lib/icu4j.jar, lib/${jena.jar}, lib/${iri.jar}, lib/antlr.jar, lib/${commons-logging.jar}, lib/log4j-1.2.15.jar, lib/mail-1.3.jar, lib/${jetty.jar},lib/${jetty.plus.jar}, lib/${jsp-core.jar}, lib/${jsp-el.jar}, lib/${jsp-ecj.jar}, lib/${jsp-javax-el.jar}, lib/${jsp-javax-jstl.jar}, lib/${jsp-javax-jsp.jar}, lib/${jsp-jetty.jar}, lib/${jsp-glassfish.jar}, lib/${jsp-glassfish-taglibs.jar}, lib/${servlet.jar}, lib/jargs-0.2.jar,lib/${castor-xml.jar}, lib/${castor-xml-schema.jar}, lib/${xerces.jar}, lib/${xmlParserAPIs.jar}, lib/${jrdf.jar},lib/jakarta-oro-2.0.5.jar, lib/${emory-util.jar}, lib/${sesame-model.jar}"/>
+      <attribute name="Embedded-Main-Class" value="org.mulgara.server.EmbeddedMulgaraHttpServer"/>
+    </manifest>
+
+    <!-- HACK!!!!! -->
+    <!-- This will get the ARP parser working -->
+    <mkdir dir="${obj.dir}/xerces"/>
+
+    <unjar src="${lib.dir}/${xerces.jar}" dest="${obj.dir}/xerces"/>
+    <unjar src="${lib.dir}/${xmlParserAPIs.jar}" dest="${obj.dir}/xerces"/>
+    <!-- HACK!!!!! -->
+
+    <!-- build the executable jar file -->
+    <mkdir dir="${dist.dir}"/>
+
+    <jar jarfile="${dist.dir}/${mulgara-http.jar}"
+        manifest="${obj.dir}/META-INF/MANIFEST_Mulgara_HTTP_BOOTSTRAP.MF">
+
+      <zipfileset dir="${conf.dir}" prefix="conf"
+                  includes="log4j-mulgara.xml, webdefault.xml, mulgara-rmi.policy,
+                    mulgara.policy"/>
+      <zipfileset dir="${lib.dir}" prefix="lib"
+        includes="log4j*.jar, icu4j.jar, ${jena.jar}, ${iri.jar}, antlr*.jar, ${commons-logging.jar},
+          activation*.jar, jargs*.jar,
+          ${jetty.jar}, ${jetty.plus.jar}, ${servlet.jar}, ${jasper.jar},
+          ${xerces.jar}, mail-*.jar, castor*.jar, ${trove.jar}, ${jrdf.jar}, ${emory-util.jar}, ${sesame-model.jar}"/>
+      <zipfileset dir="${bin.dir}" prefix="lib" includes="${query.jar},
+          ${driver.jar}, ${querylang.jar}, ${server.jar},
+          ${util.jar}, ${config.jar}"/>
+      <zipfileset dir="${basedir}/data" prefix="data" includes="**/*.rdfs"/>
+
+      <zipfileset dir="${bin.dir}" prefix="webapps" includes="${server-http}.war"/>
+
+      <zipfileset dir="${src.docs.dir}" prefix="docs"
+          includes="**/*.html, **/*.htm, **/*.gif, **/*.css, **/images/*, **/images/icons/*"/>
+      <zipfileset file="${obj.dir}/mulgara-x-config.xml" prefix="conf" />
+
+      <fileset dir="${obj.dir}/jar/util/classes" includes="**/Bootstrap.class"/>
+      <fileset dir="${src.dir}/jar/dtd" includes="META-INF/**, DTD/**"/>
+      <fileset dir="${obj.dir}/jar/dtd/classes"/>
+
+      <!-- HACK!!!!! -->
+      <!-- This will get the ARP parser working -->
+      <fileset dir="${obj.dir}/xerces" excludes="META_INF/**"/>
+      <!-- HACK!!!!! -->
+
+    </jar>
+  </target>
+
+  <target name="server-http-uptodate">
+
+    <uptodate property="server-http.uptodate"
+              targetfile="${dist.dir}/${mulgara-http.jar}">
+
+      <srcfiles dir="${server-http.dist.dir}" includes="${server-http.jar}"/>
+      <srcfiles dir="${bin.dir}" includes="${server-http.jar}"/>
+      <srcfiles dir="${bin.dir}" includes="${driver.jar}"/>
+      <srcfiles dir="${bin.dir}" includes="${query.jar}"/>
+      <srcfiles dir="${bin.dir}" includes="${querylang.jar}"/>
+      <srcfiles dir="${bin.dir}" includes="${server.jar}"/>
+      <srcfiles dir="${bin.dir}" includes="${util.jar}"/>
+      <srcfiles dir="${bin.dir}" includes="${config.jar}"/>
+    </uptodate>
+  </target>
+
+  <target name="server-http-test"
+          depends="server-http-jar"
+          description="Carries out unit testing for this server-http">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="server-http-test-classpath"/>
+      <param name="dir" value="${server-http.src.dir}"/>
+      <param name="jar" value="${server-http.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="server-http-javadoc"
+          depends="server-http-jar"
+          description="Creates the javadoc for this server-http">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.server.http.*"/>
+      <param name="javadoc.classpath" value="server-http-classpath"/>
+      <param name="javadoc.sourcepath" value="${server-http.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="server-http-help"
+          description="Displays the help information for this server-http">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this server-http -->
+
+    <echo message="Welcome to the build script for ${name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${server-http.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

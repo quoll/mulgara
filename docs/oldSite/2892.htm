@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> JRDF Tutorial </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="JRDF Tutorial, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="990.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="2893.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h2 class="heading2">JRDF Tutorial</h2>
+<p class="bodytext">JRDF is a set of APIs that provide a concise implementation of the Resource Description Framework (RDF) using standard Java conventions. JRDF offers a highly modular and type safe interface allowing users to create, store and query RDF statements. It includes a default memory implementation that can be used in conjunction with Mulgara<sup class="superscript">TM</sup> to provide a scalable RDF solution.</p>
+<p class="bodytext">The example code provided in this tutorial is from the <code class="monospace">org.jrdf.mem.JRDFExample</code> class. The <code class="monospace">JRDFExample</code> class uses an in-memory JRDF graph implementation and can be run by typing at a command line:</p>
+<p class="commandtext">java -cp &lt;TKS installation directory&gt;/driver-2.1.jar org.jrdf.mem.JRDFExample</p>
+<p class="bodytext">The code for <code class="monospace">JRDFExample</code> is in the <code class="monospace">Resources</code> directory of your TKS installation. The JRDF API documentation is in <code class="monospace"><a class="internetlinktemplate" title="" href="api/jrdf/index.html" target="_blank">&lt;TKS install&gt;/docs/api/jrdf</a></code>.</p>
+<p class="bodytext">There are four JRDF graph implementations to choose from:</p>
+<ol class="listnumber"><li class="listnumber">JRDF graph (memory graph)<p class="listcontinue">The JRDF jar provides a memory implementation under 60Kb and is available for download from <code class="monospace"><a class="jumptemplate" title="" href="http://sourceforge.net/projects/jrdf/" target="_blank">http://sourceforge.net/projects/jrdf/</a></code>. The memory graph is easy to create and is useful for small graphs and caching of results from larger graphs (subgraphs). The classes are in the <code class="monospace">org.jrdf.graph.mem</code> package of the JRDF jar.</p>
+</li><li class="listnumber">Server-side JRDF Graph (server graph)<p class="listcontinue">Mulgara provides a server-side JRDF Graph interface for accessing a model. The graph must be created in the same JVM that the Mulgara server is running in.</p>
+<p class="listcontinue">Server graphs can be used for direct access to the database using a graph API. This is useful for applications that use Mulgara as an embedded component. The server graph classes are in the <code class="monospace">org.mulgara.jrdf</code> package of the server jar.</p>
+</li><li class="listnumber">Server backed JRDF graph (client graph)<p class="listcontinue">Mulgara also provides a client-side JRDF graph interface for accessing a model. This provides a scalable RDF solution for remote client applications.</p>
+<p class="listcontinue">Client graphs can be used in conjunction with memory graphs. Memory implemented nodes and triples can be inserted into, removed from and used to query client graphs. Other JRDF implementations can also be used, but may not be supported. The client graph classes are in the <code class="monospace">org.mulgara.client.jrdf</code> package of the Driver jar.</p>
+</li><li class="listnumber">Read-only iTQL result JRDF graph (iTQL graph)<p class="listcontinue">Mulgara also allows you to create read-only JRDF graphs from the results of an iTQL query. This provides a powerful mechanism for displaying search results as a subgraph. The classes are in the <code class="monospace">org.mulgara.client.jrdf</code> package of the Driver jar.</p>
+</li></ol><p class="bodytext">Each of these JRDF graph implementations are outlined in the following sections.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="2893.htm" target="_self">Prerequisites</a></p><p class="relateditem"><a href="2893.htm#o2898" target="_self">Obtaining a Session from a Mulgara Server</a></p><p class="relateditem"><a href="2893.htm#o2899" target="_self">Comparison of JRDF Graph Implementations</a></p><p class="relateditem"><a href="2900.htm" target="_self">Creating the Graph</a></p><p class="relateditem"><a href="2904.htm" target="_self">Creating Nodes and Triples</a></p><p class="relateditem"><a href="2905.htm" target="_self">Adding Triples to the Graph</a></p><p class="relateditem"><a href="2906.htm" target="_self">Searching the Graph</a></p><p class="relateditem"><a href="2911.htm" target="_self">Reify Triples</a></p><p class="relateditem"><a href="2912.htm" target="_self">Removing Triples from the Graph</a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="1565.htm" target="_self">Integration Tutorials</a></p><p class="relateditem"><a href="2686.htm" target="_self">HTTP Resolver and MP3 Content Handler Tutorial</a></p><p class="relateditem"><a href="947.htm" target="_self">Jena</a></p><p class="relateditem"><a href="746.htm" target="_self">Perl</a></p><p class="relateditem"><a href="990.htm" target="_self">JavaServer Pages Tag Library</a></p></td>
+</tr>
+</table>
+
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

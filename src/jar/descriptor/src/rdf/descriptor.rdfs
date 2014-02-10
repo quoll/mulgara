@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!--
+  Schema for Descriptors
+
+  @created 2002-03-20
+  @author Keith Ahern
+  @version: $Revision: 1.8 $
+  @modified $Date: 2005/01/05 04:58:11 $
+  @maintenanceAuthor: $Author: newmana $
+  @company <A href="mailto:info@PIsoftware.com">Plugged In Software</A>
+  @copyright &copy; 2001
+    <A href="http://www.PIsoftware.com/">Plugged In Software Pty Ltd</A>
+-->
+
+<!DOCTYPE rdf:RDF [
+  <!ENTITY rdf          "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <!ENTITY rdfs         "http://www.w3.org/2000/01/rdf-schema#">
+  <!ENTITY desc         "http://mulgara.org/descriptor#">
+]>
+
+
+<rdf:RDF
+  xml:lang="en"
+  xmlns:rdf="&rdf;"
+  xmlns:rdfs="&rdfs;"
+  xmlns:desc="&desc;">
+
+<!--
+  Descriptor Class
+-->
+<rdfs:Class rdf:about="&desc;Descriptor" rdfs:label="Descriptor"/>
+
+<!-- Descriptor Properties -->
+<rdf:Property rdf:about="&desc;param" rdfs:label="Parameter">
+  <rdfs:domain rdf:resource="&desc;Document"/>
+  <rdfs:domain rdf:resource="&desc;Formatter"/>
+  <rdfs:range rdf:resource="&desc;Param"/>
+</rdf:Property>
+
+
+<!--
+  Formatting types
+-->
+<rdf:Property rdf:about="&desc;formatter" rdfs:label="Formatter">
+  <rdfs:domain rdf:resource="&desc;Document"/>
+</rdf:Property>
+
+
+<!--
+  Formatter Class
+-->
+<rdfs:Class rdf:about="&desc;Formatter" rdfs:label="Formatter Class"/>
+
+<!-- Parameter Properties -->
+<rdf:Property rdf:about="&desc;formatterName" rdfs:label="Formatter Name">
+  <rdfs:domain rdf:resource="&desc;Formatter"/>
+</rdf:Property>
+
+<!--
+  Param Class
+-->
+<rdfs:Class rdf:about="&desc;Param" rdfs:label="Descriptor Parameter"/>
+
+<!-- Parameter Properties -->
+<rdf:Property rdf:about="&desc;paramName" rdfs:label="Parameter Name">
+  <rdfs:domain rdf:resource="&desc;Param"/>
+</rdf:Property>
+
+<rdf:Property rdf:about="&desc;paramValue" rdfs:label="Parameter Value">
+  <rdfs:domain rdf:resource="&desc;Param"/>
+</rdf:Property>
+
+<rdf:Property rdf:about="&desc;paramType" rdfs:label="Parameter Type">
+  <rdfs:domain rdf:resource="&desc;Param"/>
+</rdf:Property>
+
+<rdf:Property rdf:about="&desc;paramDescription" rdfs:label="Parameter Description">
+  <rdfs:domain rdf:resource="&desc;Param"/>
+</rdf:Property>
+
+
+</rdf:RDF>

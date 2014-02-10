@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="jrdf" default="jrdf-jar" basedir="${project.dir}">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="jrdf-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${driver.dist.dir}/${driver.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+  </path>
+
+  <path id="jrdf-test-classpath">
+
+    <path refid="jrdf-classpath"/>
+
+    <fileset dir="${lib.dir}" includes="**/*.jar" />
+    <fileset dir="${bin.dir}" includes="**/*.jar" />
+    <fileset file="${jrdf.dist.dir}/${jrdf.base.jar}"/>
+  </path>
+
+  <target name="jrdf-clean"
+          description="Removes all compile generated files for the jrdf">
+
+    <tstamp/>
+
+    <delete dir="${jrdf.obj.dir}"/>
+    <delete dir="${jrdf.test.dir}"/>
+    <delete dir="${jrdf.dist.dir}"/>
+  </target>
+
+  <target name="-jrdf-prepare"
+          description="Creates all directories associated with the jrdf's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${jrdf.obj.dir}"/>
+    <mkdir dir="${jrdf.test.dir}"/>
+    <mkdir dir="${jrdf.dist.dir}"/>
+    <mkdir dir="${jrdf.obj.dir}/classes"/>
+  </target>
+
+  <!-- Removed dependency on server-local-jar -->
+  <target name="jrdf-compile"
+          depends="-jrdf-prepare, query-jar, driver-jar, resolver-spi-jar"
+          description="Compiles all jrdf related files included generated source
+                       code">
+
+    <javac destdir="${jrdf.obj.dir}/classes"
+           debug="on"
+           deprecation="on"
+           source="1.5">
+
+      <classpath refid="jrdf-classpath"/>
+      <src path="${jrdf.src.dir}/java"/>
+
+    </javac>
+
+  </target>
+
+  <target name="jrdf-jar"
+          depends="jrdf-compile, -jrdf-jar-uptodate"
+          description="Creates the jrdf's jar/s"
+          unless="jrdf.jar.uptodate">
+
+    <jar jarfile="${jrdf.dist.dir}/${jrdf.base.jar}">
+      <fileset dir="${jrdf.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-jrdf-jar-uptodate">
+
+    <uptodate property="jrdf.jar.uptodate"
+              targetfile="${jrdf.dist.dir}/${jrdf.base.jar}">
+
+      <srcfiles dir="${jrdf.src.dir}" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="jrdf-dist"
+          depends="jrdf-jar"
+          description="Performs all tasks related to finalising this jrdf
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the jrdf library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="jrdf-test"
+          depends="jrdf-jar, dist"
+          description="Carries out unit testing for jrdf">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="jrdf-test-classpath"/>
+      <param name="dir" value="${jrdf.src.dir}"/>
+      <param name="jar" value="${jrdf.base.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="jrdf-javadoc"
+          depends="jrdf-jar"
+          description="Creates the javadoc for this jrdf">
+
+    <antcall target="javadoc">
+      <param name="javadoc.package" value="org.mulgara.jrdf.*"/>
+      <param name="javadoc.classpath" value="jrdf-classpath"/>
+      <param name="javadoc.sourcepath" value="${jrdf.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="jrdf-help"
+          description="Displays the help information for this jrdf">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this jrdf -->
+
+    <echo message="Welcome to the build script for ${jrdf.name}."/>
+    <echo message="(Component jar for Mulgara's JRDF support)"/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${jrdf.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

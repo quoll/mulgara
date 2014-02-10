@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="swrl" default="swrl.jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="swrl-classpath">
+
+    <path refid="common-classpath"/>
+
+    <pathelement path="${query.dist.dir}/${query.jar}"/>
+    <pathelement path="${driver.dist.dir}/${driver.jar}"/>
+    <pathelement path="${util.dist.dir}/${util.jar}"/>
+    <pathelement path="${querylang.dist.dir}/${querylang.jar}"/>
+    <pathelement path="${tuples.dist.dir}/${tuples.jar}"/>
+    <pathelement path="${resolver.dist.dir}/${resolver.jar}"/>
+    <pathelement path="${krule.dist.dir}/${krule.jar}"/>
+  </path>
+
+  <path id="swrl-test-classpath">
+
+    <path refid="swrl-classpath"/>
+
+    <fileset file="${swrl.dist.dir}/${swrl.jar}"/>
+  </path>
+
+  <target name="swrl-clean"
+          description="Removes all compile generated files for the swrl">
+
+    <tstamp/>
+
+    <delete dir="${swrl.obj.dir}"/>
+    <delete dir="${swrl.test.dir}"/>
+    <delete dir="${swrl.dist.dir}"/>
+  </target>
+
+  <target name="-swrl-prepare"
+          description="Creates all directories associated with the swrl's compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${swrl.obj.dir}"/>
+    <mkdir dir="${swrl.test.dir}"/>
+    <mkdir dir="${swrl.dist.dir}"/>
+    <mkdir dir="${swrl.obj.dir}/classes"/>
+  </target>
+
+  <target name="swrl-compile"
+          depends="-swrl-prepare, driver-jar, querylang-jar, tuples-jar, resolver-jar, krule-jar"
+          description="Compiles all swrl related files included generated source code">
+
+    <javac destdir="${swrl.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="swrl-classpath"/>
+
+      <src path="${swrl.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="swrl-jar"
+    depends="swrl-compile, -swrl-jar-uptodate"
+    unless="swrl.jar.uptodate"
+    description="Builds the NodeType Resolver JAR">
+
+    <jar jarfile="${swrl.dist.dir}/${swrl.jar}">
+      <fileset dir="${swrl.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-swrl-jar-uptodate">
+
+    <uptodate property="swrl.jar.uptodate"
+              targetfile="${swrl.dist.dir}/${swrl.jar}">
+      <srcfiles dir="${swrl.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="swrl-dist"
+          depends="swrl-jar"
+          unless="swrl.uptodate"
+          description="Performs all tasks related to finalising this swrl and readying it for distribution">
+
+    <!-- All that's involved in the final version of the swrl library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="swrl-test"
+          depends="swrl-jar"
+          description="Carries out unit testing for this swrl">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="swrl-test-classpath"/>
+      <param name="dir" value="${swrl.src.dir}"/>
+      <param name="jar" value="${swrl.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="swrl-javadoc"
+          depends="swrl-jar"
+          description="Creates the javadoc for this swrl">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.swrl.*"/>
+      <param name="javadoc.classpath" value="swrl-classpath"/>
+      <param name="javadoc.sourcepath" value="${swrl.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="swrl-help"
+          description="Displays the help information for this swrl">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this swrl -->
+
+    <echo message="Welcome to the build script for ${swrl.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${swrl.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

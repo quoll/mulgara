@@ -1,0 +1,26 @@
+/*
+* adams.id.au stylesheet for all media types.
+*
+* $Id: all.css,v 1.5 2004/12/22 05:01:58 newmana Exp $
+*/
+
+body {
+font-family: Verdana, Geneva, Lucida, Helvetica, sans-serif;
+/*font-family: Trebuchet, 'Trebuchet MS', Verdana, Geneva, Lucida, Helvetica, sans-serif;*/
+background-color: #FFF;
+}
+
+p, ol, dl, dt, dd, ul, li, table, th, td, input, textarea, select {
+/*font-family: 'Lucida Grande', Verdana, Geneva, Lucida, Helvetica, sans-serif;*/
+/*font-family: Verdana, Geneva, Lucida, Helvetica, sans-serif;*/
+font-family: Trebuchet, 'Trebuchet MS', Verdana, Geneva, Lucida, Helvetica, sans-serif;
+}
+
+pre, tt, code, kbd, samp {
+font-family: Monaco, 'Andale Mono', 'Lucida Console', monospace;
+font-size: 0.8em;
+}
+
+*.smalltext {
+font-size: smaller;
+}

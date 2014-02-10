@@ -1,0 +1,109 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Parsers</title>
+    <meta name="keywords" content="Parser, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+
+		<a href="/integration/parsers.html#o2704">Configuration and Initialisation</a> &#124;
+		<a href="/integration/parsers.html#o2705">Processing ID3 Tags into RDF</a> &#124;
+		<a href="/integration/parsers.html#o2706">Storing Data</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/integration/contenthandlers.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/integration/statements.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/integration/contenthandlersdev.html">Developing Content Handlers</a></p>
+<p class="relateditem"><a href="/integration/contenthandlers.html">Content Handlers</a></p>
+<p class="relateditem"><a href="/integration/statements.html">Statements</a></p>
+
+ -->
+
+
+
+
+<h4>Parsers</h4>
+
+<p>The content handler takes data from files and converts it into RDF triples that can be navigated using the <code>Statements</code> interface. Usually the data contained in the target file is not in a natural RDF format so the content handler must convert the data for it to be relevant. Whether this is a matter of parsing text or converting binary data is up to the implementer. The MP3 resolver uses a parser package that transforms the ID3 tags into meaningful RDF triples, which the <code>Statements</code> implementation can then navigate.</p>
+
+<p>When parsing the data you need to decide on what kind of temporary storage to use for the RDF triples. Remember that the <code>Statements</code> object navigates through triples in a list style so the storage method used must be able to accommodate this.</p>
+
+<p>You also need to consider how the triples should be stored across queries against the URL. Should you cache them to save time if the URL is queried again? Should you store the data in memory (you can only process small files but has faster access) or on disk (you can handle large files but with slower access)? For the purposes of the MP3 parser, a JRDF graph stores the triples in memory, as ID3 tags are small.</p>
+
+<div class="anchor"><a name="o2704">&nbsp;</a></div>
+<h5>Configuration and Initialisation</h5>
+
+<p>How the parsing section of the handler is set up is up to the developer. The way the data is added is irrelevant, only the fact that the data is added in a <code>Statements</code> API navigable format is important. Some configuration for your parsing solution might be required. For the MP3 resolver there is a configuration file with properties telling the factory where to find the implementations of the ID3 tag parsing classes.</p>
+
+<p>The properties file looks like the following (see the <code>parserfactory.conf</code> file in the <code>conf/resolvers/mp3/</code> directory of your Mulgara installation):</p>
+
+<p class="commandtext">id3parser.class = org.mulgara.resolver.mp3.parser.ID3ParserImpl<br />
+id3v1parser.class = org.mulgara.resolver.mp3.parser.ID3v1ParserImpl<br />
+id3v2parser.class = org.mulgara.resolver.mp3.parser.ID3v2ParserImpl</p>
+
+<p>The properties file with name value pairs is read into the factory's properties by the following lines of code (see <code>ParserFactory.java</code>):</p>
+
+<p class="commandtext">// Initialise our properties<br />
+properties = new Properties();<br />
+<br />
+// Retrieve the resource url for our configuration file<br />
+URL parserConfiguration = this.getClass().getResource(&quot;/parserfactory.conf&quot;);<br />
+<br />
+try {<br />
+<br />
+  // Load the properties for the parser factory using the stream from the URL<br />
+  properties.load(parserConfiguration.openStream());<br />
+} catch (IOException ioException) {<br />
+<br />
+  throw new FactoryException(&quot;Unable to load the parser factory &quot; +<br />
+                             &quot;configuration from: &quot; +<br />
+                             parserConfiguration.toString(), ioException);<br />
+}</p>
+
+<p>No other configuration is required for the parser.</p>
+<div class="anchor"><a name="o2705">&nbsp;</a></div>
+<h5>Processing ID3 Tags into RDF</h5>
+
+<p>Since parsers vary depending on the content of what they are parsing, only a summary of the steps are included here, highlighting the process of data conversion. The actual implementation of this process is in the the <code>src/jar/content-mp3/java/org/mulgara/content/mp3/parser/</code> directory of your Mulgara installation.</p>
+
+<p>ID3 tags are passed into the <code>ID3Parser</code> class using the <code>MP3Conversion</code> container bean. Within the general <code>ID3Parser</code> class, the version 2 and version 1 tags are separately parsed with the <code>ID3v2Parser</code> and <code>ID3v1Parser</code> implementation classes respectively. Within the <code>MP3Conversion</code> object there is a <code>JRDF Graph</code> object that stores the statements pertaining to the ID3 tag data. Available to each <code>MP3Conversion</code> object's graph is a dictionary of RDF predicates, which correspond to each of the tag headers that might be found in ID3 tags (see <code>IdentifierProcessor.java</code>).</p>
+
+<p>Both ID3 tag parsers (<code>ID3v1ParserImpl.java</code> and <code>ID3v2ParserImpl.java</code>) contain a method called <code>parseRDF()</code> that is used to generate the RDF triples that the ID3 tags parse to. Each tag set belongs to its own resource, unified under a single MP3 resource unique to the original file. As tag identifiers are processed, the respective resources have triples which contain the tag's resource ID, the predicate mapping for the current identifier and the literal value from the tag added. After completion of this parsing process the conversion is then handed back to the calling object (<code>MP3Statements</code>) for processing of the <code>Graph</code> object.</p>
+<div class="anchor"><a name="o2706">&nbsp;</a></div>
+<h5>Storing Data</h5>
+
+<p>As described above, all triples are added to the graph and are then passed to the <code>MP3Statements</code> object for navigation when the resolver resolves the constraints. Everything is done in memory and is relatively fast. The drawback to this is that the triples are lost once the resolver has finished constraining the statements. Since ID3 tags are relatively small, this is not too much of a problem. However, in something like an MBox handler, file sizes and message counts are larger so caching of the graph occurs to prevent the duplication of processing. It also means that the data is persisted across executions.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

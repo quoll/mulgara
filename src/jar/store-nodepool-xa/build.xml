@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="store-nodepool-xa" default="store-nodepool-xa-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="store-nodepool-xa-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${store.dist.dir}/${store.jar}"/>
+    <fileset file="${store-nodepool.dist.dir}/${store-nodepool.jar}"/>
+    <fileset file="${store-xa.dist.dir}/${store-xa.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${util-xa.dist.dir}/${util-xa.jar}"/>
+    <fileset file="${resolver.dist.dir}/${resolver.jar}"/>
+  </path>
+
+  <path id="store-nodepool-xa-test-classpath">
+
+    <path refid="store-nodepool-xa-classpath"/>
+
+    <fileset file="${store-nodepool-xa.dist.dir}/${store-nodepool-xa.jar}"/>
+  </path>
+
+  <target name="store-nodepool-xa-clean"
+          description="Removes all compile generated files for the store-nodepool-xa">
+
+    <tstamp/>
+
+    <delete dir="${store-nodepool-xa.obj.dir}"/>
+    <delete dir="${store-nodepool-xa.test.dir}"/>
+    <delete dir="${store-nodepool-xa.dist.dir}"/>
+  </target>
+
+  <target name="-store-nodepool-xa-prepare"
+          description="Creates all directories associated with the store-nodepool-xa's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${store-nodepool-xa.obj.dir}"/>
+    <mkdir dir="${store-nodepool-xa.test.dir}"/>
+    <mkdir dir="${store-nodepool-xa.dist.dir}"/>
+    <mkdir dir="${store-nodepool-xa.obj.dir}/classes"/>
+  </target>
+
+  <target name="store-nodepool-xa-compile"
+          depends="-store-nodepool-xa-prepare, store-jar, store-nodepool-jar,
+          store-xa-jar, resolver-spi-jar, util-xa-jar"
+          description="Compiles all store-nodepool-xa related files included generated
+                       source code">
+
+    <javac destdir="${store-nodepool-xa.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="store-nodepool-xa-classpath"/>
+
+      <src path="${store-nodepool-xa.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="store-nodepool-xa-jar"
+    depends="store-nodepool-xa-compile, -store-nodepool-xa-jar-uptodate"
+    unless="store-nodepool-xa.jar.uptodate"
+    description="Builds the memory-backed node pool JAR">
+
+    <jar jarfile="${store-nodepool-xa.dist.dir}/${store-nodepool-xa.jar}">
+      <fileset dir="${store-nodepool-xa.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-store-nodepool-xa-jar-uptodate">
+
+    <uptodate property="store-nodepool-xa.jar.uptodate"
+              targetfile="${store-nodepool-xa.dist.dir}/${store-nodepool-xa.jar}">
+      <srcfiles dir="${store-nodepool-xa.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="store-nodepool-xa-dist"
+          depends="store-nodepool-xa-jar"
+          unless="store-nodepool-xa.uptodate"
+          description="Performs all tasks related to finalising this store-nodepool-xa
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the store-nodepool-xa library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="store-nodepool-xa-test" depends="store-nodepool-xa-jar">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="store-nodepool-xa-classpath"/>
+      <param name="dir" value="${store-nodepool-xa.src.dir}"/>
+      <param name="jar" value="${store-nodepool-xa.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="store-nodepool-xa-javadoc"
+          depends="store-nodepool-xa-jar"
+          description="Creates the javadoc for this store-nodepool-xa">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.store.nodepool.xa.*"/>
+      <param name="javadoc.classpath" value="store-nodepool-xa-classpath"/>
+      <param name="javadoc.sourcepath" value="${store-nodepool-xa.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="store-nodepool-xa-help"
+          description="Displays the help information for this store-nodepool-xa">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this store-nodepool-xa -->
+
+    <echo message="Welcome to the build script for ${store-nodepool-xa.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${store-nodepool-xa.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

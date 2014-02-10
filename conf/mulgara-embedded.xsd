@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- When adding a new type, make sure it has a "disabled" attribute,
+     and update org.mulgara.server.MulgaraUserConfig#isDisabled(Object o) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ExternalConfigPaths">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="MulgaraLogging"/>
+        <xs:element ref="WebDefault"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Host" type="xs:string"/>
+  <xs:element name="Jetty">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Disabled" type="xs:boolean" minOccurs="0"/>
+        <xs:element ref="Connector" minOccurs="0"/>
+        <xs:element ref="PublicConnector" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Connector" type="JettyConnector"/>
+  <xs:element name="PublicConnector" type="JettyConnector"/>
+  <xs:complexType name="JettyConnector">
+  	<xs:sequence>
+  		<xs:element name="Disabled" type="xs:boolean" minOccurs="0" />
+  		<xs:element ref="Host" minOccurs="0" />
+  		<xs:element ref="Port" minOccurs="0" />
+  		<xs:element ref="Acceptors" minOccurs="0" />
+  		<xs:element ref="MaxThreads" minOccurs="0" />
+  		<xs:element ref="MaxIdleTimeMs" minOccurs="0" />
+  		<xs:element ref="LowResourceMaxIdleTimeMs" minOccurs="0" />
+  		<xs:element ref="MaxFormContentSize" minOccurs="0" />
+  	</xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaxFormContentSize" type="xs:int"/>
+  <xs:element name="LowResourceMaxIdleTimeMs" type="xs:int"/>
+  <xs:element name="MaxIdleTimeMs" type="xs:int"/>
+  <xs:element name="Acceptors" type="xs:int"/>
+  <xs:element name="MaxThreads" type="xs:int"/>
+  <xs:element name="DefaultGraph" type="xs:string"/>
+  <xs:element name="PersistencePath" type="xs:string"/>
+  <xs:element name="Port" type="xs:int"/>
+  <xs:element name="RMIPort" type="xs:int"/>
+  <xs:element name="RMIInterrupt" type="xs:boolean"/>
+  <xs:element name="ServerName" type="xs:string"/>
+  <xs:element name="StartupScript" type="xs:string"/>
+  <xs:element name="Smtp" type="xs:string"/>
+  <xs:element name="RelatedQueryHandler">
+    <xs:complexType>
+      <xs:attribute name="type" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SecurityAdapterFactory">
+    <xs:complexType>
+      <xs:attribute name="type" type="xs:string" use="required"/>
+      <xs:attribute name="disabled" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PersistentNodePoolFactory">
+    <xs:complexType>
+      <xs:attribute name="type" type="xs:string" use="required"/>
+      <xs:attribute name="dir" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PersistentStringPoolFactory">
+    <xs:complexType>
+      <xs:attribute name="type" type="xs:string" use="required"/>
+      <xs:attribute name="dir" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PersistentResolverFactory">
+    <xs:complexType>
+      <xs:attribute name="type" type="xs:string" use="required"/>
+      <xs:attribute name="dir" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TemporaryNodePoolFactory">
+    <xs:complexType>
+      <xs:attribute name="type" type="xs:string" use="required"/>
+      <xs:attribute name="dir" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TemporaryStringPoolFactory">
+    <xs:complexType>
+      <xs:attribute name="type" type="xs:string" use="required"/>
+      <xs:attribute name="dir" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TemporaryResolverFactory">
+    <xs:complexType>
+      <xs:attribute name="type" type="xs:string" use="required"/>
+      <xs:attribute name="dir" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RuleLoader">
+    <xs:complexType>
+      <xs:attribute name="type" type="xs:string" use="required"/>
+      <xs:attribute name="disabled" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TransactionTimeout" type="xs:int"/>
+  <xs:element name="IdleTimeout" type="xs:int"/>
+  <xs:element name="DefaultContentHandler">
+    <xs:complexType>
+      <xs:attribute name="type" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ContentHandler">
+    <xs:complexType>
+      <xs:attribute name="type" type="xs:string" use="required"/>
+      <xs:attribute name="disabled" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResolverFactory">
+    <xs:complexType>
+      <xs:attribute name="type" type="xs:string" use="required"/>
+      <xs:attribute name="dir" type="xs:string"/>
+      <xs:attribute name="disabled" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="XpathFunctionResolver">
+    <xs:complexType>
+      <xs:attribute name="type" type="xs:string" use="required"/>
+      <xs:attribute name="disabled" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MulgaraConfig">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ExternalConfigPaths" minOccurs="0"/>
+        <xs:element ref="MulgaraHost" minOccurs="0"/>
+        <xs:element ref="Jetty" minOccurs="0"/>
+        <xs:element ref="ServerName" minOccurs="0"/> <!-- Compulsory for server -->
+        <xs:element ref="RMIPort" minOccurs="0"/>
+        <xs:element ref="RMIInterrupt" minOccurs="0"/>
+        <xs:element ref="PersistencePath" minOccurs="0"/> <!-- Compulsory for server -->
+        <xs:element ref="DefaultGraph" minOccurs="0"/>
+        <xs:element ref="TransactionTimeout" minOccurs="0"/>
+        <xs:element ref="IdleTimeout" minOccurs="0"/>
+        <xs:element ref="TripleStoreImplementation" minOccurs="0"/> <!-- Compulsory for server -->
+        <xs:element ref="RelatedQueryHandler" minOccurs="0"/> <!-- Compulsory for server -->
+        <xs:element ref="SecurityAdapterFactory" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="PersistentNodePoolFactory" minOccurs="0"/> <!-- Compulsory for server -->
+        <xs:element ref="TemporaryNodePoolFactory" minOccurs="0"/> <!-- Compulsory for server -->
+        <xs:element ref="PersistentStringPoolFactory" minOccurs="0"/> <!-- Compulsory for server -->
+        <xs:element ref="TemporaryStringPoolFactory" minOccurs="0"/> <!-- Compulsory for server -->
+        <xs:element ref="PersistentResolverFactory" minOccurs="0"/> <!-- Compulsory for server -->
+        <xs:element ref="TemporaryResolverFactory" minOccurs="0"/> <!-- Compulsory for server -->
+        <xs:element ref="RuleLoader" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="DefaultContentHandler" minOccurs="0"/> <!-- Compulsory for server -->
+        <xs:element ref="ContentHandler" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="ResolverFactory" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="XpathFunctionResolver" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="StartupScript" minOccurs="0"/>
+        <xs:element ref="Smtp" minOccurs="0"/> <!-- Compulsory for server -->
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MulgaraHost" type="xs:string"/>
+  <xs:element name="MulgaraLogging" type="xs:string"/>
+  <xs:element name="TripleStoreImplementation" type="xs:string"/>
+  <xs:element name="WebDefault" type="xs:string"/>
+</xs:schema>

@@ -1,0 +1,671 @@
+<docudocu>
+	hi paul,
+
+	below is the documentation of what i did. i figured that it doesn't make sense to post it on the list before you update the website. but maybe it helps you in checking what i did.
+	well, i'll have a beer now!
+
+	ciao
+	thomas
+
+
+
+
+	i finally completed the transformation of the documentation from the old kowari version to the new mulgara one. where "completed" is a very relative term... basically i removed a lot of superfluous presentational code, consolidated the navigation in one file per directory and adjusted the layout to that of the mulgara website. i also did some restructuring of the site and threw out some navigational elements. instead of a cms the site now relies on server side includes (an apache httpd mechanism) to ensure a minimum of flexibilty and comfort.
+
+	i had to do a lot of search&replace and it may well be that i accidently deleted or changed stuff on the way. so please check the site for those errors.
+
+	still not finished is the styling - it works, but could be nicer - and the code of the content parts - that code looks quite awful but can only be corrected by hand. i will continue to work on the stylesheets but, frankly, i would like not to look at the source code of the content pages in the near future ;-)
+
+	i also renamed all the pages from numbers to slightly more intuitive names. below is a list of the names before/after. and they end in .html now.
+
+	there are some spots where others have to have a look:
+
+	-	licensing is a little bit broken
+		there are four places where licensing is mentioned
+			legal.html
+			legalinfo.html
+			license.html
+			semanticstore.html
+		some links points to osl 3.o
+		while the text says osl 1.1
+		another link points to mozilla license
+		i didn't want to touch that stuff, but someone should
+
+	-	overview/krule.html contains northrop grumman copyright statement. is that okay?
+
+	- 	is putting overview/krule.html into the overview section okay?
+
+	-	descriptorhw.html contains tucana screenshots. is that okay legally?	
+
+	-	the overview sections contains some documents that could be consolidated, like eg the
+		legal informations.
+		overview/tools.html could be removed.
+		overview/index contains also documentation.htm
+		someone should have a look
+		but overall i think it's structure is already much better than that of the old version
+
+	- 	someone should check the metadata in the head
+			what to do with the dc.creator tom adams?
+			what to do with the dc.contributor?
+			what about the copyright statement?
+			despite my first impression the description and keyword metadata
+				are not very detailed...
+		for more details on changes see below
+
+	- 	i had a problem with 187.htm (now select.html). i guess andrae was the last to edit it.
+	 	could you please have a look yourself and eventually ... (sorry!)
+
+	-	i worked on a checkout from last saturday. since i handled this checkout unappropriatly
+		i can't tell if any changes to the pages have been made since then. i can only say
+		that if changes where made, they where not transferred to the new site :-(
+		but they are not lost but got backuped to trunk/docs/oldSite :-D
+		subversion is not really my world...
+
+
+	finally, some words about adding new pages:
+
+	-	there is a file called http://docs.mulgara.org/template.html (also available from svn
+	 	https://mulgara.org/svn/mulgara/trunk/docs/site) which should be used as a template
+		(surprise!) for new pages. please follow the directions therin about adding title,
+		keywords and innerpage navigation.
+		additionally to be visible to the public the page has to be added to the
+		navigation, which is done by editing the file "includeTOC.inc" within the same
+		directory the new page resides in(!). there is one includeToc.inc per directory and they
+		get included into the site recursively. there is a navigation on the lefthand side of
+		each page and a page called toc.html, which contains all pages and all innerpage
+		navigations. they are both constructed from the same incudesTOC-files. that way you
+		only have to edit the navigation one time - a solution that i'm quite proud of ;-)
+		i hope it actually works for you...
+		adding a new directory within the root directory is not very hard either, just some
+		cut&paste... well, that may not be entirely true, but i'm too lazy to really explain it.
+		just ask me if you run into problems
+
+	ciao
+	thomas
+
+
+
+
+	<rename>
+		indexpage.htm	backofbook.html
+		170		alias
+		171		backup
+		174		commit
+		176		create
+		178		delete
+		179		drop
+		180		execute
+		181		help
+		182		insert
+		183		load
+		184		quit
+		185		restore
+		186		rollback
+		187		select
+		195		set
+		223		comment
+		230		itqlbasics
+		254		itqloperations/index
+		255		views
+		257		fulltextmodels
+		262		datatypingmodels
+		271		itqlcommands/index
+		415		viewer
+		417		loadingrdf
+		419		convertingxml
+		485		jsptaglib
+		526		itqlshell
+		527		soap
+		528		itqlbean
+		530		driver
+		571		descriptors/index
+		572		nsdesc
+		573		querytag
+		574		descriptortag
+		575		reserved
+		576		descriptorsfaq
+		597		mistakes
+		618		descwhat
+		619		descadvantages
+		746		perl
+		752		links
+		779		descriptorex
+		795		descriptorhw
+		802		descriptorlist
+		920		descriptorvcard
+		947		jena
+		990		jsptutorial
+		1007	overview	
+		1012	index
+		1061	faq
+		1076	contact
+		1090	about
+		1091	aboutsite
+		1092	accessibility
+		1093	copyright
+		1094	htmlcss
+		1095	license
+		1128	legal
+		1129	legalinfo
+		1132	oscomponents
+		1133	suncomponents
+		1134	optcomponents
+		1139	install
+		1163	downloads
+		1225	tutorial
+		1226	sysreq
+		1227	starting
+		1232	itql
+		1236	itqlshellsession
+		1246	sysarch/index
+		1350	documentation
+		1452	news
+		1565	integration/index
+		1636	trademarks
+		2466	jrdf
+		2467	jrdfgraphs
+		2511	jrdfmemory
+		2512	jrdfconcol
+		2513	jrdfexamples
+		2526	jrdftks
+		2528	jrdfvisitor
+		2552	resolvers/index
+		2553	resolverdbclass
+		2622	sofa
+		2641	inferintro
+		2642	infersitu
+		2643	infersemweb
+		2649	infersummery
+		2686	resolverhttpmp3
+		2687	resolverpre
+		2689	resolverfactories
+		2693	resolverwrite
+		2697	resolverwrapper
+		2701	parsers
+		2707	contenthandlers
+		2714	compiling
+		2720	integrate
+		2725	infermulgara
+		2733	inferexample
+		2737	inferencing/index
+		2779	nodetyping
+		2800	owl
+		2801	entailment
+		2816	consistency
+		2827	ontomanage
+		2892	jrdftutorial
+		2893	jrdfprereq
+		2900	jrdfcreategraph
+		2904	jrdfcreatenodes
+		2905	jrdfaddtriples
+		2906	searchgraph
+		2911	jrdfreify
+		2912	jrdfremove
+		2951	statements
+		3002	jrdfapis
+		3074	convertrdbms
+		3183	resolveprot
+		3184	contenthandlersdev
+		3201	filesysmodel
+
+	</rename>
+
+
+
+
+	<changes on head metadata>
+
+		meta DC.Modified -> 2006-10-01 		// weil zu diesem zeitpunkt die mulgara doc initialisiert wurde
+		<meta name="location" content="Global" />					// deleted
+		<meta name="document-distribution" content="Global" />		// deleted
+		<meta http-equiv="dialect" content="AU" />					// deleted
+		<meta http-equiv="language" content="English" />			// deleted
+		<meta http-equiv="window-target" content="_top" />			// deleted
+		<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" /> 		
+			//deleted (page doesn't exist anymore)
+		<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+			// decommented and changed to Paul Gearon
+		<meta name="DC.Subject" content="Mulgara Project Home" />
+			// changed to "mulgara semantic store"
+		<meta name="DC.Description" content="Mulgara Project Home" />
+			// changed to "mulgara semantic store is a scalable RDF database written entirely in Java. It is an Open Source fork of Kowari metastore."
+		<meta name="description" content="Mulgara Project Home" />
+			// dito
+		<meta name="Generator" content="AuthorIT"> 		
+			// deleted
+		<meta name="DC.Type" content="Text.Homepage.Personal" />
+		 	// changed to
+			<meta name="DC.Type" scheme="http://memory.loc.gov/ammem/award99/icuhtml/dcguide.html" content="Text.Homepage.Organizational" />
+		<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+			// changed to 2006 Mulgara Project
+		<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+			// that page doesn't even exist anymore ;-)
+			// changed to <meta name="DC.Rights" scheme="URI" content="http://opensource.org/licenses/osl-3.0.php" />
+
+	</changes on head metadata>
+	
+	
+</docudocu>
+
+<googleSearch>
+	<googlesearch fabri.cc tryout>	
+	
+    <link href="http://www.google.com/uds/css/gsearch.css" type="text/css" rel="stylesheet"/>
+    <script src="http://www.google.com/uds/api?file=uds.js&amp;v=1.0&amp;key=ABQIAAAAf28gNFj3gSt2_wS1pmmduxTvfiU5c4IjTaMXqoVGGsjkMUeD7BQi1H_nklFJQr84oqZDMjTstI9ivA" type="text/javascript"></script>
+    <script language="Javascript" type="text/javascript">
+    //<![CDATA[
+
+    function OnLoad() {
+	      // Create a search control
+	      var searchControl = new GSearchControl();
+	      // tell the searcher to draw itself and tell it where to attach
+	      var options = new GdrawOptions();
+	      options.setSearchFormRoot(document.getElementById("searchcontrol"));
+	      // Add in a full set of searchers
+		var mulgaraSearch = new GwebSearch();
+		mulgaraSearch.setUserDefinedLabel("search the mulgara documentation");
+		mulgaraSearch.setUserDefinedClassSuffix("siteSearch");
+		mulgaraSearch.setSiteRestriction("fabri.cc");
+		searchControl.addSearcher(mulgaraSearch);
+  /*	searchControl.addSearcher(new GvideoSearch());
+      	searchControl.addSearcher(localSearch);
+		searchControl.addSearcher(new GblogSearch());
+      	searchControl.addSearcher(new GnewsSearch());
+		// Set the Local Search center point
+      	localSearch.setCenterPoint("New York, NY");
+	*/
+
+
+		// web search, open, alternate root
+		var options = new GsearcherOptions();
+		options.setExpandMode(GSearchControl.EXPAND_MODE_OPEN);
+		options.setRoot(document.getElementById("searchresults"));
+		searchControl.addSearcher(new GwebSearch(), options);
+
+    }
+
+    //]]>
+    </script>
+ 	<body onload="OnLoad()">
+	<div id="searchcontrol">loading...</div>
+	<div id="searchresults" />	
+	
+</googlesearch>
+	<googlesearch mulgara key>
+		
+	key
+	This key is good for all URLs in this directory: http://doc.mulgara.org/
+	ABQIAAAAf28gNFj3gSt2_wS1pmmduxTnPpRIlo-XqC304lMsN7XRmyFDWBTz5r438lpMbYgpvcGmgr7o2hBirQ
+</mulgara key>
+	<googlesearchapi>
+</googleSearch>
+
+
+
+<ssi bausteine>
+	http://http-server.carleton.ca/~dmcfet/html/ssi.html#echo
+	DOCUMENT_URI This variable is the local path of the current document referenced to the base directory of the webspace.
+	
+http://httpd.apache.org/docs/2.0/howto/ssi.html#advanced
+	 <!--#set var="modified" value="$LAST_MODIFIED" -->
+	
+http://bignosebird.com/sdocs/extend.shtml
+	<!--#if expr="${HTTP_USER_AGENT} = /MSIE/" -->
+	  <!--#include file="file1.txt" -->
+	 <!--#else -->
+	  <!--#include file="file2.txt" -->
+	<!--#endif -->
+</ssi>
+	
+	
+<svn update samstag 13h>
+cruyff:~/desktop/mulgaraSite thomas$ svn update
+Restored 'toc12493.htm'
+Restored 'toc122417.htm'
+Restored 'toc124918.htm'
+Restored 'toc10163.htm'
+Restored 'toc27314.htm'
+Restored 'toc10963.htm'
+Restored 'toc31819.htm'
+Restored 'toc124722.htm'
+Restored 'toc27999.htm'
+Restored 'toc246532.htm'
+Restored 'toc11623.htm'
+Restored 'toc10373.htm'
+Restored 'toc27323.htm'
+Restored 'toc57043.htm'
+Restored 'toc24654.htm'
+Restored 'toc318113.htm'
+Restored 'toc5705.htm'
+Restored 'toc5709.htm'
+Restored 'toc11354.htm'
+Restored 'toc.htm'
+Restored 'toc25515.htm'
+Restored 'toc279939.htm'
+Restored 'toc318126.htm'
+Restored 'toc246519.htm'
+Restored 'toc12374.htm'
+Restored 'toc12494.htm'
+Restored 'toc12498.htm'
+Restored 'toc124718.htm'
+Restored 'toc246524.htm'
+Restored 'toc31816.htm'
+Restored 'toc279918.htm'
+Restored 'toc124727.htm'
+Restored 'toc12473.htm'
+Restored 'toc27243.htm'
+Restored 'toc279927.htm'
+Restored 'toc57044.htm'
+Restored 'toc27247.htm'
+Restored 'toc57048.htm'
+Restored 'toc318114.htm'
+Restored 'toc26403.htm'
+Restored 'toc279932.htm'
+Restored 'toc28913.htm'
+Restored 'toc28917.htm'
+Restored 'toc246521.htm'
+Restored 'toc246525.htm'
+Restored 'toc246529.htm'
+Restored 'toc31813.htm'
+Restored 'toc57032.htm'
+Restored 'toc31817.htm'
+Restored 'toc10965.htm'
+Restored 'toc27993.htm'
+Restored 'toc124720.htm'
+Restored 'toc124921.htm'
+Restored 'toc27244.htm'
+Restored 'toc279928.htm'
+Restored 'toc24656.htm'
+Restored 'toc318111.htm'
+Restored 'toc5703.htm'
+Restored 'toc123722.htm'
+Restored 'toc12243.htm'
+Restored 'toc26404.htm'
+Restored 'toc31912.htm'
+Restored 'toc26408.htm'
+Restored 'toc318120.htm'
+Restored 'toc318124.htm'
+Restored 'toc124913.htm'
+Restored 'toc10803.htm'
+Restored 'toc103710.htm'
+Restored 'toc27994.htm'
+Restored 'toc123718.htm'
+Restored 'toc12513.htm'
+Restored 'toc11383.htm'
+Restored 'toc10693.htm'
+Restored 'toc57046.htm'
+Restored 'toc27249.htm'
+Restored 'toc11353.htm'
+Restored 'toc279930.htm'
+Restored 'toc12248.htm'
+Restored 'toc25514.htm'
+Restored 'toc57016.htm'
+Restored 'toc26409.htm'
+Restored 'toc113811.htm'
+Restored 'toc26213.htm'
+Restored 'toc57021.htm'
+Restored 'toc12373.htm'
+C    187.htm
+A    krule.htm
+Updated to revision 139.
+</svn>
+
+
+<changelog>
+	meta DC.Modified -> 2006-10-01 		// weil zu diesem zeitpunkt die mulgara doc initialisiert wurde
+	<meta name="location" content="Global" />					// deleted
+	<meta name="document-distribution" content="Global" />		// deleted
+	<meta http-equiv="dialect" content="AU" />					// deleted
+	<meta http-equiv="language" content="English" />			// deleted
+	<meta http-equiv="window-target" content="_top" />			// deleted
+	<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" /> 	//del (doesn't work anymore)
+	<!--<meta name="DC.Contributor" content="Andrew Newman" />-->  
+		// decomment and change content to Paul Gearon
+	<meta name="DC.Subject" content="Mulgara Project Home" />
+		// changed to "mulgara semantic store"
+	<meta name="DC.Description" content="Mulgara Project Home" />
+		// changed to "mulgara semantic store is a scalable RDF database written entirely in Java. It is an Open Source fork of Kowari metastore."
+	<meta name="description" content="Mulgara Project Home" />
+		// dito
+	<meta name="Generator" content="AuthorIT"> 					// del
+	<meta name="DC.Type" content="Text.Homepage.Personal" />
+	 	// changed to
+		<meta name="DC.Type" scheme="http://memory.loc.gov/ammem/award99/icuhtml/dcguide.html" content="Text.Homepage.Organizational" />
+	<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+		// changed to 2006 Mulgara Project
+	<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+		// that page doesn't even exist anymore ;-)
+		// changed to <meta name="DC.Rights" scheme="URI" content="http://opensource.org/licenses/osl-3.0.php" />
+
+omitted documentation.html
+
+</changelog>
+
+
+<questions>
+	what to do with the dc.creator tom adams?
+	what to do with the dc.contributor?
+	what about the copyright statement?
+	
+	overview/tools.html should be removed
+	overview/index.html contains also documentation.html
+	overview/aboutsite.html is messy - speaks about kowari.org etc
+	overview/krule.html contains northrop grumman copyright statement
+		putting it into overview section - okay?
+	descriptorhw contains tucana screenshots. legally okay?
+	
+	licensing is a little bit broken
+		four places 
+			legal.html
+			legalinfo.html
+			license.html
+			semanticstore.html
+		some links points to osl 3.o
+		while the text says osl 1.1
+		another link points to mozilla license
+		
+	a lot of links to external sites are broken	
+		
+</questions>
+
+<broken links>
+	Status,To,From,Line
+	Failure,/1081.htm,/backofbook.html,386
+	Failure,/inferencing/infersummery.html,/backofbook.html,545
+	Failure,/inferencing/api/sofa/index.html,/inferencing/inferexample.html,304
+	Failure,/inferencing/api/sofa/index.html,/inferencing/sofa.html,337
+	Failure,/itqloperations/170.htm,/itqloperations/nodetyping.html,225
+	Failure,/itqloperations/176.htm,/itqloperations/nodetyping.html,242
+	Failure,/itqloperations/187.htm,/itqloperations/nodetyping.html,256
+	Failure,/integration/api/jrdf/index.html,/jrdftutorial.html,299
+	Failure,/system/api/org/kowari/itql/ItqlInterpreterBean.html,/system/itqlbean.html,253
+	Failure,/overview/OSL-3.0.txt,/overview/legalinfo.html,266
+	Timeout,https://sofa.dev.java.net/,/inferencing/inferexample.html,300
+	Timeout,https://sofa.dev.java.net/,/inferencing/sofa.html,306
+	Timeout,https://sofa.dev.java.net/doc/,/inferencing/sofa.html,308
+	Timeout,http://java.sun.com/j2se/1.4.2/install.html,/inferencing/sofa.html,324
+	Failure,http://jakarta.apache.org/lucene/docs/systemproperties.html,/itqloperations/fulltextmodels.html,229
+	Timeout,http://jakarta.apache.org/lucene/docs/queryparsersyntax.html,/itqloperations/fulltextmodels.html,281
+	Timeout,http://java.sun.com/j2se/1.4.2/install.html,/jrdf/jrdfprereq.html,280
+	Failure,http://localhost/jspdemo/index.jsp,/integration/jsptutorial.html,432
+	Robot Exclusion,http://inline.perl.org/inline/home.html,/integration/perl.html,267
+	Robot Exclusion,http://inline.perl.org/java/home.html,/integration/perl.html,267
+	Timeout,http://java.sun.com/j2se/1.4.2/install.html,/integration/resolverpre.html,277
+	Timeout,http://localhost:8080/webservices/descriptor/index.jsp,/descriptors/descriptorvcard.html,246
+	Timeout,http://localhost:8080/webservices/descriptor/index.jsp,/descriptors/descriptorvcard.html,247
+	Timeout,http://localhost:8080/webservices/descriptor/index.jsp,/descriptors/descriptorlist.html,206
+	Timeout,http://localhost:8080/webservices/descriptor/index.jsp,/descriptors/descriptorlist.html,288
+	Timeout,http://localhost:8080/webservices/descriptor/index.jsp,/descriptors/descriptorlist.html,313
+	Timeout,http://localhost:8080/webservices/descriptor/index.jsp,/descriptors/descriptorlist.html,359
+	Timeout,http://localhost:8080/webservices/descriptor/index.jsp,/descriptors/descriptorlist.html,369
+	Timeout,http://localhost:8080/webservices/descriptor/index.jsp,/descriptors/descriptorhw.html,208
+	Timeout,http://www.w3.org/style/xsl/,/descriptors/descriptorex.html,218
+	Timeout,http://localhost:8080/webservices/descriptor/index.jsp,/descriptors/descriptorsfaq.html,213
+	Timeout,http://localhost:8080/webui/,/descriptors/descriptorsfaq.html,222
+	Timeout,http://localhost:8080/webservices/descriptor/index.jsp,/descriptors/descriptorsfaq.html,231
+	Timeout,http://localhost:8080/webservices/descriptor/index.jsp,/descriptors/descriptorsfaq.html,282
+	Timeout,http://localhost:8080/webservices/descriptor/index.jsp,/descriptors/descriptorsfaq.html,299
+	Timeout,http://localhost:8080/webservices/descriptor/index.jsp,/descriptors/descriptorsfaq.html,319
+	Timeout,http://localhost:8080/webservices/descriptor/index.jsp,/descriptors/descriptorsfaq.html,329
+	Timeout,http://localhost:8080/webservices/descriptor/index.jsp,/descriptors/descriptorsfaq.html,386
+	Timeout,http://www.w3.org/style/xsl/,/descriptors/querytag.html,223
+	Timeout,http://localhost:8080/webservices/descriptor/index.jsp,/descriptors/descwhat.html,208
+	Failure,http://www.angelite.nl/aquamarine/,/system/jrdf.html,263
+	Timeout,http://www.w3.org/style/xsl/,/system/soap.html,251
+	Timeout,http://www.w3.org/style/xsl/,/tutorial/convertingxml.html,207
+	Timeout,http://www.xslt.com/resources.shtml,/tutorial/convertingxml.html,207
+	Timeout,http://localhost:8080/webui/,/tutorial/viewer.html,193
+	Timeout,http://www.slashdot.org/,/tutorial/itqlbasics.html,375
+	Failure,http://www.semanticweb.org/library/,/overview/links.html,356
+	Failure,http://www.musicbrainz.org/products/server/download.html,/overview/links.html,397
+	Timeout,http://mulgara.org/jira,/overview/contact.html,273
+	Failure,http://w3.org/%20%5Co%20w3c%20homepage,/overview/aboutsite.html,279
+	Timeout,http://w3.org/tr/xhtml1,/overview/aboutsite.html,279
+	Robot Exclusion,http://oss.software.ibm.com/developerworks/opensource/license10.html,/overview/optcomponents.html,322
+	Failure,http://quickutil.sourceforge.net/view/main/jxquick,/overview/optcomponents.html,341
+	Failure,http://jxquick.sourceforge.net/quick3/license.txt,/overview/optcomponents.html,349
+	Failure,http://quickutil.sourceforge.net/view/main/jxquick,/overview/optcomponents.html,368
+	Failure,http://jxquick.sourceforge.net/quick3/license.txt,/overview/optcomponents.html,376
+	Timeout,http://xml.apache.org/soap/index.html,/overview/oscomponents.html,286
+	Failure,http://barracudamvc.org/barracuda/index.html,/overview/oscomponents.html,313
+	Failure,http://xmlc.enhydra.org/software/license/index.html,/overview/oscomponents.html,321
+	Failure,http://castor.exolab.org,/overview/oscomponents.html,367
+	Failure,http://castor.exolab.org/license.html,/overview/oscomponents.html,375
+	Failure,http://jetty.mortbay.org/jetty/license.html,/overview/oscomponents.html,510
+	Timeout,http://groups.yahoo.com/group/jetty-discuss/message/2686,/overview/oscomponents.html,518
+	Timeout,http://www.sablecc.org,/overview/oscomponents.html,564
+	Failure,http://xmlc.enhydra.org/software/license/index.html,/overview/oscomponents.html,645
+	Failure,http://xmlc.enhydra.org/software/license/index.html,/overview/oscomponents.html,653
+	Timeout,http://mulgara.org/jira,/index.html,195
+</broken links>
+
+<rename>
+	indexpage.htm	backofbook.html
+	170		alias
+	171		backup
+	174		commit
+	176		create
+	178		delete
+	179		drop
+	180		execute
+	181		help
+	182		insert
+	183		load
+	184		quit
+	185		restore
+	186		rollback
+	187		select
+	195		set
+	223		comment
+	230		itqlbasics
+	254		itqloperations/index
+	255		views
+	257		fulltextmodels
+	262		datatypingmodels
+	271		itqlcommands/index
+	415		viewer
+	417		loadingrdf
+	419		convertingxml
+	485		jsptaglib
+	526		itqlshell
+	527		soap
+	528		itqlbean
+	530		driver
+	571		descriptors/index
+	572		nsdesc
+	573		querytag
+	574		descriptortag
+	575		reserved
+	576		descriptorsfaq
+	597		mistakes
+	618		descwhat
+	619		descadvantages
+	746		perl
+	752		links
+	779		descriptorex
+	795		descriptorhw
+	802		descriptorlist
+	920		descriptorvcard
+	947		jena
+	990		jsptutorial
+	1007	overview	
+	1012	index
+	1061	faq
+	1076	contact
+	1090	about
+	1091	aboutsite
+	1092	accessibility
+	1093	copyright
+	1094	htmlcss
+	1095	license
+	1128	legal
+	1129	legalinfo
+	1132	oscomponents
+	1133	suncomponents
+	1134	optcomponents
+	1139	install
+	1163	downloads
+	1225	tutorial
+	1226	sysreq
+	1227	starting
+	1232	itql
+	1236	itqlshellsession
+	1246	sysarch/index
+	1350	documentation
+	1452	news
+	1565	integration/index
+	1636	trademarks
+	2466	jrdf
+	2467	jrdfgraphs
+	2511	jrdfmemory
+	2512	jrdfconcol
+	2513	jrdfexamples
+	2526	jrdftks
+	2528	jrdfvisitor
+	2552	resolvers/index
+	2553	resolverdbclass
+	2622	sofa
+	2641	inferintro
+	2642	infersitu
+	2643	infersemweb
+	2649	infersummery
+	2686	resolverhttpmp3
+	2687	resolverpre
+	2689	resolverfactories
+	2693	resolverwrite
+	2697	resolverwrapper
+	2701	parsers
+	2707	contenthandlers
+	2714	compiling
+	2720	integrate
+	2725	infermulgara
+	2733	inferexample
+	2737	inferencing/index
+	2779	nodetyping
+	2800	owl
+	2801	entailment
+	2816	consistency
+	2827	ontomanage
+	2892	jrdftutorial
+	2893	jrdfprereq
+	2900	jrdfcreategraph
+	2904	jrdfcreatenodes
+	2905	jrdfaddtriples
+	2906	searchgraph
+	2911	jrdfreify
+	2912	jrdfremove
+	2951	statements
+	3002	jrdfapis
+	3074	convertrdbms
+	3183	resolveprot
+	3184	contenthandlersdev
+	3201	filesysmodel
+	
+</rename>
+
+<deprecated>
+		news			because that's already on www.mulgara.org
+</deprecated>
+
+
+

@@ -1,0 +1,195 @@
+/*
+* kowari stylesheet for print media types.
+*
+* $Id: print.css,v 1.5 2004/12/22 05:01:58 newmana Exp $
+*/
+
+body {
+color: #000;
+background-color: #FFF;
+font-size: 12pt;
+}
+
+#content {
+/* insert some styles... */
+}
+
+#toplevelnavigation {
+font-size: 0.8em;
+margin-top: 0em;
+}
+
+#toplevelnavigation ul {
+margin-left: 0;
+padding-left: 0;
+display: inline;
+list-style: none;
+}
+
+#toplevelnavigation ul li {
+margin-left: 5px;
+margin-right: 1px;
+border-right: 1px dotted #62615B;
+display: inline;
+list-style: none;
+}
+
+#toplevelnavigation ul li:first-child {
+margin-left: 0;
+}
+
+#toplevelnavigation ul li:last-child {
+border-right: 0;
+}
+
+#toplevelnavigation ul li:first-child:before {
+content: ":: ";
+}
+#toplevelnavigation ul li:last-child:after {
+content: " ::";
+}
+
+#toplevelnavigation ul li a {
+font-weight: bold;
+}
+
+#navigation {
+font-size: 0.8em;
+margin-top: 0em;
+}
+
+#navigation ul {
+margin-left: 0;
+padding-left: 0;
+list-style: none;
+}
+
+#navigation ul li {
+margin-left: 0;
+margin-right: 0;
+padding-right: 4px;
+border-right: 1px dotted #62615B;
+display: inline;
+list-style: none;
+}
+
+#navigation ul li:first-child {
+margin-left: 0;
+}
+
+#navigation ul li:last-child {
+border-right: 0;
+}
+
+#navigation ul li:first-child:before {
+content: ":: ";
+}
+#navigation ul li:last-child:after {
+content: " ::";
+}
+
+#navigation ul li a {
+font-weight: bold;
+}
+
+#breadcrumb {
+font-size: 0.8em;
+margin-bottom: 1em;
+/*padding: 3px;
+margin-bottom: 25px;*/
+}
+
+#breadcrumb ul {
+margin-left: 0;
+padding-left: 0;
+display: inline;
+list-style: none;
+}
+
+#breadcrumb ul li {
+margin-left: 0;
+padding-left: 0;
+display: inline;
+list-style: none;
+}
+
+#footer {
+float: left;
+margin-top: 2em;
+font-size: smaller;
+}
+
+h1.title {
+margin-top: -0.2em;
+margin-bottom: 1em;
+}
+
+div.spacer {
+clear: both;
+}
+
+div.mediagrouping {
+/*border: 1px dashed #333;
+background-color: #ffe;*/
+}
+
+div.thumbnail {
+float: left;
+width: 205px;
+border: 1px silver solid;
+margin: 3px;
+padding: 5px;
+text-align: center
+}
+
+p.caption {
+font-size: smaller;
+}
+
+img.thumbnail {
+/*width: 200px;*/
+border: 0;
+}
+
+img.scaled {
+width: 100%;
+border: 0;
+}
+
+h1 {
+/*font-family: Verdana, Helvetica, sans-serif;*/
+/*font-family: 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;*/
+font-family: Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
+font-size: 1.5em;
+}
+
+h2 {
+/*font-family: Verdana, Helvetica, sans-serif;*/
+/*font-family: 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;*/
+font-family: Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
+font-size: 1.25em;
+}
+
+a:active, a:hover {
+color: #3F382B;
+background-color: #FFFFFF;
+text-decoration: underline;
+}
+
+a:link, a:visited {
+color: #520;
+background: transparent;
+font-weight: bold;
+text-decoration: underline;
+}
+
+/* insert the URL after a link  */
+#content a:link:after, #content a:visited:after {
+content: " (" attr(href) ") ";
+font-size: 90%;
+}
+
+#content a[href^="/"]:after {
+content: " (http://www.adams.id.au" attr(href) ") ";
+font-size: 90%;
+}

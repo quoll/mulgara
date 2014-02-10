@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="demo-mp3" default="demo-mp3-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="demo-mp3-classpath">
+    <path refid="common-classpath"/>
+    <fileset file="${dist.dir}/${driver.jar}"/>
+    <fileset file="${lib.dir}/${jlayer.jar}"/>
+  </path>
+
+  <path id="demo-mp3-test-classpath">
+    <path refid="demo-mp3-classpath"/>
+    <fileset file="${demo-mp3.dist.dir}/${demo-mp3.jar}"/>
+  </path>
+
+  <target name="demo-mp3-clean"
+          description="Removes all compile generated files for the demo-mp3">
+    <tstamp/>
+    <delete dir="${demo-mp3.obj.dir}"/>
+    <delete dir="${demo-mp3.test.dir}"/>
+    <delete dir="${demo-mp3.dist.dir}"/>
+  </target>
+
+  <target name="-demo-mp3-prepare"
+          description="Creates all directories associated with the demo-mp3's
+                       compilation"
+          depends="-prepare-build">
+    <mkdir dir="${demo-mp3.obj.dir}"/>
+    <mkdir dir="${demo-mp3.test.dir}"/>
+    <mkdir dir="${demo-mp3.dist.dir}"/>
+    <mkdir dir="${demo-mp3.obj.dir}/classes"/>
+  </target>
+
+  <target name="demo-mp3-compile"
+          depends="-demo-mp3-prepare, driver-dist, demo-mp3-config-generate"
+          description="Compiles all demo-mp3 related files included generated
+                       source code">
+    <javac destdir="${demo-mp3.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+      <classpath refid="demo-mp3-classpath"/>
+      <src path="${demo-mp3.obj.src.dir}/java"/>
+      <src path="${demo-mp3.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="demo-mp3-jar"
+          depends="demo-mp3-compile, -demo-mp3-jar-uptodate"
+          unless="demo-mp3.jar.uptodate"
+          description="Creates the demo-mp3's jar/s">
+    <jar jarfile="${demo-mp3.dist.dir}/${demo-mp3.jar}">
+      <fileset dir="${demo-mp3.obj.dir}/classes"/>
+      <fileset dir="${demo-mp3.src.dir}/images"/>
+      <fileset file="${demo-mp3.conf.dir}/${demo-mp3.conf.default}"/>
+      <fileset file="${demo-mp3.conf.dir}/${demo-mp3.conf.default}"/>
+      <fileset file="${demo-mp3.conf.dir}/${demo-mp3.schema.default}"/>
+      <zipfileset src="${lib.dir}/${jlayer.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${castor-xml.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${castor-xml-schema.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${xerces.jar}" excludes="META-INF/**"/>
+    </jar>
+  </target>
+
+  <target name="-demo-mp3-jar-uptodate">
+    <uptodate property="demo-mp3.jar.uptodate"
+              targetfile="${demo-mp3.dist.dir}/${demo-mp3.jar}">
+      <srcfiles dir="${demo-mp3.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="demo-mp3-dist"
+          depends="demo-mp3-jar"
+          unless="demo-mp3.uptodate"
+          description="Performs all tasks related to finalising this demo-mp3
+                       and readying it for distribution">
+    <!-- All that's involved in the final version of the demo-mp3 library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="demo-mp3-test"
+          depends="demo-mp3-jar, dist"
+          description="Carries out unit testing for this demo-mp3">
+    <antcall target="start"/>
+    <antcall target="component-test">
+      <param name="classpath.id" value="demo-mp3-test-classpath"/>
+      <param name="dir" value="${demo-mp3.src.dir}"/>
+      <param name="jar" value="${demo-mp3.jar}"/>
+    </antcall>
+    <antcall target="stop"/>
+  </target>
+
+  <target name="demo-mp3-deploy" depends="demo-mp3-dist">
+	<java fork="true" jvm="${java.home}/bin/java" classname="org.mulgara.demo.mp3.swing.Mp3Application" failonerror="yes">
+	  <classpath refid="demo-mp3-test-classpath">
+  	  </classpath>
+	</java>
+  </target>
+
+  <target name="demo-mp3-javadoc"
+          depends="demo-mp3-jar"
+          description="Creates the javadoc for this demo-mp3">
+    <antcall target="javadoc">
+      <param name="javadoc.package" value="org.mulgara.demo.mp3.*"/>
+      <param name="javadoc.classpath" value="demo-mp3-classpath"/>
+      <param name="javadoc.sourcepath" value="${demo-mp3.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="demo-mp3-help"
+          description="Displays the help information for this demo-mp3">
+    <!-- This is similar to the main project's help except the information
+         is specific to this demo-mp3 -->
+    <echo message="Welcome to the build script for ${demo-mp3.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+      <jvmarg value="${arch.bits}"/>
+      <arg line="-buildfile ${demo-mp3.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+
+
+  <target name="demo-mp3-config-generate"
+     description="Generates the mp3 demo config code">
+    <!-- Must remove old files -->
+    <delete dir="${demo-mp3.obj.src.dir}/java"/>
+    <mkdir dir="${demo-mp3.obj.src.dir}/java"/>
+    <java fork="true" jvm="${java.home}/bin/java"
+      classname="org.exolab.castor.builder.SourceGeneratorMain" failonerror="yes">
+      <jvmarg value="${arch.bits}"/>
+      <sysproperty key="java.io.tmpdir" value="${tmp.dir}"/>
+      <arg value="-i"/>
+      <arg value="${demo-mp3.conf.dir}/mp3-config.xsd"/>
+      <arg value="-package"/>
+      <arg value="org.mulgara.demo.mp3.config"/>
+      <arg value="-dest"/>
+      <arg value="${demo-mp3.obj.src.dir}/java"/>
+      <classpath>
+        <fileset dir="${lib.dir}"
+          includes="${xerces.jar}, ${xmlParserAPIs.jar}, castor*.jar, commons-logging*.jar, velocity*.jar"/>
+      </classpath>
+    </java>
+  </target>
+
+
+</project>
+

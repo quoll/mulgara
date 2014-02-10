@@ -1,0 +1,19 @@
+# Set aliases
+alias http://purl.org/dc/elements/1.1/ as dc ;
+alias http://www.w3.org/2000/01/rdf-schema# as rdfs ;
+
+# Create the model
+create rmi://localhost/server1#model1 ;
+
+# Populate the model
+load file:@basedir@/../data/schema/dc.rdfs into rmi://localhost/server1#model1 ;
+load file:@basedir@/../data/schema/rdfs.rdfs into rmi://localhost/server1#model1 ;
+
+# Query the model
+select $label $object $predicate from rmi://localhost/server1#model1 where dc:subject $predicate $object and $predicate rdfs:label $label ;
+
+# Remove the model
+drop rmi://localhost/server1#model1 ;
+
+# Exit the session cleanly
+quit ;

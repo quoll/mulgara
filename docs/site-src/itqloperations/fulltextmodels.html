@@ -1,0 +1,140 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Full-Text Models</title>
+    <meta name="keywords" content="Full-Text Models, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+
+		<a href="/itqloperations/fulltextmodels.html#o258">Creating</a> &#124;
+		<a href="/itqloperations/fulltextmodels.html#o259">Modifying</a> &#124;
+		<a href="/itqloperations/fulltextmodels.html#o260">Querying</a> &#124;
+		<a href="/itqloperations/fulltextmodels.html#o261">Limitations</a> 
+
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/itqloperations/views.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/itqloperations/datatypingmodels.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="254.htm">Advanced iTQL Operations</a></p>
+<p class="relateditem"><a href="/itqloperations/views.html">Views</a></p>
+<p class="relateditem"><a href="/itqloperations/datatypingmodels.html">Datatyping Models</a></p>
+<p class="relateditem"><a href="/itqloperations/nodetyping.html">Nodetyping Models</a></p>
+<p class="relateditem"><a href="/itqloperations/filesysmodel.html">Filesystem Models</a></p>
+
+ -->
+
+
+
+
+<h2>Full-Text Models</h2>
+
+<p>Normally in Mulgara, searches for literal values in models only succeed when there is an exact match.</p>
+
+<p><a class="internetlinktemplate" title="Jakarta Project's Lucene" href="http://jakarta.apache.org/lucene/docs/index.html">Lucene</a> is a full-text search engine integrated into Mulgara by treating the Lucene index as a model. With full-text models, searches for literal values in models succeed when there is a partial match.</p>
+
+<p>The following sections outline how to create, modify, query full-text models, plus the limitations of full-text models.</p>
+
+<p>Visit the <a class="internetlinktemplate" title="" href="http://jakarta.apache.org/lucene/docs/systemproperties.html">Lucene System Properties</a> Web site for information on the performance and operational properties you can set.</p>
+
+
+<div class="anchor"><a name="o258">&nbsp;</a></div>
+<h3>Creating Full-Text Models</h3>
+
+<p>Use the <code><a id="h209" class="documentlinktemplate" title="create" href="/itqlcommands/create.html">create</a></code> command with an optional type argument of <code>&lt;http://mulgara.org/mulgara#LuceneModel&gt;</code> in addition to the model name.</p>
+
+<p>For example, to create the full-text model <code>#foo</code>:</p>
+
+<p class="commandtext">create &lt;rmi://mysite.com/server1#foo&gt; &lt;http://mulgara.org/mulgara#LuceneModel&gt;;</p>
+
+<p class="note"><strong>Note -</strong> Specifying no type at all creates a normal Mulgara model.</p>
+
+<p>Full-text models are removed in exactly the same way as normal models. For example:</p>
+
+<p class="commandtext">drop &lt;rmi://mysite.com/server1#foo&gt;;</p>
+<div class="anchor"><a name="o259">&nbsp;</a></div>
+<h3>Modifying Full-Text Models</h3>
+
+<p>As with normal models, use the <code><a id="h212" class="documentlinktemplate" title="insert" href="/itqlcommands/insert.html">insert</a></code> command to insert statements into a full-text model.</p>
+
+<p>When inserting statements into a full-text model, the object is the text that is specially indexed for partial matching. If the object is a literal, the text of the literal is indexed. Indexing literals into a model uses the same as for any other model. For example:</p>
+
+<p class="commandtext">insert &lt;http://www.mysite.com/somedoc.txt&gt;<br />
+  &lt;http://mulgara.org/mulgara/Document#title&gt; 'Document title'<br />
+  into &lt;rmi://mysite.com/server1#foo&gt;;</p>
+
+<p>If the object is a resource, the resource is converted into a URL, the URL is accessed by the server, and the content of the URL is indexed. The resource must have either a <code>http:</code> or <code>file:</code> protocol, or the <code>insert</code> fails, sometimes without generating an error. For example:</p>
+
+<p class="commandtext">insert &lt;http://www.mysite.com/somedoc.txt&gt;<br />
+  &lt;http://mulgara.org/mulgara/Document#abstract&gt;<br />
+  &lt;http://www.mysite.com/abstract.txt&gt;<br />
+  into &lt;rmi://mysite.com/server1#foo&gt;;</p>
+
+<p>To perform full-text searching on literals stored in a normal model, the contents of the normal model must be copied into a full-text model. The following example shows how the document titles stored in the normal model <code>#data</code> are copied into the full-text model <code>#foo</code>.</p>
+
+<p class="commandtext">insert select $url &lt;http://mulgara.org/mulgara/Document#title&gt; $title<br />
+  from &lt;rmi://mysite.com/server1#data&gt;<br />
+  where $url &lt;http://mulgara.org/mulgara/Document#title&gt; $title <br />
+  into &lt;rmi://mysite.com/server1#foo&gt;;</p>
+
+<p>If a statement is inserted into a full-text model and the server determines that the MIME type of the document is text/html, then the HTML tags are filtered out before indexing.</p>
+
+<p class="note"><strong>Note -</strong> The ability of Mulgara to correctly identify HTML input is limited, and only works when fetching a resource via HTTP from a web server that accurately reports the content type.</p>
+
+<p>Use the <code><a id="h214" class="documentlinktemplate" title="delete" href="/itqlcommands/delete.html">delete</a></code> command to delete text from full-text models.</p>
+<div class="anchor"><a name="o260">&nbsp;</a></div>
+<h3>Querying Full-Text Models</h3>
+
+<p>Queries on full-text models work differently on normal models, as follows:</p>
+<ul><li>The <code><a id="h1335" class="documentlinktemplate" title="where Clause" href="/itqlcommands/select.html#o197">where</a></code> clause must have a literal-valued object.</li><li>The object portion of the <code>where</code> clause is passed to the underlying search engine as a pattern. The following types of pattern searches are possible:<ul><li>Wildcards</li><li>Fuzzy</li><li>Word proximity</li><li>Boosting a term</li><li>Boolean operators (and, or, not, +, -)
+<p class="listcontinue">For more information on Lucene searching, see the <a class="internetlinktemplate" title="Lucene query syntax" href="http://jakarta.apache.org/lucene/docs/queryparsersyntax.html">Lucene query syntax</a>.</p>
+</li></ul></li><li>If the <code>$score</code> variable is specified in the <code><a id="h1298" class="documentlinktemplate" title="select Clause" href="/itqlcommands/select.html#o188">select</a></code> clause, it is assigned a number from 0 to 1 indicating how close the match was. The <code>$score</code> variable must be part of the <code>select</code> clause in order to see it in the result.</li></ul>
+<p>Given the full-text model <code>#foo</code> populated in the previous section, the following query returns titles with the words &quot;duty&quot; and &quot;care&quot; in the title, as well as an indication of the quality of the match:</p>
+
+<p class="commandtext">select $url $title $score<br />
+  from &lt;rmi://mysite.com/server1#data&gt;<br />
+  where $url &lt;http://mulgara.org/mulgara/Document#title&gt; $title<br />
+    and $url &lt;http://mulgara.org/mulgara/Document#title&gt; '+duty +care'<br />
+    in &lt;rmi://mysite.com/server1#foo&gt;;</p>
+
+<p class="note"><strong>Note -</strong> In the example above, the join is performed across the <code>$url</code> column, and the second <code>where</code> constraint is only executed against the full-text model <code>#foo.</code></p>
+
+<p>The index files for full-text models are stored in the <code>server1/fulltext</code><em> </em>directory.</p>
+<div class="anchor"><a name="o261">&nbsp;</a></div>
+<h3>Limitations of Full-Text Models</h3>
+
+<p>Full-text models are an attempt to make a text index act like a Mulgara model, allowing both exact and partial matching to be mixed within queries. Full-text models have the following limitations:</p>
+<ul><li>Lucene is not transactional, so neither are the full-text models. If an operation fails, full-text models do not roll back along with the normal models.</li><li>The <code><a id="h215" class="documentlinktemplate" title="backup" href="/itqlcommands/backup.html">backup</a></code> and <code><a id="h222" class="documentlinktemplate" title="restore" href="/itqlcommands/restore.html">restore</a></code> commands do not include the content of full-text models.</li></ul>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

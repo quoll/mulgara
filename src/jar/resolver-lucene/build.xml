@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="resolver-lucene" default="resolver-lucene-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="resolver-lucene-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${resolver.dist.dir}/${resolver.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${querylang.dist.dir}/${querylang.jar}"/>
+
+    <fileset file="${lib.dir}/${lucene.core.jar}"/>
+  </path>
+
+  <path id="resolver-lucene-test-classpath">
+
+    <path refid="resolver-lucene-classpath"/>
+
+    <fileset file="${resolver-lucene.dist.dir}/${resolver-lucene.jar}"/>
+    <fileset file="${store-stringpool-xa11.dist.dir}/${store-stringpool-xa11.jar}"/>
+    <fileset file="${util-xa.dist.dir}/${util-xa.jar}"/>
+    <fileset file="${resolver-store.dist.dir}/${resolver-store.jar}"/>
+    <fileset file="${store-nodepool-memory.dist.dir}/${store-nodepool-memory.jar}"/>
+    <fileset file="${store-stringpool-memory.dist.dir}/${store-stringpool-memory.jar}"/>
+    <fileset file="${tuples-hybrid.dist.dir}/${tuples-hybrid.jar}"/>
+    <fileset file="${resolver-memory.dist.dir}/${resolver-memory.jar}"/>
+    <fileset file="${content-n3.dist.dir}/${content-n3.jar}"/>
+    <fileset file="${content-rdfxml.dist.dir}/${content-rdfxml.jar}"/>
+    <fileset file="${resolver-file.dist.dir}/${resolver-file.jar}"/>
+    <fileset file="${lib.dir}/${antlr.jar}"/>
+  </path>
+
+  <target name="resolver-lucene-clean"
+          description="Removes all compile generated files for the resolver-lucene">
+
+    <tstamp/>
+
+    <delete dir="${resolver-lucene.obj.dir}"/>
+    <delete dir="${resolver-lucene.test.dir}"/>
+    <delete dir="${resolver-lucene.dist.dir}"/>
+  </target>
+
+  <target name="-resolver-lucene-prepare"
+          description="Creates all directories associated with the resolver-lucene's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${resolver-lucene.obj.dir}"/>
+    <mkdir dir="${resolver-lucene.test.dir}"/>
+    <mkdir dir="${resolver-lucene.dist.dir}"/>
+    <mkdir dir="${resolver-lucene.obj.dir}/classes"/>
+  </target>
+
+  <target name="resolver-lucene-compile"
+          depends="-resolver-lucene-prepare, resolver-spi-jar, resolver-jar, server-local-jar"
+          description="Compiles all resolver-lucene related files included
+                       generated source code">
+
+    <javac destdir="${resolver-lucene.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="resolver-lucene-classpath"/>
+
+      <src path="${resolver-lucene.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="resolver-lucene-jar"
+          depends="resolver-lucene-compile, -resolver-lucene-jar-uptodate"
+          unless="resolver-lucene.jar.uptodate"
+          description="Builds the Lucene Resolver JAR">
+
+    <jar jarfile="${resolver-lucene.dist.dir}/${resolver-lucene.jar}">
+      <fileset dir="${resolver-lucene.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-resolver-lucene-jar-uptodate">
+
+    <uptodate property="resolver-lucene.jar.uptodate"
+              targetfile="${resolver-lucene.dist.dir}/${resolver-lucene.jar}">
+      <srcfiles dir="${resolver-lucene.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="resolver-lucene-dist"
+          depends="resolver-lucene-jar"
+          unless="resolver-lucene.uptodate"
+          description="Performs all tasks related to finalising this resolver-lucene
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the resolver-lucene library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+
+  <target name="resolver-lucene-test" depends="resolver-lucene-jar">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="resolver-lucene-test-classpath"/>
+      <param name="dir" value="${resolver-lucene.src.dir}"/>
+      <param name="jar" value="${resolver-lucene.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-lucene-javadoc"
+          depends="resolver-lucene-jar"
+          description="Creates the javadoc for this resolver-lucene">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.resolver.lucene.*"/>
+      <param name="javadoc.classpath" value="resolver-lucene-classpath"/>
+      <param name="javadoc.sourcepath" value="${resolver-lucene.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-lucene-help"
+          description="Displays the help information for this resolver-lucene">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this resolver-lucene -->
+
+    <echo message="Welcome to the build script for ${resolver-lucene.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${resolver-lucene.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

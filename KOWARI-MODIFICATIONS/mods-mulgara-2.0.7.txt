@@ -1,0 +1,824 @@
+------------------------------------------------------------------------
+r1411 | pag | 2008-12-06 09:05:09 -0600 (Sat, 06 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/LEGAL.txt
+
+Added license descriptions for new jars
+------------------------------------------------------------------------
+r1409 | pag | 2008-12-06 08:24:59 -0600 (Sat, 06 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/common.properties
+
+Updated version
+------------------------------------------------------------------------
+r1408 | pag | 2008-12-06 08:23:16 -0600 (Sat, 06 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/DataInputTx.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Load.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/ServerCommand.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryServlet.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/Template.java
+   M /trunk/src/jar/web/resources/template.html
+   M /trunk/src/jar/web/resources/template_head.html
+   M /trunk/src/jar/web/resources/tutorial.html
+   M /trunk/src/jar/web/resources/tutorial_head.html
+
+Added upload capability. Also testing for invalid LOCAL operations
+------------------------------------------------------------------------
+r1407 | pag | 2008-12-06 08:22:21 -0600 (Sat, 06 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+
+removed warnings
+------------------------------------------------------------------------
+r1406 | pag | 2008-12-05 17:53:44 -0600 (Fri, 05 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/connection/Connection.java
+   M /trunk/src/jar/query/java/org/mulgara/connection/DummyConnection.java
+   M /trunk/src/jar/query/java/org/mulgara/connection/SessionConnection.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Backup.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Export.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Load.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Restore.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteSessionFactoryImpl.java
+
+Detecting when remote data streaming is requested on local connections, and reporting an error
+------------------------------------------------------------------------
+r1405 | pag | 2008-12-05 17:53:03 -0600 (Fri, 05 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/CreateGraphOperation.java
+
+Handling creation of parameterized graph names. Needed for remote sessions.
+------------------------------------------------------------------------
+r1404 | pag | 2008-12-05 17:51:58 -0600 (Fri, 05 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/StackTrace.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryServlet.java
+
+Better error reporting for users
+------------------------------------------------------------------------
+r1403 | pag | 2008-12-05 17:50:30 -0600 (Fri, 05 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlSession.java
+
+Removed a warning, and replaced tabs with spaces
+------------------------------------------------------------------------
+r1402 | ronald | 2008-12-05 05:56:21 -0600 (Fri, 05 Dec 2008) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndex.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexUnitTest.java
+
+Fixed a bug where a statement with an empty literal could be inserted but
+not deleted.
+------------------------------------------------------------------------
+r1401 | ronald | 2008-12-05 05:56:15 -0600 (Fri, 05 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+
+Corrected exception message a bit.
+------------------------------------------------------------------------
+r1400 | ronald | 2008-12-05 05:56:09 -0600 (Fri, 05 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraTransactionFactory.java
+
+Log the transaction timeouts (at level debug).
+------------------------------------------------------------------------
+r1399 | pag | 2008-12-04 23:42:29 -0600 (Thu, 04 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/ant-task/java/org/mulgara/ant/task/rdf/RDFLoadUnitTest.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/itql/ItqlGraphProxy.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/itql/SessionGraphProxy.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/test/RemoteAnswerCloneUnitTest.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/writer/MemoryXMLWriter.java
+   R /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/model/ModelFactory.java (from /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/model/ModelFactory.java:1397)
+   M /trunk/src/jar/content-mp3/java/org/mulgara/content/mp3/parser/ID3ParsersUnitTest.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/writer/RDFXMLWriter.java
+   M /trunk/src/jar/demo-mp3/java/org/mulgara/demo/mp3/AbstractModel.java
+   M /trunk/src/jar/demo-mp3/java/org/mulgara/demo/mp3/FileSystemModelImpl.java
+   R /trunk/src/jar/demo-mp3/java/org/mulgara/demo/mp3/Model.java (from /trunk/src/jar/demo-mp3/java/org/mulgara/demo/mp3/Model.java:1397)
+   M /trunk/src/jar/demo-mp3/java/org/mulgara/demo/mp3/Mp3ControllerImpl.java
+   M /trunk/src/jar/demo-mp3/java/org/mulgara/demo/mp3/Mp3FileImpl.java
+   M /trunk/src/jar/demo-mp3/java/org/mulgara/demo/mp3/Mp3Model.java
+   M /trunk/src/jar/demo-mp3/java/org/mulgara/demo/mp3/Mp3ModelImpl.java
+   M /trunk/src/jar/demo-mp3/java/org/mulgara/demo/mp3/SchemaModel.java
+   M /trunk/src/jar/demo-mp3/java/org/mulgara/demo/mp3/SchemaModelImpl.java
+   M /trunk/src/jar/demo-mp3/java/org/mulgara/demo/mp3/id3/AbstractId3Tag.java
+   M /trunk/src/jar/demo-mp3/java/org/mulgara/demo/mp3/swing/actions/ClearMp3ModelAction.java
+   M /trunk/src/jar/demo-mp3/java/org/mulgara/demo/mp3/swing/results/Mp3List.java
+   M /trunk/src/jar/demo-mp3/java/org/mulgara/demo/mp3/swing/search/BrowserPanel.java
+   M /trunk/src/jar/demo-mp3/java/org/mulgara/demo/mp3/swing/widgets/PropertiesTable.java
+   M /trunk/src/jar/descriptor/src/java/org/mulgara/descriptor/DeployServlet.java
+   M /trunk/src/jar/descriptor/src/java/org/mulgara/descriptor/Descriptor.java
+   M /trunk/src/jar/descriptor/src/java/org/mulgara/descriptor/DescriptorElement.java
+   M /trunk/src/jar/jrdf/java/org/mulgara/jrdf/JRDFGraph.java
+   M /trunk/src/jar/krule/java/org/mulgara/krule/QueryStruct.java
+   M /trunk/src/jar/query/java/org/mulgara/connection/ConnectionFactoryUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/AskQuery.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintFalse.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintTrue.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstructQuery.java
+   A /trunk/src/jar/query/java/org/mulgara/query/Graph.java (from /trunk/src/jar/query/java/org/mulgara/query/Model.java:1397)
+   A /trunk/src/jar/query/java/org/mulgara/query/GraphExpression.java (from /trunk/src/jar/query/java/org/mulgara/query/ModelExpression.java:1398)
+   A /trunk/src/jar/query/java/org/mulgara/query/GraphIntersection.java (from /trunk/src/jar/query/java/org/mulgara/query/ModelIntersection.java:1397)
+   A /trunk/src/jar/query/java/org/mulgara/query/GraphLiteral.java (from /trunk/src/jar/query/java/org/mulgara/query/ModelLiteral.java:1398)
+   A /trunk/src/jar/query/java/org/mulgara/query/GraphOperation.java (from /trunk/src/jar/query/java/org/mulgara/query/ModelOperation.java:1398)
+   A /trunk/src/jar/query/java/org/mulgara/query/GraphPartition.java (from /trunk/src/jar/query/java/org/mulgara/query/ModelPartition.java:1398)
+   A /trunk/src/jar/query/java/org/mulgara/query/GraphResource.java (from /trunk/src/jar/query/java/org/mulgara/query/ModelResource.java:1398)
+   A /trunk/src/jar/query/java/org/mulgara/query/GraphResourceUnitTest.java (from /trunk/src/jar/query/java/org/mulgara/query/ModelResourceUnitTest.java:1397)
+   A /trunk/src/jar/query/java/org/mulgara/query/GraphUnion.java (from /trunk/src/jar/query/java/org/mulgara/query/ModelUnion.java:1397)
+   A /trunk/src/jar/query/java/org/mulgara/query/GraphVariable.java (from /trunk/src/jar/query/java/org/mulgara/query/ModelVariable.java:1398)
+   D /trunk/src/jar/query/java/org/mulgara/query/Model.java
+   D /trunk/src/jar/query/java/org/mulgara/query/ModelExpression.java
+   D /trunk/src/jar/query/java/org/mulgara/query/ModelIntersection.java
+   D /trunk/src/jar/query/java/org/mulgara/query/ModelLiteral.java
+   D /trunk/src/jar/query/java/org/mulgara/query/ModelOperation.java
+   D /trunk/src/jar/query/java/org/mulgara/query/ModelPartition.java
+   D /trunk/src/jar/query/java/org/mulgara/query/ModelResource.java
+   D /trunk/src/jar/query/java/org/mulgara/query/ModelResourceUnitTest.java
+   D /trunk/src/jar/query/java/org/mulgara/query/ModelUnion.java
+   D /trunk/src/jar/query/java/org/mulgara/query/ModelVariable.java
+   M /trunk/src/jar/query/java/org/mulgara/query/Query.java
+   M /trunk/src/jar/query/java/org/mulgara/query/QueryUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Load.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/ServerCommand.java
+   M /trunk/src/jar/query/java/org/mulgara/server/Session.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/Collaborator.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/CollaboratorUnitTest.java
+   A /trunk/src/jar/querylang/java/org/mulgara/itql/GraphExpressionBuilder.java (from /trunk/src/jar/querylang/java/org/mulgara/itql/ModelExpressionBuilder.java:1397)
+   A /trunk/src/jar/querylang/java/org/mulgara/itql/GraphNameCompletor.java (from /trunk/src/jar/querylang/java/org/mulgara/itql/ModelNameCompletor.java:1397)
+   D /trunk/src/jar/querylang/java/org/mulgara/itql/ModelExpressionBuilder.java
+   D /trunk/src/jar/querylang/java/org/mulgara/itql/ModelNameCompletor.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlInterpreter.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlSession.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/SparqlInterpreter.java
+   M /trunk/src/jar/querylang/java/org/mulgara/store/jxunit/LoadDataJX.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/AdvDatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/BasicDatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ConstraintOperations.java
+   A /trunk/src/jar/resolver/java/org/mulgara/resolver/CreateGraphOperation.java (from /trunk/src/jar/resolver/java/org/mulgara/resolver/CreateModelOperation.java:1397)
+   D /trunk/src/jar/resolver/java/org/mulgara/resolver/CreateModelOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/Database.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSession.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSessionListQueryUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DefaultConstraintHandlers.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DirectTransitiveFunction.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ExhaustiveTransitiveFunction.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ExternalTransactionUnitTest.java
+   A /trunk/src/jar/resolver/java/org/mulgara/resolver/GraphExistsOperation.java (from /trunk/src/jar/resolver/java/org/mulgara/resolver/ModelExistsOperation.java:1397)
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/InternalResolver.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/JotmTransactionStandaloneTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/LocalJRDFDatabaseSession.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/LocalQueryResolver.java
+   D /trunk/src/jar/resolver/java/org/mulgara/resolver/ModelExistsOperation.java
+   A /trunk/src/jar/resolver/java/org/mulgara/resolver/ModifyGraphOperation.java (from /trunk/src/jar/resolver/java/org/mulgara/resolver/ModifyModelOperation.java:1397)
+   D /trunk/src/jar/resolver/java/org/mulgara/resolver/ModifyModelOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/PrimitiveConstraintDescriptor.java
+   A /trunk/src/jar/resolver/java/org/mulgara/resolver/RemoveGraphOperation.java (from /trunk/src/jar/resolver/java/org/mulgara/resolver/RemoveModelOperation.java:1397)
+   D /trunk/src/jar/resolver/java/org/mulgara/resolver/RemoveModelOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/RestoreOperation.java
+   A /trunk/src/jar/resolver/java/org/mulgara/resolver/SetGraphOperation.java (from /trunk/src/jar/resolver/java/org/mulgara/resolver/SetModelOperation.java:1397)
+   D /trunk/src/jar/resolver/java/org/mulgara/resolver/SetModelOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/StringPoolSession.java
+   A /trunk/src/jar/resolver/java/org/mulgara/resolver/SystemGraphSecurityAdapter.java (from /trunk/src/jar/resolver/java/org/mulgara/resolver/SystemModelSecurityAdapter.java:1397)
+   D /trunk/src/jar/resolver/java/org/mulgara/resolver/SystemModelSecurityAdapter.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/TestDef.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/WalkFunction.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/XADatabaseSessionUnitTest.java
+   A /trunk/src/jar/resolver/java/org/mulgara/store/exporter/GraphN3Writer.java (from /trunk/src/jar/resolver/java/org/mulgara/store/exporter/ModelN3Writer.java:1397)
+   A /trunk/src/jar/resolver/java/org/mulgara/store/exporter/GraphWriter.java (from /trunk/src/jar/resolver/java/org/mulgara/store/exporter/ModelWriter.java:1397)
+   A /trunk/src/jar/resolver/java/org/mulgara/store/exporter/GraphXMLWriter.java (from /trunk/src/jar/resolver/java/org/mulgara/store/exporter/ModelXMLWriter.java:1397)
+   D /trunk/src/jar/resolver/java/org/mulgara/store/exporter/ModelN3Writer.java
+   D /trunk/src/jar/resolver/java/org/mulgara/store/exporter/ModelWriter.java
+   D /trunk/src/jar/resolver/java/org/mulgara/store/exporter/ModelXMLWriter.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/DistributedResolver.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/NetworkDelegator.java
+   M /trunk/src/jar/resolver-file/java/org/mulgara/resolver/file/FileResolver.java
+   M /trunk/src/jar/resolver-filesystem/java/org/mulgara/resolver/filesystem/FileSystemResolver.java
+   M /trunk/src/jar/resolver-gis/java/org/mulgara/resolver/gis/ReadOnlyGISResolver.java
+   M /trunk/src/jar/resolver-http/java/org/mulgara/resolver/http/HttpResolver.java
+   M /trunk/src/jar/resolver-jar/java/org/mulgara/resolver/jar/JarResolver.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneConstraintDescriptor.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolverUnitTest.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/ReadOnlyLuceneResolver.java
+   M /trunk/src/jar/resolver-memory/java/org/mulgara/resolver/memory/MemoryResolver.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalConstraintDescriptor.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalResolver.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalResolverFactory.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalResolverUnitTest.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/content/ContentLoader.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ConstraintDescriptor.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ConstraintExpansion.java
+   A /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ConstraintGraphRewrite.java (from /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ConstraintModelRewrite.java:1397)
+   D /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ConstraintModelRewrite.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ConstraintResolutionHandler.java
+   A /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/GraphExpansion.java (from /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ModelExpansion.java:1397)
+   A /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/GraphResolutionHandler.java (from /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ModelResolutionHandler.java:1397)
+   D /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ModelExpansion.java
+   D /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ModelResolutionHandler.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/QueryEvaluationContext.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/SystemResolver.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/SystemResolverFactory.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/resolver/store/StatementStoreResolver.java
+   M /trunk/src/jar/resolver-test/java/org/mulgara/resolver/test/TestConstraintDescriptor.java
+   M /trunk/src/jar/resolver-test/java/org/mulgara/resolver/test/TestResolver.java
+   M /trunk/src/jar/resolver-test/java/org/mulgara/resolver/test/TestResolverUnitTest.java
+   M /trunk/src/jar/resolver-url/java/org/mulgara/resolver/url/URLResolver.java
+   M /trunk/src/jar/resolver-view/java/org/mulgara/resolver/view/ViewResolver.java
+   M /trunk/src/jar/resolver-view/java/org/mulgara/resolver/view/ViewResolverUnitTest.java
+   M /trunk/src/jar/resolver-xsd/java/org/mulgara/resolver/xsd/IntervalConstraintDescriptor.java
+   M /trunk/src/jar/resolver-xsd/java/org/mulgara/resolver/xsd/IntervalTransformation.java
+   M /trunk/src/jar/resolver-xsd/java/org/mulgara/resolver/xsd/XSDResolver.java
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+   M /trunk/src/jar/server-local/java/org/mulgara/server/local/LocalSessionFactory.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteJRDFSession.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteSession.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteSessionWrapperSession.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/SessionWrapperRemoteSession.java
+   M /trunk/src/jar/tag/java/org/mulgara/extractor/tag/InitTag.java
+
+Renaming classes from "Model" to "Graph"
+------------------------------------------------------------------------
+r1398 | pag | 2008-12-04 17:38:27 -0600 (Thu, 04 Dec 2008) | 7 lines
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/ModelExpression.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ModelLiteral.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ModelOperation.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ModelPartition.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ModelResource.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ModelVariable.java
+   M /trunk/src/jar/server/java/org/mulgara/server/HttpServices.java
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/C.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryResponsePage.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryServlet.java
+   A /trunk/src/jar/web/java/org/mulgara/webquery/TutorialServlet.java
+   M /trunk/src/jar/web/resources/template.html
+   M /trunk/src/jar/web/resources/template_head.html
+   A /trunk/src/jar/web/resources/tutorial.html
+   A /trunk/src/jar/web/resources/tutorial_head.html
+
+Updated WebUI with a couple of cosmetic enhancements.
+ * No longer require a ; at the end of a TQL query. This addresses #157
+ * If the default graph is blank, then update it with the last queried graph
+ * A separate servlet for the tutorial. This gets the tutorial out of the way
+   for this majority of users as they're not using it.
+
+
+------------------------------------------------------------------------
+r1397 | ronald | 2008-12-03 03:26:08 -0600 (Wed, 03 Dec 2008) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver-xsd/java/org/mulgara/resolver/xsd/IntervalTransformation.java
+   M /trunk/src/jar/resolver-xsd/java/org/mulgara/resolver/xsd/IntervalTransformationUnitTest.java
+
+Fix exception when both subject and object of an xsd constraint are literals.
+
+------------------------------------------------------------------------
+r1396 | ronald | 2008-12-03 03:26:04 -0600 (Wed, 03 Dec 2008) | 4 lines
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneTransformer.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalConstraint.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalTransformer.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/AbstractSymbolicTransformer.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/ConjunctiveTransformer.java
+   M /trunk/src/jar/resolver-xsd/java/org/mulgara/resolver/xsd/IntervalTransformation.java
+   M /trunk/src/jar/resolver-xsd/java/org/mulgara/resolver/xsd/IntervalTransformationUnitTest.java
+
+Refactored symbolic tranformers to extend new AbstractSymbolicTranformer in
+order to handle things like the minus and optional-join constraints properly
+and to reduce duplicated code.
+
+------------------------------------------------------------------------
+r1395 | ronald | 2008-12-03 03:26:00 -0600 (Wed, 03 Dec 2008) | 3 lines
+Changed paths:
+   A /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/AbstractSymbolicTransformer.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/DuplicateVariableTransformer.java
+
+Factored out generic constraint walking code into a common superclass for
+symbolic transformers.
+
+------------------------------------------------------------------------
+r1394 | ronald | 2008-12-03 03:25:57 -0600 (Wed, 03 Dec 2008) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver-xsd/java/org/mulgara/resolver/xsd/IntervalTransformation.java
+   M /trunk/src/jar/resolver-xsd/java/org/mulgara/resolver/xsd/IntervalTransformationUnitTest.java
+
+Code formatting fixes.
+
+------------------------------------------------------------------------
+r1390 | pag | 2008-12-02 17:48:40 -0600 (Tue, 02 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperations.java
+
+Added in generics
+------------------------------------------------------------------------
+r1386 | pag | 2008-12-01 19:13:13 -0600 (Mon, 01 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/StringPoolSession.java
+
+Fixed a bug where wrapped graph URIs were being ignored because they don't contain a fragment
+------------------------------------------------------------------------
+r1385 | pag | 2008-12-01 19:12:12 -0600 (Mon, 01 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/LocalQueryResolver.java
+
+Removed weird superfluous "unchecked" parameters to the SuppressWarnings annotation
+------------------------------------------------------------------------
+r1384 | pag | 2008-12-01 19:11:05 -0600 (Mon, 01 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseOperationContext.java
+
+changed an info log to a more appropriate debug
+------------------------------------------------------------------------
+r1383 | pag | 2008-12-01 19:10:12 -0600 (Mon, 01 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/OrderByRowComparator.java
+
+Correctly dealing with numbers that end in d or f
+------------------------------------------------------------------------
+r1382 | pag | 2008-12-01 14:30:09 -0600 (Mon, 01 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+
+updated sesame jar reference
+------------------------------------------------------------------------
+r1381 | pag | 2008-12-01 13:53:56 -0600 (Mon, 01 Dec 2008) | 1 line
+Changed paths:
+   M /trunk/.project
+   M /trunk/build.properties
+   D /trunk/lib/sesame-model-2.1.jar
+   A /trunk/lib/sesame-model-2.2.1.jar
+   M /trunk/src/jar/query/java/org/jrdf/graph/AbstractURIReference.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/ModelExpressionBuilder.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlInterpreter.java
+   D /trunk/src/jar/querylang/java/org/mulgara/itql/URIUtil.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/StringPoolSession.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/NetworkDelegator.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolImpl.java
+   A /trunk/src/jar/util/java/org/mulgara/util/QueryParams.java (from /trunk/src/jar/web/java/org/mulgara/webquery/QueryParams.java:1380)
+   A /trunk/src/jar/util/java/org/mulgara/util/URIUtil.java
+   D /trunk/src/jar/web/java/org/mulgara/webquery/QueryParams.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryResponsePage.java
+
+Added in support for relative URIs in queries. This changes the URIReference implementation, so the sesame-model jar was updated so we could confirm it against the sesame sources.
+------------------------------------------------------------------------
+r1379 | pag | 2008-11-19 14:29:31 -0600 (Wed, 19 Nov 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/krule/java/org/mulgara/krule/KruleLoader.java
+   M /trunk/src/jar/krule/java/org/mulgara/krule/KruleStructureException.java
+   M /trunk/src/jar/krule/java/org/mulgara/krule/QueryStruct.java
+   M /trunk/src/jar/krule/java/org/mulgara/krule/Rule.java
+   M /trunk/src/jar/krule/java/org/mulgara/krule/RuleStructure.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/Aliasing.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/CommandSplitter.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlAutoInterpreter.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlCommandSplitter.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlInterpreter.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlSession.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/URIUtil.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/AbstractStreamedAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/AbstractStreamedXMLAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedJSONAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlJSONAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlJSONAnswerUnitTest.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlJSONObject.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlXMLAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlXMLAnswerUnitTest.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlXMLObject.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedTqlXMLAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedTqlXMLAnswerUnitTest.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedXMLAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/XMLAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/BadRequestException.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/InternalErrorException.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/MimeMultiNamedPart.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ServiceUnavailableException.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ServletDataSource.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ServletException.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/SparqlServlet.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/TqlServlet.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/ConstantVarFactory.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/FilterMapper.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/IdentityTransformer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/PatternMapper.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/PatternTransformer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/SparqlInterpreter.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/SymbolicTransformationException.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/VariableRenameTransformer.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/AnswerResolution.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/Delegator.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/DistributedResolver.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/DistributedResolverFactory.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/ForeignBlankNode.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/NetworkDelegator.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/remote/Config.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/remote/RemotePager.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/remote/RemotePagerImpl.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/remote/SetProxy.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/remote/ShortGlobalStatementSet.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/remote/StatementSetFactory.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/remote/TripleSetAdaptor.java
+   M /trunk/src/jar/resolver-null/java/org/mulgara/resolver/nullres/NullResolution.java
+   M /trunk/src/jar/resolver-null/java/org/mulgara/resolver/nullres/NullResolver.java
+   M /trunk/src/jar/resolver-null/java/org/mulgara/resolver/nullres/NullResolverFactory.java
+   M /trunk/src/jar/resolver-prefix/java/org/mulgara/resolver/prefix/PrefixResolver.java
+   M /trunk/src/jar/resolver-prefix/java/org/mulgara/resolver/prefix/PrefixResolverFactory.java
+   M /trunk/src/jar/resolver-prefix/java/org/mulgara/resolver/prefix/TuplesWrapperResolution.java
+   M /trunk/src/jar/rules/java/org/mulgara/rules/DummyRuleLoader.java
+   M /trunk/src/jar/rules/java/org/mulgara/rules/InitializerException.java
+   M /trunk/src/jar/rules/java/org/mulgara/rules/RuleLoader.java
+   M /trunk/src/jar/rules/java/org/mulgara/rules/RuleLoaderFactory.java
+   M /trunk/src/jar/rules/java/org/mulgara/rules/Rules.java
+   M /trunk/src/jar/rules/java/org/mulgara/rules/RulesException.java
+   M /trunk/src/jar/rules/java/org/mulgara/rules/RulesRef.java
+   M /trunk/src/jar/rules/java/org/mulgara/rules/RulesRefImpl.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/BlankNodeAllocator.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/BlankNodeMapper.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/DataAVLComparator.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/DataCategoryAVLComparator.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/DataCategoryTypeAVLComparator.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/DataStruct.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolFactory.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolImpl.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolImplTest.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolLoadTest.java
+   M /trunk/src/jar/util/java/org/mulgara/util/ClasspathDesc.java
+   M /trunk/src/jar/util/java/org/mulgara/util/LexicalDateTime.java
+   M /trunk/src/jar/util/java/org/mulgara/util/LexicalDateTimeUnitTest.java
+   M /trunk/src/jar/util/java/org/mulgara/util/LongMapper.java
+   M /trunk/src/jar/util/java/org/mulgara/util/MemLongMapper.java
+   M /trunk/src/jar/util/java/org/mulgara/util/MortbayLogger.java
+   M /trunk/src/jar/util/java/org/mulgara/util/Rmi.java
+   M /trunk/src/jar/util/java/org/mulgara/util/SparqlUtil.java
+   M /trunk/src/jar/util/java/org/mulgara/util/SparqlUtilUnitTest.java
+   M /trunk/src/jar/util/java/org/mulgara/util/StackTrace.java
+   M /trunk/src/jar/util/java/org/mulgara/util/Timezone.java
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/C.java
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/F.java
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/Fn.java
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/Fn1.java
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/Fn1E.java
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/Fn2.java
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/Fn2E.java
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/FnE.java
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/Pair.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryParams.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryResponsePage.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryServlet.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/RequestException.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/ResourceBinaryFile.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/ResourceFile.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/ResourceTextFile.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/Template.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/Anchor.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/Break.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/Div.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/Emphasis.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/HtmlElement.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/Paragraph.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/Span.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/Strong.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/Table.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/TableAbstr.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/TableBody.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/TableData.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/TableHeader.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/TableRow.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/TableStructure.java
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/Text.java
+
+Updated licenses to Apache 2.0 on code that I am permitted to update the license on.
+------------------------------------------------------------------------
+r1378 | alexhall | 2008-11-12 12:39:26 -0600 (Wed, 12 Nov 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/MappedIntFile.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/MappedBlockFile.java
+
+Address a Windows performance issue.  Eliminate call to super.force() in the mapped block and int files.  For mapped files, this call is unnecessary because the only operation on a file channel to force is a possible truncation, so no data can be lost on abnormal termination.  The force method on the FileChannel class is causes significant performance problems on Windows.
+------------------------------------------------------------------------
+r1377 | alexhall | 2008-11-11 09:33:50 -0600 (Tue, 11 Nov 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/LeftJoin.java
+
+Check for overflow when computing row count upper bound.
+------------------------------------------------------------------------
+r1376 | ronald | 2008-11-11 07:37:26 -0600 (Tue, 11 Nov 2008) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndex.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexUnitTest.java
+
+Discard the lucene indexers after a rollback, as a rollback implicitly closes
+them. Also added tests for rollback.
+------------------------------------------------------------------------
+r1375 | ronald | 2008-11-11 07:37:20 -0600 (Tue, 11 Nov 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolverUnitTest.java
+
+Fixed typo in test-method name.
+------------------------------------------------------------------------
+r1374 | ronald | 2008-11-11 07:37:13 -0600 (Tue, 11 Nov 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlInterpreter.java
+
+Flush the lexer on lexer errors too, not just on parser errors.
+------------------------------------------------------------------------
+r1373 | alexhall | 2008-11-03 09:57:36 -0600 (Mon, 03 Nov 2008) | 1 line
+Changed paths:
+   M /trunk/jxdata/iTQL/backup_restore/loadFromExportResult.txt
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/Parser.java
+
+Don't throw an exception for recoverable parser errors encountered by ARP.
+------------------------------------------------------------------------
+r1372 | ronald | 2008-11-02 01:34:33 -0600 (Sun, 02 Nov 2008) | 2 lines
+Changed paths:
+   M /trunk/build.xml
+
+Fix up-to-date check for javadocs.
+
+------------------------------------------------------------------------
+r1371 | pag | 2008-11-01 23:44:03 -0500 (Sat, 01 Nov 2008) | 1 line
+Changed paths:
+   M /trunk/.classpath
+
+Added the new jline lib
+------------------------------------------------------------------------
+r1370 | eddie | 2008-10-30 21:28:30 -0500 (Thu, 30 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/build.xml
+
+added client-jrdf back to core-dist (the dependency was still there, but the actual jar inclusion was dropped in r1232)
+------------------------------------------------------------------------
+r1369 | bsletten | 2008-10-30 09:46:17 -0500 (Thu, 30 Oct 2008) | 3 lines
+Changed paths:
+   M /trunk/build.properties
+   M /trunk/common.xml
+   A /trunk/lib/jline-0.9.94.jar
+   M /trunk/src/jar/querylang/build.xml
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/ItqlOptionParser.java
+   A /trunk/src/jar/querylang/java/org/mulgara/itql/ModelNameCompletor.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlSession.java
+
+Jline support for Swing-less shell, tabbed completion and command line history.
+
+
+------------------------------------------------------------------------
+r1368 | alexhall | 2008-10-28 14:19:40 -0500 (Tue, 28 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/Parser.java
+
+Get rid of deprecation warnings with ARP parser.
+------------------------------------------------------------------------
+r1367 | ronald | 2008-10-27 07:38:55 -0500 (Mon, 27 Oct 2008) | 6 lines
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndex.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexUnitTest.java
+   A /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneIndexerCache.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolverFactory.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/ReadOnlyLuceneResolver.java
+
+Added caching of the lucene indexers. In one case this took the query time
+from 330ms down to 130ms.
+
+As part of this, the directory operations (creating and deleting directory)
+have been moved into the LuceneIndexerCache. Also, the ResolverFactory.delete
+has been implemented.
+------------------------------------------------------------------------
+r1366 | ronald | 2008-10-27 07:38:48 -0500 (Mon, 27 Oct 2008) | 17 lines
+Changed paths:
+   M /trunk/common.xml
+   A /trunk/jxdata/iTQL/fulltext_queries/queryResult17.txt
+   A /trunk/jxdata/iTQL/fulltext_queries/queryResult18.txt
+   A /trunk/jxdata/iTQL/fulltext_queries/queryResult19.txt
+   M /trunk/jxdata/iTQL/fulltext_queries/test.jxu
+   A /trunk/lib/jakarta-regexp-1.5.jar
+   M /trunk/src/jar/resolver-lucene/build.xml
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexTuples.java
+   A /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneConstraint.java
+   A /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneConstraintDescriptor.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolverFactory.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolverUnitTest.java
+   A /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneTransformer.java
+
+Added support for returning the score in fulltext (lucene) queries.
+
+For this a new query graph is introduced with two new predicates, mulgara:search
+and mulgara:score . As an example, the query
+
+  select $foo from ... where $foo <title> 'sequencing' in <lucene-graph>;
+
+now becomes
+
+  select $foo $score from ... where
+      $foo <mulgara:search> $search in <lucene-graph> and
+                            $search <title> 'sequencing' in <lucene-graph> and
+                            $search <mulgara:score> $score  in <lucene-graph>;
+
+The score is optional; also, the previous simple form is still recognized. This
+query graph is extensible, e.g. to add query parameters such as the analyzer to
+use.
+------------------------------------------------------------------------
+r1365 | ronald | 2008-10-27 07:38:39 -0500 (Mon, 27 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolverFactory.java
+
+Made the modelTypeURI a static final.
+------------------------------------------------------------------------
+r1364 | ronald | 2008-10-27 07:38:34 -0500 (Mon, 27 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexTuples.java
+
+Generified List usages, thereby removing a warning.
+------------------------------------------------------------------------
+r1363 | ronald | 2008-10-27 07:38:27 -0500 (Mon, 27 Oct 2008) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndex.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/FullTextStringIndexTuples.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolverFactory.java
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/ReadOnlyLuceneResolver.java
+
+Replaced wildcard imports with explicit ones, made some code formatting fixes,
+and made loggers final.
+------------------------------------------------------------------------
+r1362 | ronald | 2008-10-23 08:42:39 -0500 (Thu, 23 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/MultiXAResource.java
+
+Handle RMFAIL and NOTA correctly in forget().
+------------------------------------------------------------------------
+r1361 | ronald | 2008-10-23 08:13:06 -0500 (Thu, 23 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/DistributedResolver.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/DistributedResolverFactory.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/NetworkDelegator.java
+   A /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/SessionCache.java
+
+Added caching of Session's and their factories across transactions.
+------------------------------------------------------------------------
+r1360 | ronald | 2008-10-23 08:13:00 -0500 (Thu, 23 Oct 2008) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/NetworkDelegator.java
+
+Handle null server-uri (such as whenever mulgara is not started using the
+EmbeddedMulgaraServer).
+------------------------------------------------------------------------
+r1359 | ronald | 2008-10-23 08:12:54 -0500 (Thu, 23 Oct 2008) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/remote/ShortGlobalStatementSet.java
+
+Fixed array population (List.set() cannot be used to insert new values, only
+to replace existing ones).
+------------------------------------------------------------------------
+r1358 | ronald | 2008-10-23 08:12:48 -0500 (Thu, 23 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/remote/ShortGlobalStatementSet.java
+
+Removed trailing spaces.
+------------------------------------------------------------------------
+r1357 | ronald | 2008-10-23 08:12:41 -0500 (Thu, 23 Oct 2008) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/DistributedResolver.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/DistributedResolverFactory.java
+   A /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/MultiXAResource.java
+   A /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/MultiXAResourceUnitTest.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/NetworkDelegator.java
+   A /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/TransactionCoordinator.java
+
+Added transaction suport to the distributed resolver. The main chunk of this is
+an XAResource capable of forwarding to a list of other XAResource's.
+------------------------------------------------------------------------
+r1356 | ronald | 2008-10-23 08:12:35 -0500 (Thu, 23 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/AbstractXAResource.java
+
+Made the XidWrapper implement Xid.
+------------------------------------------------------------------------
+r1355 | ronald | 2008-10-23 08:12:28 -0500 (Thu, 23 Oct 2008) | 3 lines
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolver.java
+   M /trunk/src/jar/resolver-memory/java/org/mulgara/resolver/memory/MemoryXAResource.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/AbstractXAResource.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/resolver/store/StatementStoreXAResource.java
+
+Changed TxInfo creation for AbstractXAResource to be a bit cleaner: subclasses
+must now implement an appropriate factory method rather than passing in a
+pre-constructed instance. This allows reuse of the XAResource instance.
+------------------------------------------------------------------------
+r1354 | ronald | 2008-10-23 08:12:18 -0500 (Thu, 23 Oct 2008) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ExternalTransactionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraExternalTransaction.java
+
+According to Table 1 in the JTA spec we can end(TMFAIL/TMSUCCESS) a suspended
+resource, so no need to resume it first.
+------------------------------------------------------------------------
+r1353 | ronald | 2008-10-23 08:12:11 -0500 (Thu, 23 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/AbstractXAResource.java
+
+Always chain underlying exception to new exceptions.
+------------------------------------------------------------------------
+r1352 | ronald | 2008-10-23 08:12:05 -0500 (Thu, 23 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/AbstractXAResource.java
+
+Minor restructuring of if and try blocks.
+------------------------------------------------------------------------
+r1351 | ronald | 2008-10-23 08:11:59 -0500 (Thu, 23 Oct 2008) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/AbstractXAResource.java
+
+Factored out transaction cleanup; this also now provides a nice hook for
+subclasses to do their cleanup in.
+------------------------------------------------------------------------
+r1350 | ronald | 2008-10-23 08:11:53 -0500 (Thu, 23 Oct 2008) | 4 lines
+Changed paths:
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/AbstractXAResource.java
+
+Let the transaction-manager handle rolling back:
+ * cleaned out rollback flag and associated rollback calls
+ * don't explicitly roll back on a failed prepare(); this also fixes the
+   problem of rollback being invoked even when prepare threw a XA_RB
+------------------------------------------------------------------------
+r1349 | ronald | 2008-10-23 08:11:47 -0500 (Thu, 23 Oct 2008) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/AbstractXAResource.java
+
+Factored out exception handling for start() and end(), and fixed handling to
+only remove transaction if the exception warrants it.
+------------------------------------------------------------------------
+r1348 | ronald | 2008-10-23 08:11:42 -0500 (Thu, 23 Oct 2008) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/AbstractXAResource.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/DummyXAResource.java
+
+Moved the isHeuristic() helper into DummyXAResource, added isRollback(), and
+made them public and a bit more generic.
+------------------------------------------------------------------------
+r1347 | ronald | 2008-10-23 08:11:35 -0500 (Thu, 23 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/NetworkDelegator.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/AbstractXAResource.java
+
+Minor formatting fix: removed extra whitespace.
+------------------------------------------------------------------------
+r1346 | ronald | 2008-10-23 08:11:28 -0500 (Thu, 23 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/AbstractXAResource.java
+
+Factored out common transaction-lookup code.
+------------------------------------------------------------------------
+r1345 | ronald | 2008-10-23 08:11:22 -0500 (Thu, 23 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/AbstractXAResource.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/DummyXAResource.java
+
+Format the xid consistently in the logs.
+------------------------------------------------------------------------
+r1344 | ronald | 2008-10-23 08:11:16 -0500 (Thu, 23 Oct 2008) | 4 lines
+Changed paths:
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/Delegator.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/DistributedResolver.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/DistributedResolverFactory.java
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/NetworkDelegator.java
+
+Fix closing of sessions and plug memory leak. The remote sessions and their
+factories are now closed at the end of every transaction, instead of at the
+time the resolver-factory is closed (which usually isn't until mulgara is
+shut down).
+------------------------------------------------------------------------
+r1343 | ronald | 2008-10-23 08:11:09 -0500 (Thu, 23 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/DistributedResolverFactory.java
+
+Simplify building of set of supported protocols.
+------------------------------------------------------------------------
+r1342 | ronald | 2008-10-23 08:11:01 -0500 (Thu, 23 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-distributed/java/org/mulgara/resolver/distributed/DistributedResolverFactory.java
+
+Minor cleanups: explicit imports, correct bracing, remove trailing whitespace.
+------------------------------------------------------------------------
+r1341 | ronald | 2008-10-21 19:28:00 -0500 (Tue, 21 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/descriptor/src/java/org/mulgara/descriptor/PIErrorHandler.java
+
+Get rid of warning message (varargs related).
+------------------------------------------------------------------------
+r1340 | ronald | 2008-10-21 19:27:54 -0500 (Tue, 21 Oct 2008) | 2 lines
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/conversion/html/HTMLParser.jj
+
+Removed obsolete option which was causing a warning. Should've been part of
+r1215.
+------------------------------------------------------------------------
+r1339 | ronald | 2008-10-21 19:27:48 -0500 (Tue, 21 Oct 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-lucene/java/org/mulgara/resolver/lucene/LuceneResolverUnitTest.java
+
+Fixed copy-paste error in test.
+------------------------------------------------------------------------

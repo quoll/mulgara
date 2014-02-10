@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Perl </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Perl, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="947.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="990.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h2 class="heading2">Perl</h2>
+<p class="bodytext">The following are two sample Perl programs that allow you to issue iTQL<sup class="superscript">TM</sup> commands. The first uses Inline Java, the second uses SOAP Lite.</p>
+<p class="bodytext">For the first example, ensure you have the following installed:</p>
+<ul class="listbullet"><li class="listbullet"><a class="internetlinktemplate" title="Inline for Perl" href="http://inline.perl.org/inline/home.html" target="_blank">Inline package for Perl</a></li><li class="listbullet"><a class="internetlinktemplate" title="Inline::Java" href="http://inline.perl.org/java/home.html" target="_blank">Inline::Java</a></li><li class="listbullet">driver-1.1.0.jar in the <code class="monospace">Resources</code> directory of your Mulgara installation</li><li class="listbullet"><a class="internetlinktemplate" title="log4j" href="http://logging.apache.org/log4j/docs/" target="_blank">log4j-1.2.8.jar</a> or higher</li></ul><p class="bodytext">Ensure that the Inline::Java test suite operates correctly and that Mulgara is running.</p>
+<p class="note"><strong class="strong"><strong class="strong">Note -</strong></strong> In the program below, replace <code class="monospace">mulgaradirectory</code>, <code class="monospace">ApacheLog4Jdirectory</code> and <code class="monospace">mysite.com</code> (highlighted in <strong class="strong">bold</strong>), with the appropriate settings for your local environment.</p>
+<p class="commandtext">use CGI;<br />use Inline (<br />    Java =&gt; &lt;&lt;'END',<br /><br />// Java 2 standard packages<br />import java.sql.*;<br /><br />// Mulgara packages<br />import org.mulgara.itql.ItqlInterpreterBean;<br />import org.mulgara.query.Answer;<br /><br />// Logging<br />import org.apache.log4j.*;<br /><br />/**<br /> * iTQL Perl  Bean. &lt;p&gt;<br /> *<br /> * This class provides a simple interface for the execution of iTQL queries<br /> * via Perl using Inline Java 4.0<br /> * &lt;/p&gt;<br /> *<br /> * @created 2004-March-01<br /> *<br /> * @author &lt;a href=&quot;http://staff.PIsoftware.com/tate/&quot;&gt;Tate Jones&lt;/a&gt;<br /> *<br /> * @version $Revision: 1.5 $<br /> *<br /> * @modified $Date: 2004/12/22 05:01:58 $ by $Author: newmana $<br /> *<br /> * @copyright &amp;copy;2001 &lt;a href=&quot;http://www.pisoftware.com/&quot;&gt;Tucana Technologies, Inc.&lt;/a&gt;<br /> *<br /> * @licence &lt;a href=&quot;http://www.mozilla.org/MPL/MPL-1.1.html&quot;&gt;Mozilla Public License v1.1&lt;/a&gt;<br /> */<br /><br />public class iTQLPerlBean {<br /><br />  /** iTQL Bean used to query Mulgara */<br />  private ItqlInterpreterBean interpreter;<br /><br />  /** Answer object to hold the result of an iTQL query */<br />  Answer answer = null;<br /><br />  /**<br />   * Creates a iTQL interpreter bean for queries.<br />   *<br />   */<br />  <br />  public iTQLPerlBean() {<br /><br />    // Initialise logging<br />    BasicConfigurator.configure();<br />    <br />    // Set logging level<br />    Logger.getRootLogger().<br />      setLevel( Level.WARN );<br /><br />    // Create the iTQL Bean to use for queries<br />    interpreter = new ItqlInterpreterBean();<br /><br />  }<br />  <br /><br />  /**<br />   * Executes an iTQL query.<br />   *<br />   * @param query String containing the iTQL query<br />   * @return the Answer containing the result of the query.<br />   */<br /><br />  public void execute(String query) {<br /><br />    try {<br /><br />      // close any previous answer<br />      this.closeAnswer();<br />  <br />      // Do the query<br />      answer = interpreter.executeQuery(query);<br /> <br />      // move to the first row      <br />      if ( answer != null ) {<br />        answer.beforeFirst();<br />      }<br /><br />    }<br />    catch (Exception e) {<br /><br />      System.err.println(&quot;iTQLInterpreterBean Error : &quot;);<br />      e.printStackTrace(System.err); <br />    }<br /><br />  }<br /><br />  /** <br />   * Return an answer row as a Perl Array.<br />   *<br />   * @param answer Answer <br />   * @return String arrary for conversion to a perl array <br />   **/<br /><br />  public String[] getRow() {<br /><br />    String columns[] = null;   <br />    <br />    try {<br />      if ( answer != null &amp;&amp; answer.next() ) {<br /><br />        // initialise the number of columns<br />        int numberOfColumns = answer.getNumberOfVariables();<br />        columns = new String[numberOfColumns]; <br /> <br />        // populate the array with the column values<br />        for ( int column=0; column &lt; numberOfColumns; column++ ) {<br />          columns[column] = answer.getObject(column).toString();<br />        }<br />      } <br />    } <br />    catch (Exception e) {<br /><br />      System.err.println(&quot;iTQLInterpreterBean fetchRow error : &quot;);<br />      e.printStackTrace(System.err); <br />    }<br /><br />    return columns;<br /><br />  }<br /><br />  /**<br />   * Close the answer to reclaim resources.<br />   *<br />   */<br /><br />  public void closeAnswer() {<br /><br />    try {<br /><br />      // close the answer<br />      if ( answer != null ) {<br />        answer.close();<br />      }<br /><br />    }<br />    catch (Exception e) {<br /><br />      System.err.println(&quot;iTQLInterpreterBean Error : &quot;);<br />      e.printStackTrace(System.err); <br />    }<br /><br />  }<br /><br /><br />}<br /><br />END<br />    DIRECTORY =&gt; '/tmp',<br />    CLASSPATH =&gt;<br />'/<strong class="strong">mulgaradirectory</strong>/driver-2.0.jar:/<strong class="strong">ApacheLog4Jdirectory</strong>/log4j-1.2.8.jar',<br />) ;<br /><br /># Create a iTQL session bean for executing queries<br /><br />my $bean = new iTQLPerlBean();<br /><br /># Execute the query via the bean<br /><br />$bean-&gt;execute('select $s $p $o from &lt;rmi://<strong class="strong">mysite.com</strong>/server1#&gt; where $s $p $o ;');<br /><br /># Print out the results until empty<br /><br />while ( my $cols = $bean-&gt;getRow() ) {<br />  print($cols-&gt;[0] . &quot; &quot;);<br />  print($cols-&gt;[1] . &quot; &quot;);<br />  print($cols-&gt;[2] . &quot;&quot;);<br />}<br /><br /># Close answer resources<br /><br />$bean-&gt;closeAnswer();</p>
+<p class="bodytext">As stated previously, this second example uses SOAP Lite.</p>
+<p class="commandtext">#!usr/bin/perl<br /># -*- perl-indent-level: 2 -*-<br />#<br /># SoapModule.pm<br />#<br /># $Id: 746.htm,v 1.5 2004/12/22 05:01:58 newmana Exp $<br />#<br /><br />use 5.006;<br />use warnings;<br />use SOAP::Lite;<br />1;<br /><br />my $serverEnd =<br />  &quot;http://mysite.com:8080/webservices/services/ItqlBeanService&quot;;<br /><br />my $iTQLcommand = &quot;select \$subject \$predicate \$object from<br />  &lt;rmi://mysite.com/server1#example&gt; where \$subject \$predicate \$object ;&quot;;<br /><br />print soapProcess($serverEnd, $iTQLcommand);<br /><br />sub soapProcess {<br />  my ($serverSoapEndpoint, $iTQLcommand) = @_;<br />  my $resultString = SOAP::Lite<br />    -&gt; uri($serverSoapEndpoint)<br />    -&gt; proxy($serverSoapEndpoint)<br />    -&gt; executeQueryToString($iTQLcommand)<br />    -&gt; result;<br />  return $resultString;<br />}<br /></p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="1565.htm" target="_self">Integration Tutorials</a></p><p class="relateditem"><a href="2686.htm" target="_self">HTTP Resolver and MP3 Content Handler Tutorial</a></p><p class="relateditem"><a href="947.htm" target="_self">Jena</a></p><p class="relateditem"><a href="990.htm" target="_self">JavaServer Pages Tag Library</a></p><p class="relateditem"><a href="2892.htm" target="_self">JRDF Tutorial</a></p></td>
+</tr>
+</table>
+
+
+
+</td>
+<td width=20>
+</td>
+<td align="left">
+<a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

@@ -1,0 +1,245 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Filesystem Models</title>
+    <meta name="keywords" content="Filesystem Models, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+ 
+		<a href="/itqloperations/filesysmodel.html#o3202">Creating</a> &#124;
+		<a href="/itqloperations/filesysmodel.html#o3204">Updating</a> &#124;
+		<a href="/itqloperations/filesysmodel.html#o3203">Querying</a> 
+
+   
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/itqloperations/nodetyping.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/overview/links.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="254.htm">Advanced iTQL Operations</a></p>
+<p class="relateditem"><a href="/itqloperations/views.html">Views</a></p>
+<p class="relateditem"><a href="/itqloperations/fulltextmodels.html">Full-Text Models</a></p>
+<p class="relateditem"><a href="/itqloperations/datatypingmodels.html">Datatyping Models</a></p>
+<p class="relateditem"><a href="/itqloperations/nodetyping.html">Nodetyping Models</a></p>
+
+ -->
+
+
+
+
+<h2>Filesystem Models</h2>
+
+<p>Filesystem models are special instances of external resolvers that work in conjunction with the internal system model. In this way they are similar to views except that they gather information about files on a local drive instead of models. See the <a id="h1497" class="documentlinktemplate" title="Views" href="/itqloperations/views.html">Views section</a> for more information about views.</p>
+
+<p>The capabilities of filesystem models include the ability to:</p>
+<ul><li>Specify the files and directories to include or exclude.</li><li>Query against filesystems to retrieve file metadata.</li></ul>
+
+<div class="anchor"><a name="o3202">&nbsp;</a></div>
+<h3>Creating Filesystem Models</h3>
+
+<p>You can create filesystem models by:</p>
+<ol><li>Using the iTQL <a id="h1523" class="documentlinktemplate" title="create" href="/itqlcommands/create.html">create</a> command, creating a model of type <code>http://mulgara.org/mulgara#FileSystemModel</code>. This creates a filesystem model, plus a filesystem definition model.</li><li>Loading RDF that represents the directories and files to include or exclude into the filesystem definition model.</li></ol>
+<p>Use the <code><a id="h213" class="documentlinktemplate" title="drop" href="/itqlcommands/drop.html">drop</a></code> command to remove a filesystem model.</p>
+
+<p class="note"><strong>Note -</strong> Ensure that you drop the filesystem model and not the filesystem definition model. Dropping the filesystem model automatically drops the filesystem definition model as well. Dropping the filesystem definition model leaves the filesystem model behind.</p>
+<div class="anchor"><a name="o3204">&nbsp;</a></div>
+<h3>Updating Filesystem Models</h3>
+
+<p>Filesystem models are designed to query for filesystem information. Rather than the entire file system, you might only be interested in specific subsections of the filesystem, and within those subsections, there might be files and directories you want to exclude because they contain irrelevant data.</p>
+
+<p>This include and exclude functionality is provided by the filesystem definition model. Statements specifying the files and directories to include or exclude are loaded into the filesystem definition model using the <a id="h1325" class="documentlinktemplate" title="insert" href="/itqlcommands/insert.html">insert</a> command.</p>
+
+<p>The following example shows how to include a specific directory for your filesystem model (assuming that you have already created a filesystem model called <code>cDrive</code>):</p>
+
+<p class="commandtext">insert $x &lt;http://mulgara.org/mulgara/filesystem#Include&gt; &lt;file:///C:/myDocuments&gt;<br />
+  into &lt;rmi://mysite.com/server1?def#cDrive&gt;;</p>
+
+<p class="note"><strong>Note -</strong> Include and exclude statements are inserted into the filesystem definition model. Statements inserted into the main filesystem model are ignored when a query is performed.</p>
+
+<p>The following example shows how to exclude a directory in your filesystem model (assuming that you have already created a filesystem model called <code>cDrive</code>):</p>
+
+<p class="commandtext">insert $x &lt;http://mulgara.org/mulgara/filesystem#Exclude&gt; &lt;file:///C:/myDocuments/spreadsheets&gt;<br />
+  into &lt;rmi://mysite.com/server1?def#cDrive&gt;;</p>
+
+<p>Note the following points about the include and exclude statements in the filesystem definition model:</p>
+<ul><li>The subject of an inclusion or exclusion statement is not important. This is why blank nodes are used.</li><li>Statements in the definition model that are not of the form shown in the above examples are ignored when you query the filesystem model.</li><li>The URIs that specify the files and directories to include or exclude must be of the <code>file</code> protocol. Anything else is reported as an invalid filesystem as part of the result of a filesystem model query.</li><li>Use the <a id="h214" class="documentlinktemplate" title="delete" href="/itqlcommands/delete.html">delete</a> command to remove statements from filesystem definition models.</li></ul>
+<div class="anchor"><a name="o3203">&nbsp;</a></div>
+<h3>Querying Filesystem Models</h3>
+
+<p>Once the inclusions and exclusions are set up, you can query the filesystem model using the <code><a id="h1311" class="documentlinktemplate" title="select" href="/itqlcommands/select.html">select</a></code> command, as you would any other model, to generate statements about the files and directories.</p>
+
+<p>The following schema is used for filesystem models:</p>
+
+<p class="commandtext">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br />
+<br />
+&lt;rdf:RDF xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;<br />
+         xmlns:rdfs=&quot;http://www.w3.org/2000/01/rdf-schema#&quot;<br />
+         xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot;<br />
+         xml:base=&quot;http://mulgara.org/mulgara&quot;<br />
+         xml:lang=&quot;en&quot;&gt;<br />
+<br />
+  &lt;rdfs:Class rdf:ID=&quot;File&quot;<br />
+              rdfs:label=&quot;file&quot;<br />
+              rdfs:comment=&quot;A file on an operating system&quot;&gt;<br />
+    &lt;rdfs:isDefinedBy rdf:resource=&quot;http://mulgara.org/mulgara&quot;/&gt;<br />
+  &lt;/rdfs:Class&gt;<br />
+<br />
+  &lt;rdfs:Class rdf:ID=&quot;Directory&quot;<br />
+              rdfs:label=&quot;directory&quot;<br />
+              rdfs:comment=&quot;A directory on an operating system&quot;&gt;<br />
+    &lt;rdfs:isDefinedBy rdf:resource=&quot;http://mulgara.org/mulgara&quot;/&gt;<br />
+  &lt;/rdfs:Class&gt;<br />
+<br />
+  &lt;rdfs:Class rdf:ID=&quot;Hidden&quot;<br />
+              rdfs:label=&quot;hidden file&quot;<br />
+              rdfs:comment=&quot;A hidden file on an operating system&quot;&gt;<br />
+    &lt;rdfs:isDefinedBy rdf:resource=&quot;http://mulgara.org/mulgara&quot;/&gt;<br />
+    &lt;rdfs:subClassOf rdf:resource=&quot;#File&quot;/&gt;<br />
+  &lt;/rdfs:Class&gt;<br />
+<br />
+  &lt;rdfs:Class rdf:ID=&quot;ReadOnly&quot;<br />
+              rdfs:label=&quot;read only file&quot;<br />
+              rdfs:comment=&quot;A read only file on an operating system&quot;&gt;<br />
+    &lt;rdfs:isDefinedBy rdf:resource=&quot;http://mulgara.org/mulgara&quot;/&gt;<br />
+    &lt;rdfs:subClassOf rdf:resource=&quot;#File&quot;/&gt;<br />
+  &lt;/rdfs:Class&gt;<br />
+<br />
+  &lt;rdf:Property rdf:ID=&quot;filename&quot;<br />
+                rdfs:label=&quot;filename&quot;<br />
+                rdfs:comment=&quot;Specifies the name of a file&quot;&gt;<br />
+    &lt;rdfs:isDefinedBy rdf:resource=&quot;http://mulgara.org/mulgara&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#File&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#Directory&quot;/&gt;<br />
+    &lt;rdfs:range rdf:resource=&quot;http://www.w3.org/2001/XMLSchema#string&quot;/&gt;<br />
+  &lt;/rdf:Property&gt;<br />
+<br />
+  &lt;rdf:Property rdf:ID=&quot;extension&quot;<br />
+                rdfs:label=&quot;extension&quot;<br />
+                rdfs:comment=&quot;Specifies the extension of a file&quot;&gt;<br />
+    &lt;rdfs:isDefinedBy rdf:resource=&quot;http://mulgara.org/mulgara&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#File&quot;/&gt;<br />
+    &lt;rdfs:range rdf:resource=&quot;http://www.w3.org/2001/XMLSchema#string&quot;/&gt;<br />
+  &lt;/rdf:Property&gt;<br />
+<br />
+  &lt;rdf:Property rdf:ID=&quot;path&quot;<br />
+                rdfs:label=&quot;path&quot;<br />
+                rdfs:comment=&quot;Specifies the path of a file (as an URI)&quot;&gt;<br />
+    &lt;rdfs:isDefinedBy rdf:resource=&quot;http://mulgara.org/mulgara&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#File&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#Directory&quot;/&gt;<br />
+    &lt;rdfs:range rdf:resource=&quot;http://www.w3.org/2001/XMLSchema#string&quot;/&gt;<br />
+  &lt;/rdf:Property&gt;<br />
+<br />
+  &lt;rdf:Property rdf:ID=&quot;created&quot;<br />
+                rdfs:label=&quot;created&quot;<br />
+                rdfs:comment=&quot;Specifies the creation date of a file&quot;&gt;<br />
+    &lt;rdfs:isDefinedBy rdf:resource=&quot;http://mulgara.org/mulgara&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#File&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#Directory&quot;/&gt;<br />
+    &lt;rdfs:range rdf:resource=&quot;http://www.w3.org/2001/XMLSchema#dateTime&quot;/&gt;<br />
+  &lt;/rdf:Property&gt;<br />
+<br />
+  &lt;rdf:Property rdf:ID=&quot;accessed&quot;<br />
+                rdfs:label=&quot;accessed&quot;<br />
+                rdfs:comment=&quot;Specifies the last accessed date of the file&quot;&gt;<br />
+    &lt;rdfs:isDefinedBy rdf:resource=&quot;http://mulgara.org/mulgara&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#File&quot;/&gt;<br />
+    &lt;rdfs:range rdf:resource=&quot;http://www.w3.org/2001/XMLSchema#dateTime&quot;/&gt;<br />
+  &lt;/rdf:Property&gt;<br />
+<br />
+  &lt;rdf:Property rdf:ID=&quot;modified&quot;<br />
+                rdfs:label=&quot;modified&quot;<br />
+                rdfs:comment=&quot;Specifies the last modified date of a file&quot;&gt;<br />
+    &lt;rdfs:isDefinedBy rdf:resource=&quot;http://mulgara.org/mulgara&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#File&quot;/&gt;<br />
+    &lt;rdfs:range rdf:resource=&quot;http://www.w3.org/2001/XMLSchema#dateTime&quot;/&gt;<br />
+  &lt;/rdf:Property&gt;<br />
+<br />
+  &lt;rdf:Property rdf:ID=&quot;parent&quot;<br />
+                rdfs:label=&quot;parent&quot;<br />
+                rdfs:comment=&quot;Specifies the parent directory&quot;&gt;<br />
+    &lt;rdfs:isDefinedBy rdf:resource=&quot;http://mulgara.org/mulgara&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#File&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#Directory&quot;/&gt;<br />
+    &lt;rdfs:range rdf:resource=&quot;http://mulgara.org/mulgara#Directory&quot;/&gt;<br />
+  &lt;/rdf:Property&gt;<br />
+<br />
+  &lt;rdf:Property rdf:ID=&quot;size&quot;<br />
+                rdfs:label=&quot;size&quot;<br />
+                rdfs:comment=&quot;Specifies the size in bytes of a file&quot;&gt;<br />
+    &lt;rdfs:isDefinedBy rdf:resource=&quot;http://mulgara.org/mulgara&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#File&quot;/&gt;<br />
+    &lt;rdfs:range rdf:resource=&quot;http://www.w3.org/2001/XMLSchema#integer&quot;/&gt;<br />
+  &lt;/rdf:Property&gt;<br />
+<br />
+  &lt;rdf:Property rdf:ID=&quot;owner&quot;<br />
+                rdfs:label=&quot;owner&quot;<br />
+                rdfs:comment=&quot;Specifies the owner of a file&quot;&gt;<br />
+    &lt;rdfs:isDefinedBy rdf:resource=&quot;http://mulgara.org/mulgara&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#File&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#Directory&quot;/&gt;<br />
+    &lt;rdfs:range rdf:resource=&quot;http://www.w3.org/2001/XMLSchema#string&quot;/&gt;<br />
+  &lt;/rdf:Property&gt;<br />
+<br />
+  &lt;rdf:Property rdf:ID=&quot;canRead&quot;<br />
+                rdfs:label=&quot;can read&quot;<br />
+                rdfs:comment=&quot;Specifies if the file can be read (by the current user)&quot;&gt;<br />
+    &lt;rdfs:isDefinedBy rdf:resource=&quot;http://mulgara.org/mulgara&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#File&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#Directory&quot;/&gt;<br />
+    &lt;rdfs:range rdf:resource=&quot;http://www.w3.org/2001/XMLSchema#boolean&quot;/&gt;<br />
+  &lt;/rdf:Property&gt;<br />
+<br />
+  &lt;rdf:Property rdf:ID=&quot;canWrite&quot;<br />
+                rdfs:label=&quot;can write&quot;<br />
+                rdfs:comment=&quot;Specifies if the file can be written to (by the current user)&quot;&gt;<br />
+    &lt;rdfs:isDefinedBy rdf:resource=&quot;http://mulgara.org/mulgara&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#File&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#Directory&quot;/&gt;<br />
+    &lt;rdfs:range rdf:resource=&quot;http://www.w3.org/2001/XMLSchema#boolean&quot;/&gt;<br />
+  &lt;/rdf:Property&gt;<br />
+<br />
+  &lt;rdf:Property rdf:ID=&quot;canExecute&quot;<br />
+                rdfs:label=&quot;can execute&quot;<br />
+                rdfs:comment=&quot;Specifies if the file can be executed (by the current user)&quot;&gt;<br />
+    &lt;rdfs:isDefinedBy rdf:resource=&quot;http://mulgara.org/mulgara&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#File&quot;/&gt;<br />
+    &lt;rdfs:domain rdf:resource=&quot;#Directory&quot;/&gt;<br />
+    &lt;rdfs:range rdf:resource=&quot;http://www.w3.org/2001/XMLSchema#boolean&quot;/&gt;<br />
+  &lt;/rdf:Property&gt;<br />
+&lt;/rdf:RDF&gt;<br />
+      </p>
+
+<p class="note"><strong>Note -</strong> Querying the filesystem definition model only returns the inclusion and exclusion statements, not the filesystem information.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

@@ -1,0 +1,210 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - JavaServer Pages Tag Library Tutorial</title>
+    <meta name="keywords" content="JavaServer Pages Tag Library, tutorial, jsp, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+    
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+
+		<a href="/integration/jsptutorial.html#o991">Before you Begin</a> &#124;
+		<a href="/integration/jsptutorial.html#o993">Sample Data</a> &#124;
+		<a href="/integration/jsptutorial.html#o994">Develop the JSPs</a> &#124;
+		<a href="/integration/jsptutorial.html#o995">Deploy</a> &#124;
+		<a href="/integration/jsptutorial.html#o996">Open the Application</a>
+
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/integration/perl.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/integration/jrdftutorial.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/integration/index.html">Integration Tutorials</a></p>
+<p class="relateditem"><a href="/integration/resolverhttpmp3.html">HTTP Resolver and MP3 Content Handler Tutorial</a></p>
+<p class="relateditem"><a href="/integration/jena.html">Jena</a></p>
+<p class="relateditem"><a href="/integration/perl.html">Perl</a></p>
+<p class="relateditem"><a href="/integration/jrdftutorial.html">JRDF Tutorial</a></p>
+
+ -->
+
+
+
+
+<h2>JavaServer Pages Tag Library</h2>
+
+<p>This tutorial outlines the steps for creating a simple web-based application using Mulgara JavaServer Pages<sup>TM</sup> (JSP) tags.</p>
+
+<p class="note"><strong>Note -</strong> Some sections of this tutorial are still under construction.</p>
+
+<div class="anchor"><a name="o991">&nbsp;</a></div>
+<h3>Before you Begin</h3>
+
+<p>Before you begin this tutorial, you should be familiar with <a class="internetlinktemplate" title="" href="http://java.sun.com/products/jsp/">JSP</a> development, including topics such as using tag libraries, deploying JSP pages and creating WAR files. You should also read the <a id="h1309" class="documentlinktemplate" title="JavaServer Pages Tag Library" href="/system/jsptaglib.html">JavaServer Pages Tag Library section</a> for detailed information on using the JSP tags used in this tutorial.</p>
+
+<p>You also need Mulgara to be running.</p>
+<div class="anchor"><a name="o993">&nbsp;</a></div>
+<h3>Load the Sample Data</h3>
+
+<p>This tutorial uses sample vCards in RDF/XML format. Complete the following steps:</p>
+<ol><li>Copy the following RDF and paste it into a file called <code>vcards.rdf</code>.
+<p class="listcontinuecommandtext">&lt;?xml version=&quot;1.0&quot;?&gt;<br />
+&lt;rdf:RDF xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;<br />
+         xmlns:vCard =&quot; http://www.w3.org/2001/vcard-rdf/3.0#&quot;&gt;<br />
+<br />
+&lt;rdf:Description rdf:about =&quot; http://qqq.com/staff/ataylor&quot; &gt;<br />
+  &lt;vCard:FN&gt;Alex Taylor &lt;/vCard:FN&gt;<br />
+  &lt;vCard:N rdf:parseType=&quot;Resource&quot;&gt;<br />
+   &lt;vCard:Family&gt;Taylor&lt;/vCard:Family&gt;<br />
+   &lt;vCard:Given&gt;Alex&lt;/vCard:Given&gt;<br />
+   &lt;vCard:Other&gt;Perry&lt;/vCard:Other&gt;<br />
+   &lt;vCard:Prefix&gt;Mr&lt;/vCard:Prefix&gt;<br />
+  &lt;/vCard:N&gt;<br />
+  &lt;vCard:BDAY&gt;1981-01-01&lt;/vCard:BDAY&gt;<br />
+  &lt;vCard:TITLE&gt;Project Manager&lt;/vCard:TITLE&gt;<br />
+  &lt;vCard:ROLE&gt;Management of projects&lt;/vCard:ROLE&gt;<br />
+  &lt;vCard:TEL rdf:parseType=&quot;Resource&quot;&gt;<br />
+   &lt;rdf:value&gt;+61 7 455 234&lt;/rdf:value&gt;<br />
+   &lt;rdf:type rdf:resource =&quot;http://imc.org/vCard/3.0#work&quot; /&gt;<br />
+   &lt;rdf:type rdf:resource =&quot;http://imc.org/vCard/3.0#voice&quot; /&gt;<br />
+  &lt;/vCard:TEL&gt;<br />
+  &lt;vCard:EMAIL&gt;<br />
+   &lt;vCard:internet rdf:value=&quot;ataylor@qqq.com&quot;/&gt;<br />
+  &lt;/vCard:EMAIL&gt;<br />
+  &lt;vCard:ADR rdf:parseType=&quot;Resource&quot;&gt;<br />
+   &lt;vCard:Street&gt;45 Peterson Drive &lt;/vCard:Street&gt;<br />
+   &lt;vCard:Locality&gt;Brisbane&lt;/vCard:Locality&gt;<br />
+   &lt;vCard:Pcode&gt;4066&lt;/vCard:Pcode&gt;<br />
+   &lt;vCard:Country&gt;Australia &lt;/vCard:Country&gt;<br />
+  &lt;/vCard:ADR&gt;<br />
+  &lt;vCard:NOTE&gt;Interested in eXtreme Programing&lt;/vCard:NOTE&gt;<br />
+&lt;/rdf:Description&gt;<br />
+<br />
+&lt;rdf:Description rdf:about =&quot; http://qqq.com/staff/ppan&quot; &gt;<br />
+  &lt;vCard:FN&gt;Peter Pan&lt;/vCard:FN&gt;<br />
+  &lt;vCard:N rdf:parseType=&quot;Resource&quot;&gt;<br />
+   &lt;vCard:Family&gt;Pan&lt;/vCard:Family&gt;<br />
+   &lt;vCard:Given&gt;Peter&lt;/vCard:Given&gt;<br />
+   &lt;vCard:Prefix&gt;Mr&lt;/vCard:Prefix&gt;<br />
+  &lt;/vCard:N&gt;<br />
+  &lt;vCard:TITLE&gt;Deck hand&lt;/vCard:TITLE&gt;<br />
+  &lt;vCard:ROLE&gt;Actor&lt;/vCard:ROLE&gt;<br />
+  &lt;vCard:TEL rdf:parseType=&quot;Resource&quot;&gt;<br />
+   &lt;rdf:value&gt;+61 4193 34223&lt;/rdf:value&gt;<br />
+   &lt;rdf:type rdf:resource =&quot;http://imc.org/vCard/3.0#mobile&quot; /&gt;<br />
+  &lt;/vCard:TEL&gt;<br />
+  &lt;vCard:EMAIL&gt;<br />
+   &lt;vCard:internet rdf:value=&quot;peter@qqq.com&quot;/&gt;<br />
+  &lt;/vCard:EMAIL&gt;<br />
+  &lt;vCard:ADR rdf:parseType=&quot;Resource&quot;&gt;<br />
+   &lt;vCard:Street&gt; Ocean Rd&lt;/vCard:Street&gt;<br />
+   &lt;vCard:Locality&gt;Morton Bay&lt;/vCard:Locality&gt;<br />
+   &lt;vCard:Pcode&gt;4239&lt;/vCard:Pcode&gt;<br />
+   &lt;vCard:Country&gt;Australia&lt;/vCard:Country&gt;<br />
+  &lt;/vCard:ADR&gt;<br />
+  &lt;vCard:NOTE&gt;Mobile phone maybe out-of-range during week days&lt;/vCard:NOTE&gt;<br />
+&lt;/rdf:Description&gt;<br />
+<br />
+&lt;rdf:Description rdf:about =&quot; http://qqq.com/staff/bsimpson&quot; &gt;<br />
+  &lt;vCard:FN&gt;Bart Simpson&lt;/vCard:FN&gt;<br />
+  &lt;vCard:N rdf:parseType=&quot;Resource&quot;&gt;<br />
+   &lt;vCard:Family&gt;Simpson&lt;/vCard:Family&gt;<br />
+   &lt;vCard:Given&gt;Bart&lt;/vCard:Given&gt;<br />
+   &lt;vCard:Prefix&gt;Master&lt;/vCard:Prefix&gt;<br />
+  &lt;/vCard:N&gt;<br />
+  &lt;vCard:TITLE&gt;Comic character&lt;/vCard:TITLE&gt;<br />
+  &lt;vCard:ROLE&gt;Cause mayhem&lt;/vCard:ROLE&gt;<br />
+  &lt;vCard:TEL rdf:parseType=&quot;Resource&quot;&gt;<br />
+   &lt;rdf:value&gt;+61 045 45665 456&lt;/rdf:value&gt;<br />
+   &lt;rdf:type rdf:resource =&quot;http://imc.org/vCard/3.0#mobile&quot; /&gt;<br />
+  &lt;/vCard:TEL&gt;<br />
+  &lt;vCard:EMAIL&gt;<br />
+   &lt;vCard:internet rdf:value=&quot;bart@simpsons.com&quot;/&gt;<br />
+  &lt;/vCard:EMAIL&gt;<br />
+  &lt;vCard:ADR rdf:parseType=&quot;Resource&quot;&gt;<br />
+   &lt;vCard:Street&gt;Jackson Rd&lt;/vCard:Street&gt;<br />
+   &lt;vCard:Locality&gt;New York&lt;/vCard:Locality&gt;<br />
+   &lt;vCard:Pcode&gt;4249&lt;/vCard:Pcode&gt;<br />
+   &lt;vCard:Country&gt;US&lt;/vCard:Country&gt;<br />
+  &lt;/vCard:ADR&gt;<br />
+  &lt;vCard:NOTE&gt;Possesses little brains&lt;/vCard:NOTE&gt;<br />
+&lt;/rdf:Description&gt;<br />
+<br />
+&lt;rdf:Description rdf:about =&quot; http://qqq.com/staff/lsimpson&quot; &gt;<br />
+  &lt;vCard:FN&gt;Lisa Simpson&lt;/vCard:FN&gt;<br />
+  &lt;vCard:N rdf:parseType=&quot;Resource&quot;&gt;<br />
+   &lt;vCard:Family&gt;Simpson&lt;/vCard:Family&gt;<br />
+   &lt;vCard:Given&gt;Lisa&lt;/vCard:Given&gt;<br />
+   &lt;vCard:Prefix&gt;Ms&lt;/vCard:Prefix&gt;<br />
+  &lt;/vCard:N&gt;<br />
+  &lt;vCard:ROLE&gt;Smart Responsible Student&lt;/vCard:ROLE&gt;<br />
+  &lt;vCard:TEL rdf:parseType=&quot;Resource&quot;&gt;<br />
+   &lt;rdf:value&gt;+61 045 45665 456&lt;/rdf:value&gt;<br />
+   &lt;rdf:type rdf:resource =&quot;http://imc.org/vCard/3.0#mobile&quot; /&gt;<br />
+  &lt;/vCard:TEL&gt;<br />
+  &lt;vCard:EMAIL&gt;<br />
+   &lt;vCard:internet rdf:value=&quot;lisa@simpsons.com&quot;/&gt;<br />
+  &lt;/vCard:EMAIL&gt;<br />
+  &lt;vCard:ADR rdf:parseType=&quot;Resource&quot;&gt;<br />
+   &lt;vCard:Street&gt;Jackson Rd&lt;/vCard:Street&gt;<br />
+   &lt;vCard:Locality&gt;New York&lt;/vCard:Locality&gt;<br />
+   &lt;vCard:Pcode&gt;4249&lt;/vCard:Pcode&gt;<br />
+   &lt;vCard:Country&gt;US&lt;/vCard:Country&gt;<br />
+  &lt;/vCard:ADR&gt;<br />
+  &lt;vCard:NOTE&gt;Possesses mostly of brains&lt;/vCard:NOTE&gt;<br />
+&lt;/rdf:Description&gt;<br />
+<br />
+&lt;/rdf:RDF&gt;</p>
+</li><li>Using the Mulgara Viewer<sup>TM</sup> or the iTQL<sup>TM</sup> command line interface, create a model to store the vCard data. Use the following iTQL command:
+<p class="listcontinuecommandtext">create &lt;rmi://mysite.com/server1#vcards&gt;;</p>
+
+<p class="listcontinue">The following message displays:</p>
+
+<p class="listcontinuecommandtext">Successfully created model rmi://mysite.com/server1#vcard</p>
+</li><li>Load the sample vCard data into the model just created, using the following iTQL command:
+<p class="listcontinuecommandtext">load &lt;file:/home/user/jspdemo/vcards.rdf&gt; into<br />
+  &lt;rmi://mysite.com/server1#vcard&gt;;</p>
+
+<p class="listcontinue">The following message displays:</p>
+
+<p class="listcontinuecommandtext">Successfully loaded 78 statements from file:/home/user/jspdemo/vcards2.rdf<br />
+  into rmi://localhost/server1#vcard</p>
+</li><li></li><li></li><li></li><li></li><li></li></ol>
+<div class="anchor"><a name="o994">&nbsp;</a></div>
+<h3>Develop the JSPs</h3>
+<div class="anchor"><a name="o995">&nbsp;</a></div>
+<h3>Deploy the JSPs</h3>
+<div class="anchor"><a name="o996">&nbsp;</a></div>
+<h3>Open the Application</h3>
+
+<p>When you have developed the application, connect to it with your web browser by opening the page, <a class="internetlinktemplate" title="" href="http://localhost/jspdemo/index.jsp">http://localhost/jspdemo/index.jsp</a>.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

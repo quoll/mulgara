@@ -1,0 +1,107 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - </title>
+    <meta name="keywords" content="create, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+<!--
+<p><a href="/itqlcommands/commit.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/itqlcommands/delete.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/itqlcommands/index.html">iTQL Commands</a></p>
+<p class="relateditem"><a href="/itqlcommands/alias.html">alias</a></p>
+<p class="relateditem"><a href="/itqlcommands/backup.html">backup</a></p>
+<p class="relateditem"><a href="/itqlcommands/comment.html">comment (#)</a></p>
+<p class="relateditem"><a href="/itqlcommands/commit.html">commit</a></p>
+<p class="relateditem"><a href="/itqlcommands/delete.html">delete</a></p>
+<p class="relateditem"><a href="/itqlcommands/drop.html">drop</a></p>
+<p class="relateditem"><a href="/itqlcommands/execute.html">execute</a></p>
+<p class="relateditem"><a href="/itqlcommands/help.html">help</a></p>
+<p class="relateditem"><a href="/itqlcommands/insert.html">insert</a></p>
+<p class="relateditem"><a href="/itqlcommands/load.html">load</a></p>
+<p class="relateditem"><a href="/itqlcommands/quit.html">quit</a></p>
+<p class="relateditem"><a href="/itqlcommands/restore.html">restore</a></p>
+<p class="relateditem"><a href="/itqlcommands/rollback.html">rollback</a></p>
+<p class="relateditem"><a href="/itqlcommands/select.html">select</a></p>
+<p class="relateditem"><a href="/itqlcommands/set.html">set</a></p>
+
+
+ -->
+
+
+
+<h2>create</h2>
+
+<p>Creates a new model on an existing Mulgara server. The corresponding command for removing models is <code><a id="h213" class="documentlinktemplate" title="drop" href="/itqlcommands/drop.html">drop</a></code>. The general syntax is as follows:</p>
+
+<p class="commandtext">create model [type];</p>
+
+<p>Where <code>model</code> is the URI of the model to create and <code>type</code> is an optional model type specification.</p>
+
+<p>Model URIs are formed by adding a fragment part to the URI of the server they reside on. The following example creates a model named <code>MyModel</code> on the server at <code>rmi://mysite.com/server1</code>.</p>
+
+<p class="commandtext">create &lt;rmi://mysite.com/server1#MyModel&gt;;</p>
+
+<p>The optional model types are:</p>
+<ul><li><code>http://mulgara.org/mulgara#Model</code>
+<p class="listcontinue">This is the default triple store model. Specifying this type is equivalent to omitting the type parameter.</p>
+</li><li><code>http://mulgara.org/mulgara#ViewModel</code>
+<p class="listcontinue">A view model that represents a combined set of models. See the <a id="h1497" class="documentlinktemplate" title="Views" href="/itqloperations/views.html">Views section</a> for more information.</p>
+</li><li><code>http://mulgara.org/mulgara#LuceneModel</code>
+<p class="listcontinue">A full-text string index model based on Lucene.</p>
+
+<p class="listcontinue">All statements placed into a full-text model must have a literal-valued object. Queries against a full-text model result in a match if the object in the query constraint is similar to any stored statements, rather than needing to be identical.</p>
+
+<p class="listcontinue">See the <a id="h731" class="documentlinktemplate" title="Full-Text Models" href="/itqloperations/fulltextmodels.html">Full-Text Models section</a> for more information.</p>
+</li><li><code>http://mulgara.org/mulgara#XMLSchemaModel</code>
+<p class="listcontinue">A datatyping model that represents the property of orderedness that literals like dates and numbers possess.</p>
+
+<p class="listcontinue">Datatyping models are used to constrain results to be above, below, or between specified dates or numbers.</p>
+
+<p class="listcontinue">See the <a id="h729" class="documentlinktemplate" title="Datatyping Models" href="/itqloperations/datatypingmodels.html">Datatyping Models section</a> for more information.</p>
+</li><li><code>http://mulgara.org/mulgara#TypeModel</code>
+<p class="listcontinue">A nodetyping model that represents the type the RDF nodes have in a graph.</p>
+
+<p class="listcontinue">Nodetyping models are used to constrain results to be literals or URI references.</p>
+
+<p class="listcontinue">See the <a id="h2784" class="documentlinktemplate" title="Nodetyping Models" href="/itqloperations/nodetyping.html">Nodetyping Models section</a> for more information.</p>
+</li><li><code>http://mulgara.org/mulgara#FileSystemModel</code>
+<p class="listcontinue">A filesystem model that can be queried to return information about files and directories on filesystems.</p>
+
+<p class="listcontinue">See the <a id="h3205" class="documentlinktemplate" title="Filesystem Models" href="/itqloperations/filesysmodel.html">Filesystem Model section</a> for more information.</p>
+</li></ul>
+<p>The Mulgara server must exist before you can create models on it. If you try to create a model on a nonexistent or unreachable server, the command fails with the message <code>Couldn't contact server</code>.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

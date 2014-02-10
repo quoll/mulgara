@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:testdb="test:">
+
+<rdf:Description rdf:about = "test:s01" >
+  <testdb:p02 rdf:resource="test:o11"/>
+</rdf:Description>
+<rdf:Description rdf:about = "test:s02" >
+  <testdb:p01 rdf:resource="test:o07"/>
+  <testdb:p01 rdf:resource="test:o08"/>
+  <testdb:p01 rdf:resource="test:o04"/>
+  <testdb:p01 rdf:resource="test:o05"/>
+  <testdb:p02 rdf:resource="test:o08"/>
+  <testdb:p02 rdf:resource="test:o09"/>
+  <testdb:p02 rdf:resource="test:o05"/>
+  <testdb:p02 rdf:resource="test:o06"/>
+</rdf:Description>
+
+</rdf:RDF>

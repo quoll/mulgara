@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE rdf:RDF [
+ <!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+ <!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
+ <!ENTITY mulgara 'http://mulgara.org/mulgara#'>
+]>
+
+<rdf:RDF xml:base="http://mulgara.org/mulgara" xml:lang="en"
+  xmlns:rdf="&rdf;"
+  xmlns:rdfs="&rdfs;"
+  xmlns:mulgara="&mulgara;" >
+
+<rdfs:Class rdf:ID="Model"
+  rdfs:label="Model"
+  rdfs:comment="A set of rdf:Statements">
+</rdfs:Class>
+
+<!-- A reified RDF Statement is a mulgara Model with a single statement -->
+<rdfs:Class rdf:about="&rdf;Statement">
+  <rdfs:subClassOf rdf:resource="&mulgara;Model"/>
+</rdfs:Class>
+
+<rdfs:Class rdf:ID="LuceneModel"
+  rdfs:label="Lucene model"
+  rdfs:comment="A model backed by a Lucene full text index">
+  <rdfs:subclassOf rdf:resource="#Model"/>
+</rdfs:Class>
+
+
+<!--========== LDAP Authentication / mulgara Authorization ============-->
+<!-- 
+Use Principals to define Permissions when using LDAP for authentication. 
+
+Principals are assigned URLs. The scheme part is "java:" and the path 
+part is the classname of an implementation of java.security.Principal, 
+followed by a "/" and trailing data which is parsed into arguments for the 
+class constructor.
+
+Example: java:com.sun.security.auth.UnixPrincipal/jsmith
+
+An example config is in data/security-unix.rdf. If using mulgara for 
+authentication see the section below.
+-->
+
+<rdfs:Class rdf:ID="Principal"
+  rdfs:label="Principal"
+  rdfs:comment="A credential such as a unique name or group membership">
+</rdfs:Class>
+
+
+
+<!--===========  mulgara Authentication/ mulgara Authorization  ===========-->
+
+<!--
+Use 'Group' and 'User' definitions to specify Permissions when using mulgara for 
+authentication and authorization.
+
+Groups and Users are assigned URLs. The scheme part is "mulgara:" and the path 
+part is ether 'group' or 'user', followed by a "/" and then the name of the 
+group or the username of the user.
+
+Example: mulgara:group/dev or mulgara:user/fred
+
+An example config file is in data/security-mulgara.rdf. If using LDAP for 
+authentication see the section above.
+-->
+
+<!-- User Group - subclass of Principal -->
+
+<rdfs:Class rdf:ID="Group"
+  rdfs:label="Group"
+  rdfs:comment="A user group for providing a common set of permissions to a group of users">
+  <rdfs:subclassOf rdf:resource="#Principal"/>
+</rdfs:Class>
+
+<rdf:Property rdf:ID="groupname"
+  rdfs:label="Name"
+  rdfs:comment="The group's name">
+  <rdfs:domain rdf:resource="#Group"/>
+  <rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+
+
+<!-- User - subclass of Principal -->
+
+<rdfs:Class rdf:ID="User"
+  rdfs:label="User"
+  rdfs:comment="A mulgara user">
+  <rdfs:subclassOf rdf:resource="#Principal"/>
+</rdfs:Class>
+
+<rdf:Property rdf:ID="username"
+  rdfs:label="Username"
+  rdfs:comment="A user's username">
+  <rdfs:domain rdf:resource="#User"/>
+  <rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+
+<rdf:Property rdf:ID="password" 
+  rdfs:label="Password"
+  rdfs:comment="A user's password">
+  <rdfs:domain rdf:resource="#User"/>
+  <rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+
+<rdf:Property rdf:ID="group" 
+  rdfs:label="User Group"
+  rdfs:comment="A user group that the user belongs to">
+  <rdfs:domain rdf:resource="#User"/>
+  <rdfs:range rdf:resource="#Group"/>
+</rdf:Property>
+
+
+
+<!--======================  Permissions  ======================-->
+
+<!-- All instances of mulgara:Permission should have a domain of mulgara:Principal and
+     a range of mulgara:Model. -->
+<rdfs:Class rdf:ID="Permission" 
+  rdfs:label="Permission"
+  rdfs:comment="The four RDF properties mulgara:canRead, mulgara:canWrite, mulgara:canCreate and mulgara:canDelete">
+  <rdfs:subclassOf rdf:resource="&rdf;Property"/>
+</rdfs:Class>
+
+<mulgara:Permission rdf:ID="canCreate"
+  rdfs:label="can create"
+  rdfs:comment="Permission for a mulgara:Principal (the subject) to create a mulgara:Model from a specified rdf:Resource (the object)">
+  <rdfs:domain rdf:resource="&mulgara;Principal"/>
+  <rdfs:range rdf:resource="&mulgara;Model"/>
+</mulgara:Permission>
+
+<mulgara:Permission rdf:ID="canDelete"
+  rdfs:label="can delete"
+  rdfs:comment="Permission for a mulgara:Principal (the subject) to remove a mulgara:Model (the object)">
+  <rdfs:domain rdf:resource="&mulgara;Principal"/>
+  <rdfs:range rdf:resource="&mulgara;Model"/>
+</mulgara:Permission>
+
+<mulgara:Permission rdf:ID="canRead"
+  rdfs:label="can read"
+  rdfs:comment="Permission for a mulgara:Principal (the subject) to know if a statement occurs within a mulgara:Model (the object)">
+  <rdfs:domain rdf:resource="&mulgara;Principal"/>
+  <rdfs:range rdf:resource="&mulgara;Model"/>
+</mulgara:Permission>
+
+<mulgara:Permission rdf:ID="canWrite"
+  rdfs:label="can write"
+  rdfs:comment="Permission for a mulgara:Principal (the subject) to modify the occurence of statements within a mulgara:Model (the object)">
+  <rdfs:domain rdf:resource="&mulgara;Principal"/>
+  <rdfs:range rdf:resource="&mulgara;Model"/>
+</mulgara:Permission>
+
+</rdf:RDF>
+

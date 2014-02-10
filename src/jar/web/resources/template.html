@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/tr/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--
+@@debug@@
+-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Mulgara Viewer</title>
+  <link href="@@base@@styles/ui.css" rel="stylesheet" type="text/css" />
+  <script language="JavaScript" type="text/javascript">
+  <!--
+  // Validate the form and submit it if all is OK
+  function validateAndSubmit() {
+    // Is there a query?
+    if (document.QueryForm.QueryText.value == null ||
+        document.QueryForm.QueryText.value == "") {
+      alert('Please enter a query');
+      document.QueryForm.QueryText.focus();
+      return false;
+    } else {
+      // Submit the form
+      document.QueryForm.submit();
+      return true;
+    }
+  }
+  function uploadFile() {
+    if (document.QueryForm.GraphURI.value == null ||
+        document.QueryForm.GraphURI.value == "") {
+      alert('Please enter a Graph URI to upload into.');
+      document.QueryForm.GraphURI.focus();
+      return false;
+    }
+    if (document.UploadForm.UploadFile.value == null ||
+        document.UploadForm.UploadFile.value == "") {
+      alert('Please select a file to upload to the Graph.');
+      document.UploadForm.UploadFile.focus();
+      return false;
+    }
+    document.UploadForm.UploadGraph.value = document.QueryForm.GraphURI.value;
+    document.UploadForm.submit();
+    return true;
+  }
+  //-->
+  </script>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="header">
+      <div id="logo">
+        <a href="http://mulgara.org/"><img src="@@base@@images/logo.jpg" alt="Mulgara - Semantic Store" border="0" /></a>
+      </div>
+    </div>
+    <div id="content">
+      <table class="formatTable" summary="">
+        <tr>
+          <td>
+            <table class="queryTable" summary="Enter a query">
+              <form action="@@base@@@@execute@@" method="post" name="QueryForm">
+                <tr>
+                  <td><strong>Graph URI:</strong> </td>
+                  <td><input name="GraphURI" size="60" type="text" value=""/> </td>
+                </tr>
+                <tr>
+                  <td><strong>Query Text:</strong> </td>
+                  <td><textarea cols="80" name="QueryText" rows="10"></textarea> </td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td align="left">
+                    <input type="button" value="Submit Query" onclick="validateAndSubmit()"/>
+                    <input type="button" value="Clear Query" onclick="javascript:document.QueryForm.QueryText.value='';"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">&nbsp;</td>
+                </tr>
+              </form>
+              <form enctype='multipart/form-data' action="@@base@@@@execute@@" method="post" name="UploadForm">
+                <tr>
+                  <td><strong>File:</strong> </td>
+                  <td>
+                    <input type="hidden" name="UploadGraph" value=""/>
+                    <input type="file" name="UploadFile" size="60" value=""/>
+                    <input type="button" value="Upload" onclick="uploadFile()"/>
+                  </td>
+                </tr>
+              </form>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

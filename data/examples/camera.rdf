@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+<!ENTITY owl   "http://www.w3.org/2002/07/owl#">
+<!ENTITY rdf   "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<!ENTITY rdfs  "http://www.w3.org/2000/01/rdf-schema#">
+<!ENTITY xsd   "http://www.w3.org/2001/XMLSchema#">
+<!ENTITY camera "http://www.xfront.com/owl/ontologies/camera/#">
+]>
+
+<rdf:RDF xmlns:rdf="&rdf;"
+         xmlns:rdfs="&rdfs;"
+         xmlns:owl="&owl;"
+         xmlns:xsd="&xsd;"
+         xmlns="&camera;"
+         xmlns:camera="&camera;"
+         xml:base="http://www.xfront.com/owl/ontologies/camera/">
+
+  <rdf:Description rdf:about="#brokenShutter">
+    <rdf:type rdf:resource="#Simple-Large-Format"/>
+    <body>
+      <BodyWithNonAdjustableShutterSpeed>
+        <shutter-speed rdf:parseType="Resource">
+          <min>0.01</min>
+          <max>1.0</max>
+          <units>seconds</units>
+        </shutter-speed>
+      </BodyWithNonAdjustableShutterSpeed>
+    </body>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="#shutterStutter">
+    <rdf:type rdf:resource="#Simple-Large-Format"/>
+    <body>
+      <BodyWithNonAdjustableShutterSpeed>
+        <shutter-speed rdf:parseType="Resource">
+          <min>0.01</min>
+          <max>1.0</max>
+          <units>seconds</units>
+        </shutter-speed>
+        <shutter-speed rdf:parseType="Resource">
+          <min>0.01</min>
+          <max>1.0</max>
+          <units>seconds</units>
+        </shutter-speed>
+      </BodyWithNonAdjustableShutterSpeed>
+    </body>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="#noLensSLR">
+    <rdf:type rdf:resource="#SLR"/>
+    <body>
+      <Body>
+        <shutter-speed rdf:parseType="Resource">
+          <min>0.01</min>
+          <max>1.0</max>
+          <units>seconds</units>
+        </shutter-speed>
+      </Body>
+    </body>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="#binocularSLR">
+    <rdf:type rdf:resource="#SLR"/>
+    <body>
+      <Body>
+        <shutter-speed rdf:parseType="Resource">
+          <min>0.01</min>
+          <max>1.0</max>
+          <units>seconds</units>
+        </shutter-speed>
+      </Body>
+    </body>
+    <body>
+      <Body>
+        <shutter-speed rdf:parseType="Resource">
+          <min>0.01</min>
+          <max>1.0</max>
+        </shutter-speed>
+      </Body>
+    </body>
+    <lens>
+      <Lens>
+        <focal-length>75-300mm zoom</focal-length>
+        <f-stop>4.5-5.6</f-stop>
+      </Lens>
+    </lens>
+    <lens>
+      <Lens>
+        <focal-length>75-300mm zoom</focal-length>
+        <f-stop>4.5-5.6</f-stop>
+      </Lens>
+    </lens>
+  </rdf:Description>
+
+  <!-- breaks the allValuesFrom restriction on Simple-Large-Format -->
+  <rdf:Description rdf:about="#badBody">
+    <rdf:type rdf:resource="#Simple-Large-Format"/>
+    <body>
+      <Body>
+        <shutter-speed rdf:parseType="Resource">
+          <min>0.01</min>
+          <max>1.0</max>
+        </shutter-speed>
+      </Body>
+    </body>
+  </rdf:Description>
+
+  <!-- Breaks the someValuesFrom restriction on Camera -->
+  <rdf:Description rdf:about="#badParts">
+    <rdf:type rdf:resource="#Camera"/>
+    <rdf:type rdf:resource="#Digital"/>
+    <part>
+      <CarryStrap/>
+    </part>
+  </rdf:Description>
+
+  <!-- Tests the serial number inverse functional property -->
+  <rdf:Description rdf:about="#doubleSerial">
+    <rdf:type rdf:resource="#Digital"/>
+    <body>
+      <Body rdf:about="#sharedBody">
+        <serial-id>
+          <SerialID rdf:about="#3302656895">
+            <serialType>numeric</serialType>
+            <serialValue>3302656895</serialValue>
+          </SerialID>
+        </serial-id>
+      </Body>
+    </body>
+    <lens>
+      <Lens rdf:about="#Sinaron-S">
+        <focal-length>135mm</focal-length>
+      </Lens>
+    </lens>
+  </rdf:Description>
+
+  <!-- Tests the serial number inverse functional property -->
+  <rdf:Description rdf:about="#doubleSerial2">
+    <rdf:type rdf:resource="#Digital"/>
+    <body>
+      <Body>
+        <serial-id>
+          <SerialID rdf:about="#3302656895">
+            <serialType>numeric</serialType>
+            <serialValue>3302656895</serialValue>
+          </SerialID>
+        </serial-id>
+      </Body>
+    </body>
+    <lens>
+      <Lens rdf:about="#Sinaron-SW">
+        <focal-length>120mm</focal-length>
+      </Lens>
+    </lens>
+  </rdf:Description>
+
+  <!-- Tests the viewer functional property -->
+  <rdf:Description rdf:about="#duplicateWindow">
+    <rdf:type rdf:resource="#Camera"/>
+    <rdf:type rdf:resource="#Digital"/>
+    <body>
+      <Body/>
+    </body>
+    <lens>
+      <Lens/>
+    </lens>
+    <viewFinder rdf:resource="#ThroughTheLens"/>
+    <viewFinder>
+      <rdf:Description/>
+    </viewFinder>
+  </rdf:Description>
+
+  <!-- Valid camera -->
+  <rdf:Description rdf:about="#Olympus-OM-10">
+    <rdf:type rdf:resource="#SLR"/>
+    <lens>
+      <Lens>
+        <focal-length>75-300mm zoom</focal-length>
+        <f-stop>4.5-5.6</f-stop>
+      </Lens>
+    </lens>
+    <lens>
+      <Lens>
+        <focal-length>22-44 zoom</focal-length>
+        <aperture>2.8-3.5</aperture>
+      </Lens>
+    </lens>
+    <body>
+      <Body>
+        <shutter-speed rdf:parseType="Resource">
+          <min>0.002</min>
+          <max>1.0</max>
+          <units>seconds</units>
+        </shutter-speed>
+      </Body>
+    </body>
+    <cost rdf:parseType="Resource">
+      <rdf:value>325</rdf:value>
+      <currency>USD</currency>
+    </cost>
+  </rdf:Description>
+
+  <!-- Valid camera -->
+  <rdf:Description rdf:about="#Pentax-OptioS">
+    <rdf:type rdf:resource="#Digital"/>
+    <lens>
+      <Lens>
+        <focal-length>35-105 zoom</focal-length>
+        <aperture>2.6-4.8</aperture>
+      </Lens>
+    </lens>
+    <body>
+      <Body>
+        <shutter-speed rdf:parseType="Resource">
+          <min>0.0005</min>
+          <max>1.0</max>
+          <units>seconds</units>
+        </shutter-speed>
+      </Body>
+    </body>
+    <cost rdf:parseType="Resource">
+      <rdf:value>325</rdf:value>
+      <currency>USD</currency>
+    </cost>
+    <part>
+      <CarryStrap/>
+    </part>
+  </rdf:Description>
+
+  <!-- Valid camera -->
+  <rdf:Description rdf:about="#SinarF1">
+    <rdf:type rdf:resource="#Large-Format"/>
+    <body>
+      <BodyWithNonAdjustableShutterSpeed/>
+    </body>
+    <lens>
+      <Lens rdf:about="#Sinaron-S">
+        <focal-length>135mm</focal-length>
+      </Lens>
+    </lens>
+  </rdf:Description>
+
+  <!-- Valid camera -->
+  <rdf:Description rdf:about="#SinarF2">
+    <rdf:type rdf:resource="#Large-Format"/>
+    <body>
+      <BodyWithNonAdjustableShutterSpeed/>
+    </body>
+    <lens>
+      <Lens rdf:about="#Sinaron-SE">
+        <focal-length>360mm</focal-length>
+        <compatibleLens>
+          <Lens rdf:about="#Sinaron-S"/>
+        </compatibleLens>
+      </Lens>
+    </lens>
+    <lens>
+      <Lens rdf:about="#Sinaron-S">
+        <compatibleLens>
+          <Lens rdf:about="#Sinaron-W"/>
+        </compatibleLens>
+      </Lens>
+    </lens>
+    <lens>
+      <Lens rdf:about="#Sinaron-W">
+        <focal-length>200mm</focal-length>
+      </Lens>
+    </lens>
+  </rdf:Description>
+
+  <!-- Valid camera -->
+  <rdf:Description rdf:about="#SinarP2">
+    <rdf:type rdf:resource="#Simple-Large-Format"/>
+    <body>
+      <BodyWithNonAdjustableShutterSpeed/>
+    </body>
+    <lens>
+      <Lens rdf:about="#Sinaron-S">
+        <focal-length>135mm</focal-length>
+      </Lens>
+    </lens>
+  </rdf:Description>
+
+  <!-- Valid camera -->
+  <rdf:Description rdf:about="#SinarM">
+    <rdf:type rdf:resource="#Digital"/>
+    <rdf:type rdf:resource="#Simple-Large-Format"/>
+    <body>
+      <BodyWithNonAdjustableShutterSpeed rdf:about="#SinarMbody">
+        <matchingPart>
+          <Lens rdf:about="#SinaronDigital4.5/45DB"/>
+        </matchingPart>
+      </BodyWithNonAdjustableShutterSpeed>
+    </body>
+    <lens>
+      <Lens rdf:about="#SinaronDigital4.5/45DB">
+        <aperture>4.5</aperture>
+        <focal-length>45mm</focal-length>
+      </Lens>
+    </lens>
+  </rdf:Description>
+
+  <!-- Valid camera -->
+  <rdf:Description rdf:about="#Pentax-OptioS50">
+    <rdf:type rdf:resource="#Digital"/>
+    <lens>
+      <Lens>
+        <focal-length>35.6-107mm</focal-length>
+        <aperture>2.6-4.8</aperture>
+      </Lens>
+    </lens>
+    <body>
+      <CameraBody>
+        <shutter-speed rdf:parseType="Resource">
+          <min>0.0005</min>
+          <max>4.0</max>
+          <units>seconds</units>
+        </shutter-speed>
+      </CameraBody>
+    </body>
+    <cost rdf:parseType="Resource">
+      <rdf:value>300</rdf:value>
+      <currency>USD</currency>
+    </cost>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="#SinarMedium">
+    <rdf:type rdf:resource="#Digital"/>
+    <owl:sameAs rdf:resource="#SinarM"/>
+    <lens>
+      <Lens rdf:about="#Sinaron-SD">
+        <owl:sameAs rdf:resource="#SinaronDigital4.5/45DB"/>
+      </Lens>
+    </lens>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="#MediumSinar">
+    <rdf:type rdf:resource="#Digital"/>
+    <owl:sameAs rdf:resource="#SinarMedium"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="#SameCamera">
+    <rdf:type rdf:resource="#Digital"/>
+    <owl:sameAs rdf:resource="#DifferentCamera"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="#DifferentCamera">
+    <rdf:type rdf:resource="#Digital"/>
+    <owl:differentFrom rdf:resource="#SameCamera"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="#badClassCamera">
+    <rdf:type rdf:resource="#Digital"/>
+    <owl:sameAs rdf:resource="#Body"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="#badPropertyCamera">
+    <rdf:type rdf:resource="#Digital"/>
+    <owl:sameAs rdf:resource="#lens"/>
+  </rdf:Description>
+
+</rdf:RDF>
+

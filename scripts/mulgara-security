@@ -1,0 +1,108 @@
+#!/bin/sh
+# The contents of this file are subject to the Mozilla Public License
+# Version 1.1 (the "License"); you may not use this file except in
+# compliance with the License. You may obtain a copy of the License at
+# http://www.mozilla.org/MPL/
+#
+# Software distributed under the License is distributed on an "AS IS"
+# basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See
+# the License for the specific language governing rights and limitations
+# under the License.
+#
+# The Original Code is the Kowari Metadata Store.
+#
+# The Initial Developer of the Original Code is Plugged In Software Pty
+# Ltd (http://www.pisoftware.com, mailto:info@pisoftware.com). Portions
+# created by Plugged In Software Pty Ltd are Copyright (C) 2001,2002
+# Plugged In Software Pty Ltd. All Rights Reserved.
+#
+# Contributor(s): N/A.
+#
+# [NOTE: The text of this Exhibit A may differ slightly from the text
+# of the notices in the Source Code files of the Original Code. You
+# should use the text of this Exhibit A rather than the text found in the
+# Original Code Source Code for Your Modifications.]
+
+#
+# Shell script for starting and stopping embedded Mulgara server fo use in
+# automated testing.
+#
+
+
+# check JAVA_HOME environment variable
+if [ "$JAVA_HOME" = "" ] ; then
+  echo "Please set a JAVA_HOME environment variable" >&2
+  echo -e "For example:\n" >&2
+  echo -e "  $ export JAVA_HOME=/usr/local/java\n" >&2
+  exit 1
+fi
+
+# check MULGARA_DIR environment variable
+if [ "$MULGARA_DIR" = "" ] ; then
+  echo "Please set a MULGARA_DIR environment variable pointing to the location of the" >&2
+  echo -e "MULGARA executable JAR\n" >&2
+  echo -e "For example:\n" >&2
+  echo -e "  $ export MULGARA_DIR=/home/jsmith/mulgara/dbms/dist\n" >&2
+  exit 1
+fi
+
+# set variables
+SLEEP_TIME=2
+OLD_DIR=$PWD
+RMIPID=$MULGARA_DIR/rmiregistry.pid
+MULGARAPID=$MULGARA_DIR/mulgara.pid
+CONFDIR=$MULGARA_DIR/../conf
+
+case "$1" in
+    start)
+        cd $MULGARA_DIR
+        /sbin/start-stop-daemon \
+            --start \
+            --pidfile $RMIPID \
+            --make-pidfile \
+            --background \
+            --exec $JAVA_HOME/bin/rmiregistry
+        /sbin/start-stop-daemon \
+            --start \
+            --pidfile $MULGARAPID \
+            --make-pidfile  \
+            --exec $JAVA_HOME/bin/java --  \
+                             -Djava.security.auth.login.config=../jxtest/security/mulgara-jaas.conf \
+                             -Dmulgara.security.domain=$MULGARA_SERVER   \
+                             -jar $MULGARA_DIR/mulgara-1.0.jar \
+            >> mulgara-output 2>> mulgara-output &
+        cd $OLD_DIR
+        echo "Started embedded Mulgara server with security domain $MULGARA_SERVER"
+    ;;
+
+    stop)
+        # stop the rmiregistry and the server
+        /sbin/start-stop-daemon --stop --oknodo --quiet --pidfile $MULGARAPID
+        sleep $SLEEP_TIME
+        /sbin/start-stop-daemon --stop --oknodo --quiet --pidfile $RMIPID
+
+        # clean up generated files
+        if [ -f $RMIPID ] ; then
+          /bin/rm $RMIPID
+        fi
+        if [ -f $MULGARAPID ] ; then
+          /bin/rm $MULGARAPID
+        fi
+
+        echo "Stopped embedded Mulgara server"
+    ;;
+
+    restart)
+        $0 stop
+        sleep $SLEEP_TIME
+        $0 start
+    ;;
+
+    *)
+        echo "Starts/stops an embedded Mulgara server and the rmiregistry." >&2
+        echo "Usage: $0 {start|stop|restart}" >&2
+        exit 1
+    ;;
+esac
+
+exit 0

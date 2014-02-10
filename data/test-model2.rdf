@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:testdb="test:">
+
+<rdf:Description rdf:about = "test:s02" >
+<!-- Object permutations for predicate p01 -->
+  <testdb:p01 rdf:resource="test:o02"/>
+  <testdb:p01 rdf:resource="test:o04"/>
+  <testdb:p01 rdf:resource="test:o06"/>
+  <testdb:p01 rdf:resource="test:o07"/>
+  <testdb:p01 rdf:resource="test:o23"/>
+  <testdb:p01 rdf:resource="test:o25"/>
+  <testdb:p01 rdf:resource="test:o27"/>
+  <testdb:p01 rdf:resource="test:o28"/>
+  <testdb:p01 rdf:resource="test:o30"/>
+  <testdb:p01 rdf:resource="test:o32"/>
+  <testdb:p01 rdf:resource="test:o34"/>
+  <testdb:p01 rdf:resource="test:o35"/>
+  <testdb:p01 rdf:resource="test:o44"/>
+  <testdb:p01 rdf:resource="test:o46"/>
+  <testdb:p01 rdf:resource="test:o48"/>
+  <testdb:p01 rdf:resource="test:o49"/>
+<!-- Object permutations for predicate p02 -->
+  <testdb:p02 rdf:resource="test:o09"/>
+  <testdb:p02 rdf:resource="test:o11"/>
+  <testdb:p02 rdf:resource="test:o13"/>
+  <testdb:p02 rdf:resource="test:o14"/>
+  <testdb:p02 rdf:resource="test:o23"/>
+  <testdb:p02 rdf:resource="test:o25"/>
+  <testdb:p02 rdf:resource="test:o27"/>
+  <testdb:p02 rdf:resource="test:o28"/>
+  <testdb:p02 rdf:resource="test:o37"/>
+  <testdb:p02 rdf:resource="test:o39"/>
+  <testdb:p02 rdf:resource="test:o41"/>
+  <testdb:p02 rdf:resource="test:o42"/>
+  <testdb:p02 rdf:resource="test:o44"/>
+  <testdb:p02 rdf:resource="test:o46"/>
+  <testdb:p02 rdf:resource="test:o48"/>
+  <testdb:p02 rdf:resource="test:o49"/>
+<!-- Object permutations for predicate p03 -->
+  <testdb:p03 rdf:resource="test:o16"/>
+  <testdb:p03 rdf:resource="test:o18"/>
+  <testdb:p03 rdf:resource="test:o20"/>
+  <testdb:p03 rdf:resource="test:o21"/>
+  <testdb:p03 rdf:resource="test:o30"/>
+  <testdb:p03 rdf:resource="test:o32"/>
+  <testdb:p03 rdf:resource="test:o34"/>
+  <testdb:p03 rdf:resource="test:o35"/>
+  <testdb:p03 rdf:resource="test:o37"/>
+  <testdb:p03 rdf:resource="test:o39"/>
+  <testdb:p03 rdf:resource="test:o41"/>
+  <testdb:p03 rdf:resource="test:o42"/>
+  <testdb:p03 rdf:resource="test:o44"/>
+  <testdb:p03 rdf:resource="test:o46"/>
+  <testdb:p03 rdf:resource="test:o48"/>
+  <testdb:p03 rdf:resource="test:o49"/>
+</rdf:Description>
+
+</rdf:RDF>

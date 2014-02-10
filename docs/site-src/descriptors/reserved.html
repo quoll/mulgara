@@ -1,0 +1,141 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Reserved Parameters</title>
+    <meta name="keywords" content="Reserved Parameters, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/descriptors/descriptortag.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/descriptors/descriptorsfaq.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/descriptors/index.html">Descriptors</a></p>
+<p class="relateditem"><a href="/descriptors/descwhat.html">What are Descriptors?</a></p>
+<p class="relateditem"><a href="/descriptors/descadvantages.html">Advantages and Disadvantages of Descriptors</a></p>
+<p class="relateditem"><a href="/descriptors/nsdesc.html">Namespaces and Descriptors</a></p>
+<p class="relateditem"><a href="/descriptors/querytag.html">The &lt;query&gt; Tag</a></p>
+<p class="relateditem"><a href="/descriptors/descriptortag.html">The &lt;descriptor&gt; Tag</a></p>
+<p class="relateditem"><a href="/descriptors/descriptorsfaq.html">Descriptors FAQ</a></p>
+<p class="relateditem"><a href="/descriptors/mistakes.html">Common Mistakes</a></p>
+<p class="relateditem"><a href="/descriptors/descriptorex.html">Descriptor Examples</a></p>
+
+
+			
+ -->
+
+
+
+
+<h2>Reserved Parameters</h2>
+
+<p>Parameters have special meanings that may be different depending on their context, as outlined in the following table.</p>
+<table width="558" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr align="left" valign="top">
+<th width="90">
+<p class="tableheading">Parameter</p>
+</th>
+<th width="132">
+<p class="tableheading">Descriptor Element</p>
+</th>
+<th width="114">
+<p class="tableheading">XSL</p>
+</th>
+<th width="222">
+<p class="tableheading">HTTP/SOAP</p>
+</th>
+</tr>
+<tr align="left" valign="top">
+<td width="90">
+<p><code>_self</code></p>
+</td>
+<td width="132">
+<p>N/A</p>
+</td>
+<td width="114">
+<p>Set to the URL of the Descriptor being invoked</p>
+</td>
+<td width="222">
+<p>Set to the URL of the Descriptor to invoke</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90">
+<p><code>_target</code></p>
+</td>
+<td width="132">
+<p>Set to the URL of the Descriptor to invoke</p>
+</td>
+<td width="114">
+<p>N/A</p>
+</td>
+<td width="222">
+<p>N/A</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90">
+<p><code>_source</code></p>
+</td>
+<td width="132">
+<p>Set to the URL of the current Descriptor being invoked</p>
+</td>
+<td width="114">
+<p>N/A</p>
+</td>
+<td width="222">
+<p>N/A</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90">
+<p><code>_cacheClear</code></p>
+</td>
+<td width="132">
+<p>see HTTP/SOAP</p>
+</td>
+<td width="114">
+<p>see HTTP/SOAP</p>
+</td>
+<td width="222">
+<p><strong class="specialbold">For Development Only</strong></p>
+
+<p>If set to any value, all cached Descriptors are cleared. This is useful for developers when testing a Descriptor. Ordinarily, Descriptors are cached for performance reasons and do not know if they have changed unless the cache is cleared</p>
+</td>
+</tr>
+
+</table>
+
+<p class="note"><strong>Note -</strong> Depending on the context, some variables <em>are</em> set, such as <code>_self</code>, while others need to <em>be</em> set, such as <code>_target</code>.</p>
+  
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

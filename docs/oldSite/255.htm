@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Views </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Views, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="254.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="257.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h2 class="heading2">Views</h2>
+<p class="bodytext">Views are special models made up of one or more models or views. The advantages of views include:</p>
+<ul class="listbullet"><li class="listbullet">Security permissions are defined and maintained at the nested model and view level.</li><li class="listbullet">Statements can be grouped within logical models for re-use and maintenance. For example, schemas can be maintained in a single model and shared with multiple views.</li><li class="listbullet">You can define model hierarchies. For example, views can support nested views.</li><li class="listbullet">There is an abstraction layer for the end-user application. That is, the application layer may only be concerned about a single view.</li><li class="listbullet">Views are defined in RDF and can be extended to support application specific requirements.</li></ul><table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="255.htm#o3012" target="_self">Creating Views</a></p><p class="relateditem"><a href="255.htm#o3013" target="_self">Querying View Definitions</a></p><p class="relateditem"><a href="255.htm#o256" target="_self">Limitations of Views</a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="254.htm" target="_self">Advanced iTQL Operations</a></p><p class="relateditem"><a href="257.htm" target="_self">Full-Text Models</a></p><p class="relateditem"><a href="262.htm" target="_self">Datatyping Models</a></p><p class="relateditem"><a href="2779.htm" target="_self">Nodetyping Models</a></p><p class="relateditem"><a href="3201.htm" target="_self">Filesystem Models</a></p></td>
+</tr>
+</table>
+
+<a name="o3012"></a><h3 class="heading3">Creating Views</h3>
+<p class="bodytext">You can create views by:</p>
+<ol class="listnumber"><li class="listnumber">Using the iTQL <code class="monospace"><a id="h1523" class="documentlinktemplate" title="create" href="176.htm" target="_self">create</a></code> command, creating a model of type <code class="monospace">http://mulgara.org/mulgara#ViewModel</code>. This creates the view, plus a view definition model.</li><li class="listnumber">Loading RDF that represents the set of models for the view, into the view definition model. For example, <code class="monospace">rmi://mysite.com/server1?def#view1</code>.</li></ol><p class="bodytext">Views are a symbolic model expression equivalent to an iTQL<sup class="superscript">TM</sup> <code class="monospace"><a id="h218" class="documentlinktemplate" title="from Clause" href="187.htm#o189" target="_self">from</a></code> clause. Querying a view queries all of the models to which the view refers. When the URI of a view occurs in the <code class="monospace">from</code> clause of a <code class="monospace"><a id="h207" class="documentlinktemplate" title="select" href="187.htm" target="_self">select</a></code> command, the view's model expression is substituted in place of the view URI when the query is processed.</p>
+<p class="bodytext">Any modifications applied to the view (by using <code class="monospace"><a id="h212" class="documentlinktemplate" title="insert" href="182.htm" target="_self">insert</a></code>, <code class="monospace"><a id="h214" class="documentlinktemplate" title="delete" href="178.htm" target="_self">delete</a></code> or <code class="monospace"><a id="h249" class="documentlinktemplate" title="load" href="183.htm" target="_self">load</a></code> commands, for example) only affect the view's definition and have no effect on the models to which the view refers.</p>
+<p class="bodytext">Since a view is a symbolic representation of a combination of models, any modifications to models to which the view refers are visible immediately via the view.</p>
+<p class="bodytext">Here is an RDF example, that when loaded into the view definition model, defines the set of models for a view:</p>
+<p class="commandtext">&lt;?xml version=&quot;1.0&quot;?&gt;<br />&lt;!DOCTYPE rdf:RDF [<br /> &lt;!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'&gt;<br /> &lt;!ENTITY mulgarav 'http://mulgara.org/mulgara/view#'&gt;<br /> &lt;!ENTITY server 'rmi://mysite.com/server1'&gt;<br />]&gt;<br />&lt;rdf:RDF xml:lang=&quot;en&quot;<br />  xmlns:rdf=&quot;&amp;rdf;&quot;<br />  xmlns:mulgarav=&quot;&amp;mulgarav;&quot;&gt;<br />  &lt;mulgarav:Union rdf:about=&quot;http://mulgara.org/mulgara/view&quot;<br />    mulgarav:enabled=&quot;true&quot;&gt;<br />    &lt;mulgarav:model rdf:resource=&quot;&amp;server;#model1&quot;/&gt;<br />    &lt;mulgarav:expr&gt;<br />      &lt;mulgarav:Intersection&gt;<br />        &lt;mulgarav:model rdf:resource=&quot;&amp;server;#model2&quot;/&gt;<br />        &lt;mulgarav:model rdf:resource=&quot;&amp;server;#model3&quot;/&gt;<br />      &lt;/mulgarav:Intersection&gt;<br />    &lt;/mulgarav:expr&gt;<br />    &lt;mulgarav:expr&gt;<br />      &lt;mulgarav:Intersection&gt;<br />        &lt;mulgarav:model rdf:resource=&quot;&amp;server;#model4&quot;/&gt;<br />        &lt;mulgarav:model rdf:resource=&quot;&amp;server;#model5&quot;/&gt;<br />      &lt;/mulgarav:Intersection&gt;<br />    &lt;/mulgarav:expr&gt;<br />  &lt;/mulgarav:Union&gt;<br />&lt;/rdf:RDF&gt;</p>
+<p class="bodytext">Which generates the following triples:</p>
+<p class="commandtext">http://mulgara.org/mulgara/view http://mulgara.org/mulgara/view#enabled 'true'<br />http://mulgara.org/mulgara/view http://mulgara.org/mulgara/view#expr rmi://mysite.com/server1#node32<br />http://mulgara.org/mulgara/view http://mulgara.org/mulgara/view#expr rmi://mysite.com/server1#node35<br />http://mulgara.org/mulgara/view http://mulgara.org/mulgara/view#model rmi://mysite.com/server1#model1<br />http://mulgara.org/mulgara/view http://www.w3.org/1999/02/22-rdf-syntax-ns#type<br />   http://mulgara.org/mulgara/view#Union<br />rmi://mysite.com/server1#node32 http://mulgara.org/mulgara/view#model rmi://mysite.com/server1#model2<br />rmi://mysite.com/server1#node32 http://mulgara.org/mulgara/view#model rmi://mysite.com/server1#model3<br />rmi://mysite.com/server1#node32 http://www.w3.org/1999/02/22-rdf-syntax-ns#type<br />   http://mulgara.org/mulgara/view#Intersection<br />rmi://mysite.com/server1#node35 http://mulgara.org/mulgara/view#model rmi://mysite.com/server1#model4<br />rmi://mysite.com/server1#node35 http://mulgara.org/mulgara/view#model rmi://mysite.com/server1#model5<br />rmi://mysite.com/server1#node35 http://www.w3.org/1999/02/22-rdf-syntax-ns#type<br />   http://mulgara.org/mulgara/view#Intersection</p>
+<p class="bodytext">The RDF is equivalent to the following <code class="monospace">from</code> clause:</p>
+<p class="commandtext">... from &lt;rmi://mysite.com/server1#model1&gt; or<br />      (&lt;rmi://mysite.com/server1#model2&gt; and<br />      &lt;rmi://mysite.com/server1#model3&gt;) or<br />      (&lt;rmi://mysite.com/server1#model4&gt; and<br />      &lt;rmi://somewhere.com/server1#model5&gt;) ...</p>
+<p class="bodytext">If the above RDF is loaded into the view definition model, <code class="monospace">rmi://mysite.com/server1?def#view1</code>, then the following <code class="monospace">from</code> clause is equivalent to the preceding one:</p>
+<p class="commandtext">... from &lt;rmi://mysite.com/server1#view1&gt; ...</p>
+<a name="o3013"></a><h3 class="heading3">Querying View Definitions</h3>
+<p class="bodytext">You can query the definition of a view by adding <code class="monospace">?def</code> to the view name. For example:</p>
+<p class="commandtext">select $s $p $o <br />  from &lt;rmi://mysite.com/server1?def#view1&gt;<br />  where $s $p $o;</p>
+<p class="bodytext">The <code class="monospace">?def</code> query string can be used in the model URIs that are referenced by a view definition. That is, views can reference other views.</p>
+<p class="note"><strong class="strong">Note -</strong> Since views can reference other views, make sure you don't define views that reference each other.</p>
+<a name="o256"></a><h3 class="heading3">Limitations of Views</h3>
+<p class="bodytext">The current limitations of views are as follows:</p>
+<ul class="listbullet"><li class="listbullet">Views may not be used for the <code class="monospace">in</code> clause within a <code class="monospace"><a id="h1297" class="documentlinktemplate" title="where Clause" href="187.htm#o197" target="_self">where</a></code> clause of a <code class="monospace"><a id="h1298" class="documentlinktemplate" title="select Clause" href="187.htm#o188" target="_self">select</a></code> command.</li><li class="listbullet">Mutually referential views and reference loops are not detected.</li></ul>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

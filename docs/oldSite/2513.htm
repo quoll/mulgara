@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Examples </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Examples, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="2528.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="1565.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h3 class="heading3">Examples</h3>
+<p class="bodytext">The following examples illustrate using a JRDF Graph.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="2513.htm#o2514" target="_self">JRDF Graph (Memory)</a></p><p class="relateditem"><a href="2513.htm#o2518" target="_self">Mulgara Backed JRDF Graph (Client)</a></p><p class="relateditem"><a href="2513.htm#o2521" target="_self">Display iTQL Results as an JRDF Graph</a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="2466.htm" target="_self">Java RDF (JRDF)</a></p><p class="relateditem"><a href="3002.htm" target="_self">JRDF APIs</a></p><p class="relateditem"><a href="2467.htm" target="_self">JRDF Graphs</a></p><p class="relateditem"><a href="2467.htm#o2479" target="_self">Querying a JRDF Graph</a></p><p class="relateditem"><a href="2526.htm" target="_self">TKS Client Support</a></p><p class="relateditem"><a href="2511.htm" target="_self">JRDF Memory Implementation</a></p><p class="relateditem"><a href="2512.htm" target="_self">Containers and Collections</a></p><p class="relateditem"><a href="2528.htm" target="_self">Built-in Visitor Pattern</a></p></td>
+</tr>
+</table>
+
+<a name="o2514"></a><h4 class="heading4">JRDF Graph (Memory)</h4>
+<p class="bodytext">This example demonstrates how to:</p>
+<ul class="listbullet"><li class="listbullet">Create a JRDF graph and add triples</li><li class="listbullet">Query the JRDF graph</li><li class="listbullet">Remove triples from the JRDF graph</li></ul>
+<a name="o2515"></a><h5 class="heading5">Create a JRDF Graph and add Triples</h5>
+<p class="bodytext">The following code creates a memory JRDF graph and inserts triples (the graph does not store the triples in any specific order):</p>
+<p class="commandtext">//create Graph<br />Graph graph = new GraphImpl();<br />GraphElementFactory elementFactory = graph.getElementFactory();<br /><br />//create Elements<br />BlankNode subject = elementFactory.createResource();<br />URIReference subject2 = elementFactory.createResource(new URI(&quot;http://example.org#subject&quot;));<br />URIReference predicate = elementFactory.createResource(new URI(&quot;http://example.org#predicate&quot;));<br />URIReference predicate2 = elementFactory.createResource(new URI(&quot;http://example.org#predicate2&quot;));<br />Literal object = elementFactory.createLiteral(&quot;object&quot;);<br /><br />Triple triple = elementFactory.createTriple(subject, predicate, object);<br />Triple triple2 = elementFactory.createTriple(subject2, predicate, object);<br />Triple triple3 = elementFactory.createTriple(subject2, predicate, subject);<br />Triple triple4 = elementFactory.createTriple(predicate, predicate2, subject);<br /><br />//insert Triples<br />graph.add(triple);<br />graph.add(triple2);<br />graph.add(triple3);<br />graph.add(triple4);</p>
+<p class="bodytext">The graph now contains the following triples (N3):</p>
+<p class="commandtext">_blankNode123 &lt;http://example.org#predicate&gt; 'object'<br />&lt;http://example.org#subject&gt; &lt;http://example.org#predicate&gt; 'object'<br />&lt;http://example.org#subject&gt; &lt;http://example.org#predicate&gt; _blankNode123      <br />&lt;http://example.org#predicate&gt; &lt;http://example.org#predicate2&gt; _blankNode123      </p>
+<p class="note"><strong class="strong">Note </strong>- <code class="monospace">_blankNode123</code> represents <code class="monospace">subject</code> which is a BlankNode.</p>
+<a name="o2516"></a><h5 class="heading5">Query the JRDF Graph</h5>
+<p class="bodytext">The following code queries the JRDF graph to find all triples where <code class="monospace">subject2</code> is the SubjectNode. The results are a subgraph of the original JRDF graph.</p>
+<p class="commandtext">//query the graph<br />Triple queryTriple = elementFactory.createTriple(subject2, null, null);<br />ClosableIterator queryResult = graph.find(queryTriple);</p>
+<p class="bodytext">The contents of <code class="monospace">queryResult</code> are:</p>
+<p class="commandtext">&lt;http://example.org#subject&gt; &lt;http://example.org#predicate&gt; 'object'<br />&lt;http://example.org#subject&gt; &lt;http://example.org#predicate&gt; _blankNode123</p>
+<a name="o2517"></a><h5 class="heading5">Remove a Triple from the JRDF Graph</h5>
+<p class="bodytext">The following code removes a Triple from the JRDF Graph.</p>
+<p class="commandtext">//remove Triple<br />graph.remove(triple4);</p>
+<p class="bodytext">The JRDF graph now contains:</p>
+<p class="commandtext">_blankNode123 &lt;http://example.org#predicate&gt; 'object'<br />&lt;http://example.org#subject&gt; &lt;http://example.org#predicate&gt; 'object'<br />&lt;http://example.org#subject&gt; &lt;http://example.org#predicate&gt; _blankNode123</p>
+<a name="o2518"></a><h4 class="heading4">Mulgara Backed JRDF Graph (Client)</h4>
+<p class="bodytext">This example demonstrates how to:</p>
+<ul class="listbullet"><li class="listbullet">Create a Mulgara session</li><li class="listbullet">Create a Mulgara backed JRDF graph</li></ul>
+<a name="o2519"></a><h5 class="heading5">Create a Mulgara Session</h5>
+<p class="bodytext">The following code creates a Mulgara session object:</p>
+<p class="commandtext">//location of the Mulgara Server<br />URI serverURI = new URI(&quot;rmi://mysite.com/server1&quot;);<br /><br />//connect to the Mulgara Server<br />//true indicates a remote Server, if the Server is not remote use false <br />SessionFactory sessionFactory = SessionFactoryFinder.newSessionFactory(serverURI, true);<br />Session session = sessionFactory.newSession();</p>
+<p class="note"><strong class="strong">Note -</strong> The Mulgara server must be running. <code class="monospace">rmi://mysite.com/server1</code> is an example only. Replace this with the URI for your Mulgara server.</p>
+<a name="o2520"></a><h5 class="heading5">Create a Mulgara Backed JRDF Graph</h5>
+<p class="bodytext">The following code creates a new JRDF graph:</p>
+<p class="commandtext">//create a new Mulgara Model<br />URI modelURI = new URI(&quot;rmi://mysite.com/server1#exampleGraph&quot;);<br />URI modelType = new URI(&quot;http://mulgara.org/mulgara#Model&quot;);<br />session.createModel(modelURI, modelType);<br /><br />//create a JRDF Graph using the model<br />ItqlInterpreter interpreter = new ItqlInterpreter(new HashMap());<br />Graph = AbstractGraphFactory.createGraph(modelURI, session);</p>
+<p class="note"><strong class="strong">Note -</strong> You only have to create the model once. If using an existing model you do not have to create it.</p>
+<a name="o2521"></a><h4 class="heading4">Display iTQL Results as an JRDF Graph</h4>
+<p class="bodytext">This example demonstrates how to:</p>
+<ul class="listbullet"><li class="listbullet">Execute an iTQL query</li><li class="listbullet">Create a read-only JRDF Graph using the results</li></ul><p class="note"><strong class="strong">Note -</strong> This example assumes you have already <a id="h2522" class="documentlinktemplate" title="Create a Mulgara Session" href="2513.htm#o2519" target="_self">created a Mulgara session</a>.</p>
+<a name="o2523"></a><h5 class="heading5">Execute an iTQL Query</h5>
+<p class="bodytext">The following code returns all triples for a model:</p>
+<p class="commandtext">//create the query<br />String queryText = &quot;select $s $p $o from &lt;rmi://mysite.com/server1#testModel&gt; where $s $p $o ; &quot;;<br />ItqlInterpreter interpreter = new ItqlInterpreter(new HashMap());<br />Query query = interpreter.parseQuery(queryText);<br /><br />//execute the query<br />Answer queryResult = session.query(query);</p>
+<p class="note"><strong class="strong">Note -</strong> The model <code class="monospace">rmi://mysite.com/server1#testModel</code> is an example only. Replace this with the URI for your model.</p>
+<a name="o2524"></a><h5 class="heading5">Create a JRDF Graph from the Results</h5>
+<p class="bodytext">The following code creates a new read-only JRDF graph from the results of the iTQL query in the previous example.</p>
+<p class="commandtext">//create a JRDF Graph<br />Graph = AbstractGraphFactory.createGraph(queryResult);</p>
+<p class="note"><strong class="strong">Note -</strong><code class="monospace"> queryResult</code> must contain three columns to be valid for use as a JRDF graph.</p>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

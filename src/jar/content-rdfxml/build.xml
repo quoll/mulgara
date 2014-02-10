@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="content-rdfxml" default="content-rdfxml-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="content-rdfxml-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${resolver-file.dist.dir}/${resolver-file.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${tuples-hybrid.dist.dir}/${tuples-hybrid.jar}"/>
+
+  </path>
+
+  <path id="content-rdfxml-test-classpath">
+
+    <path refid="content-rdfxml-classpath"/>
+
+    <fileset file="${resolver-file.dist.dir}/${resolver-file.jar}"/>
+    <fileset file="${store-stringpool-memory.dist.dir}/${store-stringpool-memory.jar}"/>
+    <fileset file="${store-stringpool-xa.dist.dir}/${stringpool-xa.jar}"/>
+
+    <fileset file="${lib.dir}/icu4j.jar"/>
+
+    <fileset file="${content-rdfxml.dist.dir}/${content-rdfxml.jar}"/>
+
+    <fileset file="${tuples-hybrid.dist.dir}/${tuples-hybrid.jar}"/>
+    <fileset file="${util.dist.dir}/${util.base.jar}"/>
+  </path>
+
+  <target name="content-rdfxml-clean"
+          description="Removes all compile generated files for the content-rdfxml">
+
+    <tstamp/>
+
+    <delete dir="${content-rdfxml.obj.dir}"/>
+    <delete dir="${content-rdfxml.test.dir}"/>
+    <delete dir="${content-rdfxml.dist.dir}"/>
+  </target>
+
+  <target name="-content-rdfxml-prepare"
+          description="Creates all directories associated with the content-rdfxml's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${content-rdfxml.obj.dir}"/>
+    <mkdir dir="${content-rdfxml.test.dir}"/>
+    <mkdir dir="${content-rdfxml.dist.dir}"/>
+    <mkdir dir="${content-rdfxml.obj.dir}/classes"/>
+  </target>
+
+  <target name="content-rdfxml-compile"
+          depends="-content-rdfxml-prepare, resolver-spi-jar, resolver-file-jar,
+          tuples-hybrid-jar, util-jar"
+          description="Compiles all content-rdfxml related files included generated
+                       source code">
+
+    <javac destdir="${content-rdfxml.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="content-rdfxml-classpath"/>
+
+      <src path="${content-rdfxml.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="content-rdfxml-jar"
+    depends="content-rdfxml-compile, -content-rdfxml-jar-uptodate"
+    unless="content-rdfxml.jar.uptodate"
+    description="Builds the RDF/XML content handler JAR">
+
+    <jar jarfile="${content-rdfxml.dist.dir}/${content-rdfxml.jar}">
+      <fileset dir="${content-rdfxml.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-content-rdfxml-jar-uptodate">
+
+    <uptodate property="content-rdfxml.jar.uptodate"
+              targetfile="${content-rdfxml.dist.dir}/${content-rdfxml.jar}">
+      <srcfiles dir="${content-rdfxml.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="content-rdfxml-dist"
+          depends="content-rdfxml-jar"
+          unless="content-rdfxml.uptodate"
+          description="Performs all tasks related to finalising this content-rdfxml
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the content-rdfxml library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="content-rdfxml-test"
+    depends="content-rdfxml-jar, resolver-file-jar, store-stringpool-memory-jar,
+             store-stringpool-xa-jar">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="content-rdfxml-test-classpath"/>
+      <param name="dir" value="${content-rdfxml.src.dir}"/>
+      <param name="jar" value="${content-rdfxml.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="content-rdfxml-javadoc"
+          depends="content-rdfxml-jar"
+          description="Creates the javadoc for this content-rdfxml">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.content.rdfxml.*"/>
+      <param name="javadoc.classpath" value="content-rdfxml-classpath"/>
+      <param name="javadoc.sourcepath" value="${content-rdfxml.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="content-rdfxml-help"
+          description="Displays the help information for this content-rdfxml">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this content-rdfxml -->
+
+    <echo message="Welcome to the build script for ${content-rdfxml.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${content-rdfxml.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

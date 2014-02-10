@@ -1,0 +1,328 @@
+Package org.mulgara.itql;
+
+/*
+ * iTQL (SableCC grammar)
+ */
+
+Helpers
+  character  = [0..0xFFFF];
+  letter     = ['a'..'z'] | ['A'..'Z'];
+  digit      = ['0'..'9'];
+  tab        = 9;
+  lf         = 10;
+  cr         = 13;
+  sl         = 47;
+  whitespace = ' ' | tab | lf | cr;
+  nonblank   = [33..126];
+  nonquote   = [character - [39 + '\']];
+  nonslash   = [[33..126] - sl];
+  urlchar    = [character - '>'];
+
+States
+  def,  /* default state */
+  com,  /* comment */
+  esc,  /* escaping character in quoted literal with '\' */
+  lit,  /* quoted literal */
+  begres,  /* start of tagged resource */
+  endres,  /* end of tagged resource */
+  var,  /* escaping variable name with '$' */
+  lng;  /* language code */
+
+Tokens
+  {def}                alias       = 'alias';
+  {def}                and         = 'and';
+  {def}                apply       = 'apply';
+  {def}                as          = 'as';
+  {def}                asc         = 'asc';
+  {def}                autocommit  = 'autocommit';
+  {def}                backup      = 'backup';
+  {def}                base        = 'base';
+  {def}                by          = 'by';
+  {def}                commit      = 'commit';
+  {def}                count       = 'count';
+  {def}                create      = 'create';
+  {def}                delete      = 'delete';
+  {def}                desc        = 'desc';
+  {def}                destination = 'destination';
+  {def}                directory   = 'directory';
+  {def}                drop        = 'drop';
+  {def}                echo        = 'echo';
+  {def}                execute     = 'execute';
+  {def}                export      = 'export';
+  {def}                from        = 'from';
+  {def}                help        = 'help';
+  {def}                in          = 'in';
+  {def}                insert      = 'insert';
+  {def}                into        = 'into';
+  {def}                limit       = 'limit';
+  {def}                load        = 'load';
+  {def}                minus       = 'minus';
+  {def}                nondistinct = 'nondistinct';
+  {def}                off         = 'off';
+  {def}                offset      = 'offset';
+  {def}                or          = 'or';
+  {def}                order       = 'order';
+  {def}                on          = 'on';
+  {def}                quit        = 'quit';
+  {def}                restore     = 'restore';
+  {def}                rollback    = 'rollback';
+  {def}                select      = 'select';
+  {def}                set         = 'set';
+  {def}                statistics  = 'statistics';
+  {def}                stoponerror = 'stoponerror';
+  {def}                su          = 'su';
+  {def}                subquery    = 'subquery';
+  {def}                threshold   = 'threshold';
+  {def}                time        = 'time';
+  {def}                to          = 'to';
+  {def}                trans       = 'trans';
+  {def}                walk        = 'walk';
+  {def}                where       = 'where';
+  {def}                having      = 'having';
+  {def}                local       = 'local';
+  {def}                remote      = 'remote';
+
+
+  {def, var->def}      identifier = letter (letter | digit | '_' | '$' )*;
+  {def}                blank      = whitespace+;
+  {def->com}           hash        = '#';
+  {com}                comment    = [character - [lf + cr]];
+  {com->def}           endcomment = (lf | cr)+;
+  {def}                terminator = ';';
+  {def}                lpar       = '(';
+  {def}                rpar       = ')';
+  {def->begres}        url        = '<';
+  {endres->def}        endurl     = '>';
+  {def}                datatypeprefix = '^^';
+  {def->lng}           languageprefix = '@';
+  {def->var}           variableprefix = ('$' | '?');
+  {def}                number     = digit+;
+  {def}                float      = digit+ ('.' digit*) | ('.' digit+);
+  {lng->def}           langid      = letter letter | letter letter '-' letter letter;
+
+  {begres->endres}     resource    = urlchar*;
+  {def->lit, lit->def} quote       = 39;  /* ' */
+  {lit->esc}           escape      = '\';
+  {esc->lit}           escapedtext = character;
+  {lit}                text        = nonquote+;
+
+  {def}                lbrace     = '{';
+  {def}                rbrace     = '}';
+  {def}                lbracket   = '[';
+  {def}                rbracket   = ']';
+  {def}                colon      = ':';
+  {def}                comma      = ',';
+
+Ignored Tokens
+  blank, comment, escape, endcomment, endurl, hash, url;
+
+Productions
+  start =
+    {command} command? ;
+
+  command =
+    {alias}     alias [target]:resource as [prefix]:identifier               |
+    {aliasl}    alias                                                        |
+    {apply}     apply [rules]:resource to [base]:model_expression [destination]:destination_clause? |
+    {backup}    backup [source]:resource? to [locality]:locality? [destination]:resource |
+    {commit}    commit                                                       |
+    {create}    create [model]:resource [model_type]:resource?               |
+    {delete}    delete triple_factor from resource                           |
+    {directory} directory resource                                           |
+    {drop}      drop resource                                                |
+    {execute}   execute resource                                             |
+    {export}    export [source]:resource to [locality]:locality? [destination]:resource |
+    {help}      help command_prefix                                          |
+    {insert}    insert triple_factor into resource                           |
+    {load}      load [locality]:locality? [source]:resource into [destination]:resource |
+    {quit}      quit                                                         |
+    {restore}   restore [destination]:resource? from [locality]:locality? [source]:resource |
+    {rollback}  rollback                                                     |
+    {select}    query                                                        |
+    {set}       set set_option set_option_mode                               |
+    {su}        su resource [user]:identifier [password]:identifier          ;
+
+  destination_clause =
+    destination? resource;
+    
+  base_clause =
+    base resource;
+
+  threshold_clause =
+    {float}   threshold float  |
+    {integer} threshold number ;
+
+  query =
+    select_clause from_clause? where_clause having_clause?
+    order_clause? limit_clause? offset_clause?;
+
+  triple_factor =
+    {unbraced} set_of_triples           |
+    {braced}   lpar set_of_triples rpar ;
+
+  set_of_triples =
+    {triple}   triple+                   |
+    {resource} resource                  |
+    {select}   select [subject]:element [predicate]:element [object]:element
+               from_clause? where_clause having_clause?
+               order_clause? limit_clause? offset_clause?;
+
+  triple =
+    [subject]:triple_element [predicate]:triple_element [object]:triple_element ;
+
+  triple_element =
+    {resource} resource |
+    {literal}  literal  |
+    {variable} variable ;
+
+  command_prefix =
+    {empty}               |
+    {alias} alias         |
+    {backup} backup       |
+    {commit} commit       |
+    {create} create       |
+    {delete} delete       |
+    {directory} directory |
+    {drop} drop           |
+    {execute} execute     |
+    {export} export       |
+    {help} help           |
+    {insert} insert       |
+    {load} load           |
+    {quit} quit           |
+    {restore} restore     |
+    {rollback} rollback   |
+    {apply} apply         |
+    {select} select       |
+    {set} set             |
+    {su} su               ;
+
+  set_option =
+    {autocommit} autocommit   |
+    {echo} echo               |
+    {statistics} statistics   |
+    {stoponerror} stoponerror |
+    {time} time               ;
+
+  set_option_mode =
+    {off} off |
+    {on} on   ;
+
+  select_clause =
+    {empty_select} select nondistinct? |
+    {normal_select} select nondistinct? element+;
+
+  from_clause =
+    from model_expression;
+
+  model_expression =
+    {term} model_term                     |
+    {or}   model_expression or model_term ;
+
+  model_term =
+    {factor} model_factor                |
+    {and}    model_term and model_factor ;
+
+  model_factor =
+    {resource} resource                     |
+    {expression} lpar model_expression rpar ;
+
+  where_clause =
+    where constraint_expression;
+
+  having_clause =
+    having constraint_expression;
+
+  constraint =
+    [subject]:element [predicate]:element [object]:element in_clause? ;
+
+  in_clause =
+    in element ;
+
+  constraint_expression =
+    {term} constraint_term                          |
+    {or}   constraint_expression or constraint_term ;
+
+  constraint_term =
+    {dterm}  constraint_dterm                     |
+    {and}    constraint_term and constraint_dterm ;
+
+  constraint_dterm =
+    {factor} constraint_factor |
+    {minus} [minuend]:constraint_dterm minus [subtrahend]:constraint_factor ;
+
+  constraint_factor =
+    {constraint} constraint                  |
+    {compound} lbrace [subject]:element exists_expression in_clause? rbrace |
+    {existential} lbracket exists_expression in_clause? rbracket |
+    {expression} lpar constraint_expression rpar |
+    {transitive} transitive_clause |
+    {walk} walk_clause ;
+
+  exists_expression =
+    {eterm} exists_pterm  |
+    {colon} exists_expression colon exists_pterm ;
+
+  exists_pterm =
+    {pterm} [predicate]:element exists_oterm ;
+
+  exists_oterm =
+    {eo1} oterm |
+    {eo2} exists_oterm comma oterm ;
+
+  oterm = 
+    {oterm} [object]:element ;
+
+  transitive_clause =
+    {transitive1} trans lpar constraint rpar |
+    {transitive2} trans lpar [constraint1]:constraint and [constraint2]:constraint rpar ;
+
+  walk_clause =
+    {walk1} walk lpar [constraint1]:constraint and [constraint2]:constraint rpar;
+
+  order_clause =
+    order by order_element+ ;
+
+  order_element =
+    variable direction ;
+
+  direction =
+    {ascending}  asc? |
+    {descending} desc ;
+
+  limit_clause =
+    limit number;
+
+  offset_clause =
+    offset number;
+
+  element =
+    {variable}  variable                  |
+    {resource}  resource                  |
+    {literal}   literal                   |
+    {aggregate} aggregate lpar query rpar ;
+
+  aggregate =
+    {count}    count    |
+    {subquery} subquery ;
+
+  literal =
+    [opening]:quote strand* [closing]:quote language? datatype?;
+
+  strand =
+    {unescaped} text |
+    {escaped}   escapedtext;
+
+  datatype =
+    datatypeprefix resource;
+
+  language =
+    languageprefix langid;
+
+  variable =
+    variableprefix identifier;
+
+  locality =
+    {local} local |
+    {remote} remote ;
+

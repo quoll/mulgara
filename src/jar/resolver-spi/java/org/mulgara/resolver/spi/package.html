@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>Resolver SPI</title>
+</head>
+<body>
+<h1>
+Resolver SPI.
+</h1>
+<p>
+This package is a service provider interface for plugin libraries that manage
+a particular type of statement store.
+A {@link org.mulgara.resolver.spi.ResolverFactory} is provided with resources
+via the {@link org.mulgara.resolver.spi.ResolverFactoryInitializer} interface
+when it is installed.  Thereafter, the factory produces
+{@link org.mulgara.resolver.spi.Resolver}s which may create, modify and delete
+models, and which produce {@link org.mulgara.resolver.spi.Resolution}s to
+{@link org.mulgara.query.Constraint}s.
+</p>
+</body>
+</html>

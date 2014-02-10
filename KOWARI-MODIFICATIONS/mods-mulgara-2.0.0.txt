@@ -1,0 +1,304 @@
+------------------------------------------------------------------------
+r1104 | pag | 2008-07-23 14:27:44 -0700 (Wed, 23 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraTransactionFactory.java
+
+Fixed a problem with the idle timeouts in transactions where cancelled tasks were holding onto transactions. This solution required regular wakeups and rescheduling, which is undesirable, but we will need a new timeout handler in order to fix this correctly.
+------------------------------------------------------------------------
+r1102 | pag | 2008-07-22 22:04:50 -0700 (Tue, 22 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/common.properties
+
+Updated the version for release
+------------------------------------------------------------------------
+r1100 | pag | 2008-07-21 12:52:22 -0700 (Mon, 21 Jul 2008) | 1 line
+Changed paths:
+   A /trunk/KOWARI-MODIFICATIONS/mods-mulgara-2.0.0.txt
+
+Modification log for release candidate
+------------------------------------------------------------------------
+r1099 | ronald | 2008-07-20 16:00:05 -0700 (Sun, 20 Jul 2008) | 4 lines
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/AdvDatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ExternalTransactionUnitTest.java
+
+Fix close test: if we're fast enough the interrupt from the close()
+may not have been processed yet, so we can get hit with it in the
+Thread.join().
+
+------------------------------------------------------------------------
+r1098 | ronald | 2008-07-20 06:01:56 -0700 (Sun, 20 Jul 2008) | 7 lines
+Changed paths:
+   M /trunk/conf/mulgara-config.xml
+   M /trunk/conf/mulgara-embedded.dtd
+   M /trunk/conf/mulgara-embedded.xsd
+   M /trunk/src/jar/query/java/org/mulgara/server/Session.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/AdvDatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/AppendAggregateTuples.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/BasicDatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/BootstrapOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/CacheStatements.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ContentFactory.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ContentHandlerManagerImpl.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/CreateDefaultGraphOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/CreateModelOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/Database.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseFactory.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseFactoryInitializer.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseInitializer.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseOperationContext.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSecurityAdapterInitializer.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSession.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSessionListQueryUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DirectTransitiveFunction.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ExhaustiveTransitiveFunction.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ExternalTransactionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/GlobalizedAnswer.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/InternalResolver.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/InternalResolverFactory.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/JRDFResolverSession.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/JRDFResolverSessionFactory.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/JotmTransactionStandaloneTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/LocalJRDFDatabaseSession.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/LoginOperation.java
+   A /trunk/src/jar/resolver/java/org/mulgara/resolver/MockResolver.java (from /branches/mgr-121-lockrecovery/src/jar/resolver/java/org/mulgara/resolver/MockResolver.java:1097)
+   A /trunk/src/jar/resolver/java/org/mulgara/resolver/MockResolverFactory.java (from /branches/mgr-121-lockrecovery/src/jar/resolver/java/org/mulgara/resolver/MockResolverFactory.java:1097)
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ModelExistsOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ModifyModelOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraExternalTransaction.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraExternalTransactionFactory.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraInternalTransaction.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraInternalTransactionFactory.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraTransaction.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraTransactionFactory.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraTransactionManager.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraXAResourceContext.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MutableLocalQueryImpl.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/Operation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/PreallocateOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/QueryOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/RemoveModelOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/SetModelOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/StatusFormat.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/StreamContent.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/StringPoolSession.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/StringPoolSessionFactory.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/SystemModelSecurityAdapter.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/TransitiveFunction.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/XADatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalResolverUnitTest.java
+   M /trunk/src/jar/resolver-test/java/org/mulgara/resolver/test/TestResolverUnitTest.java
+   M /trunk/src/jar/resolver-view/java/org/mulgara/resolver/view/ViewResolverUnitTest.java
+   M /trunk/src/jar/server-beep/java/org/mulgara/server/beep/BEEPSession.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteSession.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteSessionWrapperSession.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/SessionWrapperRemoteSession.java
+
+Merged branch mgr-121-lockrecovery.
+
+This contains three sets of changes:
+ 1. support for idle and transaction timeouts - this closes #121, #122, and #125.
+ 2. synchronization fixes and simplifications for the transactions
+ 3. miscellaneous small fixes to the transactions - this closes #101.
+
+------------------------------------------------------------------------
+r1091 | pag | 2008-07-17 14:56:54 -0700 (Thu, 17 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/AppendAggregateTuples.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ContentHandlerManagerImpl.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/LocalQueryResolver.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraExternalTransaction.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraExternalTransactionFactory.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraInternalTransaction.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraInternalTransactionFactory.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraTransaction.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraTransactionManager.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraXAResourceContext.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/StringPoolSession.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/LiteralDesc.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa/TripleAVLFile.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteAnswerWrapperAnswer.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/LiteralTuples.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperations.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/UnorderedProjection.java
+   M /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/xa/CacheLine.java
+   M /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/xa/HybridTuples.java
+   M /trunk/src/jar/util/java/org/mulgara/util/Bootstrap.java
+   A /trunk/src/jar/util/java/org/mulgara/util/StackTrace.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/AVLNode.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/FreeList.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/ManagedBlockFile.java
+
+Removed all references to 'new Throwable', replacing with StackTrace where appropriate, or an appropriate exception type otherwise.
+------------------------------------------------------------------------
+r1090 | pag | 2008-07-17 10:13:08 -0700 (Thu, 17 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDecimalImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDecimalUnitTest.java
+
+Added support for decimals to start with a '+' character
+------------------------------------------------------------------------
+r1089 | pag | 2008-07-17 09:17:57 -0700 (Thu, 17 Jul 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPStringUnitTest.java
+
+Tests that strings are created as expected and compare first by language code and then by lexical value
+------------------------------------------------------------------------
+r1088 | pag | 2008-07-17 09:17:01 -0700 (Thu, 17 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPStringImpl.java
+
+Fixed ascii tests on the language code
+------------------------------------------------------------------------
+r1087 | pag | 2008-07-16 15:14:26 -0700 (Wed, 16 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/jxdata/iTQL/data_types/queryResult34.txt
+
+Now able to handle typed literals that don't validate for their type
+------------------------------------------------------------------------
+r1086 | pag | 2008-07-16 15:13:12 -0700 (Wed, 16 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDecimalImpl.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDecimalUnitTest.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPObjectFactoryImpl.java
+   A /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPObjectFactoryUnitTest.java
+
+Mistakenly changed SPDecimal to handle floating point, but the bug report leading to this was really about not throwing an exception for floating point values. Now accepting any lexical value for typed literals, and falling back to using untyped data when the semantics are violated, e.g. when a floating point value is giving for an integer, or a string is given for a number.
+------------------------------------------------------------------------
+r1085 | eddie | 2008-07-16 08:13:45 -0700 (Wed, 16 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/build.properties
+   M /trunk/build.xml
+
+Added new build target (core-dist). This is largely based on embedded-dist, but removes third-party libraries and adds client-jrdf.
+------------------------------------------------------------------------
+r1084 | pag | 2008-07-16 07:23:17 -0700 (Wed, 16 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDecimalImpl.java
+   A /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDecimalUnitTest.java
+
+Updated xsd:decimal to handle floating point numbers as Doubles. If no decimal point is seen in the lexical form, then it still uses Longs. Also, remembers the number of decimal places in the lexical form for floating point values. This fixes #128
+------------------------------------------------------------------------
+r1083 | pag | 2008-07-15 18:30:49 -0700 (Tue, 15 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/jxdata/iTQL/dates.rdf
+
+Updated Valentine's day to have a time offset. This helps test the fix checked in as 1081
+------------------------------------------------------------------------
+r1082 | pag | 2008-07-15 18:29:31 -0700 (Tue, 15 Jul 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDateUnitTest.java
+
+New unit test for SPDateImpl
+------------------------------------------------------------------------
+r1081 | pag | 2008-07-15 18:28:33 -0700 (Tue, 15 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDateImpl.java
+
+Added in support for timezone offsets. This fixes #127
+------------------------------------------------------------------------
+r1078 | alexhall | 2008-07-11 10:49:38 -0700 (Fri, 11 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/sparql-interpreter/java/org/mulgara/sparql/IdentityTransformer.java
+   M /trunk/src/jar/sparql-interpreter/java/org/mulgara/sparql/VariableRenameTransformer.java
+
+Remove Interval, Relational, and Test constraints from the variable renaming constraint transformation used for SPARQL DESCRIBE queries.  These depend on resolver classes that are not in the itql-version.jar file, and furthermore these constraints cannot be created by the parser but only by the query transformation code on the server.
+------------------------------------------------------------------------
+r1077 | alexhall | 2008-07-10 15:07:00 -0700 (Thu, 10 Jul 2008) | 1 line
+Changed paths:
+   A /trunk/src/jar/query/java/org/mulgara/query/RdfXmlEmitter.java
+   M /trunk/tools/src/org/mulgara/tools/Sparql.java
+
+Added RdfXmlEmitter, a utility for formatting the results of a SPARQL CONSTRUCT or DESCRIBE query as RDF/XML.
+------------------------------------------------------------------------
+r1076 | alexhall | 2008-07-10 07:46:24 -0700 (Thu, 10 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/GraphAnswer.java
+   M /trunk/src/jar/sparql-interpreter/java/org/mulgara/sparql/SparqlInterpreter.java
+
+Fix bugs in SPARQL DESCRIBE queries.
+------------------------------------------------------------------------
+r1075 | pag | 2008-07-09 15:17:32 -0700 (Wed, 09 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/BooleanAnswer.java
+
+Returning a boolean literal instead of a boolean
+------------------------------------------------------------------------
+r1074 | pag | 2008-07-09 15:16:48 -0700 (Wed, 09 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/rdf/BlankNodeImpl.java
+
+Reformat and remove warnings
+------------------------------------------------------------------------
+r1073 | pag | 2008-07-09 15:15:51 -0700 (Wed, 09 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/AnswerImpl.java
+
+Reformat and remove warnings
+------------------------------------------------------------------------
+r1072 | pag | 2008-07-08 21:13:06 -0700 (Tue, 08 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/jxdata/iTQL/having_queries/queryResult15-2.txt
+
+Fixed up new exception trace in message
+------------------------------------------------------------------------
+r1071 | pag | 2008-07-08 09:15:40 -0700 (Tue, 08 Jul 2008) | 18 lines
+Changed paths:
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa/TripleAVLFile.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa/TripleAVLFileUnitTest.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa/TripleWriteThread.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa/XAStatementStoreImpl.java
+   M /trunk/src/jar/store-nodepool-xa/java/org/mulgara/store/nodepool/xa/XANodePoolImpl.java
+   M /trunk/src/jar/store-stringpool-xa/java/org/mulgara/store/stringpool/xa/XAStringPoolImpl.java
+   M /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/xa/BlockCacheLine.java
+   M /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/xa/HybridTuples.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/AVLFile.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/AVLFileTest.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/AVLNode.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/AbstractBlockFile.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/Block.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/BlockFile.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/BlockFileTest.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/FreeList.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/FreeListTest.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/IOBlockFile.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/IOBlockFileTest.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/ManagedBlockFile.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/ManagedBlockFileTest.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/MappedBlockFile.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/MappedBlockFileTest.java
+   D /trunk/src/jar/util-xa/java/org/mulgara/store/xa/ObjectPool.java
+
+Deleted ObjectPool and all references to it.
+
+This is a real architectural change, as the use of these pools was pervasive in the lower layers.
+
+In JDK 1.4, object pools were required for efficient operation, however, improvements in memory
+management in JDK 1.5 changed the recommendations from Sun to eliminate object pools partly
+to help the garbage collector, and partly because allocation was typically much faster:
+  http://java.sun.com/docs/hotspot/HotSpotFAQ.html#gc_pooling
+Since we no longer support JDK 1.4, then this is an overdue change. Apparently JDK 1.6 offers
+even better performance.
+
+A number of changes resulted in poor formatting, so this was cleaned up at the same time.
+Also, a number of warnings were removed (e.g. non-typed WeakReferences and phase lists
+in the FreeList class). This was outside of the scope of removing the object pools, but
+the opportunity to make the modification was there, and these classes are unlikely to be
+revisited in the foreseeable future.
+
+
+------------------------------------------------------------------------
+r1070 | pag | 2008-07-08 08:33:34 -0700 (Tue, 08 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/sparql-interpreter/java/org/mulgara/sparql/SparqlInterpreter.java
+
+Hooked in Describe queries
+------------------------------------------------------------------------
+r1054 | pag | 2008-07-06 17:20:20 -0700 (Sun, 06 Jul 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/StringPoolSession.java
+
+Added guards around state tests in transaction actions
+------------------------------------------------------------------------

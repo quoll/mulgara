@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="store-stringpool-memory" default="store-stringpool-memory.jar"
+         basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="store-stringpool-memory-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${store-stringpool-xa.dist.dir}/${store-stringpool-xa.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${store-nodepool-memory.dist.dir}/${store-nodepool-memory.jar}"/>
+  </path>
+
+  <path id="store-stringpool-memory-test-classpath">
+
+    <path refid="store-stringpool-memory-classpath"/>
+
+    <fileset file="${store-stringpool-memory.dist.dir}/${store-stringpool-memory.jar}"/>
+  </path>
+
+  <target name="store-stringpool-memory-clean"
+          description="Removes all compile generated files for the
+                       store-stringpool-memory">
+
+    <tstamp/>
+
+    <delete dir="${store-stringpool-memory.obj.dir}"/>
+    <delete dir="${store-stringpool-memory.test.dir}"/>
+    <delete dir="${store-stringpool-memory.dist.dir}"/>
+  </target>
+
+  <target name="-store-stringpool-memory-prepare"
+          description="Creates all directories associated with the
+                       store-stringpool-memory's compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${store-stringpool-memory.obj.dir}"/>
+    <mkdir dir="${store-stringpool-memory.test.dir}"/>
+    <mkdir dir="${store-stringpool-memory.dist.dir}"/>
+    <mkdir dir="${store-stringpool-memory.obj.dir}/classes"/>
+  </target>
+
+  <target name="store-stringpool-memory-compile"
+          depends="-store-stringpool-memory-prepare, store-nodepool-memory-jar,
+          store-stringpool-xa-jar, resolver-spi-jar"
+          description="Compiles all store-stringpool-memory related files included
+                       generated source code">
+
+    <javac destdir="${store-stringpool-memory.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="store-stringpool-memory-classpath"/>
+
+      <src path="${store-stringpool-memory.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="store-stringpool-memory-jar"
+          depends="store-stringpool-memory-compile, store-stringpool-memory-jar-uptodate"
+          unless="store-stringpool-memory.jar.uptodate"
+          description="Builds the memory-backed node pool JAR">
+
+    <jar jarfile="${store-stringpool-memory.dist.dir}/${store-stringpool-memory.jar}">
+      <fileset dir="${store-stringpool-memory.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="store-stringpool-memory-jar-uptodate">
+
+    <uptodate property="store-stringpool-memory.jar.uptodate"
+              targetfile="${store-stringpool-memory.dist.dir}/${store-stringpool-memory.jar}">
+      <srcfiles dir="${store-stringpool-memory.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="store-stringpool-memory-dist"
+          depends="store-stringpool-memory-jar"
+          description="Performs all tasks related to finalising this
+                       store-stringpool-memory and readying it for distribution">
+
+    <!-- All that's involved in the final version of the store-stringpool-memory library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="store-stringpool-memory-test" depends="store-stringpool-memory-jar">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="store-stringpool-memory-classpath"/>
+      <param name="dir" value="${store-stringpool-memory.src.dir}"/>
+      <param name="jar" value="${store-stringpool-memory.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="store-stringpool-memory-javadoc"
+          depends="store-stringpool-memory-jar"
+          description="Creates the javadoc for this store-stringpool-memory">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package"
+             value="org.mulgara.store.stringpool.memory.*"/>
+      <param name="javadoc.classpath" value="store-stringpool-memory-classpath"/>
+      <param name="javadoc.sourcepath"
+             value="${store-stringpool-memory.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="store-stringpool-memory-help"
+          description="Displays the help information for this
+                       store-stringpool-memory">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this store-stringpool-memory -->
+
+    <echo message="Welcome to the build script for ${store-stringpool-memory.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${store-stringpool-memory.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

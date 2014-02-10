@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Integrating into Mulgara </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Integrating into Mulgara, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="2714.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="947.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h3 class="heading3">Integrating into Mulgara</h3>
+<p class="bodytext">Since the resolver and content handler jars are external, it is difficult to integrate them into the Mulgara jar. Therefore they need to be added to the CLASSPATH environment variable to be accessible when Mulgara runs.</p>
+<p class="bodytext">For systems running the Windows<sup class="superscript">&reg;</sup> operating system, set the <code class="monospace">classpath</code> as follows:</p>
+<p class="commandtext">set CLASSPATH=%CLASSPATH%;&lt;Full jar path&gt;\myResolver.jar;&lt;Full jar path&gt;\myHandler.jar</p>
+<p class="bodytext">Where <code class="monospace">myResolver.jar</code> and <code class="monospace">myHandler.jar</code> are the names of your compiled jars and <code class="monospace">&lt;Full jar path&gt;</code> is their fully qualified path (for example, <code class="monospace">C:\myResolvers</code>).</p>
+<p class="bodytext">For systems running a Linux<sup class="superscript">&reg;</sup> or UNIX<sup class="superscript">&reg;</sup> operating system, set the <code class="monospace">classpath</code> as follows:</p>
+<p class="commandtext">export CLASSPATH=$CLASSPATH:{Full jar path}/myResolver.jar:{Full jar path}/myHandler.jar</p>
+<p class="bodytext">Both the HTTP resolver and MP3 content handler are already packaged in Mulgara so doing this with the jars created by the tutorial have no effect. They are for learning purposes only.</p>
+<p class="bodytext">In addition to adding the jars to the <code class="monospace">classpath</code>, the server also needs to know about the new resolvers and content handlers so it can use them when required. These are stored in the <code class="monospace">mulgara-config.xml</code> file (see the <a id="h3021" class="documentlinktemplate" title="Mulgara Configuration File" href="1139.htm#o402" target="_self">Mulgara Configuration File section</a>).</p>
+<p class="bodytext">To include your resolver or handler in the Mulgara server, use the following steps:</p>
+<ol class="listnumber"><li class="listnumber">In the <code class="monospace">mulgara-config.xml</code> file, find the <code class="monospace">&lt;TripleStoreImplementation&gt;</code> tag. In this section there may already be some configured resolvers and handlers. The order is not important, so find a suitable place to insert your new resolver or handler.</li><li class="listnumber">For resolvers, add a tag <code class="monospace">&lt;ResolverFactoryClass&gt;{class name}&lt;/ResolverFactoryClass&gt;</code> where <code class="monospace">{class name}</code> is the full class name of the resolver's factory class. For example, <code class="monospace">org.mulgara.resolver.http.HttpResolverFactory</code></li><li class="listnumber">For content handlers, add a tag <code class="monospace">&lt;ContentHandlerClass&gt;{class name}&lt;/ContentHandlerClass&gt;</code> where <code class="monospace">{class name}</code> is the full class name of the content handler's implementation class. For example, <code class="monospace">org.mulgara.content.mp3.MP3ContentHandler</code></li></ol><p class="bodytext">The MP3 content handler and HTTP resolver are already configured as part of Mulgara and should not be added again. They are for learning purposes only.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="2686.htm" target="_self">HTTP Resolver and MP3 Content Handler Tutorial</a></p><p class="relateditem"><a href="2686.htm#o3182" target="_self"></a></p><p class="relateditem"><a href="2687.htm" target="_self">Prerequisites</a></p><p class="relateditem"><a href="3183.htm" target="_self">Developing Protocol Resolvers</a></p><p class="relateditem"><a href="3184.htm" target="_self">Developing Content Handlers</a></p><p class="relateditem"><a href="2714.htm" target="_self">Compiling with Ant</a></p></td>
+</tr>
+</table>
+
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

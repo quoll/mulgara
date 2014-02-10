@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.example.org/dbserver01/db01#"
+    xmlns:d2rq="http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#"
+    xmlns:db1="http://www.example.org/dbserver01/db01#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dctype="http://purl.org/dc/dcmitype/"
+    xmlns:log="http://www.w3.org/2000/10/swap/log#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
+    <rdf:Description rdf:about="">
+        <dc:creator>Chris Bizer</dc:creator>
+        <dc:creator>Richard Cyganiak</dc:creator>
+        <dc:date>2004-08-10</dc:date>
+        <dc:description></dc:description>
+        <dc:format>RDF</dc:format>
+        <dc:identifier rdf:resource=""/>
+        <dc:publisher></dc:publisher>
+        <dc:subject></dc:subject>
+        <dc:title></dc:title>
+        <rdfs:comment>This files describes the D2RQ mappings from the ISWC ontolgy to a local database.</rdfs:comment>
+    </rdf:Description>
+
+    <d2rq:ProcessingInstructions rdf:about="http://annotation.semanticweb.org/iswc/iswc.daml#ProcessingInstructions1">
+    </d2rq:ProcessingInstructions>
+
+    <d2rq:ClassMap rdf:about="http://www.example.org/dbserver01/db01#Conference">
+        <d2rq:additionalProperty rdf:resource="http://www.example.org/dbserver01/db01#ConferenceSeeAlso"/>
+        <d2rq:class rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#Conference"/>
+        <d2rq:dataStorage rdf:resource="http://www.example.org/dbserver01/db01#Database1"/>
+        <d2rq:uriPattern>http://conferences.org/comp/confno@@Conferences.ConfID@@</d2rq:uriPattern>
+    </d2rq:ClassMap>
+
+    <d2rq:AdditionalProperty rdf:about="http://www.example.org/dbserver01/db01#ConferenceSeeAlso">
+        <d2rq:propertyName rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#seeAlso"/>
+        <d2rq:propertyValue rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml"/>
+    </d2rq:AdditionalProperty>
+
+    <d2rq:Database rdf:about="http://www.example.org/dbserver01/db01#Database1">
+        <d2rq:allowDistinct>true</d2rq:allowDistinct>
+        <d2rq:dateColumn>Conferences.Date</d2rq:dateColumn>
+        <d2rq:expressionTranslator>de.fuberlin.wiwiss.d2rq.rdql.MySQLExpressionTranslator</d2rq:expressionTranslator>
+        <d2rq:numericColumn>Conferences.ConfID</d2rq:numericColumn>
+        <d2rq:numericColumn>Papers.Conference</d2rq:numericColumn>
+        <d2rq:numericColumn>Papers.PaperID</d2rq:numericColumn>
+        <d2rq:numericColumn>Papers.PubYear</d2rq:numericColumn>
+        <d2rq:numericColumn>Topics.TopicID</d2rq:numericColumn>
+        <d2rq:jdbcDSN>jdbc:derby:sqltest</d2rq:jdbcDSN>
+        <d2rq:jdbcDriver>org.apache.derby.jdbc.EmbeddedDriver</d2rq:jdbcDriver>
+        <d2rq:textColumn>Conferences.Location</d2rq:textColumn>
+        <d2rq:textColumn>Conferences.Name</d2rq:textColumn>
+        <d2rq:textColumn>Conferences.URI</d2rq:textColumn>
+        <d2rq:textColumn>Papers.Abstract</d2rq:textColumn>
+        <d2rq:textColumn>Papers.Title</d2rq:textColumn>
+        <d2rq:textColumn>Papers.URI</d2rq:textColumn>
+        <d2rq:textColumn>Persons.Email</d2rq:textColumn>
+        <d2rq:textColumn>Persons.FirstName</d2rq:textColumn>
+        <d2rq:textColumn>Persons.LastName</d2rq:textColumn>
+        <d2rq:textColumn>Persons.URI</d2rq:textColumn>
+        <d2rq:textColumn>Topics.TopicName</d2rq:textColumn>
+    </d2rq:Database>
+
+    <d2rq:ClassMap rdf:about="http://www.example.org/dbserver01/db01#InProceedings">
+        <d2rq:class rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#InProceedings"/>
+        <d2rq:condition>Papers.Publish = 1</d2rq:condition>
+        <d2rq:dataStorage rdf:resource="http://www.example.org/dbserver01/db01#Database1"/>
+        <d2rq:uriPattern>http://www.conference.org/conf02004/paper#Paper@@Papers.PaperID@@</d2rq:uriPattern>
+    </d2rq:ClassMap>
+
+    <d2rq:ObjectPropertyBridge rdf:about="http://www.example.org/dbserver01/db01#PersonsClassEmail">
+        <d2rq:belongsToClassMap rdf:resource="http://www.example.org/dbserver01/db01#PersonsClassMap"/>
+        <d2rq:pattern>mailto:@@Persons.Email@@</d2rq:pattern>
+        <d2rq:property rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#eMail"/>
+    </d2rq:ObjectPropertyBridge>
+
+    <d2rq:DatatypePropertyBridge rdf:about="http://www.example.org/dbserver01/db01#PersonsClassFirstName">
+        <d2rq:belongsToClassMap rdf:resource="http://www.example.org/dbserver01/db01#PersonsClassMap"/>
+        <d2rq:column>Persons.FirstName</d2rq:column>
+        <d2rq:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <d2rq:property rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#firstName"/>
+    </d2rq:DatatypePropertyBridge>
+
+    <d2rq:DatatypePropertyBridge rdf:about="http://www.example.org/dbserver01/db01#PersonsClassLastName">
+        <d2rq:belongsToClassMap rdf:resource="http://www.example.org/dbserver01/db01#PersonsClassMap"/>
+        <d2rq:column>Persons.LastName</d2rq:column>
+        <d2rq:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <d2rq:property rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#lastName"/>
+    </d2rq:DatatypePropertyBridge>
+
+    <d2rq:ClassMap rdf:about="http://www.example.org/dbserver01/db01#PersonsClassMap">
+        <d2rq:class rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#Person"/>
+        <d2rq:dataStorage rdf:resource="http://www.example.org/dbserver01/db01#Database1"/>
+        <d2rq:uriColumn>Persons.URI</d2rq:uriColumn>
+    </d2rq:ClassMap>
+
+    <d2rq:ObjectPropertyBridge rdf:about="http://www.example.org/dbserver01/db01#PersonsClassPaper">
+        <d2rq:belongsToClassMap rdf:resource="http://www.example.org/dbserver01/db01#PersonsClassMap"/>
+        <d2rq:join>Persons.PersonID = Rel_Person_Paper.PersonID</d2rq:join>
+        <d2rq:join>Rel_Person_Paper.PaperID = Papers.PaperID</d2rq:join>
+        <d2rq:property rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#author_of"/>
+        <d2rq:refersToClassMap rdf:resource="http://www.example.org/dbserver01/db01#InProceedings"/>
+    </d2rq:ObjectPropertyBridge>
+
+    <d2rq:ObjectPropertyBridge rdf:about="http://www.example.org/dbserver01/db01#PersonsClassTopic">
+        <d2rq:belongsToClassMap rdf:resource="http://www.example.org/dbserver01/db01#PersonsClassMap"/>
+        <d2rq:join>Persons.PersonID = Rel_Person_Topic.PersonID</d2rq:join>
+        <d2rq:join>Rel_Person_Topic.TopicID = Topics.TopicID</d2rq:join>
+        <d2rq:property rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#research_topic"/>
+        <d2rq:refersToClassMap rdf:resource="http://www.example.org/dbserver01/db01#Topic"/>
+    </d2rq:ObjectPropertyBridge>
+
+    <d2rq:ClassMap rdf:about="http://www.example.org/dbserver01/db01#Topic">
+        <d2rq:bNodeIdColumns>Topics.TopicID</d2rq:bNodeIdColumns>
+        <d2rq:class rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#Topic"/>
+        <d2rq:dataStorage rdf:resource="http://www.example.org/dbserver01/db01#Database1"/>
+    </d2rq:ClassMap>
+
+    <d2rq:ObjectPropertyBridge rdf:about="http://www.example.org/dbserver01/db01#conferenceSameAs">
+        <d2rq:belongsToClassMap rdf:resource="http://www.example.org/dbserver01/db01#Conference"/>
+        <d2rq:column>Conferences.URI</d2rq:column>
+        <d2rq:property rdf:resource="http://www.w3.org/2002/07/owl#sameAs"/>
+    </d2rq:ObjectPropertyBridge>
+
+    <d2rq:DatatypePropertyBridge rdf:about="http://www.example.org/dbserver01/db01#date">
+        <d2rq:belongsToClassMap rdf:resource="http://www.example.org/dbserver01/db01#Conference"/>
+        <d2rq:column>Conferences.Date</d2rq:column>
+        <d2rq:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+        <d2rq:property rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#date"/>
+    </d2rq:DatatypePropertyBridge>
+
+    <d2rq:DatatypePropertyBridge rdf:about="http://www.example.org/dbserver01/db01#eventTitle">
+        <d2rq:belongsToClassMap rdf:resource="http://www.example.org/dbserver01/db01#Conference"/>
+        <d2rq:column>Conferences.Name</d2rq:column>
+        <d2rq:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <d2rq:lang>en</d2rq:lang>
+        <d2rq:property rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#eventTitle"/>
+    </d2rq:DatatypePropertyBridge>
+
+    <d2rq:DatatypePropertyBridge rdf:about="http://www.example.org/dbserver01/db01#inProceedingsAbstract">
+        <d2rq:belongsToClassMap rdf:resource="http://www.example.org/dbserver01/db01#InProceedings"/>
+        <d2rq:column>Papers.Abstract</d2rq:column>
+        <d2rq:lang>en</d2rq:lang>
+        <d2rq:property rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#abstract"/>
+    </d2rq:DatatypePropertyBridge>
+
+    <d2rq:ObjectPropertyBridge rdf:about="http://www.example.org/dbserver01/db01#inProceedingsAuthor">
+        <d2rq:belongsToClassMap rdf:resource="http://www.example.org/dbserver01/db01#InProceedings"/>
+        <d2rq:join>Papers.PaperID = Rel_Person_Paper.PaperID</d2rq:join>
+        <d2rq:join>Rel_Person_Paper.PersonID = Persons.PersonID</d2rq:join>
+        <d2rq:property rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#author"/>
+        <d2rq:refersToClassMap rdf:resource="http://www.example.org/dbserver01/db01#PersonsClassMap"/>
+    </d2rq:ObjectPropertyBridge>
+
+    <d2rq:ObjectPropertyBridge rdf:about="http://www.example.org/dbserver01/db01#inProceedingsConference">
+        <d2rq:belongsToClassMap rdf:resource="http://www.example.org/dbserver01/db01#InProceedings"/>
+        <d2rq:join>Papers.Conference = Conferences.ConfID</d2rq:join>
+        <d2rq:property rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#conference"/>
+        <d2rq:refersToClassMap rdf:resource="http://www.example.org/dbserver01/db01#Conference"/>
+    </d2rq:ObjectPropertyBridge>
+
+    <d2rq:ObjectPropertyBridge rdf:about="http://www.example.org/dbserver01/db01#inProceedingsSameAs">
+        <d2rq:belongsToClassMap rdf:resource="http://www.example.org/dbserver01/db01#InProceedings"/>
+        <d2rq:column>Papers.URI</d2rq:column>
+        <d2rq:property rdf:resource="http://www.w3.org/2002/07/owl#sameAs"/>
+    </d2rq:ObjectPropertyBridge>
+
+    <d2rq:DatatypePropertyBridge rdf:about="http://www.example.org/dbserver01/db01#inProceedingsTitle">
+        <d2rq:belongsToClassMap rdf:resource="http://www.example.org/dbserver01/db01#InProceedings"/>
+        <d2rq:lang>en</d2rq:lang>
+        <d2rq:pattern>Titel of the Paper: @@Papers.Title@@</d2rq:pattern>
+        <d2rq:property rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#title"/>
+    </d2rq:DatatypePropertyBridge>
+
+    <d2rq:DatatypePropertyBridge rdf:about="http://www.example.org/dbserver01/db01#inProceedingsYear">
+        <d2rq:belongsToClassMap rdf:resource="http://www.example.org/dbserver01/db01#InProceedings"/>
+        <d2rq:column>Papers.PubYear</d2rq:column>
+        <d2rq:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
+        <d2rq:property rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#year"/>
+        <d2rq:valueRegex>^[0-9]{4}$</d2rq:valueRegex>
+    </d2rq:DatatypePropertyBridge>
+
+    <d2rq:DatatypePropertyBridge rdf:about="http://www.example.org/dbserver01/db01#location">
+        <d2rq:belongsToClassMap rdf:resource="http://www.example.org/dbserver01/db01#Conference"/>
+        <d2rq:column>Conferences.Location</d2rq:column>
+        <d2rq:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <d2rq:lang>en</d2rq:lang>
+        <d2rq:property rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#location"/>
+    </d2rq:DatatypePropertyBridge>
+
+    <d2rq:ObjectPropertyBridge rdf:about="http://www.example.org/dbserver01/db01#primaryTopic">
+        <d2rq:belongsToClassMap rdf:resource="http://www.example.org/dbserver01/db01#InProceedings"/>
+        <d2rq:condition>Rel_Paper_Topic.RelationType = 1</d2rq:condition>
+        <d2rq:join>Papers.PaperID = Rel_Paper_Topic.PaperID</d2rq:join>
+        <d2rq:join>Rel_Paper_Topic.TopicID = Topics.TopicID</d2rq:join>
+        <d2rq:property rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#primaryTopic"/>
+        <d2rq:refersToClassMap rdf:resource="http://www.example.org/dbserver01/db01#Topic"/>
+    </d2rq:ObjectPropertyBridge>
+
+    <d2rq:ObjectPropertyBridge rdf:about="http://www.example.org/dbserver01/db01#secondaryTopic">
+        <d2rq:belongsToClassMap rdf:resource="http://www.example.org/dbserver01/db01#InProceedings"/>
+        <d2rq:condition>Rel_Paper_Topic.RelationType = 2</d2rq:condition>
+        <d2rq:join>Papers.PaperID = Rel_Paper_Topic.PaperID</d2rq:join>
+        <d2rq:join>Rel_Paper_Topic.TopicID = Topics.TopicID</d2rq:join>
+        <d2rq:property rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#secondaryTopic"/>
+        <d2rq:refersToClassMap rdf:resource="http://www.example.org/dbserver01/db01#Topic"/>
+    </d2rq:ObjectPropertyBridge>
+
+    <d2rq:DatatypePropertyBridge rdf:about="http://www.example.org/dbserver01/db01#topicName">
+        <d2rq:belongsToClassMap rdf:resource="http://www.example.org/dbserver01/db01#Topic"/>
+        <d2rq:column>Topics.TopicName</d2rq:column>
+        <d2rq:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <d2rq:property rdf:resource="http://annotation.semanticweb.org/iswc/iswc.daml#name"/>
+    </d2rq:DatatypePropertyBridge>
+</rdf:RDF>
+

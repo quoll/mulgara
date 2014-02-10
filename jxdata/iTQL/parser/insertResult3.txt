@@ -1,0 +1,2 @@
+ItqlInterpreter error - [1,28] Unknown token: >
+Caused by: (LexerException) [1,28] Unknown token: >

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Creating the Graph </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Creating the Graph, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="2893.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="2904.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h3 class="heading3">Creating the Graph</h3>
+<p class="bodytext">The <a id="h3190" class="documentlinktemplate" title="Comparison of JRDF Graph Implementations" href="2893.htm#o2899" target="_self">Comparison of JRDF Graph Implementations section</a> outlines the advantages and disadvantages of the different implementation options. Choose the one that is most suitable for your requirements.</p>
+<p class="bodytext">You can create more than one graph and use them together. For example, you might use an iTQL graph to retrieve results from a query, load the contents into a memory graph for efficient presentation and editing, and then persist the edited statements using a client graph.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="2900.htm#o2901" target="_self">JRDF Graph (Memory Graph)</a></p><p class="relateditem"><a href="2900.htm#o3189" target="_self">Server-side JRDF Graph (Server Graph)</a></p><p class="relateditem"><a href="2900.htm#o2902" target="_self">Server Backed JRDF Graph (Client Graph)</a></p><p class="relateditem"><a href="2900.htm#o2903" target="_self">Read Only iTQL Result JRDF Graph (iTQL Graph)</a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="2892.htm" target="_self">JRDF Tutorial</a></p><p class="relateditem"><a href="2893.htm" target="_self">Prerequisites</a></p><p class="relateditem"><a href="2893.htm#o2898" target="_self">Obtaining a Session from a Mulgara Server</a></p><p class="relateditem"><a href="2893.htm#o2899" target="_self">Comparison of JRDF Graph Implementations</a></p><p class="relateditem"><a href="2904.htm" target="_self">Creating Nodes and Triples</a></p><p class="relateditem"><a href="2905.htm" target="_self">Adding Triples to the Graph</a></p><p class="relateditem"><a href="2906.htm" target="_self">Searching the Graph</a></p><p class="relateditem"><a href="2911.htm" target="_self">Reify Triples</a></p><p class="relateditem"><a href="2912.htm" target="_self">Removing Triples from the Graph</a></p></td>
+</tr>
+</table>
+
+<a name="o2901"></a><h4 class="heading4">JRDF Graph (Memory Graph)</h4>
+<p class="bodytext">The following code creates a memory graph:</p>
+<p class="commandtext">Graph graph = new GraphImpl();</p>
+<a name="o3189"></a><h4 class="heading4">Server-side JRDF Graph (Server Graph)</h4>
+<p class="bodytext">You need to obtain a session for your Mulgara server before you can create a server graph. When obtaining the session, use <code class="monospace">SessionFactoryFinder.newSessionFactory(serverURI, false)</code> to indicate that the server is running in the same JVM (that is, it is running locally).</p>
+<p class="bodytext">The server graph is created using a <code class="monospace">LocalJRDFSession</code>. See the Obtaining a Session from the TKS Server section for more information on how to obtain a <code class="monospace">LocalJRDFSession</code>.</p>
+<p class="bodytext">After obtaining a local session, the following code creates a server graph:</p>
+<p class="commandtext">//create a new Model<br />URI modelURI = new URI(&quot;rmi://mysite.com/server1#exampleGraph&quot;);<br />URI modelType = new URI(&quot;http://mulgara.org/mulgara#Model&quot;);<br />session.createModel(modelURI, modelType);<br /><br />//create a JRDF Graph for the model<br />Graph graph = new JRDFGraph(session, modelURI);</p>
+<a name="o2902"></a><h4 class="heading4">Server Backed JRDF Graph (Client Graph)</h4>
+<p class="bodytext">You need to obtain a session for your Mulgara server before you can create a client graph. When obtaining the session, use <code class="monospace">SessionFactoryFinder.newSessionFactory(serverURI, true)</code> to indicate that the server is running remotely.</p>
+<p class="bodytext">The Client Graph is created using a <code class="monospace">JRDFSession</code>. See the Obtaining a Session from the Mulgara Server section for more information on how to obtain a <code class="monospace">JRDFSession</code>.</p>
+<p class="bodytext">After obtaining a session, the following code creates a client graph:</p>
+<p class="commandtext">//create a new Model<br />URI modelURI = new URI(&quot;rmi://mysite.com/server1#exampleGraph&quot;);<br />URI modelType = new URI(&quot;http://mulgara.org/mulgara#Model&quot;);<br />session.createModel(modelURI, modelType);<br /><br />//create a JRDF Graph for the model<br />Graph graph = AbstractGraphFactory.createGraph(modelURI, session);</p>
+<p class="bodytext">The code <code class="monospace">session.createModel(modelURI, modelType);</code> creates a new model if the model does not exist. If the model already exists, this line is not required.</p>
+<a name="o2903"></a><h4 class="heading4">Read Only iTQL Result JRDF Graph (iTQL Graph)</h4>
+<p class="bodytext">You need to obtain a session for your Mulgara server before you can create an iTQL graph. After obtaining a session, the following code creates an iTQL graph.</p>
+<p class="commandtext">//create the query<br />String queryText = &quot;select $s $p $o from &lt;rmi://mysite.com/server1#testModel&gt; where $s $p $o ; &quot;;<br />ItqlInterpreter interpreter = new ItqlInterpreter(new HashMap());<br />Query query = interpreter.parse(queryText);<br /><br />//execute the query<br />Answer queryResult = session.query(query);<br /><br />//create a JRDF Graph<br />Graph graph = AbstractGraphFactory.createGraph(queryResult);</p>
+<p class="bodytext">The iTQL query <code class="monospace">select $s $p $o from &lt;rmi://mysite.com/server1#testModel&gt; where $s $p $o;</code> returns all statements from the model.</p>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

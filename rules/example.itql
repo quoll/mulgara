@@ -1,0 +1,35 @@
+# set up aliases
+alias <http://mulgara.org/mulgara#> as mulgara;
+alias <http://www.w3.org/1999/02/22-rdf-syntax-ns#> as rdf;
+alias <http://www.w3.org/2000/01/rdf-schema#> as rdfs;
+alias <http://www.w3.org/2002/07/owl#> as owl;
+alias <http://mulgara.org/owl/krule/#> as krule;
+
+# create utility models
+create <rmi://localhost/server1#type> <mulgara:TypeModel>;
+create <rmi://localhost/server1#prefix> <mulgara:PrefixModel>;
+
+# clear and create the rules model
+drop <rmi://localhost/server1#krule>;
+create <rmi://localhost/server1#krule>;
+
+# Load the rules data and the ontology for how the rules data fits together.
+load <file:@basedir@/rules/krule.owl> into <rmi://localhost/server1#krule>;
+load <file:@basedir@/rules/rdfs-krule.rdf> into <rmi://localhost/server1#krule>;
+
+# clear and create the model which contains the base data
+drop <rmi://localhost/server1#input>;
+create <rmi://localhost/server1#input>;
+
+# Populate the input file with example data.
+# Use the OWL file for Krule, and the RDFS rules.
+load <file:@basedir@/rules/krule.owl> into <rmi://localhost/server1#input>;
+load <file:@basedir@/rules/rdfs-krule.rdf> into <rmi://localhost/server1#input>;
+
+# clear and create the model for the entailed data
+drop <rmi://localhost/server1#output>;
+create <rmi://localhost/server1#output>;
+
+# apply the rules to the input model
+apply <rmi://localhost/server1#krule> to <rmi://localhost/server1#input> <rmi://localhost/server1#output>;
+

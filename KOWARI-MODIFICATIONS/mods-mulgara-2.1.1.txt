@@ -1,0 +1,26 @@
+------------------------------------------------------------------------
+r1684 | pag | 2009-04-23 11:28:31 -0500 (Thu, 23 Apr 2009) | 1 line
+Changed paths:
+   M /trunk/common.properties
+
+New version number for the build
+------------------------------------------------------------------------
+r1683 | pag | 2009-04-23 11:22:03 -0500 (Thu, 23 Apr 2009) | 1 line
+Changed paths:
+   M /trunk/src/war/mulgara/WEB-INF/web.xml
+
+updated the sparql and tql paths to handle extentions
+------------------------------------------------------------------------
+r1682 | pag | 2009-04-23 11:20:24 -0500 (Thu, 23 Apr 2009) | 1 line
+Changed paths:
+   M /trunk/build.xml
+
+Added the apache implementation of SAXParser to the WAR file
+------------------------------------------------------------------------
+r1681 | pag | 2009-04-23 11:01:36 -0500 (Thu, 23 Apr 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/SparqlServlet.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/TqlServlet.java
+
+Added default constructors for WAR deployment
+------------------------------------------------------------------------

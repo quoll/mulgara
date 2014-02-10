@@ -1,0 +1,73 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Adding Triples to the Graph</title>
+    <meta name="keywords" content="Triples, Graph, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/integration/jrdfcreatenodes.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/integration/searchgraph.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/integration/jrdftutorial.html">JRDF Tutorial</a></p>
+<p class="relateditem"><a href="/integration/jrdfprereq.html">Prerequisites</a></p>
+<p class="relateditem"><a href="/integration/jrdfprereq.html#o2898">Obtaining a Session from a Mulgara Server</a></p>
+<p class="relateditem"><a href="/integration/jrdfprereq.html#o2899">Comparison of JRDF Graph Implementations</a></p>
+<p class="relateditem"><a href="/integration/jrdfcreategraph.html">Creating the Graph</a></p>
+<p class="relateditem"><a href="/integration/jrdfcreatenodes.html">Creating Nodes and Triples</a></p>
+<p class="relateditem"><a href="/integration/searchgraph.html">Searching the Graph</a></p>
+<p class="relateditem"><a href="/integration/jrdfreify.html">Reify Triples</a></p>
+<p class="relateditem"><a href="/integration/jrdfremove.html">Removing Triples from the Graph</a></p>
+
+ -->
+
+
+
+
+<h3>Adding Triples to the Graph</h3>
+
+<p>Triples are inserted a graph using the graph's <code>add(Triple triple)</code> method.</p>
+
+<p class="commandtext">graph.add(addressStatement);<br />
+graph.add(streetStatement);<br />
+graph.add(cityStatement);<br />
+graph.add(stateStatement);<br />
+graph.add(postCodeStatement);</p>
+
+<p>The graph now contains the following statements (where <code>_blankNode123</code> represents a blank node instance):</p>
+
+<p class="commandtext">http://example.org/staffid#85740&nbsp; http://example.org/terms#address&nbsp;&nbsp;&nbsp;&nbsp; _blankNode123<br />
+_blankNode123&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; http://example.org/terms#street&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;1501 Grant Avenue&quot;<br />
+_blankNode123&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; http://example.org/terms#city&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;Bedford&quot;<br />
+_blankNode123&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; http://example.org/terms#state&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;Massachusetts&quot;<br />
+_blankNode123&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; http://example.org/terms#postalCode&nbsp; &quot;01730&quot;</p>
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

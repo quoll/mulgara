@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+<!ENTITY math  "http://mulgara.org/math#">
+<!ENTITY owl   "http://www.w3.org/2002/07/owl#">
+<!ENTITY rdf   "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<!ENTITY rdfs  "http://www.w3.org/2000/01/rdf-schema#">
+<!ENTITY xsd   "http://www.w3.org/2001/XMLSchema#">
+]>
+
+<rdf:RDF xmlns:rdf="&rdf;"
+         xmlns:rdfs="&rdfs;"
+         xmlns:owl="&owl;"
+         xmlns="http://mulgara.org/owl/krule/#"
+         xmlns:krule="http://mulgara.org/owl/krule/#"
+         xml:base="http://mulgara.org/owl/krule/">
+
+  <owl:Ontology>
+    <rdfs:comment>mulgara Rules Ontology</rdfs:comment>
+    <owl:imports rdf:resource="http://www.w3.org/2002/07/owl"/>
+  </owl:Ontology>
+
+  <owl:Class rdf:ID="Axiom">
+  </owl:Class>
+
+  <owl:Class rdf:ID="Rule">
+  </owl:Class>
+
+  <owl:Class rdf:ID="Query">
+  </owl:Class>
+
+  <owl:Class rdf:ID="Constraint">
+  </owl:Class>
+
+  <owl:Class rdf:ID="ConstraintOperation">
+    <owl:subClassOf rdf:resource="#Constraint"/>
+  </owl:Class>
+
+  <owl:Class rdf:ID="ConstraintConjunction">
+    <owl:subClassOf rdf:resource="#ConstraintOperation"/>
+  </owl:Class>
+
+  <owl:Class rdf:ID="ConstraintDisjunction">
+    <owl:subClassOf rdf:resource="#ConstraintOperation"/>
+  </owl:Class>
+
+  <owl:Class rdf:ID="SimpleConstraint">
+    <owl:subClassOf rdf:resource="#Constraint"/>
+  </owl:Class>
+
+  <owl:Class rdf:ID="TransitiveConstraint">
+    <owl:subClassOf rdf:resource="#Constraint"/>
+  </owl:Class>
+
+  <owl:Class rdf:ID="ConstraintElement">
+  </owl:Class>
+
+  <owl:Class rdf:ID="FigurativeConstraintElement">
+    <owl:subClassOf rdf:resource="#ConstraintElement"/>
+    <rdfs:comment>Represents a non-literal element.</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:ID="Variable">
+    <owl:subClassOf rdf:resource="#FigurativeConstraintElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:ID="Value">
+    <owl:subClassOf rdf:resource="#ConstraintElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:ID="Node">
+  </owl:Class>
+
+  <owl:Class rdf:ID="SubjectNode">
+    <owl:subClassOf rdf:resource="#Node"/>
+  </owl:Class>
+
+  <owl:Class rdf:ID="PredicateNode">
+    <owl:subClassOf rdf:resource="#Node"/>
+  </owl:Class>
+
+  <owl:Class rdf:ID="ObjectNode">
+    <owl:subClassOf rdf:resource="#Node"/>
+  </owl:Class>
+
+  <owl:Class rdf:ID="Literal">
+    <owl:subClassOf rdf:resource="#Value"/>
+    <owl:subClassOf rdf:resource="#ObjectNode"/>
+  </owl:Class>
+
+  <owl:Class rdf:ID="URIReference">
+    <owl:subClassOf rdf:resource="#FigurativeConstraintElement"/>
+    <owl:subClassOf rdf:resource="#Value"/>
+    <owl:subClassOf rdf:resource="#SubjectNode"/>
+    <owl:subClassOf rdf:resource="#PredicateNode"/>
+    <owl:subClassOf rdf:resource="#ObjectNode"/>
+  </owl:Class>
+
+  <owl:ObjectProperty rdf:ID="triggers">
+    <rdfs:domain rdf:resource="#Rule"/>
+    <rdfs:range rdf:resource="#Rule"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasQuery">
+    <rdfs:domain rdf:resource="#Rule"/>
+    <rdfs:range rdf:resource="#Query"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:ID="hasiTQL">
+    <rdfs:domain rdf:resource="#Rule"/>
+    <rdfs:range rdf:resource="&xsd;string"/>
+  </owl:DatatypeProperty>
+
+  <owl:ObjectProperty rdf:ID="selectionVariables">
+    <rdfs:domain rdf:resource="#Query"/>
+    <rdfs:range rdf:resource="&rdf;Seq"/>
+    <rdfs:comment>Sequence of ConstraintElement</rdfs:comment>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasWhereClause">
+    <rdfs:domain rdf:resource="#Query"/>
+    <rdfs:range rdf:resource="#Constraint"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="argument">
+    <rdfs:domain rdf:resource="#ConstraintOperation"/>
+    <rdfs:range rdf:resource="#Constraint"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="transitiveArgument">
+    <rdfs:domain rdf:resource="#TransitiveConstraint"/>
+    <rdfs:range rdf:resource="#SimpleConstraint"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="anchorArgument">
+    <rdfs:domain rdf:resource="#TransitiveConstraint"/>
+    <rdfs:range rdf:resource="#SimpleConstraint"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasElement">
+    <rdfs:domain rdf:resource="#SimpleConstraint"/>
+    <rdfs:range rdf:resource="#ConstraintElement"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasSubject">
+    <owl:subPropertyOf rdf:resource="#hasElement"/>
+    <rdfs:domain rdf:resource="#SimpleConstraint"/>
+    <rdfs:range rdf:resource="#FigurativeConstraintElement"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasPredicate">
+    <owl:subPropertyOf rdf:resource="#hasElement"/>
+    <rdfs:domain rdf:resource="#SimpleConstraint"/>
+    <rdfs:range rdf:resource="#FigurativeConstraintElement"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasObject">
+    <owl:subPropertyOf rdf:resource="#hasElement"/>
+    <rdfs:domain rdf:resource="#SimpleConstraint"/>
+    <rdfs:range rdf:resource="#ConstraintElement"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="hasModel">
+    <owl:subPropertyOf rdf:resource="#hasElement"/>
+    <rdfs:domain rdf:resource="#SimpleConstraint"/>
+    <rdfs:range rdf:resource="#URIReference"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:ID="name">
+    <rdfs:domain rdf:resource="#Variable"/>
+    <rdfs:range rdf:resource="&xsd;string"/>
+  </owl:DatatypeProperty>
+
+  <owl:ObjectProperty rdf:ID="assertionElement">
+    <rdfs:domain rdf:resource="#Axiom"/>
+    <rdfs:range rdf:resource="#Node"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="subject">
+    <owl:subPropertyOf rdf:resource="#assertionElement"/>
+    <rdfs:domain rdf:resource="#Axiom"/>
+    <rdfs:range rdf:resource="#SubjectNode"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="predicate">
+    <owl:subPropertyOf rdf:resource="#assertionElement"/>
+    <rdfs:domain rdf:resource="#Axiom"/>
+    <rdfs:range rdf:resource="#PredicateNode"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="object">
+    <owl:subPropertyOf rdf:resource="#assertionElement"/>
+    <rdfs:domain rdf:resource="#Axiom"/>
+    <rdfs:range rdf:resource="#ObjectNode"/>
+  </owl:ObjectProperty>
+
+  <!-- value is too generic to tie down to one class -->
+  <!--
+  <owl:DatatypeProperty rdf:ID="value">
+    <rdfs:domain rdf:resource="#Literal"/>
+    <rdfs:range rdf:resource="&xsd;string"/>
+  </owl:DatatypeProperty>
+  -->
+  <!-- value is too generic to tie down to one class -->
+
+</rdf:RDF>

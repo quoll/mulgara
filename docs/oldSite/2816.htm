@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Consistency Checking </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Consistency Checking, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="2801.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="2827.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h3 class="heading3">Consistency Checking</h3>
+<p class="bodytext">Consistency checking operations check that instances of data are consistent with a given schema.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="2816.htm#o2817" target="_self">Restricting Data Types</a></p><p class="relateditem"><a href="2816.htm#o2820" target="_self">Cardinality Operations</a></p><p class="relateditem"><a href="2816.htm#o2824" target="_self">owl:Nothing</a></p><p class="relateditem"><a href="2816.htm#o2825" target="_self">owl:Restriction</a></p><p class="relateditem"><a href="2816.htm#o2826" target="_self">owl:Thing</a></p><p class="relateditem"><a href="2827.htm" target="_self">Ontology Management</a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="2800.htm" target="_self">OWL-Lite Operations Using iTQL</a></p><p class="relateditem"><a href="2801.htm" target="_self">Entailment</a></p></td>
+</tr>
+</table>
+
+<a name="o2817"></a><h4 class="heading4">Restricting Data Types</h4>
+<p class="bodytext">The <code class="monospace">owl:allValuesFrom</code> and <code class="monospace">owl:someVauesFrom</code> operations allow you to restrict the data types that a property refers to, for a given class.</p>
+<a name="o2818"></a><h5 class="heading5">owl:allValuesFrom</h5>
+<p class="bodytext">The <code class="monospace">owl:AllValuesFrom</code> declaration restricts the use of a predicate (also called a property) on a particular class so that it can only refer to a given type of value. This is similar to the way that <code class="monospace">rdfs:range</code> restricts a property to only refer to a given type. The difference is that <code class="monospace">rdfs:range</code> applies whenever the property is used, while the <code class="monospace">owl:allValuesFrom</code> restriction on a class only applies to properties of that particular class.</p>
+<p class="bodytext">The camera ontology declares the following:</p>
+<p class="commandtext">&lt;owl:Class rdf:ID=&quot;Simple-Large-Format&quot;&gt;<br />  &lt;rdfs:subClassOf rdf:resource=&quot;#Camera&quot;/&gt;<br />  &lt;rdfs:subClassOf&gt;<br />    &lt;owl:Restriction&gt;<br />      &lt;owl:onProperty rdf:resource=&quot;#body&quot;/&gt;<br />      &lt;owl:allValuesFrom rdf:resource=&quot;#BodyWithNonAdjustableShutterSpeed&quot;/&gt;<br />    &lt;/owl:Restriction&gt;<br />  &lt;/rdfs:subClassOf&gt;<br />&lt;/owl:Class&gt;</p>
+<p class="bodytext">This means that <code class="monospace">Simple-Large-Format</code> is a type of camera with an <code class="monospace">owl:allValuesFrom</code> restriction placed upon it. Whenever this type of camera declares its body, then that body must be of type <code class="monospace">BodyWithNonAdjustableShutterSpeed</code>.</p>
+<p class="bodytext">An invalid camera might be defined as:</p>
+<p class="commandtext">&lt;rdf:Description rdf:about=&quot;&amp;camera;badBody&quot;&gt;<br />  &lt;rdf:type rdf:resource=&quot;#Simple-Large-Format&quot;/&gt;<br />  &lt;body&gt;<br />    &lt;Body&gt;<br />      &lt;shutter-speed rdf:parseType=&quot;Resource&quot;&gt;<br />        &lt;min&gt;0.01&lt;/min&gt;<br />        &lt;max&gt;1.0&lt;/max&gt;<br />      &lt;/shutter-speed&gt;<br />    &lt;/Body&gt;<br />  &lt;/body&gt;<br />&lt;/rdf:Description&gt;</p>
+<p class="bodytext">The camera declared is named <code class="monospace">badBody</code> (including the full <code class="monospace">&amp;camera;</code> namespace, its complete name is <code class="monospace">http://www.xfront.com/owl/ontologies/camera/#badBody</code>), and it is a <code class="monospace">Simple-Large-Format</code> camera. The problem is that it declares a body of type <code class="monospace">Body</code>, but the ontology says that cameras of this type can only declare a body of type <code class="monospace">BodyWithNonAdjustableShutterSpeed</code>.</p>
+<p class="bodytext">To check for inconsistencies on this constraint, you can perform the following query:</p>
+<p class="commandtext">select $s $p $x count (<br />    select $object<br />    from &lt;rmi://mysite.com/server1#camera&gt;<br />    where $s $p $object<br />        and $object &lt;rdf:type&gt; $type<br />        and exclude($object $p2 $x )<br />)<br />  from &lt;rmi://mysite.com/server1#camera&gt;<br />  where $r &lt;rdf:type&gt; &lt;owl:Restriction&gt;<br />  and $r &lt;owl:onProperty&gt; $p<br />  and $r &lt;owl:allValuesFrom&gt; $x<br />  and $c &lt;rdfs:subClassOf&gt; $r   and $s &lt;rdf:type&gt; $c   and $s $p $o2<br />  having $k0 &lt;mulgara:occursMoreThan&gt; '0.0'^^&lt;xsd:double&gt;<br />  order by $s;</p>
+<p class="bodytext">This finds restrictions <code class="monospace">$r</code>, which apply to a predicate <code class="monospace">$p</code>, and restrict a subject to only have objects of type <code class="monospace">$x</code> when this predicate is used. In the OWL example above, <code class="monospace">$r</code> matches the restriction, while <code class="monospace">$p</code> matches the <code class="monospace">body</code> predicate, and <code class="monospace">$x</code> is <code class="monospace">BodyWithNonAdjustableShutterSpeed</code>.</p>
+<p class="bodytext">Next, the query finds classes <code class="monospace">$c</code>, which subclass this restriction. A more complete example can use <code class="monospace">walk($c &lt;owl:subClassOf&gt; $r)</code> to be more thorough in finding all classes which ultimately inherit this restriction. Since restrictions are rarely removed any further than by a single sub-class relationship, a simple constraint like this finds the <code class="monospace">Simple-Large-Format</code> class and places it in <code class="monospace">$c</code>.</p>
+<p class="bodytext">The last two constraints in the outer query find all instances of <code class="monospace">$c</code>, and finds statements where these <code class="monospace">$s</code> instances use the <code class="monospace">$p</code> predicate defined in the restriction. The instance <code class="monospace">$s</code>, the predicate <code class="monospace">$p</code>, and the type <code class="monospace">$x</code> that the restriction refers to, are all passed into the subquery.</p>
+<p class="bodytext">The subquery looks for all statements where the instance of the required class uses the predicate to refer to an object, which it binds to <code class="monospace">$object</code>. It then finds all statements which define the type for these objects, and excludes those objects whose type is the correct type for the restriction (<code class="monospace">$x</code>). Unfortunately, <code class="monospace">excludes</code> here is giving all statements in the camera model that do not match <code class="monospace">$object</code> as a subject, and the type as the object. This is almost what is needed here, but there are some statements which should be excluded, that this constraint might allow through. This is a deficiency in iTQL that will be fixed in future versions of TKS. For now, it does finds all inconsistent statements, with only specialized cases being erroneously reported as inconsistent.</p>
+<p class="bodytext">Any remaining statements have objects of the incorrect type, and violate the constraint. These remaining statements are counted, and the <code class="monospace">having</code> clause checks to see if the number of violating rows is greater than 0. If so, this data gets returned from the query.</p>
+<p class="bodytext">Any data returned from the query indicates an inconsistency in the data, according to the <code class="monospace">owl:allValuesFrom</code> constraint.</p>
+<p class="bodytext">For the invalid camera above, the result of the query is:</p>
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#badBody, http://www.xfront.com/owl/ontologies/camera/#body,<br />  http://www.xfront.com/owl/ontologies/camera/#BodyWithNonAdjustableShutterSpeed, 1.0 ]</p>
+<p class="bodytext">This result indicates that the <code class="monospace">&amp;camera;badBody</code> object used the <code class="monospace">&amp;camera;body</code> predicate on a body that was not a <code class="monospace">&amp;camera;BodyWithNonAdjustableShutterSpeed</code> a total of 1 time. This showed up because the restriction required that <code class="monospace">&amp;camera;body</code> never be used to refer to the wrong type of body.</p>
+<a name="o2819"></a><h5 class="heading5">owl:someValuesFrom</h5>
+<p class="bodytext">The <code class="monospace">owl:someValuesFrom</code> declaration restricts the use of a predicate (also called a property) on a particular class so that it must make at least one reference to a given type of value. This is similar to <code class="monospace"><a id="h2928" class="documentlinktemplate" title="owl:allValuesFrom" href="2816.htm#o2818" target="_self">owl:allValuesFrom</a></code>, but with the weaker requirement that only a single object be of the required type.</p>
+<p class="bodytext">The camera ontology declares the following:</p>
+<p class="commandtext">&lt;owl:Class rdf:ID=&quot;Camera&quot;&gt;<br />  &lt;rdfs:subClassOf rdf:resource=&quot;#PurchaseableItem&quot;/&gt;<br />  &lt;rdfs:subClassOf&gt;<br />    &lt;owl:Restriction&gt;<br />      &lt;owl:onProperty rdf:resource=&quot;#part&quot;/&gt;<br />      &lt;owl:someValuesFrom rdf:resource=&quot;#PurchaseableItem&quot;/&gt;<br />    &lt;/owl:Restriction&gt;<br />  &lt;/rdfs:subClassOf&gt;<br />&lt;/owl:Class&gt;<br />&lt;owl:Class rdf:ID=&quot;CarryStrap&quot;&gt;<br />  &lt;rdfs:subClassOf rdf:resource=&quot;#NonPurchaseableItem&quot;/&gt;<br />&lt;/owl:Class&gt;</p>
+<p class="bodytext">This means that if a camera has any parts, then at least one of those parts must be a <code class="monospace">PurchaseableItem</code>. Note that this does not mean that a came<em class="emphasis">ra i</em>s forced to have any parts. The rule only applies when the <code class="monospace">part</code> predicate is used on a camera.</p>
+<p class="bodytext">The second class is a <code class="monospace">CarryStrap</code> and is a type of <code class="monospace">NonPurchaseableItem</code>. While a camera can have a carry strap as a part, this is not adequate on its own to meet the restriction on the <code class="monospace">Camera</code> class.</p>
+<p class="bodytext">An invalid camera would declare one or more parts, with none of them being <code class="monospace">PurchaseableItems</code>. For example:</p>
+<p class="commandtext">&lt;rdf:Description rdf:about=&quot;&amp;camera;badParts&quot;&gt;<br />  &lt;rdf:type rdf:resource=&quot;#Camera&quot;/&gt;<br />  &lt;rdf:type rdf:resource=&quot;#Digital&quot;/&gt;<br />  &lt;part&gt;<br />    &lt;CarryStrap/&gt;<br />  &lt;/part&gt;<br />&lt;/rdf:Description&gt;</p>
+<p class="bodytext">This declares <code class="monospace">badParts</code> as a digital camera. This camera has a single part, which is a carry strap. Since a part is declared, then at least one part must be a <code class="monospace">PurchaseableItem</code>. Therefore, this camera violates the restriction.</p>
+<p class="bodytext">Note that <code class="monospace">badParts</code> is explicitly declared to be of type <code class="monospace">Camera</code>. In a fully inferenced system, this declaration would be redundant, as it can be inferred from the fact that <code class="monospace">Digital</code> is a sub-class of <code class="monospace">Camera</code>. Since <code class="monospace">badParts</code> is a type of <code class="monospace">Digital</code> then it follows that it is also a type of <code class="monospace">Camera</code>. Given that this documentation is describing a system that does not yet do automatic inferencing, it is necessary to include inferable statements like this.</p>
+<a name="o3145"></a>
+<p class="bodytext">To check for inconsistencies on this constraint, you can perform the following query:</p>
+<p class="commandtext">select $s $p $x count(<br />    select $o<br />    from &lt;rmi://mysite.com/server1#camera&gt;<br />    where $s $p $o<br />      and $o &lt;rdf:type&gt; $x<br />)<br />  from &lt;rmi://mysite.com/server1#camera&gt;<br />  where $r &lt;rdf:type&gt; &lt;owl:Restriction&gt;<br />  and $r &lt;owl:onProperty&gt; $p<br />  and $r &lt;owl:someValuesFrom&gt; $x<br />  and $c &lt;rdfs:subClassOf&gt; $r<br />  and $s &lt;rdf:type&gt; $c<br />  and $s $p $obj<br />  having $k0 &lt;mulgara:occursLessThan&gt; '1.0'^^&lt;xsd:double&gt;;</p>
+<p class="bodytext">This finds restrictions <code class="monospace">$r</code>, which apply to a predicate <code class="monospace">$p</code>, and restricts a subject to only have objects of type <code class="monospace">$x</code> when this predicate is used. In the OWL example above, <code class="monospace">$r</code> matches the restriction, while <code class="monospace">$p</code> matches the <code class="monospace">part</code> predicate, and <code class="monospace">$x</code> is <code class="monospace">PurchaseableItem</code>.</p>
+<p class="bodytext">Next, the query finds classes <code class="monospace">$c</code>, which subclass this restriction. A more complete example can use <code class="monospace">walk($c &lt;owl:subClassOf&gt; $r)</code> to be more thorough in finding all classes which ultimately inherit this restriction, but this simpler form is adequate for most cases, including this example.</p>
+<p class="bodytext">The last two constraints in the outer query find all instances of <code class="monospace">$c</code>, and find statements where these <code class="monospace">$s</code> instances use the <code class="monospace">$p</code> predicate defined in the restriction. The instance <code class="monospace">$s</code>, the predicate <code class="monospace">$p</code>, and the type <code class="monospace">$x</code> that the restriction refers to, are all passed into the subquery.</p>
+<p class="bodytext">The subquery looks for all statements where the instance of the required class uses the predicate to refer to an object, which it binds to <code class="monospace">$o</code>. It then finds all statements that define these objects to be of type <code class="monospace">$x</code>, which is the required type in the restriction. The objects of the correct type are counted, and the <code class="monospace">having</code> clause confirms that there is at least 1 of each. For any subjects of the restricted type (the type is <code class="monospace">Camera</code> in this example), the restricted predicate is confirmed to be used correctly at least once. If not, then the count is 0, and the query returns the subject, predicate and missing type of the violated restriction.</p>
+<p class="bodytext">Using this on data containing the <code class="monospace">badParts</code> object, the result of the query is:</p>
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/#badParts, http://www.xfront.com/owl/ontologies/camera/#part,<br />  http://www.xfront.com/owl/ontologies/camera/#PurchaseableItem, 0.0 ]</p>
+<p class="bodytext">This shows that the <code class="monospace">&amp;camera;badParts</code> object had the <code class="monospace">&amp;camera;part</code> predicate used to refer to a <code class="monospace">&amp;camera;PurchaseableItem</code> 0 times. It showed up because the restriction required it to be used on <code class="monospace">&amp;camera;PurchaseableItems</code> at least once.</p>
+<a name="o2820"></a><h4 class="heading4">Cardinality Operations</h4>
+<p class="bodytext">The <code class="monospace">owl:cardinality</code>, <code class="monospace">owl:minimumCardinality</code> and <code class="monospace">owl:maximumCardinality</code> declarations allow you to ensure that a given property occurs on an instance of a class. OWL-Lite provides the ability to express these three types of cardinality, but only with the values 0 and 1.</p>
+<a name="o2821"></a><h5 class="heading5">owl:cardinality</h5>
+<p class="bodytext">The camera ontology declares the following:</p>
+<p class="commandtext">&lt;owl:Class rdf:ID=&quot;BodyWithNonAdjustableShutterSpeed&quot;&gt;<br />  &lt;rdfs:subClassOf rdf:resource=&quot;#Body&quot;/&gt;<br />  &lt;rdfs:subClassOf&gt;<br />    &lt;owl:Restriction&gt;<br />      &lt;owl:onProperty rdf:resource=&quot;#shutter-speed&quot;/&gt;<br />      &lt;owl:cardinality&gt;0&lt;/owl:cardinality&gt;<br />    &lt;/owl:Restriction&gt;<br />  &lt;/rdfs:subClassOf&gt;<br />&lt;/owl:Class&gt;</p>
+<p class="bodytext">That is, if a camera's body has a non-adjustable shutter speed, it must not have a shutter speed.</p>
+<p class="bodytext">So an invalid camera would be:</p>
+<p class="commandtext">&lt;rdf:Description rdf:about=&quot;&amp;camera;brokenShutterCamera&quot;&gt;<br />  &lt;rdf:type rdf:resource=&quot;#Large-Format&quot;/&gt;<br />  &lt;body&gt;<br />    &lt;BodyWithNonAdjustableShutterSpeed&gt;<br />      &lt;shutter-speed rdf:parseType=&quot;Resource&quot;&gt;<br />        &lt;min&gt;0.001&lt;/min&gt;<br />        &lt;max&gt;1.0&lt;/max&gt;<br />      &lt;/shutter-speed&gt;<br />    &lt;/BodyWithNonAdjustableShutterSpeed&gt;<br />  &lt;/body&gt;<br />&lt;/rdf:Description&gt;</p>
+<p class="bodytext">This camera, <code class="monospace">&amp;camera;brokenShutterCamera</code>, has two values, <code class="monospace">min</code> and <code class="monospace">max</code>, for the shutter speed. The number of values is irrelevant. It is the fact that <code class="monospace">shutter-speed</code> exists that is incorrect. The ontology specifies that the predicate, <code class="monospace">shutter-speed</code>, is not allowed.</p>
+<p class="bodytext">To check that this constraint is enforced, you can perform the following query:</p>
+<p class="commandtext">select $s3 $s2 $p2 $v count (<br />    select $o2<br />    from &lt;rmi://mysite.com/server1#camera&gt;<br />    where $s2 $p2 $o2 )<br />  from &lt;rmi://mysite.com/server1#camera&gt;<br />  where $s &lt;rdf:type&gt; &lt;owl:Class&gt;<br />  and $s &lt;rdfs:subClassOf&gt; $r<br />  and $r &lt;rdf:type&gt; &lt;owl:Restriction&gt;<br />  and $r &lt;owl:cardinality&gt; $v<br />  and $r &lt;owl:onProperty&gt; $p2<br />  and $s2 $p3 $o2<br />  and $s2 &lt;rdf:type&gt; $s<br /> and $s3 $p4 $s2<br /> having $k0 &lt;mulgara:notOccurs&gt; $v<br /> order by $s3 ;</p>
+<p class="bodytext">This finds all cardinality restrictions with a given cardinality value, <code class="monospace">$v</code>, on a given property, <code class="monospace">$p2</code>. This is then projected into the count where the number of predicates of a given subject are counted, and if this count is not equal to <code class="monospace">$v,</code> then it displays the name of that camera, <code class="monospace">$s3</code>.</p>
+<p class="bodytext">The result of the query is:</p>
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/brokenShutter, _node281,<br />  http://www.xfront.com/owl/ontologies/camera/#shutter-speed, 0, 1.0 ]</p>
+<p class="bodytext">The first element in the result points to the name of the instance, the next two values, <code class="monospace">$s2</code> and <code class="monospace">$p2</code>, are required in the subquery. The <code class="monospace">$v</code> variable is required to put the variable value into the <code class="monospace">having</code> constraint. The last value is how many times that predicate exists.</p>
+<p class="bodytext">This can be used to display an error message such as:</p>
+<p class="commandtext">&quot;Error in cardinality constraint: http://www.xfront.com/owl/ontologies/camera/brokenShutter instance required 0<br />shutter-speed but was 1.0&quot;</p>
+<p class="bodytext">If a second camera instance exists, for example:</p>
+<p class="commandtext">&lt;rdf:Description rdf:about=&quot;&amp;camera;shutterStutter&quot;&gt;<br />  &lt;rdf:type rdf:resource=&quot;#Large-Format&quot;/&gt;<br />  &lt;body&gt;<br />    &lt;BodyWithNonAdjustableShutterSpeed&gt;<br />      &lt;shutter-speed rdf:parseType=&quot;Resource&quot;&gt;<br />        &lt;min&gt;0.01&lt;/min&gt;<br />      &lt;/shutter-speed&gt;<br />      &lt;shutter-speed rdf:parseType=&quot;Resource&quot;&gt;<br />        &lt;min&gt;0.01&lt;/min&gt;<br />      &lt;/shutter-speed&gt;<br />    &lt;/BodyWithNonAdjustableShutterSpeed&gt;<br />  &lt;/body&gt;<br />&lt;/rdf:Description&gt;</p>
+<p class="bodytext">The result of the query is:</p>
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/brokenShutter, _node158,<br />  http://www.xfront.com/owl/ontologies/camera/#shutter-speed, 0, 1.0 ]<br />[ http://www.xfront.com/owl/ontologies/camera/shutterStutter, _node190,<br />  http://www.xfront.com/owl/ontologies/camera/#shutter-speed, 0, 2.0 ]</p>
+<a name="o2822"></a><h5 class="heading5">owl:minimumCardinality</h5>
+<p class="bodytext">The following restriction, <code class="monospace">SLR</code>, defines a camera that has a maximum cardinality on the property <code class="monospace">body</code> of 1 and a minimum cardinality on the property <code class="monospace">lens</code>:</p>
+<p class="commandtext">&lt;owl:Class rdf:ID=&quot;SLR&quot;&gt;<br />  &lt;owl:subClassOf rdf:about=&quot;#Camera&quot;/&gt;<br />  ...<br />  &lt;rdfs:subClassOf&gt;<br />    &lt;owl:Restriction&gt;<br />      &lt;owl:onProperty rdf:resource=&quot;#body&quot;/&gt;<br />      &lt;owl:maximumCardinality rdf:datatype=&quot;&amp;xsd;double&quot;&gt;1&lt;/owl:maximumCardinality&gt;<br />    &lt;/owl:Restriction&gt;<br />  &lt;/rdfs:subClassOf&gt;<br />  &lt;rdfs:subClassOf&gt;<br />    &lt;owl:Restriction&gt;<br />      &lt;owl:onProperty rdf:resource=&quot;#lens&quot;/&gt;<br />      &lt;owl:minimumCardinality rdf:datatype=&quot;&amp;xsd;double&quot;&gt;1&lt;/owl:minimumCardinality&gt;<br />    &lt;/owl:Restriction&gt;<br />  &lt;/rdfs:subClassOf&gt;<br />&lt;/owl:Class&gt;</p>
+<p class="bodytext">Considering each constraint separately, the minimum cardinality constraint indicates that there must be at least one lens for a camera. This allows multiple lenses but there must be at least one. An example of an instance of a camera that breaks this constraint is one that does not have a lens, for example:</p>
+<p class="commandtext">&lt;rdf:Description rdf:about=&quot;&amp;camera;noLensSLR&quot;&gt;<br />  &lt;rdf:type rdf:resource=&quot;#SLR&quot;/&gt;<br />  &lt;body&gt;<br />    &lt;Body&gt;<br />      &lt;shutter-speed rdf:parseType=&quot;Resource&quot;&gt;<br />        &lt;min&gt;0.01&lt;/min&gt;<br />        &lt;max&gt;1.0&lt;/max&gt;<br />      &lt;/shutter-speed&gt;<br />    &lt;/Body&gt;<br />  &lt;/body&gt;<br />&lt;/rdf:Description&gt;</p>
+<p class="bodytext">To find the illegally constructed camera, you can perform the following query:</p>
+<p class="commandtext">select $s2 $p2 $v count (<br />    select $o2<br />    from &lt;rmi://mysite.com/server1#camera&gt;<br />    where $s2 $p2 $o2)<br />  from &lt;rmi://mysite.com/server1#camera&gt;<br />  where $s &lt;rdf:type&gt; &lt;owl:Class&gt;<br />  and $s &lt;rdfs:rdfs:subClassOf&gt; $r<br />  and $r &lt;rdf:type&gt; &lt;owl:Restriction&gt;<br />  and $r &lt;owl:minimumCardinality&gt; $v<br />  and $r &lt;owl:onProperty&gt; $p2<br />  and $s2 $p3 $o2<br />  and $s2 &lt;rdf:type&gt; $s<br />  having $k0 &lt;mulgara:occursLessThan&gt; $v<br />  order by $s2 ;</p>
+<p class="bodytext">This finds all minimum cardinality restrictions with a given cardinality value, <code class="monospace">$v</code>, on a given property, <code class="monospace">$p2</code>. The joining of <code class="monospace">$s2 $p3 $o2</code> and <code class="monospace">$s2 &lt;rdf:type&gt; $s</code> restricts what is projected into the <code class="monospace">count</code>, to only the statements that are of the correct type, <code class="monospace">$s</code>, and appear in the graph in order. When this is projected into the subquery, the number of predicates of a given subject are counted, and if this count is less than <code class="monospace">$v</code>, then it is displayed with the value in <code class="monospace">$s2</code>.</p>
+<p class="bodytext">The result of the query is:</p>
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/noLensSLR, http://www.xfront.com/owl/ontologies/camera/#lens,<br />  1.0, 0.0 ]</p>
+<p class="bodytext">This shows the instance, <code class="monospace">http://www.xfront.com/owl/ontologies/camera/noLensSLR</code>, has 0.0 counts for the predicate <code class="monospace">http://www.xfront.com/owl/ontologies/camera/#lens,</code> which requires a value of at least 1.0.</p>
+<a name="o2823"></a><h5 class="heading5">owl:maximumCardinality</h5>
+<p class="bodytext">Using the same SLR example restriction definition given for <code class="monospace">owl:minimumCardinality</code>, we are now only interested in the maximum cardinality restriction:</p>
+<p class="commandtext">&lt;owl:Class rdf:ID=&quot;SLR&quot;&gt;<br />  &lt;owl:subClassOf rdf:about=&quot;#Camera&quot;/&gt;<br />  ...<br />    &lt;owl:Restriction&gt;<br />      &lt;owl:onProperty rdf:resource=&quot;#body&quot;/&gt;<br />      &lt;owl:maximumCardinality rdf:datatype=&quot;&amp;xsd;double&quot;&gt;1&lt;/owl:maximumCardinality&gt;<br />    &lt;/owl:Restriction&gt;<br />  &lt;/rdfs:subClassOf&gt;<br />  ...<br />&lt;/owl:Class&gt;</p>
+<p class="bodytext">This means that an SLR camera must have only one body. An example of an instance of a camera that breaks this restriction is as follows:</p>
+<p class="commandtext">&lt;rdf:Description rdf:about=&quot;urn:camera:binocularSLR&quot;&gt;<br />  &lt;rdf:type rdf:resource=&quot;#SLR&quot;/&gt;<br />  &lt;body&gt;<br />    &lt;Body&gt;<br />      &lt;shutter-speed rdf:parseType=&quot;Resource&quot;&gt;<br />        &lt;min&gt;0.01&lt;/min&gt;<br />        &lt;max&gt;1.0&lt;/max&gt;<br />        &lt;units&gt;seconds&lt;/units&gt;<br />      &lt;/shutter-speed&gt;<br />    &lt;/Body&gt;<br />  &lt;/body&gt;<br />  &lt;body&gt;<br />    &lt;Body&gt;<br />      &lt;shutter-speed rdf:parseType=&quot;Resource&quot;&gt;<br />        &lt;min&gt;0.01&lt;/min&gt;<br />        &lt;max&gt;1.0&lt;/max&gt;<br />        &lt;units&gt;seconds&lt;/units&gt;<br />      &lt;/shutter-speed&gt;<br />    &lt;/Body&gt;<br />  &lt;/body&gt;<br />  ...<br />&lt;/rdf:Description&gt;</p>
+<p class="bodytext">To find this illegally constructed camera, you can perform the following query:</p>
+<p class="commandtext">select $s2 $p2 $v count (<br />    select $o2<br />    from &lt;rmi://mysite.com/server1#camera&gt;<br />    where $s2 $p2 $o2 )<br />  from &lt;rmi://mysite.com/server1#camera&gt;<br />  where $s &lt;rdf:type&gt; &lt;owl:Class&gt;<br />  and $s &lt;rdfs:subClassOf&gt; $r<br />  and $r &lt;rdf:type&gt; &lt;owl:Restriction&gt;<br />  and $r &lt;owl:maximumCardinality&gt; $v<br />  and $r &lt;owl:onProperty&gt; $p2<br />  and $s2 $p3 $o2<br />  and $s2 &lt;rdf:type&gt; $s<br />  having $k0 &lt;mulgara:occursMoreThan&gt; $v<br />  order by $s2 ;</p>
+<p class="bodytext">This finds all maximum cardinality restrictions with a given cardinality value, <code class="monospace">$v</code>, on a given property, <code class="monospace">$p2</code>. Each of these results, such as 1 and <code class="monospace">#body</code> respectively, are used to constrain the count. The predicate value, <code class="monospace">$p2</code>, is used to query the graph and pass into the count <code class="monospace">$s2</code>, <code class="monospace">$p2</code>, <code class="monospace">$o2</code> triples. The count produces a value and this is constrained by the variable <code class="monospace">$v</code>, 1 in this case by the <code class="monospace">having</code> clause. If the predicate, <code class="monospace">#body</code> appears more than once for any subject then it is displayed.</p>
+<p class="bodytext">The result of the query is:</p>
+<p class="commandtext">[ http://www.xfront.com/owl/ontologies/camera/binocularSLR, http://www.xfront.com/owl/ontologies/camera/#body,<br />  1.0, 2.0 ]</p>
+<p class="bodytext">This indicates that instance, <code class="monospace">http://www.xfront.com/owl/ontologies/camera/binocularSLR</code>, is illegal as it has two predicates called <code class="monospace">body</code> instead of one.</p>
+<a name="o2824"></a><h4 class="heading4">owl:Nothing</h4>
+<p class="bodytext">Available in next release.</p>
+<a name="o2825"></a><h4 class="heading4">owl:Restriction</h4>
+<p class="bodytext">Available in next release.</p>
+<a name="o2826"></a><h4 class="heading4">owl:Thing</h4>
+<p class="bodytext">Available in next release.</p>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

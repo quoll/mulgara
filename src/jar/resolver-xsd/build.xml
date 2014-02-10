@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="resolver-xsd" default="resolver-xsd-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="resolver-xsd-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+  </path>
+
+  <path id="resolver-xsd-test-classpath">
+
+    <path refid="resolver-xsd-classpath"/>
+
+    <fileset file="${resolver-xsd.dist.dir}/${resolver-file.jar}"/>
+    <fileset file="${resolver-xsd.dist.dir}/${resolver-http.jar}"/>
+    <fileset file="${resolver-xsd.dist.dir}/${resolver-xsd.jar}"/>
+  </path>
+
+  <target name="resolver-xsd-clean"
+          description="Removes all compile generated files for the resolver-xsd">
+
+    <tstamp/>
+
+    <delete dir="${resolver-xsd.obj.dir}"/>
+    <delete dir="${resolver-xsd.test.dir}"/>
+    <delete dir="${resolver-xsd.dist.dir}"/>
+  </target>
+
+  <target name="-resolver-xsd-prepare"
+          description="Creates all directories associated with the resolver-xsd's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${resolver-xsd.obj.dir}"/>
+    <mkdir dir="${resolver-xsd.test.dir}"/>
+    <mkdir dir="${resolver-xsd.dist.dir}"/>
+    <mkdir dir="${resolver-xsd.obj.dir}/classes"/>
+  </target>
+
+  <target name="resolver-xsd-compile"
+          depends="-resolver-xsd-prepare, resolver-spi-jar"
+          description="Compiles all resolver-xsd related files included generated
+                       source code">
+
+    <javac destdir="${resolver-xsd.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="resolver-xsd-classpath"/>
+
+      <src path="${resolver-xsd.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="resolver-xsd-jar"
+          depends="resolver-xsd-compile, -resolver-xsd-jar-uptodate"
+          unless="resolver-xsd.jar.uptodate"
+          description="Creates the resolver-xsd's jar/s">
+
+    <jar jarfile="${resolver-xsd.dist.dir}/${resolver-xsd.jar}">
+      <fileset dir="${resolver-xsd.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-resolver-xsd-jar-uptodate">
+
+    <uptodate property="resolver-xsd.jar.uptodate"
+              targetfile="${resolver-xsd.dist.dir}/${resolver-xsd.jar}">
+      <srcfiles dir="${resolver-xsd.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="resolver-xsd-dist"
+          depends="resolver-xsd-jar"
+          unless="resolver-xsd.uptodate"
+          description="Performs all tasks related to finalising this resolver-xsd
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the resolver-xsd library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="resolver-xsd-test"
+          depends="resolver-xsd-jar, resolver-file-jar, resolver-http-jar"
+          description="Carries out unit testing for this resolver-xsd">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="resolver-xsd-test-classpath"/>
+      <param name="dir" value="${resolver-xsd.src.dir}"/>
+      <param name="jar" value="${resolver-xsd.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-xsd-javadoc"
+          depends="resolver-xsd-jar"
+          description="Creates the javadoc for this resolver-xsd">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.resolver.xsd.*"/>
+      <param name="javadoc.classpath" value="resolver-xsd-classpath"/>
+      <param name="javadoc.sourcepath" value="${resolver-xsd.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-xsd-help"
+          description="Displays the help information for this resolver-xsd">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this resolver-xsd -->
+
+    <echo message="Welcome to the build script for ${resolver-xsd.name}."/>
+    <echo message="The mbox content handler is a pluggable content handler for"/>
+    <echo message="mbox files which allows querying a model representing the "/>
+    <echo message="header and attachment information for messages."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${resolver-xsd.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

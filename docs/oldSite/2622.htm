@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> SOFA </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="SOFA, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="2827.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="2733.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h2 class="heading2">SOFA</h2>
+<p class="bodytext"><a class="internetlinktemplate" title="" href="https://sofa.dev.java.net/" target="_blank">SOFA (Simple Ontology Framework API)</a> is a simple but powerful ontology API that allows for inter-operation between several different ontology description formats. Additionally, SOFA is not tied down to a particular storage layer and can easily be integrated into any application that requires an ontology manager. Due to the structure of the API, virtually any Java object can be used to model ontology datatype nodes, allowing the model to be as complex or simple as necessary. Features of the API include:</p>
+<ul class="listbullet"><li class="listbullet">Multiple inheritance, allowing the discovery of nodes beyond the first set of sub, or super-concepts.</li><li class="listbullet">Ontology inter-operation, so two ontologies in the same session can talk to each other and use the same resources.</li><li class="listbullet">Inferencing and reasoning about relationships.</li><li class="listbullet">Support for W3C OWL, DAML and OIL, and RDF and RDF Schema.</li><li class="listbullet">Ontology creation and querying.</li></ul><p class="bodytext">Visit the <a class="internetlinktemplate" title="" href="https://sofa.dev.java.net/doc/" target="_blank">SOFA documentation Web site</a> for additional information such as a Getting Started guide and an API reference guide.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="2622.htm#o2624" target="_self">Prerequisites</a></p><p class="relateditem"><a href="2622.htm#o2625" target="_self">Getting Started</a></p><p class="relateditem"><a href="2622.htm#o2626" target="_self">Creating the Ontology</a></p><p class="relateditem"><a href="2622.htm#o2627" target="_self">Changing the Backing of an Ontology</a></p><p class="relateditem"><a href="2622.htm#o2628" target="_self">Populating the Ontology</a></p><p class="relateditem"><a href="2622.htm#o2639" target="_self">Compiling and Running the Example</a></p><p class="relateditem"><a href="2622.htm#o2629" target="_self">Integration</a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="2737.htm" target="_self">Inferencing</a></p><p class="relateditem"><a href="2641.htm" target="_self">Introduction to Inferencing</a></p><p class="relateditem"><a href="2725.htm" target="_self">Inferencing and Mulgara</a></p><p class="relateditem"><a href="2800.htm" target="_self">OWL-Lite Operations Using iTQL</a></p><p class="relateditem"><a href="2733.htm" target="_self">Inferencing Examples Using SOFA and iTQL</a></p></td>
+</tr>
+</table>
+
+<a name="o2624"></a><h3 class="heading3">Prerequisites</h3>
+<p class="bodytext">The following prerequisites should be met before this SOFA tutorial can be compiled and run:</p>
+<ul class="listbullet"><li class="listbullet">Java<sup class="superscript">TM</sup> software, version 1.4 or higher. You can check the version you have installed by typing at a command line:<p class="listcontinuecommandtext">java -version</p>
+<p class="listcontinue">Something similar to the following should display:</p>
+<p class="listcontinuecommandtext">java version &quot;1.4.2_04&quot;<br />Java(TM) 2 Runtime Environment, Standard Edition (build 1.4.2_04-b05)<br />Java HotSpot(TM) Client VM (build 1.4.2_04-b05, mixed mode)</p>
+<p class="listcontinue">If the above does not display, add <code class="monospace">&lt;JAVA_HOME&gt;/bin</code>, where <code class="monospace">&lt;JAVA_HOME&gt;</code> is the location where J2SE<sup class="superscript">TM</sup> is installed, to your <code class="monospace">PATH </code>(in the appropriate way for your shell).</p>
+<p class="listcontinue">For more information on installing and running Java software, read the&nbsp;<a class="jumptemplate" title="" href="http://java.sun.com/j2se/1.4.2/install.html" target="_blank">J2SE 1.4 Installation guide</a>.</p>
+</li><li class="listbullet">A valid installation of Mulgara. For information on installing Mulgara, see the relevant sections in the Mulgara documentation.</li><li class="listbullet">Basic Java programming experience.</li></ul>
+<a name="o2625"></a><h3 class="heading3">Getting Started</h3>
+<p class="bodytext">Before creating an ontology, you need to consider its purpose, even if you are just extending an existing one. Questions you need to ask include:</p>
+<ul class="listbullet"><li class="listbullet">What is the ontology describing and what relationships should there be between the objects and data in it?</li><li class="listbullet">What sort of information should be conveyed by the ontology?</li><li class="listbullet">How should the hierarchy be structured?</li></ul><p class="bodytext">For the purpose of this tutorial we will extend a <code class="monospace"><a class="jumptemplate" title="" href="http://www.xfront.com/camera/camera.owl" target="_blank">Camera</a></code><a class="jumptemplate" title="" href="http://www.xfront.com/camera/camera.owl" target="_blank"> ontology</a> to include a mobile phone camera concept, and a new relation describing the standard of the phone (GSM or CDMA). </p>
+<p class="note"><strong class="strong">Note -</strong> We are using a slightly modified version of the <code class="monospace">camera.owl</code> ontology named <code class="monospace">kamera.owl</code>. This is because of a bug in the way that SOFA handles namespaces, which will be fixed in a later version of Mulgara.</p>
+<p class="bodytext">The code for this example, plus the <code class="monospace">kamera.owl</code>, is in the <code class="monospace">Resources</code> directory of the Mulgara directory.</p>
+<p class="bodytext">The SOFA API documentation, including the Mulgara classes that provide persistence storage for SOFA objects, is located in <code class="monospace"><a class="internetlinktemplate" title="" href="api/sofa/index.html" target="_blank">&lt;Mulgara install&gt;/docs/api/sofa</a></code>.</p>
+<a name="o2626"></a><h3 class="heading3">Creating the Ontology</h3>
+<p class="bodytext">The following class is a simple class that creates and displays data about the <code class="monospace">CameraPhone</code> ontology, which is an extension of the <code class="monospace">Camera</code> ontology. This code is available as <code class="monospace">CameraPhoneOntologyApp.java</code> in the the <code class="monospace">Resources</code> directory of your Mulgara installation.</p>
+<p class="commandtext">package org.mulgara.sofa.example;<br /><br />import java.util.*;<br />import java.util.Collection;<br />import java.net.*;<br />import java.io.*;<br /><br />import net.java.dev.sofa.*;<br />import net.java.dev.sofa.impl.*;<br />import net.java.dev.sofa.model.*;<br />import org.mulgara.server.Session;<br />import org.mulgara.server.SessionFactory;<br />import org.mulgara.server.driver.SessionFactoryFinder;<br />import org.mulgara.client.jrdf.AbstractGraphFactory;<br />import org.mulgara.store.jrdf.JRDFGraph;<br />import org.mulgara.store.xa.XADatabaseImpl;<br />import org.mulgara.store.*;<br />import org.mulgara.sofa.*;<br />import org.mulgara.sofa.serialize.owl.*;<br />import org.jrdf.graph.*;<br /><br />public class CameraPhoneOntologyApp {<br /><br />  public static void main(String[] args) {<br /><br />    //  Create a new Camera Ontology Application<br />    CameraPhoneOntologyApp app = new CameraPhoneOntologyApp();<br /><br />    //  SOFA Ontology object<br />    Ontology ontology = null;<br /><br />    try {<br /><br />      System.out.println(&quot;Creating empty Ontology&quot;);<br />      String ontologyURI = &quot;http://www.xfront.com/owl/ontologies/camera/&quot;;<br /><br />      // Create in memory based Ontology<br />      ontology = OntoConnector.getInstance().createOntology(ontologyURI);<br /><br />      //    uncomment this to..<br />      // Create Ontology on the client (communicates with Mulgara server)<br />      //ontology = OntoConnector.getInstance().createOntology(<br />      //    app.createClientOntologyModel(), ontologyURI);<br /><br />      // uncomment this to..<br />      // Create Ontology on the server (same JVM)<br />      //ontology = OntoConnector.getInstance().createOntology(<br />      //    app.createServerOntologyModel(), ontologyURI);<br /><br />      // Populate the ontology data<br />      app.loadCameraOntology(ontology);<br /><br />    } catch (Exception exception) {<br /><br />      System.out<br />          .println(&quot;Failed to create the ontolgy due to the following exception:&quot;);<br />      exception.printStackTrace();<br />    }<br /><br />    try {<br /><br />      // Create the ontology data<br />      app.populateOntology(ontology);<br />    } catch (Exception exception) {<br /><br />      System.out<br />          .println(&quot;Failed to populate the ontolgy due to the following exception:&quot;);<br />      exception.printStackTrace();<br />    }<br />  }<br /><br /><br />  /**<br />   * Loads the example Camera ontology into the supplied ontology object.<br />   * <br />   * @param onto<br />   * @throws Exception<br />   */<br />  public void loadCameraOntology(Ontology onto) throws Exception {<br /><br />    System.out.println(&quot;Loading Camera Ontology&quot;);<br />    OWLReader.getReader().read(onto, &quot;file:Resources/kamera.owl&quot;);<br /><br />    System.out.println(&quot;Loaded Ontology&quot;);<br /><br />    // get the Digital Camera Thing, a Concept is like an OWL Class,<br />    // Thing is more like an Instance<br />    Concept digiCam = onto.getConcept(&quot;Digital&quot;);<br /><br />    // Create a new type of camera: camera phone<br /><br />    // create phone first<br />    Concept phone = onto.createConcept(&quot;Phone&quot;);<br />    // give it a property/relation of GSM or CDMA<br />    Relation standard = onto.createRelation(&quot;standard&quot;);<br />    Set standards = new HashSet();<br />    standards.add(&quot;GSM&quot;);<br />    standards.add(&quot;CDMA&quot;);<br />    phone.setRestrictionOn(standard, standards, 1, 2); // 1=minCard, 2=maxCard<br /><br />    // make phone a sub class of purchaseable item<br />    Concept purchaseableItem = onto.getConcept(&quot;PurchaseableItem&quot;);<br />    phone.addSuperConcept(purchaseableItem);<br /><br />    // create camera phone<br />    Concept cameraPhone = onto.createConcept(&quot;CameraPhone&quot;);<br />    cameraPhone.addSuperConcept(phone);<br />    cameraPhone.addSuperConcept(digiCam);<br /><br />    // Show super classes<br />    System.out.println(&quot;SUPER CLASSES&quot;);<br />    Concept superConcept = null;<br />    Collection superConcepts = cameraPhone.getSuperConcepts(true);<br /><br />    // test for N superclasses<br />    System.out.println(&quot;Number of superConcepts found: &quot; + superConcepts.size());<br /><br />    // test a phone is our superclass<br />    System.out.println(&quot;Found phone concept in list of super concepts: &quot;<br />        + superConcepts.contains(phone));<br /><br />    for (Iterator sc = superConcepts.iterator(); sc.hasNext();) {<br />      superConcept = (Concept) sc.next();<br /><br />      System.out.println(superConcept.getId());<br />    }<br /><br />    // show properties, including super properties 'true'<br />    System.out.println(&quot;PROPERTIES&quot;);<br /><br />    for (Iterator ri = cameraPhone.definedRelations(true); ri.hasNext();) {<br />      Relation relation = (Relation) ri.next();<br /><br />      System.out.println(relation.getId());<br />    }<br /><br />    // test camera phones have 'standard'<br />    System.out.println(&quot;CameraPhone contains the 'standard' relation: &quot;<br />        + cameraPhone.hasDefinedRelation(standard, true));<br /><br />    // Write new ontology to Standard out<br />    OWLWriter.getWriter().write(onto, System.out);<br />  }<br /><br />   // Misc supporting methods removed<br />}</p>
+<p class="bodytext">An analysis of the class is as follows:</p>
+<p class="indentcommandtext">import java.util.*;<br />import java.util.Collection;<br />import java.net.*;<br />import java.io.*;<br /><br />import net.java.dev.sofa.*;<br />import net.java.dev.sofa.impl.*;<br />import net.java.dev.sofa.model.*;<br />import org.mulgara.server.Session;<br />import org.mulgara.server.SessionFactory;<br />import org.mulgara.server.driver.SessionFactoryFinder;<br />import org.mulgara.client.jrdf.AbstractGraphFactory;<br />import org.mulgara.store.jrdf.JRDFGraph;<br />import org.mulgara.store.xa.XADatabaseImpl;<br />import org.mulgara.store.*;<br />import org.mulgara.sofa.*;<br />import org.mulgara.sofa.serialize.owl.*;<br />import org.jrdf.graph.*;</p>
+<p class="indent">In order to use the SOFA API, the <code class="monospace">net.java.dev.sofa</code> packages need to be imported, along with the <code class="monospace">org.mulgara.sofa.serialize.owl</code> packages to allow for reading OWL files.</p>
+<p class="indentcommandtext">System.out.println(&quot;Creating empty Ontology&quot;);<br />String ontologyURI = &quot;http://www.xfront.com/owl/ontologies/camera/&quot;;<br /><br />// Create in memory based Ontology<br />ontology = OntoConnector.getInstance().createOntology(ontologyURI);</p>
+<p class="indent">Ontologies created or loaded during a session are maintained in a pool by a singleton instance of the <code class="monospace">OntoConnector</code> class and are identified by the namespace given during construction. Namespace identifiers should be unique within a session and in valid URI format. Ontologies created in this way are memory based, which is fine for ontology viewing. SOFA provides another ontology creation method, <code class="monospace">createOntology(OntologyModel, String)</code>, that produces an ontology that is backed by the given OntologyModel, which can be a Mulgara model. See the <a id="h2632" class="documentlinktemplate" title="Changing the Backing of an Ontology" href="2622.htm#o2627" target="_self">Changing the Backing of an Ontology section</a> for more information.</p>
+<p class="indentcommandtext">System.out.println(&quot;Loading Camera Ontology&quot;);<br />OWLReader.getReader().read(onto,&quot;file:Resources/kamera.owl&quot;);</p>
+<p class="indent">Often an ontology is specified in a file of some format, so there are classes available that will read them in and store the data in the given ontology. In this case, the OWL file, <code class="monospace">kamera.owl</code>, contains the camera ontology and we want to read it into the ontology we created previously. We use the <code class="monospace">org.mulgara.sofa.serialize.owl.OWLReader</code> class to populate our ontology model. Note that this OWLReader is an updated version of the one built in to SOFA (<code class="monospace">net.java.dev.sofa.serialize.owl.OWLReader</code>) which uses an outdated version of Jena to parse RDF.</p>
+<p class="indentcommandtext">// get the Digital Camera Thing, a Concept is like an OWL Class,<br />// Thing is more like an Instance<br />Concept digiCam = onto.getConcept(&quot;Digital&quot;);</p>
+<p class="indent">After the ontology is loaded, all concepts, relations and instances are instantly available for browsing and manipulating. To retrieve any of these objects, use the <code class="monospace">getConcept(String)</code>, <code class="monospace">getRelation(String)</code> and <code class="monospace">getThing(String)</code> (<em class="emphasis">Thing</em> is another way of referring to <em class="emphasis">instances</em>) methods in the Ontology class. All objects in the ontology have unique names and these are used to retrieve the values as objects.</p>
+<p class="indentcommandtext">// create phone first<br />Concept phone = onto.createConcept(&quot;Phone&quot;);</p>
+<p class="indent">Since we are adding a new concept and relation to the ontology, we need to create the concept we want to add by invoking the <code class="monospace">createConcept(String)</code> method found in the Ontology class. The string passed in is used as the identifier for the concept when the ontology is queried. There are similar methods available for relations and instances.</p>
+<p class="indentcommandtext">// give it a property/relation of GSM or CDMA<br />Relation standard = onto.createRelation(&quot;standard&quot;);<br />Set standards = new HashSet();<br />standards.add(&quot;GSM&quot;);<br />standards.add(&quot;CDMA&quot;);<br />phone.setRestrictionOn(standard, standards, 1,2); // 1=minCard, 2=maxCard</p>
+<p class="indent">Since we are creating our phone concept, we should add the <em class="emphasis">standard</em> relation to it as well, which can be one or both of two possibilities: GSM or CDMA. As mentioned in the previous step, there are similar methods to the <code class="monospace">createConcept(String)</code> method available that allows us to create a new relation, giving it a unique identifier. The two aforementioned standards are strict and have no other possibilities, so we need to create a set of options that the relation can select from when assigning values using the <code class="monospace">java.util.Collection</code> class or subclasses. When assigning the value of the relation we can have one or both of the values so the cardinality needs to be set for the relation using the <code class="monospace">setRestrictionOn(Relation, Set, int, int)</code> method available in the <code class="monospace">Concept</code> class. This adds the relation to the concept along with the set of values and the minimum and maximum cardinalities, respectively. If the restriction does not contain an enumeration of values and is only required to restrict the number of relation instances of that type that can exist for a concept, then the <code class="monospace">setRestrictionOn(Relation, int, int)</code> method should be used instead.</p>
+<p class="indentcommandtext">// make phone a sub class of purchaseable item<br />Concept purchaseableItem = onto.getConcept(&quot;PurchaseableItem&quot;);<br />phone.addSuperConcept(purchaseableItem);<br /><br />// create camera phone<br />Concept cameraPhone = onto.createConcept(&quot;CameraPhone&quot;);<br />cameraPhone.addSuperConcept(phone);<br />cameraPhone.addSuperConcept(digiCam);</p>
+<p class="indent">Quite often a concept is a subconcept of another type, like a phone is a subconcept of a purchasable item. To add a concept as a super concept of another, use the <code class="monospace">addSuperConcept(Concept)</code> method found in the <code class="monospace">Concept</code> class. Alternately, there exists a method called <code class="monospace">addSubConcept(Concept)</code> which does the opposite and adds the given concept as a subconcept. A concept can be added as a subconcept to different superconcepts, which is useful because we want a 'CameraPhone' concept to be both a camera and a phone subconcept.</p>
+<p class="indentcommandtext">// Show super classes<br />System.out.println(&quot;SUPER CLASSES&quot;);<br />Concept superConcept = null;<br />Collection superConcepts = cameraPhone.getSuperConcepts(true);<br /><br />// test for N superclasses<br />System.out.println(&quot;Number of superConcepts found: &quot; + superConcepts.size());<br /><br />// test a phone is our superclasses<br />System.out.println(&quot;Found phone concept in list of super concepts: &quot;<br />    + superConcepts.contains(phone));<br /><br />for (Iterator sc = superConcepts.iterator(); sc.hasNext();) {<br />&nbsp; superConcept = (Concept) sc.next();<br /><br />  System.out.println(superConcept.getId());<br />}</p>
+<p class="indent">At some point in working with an ontology you might want to discover the superconcepts or subconcepts of a particular concept. This can be done using the <code class="monospace">getSuperConcepts(boolean)</code> and <code class="monospace">getSubConcepts(boolean)</code> methods. A boolean of false retrieves only the direct superconcepts or subconcepts while a boolean of true retrieves all the indirect ones. Retrieving the indirect concepts is also called <em class="emphasis">inferencing</em>.&nbsp;In the CameraPhone example, you expect the list of superconcepts to be Phone, Camera, Digital and PurchaseableItem. From this you can determine that the phone is both a digital camera and a phone concept (direct superconcepts) as well as being a camera and a purchaseable item concept (indirect superconcepts).</p>
+<p class="indentcommandtext">// show properties, including super properties 'true'<br />System.out.println(&quot;PROPERTIES&quot;);<br /><br />for (Iterator ri = cameraPhone.definedRelations(true); ri.hasNext();) {<br />  Relation relation = (Relation) ri.next();<br /><br />  System.out.println(relation.getId());<br />}<br /><br />// test camera phones have 'standard'<br />System.out.println(&quot;CameraPhone contains the 'standard' relation: &quot; <br />    + cameraPhone.hasDefinedRelation(standard, true));</p>
+<p class="indent">Just as you can navigate the direct and indirect super and sub concepts, you can navigate the indirect and direct domains to find out the values of all relations for a particular concept. To retrieve the relations, the <code class="monospace">definedRelations(boolean)</code> is available in the <code class="monospace">Concept</code> class. The boolean value works in much the same way as for super and subconcept listing where false lists only the relations for the concept and true lists the concept relation and any superconcept relations. Therefore, you expect to find the standard relation in a camera phone inherited from the phone concept.</p>
+<p class="indentcommandtext">// Write new ontology to Standard out<br />OWLWriter.getWriter().write(onto, System.out);</p>
+<p class="indent">Once the ontology is created or modified, you might want to save it to disk for use in another application. Use the <code class="monospace">write(Ontology, OutputStream)</code> method available in the <code class="monospace">OWLWriter</code> class.</p>
+<a name="o2627"></a><h3 class="heading3">Changing the Backing of an Ontology</h3>
+<p class="bodytext">The standard memory model of SOFA's ontology object is acceptable for tasks such as viewing small ontologies. However, data stored within an ontology can get very large very quickly so it becomes less feasible to use memory as a storage facility. Also you might change the ontology and then want to save these changes.</p>
+<p class="bodytext">You can use Mulgara to store the data as well as to provide a structured querying interface, allowing you to search the ontology for particular pieces of information and infer relationships. In order to do this you need to construct an <code class="monospace">OntologyModel</code> object that plugs into the Mulgara framework and uses that as the backing instead of memory. To create a Mulgara backed ontology:</p>
+<ol class="listnumber"><li class="listnumber">Comment out the memory based ontology code:<p class="listcontinuecommandtext">// Create in memory based Ontology<br />ontology = OntoConnector.getInstance().createOntology(ontologyURI);</p>
+</li><li class="listnumber">Then uncomment either the ontology on the client or server code:<p class="listcontinuecommandtext">// uncomment this to..<br />// Create Ontology on the client (communicates with Mulgara server)<br />//ontology = OntoConnector.getInstance().createOntology(<br />//    app.createClientOntologyModel(), ontologyURI);</p>
+<p class="listnote"><strong class="strong">Note -</strong> If you use the client based ontology, the Mulgara server must be running.</p>
+<p class="listcontinuecommandtext">// uncomment this to..<br />// Create Ontology on the server (same JVM)<br />//ontology = OntoConnector.getInstance().createOntology(<br />//    app.createServerOntologyModel(), ontologyURI);</p>
+<p class="listnote"><strong class="strong">Note -</strong> If you use the server based ontology, you must shutdown Mulgara, and include the Mulgara server jar in your Java class path. See the <a id="h3200" class="documentlinktemplate" title="Compiling and Running the Example" href="2622.htm#o2639" target="_self">Compiling and Running the Example section</a> for more information.</p>
+</li></ol><p class="bodytext">An analysis of the code is as follows:</p>
+<p class="indentcommandtext">ontology = OntoConnector.getInstance().createOntology(app.createServerOntologyModel(), ontologyURI);</p>
+<p class="indent">The code section before this is concerned with initializing a Mulgara backed JRDF graph and using this graph, you can use an implementation of the ontology model to create our ontology. Inside the <code class="monospace">OntologyJRDFModel</code> implementation are the hooks to direct all ontology manipulations towards the Mulgara backed JRDF graph. It is important to note that the constructor for the ontology is slightly different in that the model to use is passed in also. Omitting this parameter defaults the backing to the memory based model.</p>
+<a name="o2628"></a><h3 class="heading3">Populating the Ontology</h3>
+<p class="bodytext">Once an ontology is written, data is required to give it meaning. To achieve this use the <code class="monospace">populateOntology(Ontology ontology)</code> method, which looks like the following:</p>
+<p class="commandtext">public void populateOntology(Ontology ontology) throws Exception {<br /><br />  // Retrieve the CameraPhone concept<br />  Concept cameraPhone = ontology.getConcept(&quot;CameraPhone&quot;);<br /><br />  // Create a CameraPhone instance called 'Nokia'<br />  Thing mobile = cameraPhone.createInstance(&quot;Nokia&quot;);<br /><br />  // Retrieve the Digital concept<br />  Concept digital = ontology.getConcept(&quot;Digital&quot;);<br /><br />  // Create an instance of the digital camera called 'Olympus'<br />  Thing camera = digital.createInstance(&quot;Olympus&quot;);<br /><br />  // Retrieve the 'standard' relation<br />  Relation standardRelation = ontology.getRelation(&quot;standard&quot;);<br /><br />  // Retrieve the 'lens' relation<br />  Relation lensRelation = ontology.getRelation(&quot;lens&quot;);<br /><br />  // Set the lens and standard type for the mobile phone<br />  mobile.add(standardRelation, &quot;CDMA&quot;);<br />  mobile.add(lensRelation, &quot;CompanyX&quot;);<br /><br />  // Set the lens for the camera<br />  camera.add(lensRelation, &quot;Carl Zeiss&quot;);<br /><br />  System.out.println(&quot;Listing standards for mobile phone:&quot;);<br /><br />  // Iterate through the standards of the phone<br />  for (Iterator iterator = mobile.list(standardRelation).iterator();<br />       iterator.hasNext(); ) {<br /><br />    // Print the next standard<br />    System.out.println(iterator.next());<br />  }<br /><br />  System.out.println(&quot;Listing lenses for mobile phone:&quot;);<br /><br />  // Iterate through the lenses of the phone<br />  for (Iterator iterator = mobile.list(lensRelation).iterator(); iterator.hasNext(); ) {<br /><br />    // Print the next lens<br />    System.out.println(iterator.next());<br />  }<br /><br />  System.out.println(&quot;Listing lenses for camera:&quot;);<br /><br />  // Iterate through the lenses of the camera<br />  for (Iterator iterator = camera.list(lensRelation).iterator(); iterator.hasNext(); ) {<br /><br />    // Print the next lens<br />    System.out.println(iterator.next());<br />  }<br /><br />  System.out.println(&quot;All Things:&quot;);<br /><br />  // Iterate through all 'Things' in the ontology framework<br />  for (Iterator iterator = ontology.things(); iterator.hasNext(); ) {<br /><br />    System.out.println(&quot;\t&quot; + ((Thing) iterator.next()).getId());<br />  }<br />}</p>
+<p class="bodytext">An analysis of the population method is as follows:</p>
+<p class="indentcommandtext">// Retrieve the CameraPhone concept<br />Concept cameraPhone = ontology.getConcept(&quot;CameraPhone&quot;);<br /><br />// Create a CameraPhone instance called 'Nokia'<br />Thing mobile = cameraPhone.createInstance(&quot;Nokia&quot;);<br /><br />// Retrieve the Digital concept<br />Concept digital = ontology.getConcept(&quot;Digital&quot;);<br /><br />// Create an instance of the digital camera called 'Olympus'<br />Thing camera = digital.createInstance(&quot;Olympus&quot;);</p>
+<p class="indent">Adding and retrieving concepts in an ontology are not really useful on their own unless you can create objects with meaningful data based on the concept's structure. Every object and datatype within an ontology can be traced down to a common base object, <code class="monospace">Thing</code>, and this is what instances are created as. To create a new instance of a concept, invoke the <code class="monospace">createInstance(String)</code> method, passing in the value of the name of the instance as a parameter. The resulting object represents a new instance of that concept with the data set as the string. Since we created a CameraPhone ontology, let's create an instance of it to represent a Nokia phone with a camera, and an Olympus digital camera.</p>
+<p class="indentcommandtext">// Retrieve the 'standard' relation<br />Relation standardRelation = ontology.getRelation(&quot;standard&quot;);<br /><br />// Retrieve the 'lens' relation<br />Relation lensRelation = ontology.getRelation(&quot;lens&quot;);<br /><br />// Set the lens and standard type for the mobile phone<br />mobile.add(standardRelation, &quot;CDMA&quot;);<br />mobile.add(lensRelation, &quot;CompanyX&quot;);<br /><br />// Set the lens for the camera<br />camera.add(lensRelation, &quot;Carl Zeiss&quot;);</p>
+<p class="indent">Concepts are rarely useful on their own as ontologies are used to describe the concepts using relations. So the next step is to add some data about various relations on the concepts. There are several ways to add data to an instance of a concept and these are the <code class="monospace">set(Relation, String)</code>, <code class="monospace">add(Relation, String)</code>, <code class="monospace">setAll(Relation, String[])</code>, and <code class="monospace">addAll(Relation, String[])</code> methods. These associate one or more string values with the given relation for the concept. The <code class="monospace">add</code> methods are for adding a new relation value or values to the current list while the <code class="monospace">set</code> methods replace the current value with the new value or values. Be sure to keep this in mind when creating new relations else data may be lost. As seen during the creation method (see the <a id="h2633" class="documentlinktemplate" title="Creating the Ontology" href="2622.htm#o2626" target="_self">Creating the Ontology section</a>), a subconcept inherits the relations of its superconcepts so we are able to set not only the standard, but the lens type and other information on our camera phone. Remember that the phone can only have a standard value of either one of or both of CDMA or GSM.</p>
+<p class="indentcommandtext">System.out.println(&quot;Listing standards for mobile phone:&quot;);<br /><br />// Iterate through the standards of the phone<br />for (Iterator iterator = mobile.list(standardRelation).iterator();<br />     iterator.hasNext(); ) {<br /><br />  // Print the next standard<br />  System.out.println(iterator.next());<br />}<br /><br />System.out.println(&quot;Listing lenses for mobile phone:&quot;);<br /><br />// Iterate through the lenses of the phone<br />for (Iterator iterator = mobile.list(lensRelation).iterator(); iterator.hasNext(); ) {<br /><br />  // Print the next lens<br />  System.out.println(iterator.next());<br />}<br /><br />System.out.println(&quot;Listing lenses for camera:&quot;);<br /><br />// Iterate through the lenses of the camera<br />for (Iterator iterator = camera.list(lensRelation).iterator(); iterator.hasNext(); ) {<br /><br />  // Print the next lens<br />  System.out.println(iterator.next());<br />}</p>
+<p class="indent">After adding data, you will probably want to retrieve it again for a search operation or some form of query. To retrieve the list of values for a particular relation of a concept, use the <code class="monospace">list(Relation)</code> method, which returns a <code class="monospace">java.util.Collection</code> object which can be iterated through. The above code lists the values we inserted previously for each relation. Again, the indirect relations lens and standard are picked up as a relation of a superconcept for CameraPhone concepts.</p>
+<p class="indentcommandtext">System.out.println(&quot;All Things:&quot;);<br /><br />// Iterate through all 'Things' in the ontology framework<br />for (Iterator iterator = ontology.things(); iterator.hasNext(); ) {<br /><br />  System.out.println(&quot;\t&quot; + ((Thing) iterator.next()).getId());<br />}</p>
+<p class="indent">Now that some concepts are added to the ontology you can view that they are indeed part of it by using the <code class="monospace">things()</code> method, which return an <code class="monospace">iterator</code> object. This iterates over the entire collection of objects in the ontology, concepts, relations, instances and other content alike. Similarly, there are <code class="monospace">concepts()</code>, and <code class="monospace">relations()</code> methods for iteration over the concepts and relations of the ontology respectively. Unlike the <code class="monospace">things()</code> method, they do not return instances and values of concepts and relations. That is, you see CameraPhone, but not Nokia in the concepts iterator.</p>
+<a name="o2639"></a><h3 class="heading3">Compiling and Running the Example</h3>
+<p class="bodytext">To run the example:</p>
+<ol class="listnumber"><li class="listnumber">Retrieve it from the <code class="monospace">Resources</code> directory of your Mulgara installation and place it in a directory hierarchy like the one shown below:<p class="listcontinuecommandtext">example/sofa/java/org/mulgara/sofa/example/CameraPhoneOntologyApp.java</p>
+</li><li class="listnumber">Compile it from the directory in which you created the above hierarchy:<p class="listcontinuecommandtext">javac -classpath &lt;Mulgara directory&gt;/Resources/driver-2.1.jar<br />  example/sofa/java/org/mulgara/sofa/example/CameraPhoneOntologyApp.java</p>
+</li><li class="listnumber">Depending on the ontology implementation you are running (that is, a memory, client or server based ontology), there are different requirements for a Mulgara server:<ul class="listbullet2"><li class="listbullet2">If you are using the memory based ontology:<p class="listcontinuecommandtext">// Create in memory based Ontology <br />ontology = OntoConnector.getInstance().createOntology(ontologyURI);</p>
+</li><li class="listbullet2">If you are using the client based ontology:<p class="listcontinuecommandtext">// Create Ontology on the client (communicates with Mulgara server)<br />ontology = OntoConnector.getInstance().createOntology( <br />app.createClientOntologyModel(), ontologyURI);</p>
+<p class="listcontinue2"><strong class="strong">Note -</strong> If you use the client based ontology, you must have a running Mulgara server as the example tries to connect it. See the Starting and Stopping Mulgara section for more information.</p>
+</li><li class="listbullet2">If you are using the server based ontology:<p class="listcontinuecommandtext">// Create Ontology on the server (same JVM)<br />ontology = OntoConnector.getInstance().createOntology( <br />app.createServerOntologyModel(), ontologyURI);</p>
+<p class="listcontinue2"><strong class="strong">Note -</strong> If you use the server based ontology, you must shutdown the Mulgara server, and include the Mulgara server jar in your Java class path. See the next point for more information.</p>
+</li></ul></li><li class="listnumber">Depending on the ontology implementation you are running (that is, a memory, client or server based ontology), run the example application from the Mulgara installation directory, with one of the following commands:<ul class="listbullet2"><li class="listbullet2">If you are using the memory or client based ontology:<p class="listcontinuecommandtext">java -classpath &lt;Mulgara directory&gt;/Resources/driver-2.1.jar:example/sofa/java<br />  org.mulgara.sofa.example.CameraPhoneOntologyApp</p>
+</li><li class="listbullet2">If you are using the server based ontology:<p class="listcontinuecommandtext">java -classpath &lt;Mulgara directory&gt;/Resources/driver-1.1.0.jar:example/sofa/java:&lt;Mulgara directory&gt;/mulgara-1.0.0.jar<br />  org.mulgara.sofa.example.CameraPhoneOntologyApp</p>
+</li></ul></li></ol>
+<a name="o2629"></a><h3 class="heading3">Integration</h3>
+<p class="bodytext">Integration depends on which of the three ontology models you decide to use. The following table outlines the advantages and disadvantages of each ontology model.</p>
+<table width="522" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr>
+<td width="252" height="0"></td>
+<td width="270" height="0"></td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2" width="522"><p class="tableheading">In Memory Ontology Model</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<th width="252"><p class="tableheading">Advantages</p>
+</th>
+<th width="270"><p class="tableheading">Disadvantages</p>
+</th>
+</tr>
+<tr align="left" valign="top">
+<td width="252"><p class="tablebodytext">Very fast</p>
+</td>
+<td width="270"><p class="tablebodytext">Not persisted to disk</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="252"><p class="tablebodytext">Small footprint</p>
+</td>
+<td width="270"><p class="tablebodytext">Not transaction safe </p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="252"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td width="270"><p class="tablebodytext">Not scalable</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="252"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td width="270"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2" width="522"><p class="tableheading">Embedded Server Ontology Model</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<th width="252"><p class="tableheading">Advantages</p>
+</th>
+<th width="270"><p class="tableheading">Disadvantages</p>
+</th>
+</tr>
+<tr align="left" valign="top">
+<td width="252"><p class="tablebodytext">Simple deployment</p>
+</td>
+<td width="270"><p class="tablebodytext">Not suitable for client/server applications</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="252"><p class="tablebodytext">Persistent datastore</p>
+</td>
+<td width="270"><p class="tablebodytext">Slower than in memory ontology</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="252"><p class="tablebodytext">Full Mulgara server advantages</p>
+</td>
+<td width="270"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="252"><p class="tablebodytext">Scalable </p>
+</td>
+<td width="270"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="252"><p class="tablebodytext">&nbsp;</p>
+</td>
+<td width="270"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="2" width="522"><p class="tableheading">Client/Server Ontology Model</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<th width="252"><p class="tableheading">Advantages</p>
+</th>
+<th width="270"><p class="tableheading">Disadvantages</p>
+</th>
+</tr>
+<tr align="left" valign="top">
+<td width="252"><p class="tablebodytext">Client/server architecture means client can be on different machine to server</p>
+</td>
+<td width="270"><p class="tablebodytext">Slower than memory and embedded ontology model</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="252"><p class="tablebodytext">Persistent datastore</p>
+</td>
+<td width="270"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="252"><p class="tablebodytext">Full Mulgara server advantages</p>
+</td>
+<td width="270"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="252"><p class="tablebodytext">Scalable </p>
+</td>
+<td width="270"><p class="tablebodytext">&nbsp;</p>
+</td>
+</tr>
+
+</table>
+<p class="bodytext">In most cases simply including the driver.jar when compiling and running is sufficient for using the SOFA API. When using the client server ontology model a Mulgara server must be running.</p>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

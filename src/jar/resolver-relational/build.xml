@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="resolver-relational" default="resolver-relational-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="resolver-relational-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${tuples-hybrid.dist.dir}/${tuples-hybrid.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${resolver.dist.dir}/${resolver.jar}"/>
+    <fileset file="${util-xa.dist.dir}/${util-xa.jar}"/>
+    <fileset file="${content-rdfxml.dist.dir}/${content-rdfxml.jar}"/>
+    <fileset file="${server.dist.dir}/${server-base.jar}"/>
+
+    <fileset file="${resolver-file.dist.dir}/${resolver-file.jar}"/>
+    <fileset file="${resolver-http.dist.dir}/${resolver-http.jar}"/>
+    <fileset file="${resolver-store.dist.dir}/${resolver-store.jar}"/>
+    <fileset file="${resolver-url.dist.dir}/${resolver-url.jar}"/>
+    <fileset file="${resolver-store.dist.dir}/${resolver-store.jar}"/>
+    <fileset file="${resolver-memory.dist.dir}/${resolver-memory.jar}"/>
+    <fileset file="${store-nodepool-memory.dist.dir}/${store-nodepool-memory.jar}"/>
+    <fileset file="${resolver-memory.dist.dir}/${resolver-memory.jar}"/>
+    <fileset file="${store-nodepool-xa.dist.dir}/${store-nodepool-xa.jar}"/>
+    <fileset file="${store-stringpool-xa.dist.dir}/${store-stringpool-xa.jar}"/>
+    <fileset file="${store-stringpool-memory.dist.dir}/${store-stringpool-memory.jar}"/>
+    <fileset file="${tuples-hybrid.dist.dir}/${tuples-hybrid.jar}"/>
+    <fileset file="${util-xa.dist.dir}/${util-xa.jar}"/>
+
+    <fileset file="${lib.dir}/connector-1_5.jar"/>
+    <fileset file="${lib.dir}/icu4j.jar"/>
+    <fileset file="${lib.dir}/derby.jar"/>
+
+    <fileset file="${resolver.dist.dir}/${resolver.jar}"/>
+
+  </path>
+
+  <path id="resolver-relational-test-classpath">
+    <path refid="resolver-relational-classpath"/>
+    <fileset file="${resolver-relational.dist.dir}/${resolver-relational.jar}"/>
+  </path>
+
+  <target name="resolver-relational-clean"
+          description="Removes all compile generated files for the resolver-relational">
+
+    <tstamp/>
+
+    <delete dir="${resolver-relational.obj.dir}"/>
+    <delete dir="${resolver-relational.test.dir}"/>
+    <delete dir="${resolver-relational.dist.dir}"/>
+  </target>
+
+  <target name="-resolver-relational-prepare"
+          description="Creates all directories associated with the resolver-relational's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${resolver-relational.obj.dir}"/>
+    <mkdir dir="${resolver-relational.test.dir}"/>
+    <mkdir dir="${resolver-relational.dist.dir}"/>
+    <mkdir dir="${resolver-relational.obj.dir}/classes"/>
+  </target>
+
+  <target name="resolver-relational-compile"
+          depends="-resolver-relational-prepare, resolver-jar, 
+                   tuples-hybrid-jar"
+          description="Compiles all resolver-relational related files included generated
+                       source code">
+
+    <javac destdir="${resolver-relational.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="resolver-relational-classpath"/>
+
+      <src path="${resolver-relational.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="resolver-relational-jar"
+    depends="resolver-relational-compile, -resolver-relational-jar-uptodate"
+    unless="resolver-relational.jar.uptodate"
+    description="Builds the relational Resolver JAR">
+
+    <jar jarfile="${resolver-relational.dist.dir}/${resolver-relational.jar}">
+      <fileset dir="${resolver-relational.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-resolver-relational-jar-uptodate">
+
+    <uptodate property="resolver-relational.jar.uptodate"
+              targetfile="${resolver-relational.dist.dir}/${resolver-relational.jar}">
+      <srcfiles dir="${resolver-relational.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="resolver-relational-dist"
+          depends="resolver-relational-jar"
+          description="Performs all tasks related to finalising this resolver-relational
+                       and readying it for distribution">
+  </target>
+
+  <target name="resolver-relational-test" depends="resolver-relational-jar">
+<!--                                , resolver-relational-test-data"> -->
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="resolver-relational-classpath"/>
+      <param name="dir" value="${resolver-relational.src.dir}"/>
+      <param name="jar" value="${resolver-relational.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-relational-javadoc"
+          depends="resolver-relational-jar"
+          description="Creates the javadoc for this resolver-relational">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.resolver.relational.*"/>
+      <param name="javadoc.classpath" value="resolver-relational-classpath"/>
+      <param name="javadoc.sourcepath" value="${resolver-relational.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-relational-help"
+          description="Displays the help information for this resolver-relational">
+
+    <echo message="Welcome to the build script for ${resolver-relational.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${resolver-relational.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

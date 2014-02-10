@@ -1,0 +1,157 @@
+------------------------------------------------------------------------
+r1776 | pag | 2009-08-13 18:27:31 -0500 (Thu, 13 Aug 2009) | 1 line
+
+Building the serverURI from a string as this is more forgiving for some hostnames, such as one PLoS test system that has a number for the TLD
+------------------------------------------------------------------------
+r1773 | pag | 2009-08-12 14:05:26 -0500 (Wed, 12 Aug 2009) | 1 line
+
+Added the base URI to fields in the form. This was required in a Tomcat environment
+------------------------------------------------------------------------
+r1772 | pag | 2009-08-12 14:04:17 -0500 (Wed, 12 Aug 2009) | 1 line
+
+added generics to, and a new private class to reduce the reuse of the same generics code over and over
+------------------------------------------------------------------------
+r1771 | pag | 2009-08-12 14:01:41 -0500 (Wed, 12 Aug 2009) | 1 line
+
+A query transformation that moves OR expressions up to the root of the expression tree
+------------------------------------------------------------------------
+r1770 | pag | 2009-08-12 13:54:16 -0500 (Wed, 12 Aug 2009) | 1 line
+
+implemented getRowCardinality locally to be more efficient
+------------------------------------------------------------------------
+r1769 | pag | 2009-08-12 11:49:11 -0500 (Wed, 12 Aug 2009) | 1 line
+
+Added an unorderedAppend method. This uses unsorted tuples in an UnorderedAppend, as opposed to sorting tuples in an OrderedAppend
+------------------------------------------------------------------------
+r1768 | pag | 2009-08-12 11:47:47 -0500 (Wed, 12 Aug 2009) | 1 line
+
+Adding a modifyThread permission to compliment the modifyThreadGroup permission
+------------------------------------------------------------------------
+r1767 | pag | 2009-08-12 11:47:08 -0500 (Wed, 12 Aug 2009) | 1 line
+
+Moving up to 2.1.3 to avoid conflicts with 2.1.2
+------------------------------------------------------------------------
+r1766 | pag | 2009-08-10 19:23:57 -0500 (Mon, 10 Aug 2009) | 1 line
+
+Isolated the Jena interfaces into an external object, so that Jena is not needed in the classpath unless explicitly required.
+------------------------------------------------------------------------
+r1765 | pag | 2009-07-10 11:42:21 -0500 (Fri, 10 Jul 2009) | 1 line
+
+Added quotes to build script to allow for paths with spaces
+------------------------------------------------------------------------
+r1764 | pag | 2009-07-10 11:41:34 -0500 (Fri, 10 Jul 2009) | 1 line
+
+Added the getRowExpectedCount method to supplant getRowUpperBound
+------------------------------------------------------------------------
+r1763 | pag | 2009-07-10 11:40:35 -0500 (Fri, 10 Jul 2009) | 1 line
+
+Added help text for EXPORT, and updated all references to 'model' to say'graph'
+------------------------------------------------------------------------
+r1762 | pag | 2009-07-10 11:39:20 -0500 (Fri, 10 Jul 2009) | 1 line
+
+Added in grammar optimizations through the PatternTransformer. This was always supposed to be attached, but had been missed.
+------------------------------------------------------------------------
+r1761 | pag | 2009-07-10 11:37:58 -0500 (Fri, 10 Jul 2009) | 1 line
+
+Added the getRowExpectedCount method to supplant getRowUpperBound
+------------------------------------------------------------------------
+r1760 | pag | 2009-07-10 11:37:20 -0500 (Fri, 10 Jul 2009) | 1 line
+
+Added the getRowExpectedCount method to supplant getRowUpperBound, and removed warnings by adding generics
+------------------------------------------------------------------------
+r1759 | pag | 2009-07-10 11:35:27 -0500 (Fri, 10 Jul 2009) | 1 line
+
+Added the getRowExpectedCount method to supplant getRowUpperBound
+------------------------------------------------------------------------
+r1758 | pag | 2009-07-10 11:31:20 -0500 (Fri, 10 Jul 2009) | 1 line
+
+Added support for typed and language coded literals
+------------------------------------------------------------------------
+r1757 | pag | 2009-07-10 11:29:09 -0500 (Fri, 10 Jul 2009) | 1 line
+
+Fixed a bug where the wrong object was tested for null
+------------------------------------------------------------------------
+r1756 | pag | 2009-07-10 11:28:24 -0500 (Fri, 10 Jul 2009) | 1 line
+
+Adding in the ability to use non-QName URIs, for future expressions
+------------------------------------------------------------------------
+r1755 | pag | 2009-07-10 11:26:53 -0500 (Fri, 10 Jul 2009) | 1 line
+
+Added the getRowExpectedCount method to supplant getRowUpperBound
+------------------------------------------------------------------------
+r1754 | pag | 2009-07-10 11:25:25 -0500 (Fri, 10 Jul 2009) | 1 line
+
+Added the getRowExpectedCount method to supplant getRowUpperBound, plus cleaned up warnings by removing unused imports and adding generics
+------------------------------------------------------------------------
+r1753 | pag | 2009-07-06 17:40:35 -0500 (Mon, 06 Jul 2009) | 1 line
+
+Added in JSON escapes for literal strings. Not having them was a bug
+------------------------------------------------------------------------
+r1752 | pag | 2009-07-03 12:35:47 -0500 (Fri, 03 Jul 2009) | 1 line
+
+Missed the new CST class for variable assignment in commit 1751
+------------------------------------------------------------------------
+r1751 | pag | 2009-07-03 12:34:49 -0500 (Fri, 03 Jul 2009) | 1 line
+
+Added variable assignment as a SPARQL extension. This touches the parser and CST, the mapper to the AST, the AST, and the query execution (including Tuples operations)
+------------------------------------------------------------------------
+r1750 | pag | 2009-07-03 12:33:12 -0500 (Fri, 03 Jul 2009) | 1 line
+
+Added a necessary library to the test path so that BlockFile is available. Don't know why this didn't fail before, but it's been failing now
+------------------------------------------------------------------------
+r1749 | pag | 2009-07-03 12:31:40 -0500 (Fri, 03 Jul 2009) | 1 line
+
+Fixed the license
+------------------------------------------------------------------------
+r1748 | pag | 2009-07-03 12:31:08 -0500 (Fri, 03 Jul 2009) | 1 line
+
+More reasonably assumption about the expected value for the size of a join. This needs a major overhaul
+------------------------------------------------------------------------
+r1747 | pag | 2009-07-03 12:26:51 -0500 (Fri, 03 Jul 2009) | 1 line
+
+Added setIO permission for Jetty
+------------------------------------------------------------------------
+r1746 | pag | 2009-06-29 17:06:41 -0500 (Mon, 29 Jun 2009) | 1 line
+
+Adjustment of fudge-factor used for probabilistic weighting of row counts
+------------------------------------------------------------------------
+r1745 | pag | 2009-06-29 17:04:10 -0500 (Mon, 29 Jun 2009) | 1 line
+
+Removed call to optimize indexes on every commit
+------------------------------------------------------------------------
+r1744 | pag | 2009-06-29 17:03:09 -0500 (Mon, 29 Jun 2009) | 1 line
+
+New option allows user configuration files to be partial
+------------------------------------------------------------------------
+r1743 | pag | 2009-06-29 17:01:31 -0500 (Mon, 29 Jun 2009) | 1 line
+
+Removed references to obsolete libraries
+------------------------------------------------------------------------
+r1742 | pag | 2009-06-29 17:00:44 -0500 (Mon, 29 Jun 2009) | 1 line
+
+Added comments to the system configuration
+------------------------------------------------------------------------
+r1741 | pag | 2009-06-29 16:47:19 -0500 (Mon, 29 Jun 2009) | 1 line
+
+Made fields non-compulsory so a user can write partial files. The system file must be complete though.
+------------------------------------------------------------------------
+r1740 | pag | 2009-06-26 15:19:39 -0500 (Fri, 26 Jun 2009) | 1 line
+
+Integrated Andy Seaborne's JenaMulgara bridge. Added the JenaTest jar to properly test this bridge. Lots of optimizations are still possible.
+------------------------------------------------------------------------
+r1739 | pag | 2009-06-26 15:16:26 -0500 (Fri, 26 Jun 2009) | 1 line
+
+Cleaned up some formatting, and removed warnings through added generics, annotating unused loggers, and removing unused imports
+------------------------------------------------------------------------
+r1738 | pag | 2009-06-26 13:49:07 -0500 (Fri, 26 Jun 2009) | 1 line
+
+Changed an info message down to debug. I expected this would be rare and notable, but it is common
+------------------------------------------------------------------------
+r1737 | pag | 2009-06-23 02:40:21 -0500 (Tue, 23 Jun 2009) | 1 line
+
+Escaping entities in SPARQL XML results
+------------------------------------------------------------------------
+r1736 | alexhall | 2009-06-11 19:35:28 -0500 (Thu, 11 Jun 2009) | 1 line
+
+Modify the rule engine to support any multiple of 3 columns in the selection variables of a rule's query.  This allows rules to have multiple atoms in their heads, and is a more efficient implementation than splitting such rules into multiple rules with the same body and one head atom each.
+------------------------------------------------------------------------

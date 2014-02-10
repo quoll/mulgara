@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Mulgara Mp3 Application configuration
+-->
+
+<Mp3ConfigXML applicationName="MusiK">
+
+  <FileSystemModel resource="rmi://localhost/server1#fsModel"
+    type ="http://mulgara.org/mulgara#FileSystemModel"/>
+
+  <SchemaModel resource="rmi://localhost/server1#schemaModel"
+    type ="http://mulgara.org/mulgara#Model">
+    <SchemaFile resource="/mp3.rdfs"/>
+  </SchemaModel>
+
+  <Mp3Model resource="rmi://localhost/server1#mp3Model"
+    type ="http://mulgara.org/mulgara#Model"/>
+
+</Mp3ConfigXML>

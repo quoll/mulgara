@@ -1,0 +1,16 @@
+org/mulgara/content/mp3/MP3Statements.java
+org/mulgara/content/mp3/TestResolverSession.java
+org/mulgara/content/mp3/MP3ContentHandler.java
+org/mulgara/content/mp3/parser/ID3ParserImpl.java
+org/mulgara/content/mp3/parser/ID3v1ParserImpl.java
+org/mulgara/content/mp3/parser/ID3v2ParserImpl.java
+org/mulgara/content/mp3/parser/IdentifierProcessor.java
+org/mulgara/content/mp3/parser/ParserFactory.java
+org/mulgara/content/mp3/parser/api/ID3Parser.java
+org/mulgara/content/mp3/parser/api/ID3v1Parser.java
+org/mulgara/content/mp3/parser/api/ID3v2Parser.java
+org/mulgara/content/mp3/parser/api/MP3Conversion.java
+org/mulgara/content/mp3/parser/exception/FactoryException.java
+org/mulgara/content/mp3/parser/exception/ParserException.java
+org/mulgara/content/mp3/parser/exception/ConversionException.java
+org/mulgara/content/mp3/parser/exception/IdentifierException.java

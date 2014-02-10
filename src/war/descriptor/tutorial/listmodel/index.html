@@ -1,0 +1,379 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+  <title>Mulgara Descriptor model list tutorial</title>
+<link media="all" href="/all.css" type="text/css" title="Default" rel="stylesheet">
+<link media="screen" href="/default.css" type="text/css" title="Default" rel="stylesheet">
+<link media="print" href="/print.css" type="text/css" rel="stylesheet">
+<link href="/burnt.css" title="Burnt" media="screen" type="text/css" rel="alternate stylesheet">
+<link rel="icon" type="text/png" href="/images/icons/siteicon.png">
+<link rel="shortcut icon" type="text/png" href="/images/icons/siteicon.png">
+</head>
+
+<body>
+<div id="container">
+
+  <!-- Banner -->
+  <div id="banner">
+    <h1>mulgara.sourceforge.net</h1>
+  </div>
+
+  <div id="content">
+    <div id="breadcrumb">
+      [ Location:
+      <ul>
+        <li><a href="/webservices/descriptor/" title="descriptors">descriptors</a></li>
+        <ul>
+          <li><a href="../index.html">descriptors tutorial</a></li>
+          <ul>
+            <li>list model</li>
+          </ul>
+        </ul>
+      </ul>  ]
+  </div>  
+       
+<div style="padding-left: 15px;">     
+<h1>Mulgara Descriptor List Models Tutorial</h1>
+   
+<h2></h2>
+ In this tutorial we will to do the following:  
+<ol>
+   <li>Perform a query inside a descriptor</li>
+   <li>Pass parameters to queries</li>
+   <li>Transform query results into a form we desired - HTML<br>
+    </li>
+ 
+</ol>
+   
+<h2></h2>
+ The purpose of this tutorial is to create and deploy a descriptor  which 
+returns a simple HTML page with a list of models available on a Mulgara server 
+using an iTQL query.<br>
+ <br>
+ NOTE it is assumed the user has already completed the <a
+ href="../helloworld/">Hello World tutorial</a>, if any steps are unclear 
+refer to that tutorials step for a fuller explanation.<br>
+ 
+<h2>Start the Descriptor Wizard</h2>
+ Click <a href="../.." target="descriptor">here</a> to open the main  Descriptor 
+page. &nbsp;Invoke the Descriptor Wizard which is the first task  available 
+in the Descriptor Tasks area. &nbsp;<br>
+   <br>
+     
+<h2>Step 1 - Entering a Title</h2>
+ For this tutorial enter a title such as:<b><br>
+   Lists models in a Mulgara as HTML.</b><br>
+   <br>
+     
+<h2>Step 2 - Entering Parameters</h2>
+ We could hard code this descriptor to only look on a certain Mulgara server
+but if we supply the server name as a parameter then &nbsp;the descriptor
+is reusable. &nbsp;Lets use a parameter called 'server' to specify the server, 
+it will be a string.<br>
+ <br>
+     
+<h2>Step 3 - Mime Type</h2>
+ For this example choose <b>text/html</b><br>
+   <br>
+   The wizard should now look similar to the screen shot below.<br>
+   <br>
+   &nbsp;  <img src="wizard.png" alt="" width="740" height="1008">
+ <br>
+   <br>
+     
+<h2>Step 4 - Generate the Descriptor Template</h2>
+   Once you have entered all required information (you will be returned to
+ the form entry page if the data is incomplete) click on the 'Generate Descriptor 
+ Template' button.<br>
+   <br>
+     
+<h2>Step 5 - Save the Descriptor file</h2>
+   Your Browser should now be showing an XSL file, or it may ask you if you 
+ want to download it. &nbsp;In either case save the Descriptor file somewhere 
+ where you can edit it. &nbsp;Save it using a filename such as <b>modellist.xsl</b>.<br>
+   <br>
+     
+<h2>Step 6 - Edit the modellist.xsl Descriptor file</h2>
+   Using your preferred text editor load the modellist.xsl and change the 
+main template rule at the top to look like this:<br>
+ <br>
+ &nbsp; &lt;!-- ============================================== --&gt;<br>
+ &nbsp; &lt;!-- Match the Solution --&gt;<br>
+ &nbsp; &lt;!-- ============================================== --&gt;<br>
+ &nbsp; &lt;xsl:template match="/"&gt;<br>
+ &nbsp;&nbsp;&nbsp; &lt;xsl:choose&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:when test="$_usage"&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:call-template name="usage"/&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xsl:when&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:otherwise&gt;<br>
+ <br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;!-- store query answer in 
+a variable called answer --&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:variable name="answer"&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;!-- Query for 
+list of models on server --&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;mulgaraDescriptor:query 
+server="{$server}"&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;![CDATA[<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select 
+$model from &lt;@@server@@#&gt; where<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $model 
+&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt;
+&lt;http://tucana.org/tucana#Model&gt;;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ]]&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/mulgaraDescriptor:query&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xsl:variable&gt;<br>
+ <br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;!-- Now apply the templates 
+to the answer --&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:copy-of select="xalan:nodeset($answer)/*"/&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xsl:otherwise&gt;<br>
+ &nbsp;&nbsp;&nbsp; &lt;/xsl:choose&gt;<br>
+ &nbsp; &lt;/xsl:template&gt;<br>
+ <br>
+ <br>
+ Several new things have been introduced in this descriptor over the simple 
+one in the Hello World Example, here they are in detail:<br>
+ <br>
+ <b>&lt;mulgaraDescriptor:query&gt; Tag</b><br>
+ <br>
+ &lt;!-- Query for list of models on server --&gt;<br>
+  &nbsp;&lt;mulgaraDescriptor:query server="{$server}"&gt;<br>
+  &nbsp; &lt;![CDATA[<br>
+  &nbsp;&nbsp; select $model from &lt;@@server@@&gt; where<br>
+  &nbsp;&nbsp;&nbsp; $model &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; 
+&lt;http://tucana.org/tucana#Model&gt;;<br>
+  &nbsp;]]&gt;<br>
+  &nbsp;&lt;/mulgaraDescriptor:query&gt;<br>
+ <br>
+ This tag is an entension to XSL allowing queries to to made to a Mulgara database, 
+the tag is fully discussed here TODO!!. &nbsp;In a &nbsp;text child of this 
+tag (i.e. between the open an closing tags) an iTQL query is placed. &nbsp;The 
+query text is stored in a CDATA section so as to stop the XML parser having 
+problems with the angle brackets surrounding resources. &nbsp;The use of the
+@@server@@ is a simple token replacement mechanism, any time a piece to text
+is found surrounded by '@@' the descriptor will look for the text as an <b>attribute</b>
+of the query tag and replace it with that value. &nbsp;In this case the text
+@@server@@ will replaced with the value of the server attribute {$server}
+which is the server parameter which is passed to the descriptor on invokation
+i.e. client using this descriptor must supply a server parameter. &nbsp;This
+contract - the interface in software engineering terms - is specified in
+the RDF of the descriptor. &nbsp;If you look further down in the modellist.xsl
+file you will see a parameter section like this:<br>
+ <br>
+ &lt;!-- Other RDF snipped --&gt;<br>
+ &lt;!-- Parameter 1 --&gt;<br>
+ &lt;desc:hasParam xmlns:desc="http://tucana.org/descriptor#" xmlns="http://www.w3.org/1999/xhtml"&gt; 
+<blockquote>&lt;desc:Param&gt;<br>
+   
+  <blockquote>&lt;desc:name&gt;server&lt;/desc:name&gt;<br>
+ &lt;desc:type&gt;String&lt;/desc:type&gt;<br>
+ &lt;desc:required&gt;Yes&lt;/desc:required&gt;<br>
+ &lt;desc:description&gt;The server to get a model list from&lt;/desc:description&gt;<br>
+   </blockquote>
+ &lt;/desc:Param&gt;<br>
+ </blockquote>
+ &lt;/desc:hasParam&gt;<br>
+ <br>
+ This RDF reflects the information the developer entered into the descriptor 
+wizard. &nbsp;The Descriptor code checks for parameters and will report any 
+violations such as parameters not being present or of the wrong type.<br>
+ <br>
+ Once the interface has been decided the actual logic of the XSL file i.e. 
+the rules may change with out needing to redeploy, this means that Descriptors 
+can be developed interactively i.e. a developer can be editing a descriptor 
+XSL file, make a change, save it, and invoke the descriptor for immediate 
+results. &nbsp;If any of the parameters change then the descriptor must be 
+redeployed.<br>
+ <b><br>
+ NOTE</b> descriptors are cached by Mulgara, if you change a descriptor the cache 
+must be cleared, this is one of the tasks available from the <a
+ href="../../">Descriptor Management Page</a>.<br>
+ <br>
+ The <b>&lt;mulgaraDescriptor:query&gt;</b> tag is surrounded by an <b>&lt;xsl:variable&gt;</b> 
+tag which will store the results of the query in the variable <b>answer.</b> 
+&nbsp;We do this because the raw XML returned from a query is not very 
+useful on its own, if a developer directly wanted to work with the raw XML 
+then they should work with the Java API interface to Mulgara. <br>
+ <br>
+ The tag:<br>
+ <br>
+ &lt;xsl:copy-of select="xalan:nodeset($answer)/*"/&gt;<br>
+ <br>
+ Is a tag thats very useful for debugging, it copies the response from the 
+Mulgara server (i.e. the raw XML) to the output. &nbsp;This is useful when working 
+with new descriptors where you do not know exactly what their output looks 
+like. &nbsp;<b>NOTE</b> future versions of descriptors will also declare an
+XML Schema of the results they produce - elimination the developer guesswork 
+thats currently partically required. &nbsp;<br>
+ <br>
+ At this stage it is advisable to temporarily jump to the next step, follow 
+the remaining steps and invoke the descriptor as is, you should see a raw 
+XML response something like this:<br>
+ <br>
+ 
+<pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br>&lt;answer
+xmlns="http://tucana.org/tql#"&gt;<br>&lt;query&gt;<br>&lt;variables&gt;<br>&lt;model/&gt;<br>&lt;/variables&gt;<br>&lt;solution&gt;&lt;model resource="rmi://user.mulgara.org/server1#"/&gt;&lt;/solution&gt;<br>&lt;solution&gt;&lt;model resource="rmi://user.mulgara.org/server1#_"/&gt;&lt;/solution&gt;<br>&lt;solution&gt;&lt;model resource="rmi://user.mulgara.org/server1#descriptors"/&gt;&lt;/solution&gt;<br>&lt;solution&gt;&lt;model resource="rmi://user.mulgara.org/server1#customer"/&gt;&lt;/solution&gt;<br>&lt;solution&gt;&lt;model resource="rmi://user.mulgara.org/server1#sun"/&gt;&lt;/solution&gt;<br>&lt;solution&gt;&lt;model resource="rmi://user.mulgara.org/server1#nytimes"/&gt;&lt;/solution&gt;<br>&lt;/query&gt;<br>&lt;/answer&gt;<br></pre>
+ If you do this and make further changes to your descriptor (as you now will) 
+you <b>MUST</b> clear the descriptor cache - this is one of the tasks available 
+from the <a href="../../">Descriptor Management Page</a>.<br>
+ <br>
+ Our next step if to transform the above XML into a HTML list of the models. 
+&nbsp;Writing a rule to match the &lt;answer&gt; tag is a good way to write 
+the HTML header and body tags. &nbsp;The &lt;solution&gt; tag holds each solution
+to the query, like a row in a result set of a SQL query. &nbsp;First we must
+change the top most rule where we have the tag:<br>
+ <br>
+ &lt;xsl:copy-of select="xalan:nodeset($answer)/*"/&gt;<br>
+ <br>
+ to<br>
+ <br>
+ &lt;xsl:apply-templates select="xalan:nodeset($answer)/*"/&gt;<br>
+ <br>
+ This applies the XSL template rules to the XML we received from the Mulgara
+server i.e. its as if the raw XML was the input document to the XSL transformer. 
+&nbsp;Now we need to write the 2 rules, one to match the answer and one to 
+match the solution.<br>
+ <br>
+ <b>Answer Rule:<br>
+ </b><br>
+ &nbsp; &lt;!-- #################################################################### 
+--&gt;<br>
+ &nbsp; &lt;!-- converts answer into a HTML Page &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp;&nbsp; --&gt;<br>
+ &nbsp; &lt;!-- #################################################################### 
+--&gt;<br>
+ &nbsp; &lt;xsl:template match="mulgaraAnswer:answer"&gt;<br>
+ &nbsp;&nbsp;&nbsp; &lt;html&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;head&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;title&gt;Mulgara models&lt;/title&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/head&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;body&gt;<br>
+ <br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List of models on server &lt;xsl:value-of 
+select="$server"/&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;ol&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates/&gt;<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/ol&gt;<br>
+ <br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/body&gt;<br>
+ &nbsp;&nbsp;&nbsp; &lt;/html&gt;<br>
+ &nbsp; &lt;/xsl:template&gt;<br>
+ <br>
+ As you can see this will match an answer, write out a HTML header and body 
+and start an ordered list, then apply the rest of the rules before closing 
+the ordered list and closing all the HTML tags.<br>
+ <br>
+ <b>Solution Rule:<br>
+ </b><br>
+ &nbsp; &lt;!-- #################################################################### 
+--&gt;<br>
+ &nbsp; &lt;!-- converts solution into a HTML List Element &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; --&gt;<br>
+ &nbsp; &lt;!-- #################################################################### 
+--&gt;<br>
+ &nbsp; &lt;xsl:template match="mulgaraAnswer:solution"&gt;<br>
+ &nbsp;&nbsp;&nbsp; &lt;li&gt;&lt;xsl:value-of select="mulgaraAnswer:model/@resource"/&gt;&lt;/li&gt;<br>
+ &nbsp; &lt;/xsl:template&gt;<br>
+ <br>
+ This rule is very simple, it takes a solution and inserts the resource attribute 
+of the &lt;mulgaraAnswer:model&gt; tag (refer to the raw XML &nbsp;response if 
+this is unclear) into a list element tag &lt;li&gt;. &nbsp;This effectively 
+adds the Model URI to the HTML list.<br>
+ <br>
+ Once you have entered both rules save the file again. &nbsp;You might want 
+to check that the file is valid XML using a tool such as xmllint.<br>
+ <br>
+ If you are having problems the file is available <a
+ href="modellist.xsl" target="_blank">here</a>.<br>
+     
+<h2>Step 7 - Deploy the Descriptor with Mulgara</h2>
+ Deploy as before<br>
+ <br>
+   Start an iTQL client.<br>
+   <br>
+   Check if the descriptor model already exists by querying for a list of 
+models.<br>
+   <br>
+   <b>NOTE</b> if the #descriptors model does <b>not</b> exist then you should 
+ deploy the local descriptors which will create the descriptors model and 
+load some useful descriptors. &nbsp;It is one of the tasks available from 
+the <a href="../.." target="descriptor">descriptor management page</a>.<br>
+   <br>
+ To deploy simply load the descriptor XSL file into this model:<br>
+   <br>
+   iTQL&gt; load &lt;file:/home/joe/work/modellist.xsl&gt; into &lt;rmi://localhost/server1#descriptors&gt;;<br>
+   <br>
+ If the there were no errors in the XSL then the Descriptor is now deployed 
+ and available for use, if there were errors check your XML for bad syntax 
+ such as unclosed tags. &nbsp;The Descriptor wizard generates correct XML 
+and XSL.<br>
+   <br>
+     
+<h2>Step 8 - Invoke the Descriptor</h2>
+   Locate the Desciptor List task from the the <a href="../../"
+ target="descriptor">descriptor management page</a>.  &nbsp;Find the Descriptor 
+Model List descriptor you have just deployed and press the usage button to 
+see a screen similar to the one below.<br>
+  <br>
+   &nbsp; <img src="invoke.png" alt="" width="826" height="459">
+ <br>
+   <br>
+ <br>
+ Enter the server parameter such as rmi://localhost/server1 (replace localhost 
+with the fully qualified hostname - FQHN). Click on the invoke button. &nbsp;If 
+all is well a screen like the one below should be displayed.<br>
+  <br>
+  &nbsp; <img src="listhtml.png" alt="" width="797" height="263">
+ <br>
+   <br>
+ <br>
+ This descriptor is <b>NOT</b> restricted to accessing or being accessed
+from other clients (with security restrictions). &nbsp;i.e. the server URI
+entered above could be a server on another machine - this descriptor can
+be used to get a list of models on <i>any </i>Mulgara server (if allowed). &nbsp;Correspondingly 
+if this descriptor was put on a web server it could be deployed onto a remote 
+Mulgara server like this:<br>
+   <br>
+   iTQL&gt; load &lt;http://mulgara.org/descriptors/utils/modellist.xsl&gt; 
+into &lt;rmi://interal.acme.com/server1#descriptors&gt;;<br>
+ <br>
+ It is envisioned that lots of descriptors will be developed to perform many 
+different tasks.&nbsp; When developing or modifying an application to work 
+with a Mulgara database it may be as simple as browsing the descriptors available 
+and choosing the ones appropriate for the applications needs.<br>
+ <br>
+ 
+<h2>Conclusion</h2>
+ In this tutorial we learned to do the following: 
+<ol>
+   <li>Perform a Mulgara query inside a descriptor</li>
+   <li>Pass parameters to queries</li>
+   <li>Transform query results into a form we desired - HTML</li>
+ 
+</ol>
+ 
+<h2>Where to from here ?</h2>
+ The next powerful feature to learn is how to invoke one descriptor from
+another, this allows complex descriptors to be developed and for descriptors
+to be changed with out affecting clients (as long as interfaces don't change). 
+&nbsp;An example of this would be a portal where one descriptor called on 
+other descriptors to assemble a custom HTML page or WML page.<br>
+  <br>
+  To learn how to invoke one descriptor from another and perform a Mulgara query 
+in a descriptor look at the <a href="../vcard/">VCard Tutorial</a>.<br>
+  <br>
+  See list of all <a href="..">tutorials</a> 
+<h2></h2>
+ </div>
+ <br>
+  <br>
+ <br>
+</body>
+</html>

@@ -1,0 +1,112 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Resolver Database Class</title>
+    <meta name="keywords" content="Resolver Database Class, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+
+		<a href="/resolvers/resolverdbclass.html#o2554">Node Pools</a> &#124;
+		<a href="/resolvers/resolverdbclass.html#o2555">String Pools</a> &#124;
+		<a href="/resolvers/resolverdbclass.html#o2556">Temporary Pools</a> &#124;
+		<a href="/resolvers/resolverdbclass.html#o2557">Persistent Pools</a> &#124;
+		<a href="/resolvers/resolverdbclass.html#o2558">System Resolver Factory</a> &#124;
+		<a href="/resolvers/resolverdbclass.html#o2559">Internal Resolvers</a> &#124;
+		<a href="/resolvers/resolverdbclass.html#o2560">External Resolvers</a>
+  
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/resolvers/index.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/system/index.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/resolvers/index.html">Resolvers</a></p>
+<p class="relateditem"><a href="/resolvers/resolverdbclass.html#o2559">Internal Resolvers</a></p>
+<p class="relateditem"><a href="/resolvers/resolverdbclass.html#o2560">External Resolvers</a></p>
+ -->
+
+
+
+
+<h2>Resolver Database Class</h2>
+
+<p>The resolver database class is highly configurable, allowing you to optimally set up Mulgara for the appropriate usage requirements. By inserting different classes into the constructor of the database class you can set it up as a:</p>
+<ul><li>Heavyweight store that uses disk input and output as its primary storage, making it persistent across executions of the server</li><li>Lightweight, memory based store that is faster but subject to memory limitations and no persistence</li></ul>
+<p>There are five configurable parts for the database with respect to its operation:</p>
+<ol><li>Persistent Node Pool</li><li>Persistent String Pool</li><li>Temporary Node Pool</li><li>Temporary String Pool</li><li>System Resolver Factory</li></ol>
+<p>The Persistent String and Node Pools maintain the mappings of node id to string representations for all current models in both the System and External models.</p>
+
+<p>The Temporary Node and Temporary String Pools are used for storing temporary nodes during a query.</p>
+
+<p>To ensure proper functionality, the System Resolver Factory determines which resolver manages the system model information. It is recommended that you use internal resolvers for the System Resolver Factory because of their stability, but external resolvers can also be used. By default, Persistent Node and Persistent String Pools use disk based storage, while Temporary Node and Temporary String Pools use memory based storage.</p>
+
+
+<div class="anchor"><a name="o2554">&nbsp;</a></div>
+<h3>Node Pools</h3>
+
+<p>Node and String Pools work closely together to manage the data contained in the system model. Most importantly, the Node Pool, which contains the numerical representations of nodes within the graph structure of the models which the String Pool depends upon. Each node in a model's graph is assigned a unique numerical representation that is stored and handled within the Node Pool. All nodes are local to the system model, that is they only have scope within the system model and are meaningless in any other server.</p>
+<div class="anchor"><a name="o2555">&nbsp;</a></div>
+<h3>String Pools</h3>
+
+<p>Working as a compliment to the Node Pool, the String Pool maps node numbers to their string counterparts, or actual values. Since all strings are globally available (that is, they hold the same meaning wherever they are used), localization is required before the node's value can be retrieved.</p>
+<div class="anchor"><a name="o2556">&nbsp;</a></div>
+<h3>Temporary Pools</h3>
+
+<p>Temporary Pools are a combination of a Node and a String pool that maintains nodes used during queries that are not part of the store. When a query is executed, the Persistent Pools are consulted and if the node cannot be found, the Temporary Pool creates a new entry. This prevents the creation of nodes in the store which are not part of the graph. Temporary nodes are given IDs that do not overlap with the existing store node IDs and are consulted before the Persistent Pools. After a query is executed, all temporary nodes are deleted.</p>
+<div class="anchor"><a name="o2557">&nbsp;</a></div>
+<h3>Persistent Pools</h3>
+
+<p>All data store graph nodes are stored in the Persistent Pools, allowing quick and easy processing of queries. Unlike Temporary Pools, they are permanent and remain after the query is executed. Generally, only the nodes handled by models in the internal resolvers are stored in the Persistent Pools, with the external resolvers' nodes being handled by the resolver itself.</p>
+<div class="anchor"><a name="o2558">&nbsp;</a></div>
+<h3>System Resolver Factory</h3>
+
+<p>The System Resolver Factory is a title rather than an actual functioning part of any database instance. It defines the resolver factory used to create a resolver that manages the system model. </p>
+
+<p>When deciding on which resolver to use, it is important to note that the resolver is in charge of addition, removal and modification of the models and should allow for this functionality. The other factor to consider is that the resolver's store should reflect the usage of Mulgara. That is, for a persistent system model, use a persistent resolver, and for a temporary system model, use a temporary resolver.</p>
+<div class="anchor"><a name="o2559">&nbsp;</a></div>
+<h2>Internal Resolvers</h2>
+
+<p>An <em>Internal Resolver</em> operates on a data store internal to a Mulgara server and therefore has its own model within the system model. Usually, internal resolvers are used alongside data stores with RDF ready information, which requires very little or no conversion. It is possible however, to set up an internal relational database resolver or similar.</p>
+
+<p>Internally resolved models are the most stable as they are Mulgara controlled. The data is guaranteed at all times as is always accessible for the life of the server. Internal resolvers use the Persistent Node and String Pools and therefore require no translation of the nodes in the data store's graphs.</p>
+<div class="anchor"><a name="o2560">&nbsp;</a></div>
+<h2>External Resolvers</h2>
+
+<p>An <em>External Resolver</em> has its model outside of the scope of the system model and outside the control of Mulgara. External resolvers are useful for data stores that are not in an RDF ready format and require some processing before results can be returned. This is most often used for resolving files of various formats, but can also be useful for connecting to a relational database and converting results to RDF on the fly, or reading from an unknown source's stream.</p>
+
+<p>There is a danger to using external resolvers because the data being queried is not controlled by Mulgara and there is no guarantee of the model being present. External factors, such as other users, servers, or security protocols may alter or remove files or stores being resolved, thus contaminating or causing errors in the results.</p>
+
+<p>Since external resolvers operate outside the scope of the Mulgara server, they are responsible for managing their own Node and String Pools as well as translating them across to the Mulgara pools during a query. This also applies to blank nodes, whose values should be maintained across resolutions for the same file otherwise the results might become unpredictable.</p>
+
+<p>Once a query's model is determined to be external to the system model, the protocol is checked to determine how the resolver should connect to the resource. After setting up a connection, the actual URL's type is determined and the appropriate resolver is selected to resolve the constraints. </p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

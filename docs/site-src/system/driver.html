@@ -1,0 +1,65 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Mulgara Driver</title>
+    <meta name="keywords" content="mulgara driver, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/system/itqlbean.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/system/jrdf.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/system/index.html">System Architecture</a></p>
+<p class="relateditem"><a href="/system/jsptaglib.html">JavaServer Pages Tag Library</a></p>
+<p class="relateditem"><a href="/system/itqlshell.html">iTQL Shell</a></p>
+<p class="relateditem"><a href="/system/soap.html">Simple Object Access Protocol (SOAP)</a></p>
+<p class="relateditem"><a href="/system/itqlbean.html">iTQL Bean</a></p>
+<p class="relateditem"><a href="/system/jrdf.html">Java RDF (JRDF)</a></p>
+
+
+ -->
+
+
+
+
+<h2>Mulgara Driver</h2>
+
+<p>The Mulgara driver provides a means to communicate directly with a Mulgara server. It is employed (at some level) by all higher-level components including the <a id="h551" class="documentlinktemplate" title="iTQL Shell" href="/system/itqlshell.html">iTQL</a><sup><a id="h551_2" class="documentlinktemplate" title="iTQL Shell" href="/system/itqlshell.html">TM</a></sup><a id="h551_3" class="documentlinktemplate" title="iTQL Shell" href="/system/itqlshell.html"> interpreter</a> and the <a id="h954" class="documentlinktemplate" title="iTQL Bean" href="/system/itqlbean.html">iTQL Bean</a>. The driver is responsible for query resolution including issuing queries to remote and local Mulgara servers and coordinating responses back to clients. The driver communicates with remote servers via <a class="internetlinktemplate" title="" href="http://www.w3.org/tr/soap">SOAP</a> or <a class="internetlinktemplate" title="" href="http://java.sun.com/products/jdk/rmi/">RMI</a>.</p>
+
+<p>For example, in query resolution, query handlers are invoked for communicating with servers behind SOAP or RMI connections. Each of these communication methods can be secured using conventional means including SSL, TLS and SSH.</p>
+
+<p>The architectural separation of the driver and the remote server allows the building of 2-tier to n-tier applications. For example, a web application server hosting a web interface built using JSPs may run on one machine. The application communicates to a SOAP endpoint on another machine, this endpoint employs a driver that communicates via RMI to remote servers.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

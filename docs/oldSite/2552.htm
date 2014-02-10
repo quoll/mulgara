@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Resolvers </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Resolvers, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="419.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="2553.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h1 class="heading1">Resolvers</h1>
+<p class="bodytext">Mulgara is capable of querying any type of data source by using <em class="emphasis">Resolvers</em>. Resolvers accept and process queries against data contained in a file, a database or some other data source. In most cases, the data being queried against is not in a meaningful format (that is, it is not RDF) so the resolver must convert the data first. Whether this is done by parsing the contents of a file, or converting rows of a database, it is left up to the inner workings of the resolver.</p>
+<p class="bodytext">The resolver architecture is a query layer that sits between the Mulgara transport and storage layers. All resolvers are pluggable. That is, you can write new resolvers that cater for new protocols or file types, or provide a bridge to a particular store in the storage layer.</p>
+<p class="bodytext">The resolver architecture consists of three layers, which are the:</p>
+<ol class="listnumber"><li class="listnumber">Resolver API</li><li class="listnumber">Resolver SPI (service provider interface)</li><li class="listnumber">Content SPI</li></ol><p class="bodytext">The Resolver SPI and Content SPI are of interest to developers who want to incorporate new stores or file types into the query layer, or to modify existing ones. The Resolver API is of interest to developers who want to interface with the query layer.</p>
+<p class="bodytext">Queries passed to a Resolver API contain:</p>
+<ul class="listbullet"><li class="listbullet">A list of variables to find</li><li class="listbullet">The data store URI to query from</li><li class="listbullet">A set of constraints to limit the number and content of triples returned</li></ul><p class="bodytext">The Resolver API first checks if the data store is a Mulgara model. If it is, the query is resolved against the internal resolver set, otherwise it is resolved against the external resolver set, based on the data store's protocol (extracted from its URI). Once the constraints are resolved, they are collapsed until only the tuples containing the required variables remain. The results are passed back to the API to be passed across the transport layer.</p>
+<p class="bodytext">Mulgara provides resolvers for querying different types of data stores, including:</p>
+<ul class="listbullet"><li class="listbullet">Local and remote TKS data stores</li><li class="listbullet"><code class="monospace"><code class="monospace">file:</code></code> and <code class="monospace">HTTP:</code> protocol files</li><li class="listbullet">JRDF files</li><li class="listbullet">MP3 files</li><li class="listbullet">RDF/XML files</li><li class="listbullet">MBox files</li></ul><p class="bodytext">See the <a id="h3050" class="documentlinktemplate" title="HTTP Resolver and MP3 Content Handler Tutorial" href="2686.htm" target="_self">MP3 Resolver Tutorial section</a> for information on how to develop your own resolvers.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "453.6">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="2553.htm" target="_self">Resolver Database Class</a></p><p class="relateditem"><a href="2553.htm#o2559" target="_self">Internal Resolvers</a></p><p class="relateditem"><a href="2553.htm#o2560" target="_self">External Resolvers</a></p></td>
+</tr>
+</table>
+
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

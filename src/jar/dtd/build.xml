@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="dtd" default="dtd-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="dtd-classpath">
+
+    <path refid="common-classpath"/>
+  </path>
+
+  <path id="dtd-test-classpath">
+
+    <path refid="dtd-classpath"/>
+
+    <fileset file="${dtd.dist.dir}/${dtd.jar}"/>
+  </path>
+
+  <target name="dtd-clean"
+          description="Removes all compile generated files for the dtd">
+
+    <tstamp/>
+
+    <delete dir="${dtd.obj.dir}"/>
+    <delete dir="${dtd.test.dir}"/>
+    <delete dir="${dtd.dist.dir}"/>
+  </target>
+
+  <target name="-dtd-prepare"
+          description="Creates all directories associated with the dtd's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${dtd.obj.dir}"/>
+    <mkdir dir="${dtd.test.dir}"/>
+    <mkdir dir="${dtd.dist.dir}"/>
+    <mkdir dir="${dtd.obj.dir}/classes"/>
+  </target>
+
+  <target name="dtd-compile"
+          depends="-dtd-prepare"
+          description="Compiles all dtd related files included generated
+                       source code">
+
+    <javac destdir="${obj.dir}/jar/dtd/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="dtd-classpath"/>
+
+      <src path="${dtd.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="dtd-jar"
+          depends="dtd-compile, -dtd-jar-uptodate"
+          unless="dtd.jar.uptodate"
+          description="Creates the dtd's jar/s">
+
+    <jar jarfile="${dtd.dist.dir}/${dtd.jar}">
+      <fileset dir="${dtd.obj.dir}/classes"/>
+      <fileset dir="${dtd.src.dir}" includes="META-INF/**, DTD/**"/>
+    </jar>
+  </target>
+
+  <target name="-dtd-jar-uptodate">
+
+    <uptodate property="dtd.jar.uptodate"
+              targetfile="${dtd.dist.dir}/${dtd.jar}">
+
+      <srcfiles dir="${dtd.obj.dir}/classes" includes="**/*"/>
+      <srcfiles dir="${dtd.src.dir}" includes="META-INF/**, DTD/**"/>
+    </uptodate>
+  </target>
+
+  <target name="dtd-dist"
+          depends="dtd-jar"
+          unless="dtd.uptodate"
+          description="Performs all tasks related to finalising this dtd
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the dtd library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="dtd-test"
+          depends="dtd-jar"
+          description="Carries out unit testing for this dtd">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="dtd-test-classpath"/>
+      <param name="dir" value="${dtd.src.dir}"/>
+      <param name="jar" value="${dtd.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="dtd-javadoc"
+          depends="dtd-jar"
+          description="Creates the javadoc for this dtd">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.xml.*"/>
+      <param name="javadoc.classpath" value="dtd-classpath"/>
+      <param name="javadoc.sourcepath" value="${dtd.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="dtd-help"
+          description="Displays the help information for this dtd">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this dtd -->
+
+    <echo message="Welcome to the build script for ${dtd.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${dtd.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

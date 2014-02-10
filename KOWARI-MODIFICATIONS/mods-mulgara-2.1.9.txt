@@ -1,0 +1,333 @@
+------------------------------------------------------------------------
+r1982 | pag | 2010-10-01 00:32:08 -0400 (Fri, 01 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/LEGAL.txt
+
+Updated description of Jars used by Jetty, and the version of Jetty that is now being used.
+------------------------------------------------------------------------
+r1981 | pag | 2010-10-01 00:17:29 -0400 (Fri, 01 Oct 2010) | 10 lines
+Changed paths:
+   M /trunk
+   M /trunk/.classpath
+   A /trunk/.svnignore
+   M /trunk/build.properties
+   M /trunk/build.xml
+   M /trunk/common.xml
+   M /trunk/conf/core/mulgara-x-config.xml
+   M /trunk/conf/mulgara-config-x11.xml
+   M /trunk/conf/mulgara-config-xa1.xml
+   M /trunk/conf/mulgara-config.xml
+   D /trunk/lib/jasper-compiler-4.2.29.jar
+   D /trunk/lib/jasper-runtime-4.2.29.jar
+   D /trunk/lib/jetty-6.1.11.jar
+   A /trunk/lib/jetty-continuation-7.1.6.v20100715.jar
+   A /trunk/lib/jetty-deploy-7.1.6.v20100715.jar
+   A /trunk/lib/jetty-http-7.1.6.v20100715.jar
+   A /trunk/lib/jetty-io-7.1.6.v20100715.jar
+   A /trunk/lib/jetty-security-7.1.6.v20100715.jar
+   A /trunk/lib/jetty-server-7.1.6.v20100715.jar
+   A /trunk/lib/jetty-servlet-7.1.6.v20100715.jar
+   A /trunk/lib/jetty-servlets-7.1.6.v20100715.jar
+   D /trunk/lib/jetty-util-6.1.11.jar
+   A /trunk/lib/jetty-util-7.1.6.v20100715.jar
+   A /trunk/lib/jetty-webapp-7.1.6.v20100715.jar
+   A /trunk/lib/jetty-xml-7.1.6.v20100715.jar
+   A /trunk/lib/jsp
+   A /trunk/lib/jsp/com.sun.el_1.0.0.v201004190952.jar
+   A /trunk/lib/jsp/ecj-3.6.jar
+   A /trunk/lib/jsp/javax.el_2.1.0.v201004190952.jar
+   A /trunk/lib/jsp/javax.servlet.jsp.jstl_1.2.0.v201004190952.jar
+   A /trunk/lib/jsp/javax.servlet.jsp_2.1.0.v201004190952.jar
+   A /trunk/lib/jsp/jetty-jsp-2.1-7.1.6.v20100715.jar
+   A /trunk/lib/jsp/org.apache.jasper.glassfish_2.1.0.v201007080150.jar
+   A /trunk/lib/jsp/org.apache.taglibs.standard.glassfish_1.2.0.v201004190952.jar
+   D /trunk/lib/jsp-2.1.jar
+   D /trunk/lib/jsp-api-2.1.jar
+   D /trunk/lib/servlet-api-2.5-6.1.11.jar
+   A /trunk/lib/servlet-api-2.5.jar
+   M /trunk/src/jar/content-rdfa/java/org/mulgara/content/rdfa/BasedResolver.java
+   M /trunk/src/jar/content-rdfa/java/org/mulgara/content/rdfa/RdfaContentHandler.java
+   M /trunk/src/jar/content-rdfa/java/org/mulgara/content/rdfa/RdfaStatements.java
+   M /trunk/src/jar/content-rdfa/java/org/mulgara/content/rdfa/StatementParser.java
+   M /trunk/src/jar/descriptor/build.xml
+   M /trunk/src/jar/server/java/org/mulgara/server/HttpServices.java
+   M /trunk/src/jar/server-http/build.xml
+   M /trunk/src/jar/tag/build.xml
+   A /trunk/src/jar/util/java/org/mulgara/util/JettyLogger.java (from /trunk/src/jar/util/java/org/mulgara/util/MortbayLogger.java:1976)
+   D /trunk/src/jar/util/java/org/mulgara/util/MortbayLogger.java
+   M /trunk/src/war/web-services/WEB-INF/web.xml
+
+Added RDFa content handler.
+
+Due to problems during development of the RDFa content handler, Jetty was upgraded to Jetty 7.
+This includes upgrades to all the JSP Jars, including Jasper. Several configuration items had
+to be changed with this upgrade, including some package names and use of APIs. Jetty 7 is now
+broken down into its component Jars, instead of the couple of Jar files that used to contain
+everything. This has led to a much longer classpath in some of the build files, and many more
+entries in the lib directory. Since there are 8 JSP Jar files, these were put into their own
+directory called lib/jsp.
+
+------------------------------------------------------------------------
+r1980 | pag | 2010-10-01 00:11:19 -0400 (Fri, 01 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/dtd/java/org/mulgara/xml/ResourceEntityResolver.java
+
+Added generics to hashmaps
+------------------------------------------------------------------------
+r1979 | pag | 2010-10-01 00:04:07 -0400 (Fri, 01 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/StringToLongMap.java
+
+Added a finalizer to clean up, plus parameterized the cache for generics
+------------------------------------------------------------------------
+r1978 | pag | 2010-10-01 00:02:51 -0400 (Fri, 01 Oct 2010) | 2 lines
+Changed paths:
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryServlet.java
+   A /trunk/src/jar/web/resources/example.html
+
+Added an option to get some debug info if a particular comment is present.
+
+------------------------------------------------------------------------
+r1977 | pag | 2010-09-30 22:30:31 -0400 (Thu, 30 Sep 2010) | 1 line
+Changed paths:
+   A /trunk/src/jar/util/java/org/mulgara/util/TeePrintWriter.java
+
+A debugging utility for sending a PrintWriter in two directions
+------------------------------------------------------------------------
+r1975 | pag | 2010-08-19 23:07:51 -0400 (Thu, 19 Aug 2010) | 1 line
+Changed paths:
+   A /trunk/KOWARI-MODIFICATIONS/mods-mulgara-2.1.9.txt
+
+New log for 2.1.9 release
+------------------------------------------------------------------------
+r1974 | pag | 2010-08-19 22:58:53 -0400 (Thu, 19 Aug 2010) | 1 line
+Changed paths:
+   M /trunk/LEGAL.txt
+
+Added license details for HTMLParser and Java-RDFa
+------------------------------------------------------------------------
+r1973 | pag | 2010-08-19 22:41:38 -0400 (Thu, 19 Aug 2010) | 1 line
+Changed paths:
+   A /trunk/src/jar/content-rdfa
+   A /trunk/src/jar/content-rdfa/build.xml
+   A /trunk/src/jar/content-rdfa/content-rdfa-build.properties
+   A /trunk/src/jar/content-rdfa/java
+   A /trunk/src/jar/content-rdfa/java/org
+   A /trunk/src/jar/content-rdfa/java/org/mulgara
+   A /trunk/src/jar/content-rdfa/java/org/mulgara/content
+   A /trunk/src/jar/content-rdfa/java/org/mulgara/content/rdfa
+   A /trunk/src/jar/content-rdfa/java/org/mulgara/content/rdfa/BasedResolver.java
+   A /trunk/src/jar/content-rdfa/java/org/mulgara/content/rdfa/RdfaContentHandler.java
+   A /trunk/src/jar/content-rdfa/java/org/mulgara/content/rdfa/RdfaStatements.java
+   A /trunk/src/jar/content-rdfa/java/org/mulgara/content/rdfa/RdfaStatementsUnitTest.java
+   A /trunk/src/jar/content-rdfa/java/org/mulgara/content/rdfa/StatementParser.java
+   A /trunk/src/jar/content-rdfa/java/org/mulgara/content/rdfa/package.html
+
+Fixing the RDFa code that should have already been added
+------------------------------------------------------------------------
+r1972 | pag | 2010-08-19 17:25:45 -0400 (Thu, 19 Aug 2010) | 1 line
+Changed paths:
+   M /trunk/.classpath
+   M /trunk/build.properties
+   M /trunk/build.xml
+   A /trunk/lib/htmlparser-1.2.1.jar
+   A /trunk/lib/java-rdfa-0.4.1.jar
+
+Added RDFa content handling
+------------------------------------------------------------------------
+r1971 | pag | 2010-08-19 17:24:16 -0400 (Thu, 19 Aug 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/Parser.java
+
+Fixed a debug message and a comment which said RDF instead of N3
+------------------------------------------------------------------------
+r1970 | pag | 2010-08-07 22:49:17 -0400 (Sat, 07 Aug 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstructQuery.java
+   M /trunk/src/jar/query/java/org/mulgara/query/GraphAnswer.java
+   M /trunk/src/jar/query/java/org/mulgara/query/Query.java
+   M /trunk/src/jar/query/java/org/mulgara/query/Variable.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/LocalQueryResolver.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/SubqueryAnswer.java
+
+Corrected graph construction with CONSTRUCT. Blank nodes now being handled correctly. Also Variables can identify if they are being used to generate blank nodes, based on the fact that they have the illegal * character in their name. Added some generics cleanup to LocalQueryResolver
+------------------------------------------------------------------------
+r1969 | pag | 2010-07-20 09:54:47 -0400 (Tue, 20 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/.classpath
+   M /trunk/build.properties
+   M /trunk/build.xml
+   M /trunk/common.properties
+   M /trunk/common.xml
+   M /trunk/conf/mulgara-rmi.policy
+   M /trunk/conf/mulgara-test.policy
+   M /trunk/conf/mulgara.policy
+   A /trunk/lib/je-4.0.103.jar
+   A /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/bdb
+   A /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/bdb/DbEnvironment.java
+   A /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/bdb/DbTuples.java
+   A /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/bdb/DbTuplesFactory.java
+   A /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/bdb/DbTuplesTest.java
+
+Added a new HybridTuples that uses BDB. Policies and path had to change for the BDB addition.
+------------------------------------------------------------------------
+r1968 | pag | 2010-07-06 17:50:25 -0400 (Tue, 06 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/DataAVLComparator.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/DataStruct.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolImpl.java
+
+Switched to using Long Buffered Files for read-only disk access. This defaults to mmap access, but can fall back to IO. Also added a WeakHashMap for caching anything that is not mapped
+------------------------------------------------------------------------
+r1967 | pag | 2010-07-06 17:48:03 -0400 (Tue, 06 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/io/LBufferedFile.java
+   M /trunk/src/jar/util/java/org/mulgara/util/io/LIOBufferedFile.java
+   M /trunk/src/jar/util/java/org/mulgara/util/io/LMappedBufferedFile.java
+   M /trunk/src/jar/util/java/org/mulgara/util/io/LReadOnlyIOBufferedFile.java
+
+Added a remap listening service to tell listeners when a remap may occur. Of course, only a mapping implementation will perform a remap. Also fixed an error in the mapping implementation that didn't take into account an empty file
+------------------------------------------------------------------------
+r1966 | pag | 2010-07-02 22:16:06 -0400 (Fri, 02 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/DistinctTuplesUnitTest.java
+
+Removed unnecessary warning suppression
+------------------------------------------------------------------------
+r1965 | pag | 2010-07-02 22:14:59 -0400 (Fri, 02 Jul 2010) | 1 line
+Changed paths:
+   A /trunk/src/jar/util/java/org/mulgara/util/io/LBufferedFileTest.java
+   A /trunk/src/jar/util/java/org/mulgara/util/io/LIOBufferedFileTest.java
+   A /trunk/src/jar/util/java/org/mulgara/util/io/LMappedBufferedFileTest.java
+
+Full tests for read only file access
+------------------------------------------------------------------------
+r1964 | pag | 2010-07-02 22:14:25 -0400 (Fri, 02 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/io/LBufferedFile.java
+
+Add a factory method that detects the system settings to determine the file access mode
+------------------------------------------------------------------------
+r1963 | pag | 2010-07-02 21:22:24 -0400 (Fri, 02 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/C.java
+
+removed unneeded warning suppression
+------------------------------------------------------------------------
+r1962 | pag | 2010-07-02 16:39:56 -0400 (Fri, 02 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/io/LBufferedFile.java
+   M /trunk/src/jar/util/java/org/mulgara/util/io/LMappedBufferedFile.java
+   M /trunk/src/jar/util/java/org/mulgara/util/io/LReadOnlyIOBufferedFile.java
+
+Unit tests (not included) now work for read-only operations
+------------------------------------------------------------------------
+r1961 | pag | 2010-07-02 13:15:20 -0400 (Fri, 02 Jul 2010) | 1 line
+Changed paths:
+   M /trunk/data/ISWC-d2rq.n3
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/ColumnDesc.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalResolverUnitTest.java
+
+Got numeric and date columns mapping in and out of the SQL database
+------------------------------------------------------------------------
+r1960 | pag | 2010-07-02 01:12:58 -0400 (Fri, 02 Jul 2010) | 1 line
+Changed paths:
+   A /trunk/src/jar/util/java/org/mulgara/util/io
+   A /trunk/src/jar/util/java/org/mulgara/util/io/LBufferedFile.java
+   A /trunk/src/jar/util/java/org/mulgara/util/io/LIOBufferedFile.java
+   A /trunk/src/jar/util/java/org/mulgara/util/io/LMappedBufferedFile.java
+   A /trunk/src/jar/util/java/org/mulgara/util/io/LReadOnlyIOBufferedFile.java
+
+Initial code for reading large files. Not yet tested
+------------------------------------------------------------------------
+r1959 | alexhall | 2010-06-30 11:58:53 -0400 (Wed, 30 Jun 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-mp3/java/org/mulgara/content/mp3/MP3Statements.java
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/N3Statements.java
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/RDFXMLStatements.java
+   M /trunk/src/jar/krule/java/org/mulgara/krule/Rule.java
+   M /trunk/src/jar/query/java/org/mulgara/query/AnswerImpl.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ArrayAnswer.java
+   M /trunk/src/jar/query/java/org/mulgara/query/BooleanAnswer.java
+   M /trunk/src/jar/query/java/org/mulgara/query/Cursor.java
+   M /trunk/src/jar/query/java/org/mulgara/query/GraphAnswer.java
+   M /trunk/src/jar/query/java/org/mulgara/query/UnconstrainedAnswer.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/AppendAggregateTuples.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/CacheStatements.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/GlobalizedAnswer.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/LocalQueryResolver.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/SubqueryAnswer.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/TransactionalAnswer.java
+   M /trunk/src/jar/resolver-gis/java/org/mulgara/resolver/gis/GISDistanceStatements.java
+   M /trunk/src/jar/resolver-gis/java/org/mulgara/resolver/gis/WritableGISResolver.java
+   M /trunk/src/jar/resolver-memory/java/org/mulgara/resolver/memory/MemoryResolution.java
+   M /trunk/src/jar/resolver-nodetype/java/org/mulgara/resolver/nodetype/TuplesWrapperResolution.java
+   M /trunk/src/jar/resolver-null/java/org/mulgara/resolver/nullres/NullResolution.java
+   M /trunk/src/jar/resolver-prefix/java/org/mulgara/resolver/prefix/TuplesWrapperResolution.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalAnswer.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalResolution.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/LocalizedTuples.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/SingletonStatements.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/StatementsWrapperResolution.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/StatementsWrapperTuples.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/TripleSetWrapperStatements.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/TuplesWrapperResolution.java
+   M /trunk/src/jar/resolver-url/java/org/mulgara/resolver/url/URLStatements.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/AnswerWrapperRemoteAnswer.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/AnswerWrapperRemoteAnswerSerialised.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/BlankNodeWrapperAnswer.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteAnswer.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteAnswerWrapperAnswer.java
+   M /trunk/src/jar/store-stringpool-memory/java/org/mulgara/store/stringpool/memory/MemoryStringPoolImpl.java
+   M /trunk/src/jar/store-stringpool-xa/java/org/mulgara/store/stringpool/xa/XAStringPoolImpl.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolImpl.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/Assignment.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/Difference.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/DistinctTuples.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/EmptyTuples.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/ExpandedProjection.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/FilteredTuples.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/LeftFiltered.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/LeftJoin.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/LetTuples.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/LiteralTuples.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/OrderedAppend.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/OrderedProjection.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/TestTuples.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperations.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/UnboundJoin.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/UnconstrainedTuples.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/UnorderedAppend.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/UnorderedProjection.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/WrappedTuples.java
+   M /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/xa/HybridTuples.java
+   M /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/xa/HybridTuplesFactory.java
+   M /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/xa/HybridTuplesTest.java
+   M /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/xa/MemoryCacheLine.java
+
+Add a new isEmpty method as a more efficient way of testing for zero row cardinality when optimizing tuples operations
+------------------------------------------------------------------------
+r1958 | pag | 2010-06-10 14:33:12 -0400 (Thu, 10 Jun 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/ColumnDesc.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/LiteralDesc.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/PatternDesc.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalResolution.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/VariableDesc.java
+   A /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/d2rq/DB2XSD.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/d2rq/DatabaseElem.java
+
+Added information indicating if a database is Oracle or not, with some differing date extraction code if it is. Added a mapping for Literals to map SQL types to XSD types.
+------------------------------------------------------------------------
+r1957 | pag | 2010-06-10 14:24:58 -0400 (Thu, 10 Jun 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/ServletMulgaraServer.java
+
+Remove a warning about toURL being deprecated
+------------------------------------------------------------------------
+r1956 | pag | 2010-06-10 14:23:46 -0400 (Thu, 10 Jun 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/rdf/XSD.java
+
+Added the xsd:time type
+------------------------------------------------------------------------

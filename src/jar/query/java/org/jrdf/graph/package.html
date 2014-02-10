@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>Java RDF (JRDF) Graph Package</title>
+</head>
+<body>
+<p>
+This package defines a set of APIs required to implement an RDF Graph and it's
+associated objects. The basis for this package structure comes
+from various sources including:
+<A HREF="http://www.w3.org/RDF/">the W3C RDF specifications</A>
+and existing Java mappings including:
+<A HREF="http://www.hpl.hp.com/semweb/jena.htm">Jena</A>,
+<A HREF="http://sesame.aidministrator.nl/">Sesame</A> and
+<A HREF="http://www-db.stanford.edu/~melnik/rdf/api.html">Sergey Melnik's RDF API</A>.
+</p>
+<p>
+An RDF Graph is made from RDF triples.  Triples consist of a subject,
+predicate and object.  Triples are made of nodes.  Nodes can either be resources
+or literals.  Resources can either be labelled with a URI, called URI
+references, or be blank.
+</p>
+<p>
+To construct nodes you use a GraphElementFactory which allows you to create any of the
+nodes individually.  This allows a separation between the implementation of the
+Graphs and of Node storage and handling.
+</p>
+</body>
+</html>

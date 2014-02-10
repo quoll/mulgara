@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+  "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+
+<taglib>
+  <tlibversion>0.1</tlibversion>
+  <jspversion>1.1</jspversion>
+  <shortname>mulgara</shortname>
+  <uri>http://www.mulgara.org/mulgara/taglibs/mulgara</uri>
+
+  <info>
+    Tags for communicating with Mulgara Semantic Stores.
+  </info>
+
+  <tag>
+    <name>init</name>
+    <tagclass>org.mulgara.tag.InitTag</tagclass>
+    <teiclass>org.mulgara.tag.InitTEI</teiclass>
+    <bodycontent>empty</bodycontent>
+    <info>
+      Initialises the Mulgara JSP environment.
+    </info>
+    <attribute>
+      <name>server</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>render</name>
+    <tagclass>org.mulgara.tag.RenderTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+      Renders an XML document using a supplied stylesheet.
+    </info>
+    <attribute>
+      <name>stylesheet</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>statement</name>
+    <tagclass>org.mulgara.tag.StatementTag</tagclass>
+    <teiclass>org.mulgara.tag.StatementTEI</teiclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+      Sends queries to a Mulgara server.
+    </info>
+    <attribute>
+      <name>id</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>server</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>query</name>
+    <tagclass>org.mulgara.tag.QueryTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+      Adds an iTQL query to a statement.
+    </info>
+    <attribute>
+      <name>id</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>execute</name>
+    <tagclass>org.mulgara.tag.ExecuteTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <info>
+      Executes a statement.
+    </info>
+    <attribute>
+      <name>query</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>answer</name>
+    <tagclass>org.mulgara.tag.AnswerTag</tagclass>
+    <teiclass>org.mulgara.tag.AnswerTEI</teiclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+      Retrieves query answers from a statement.
+    </info>
+    <attribute>
+      <name>id</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>statement</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>query</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+</taglib>

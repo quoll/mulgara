@@ -1,0 +1,77 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - System Architecture</title>
+    <meta name="keywords" content="System Architecture, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/resolvers/resolverdbclass.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/system/jsptaglib.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+ -->
+
+
+
+
+<h1>System Architecture</h1>
+
+<p>Much like a relational database, Mulgara may be used as a data repository for software applications. Mulgara has an open API that supports many industry-standard programming languages and protocols.</p>
+
+<p>Different types of users interact with Mulgara in different ways depending on their needs:</p>
+<ul><li>End users interact with Mulgara indirectly via applications that use Mulgara as the underlying data repository.</li><li>System administrators use iTQL to load metadata into Mulgara, check its status, back up information held, or otherwise administer Mulgara databases.</li><li>Programmers perform the integration between their own applications and Mulgara. Queries to Mulgara databases can be issued via any of the following industry-standard mechanisms:<ul><li><a id="h551" class="documentlinktemplate" title="iTQL Shell" href="/system/itqlshell.html">iTQL shell</a></li><li><a id="h552" class="documentlinktemplate" title="Simple Object Access Protocol (SOAP)" href="/system/soap.html">Simple Object Access Protocol (SOAP)</a></li><li><a id="h954" class="documentlinktemplate" title="iTQL Bean" href="/system/itqlbean.html">iTQL JavaBean</a></li><li><a id="h660" class="documentlinktemplate" title="Mulgara Driver" href="/system/driver.html">Mulgara Driver</a>
+<p class="listcontinue">Each of the above mechanisms connect to a Mulgara driver, which in turn connects to a Mulgara server over a separate communication channel. The communication channel is configurable and determines how a server exposes itself to the world, generally via RMI or SOAP.</p>
+</li></ul></li></ul>
+<p>Using SOAP allows Mulgara to run on a different server from an organizations' web application server, and still maintain accessibility through the regular corporate firewall. If this is not required (for example, the Java RMI port is opened on the firewall, or the Mulgara server and the web application server are running on the same machine) the JSP tag libraries can communicate with the driver directly using the iTQL bean, effectively removing a level of indirection. The JSP tag libraries and COM object provide convenient methods by which iTQL commands can be sent and answers parsed into suitable formats.</p>
+
+<p>iTQL commands received by the SOAP endpoint are sent to the iTQL interpreter. The interpreter uses a driver to issue commands to Mulgara servers containing the models specified by the command. The driver is responsible for coordinating the distribution of commands to the appropriate servers, and collating the results into a single answer to be returned to the interpreter. The remote server receives method calls from the driver via RMI, and makes the appropriate method calls to the underlying Mulgara database.</p>
+
+<p>Pluggable resolvers, provided with Mulgara or written by third parties, allow Mulgara to query just about any type of data source, including:</p>
+<ul><li>The Mulgara native XA datastore (both local and distributed)</li><li>Lucene models</li><li>XSD datatype models</li><li>Views</li><li>External data sources such as relational databases or Mbox files</li></ul>
+<p>See the <a id="h3078" class="documentlinktemplate" title="Resolvers" href="/resolvers/index.html">Resolvers section</a> for more information, including a tutorial on how to write your own resolvers.</p>
+
+<p>Deciding on the appropriate integration method depends on your choice of development tools, platform, operating system and network environment. You should choose:</p>
+<ul><li>JavaServer Pages (JSP) tag libraries when:<ul><li>Your application presents a web interface or requires HTML, XHTML or XML publishing</li><li>You are a web developer familiar with JSP technology and don't require the sophistication of servlets</li></ul></li><li><a id="h551_2" class="documentlinktemplate" title="iTQL Shell" href="/system/itqlshell.html">iTQL shell</a> when you require:<ul><li>A text-based interactive interface with Mulgara</li><li>Shell-based scripting for scheduled tasks, for example cron jobs or Windows Services</li></ul></li><li><a id="h552_2" class="documentlinktemplate" title="Simple Object Access Protocol (SOAP)" href="/system/soap.html">Simple Object Access Protocol (SOAP)</a> when you:<ul><li>Are developing a non-Java application, for example Perl, PHP or using other socket-based communication</li><li>Have firewall restrictions between Mulgara and your application</li><li>Require SSL or TLS to secure the connection between Mulgara and your application</li></ul></li><li><a id="h553" class="documentlinktemplate" title="iTQL Bean" href="/system/itqlbean.html">iTQL Bean</a> when you:<ul><li>Require fine-grain access to a Mulgara server</li><li>Are building third party connectivity libraries</li><li>Are a developer who uses visual JavaBeans development tools, for example IBM VisualAge for Java</li><li>Are a web developer developing sophisticated data-centric web-based applications</li></ul></li><li><a id="h2880" class="documentlinktemplate" title="Java RDF (JRDF)" href="/system/jrdf.html">Java RDF (JRDF)</a> when you:<ul><li>Require a highly modular and type safe interface allowing users to create, store and query RDF statements</li></ul></li></ul>
+<p>The following sections explore the application integration methods available in more detail and where applicable, provides links to tutorials. The assumption is that you are familiar with the <a class="internetlinktemplate" title="" href="http://java.sun.com">Java<sup>TM</sup></a> language for software development.</p>
+
+
+<p class="relatedheading">In This Section</p>
+<p class="relateditem"><a href="/system/jsptaglib.html">JavaServer Pages Tag Library</a></p>
+<p class="relateditem"><a href="/system/itqlshell.html">iTQL Shell</a></p>
+<p class="relateditem"><a href="/system/soap.html">Simple Object Access Protocol (SOAP)</a></p>
+<p class="relateditem"><a href="/system/itqlbean.html">iTQL Bean</a></p>
+<p class="relateditem"><a href="/system/driver.html">Mulgara Driver</a></p>
+<p class="relateditem"><a href="/system/jrdf.html">Java RDF (JRDF)</a></p>
+
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

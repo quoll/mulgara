@@ -1,0 +1,22 @@
+<foo:node1> <foo:hasText> "AACP Pneumothorax Consensus Group" .
+<foo:node2> <foo:hasText> "ALS-HPS Steering Group" .
+<foo:node3> <foo:hasText> "ALSPAC (Avon Longitudinal Study of Parents and Children) Study Team" .
+<foo:node4> <foo:hasText> "ALTS Study group" .
+<foo:node5> <foo:hasText> "American Academy of Asthma, Allergy and Immunology" .
+<foo:node6> <foo:hasText> "American Association for the Surgery of Trauma" .
+<foo:node7> <foo:hasText> "American College of Chest Physicians" .
+<foo:node8> <foo:hasText> "Antiarrhythmics Versus Implantable Defibrillator (AVID) Trial Investigators" .
+<foo:node9> <foo:hasText> "Antibiotic Use Working Group" .
+<foo:node10> <foo:hasText> "Atypical Squamous Cells Intraepithelial" .
+<foo:node11> <foo:hasText> "Lesion Triage Study (ALTS) Group" .
+<foo:node12> <foo:hasText> "Australasian Society for Thrombosis and Haemostasis (ASTH) Emerging Technologies Group" .
+<foo:node13> <foo:hasText> "Benefit Evaluation of Direct Coronary Stenting Study Group" .
+<foo:node14> <foo:hasText> "Biomarkers Definitions Working Group." .
+<foo:node15> <foo:hasText> "Canadian Colorectal Surgery DVT Prophylaxis Trial investigators" .
+<foo:node16> <foo:hasText> "Cancer Research Campaign Phase I - II Committee" .
+<foo:node17> <foo:hasText> "Central Technical Coordinating Unit" .
+<foo:node18> <foo:hasText> "Clinical Epidemiology Group from the French Hospital Database on HIV" .
+<foo:node19> <foo:hasText> "CNAAB3005 International Study Team" .
+<foo:node20> <foo:hasText> "Commissione ad hoc" .
+<foo:node21> <foo:hasText> "Committee to Advise on Tropical Medicine and Travel" .
+<foo:node22> <foo:hasText> "Comparison of Candesartan and Amlodipine for Safety, Tolerability and Efficacy (CASTLE) Study Investigators" .

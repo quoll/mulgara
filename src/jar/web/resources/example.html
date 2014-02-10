@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/tr/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--
+/webui/images/logo.jpg
+-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Mulgara Viewer</title>
+  <link href="/webui/styles/ui.css" rel="stylesheet" type="text/css" />
+  <script language="JavaScript" type="text/javascript">
+  <!--
+  // Validate the form and submit it if all is OK
+  function validateAndSubmit() {
+    // Is there a query?
+    if (document.QueryForm.QueryText.value == null ||
+        document.QueryForm.QueryText.value == "") {
+      alert('Please enter a query');
+      document.QueryForm.QueryText.focus();
+      return false;
+    } else {
+      // Submit the form
+      document.QueryForm.submit();
+      return true;
+    }
+  }
+  function uploadFile() {
+    if (document.QueryForm.GraphURI.value == null ||
+        document.QueryForm.GraphURI.value == "") {
+      alert('Please enter a Graph URI to upload into.');
+      document.QueryForm.GraphURI.focus();
+      return false;
+    }
+    if (document.UploadForm.UploadFile.value == null ||
+        document.UploadForm.UploadFile.value == "") {
+      alert('Please select a file to upload to the Graph.');
+      document.UploadForm.UploadFile.focus();
+      return false;
+    }
+    document.UploadForm.UploadGraph.value = document.QueryForm.GraphURI.value;
+    document.UploadForm.submit();
+    return true;
+  }
+  //-->
+  </script>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="header">
+      <div id="logo">
+        <a href="http://mulgara.org/"><img src="/webui/images/logo.jpg" alt="Mulgara - Semantic Store" border="0" /></a>
+      </div>
+    </div>
+    <div id="content">
+      <table class="formatTable" summary="">
+        <tr>
+          <td>
+            <table class="queryTable" summary="Enter a query">
+              <form action="/webui/ExecuteQuery.html" method="post" name="QueryForm">
+                <tr>
+                  <td><strong>Graph URI:</strong> </td>
+                  <td><input name="GraphURI" size="60" type="text" value="http://examples.tobyinkster.co.uk/hcard"/> </td>
+                </tr>
+                <tr>
+                  <td><strong>Query Text:</strong> </td>
+                  <td><textarea cols="80" name="QueryText" rows="10"></textarea> </td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td align="left">
+                    <input type="button" value="Submit Query" onclick="validateAndSubmit()"/>
+                    <input type="button" value="Clear Query" onclick="javascript:document.QueryForm.QueryText.value='';"/>
+                  </td>
+                </tr>
+              </form>
+              <form enctype='multipart/form-data' action="/webui/ExecuteQuery" method="post" name="UploadForm">
+                <tr>
+                  <td><strong>File:</strong> </td>
+                  <td>
+                    <input type="hidden" name="UploadGraph" value=""/>
+                    <input type="file" name="UploadFile" size="60" value=""/>
+                    <input type="button" value="Upload" onclick="uploadFile()"/>
+                  </td>
+                </tr>
+              </form>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table class="allResultsTable" border="0" cellpadding="5" width="100%">
+              <tr>
+                <td>
+                  <span class="styleLarge">Results:</span>
+                </td>
+                <td>(1 query, 1.095 seconds)</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="styleLarge">Query Executed:</span>
+                </td>
+                <td valign="top" width="100%">select * { ?s ?p ?o }</td>
+              </tr>
+              <tr>
+                <td colspan="2" class="resultTableCell">
+                  <table class="resultTable">
+                    <tr>
+                      <th><strong>s</strong></th>
+                      <th><strong>p</strong></th>
+                      <th><strong>o</strong></th>
+                    </tr>
+                    <tr>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard%23jack">http://examples.tobyinkster.co.uk/hcard#jack</a>
+                      </td>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fwww.w3.org%2F2006%2Fvcard%2Fns%23category">http://www.w3.org/2006/vcard/ns#category</a>
+                      </td>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryLiteral=%27Counter-Terrorist+Unit%27%40en">&quot;Counter-Terrorist Unit&quot;@en</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard%23jack">http://examples.tobyinkster.co.uk/hcard#jack</a>
+                      </td>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fwww.w3.org%2F2006%2Fvcard%2Fns%23mobileTel">http://www.w3.org/2006/vcard/ns#mobileTel</a>
+                      </td>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=tel%3A%2B1-310-555-3781">tel:+1-310-555-3781</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard%23jack">http://examples.tobyinkster.co.uk/hcard#jack</a>
+                      </td>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2Fplan">http://xmlns.com/foaf/0.1/plan</a>
+                      </td>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryLiteral=%27I+will+kick+your+terrorist+ass%21%27%40en">&quot;I will kick your terrorist ass!&quot;@en</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard">http://examples.tobyinkster.co.uk/hcard</a>
+                      </td>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2FprimaryTopic">http://xmlns.com/foaf/0.1/primaryTopic</a>
+                      </td>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard%23jack">http://examples.tobyinkster.co.uk/hcard#jack</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="rtd">_node-4</td>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type">http://www.w3.org/1999/02/22-rdf-syntax-ns#type</a>
+                      </td>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fwww.w3.org%2F2000%2F10%2Fswap%2Fpim%2Fcontact%23Male">http://www.w3.org/2000/10/swap/pim/contact#Male</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard%23jack">http://examples.tobyinkster.co.uk/hcard#jack</a>
+                      </td>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2FworkInfoHomepage">http://xmlns.com/foaf/0.1/workInfoHomepage</a>
+                      </td>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fwww.jackbauerfacts.com%2F">http://www.jackbauerfacts.com/</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard%23jack">http://examples.tobyinkster.co.uk/hcard#jack</a>
+                      </td>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2Fhomepage">http://xmlns.com/foaf/0.1/homepage</a>
+                      </td>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FJack_Bauer">http://en.wikipedia.org/wiki/Jack_Bauer</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard">http://examples.tobyinkster.co.uk/hcard</a>
+                      </td>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryResource=http%3A%2F%2Fpurl.org%2Fdc%2Fterms%2Fabstract">http://purl.org/dc/terms/abstract</a>
+                      </td>
+                      <td class="rtd">
+                        <a href="ExecuteQuery?GraphURI=http%3A%2F%2Fexamples.tobyinkster.co.uk%2Fhcard&amp;QueryLiteral=%27This+page+is+intended+to+be+a+demonstration+of%0A%09%09the+use+of+RDFa+%28including+FOAF%2C+Dublin+Core+and+W3C+PIM+vocabularies%29+in%0A%09%09conjunction+with+Microformats+%28including+hCard+and+rel-tag%29.%27%40en">&quot;This page is intended to be a demonstration of\n\t\tthe use of RDFa (including FOAF, Dublin Core and W3C PIM vocabularies) in\n\t\tconjunction with Microformats (including hCard and rel-tag).&quot;@en</a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

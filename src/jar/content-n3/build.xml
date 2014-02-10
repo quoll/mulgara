@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="content-n3" default="content-n3-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="content-n3-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${resolver-file.dist.dir}/${resolver-file.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+
+    <fileset file="${lib.dir}/antlr.jar"/>
+  </path>
+
+  <path id="content-n3-test-classpath">
+
+    <path refid="content-n3-classpath"/>
+
+    <fileset file="${resolver-file.dist.dir}/${resolver-file.jar}"/>
+    <fileset file="${store-stringpool-memory.dist.dir}/${store-stringpool-memory.jar}"/>
+    <fileset file="${store-stringpool-xa.dist.dir}/${store-stringpool-xa.jar}"/>
+
+    <fileset file="${lib.dir}/icu4j.jar"/>
+
+    <fileset file="${content-n3.dist.dir}/${content-n3.jar}"/>
+  </path>
+
+  <target name="content-n3-clean"
+          description="Removes all compile generated files for the content-n3">
+
+    <tstamp/>
+
+    <delete dir="${content-n3.obj.dir}"/>
+    <delete dir="${content-n3.test.dir}"/>
+    <delete dir="${content-n3.dist.dir}"/>
+  </target>
+
+  <target name="-content-n3-prepare"
+          description="Creates all directories associated with the content-n3's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${content-n3.obj.dir}"/>
+    <mkdir dir="${content-n3.test.dir}"/>
+    <mkdir dir="${content-n3.dist.dir}"/>
+    <mkdir dir="${content-n3.obj.dir}/classes"/>
+  </target>
+
+  <target name="content-n3-compile"
+          depends="-content-n3-prepare, resolver-spi-jar, resolver-file-jar"
+          description="Compiles all content-n3 related files included generated
+                       source code">
+
+    <javac destdir="${content-n3.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5" encoding="UTF-8">
+
+      <classpath refid="content-n3-classpath"/>
+
+      <src path="${content-n3.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="content-n3-jar"
+    depends="content-n3-compile, -content-n3-jar-uptodate"
+    unless="content-n3.jar.uptodate"
+    description="Builds the N3 content handler JAR">
+
+    <jar jarfile="${content-n3.dist.dir}/${content-n3.jar}">
+      <fileset dir="${content-n3.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-content-n3-jar-uptodate">
+
+    <uptodate property="content-n3.jar.uptodate"
+              targetfile="${content-n3.dist.dir}/${content-n3.jar}">
+      <srcfiles dir="${content-n3.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="content-n3-dist"
+          depends="content-n3-jar"
+          unless="content-n3.uptodate"
+          description="Performs all tasks related to finalising this content-n3
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the content-n3 library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="content-n3-test"
+    depends="content-n3-jar, resolver-file-jar, store-stringpool-memory-jar,
+             store-stringpool-xa-jar">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="content-n3-test-classpath"/>
+      <param name="dir" value="${content-n3.src.dir}"/>
+      <param name="jar" value="${content-n3.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="content-n3-javadoc"
+          depends="content-n3-jar"
+          description="Creates the javadoc for this content-n3">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.content.n3.*"/>
+      <param name="javadoc.classpath" value="content-n3-classpath"/>
+      <param name="javadoc.sourcepath" value="${content-n3.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="content-n3-help"
+          description="Displays the help information for this content-n3">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this content-n3 -->
+
+    <echo message="Welcome to the build script for ${content-n3.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${content-n3.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

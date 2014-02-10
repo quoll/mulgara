@@ -1,0 +1,19 @@
+# Set aliases
+alias http://purl.org/dc/elements/1.1/ as dc ;
+alias http://www.w3.org/2000/01/rdf-schema# as rdfs ;
+
+# Create the model
+create rmi://localhost/server1#model1 ;
+
+# Populate the model
+insert dc:title rdfs:type http://www.w3.org/1999/02/22-rdf-syntax-ns#Property into rmi://localhost/server1#model1 ;
+insert dc:title rdfs:label 'Title' into rmi://localhost/server1#model1 ;
+
+# Query the model
+select $property $object from rmi://localhost/server1#model1 where dc:title $property $object ;
+
+# Remove the model
+drop rmi://localhost/server1#model1 ;
+
+# Exit the session cleanly
+quit ;

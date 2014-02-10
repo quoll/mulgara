@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Compiling with Ant </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Compiling with Ant, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="2951.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="2720.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h3 class="heading3">Compiling with Ant</h3>
+<p class="bodytext">Example Ant script files (<code class="monospace">build-tutorial.xml</code> and <code class="monospace">build-tutorial.properties</code> in the directory you unzipped the tutorial to) are provided to allow you to compile the resolver and content handler. Make sure that you have Apache Ant installed and set up on your machine first. For more information on installing and running Ant software, read the <a class="internetlinktemplate" title="" href="http://ant.apache.org/manual/index.html" target="_blank">Apache Ant Manual</a>.</p>
+<p class="bodytext">The following structure within the Mulgara installation directory is assumed:</p>
+<p class="commandtext">/tutorial<br />   build-tutorial.xml<br />   build-tutorial.properties<br />   /conf<br />      /handler<br />         parserfactory.conf<br />   /handler<br />      /java<br />         compile-handler.list<br />         **Handler package directory structure**<br />      /rdfs<br />         mp3.rdfs<br />   /resolver<br />      /java<br />         compile-resolver.list<br />         **Resolver package directory structure**<br />   /lib<br />      **Supporting jars for the resolver and content handler**</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="2714.htm#o3174" target="_self"></a></p><p class="relateditem"><a href="2714.htm#o3185" target="_self"></a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="2686.htm" target="_self">HTTP Resolver and MP3 Content Handler Tutorial</a></p><p class="relateditem"><a href="2686.htm#o3182" target="_self"></a></p><p class="relateditem"><a href="2687.htm" target="_self">Prerequisites</a></p><p class="relateditem"><a href="3183.htm" target="_self">Developing Protocol Resolvers</a></p><p class="relateditem"><a href="3184.htm" target="_self">Developing Content Handlers</a></p><p class="relateditem"><a href="2720.htm" target="_self">Integrating into Mulgara</a></p></td>
+</tr>
+</table>
+
+<a name="o3174"></a>
+<p class="bodytext">Change the following properties:</p>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">server-version</code> property in the <code class="monospace">build-tutorial.properties</code> file to be the version of the server you are using. For example, 1.1.0</li><li class="listbullet">server.base.dir property to the directory you installed TKS in</li></ul><p class="bodytext">All other properties should not require changing.</p>
+<a name="o3185"></a>
+<p class="bodytext">Both of the modules used in this tutorial are in the Mulgara distribution and can be built using the main build file.</p>
+<p class="bodytext">From the main directory of your Mulgara installation, run:</p>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">build.bat content-mp3-jar</code> (for systems running a Linux<sup class="superscript">&reg;</sup> or UNIX<sup class="superscript">&reg;</sup> operating system use <code class="monospace">./build.sh content-mp3-jar</code>)<p class="listcontinue">This produces the file <code class="monospace">content-mp3-base-&lt;Mulgara version&gt;.jar</code> (where <code class="monospace">&lt;Mulgara version&gt;</code> is the version of your Mulgara installation) in the <code class="monospace">bin</code> directory.</p>
+</li><li class="listbullet"><code class="monospace">build.bat resolver-http-jar</code> (for systems running a Linux<sup class="superscript">&reg;</sup> or UNIX<sup class="superscript">&reg;</sup> operating system use <code class="monospace">./build.sh resolver-http-jar</code>)<p class="listcontinue">This produces a file called <code class="monospace">resolver-http-base-&lt;Mulgara version&gt;.jar</code> in the <code class="monospace">bin</code> directory.</p>
+</li></ul>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

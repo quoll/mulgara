@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                     Project Definition                              -->
+<!-- =================================================================== -->
+<project name="Common" default="start" basedir=".">
+
+  <!-- =================================================================== -->
+  <!-- The following targets are to be used as a common utilities script   -->
+  <!-- by the module build scripts.                                        -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+  <property file="common.properties"/>
+
+  <!-- =================================================================== -->
+  <!--                         Task Definitions                            -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!-- Add the sablecc task to ant                                         -->
+  <!-- =================================================================== -->
+  <target name="sablecc">
+    <taskdef name="sablecc" classname="org.sablecc.ant.taskdef.Sablecc">
+      <classpath>
+        <fileset dir="${lib.dir}" includes="${sablecc.jar}"/>
+      </classpath>
+    </taskdef>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Add the jalopy task to ant                                          -->
+  <!-- =================================================================== -->
+  <target name="jalopy">
+
+    <taskdef name="jalopy" classname="de.hunsicker.jalopy.plugin.ant.AntPlugin">
+      <classpath>
+        <fileset dir="${lib.dir}">
+          <include name="*.jar"/>
+        </fileset>
+      </classpath>
+    </taskdef>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Add the wsdl2java task to ant                                       -->
+  <!-- =================================================================== -->
+  <target name="wsdl2java">
+
+    <taskdef name="wsdl2java"
+             classname="org.apache.axis.tools.ant.wsdl.Wsdl2javaAntTask">
+
+      <classpath>
+
+        <fileset dir="${lib.dir}" includes="**/axis-1.4.jar"/>
+        <fileset dir="${lib.dir}" includes="**/axis-ant-1.4.jar"/>
+        <fileset dir="${lib.dir}" includes="**/wsdl4j-1.5.1.jar"/>
+        <fileset dir="${lib.dir}" includes="**/log4j-1.2.15.jar"/>
+        <fileset dir="${lib.dir}" includes="**/commons-logging-1.1.1.jar"/>
+        <fileset dir="${lib.dir}" includes="**/commons-discovery-1.2.jar"/>
+        <fileset dir="${lib.dir}" includes="**/jaxrpc-1.4.jar"/>
+        <fileset dir="${lib.dir}" includes="**/saaj-1.4.jar"/>
+      </classpath>
+    </taskdef>
+  </target>
+<!-- =================================================================== -->
+<!-- Add the jspc task to ant                                            -->
+<!-- =================================================================== -->
+  <target name="-jspc">
+
+    <java fork="true" classname="org.apache.jasper.JspC" newenvironment="true">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <sysproperty key="java.io.tmpdir" value="${tmp.dir}"/>
+
+      <classpath>
+
+        <pathelement location="${java.home}/lib/tools.jar"/>
+        <pathelement location="${lib.dir}/ant-1.8.3.jar"/>
+        <pathelement location="${lib.dir}/${servlet.jar}"/>
+        <pathelement location="${lib.dir}/${servlet-jsp.jar}"/>
+        <pathelement location="${lib.dir}/${jetty-logging.jar}"/>
+        <pathelement location="${lib.dir}/${jetty-continuation.jar}"/>
+        <pathelement location="${lib.dir}/${jetty-deploy.jar}"/>
+        <pathelement location="${lib.dir}/${jetty-http.jar}"/>
+        <pathelement location="${lib.dir}/${jetty-io.jar}"/>
+        <pathelement location="${lib.dir}/${jetty-security.jar}"/>
+        <pathelement location="${lib.dir}/${jetty-server.jar}"/>
+        <pathelement location="${lib.dir}/${jetty-servlet.jar}"/>
+        <pathelement location="${lib.dir}/${jetty-servlets.jar}"/>
+        <pathelement location="${lib.dir}/${jetty-util.jar}"/>
+        <pathelement location="${lib.dir}/${jetty-webapp.jar}"/>
+        <pathelement location="${lib.dir}/${jetty-xml.jar}"/>
+        <pathelement location="${lib.dir}/${jsp-el.jar}"/>
+        <pathelement location="${lib.dir}/${jsp-ecj.jar}"/>
+        <pathelement location="${lib.dir}/${jsp-javax-el.jar}"/>
+        <pathelement location="${lib.dir}/${jsp-javax-jstl.jar}"/>
+        <pathelement location="${lib.dir}/${jsp-javax-jsp.jar}"/>
+        <pathelement location="${lib.dir}/${jsp-jetty.jar}"/>
+        <pathelement location="${lib.dir}/${jsp-glassfish.jar}"/>
+        <pathelement location="${lib.dir}/${jsp-glassfish-taglibs.jar}"/>
+      </classpath>
+
+      <arg value="-d"/>
+      <arg value="${jsp.output.dir}"/>
+      <arg value="-webinc"/>
+      <arg value="${web.xml.fragment}"/>
+      <arg value="-webapp"/>
+      <arg value="${webapp.input.dir}"/>
+    </java>
+
+    <replace file="${web.xml.fragment}" token="\error.jsp" value="/error.jsp"/>
+    <replace file="${web.xml.fragment}" token="\index.jsp" value="/index.jsp"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Barracuda related taskdefs                                          -->
+  <!-- =================================================================== -->
+  <path id="xmlc.classpath">
+
+    <pathelement path="${java.class.path}"/>
+
+    <fileset dir="${lib.dir}" includes="**/**"/>
+  </path>
+
+  <target name="xmlc" description="XMLC task definition">
+
+    <taskdef name="xmlc" classname="org.enhydra.xml.xmlc.taskdef.Xmlc">
+      <classpath refid="xmlc.classpath"/>
+    </taskdef>
+  </target>
+
+  <target name="localize" description="Localise task definition">
+
+    <taskdef name="localize" classname="org.enhydra.barracuda.taskdefs.Localize">
+      <classpath refid="xmlc.classpath"/>
+    </taskdef>
+  </target>
+
+  <target name="eventbuilder" description="EventBuilder task definition">
+
+    <taskdef name="eventbuilder" classname="org.enhydra.barracuda.taskdefs.EventBuilder">
+      <classpath refid="xmlc.classpath"/>
+    </taskdef>
+  </target>
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="common-classpath">
+
+    <pathelement path="${java.class.path}"/>
+
+    <fileset dir="${lib.dir}"
+             includes="log4j-*.jar, ${xmlParserAPIs.jar}, ${xerces.jar},
+                       ${jena.jar}, ${iri.jar}, ${icu4j.jar}, jxunit*.jar, castor*.jar,
+                       mail-*.jar, activation-*.jar, apache-soap-*.jar, jline*.jar,
+                       axis-*.jar, saaj-*.jar, emory-*.jar, ${trove.jar},
+                       ${bdb.jar}, jargs-*.jar, jetty-*.jar, jta-spec*.jar,
+                       jotm*.jar, commons-logging-*.jar, Quick4rt.jar,
+                       commons-discovery-*.jar, commons-httpclient-*.jar,
+                       commons-codec-*.jar, connector-*.jar, jaxrpc-*.jar,
+                       ${apache-mime4j.jar}, ${http-client.jar}, ${http-core.jar}, ${http-mime.jar},
+                       carol*.jar, howl-logger*.jar, javax.servlet*.jar, servlet-api*.jar,
+                       ${joda-time.jar}, mulgara-sparql*.jar, sesame-model-*.jar, ${interruptiblermi.jar}"
+             excludes="jboss-j2ee.jar"/>
+  </path>
+
+  <!-- =================================================================== -->
+  <!-- Prepares the build environment                                      -->
+  <!-- =================================================================== -->
+  <target name="-prepare-build"
+          depends="log4j-conf.xml, svnversion">
+
+    <mkdir dir="${bin.dir}"/>
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="${test.dir}"/>
+    <mkdir dir="${tmp.dir}"/>
+    <mkdir dir="${obj.dir}"/>
+    <mkdir dir="${core.dir}"/>
+
+    <property name="full-version" value="${mulgara-version}.${svn-version}"/>
+    <script language="javascript">
+      <![CDATA[
+      Mulgara.setProperty("default.build.label",
+          Mulgara.getProperty("default.build.label")
+                 .replaceAll("@@build@@", Mulgara.getProperty("full-version")));
+      ]]>
+    </script>
+
+    <property name="build.label" value="${default.build.label}"/>
+
+    <echo>Build label will be - ${build.label}</echo>
+
+    <!-- define axis tasks -->
+    <taskdef classpathref="project-classpath" resource="axis-tasks.properties"/>
+  </target>
+
+  <target name="svnversion" depends="run-svnversion">
+    <condition property="svn-version" value="${svnversion-output}">
+      <and>
+        <isset property="svnversion-output"/>
+        <not><equals arg1="${svnversion-output}" arg2="exported" trim="true"/></not>
+      </and>
+    </condition>
+    <property name="svn-version" value="local"/>
+  </target>
+
+  <target name="run-svnversion" depends="find-svnversion-exe" if="svnversion-exe">
+    <exec executable="${svnversion-exe}" outputproperty="svnversion-output"
+        failifexecutionfails="false">
+      <arg line="."/>
+    </exec>
+  </target>
+
+  <target name="find-svnversion-exe">
+    <property environment="env"/>
+
+    <available file="svnversion" filepath="${env.PATH}"
+      property="svnversion-exe" value="svnversion"/>
+    <available file="svnversion.exe" filepath="${env.PATH}"
+      property="svnversion-exe" value="svnversion.exe"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Changes Mulgara Config files Database Class depending on Resolvers   -->
+  <!-- =================================================================== -->
+  <target name="config-database">
+
+    <filter token="database-class" value="org.mulgara.resolver.Database"/>
+	<!-- we no longer need to worry about this config file but I am leaving this in for now -B.S -->
+    <copy tofile="${obj.dir}/mulgara-x-config.xml" filtering="yes">
+      <fileset file="${conf.dir}/mulgara-config.xml"/>
+    </copy>
+
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Run JUnit regression (non-load) tests on a JAR component            -->
+  <!--                                                                     -->
+  <!-- Required parameters: $classpath.id, $dir, $jar                      -->
+  <!-- =================================================================== -->
+  <target name="component-test"
+          depends="uri, dtd-jar, host.name"
+          description="run regression tests on a jar component">
+
+    <copy file="${conf.dir}/log4j-template.xml"
+          tofile="${basedir}/log4j-conf.xml"/>
+
+    <mkdir dir="${junit.results.tmpdir}"/>
+
+    <junit fork="yes" haltonfailure="no" printsummary="on"
+           jvm="${java.home}/bin/java" dir="${basedir}">
+
+      <jvmarg value="${arch.bits}"/>
+      <jvmarg value="-ea"/>
+      <jvmarg value="${jvm.args}"/>
+
+      <sysproperty key="java.io.tmpdir" value="${tmp.dir}"/>
+      <sysproperty key="test.dir" value="${test.dir}"/>
+      <sysproperty key="admin" value=""/>
+      <sysproperty key="itql.command.log" value="${tmp.dir}/querylang.log"/>
+      <sysproperty key="org.mulgara.xml.ResourceDocumentBuilderFactory"
+                   value="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+      <sysproperty key="java.naming.factory.initial"
+                   value="com.sun.jndi.rmi.registry.RegistryContextFactory"/>
+      <sysproperty key="java.naming.provider.url" value="rmi://localhost"/>
+      <sysproperty key="java.rmi.server.codebase"
+                   value="${bin.uri}/${rmi.base.jar}"/>
+      <sysproperty key="java.security.manager" value=""/>
+      <sysproperty key="java.security.policy"
+                   value="${basedir}/conf/mulgara-test.policy"/>
+      <sysproperty key="host.name" value="${host.name}"/>
+
+      <!-- The cvs.root property allows tests to find CVS'ed test data -->
+      <sysproperty key="cvs.root" value="${basedir}"/>
+      <sysproperty key="mulgara.jar" value="${mulgara.jar}"/>
+      <sysproperty key="log4j.configuration" value="${baseuri}/log4j-conf.xml"/>
+      <sysproperty key="basedir" value="${basedir}"/>
+      <sysproperty key="org.mulgara.test" value="${org.mulgara.test}"/>
+
+      <classpath>
+        <path refid="${classpath.id}"/>
+        <fileset dir="${bin.dir}" includes="${jar}, ${dtd.jar}"/>
+        <fileset dir="${lib.dir}" includes="${xerces.jar}, ${xmlParserAPIs.jar}"/>
+      </classpath>
+
+      <formatter type="xml"/>
+
+      <batchtest todir="${junit.results.tmpdir}">
+        <fileset dir="${dir}/java" includes="**/*Test.java"
+                 excludes="**/*AbstractTest.java, **/*LoadTest.java,
+                           **/*StressTest.java, **/*StandaloneTest.java"/>
+      </batchtest>
+    </junit>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Run JUnit regression tests requiring a standalone instance          -->
+  <!--                                                                     -->
+  <!-- Required parameters: $classpath.id, $dir, $jar                      -->
+  <!-- =================================================================== -->
+  <target name="standalone-test"
+          depends="uri, dtd-jar, host.name, dist"
+          description="run regression tests requiring a standalone instance">
+
+    <copy file="${conf.dir}/log4j-template.xml"
+          tofile="${basedir}/log4j-conf.xml"/>
+
+    <mkdir dir="${junit.results.tmpdir}"/>
+
+    <!-- stop and start the server -->
+    <ant target="stop"/>
+    <ant target="start"/>
+
+    <junit fork="yes" haltonfailure="no" printsummary="on"
+           jvm="${java.home}/bin/java" dir="${basedir}">
+
+      <jvmarg value="${arch.bits}"/>
+      <jvmarg value="-ea"/>
+      <jvmarg value="${jvm.args}"/>
+
+      <sysproperty key="java.io.tmpdir" value="${tmp.dir}"/>
+      <sysproperty key="test.dir" value="${test.dir}"/>
+      <sysproperty key="admin" value=""/>
+      <sysproperty key="itql.command.log" value="${tmp.dir}/querylang.log"/>
+      <sysproperty key="org.mulgara.xml.ResourceDocumentBuilderFactory"
+                   value="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+      <sysproperty key="java.naming.factory.initial"
+                   value="com.sun.jndi.rmi.registry.RegistryContextFactory"/>
+      <sysproperty key="java.naming.provider.url" value="rmi://localhost"/>
+      <sysproperty key="java.rmi.server.codebase"
+                   value="${bin.uri}/${rmi.base.jar}"/>
+      <sysproperty key="java.security.manager" value=""/>
+      <sysproperty key="java.security.policy"
+                   value="${basedir}/conf/mulgara-test.policy"/>
+      <sysproperty key="host.name" value="${host.name}"/>
+
+      <!-- The cvs.root property allows tests to find CVS'ed test data -->
+      <sysproperty key="cvs.root" value="${basedir}"/>
+      <sysproperty key="mulgara.jar" value="${mulgara.jar}"/>
+      <sysproperty key="log4j.configuration" value="${baseuri}/log4j-conf.xml"/>
+      <sysproperty key="basedir" value="${basedir}"/>
+      <sysproperty key="org.mulgara.test" value="${org.mulgara.test}"/>
+
+      <classpath>
+        <fileset dir="${dist.dir}" includes="${mulgara.jar}"/>
+      </classpath>
+
+      <formatter type="xml"/>
+
+      <batchtest todir="${junit.results.tmpdir}">
+        <fileset dir="${dir}/java" includes="**/*StandaloneTest.java"/>
+      </batchtest>
+    </junit>
+
+    <!-- stop the server -->
+    <ant target="stop"/>
+
+  </target>
+
+  <target name="standalone-test-debug"
+          depends="uri, dtd-jar, host.name, dist"
+          description="run regression tests requiring a standalone instance">
+
+    <copy file="${conf.dir}/log4j-template.xml"
+          tofile="${basedir}/log4j-conf.xml"/>
+
+    <mkdir dir="${junit.results.tmpdir}"/>
+
+    <!-- stop and start the server -->
+    <junit fork="yes" haltonfailure="no" printsummary="on"
+           jvm="${java.home}/bin/java" dir="${basedir}">
+
+      <jvmarg value="${arch.bits}"/>
+      <jvmarg value="-ea"/>
+      <jvmarg value="${jvm.args}"/>
+
+      <sysproperty key="java.io.tmpdir" value="${tmp.dir}"/>
+      <sysproperty key="test.dir" value="${test.dir}"/>
+      <sysproperty key="admin" value=""/>
+      <sysproperty key="itql.command.log" value="${tmp.dir}/querylang.log"/>
+      <sysproperty key="org.mulgara.xml.ResourceDocumentBuilderFactory"
+                   value="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+      <sysproperty key="java.naming.factory.initial"
+                   value="com.sun.jndi.rmi.registry.RegistryContextFactory"/>
+      <sysproperty key="java.naming.provider.url" value="rmi://localhost"/>
+      <sysproperty key="java.rmi.server.codebase"
+                   value="${bin.uri}/${rmi.base.jar}"/>
+      <sysproperty key="java.security.manager" value=""/>
+      <sysproperty key="java.security.policy"
+                   value="${basedir}/conf/mulgara-test.policy"/>
+      <sysproperty key="host.name" value="${host.name}"/>
+
+      <!-- The cvs.root property allows tests to find CVS'ed test data -->
+      <sysproperty key="cvs.root" value="${basedir}"/>
+      <sysproperty key="mulgara.jar" value="${mulgara.jar}"/>
+      <sysproperty key="log4j.configuration" value="${baseuri}/log4j-conf.xml"/>
+      <sysproperty key="basedir" value="${basedir}"/>
+      <sysproperty key="org.mulgara.test" value="${org.mulgara.test}"/>
+
+      <classpath>
+        <fileset dir="${dist.dir}" includes="${mulgara.jar}"/>
+      </classpath>
+
+      <formatter type="xml"/>
+
+      <batchtest todir="${junit.results.tmpdir}">
+        <fileset dir="${dir}/java" includes="**/*StandaloneTest.java"/>
+      </batchtest>
+    </junit>
+
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Run JUnit load tests on a JAR component                             -->
+  <!--                                                                     -->
+  <!-- Required parameters: $classpath.id, $dir, $jar                      -->
+  <!-- =================================================================== -->
+  <target name="component-loadtest" depends="uri"
+    description="run load tests on a jar component">
+    <copy file="${conf.dir}/log4j-template.xml"
+      tofile="${basedir}/log4j-conf.xml"/>
+    <mkdir dir="${junit.results.tmpdir}"/>
+    <junit fork="yes" haltonfailure="no" printsummary="on"
+      jvm="${java.home}/bin/java" dir="${basedir}">
+      <jvmarg value="${arch.bits}"/>
+      <jvmarg value="-server"/>
+      <jvmarg value="-Djava.io.tmpdir=${tmp.dir}"/>
+      <jvmarg value="-Dmulgara.xa.defaultIOType=explicit"/>
+      <jvmarg value="-Djava.naming.factory.initial=com.sun.jndi.rmi.registry.RegistryContextFactory"/>
+      <jvmarg value="-Djava.naming.provider.url=rmi://localhost"/>
+      <jvmarg value="-Djava.rmi.server.codebase=${bin.uri}/${rmi.base.jar}"/>
+      <!-- The cvs.root property allows tests to find CVS'ed test data -->
+      <jvmarg value="-Dcvs.root=${basedir}"/>
+      <jvmarg value="-Dlog4j.configuration=${baseuri}/log4j-conf.xml"/>
+      <jvmarg value="-Xms100m"/>
+      <jvmarg value="-Xmx512m"/>
+      <classpath>
+        <path refid="${classpath.id}"/>
+        <fileset dir="${bin.dir}" includes="${jar}"/>
+      </classpath>
+      <formatter type="xml"/>
+      <batchtest todir="${junit.results.tmpdir}">
+        <fileset dir="${dir}/java" includes="**/*LoadTest.java"/>
+      </batchtest>
+    </junit>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Stress test - performs itql query stress tests                      -->
+  <!-- =================================================================== -->
+
+  <target name="stress-test"
+          depends="querylang-jar, uri"
+          description="run stress tests the ItqlInterpreterBean">
+
+    <java classname="org.mulgara.itql.ItqlInterpreterStressTest" fork="yes" failonerror="no"
+      jvm="${java.home}/bin/java" dir="${basedir}">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <sysproperty key="java.io.tmpdir" value="${tmp.dir}"/>
+      <sysproperty key="org.mulgara.xml.ResourceDocumentBuilderFactory"
+        value="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+      <sysproperty key="java.naming.factory.initial"
+        value="com.sun.jndi.rmi.registry.RegistryContextFactory"/>
+      <sysproperty key="java.naming.provider.url" value="rmi://localhost"/>
+      <sysproperty key="java.rmi.server.codebase"
+        value="${bin.uri}/${rmi.jar}"/>
+      <sysproperty key="cvs.root" value="${basedir}"/>
+      <sysproperty key="log4j.configuration"
+        value="${baseuri}/log4j-conf.xml"/>
+
+      <!-- JUnitPP settings -->
+      <arg line="-r 1000 -w 10000 -wm 2000 -s 100 -t 5000 -ra 5000 -i itql.commands"/>
+
+      <classpath>
+
+        <path refid="query-classpath"/>
+
+        <fileset dir="${bin.dir}" includes="${dtd.jar}, ${querylang.jar}, ${query.jar},
+                 ${driver.jar}, ${rmi.jar}, ${server-rmi.jar}"/>
+        <fileset dir="${lib.dir}" includes="${xerces.jar}, ${xmlParserAPIs.jar}, jxunit*.jar, junit.jar, junitpp.jar"/>
+      </classpath>
+
+    </java>
+   </target>
+
+  <!-- =================================================================== -->
+  <!-- JXUnit tests - performs tests located in the jxdata/ directory      -->
+  <!-- =================================================================== -->
+  <target name="jxunit-test"
+          depends="jxtest-data">
+
+    <ant antfile="build.xml" target="dist"/>
+
+    <!-- stop and start the server -->
+    <ant target="stop"/>
+    <ant target="start"/>
+    <ant target="scripted-itql-test"/>
+
+    <!-- stop the server -->
+    <ant target="stop"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Run the scripted iTQL tests                                         -->
+  <!-- =================================================================== -->
+  <target name="scripted-itql-test"
+          depends="uri, driver-jar, query-jar"
+          description="run jxunit tests on itql scripts">
+
+    <mkdir dir="${junit.results.tmpdir}"/>
+    <echo message="Sending results to ${junit.results.tmpdir}"/>
+
+    <junit fork="yes" haltonfailure="no" printsummary="on"
+           jvm="${java.home}/bin/java" dir="${jxtest.dir}/iTQL">
+
+      <jvmarg value="${arch.bits}"/>
+      <jvmarg value="-ea"/>
+      <jvmarg value="${jvm.args}"/>
+      <sysproperty key="java.io.tmpdir" value="${tmp.dir}"/>
+      <sysproperty key="org.mulgara.xml.ResourceDocumentBuilderFactory"
+                   value="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+      <sysproperty key="java.naming.factory.initial"
+                   value="com.sun.jndi.rmi.registry.RegistryContextFactory"/>
+      <sysproperty key="java.naming.provider.url" value="rmi://localhost"/>
+      <sysproperty key="java.rmi.server.codebase"
+                   value="${bin.uri}/${rmi.base.jar}"/>
+      <sysproperty key="file.encoding" value="UTF8"/>
+      <sysproperty key="cvs.root" value="${basedir}"/>
+      <sysproperty key="log4j.configuration" value="${baseuri}/log4j-conf.xml"/>
+      <sysproperty key="itql.command.log" value="${tmp.dir}/querylang.log"/>
+      <sysproperty key="org.mulgara.test" value="${org.mulgara.test}"/>
+
+      <classpath>
+
+        <path refid="query-classpath"/>
+
+        <fileset dir="${bin.dir}" includes="${dtd.jar}, ${querylang.jar},
+                                            ${query.jar},
+                                            ${driver.jar}, ${rmi.base.jar},
+                                            ${server-rmi.jar}"/>
+        <fileset dir="${lib.dir}" includes="${xerces.jar}, ${xmlParserAPIs.jar},
+                                            xmlc-xerces.jar, jxunit*.jar,
+                                            jakarta-regexp*.jar, junit.jar"/>
+      </classpath>
+
+      <test name="net.sourceforge.jxunit.JXTestCase" haltonfailure="no"
+            todir="${junit.results.tmpdir}"
+            outfile="TEST-net.sourceforge.jxunit.itql">
+        <formatter type="xml"/>
+      </test>
+    </junit>
+
+    <!-- rename test name for duplicate jxunits -->
+    <replace file="${junit.results.tmpdir}/TEST-net.sourceforge.jxunit.itql.xml"
+             token="name=&quot;net.sourceforge.jxunit.JXTestCase&quot;"
+             value="name=&quot;net.sourceforge.jxunit.JXTestCase.itql&quot;"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Unpack, filter and preen JXUnit test data                           -->
+  <!-- =================================================================== -->
+  <target name="jxtest-data"
+          depends="set.host.name, uri, -jxtest-data-uptodate"
+          unless="jxtest.data.uptodate">
+
+    <!-- debugging only - clean test data -->
+    <delete dir="${jxtest.dir}"/>
+
+    <filter token="baseuri" value="${baseuri}"/>
+    <filter token="server" value="rmi://${host.name}/server1"/>
+    <filter token="server2" value="rmi://${host.name}/server2"/>
+    <filter token="mulgara.jar" value="${mulgara.jar}"/>
+
+    <copy todir="${jxtest.dir}" filtering="yes" encoding="utf-8">
+      <fileset dir="jxdata">
+        <exclude name="**/*.gz"/>
+      </fileset>
+    </copy>
+
+    <ant target="resolver-filesystem-test-data"/>
+  </target>
+
+  <target name="-jxtest-data-uptodate">
+
+    <uptodate property="jxtest.data.uptodate"
+              targetfile="${jxtest.dir}/iTQL/dc.rdfs">
+      <srcfiles dir="${jxdata.dir}" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Starts an embedded Mulgara server                                    -->
+  <!-- =================================================================== -->
+  <target name="start"
+          description="Starts an embedded Mulgara server">
+
+    <antcall target="start-cp">
+      <param name="jvm-classpath" value="${dist.dir}/${mulgara.jar}" />
+      <param name="jvm-classpath-win" value="${dist.dir}/${mulgara.jar}" />
+    </antcall>
+  </target>
+
+
+  <!-- =================================================================== -->
+  <!-- Starts an embedded Mulgara server - using a supplied classpath       -->
+  <!-- jvm-classpath:   regular classpath (paths seperated by ':')         -->
+  <!--            (eg ${dist.dir}/${mulgara.jar}:${jar1}:${dir}/${jar2})    -->
+  <!-- jvm-classpath-win: windows classpath                                -->
+  <!--            (eg ${dist.dir}\${mulgara.jar}:${jar1}:${dir}\${jar2})    -->
+  <!-- =================================================================== -->
+  <target name="start-cp"
+          description="Starts an embedded Mulgara server with a supplied classpath">
+
+    <ant antfile="build.xml" target="dist"/>
+
+    <echo>
+      Starting embedded Mulgara server on ${os.name} with output to
+      ${dist.dir}/mulgara-output
+    </echo>
+    <echo message="jvm-classpath: ${jvm-classpath}" />
+    <echo message="jvm-classpath-win: ${jvm-classpath-win}" />
+
+    <exec os="Linux" executable="${scripts.dir}/bg.linux" failonerror="yes">
+
+      <arg value="-o"/>
+      <arg value="${dist.dir}/mulgara-output"/>
+      <arg value="${java.home}/bin/java"/>
+      <arg value="-ea"/>
+      <arg value="${jvm.args}"/>
+      <arg line="-Djava.io.tmpdir=&quot;${tmp.dir}&quot;"/>
+      <arg line="-Dorg.mulgara.test=&quot;${org.mulgara.test}&quot;"/>
+      <arg line="-Dmulgara.xa.memoryType=&quot;heap&quot;"/>
+      <arg value="-cp"/>
+      <arg value="${jvm-classpath}"/>
+      <arg line="org.mulgara.server.EmbeddedMulgaraServer"/>
+<!--      <arg value="-jar"/>
+      <arg value="${dist.dir}/${mulgara.jar}"/> -->
+
+      <arg value="-a"/>
+      <arg value="${test.dir}"/>
+      <arg line="${test.server.args}"/>
+    </exec>
+
+    <exec os="SunOS" executable="${scripts.dir}/bg.sh" failonerror="yes">
+
+      <arg value="-o"/>
+      <arg value="${dist.dir}/mulgara-output"/>
+      <arg value="${java.home}/bin/java"/>
+      <arg value="${arch.bits}"/>
+      <arg value="-ea"/>
+      <arg value="${jvm.args}"/>
+      <arg line="-Djava.io.tmpdir=&quot;${tmp.dir}&quot;"/>
+      <arg line="-Dmulgara.xa.memoryType=&quot;heap&quot;"/>
+      <arg value="-cp"/>
+      <arg value="${jvm-classpath}"/>
+      <arg line="org.mulgara.server.EmbeddedMulgaraServer"/>
+<!--      <arg value="-jar"/>
+      <arg value="${dist.dir}/${mulgara.jar}"/> -->
+      <arg value="-a"/>
+      <arg value="${test.dir}"/>
+      <arg line="${test.server.args}"/>
+    </exec>
+
+    <exec os="Mac OS X" executable="${scripts.dir}/bg.sh" failonerror="yes">
+
+      <arg value="-o"/>
+      <arg value="${dist.dir}/mulgara-output"/>
+      <arg value="${java.home}/bin/java"/>
+      <arg value="-ea"/>
+      <arg value="${jvm.args}"/>
+      <arg line="-Djava.io.tmpdir=&quot;${tmp.dir}&quot;"/>
+      <arg line="-Dmulgara.xa.memoryType=&quot;heap&quot;"/>
+      <arg value="-cp"/>
+      <arg value="${jvm-classpath}"/>
+      <arg line="org.mulgara.server.EmbeddedMulgaraServer"/>
+<!--      <arg value="-jar"/>
+      <arg value="${dist.dir}/${mulgara.jar}"/> -->
+      <arg value="-a"/>
+      <arg value="${test.dir}"/>
+      <arg line="${test.server.args}"/>
+    </exec>
+
+    <exec os="Windows NT,Windows 2000,Windows XP, Windows 2003, Windows Vista, Windows 7"
+          executable="${scripts.dir}\bg.exe" failonerror="yes">
+
+      <arg value="-o"/>
+      <arg value="${dist.dir}\mulgara-output"/>
+      <arg value="${java.home}\bin\javaw"/>
+      <arg value="-ea"/>
+      <arg value="${jvm.args}"/>
+      <arg line="-Djava.io.tmpdir=&quot;${tmp.dir}&quot;"/>
+      <arg line="-Dmulgara.xa.memoryType=&quot;heap&quot;"/>
+      <arg value="-cp"/>
+      <arg value="${jvm-classpath-win}"/>
+      <arg line="org.mulgara.server.EmbeddedMulgaraServer"/>
+<!--      <arg value="-jar"/>
+      <arg value="${dist.dir}\${mulgara.jar}"/> -->
+      <arg value="-a"/>
+      <arg value="${test.dir}"/>
+      <arg line="${test.server.args}"/>
+    </exec>
+
+    <!-- wait for the server to start -->
+    <antcall target="await">
+      <param name="shutdownhook.port" value="6789"/>
+    </antcall>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Stops an embedded Mulgara server                                     -->
+  <!-- =================================================================== -->
+  <target name="stop"
+          description="Stops an embedded Mulgara server">
+
+    <echo message="Stopping embedded Mulgara server"/>
+
+    <java jar="${dist.dir}/${mulgara.jar}" fork="true"
+      failonerror="true">
+
+      <sysproperty key="java.io.tmpdir" value="${tmp.dir}"/>
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg value="-x"/>
+    </java>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Check if Mulgara is running                                          -->
+  <!-- =================================================================== -->
+  <target name="await" description="Wait for Mulgara to start">
+
+    <echo>Waiting for server to start on shutdown hook
+          ${shutdownhook.port}</echo>
+
+    <waitfor maxwait="120000" checkevery="1000" timeoutproperty="start.failed">
+      <socket server="localhost" port="${shutdownhook.port}"/>
+    </waitfor>
+    <sleep seconds="5"/>
+
+    <condition property="msg" value="Mulgara not started" else="Mulgara started">
+      <isset property="start.failed"/>
+    </condition>
+    <echo>${msg}</echo>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Convert directories to URIs                                         -->
+  <!-- =================================================================== -->
+
+  <!-- Set the uri prefix for the OS -->
+  <target name="file-uri-prefix" unless="file.uri.prefix">
+    <condition property="file.uri.prefix" value="file:/">
+      <os family="windows"/>
+    </condition>
+    <condition property="file.uri.prefix" value="file:">
+      <os family="unix"/>
+    </condition>
+  </target>
+                                                                                                                                                             
+  <target name="uri" depends="file-uri-prefix">
+    <pathconvert property="_baseuri" dirsep="/">
+      <path>
+        <pathelement location="${basedir}"/>
+      </path>
+    </pathconvert>
+
+    <property name="baseuri" value="${file.uri.prefix}//${_baseuri}"/>
+
+    <echo message="URI for base directory: ${baseuri}"/>
+
+    <pathconvert property="_bin.uri" dirsep="/">
+
+      <path>
+        <pathelement location="${bin.dir}"/>
+      </path>
+    </pathconvert>
+
+    <property name="bin.uri" value="${file.uri.prefix}//${_bin.uri}"/>
+
+    <echo message="URI for binaries directory: ${bin.uri}"/>
+  </target>
+
+  <!--=================================================================-->
+  <!-- Set the host name.                                              -->
+  <!--=================================================================-->
+  <target name="set.host.name"
+          depends="host.name"
+          unless="host.name"
+          description="Checks that the host name is set.">
+
+    <fail message="The host.name property was not set by target host.name"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Set the host name                                                   -->
+  <!-- =================================================================== -->
+  <target name="host.name"
+          unless="host.name"
+          description="Set the host name property">
+
+    <script language="javascript">
+
+      <![CDATA[
+
+      hostname = java.net.InetAddress.getLocalHost().getCanonicalHostName();
+
+      // Got it - now set it.
+      if (hostname) {
+
+        Mulgara.setProperty("host.name", hostname);
+      }
+      ]]>
+    </script>
+
+    <echo message="Host name is set to: ${host.name}"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Generates all javadoc for the project                               -->
+  <!-- =================================================================== -->
+  <target name="javadoc-project"
+          description="Creates javadoc documentation for a module">
+
+    <mkdir dir="${javadoc.dir}"/>
+
+    <javadoc destdir="${javadoc.dir}"
+        packagenames="${javadoc.package}"
+        private="true"
+        overview="${obj.dir}/docs/overview.html"
+        windowtitle="${description} ${mulgara-version} API"
+        doctitle="${description} ${mulgara-version} API"
+        version="true"
+        use="true"
+        bottom="Copyright &amp;copy; ${year} Tucana Technologies, Inc. (http://www.tucanatech.com/)."
+        author="true"
+        additionalParam="-breakiterator -source 1.5">
+
+      <doclet name="org.mulgara.doclet.MulgaraDoclet"
+              path="${bin.dir}/doclet.jar">
+
+        <param name="-author"/>
+        <param name="-version"/>
+      </doclet>
+
+      <classpath refid="${javadoc.classpath}"/>
+
+      <sourcepath path="${javadoc.sourcepath}"/>
+
+      <link href="${j2ee.javadoc}"/>
+      <link href="${java.javadoc}"/>
+    </javadoc>
+  </target>
+</project>

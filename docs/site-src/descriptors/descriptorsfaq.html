@@ -1,0 +1,364 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Descriptors FAQ</title>
+    <meta name="keywords" content="Descriptors FAQ, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/descriptors/reserved.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+
+<p><a href="/descriptors/mistakes.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/descriptors/index.html">Descriptors</a></p>
+<p class="relateditem"><a href="/descriptors/descwhat.html">What are Descriptors?</a></p>
+<p class="relateditem"><a href="/descriptors/descadvantages.html">Advantages and Disadvantages of Descriptors</a></p>
+<p class="relateditem"><a href="/descriptors/nsdesc.html">Namespaces and Descriptors</a></p>
+<p class="relateditem"><a href="/descriptors/querytag.html">The &lt;query&gt; Tag</a></p>
+<p class="relateditem"><a href="/descriptors/descriptortag.html">The &lt;descriptor&gt; Tag</a></p>
+<p class="relateditem"><a href="/descriptors/reserved.html">Reserved Parameters</a></p>
+<p class="relateditem"><a href="/descriptors/mistakes.html">Common Mistakes</a></p>
+<p class="relateditem"><a href="/descriptors/descriptorex.html">Descriptor Examples</a></p>
+
+ -->
+
+
+<h2>Descriptors FAQ</h2>
+
+<p>Debugging Descriptors can be difficult unless you are knowledgeable in the underlying technologies, including XSL, Servlets and SOAP. Some of the most common problems and their solutions are summarized below.</p>
+<div class="anchor"><a name="o617">&nbsp;</a></div>
+
+<ol><li><a id="h598" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o577">How do I create a Descriptor?</a></li><li><a id="h599" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o578">How do I execute an iTQL query?</a></li><li><a id="h600" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o579">How do I deploy the built-in Descriptors?</a></li><li><a id="h601" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o580">How do I deploy my Descriptor?</a></li><li><a id="h602" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o581">I can't invoke my Descriptor.</a></li><li><a id="h603" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o582">How do I check if the Descriptor model exists on a Mulgara server?</a></li><li><a id="h604" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o583">How do I check if my Descriptor is deployed?</a></li><li><a id="h605" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o584">What is the life cycle of a Descriptor?</a></li><li><a id="h606" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o585">How do I empty the Descriptor cache?</a></li><li><a id="h607" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o586">I've changed my Descriptor XSL code but when invoked it does not notice my changes.</a></li><li><a id="h608" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o587">My Descriptor doesn't work. Where are errors logged?</a></li><li><a id="h609" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o589">'Can't have more than one ROOT in a DOM !' or 'org.w3c.dom.DOMException: DOM006 Hierarchy request' errors.</a></li><li><a id="h610" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o590">Can I see how other Descriptors work? Can I get their source?</a></li><li><a id="h611" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o591">How do I store the result of a Mulgara command in a variable?</a></li><li><a id="h612" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o592">How do I store the returned data from a Descriptor invoked from another Descriptor?</a></li><li><a id="h613" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o593">What is the 'Can not convert TREEFRAG into NodeSet' error?</a></li><li><a id="h614" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o594">How do I apply the current stylesheets rules to XML returned from a query or another Descriptor?</a></li><li><a id="h615" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o595">How can I see the raw XML result from a Mulgara command?</a></li><li><a id="h616" class="documentlinktemplate" title="" href="/descriptors/descriptorsfaq.html#o596">Why are some XSL parameters or variables written like $model and some like {$model}?</a></li></ol>
+<p class="backtotop"><a id="h1361" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o577">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">How do I create a Descriptor?</strong></p>
+
+<p>Use the Create Descriptor Using Wizard task on the <a class="" title="" href="http://localhost:8080/webservices/descriptor/index.jsp">Descriptor Management page</a>.</p>
+
+<p class="backtotop"><a id="h1361_2" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o578">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">How do I execute an iTQL command?</strong></p>
+
+<p>There are two ways to execute an iTQL<sup>TM</sup> command:</p>
+<ol><li>The iTQL command line</li><li>The built-in <a class="" title="" href="http://localhost:8080/webui/">Mulgara Viewer</a><sup>TM</sup></li></ol>
+<p>See the iTQL Reference Guide for more information.</p>
+
+<p class="backtotop"><a id="h1361_3" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o579">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">How do I deploy the built-in Descriptors?</strong></p>
+
+<p>Use either the Deploy Descriptors or Redeploy Descriptors task on the <a class="" title="" href="http://localhost:8080/webservices/descriptor/index.jsp">Descriptor Management page</a>.</p>
+
+<p>The Redeploy Descriptors task completely removes all Descriptors before redeploying the built-in ones, while the Deploy Descriptors task deploys the built-in Descriptors and preserves the existing Descriptors.</p>
+
+<p class="backtotop"><a id="h1361_4" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o580">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">How do I deploy my Descriptor?</strong></p>
+
+<p>The RDF embedded in the Descriptor XSL file needs to be loaded into a model in a Mulgara database, using the following steps:</p>
+<ol><li>Start an iTQL client.</li><li>Check that the Descriptor model already exists on the Mulgara server.</li><li>Load the Descriptor XSL file into the Descriptor model using the iTQL <code><a id="h1308" class="documentlinktemplate" title="load" href="/itqlcommands/load.html">load</a></code> command. For example:
+<p class="listcontinuecommandtext">load &lt;file:/home/joe/work/helloworld.xsl&gt;<br />
+  into &lt;rmi://mysite.com/server1#descriptors&gt;;</p>
+</li></ol>
+<p class="note"><strong>Note -</strong> The location of the Descriptor <em>must</em> be readable by the Mulgara server. For systems running a Windows&reg; operating system, the file specification looks something like <code>&lt;file:/C:/work/helloworld.xsl&gt;</code>.</p>
+<div class="anchor"><a name="o3136">&nbsp;</a></div>
+
+
+<p>If there are no errors in the XSL, then the Descriptor is deployed and available for use. Otherwise, check your XML for bad syntax, such as unclosed tags. The Create Descriptor Using Wizard task generates correct XML and XSL.</p>
+
+<p class="note"><strong>Note -</strong> When invoking the Descriptor from a client (SOAP, Java or another Descriptor), you must use the <em>exact</em> URL used to load the Descriptor. That is, you cannot load a Descriptor using a <code>file:</code> URL and then try and use if from a <code>HTTP:</code> URL, even if its on a web server.</p>
+<div class="anchor"><a name="o3137">&nbsp;</a></div>
+
+
+<p>If a Descriptor is to be used from a web server, then it should be loaded with a HTTP URL after it has been put on the web server. For example, if the file in the example above was on a web server in the work directory <code>/home/joe/work/</code>, and this is equivalent to <code>http://foo/joe/work</code>, then the Descriptor should be deployed as follows:</p>
+
+<p class="commandtext">load &lt;http://foo/joe/work/helloworld.xsl&gt; <br />
+  into &lt;rmi://mysite.com/server1#descriptors&gt;;</p>
+<div class="anchor"><a name="o3138">&nbsp;</a></div>
+
+
+<p>When Descriptors are deployed as HTTP URLs, they are accessible by any client with HTTP access, including any on the Internet, provided they have access through a firewall.</p>
+
+<p class="backtotop"><a id="h1361_5" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o581">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">I can't invoke my Descriptor.</strong></p>
+
+<p>First, check that the Descriptor model exists on the Mulgara server.</p>
+
+<p>If it does, then check that the Descriptor is deployed in the Descriptor model. If you changed anything from the time when you deployed it using the Create Descriptor Using Wizard task, then you have to redeploy the built-in Descriptors and redeploy your Descriptor.</p>
+
+<p class="backtotop"><a id="h1361_6" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o582">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">How do I check that the Descriptor model exists on a Mulgara server?</strong></p>
+
+<p>There are two ways to check if the Descriptor model exists:</p>
+<ol><li>Use the List of Descriptors Available on this Host task from the <a class="" title="" href="http://localhost:8080/webservices/descriptor/index.jsp">Descriptor Management page</a>. If it fails, no Descriptor model exists and the built-in Descriptors need to be deployed.</li><li>Use an iTQL command. For example:
+<p class="listcontinuecommandtext">select $model from &lt;rmi://mysite.com/server1#&gt; <br />
+  where $model &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt;<br />
+        &lt;http://mulgara.org/mulgara#Model&gt;;</p>
+</li></ol>
+<p class="note"><strong>Note -</strong> In the above command, replace <code>mysite.com</code> with the fully qualified hostname of the Mulgara server. For example, <code>foo.bar.com</code> rather than just <code>foo</code>.</p>
+
+<p>This query returns all models on the server. If there is no <code>#descriptor</code> model, then you need to deploy the built-in Descriptors and any Descriptors you have developed.</p>
+
+<p class="backtotop"><a id="h1361_7" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o583">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">How do I check if my Descriptor is deployed?</strong></p>
+
+<p>Descriptors must be deployed before use. The Mulgara code that invokes a Descriptor looks up the parameters that a Descriptor uses, as well as other information, before it invokes the Descriptor. If the Descriptor has not been deployed, then the code does not know how to invoke it and fails.</p>
+
+<p>First, make sure that the built-in Descriptors are deployed. Then select the<em> </em>List of Descriptors Available on this Host task from the <a class="" title="" href="http://localhost:8080/webservices/descriptor/index.jsp">Descriptor Management page</a>.</p>
+
+<p class="backtotop"><a id="h1361_8" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o584">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">What is the life cycle of a Descriptor?</strong></p>
+
+<p>When a Descriptor is first invoked, the Descriptor code retrieves the Descriptor from its URL and creates a java object representing that Descriptor.</p>
+
+<p>For the first invocation only, the XSL transformer processes the XSL stylesheet into an internal form and places it in a free pool for use. When used, it is placed in a busy pool until it has performed its duty, then returned to the free pool. If a client requests a Descriptor and an instance is already in the busy pool, a new instance is created and made available.</p>
+
+<p>Eventually, both Descriptors are returned to the free pool. The pool grows to the size needed and stays that size. It is not expected that these pools will get very large, especially in comparison to resources on a Mulgara server.</p>
+
+<p class="backtotop"><a id="h1361_9" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o585">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">How do I empty the Descriptor cache?</strong></p>
+
+<p>Use the Purge all Cached Descriptors Available on this Host task from the <a class="" title="" href="http://localhost:8080/webservices/descriptor/index.jsp">Descriptor Management page</a>.</p>
+
+<p class="backtotop"><a id="h1361_10" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o586">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">I've changed my Descriptor XSL code but when invoked it does not notice my changes.</strong></p>
+
+<p>Descriptors are downloaded and processed into Java<sup>TM</sup> Objects that are cached and reused.</p>
+
+<p>If you have changed the logic in a Descriptor but <em>not</em> the parameters or mime type (that is, everything specified with the Create Descriptor Using Wizard task) then you need to clear the Descriptor cache using the Purge All Cached Descriptors Available on this Host task from the <a class="" title="" href="http://localhost:8080/webservices/descriptor/index.jsp">Descriptor Management page</a>.</p>
+
+<p>If you have added or removed a parameter or mime type then you will need to redeploy your Descriptor.</p>
+
+<p>If the Descriptor is on a web server, check that you have published it to the web server.</p>
+
+<p class="backtotop"><a id="h1361_11" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o587">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">My Descriptor doesn't work. Where are errors logged?</strong></p>
+
+<p>The file <code>descriptor-errors.log</code><em>,</em> created in the directory where Mulgara is run from, contains the reasons for Descriptors failing. The file might also contain stack traces for more detailed error explanations, such as when the XML or XSL parser fails.</p>
+
+<p class="backtotop"><a id="h1361_12" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o589">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">'Can't have more than one ROOT in a DOM !' or 'org.w3c.dom.DOMException: DOM006 Hierarchy request' Errors.</strong></p>
+
+<p>This happens when calling one Descriptor from another. The called Descriptor returns XML with more than one root, and if you try and store this in a variable, or pass it to something expecting a single root, this error returns.</p>
+<div class="anchor"><a name="o3139">&nbsp;</a></div>
+
+
+<p>For example, Descriptor A returns:</p>
+
+<p class="commandtext">&lt;price&gt;17.55&lt;/price&gt;<br />
+&lt;album&gt;Is This It&lt;/album&gt;<br />
+&lt;artist&gt;The Strokes&lt;/artist&gt;</p>
+
+<p>Descriptor B calls Descriptor A and tries to store the result in a variable, but cannot because the XML is not in a tree. Descriptor A needs to return something similar to:</p>
+
+<p class="commandtext">&lt;cd&gt;<br />
+  &lt;price&gt;17.55&lt;/price&gt;<br />
+  &lt;album&gt;Is This It&lt;/album&gt;<br />
+  &lt;artist&gt;The Strokes&lt;/artist&gt; <br />
+&lt;/cd&gt;</p>
+
+<p>The XML now has one root.</p>
+<div class="anchor"><a name="o3140">&nbsp;</a></div>
+
+
+<p>This can also happen when there is some text after a node. For example:</p>
+
+<p class="commandtext">&lt;price&gt;17.55&lt;/price&gt;<br />
+The Strokes</p>
+
+<p>In this case, there is an invisible text node that needs outer <code>&lt;cd&gt;</code> tags.</p>
+
+<p>If Descriptor B calls Descriptor A and Descriptor C (similar to Descriptor A) and simply copies their results to the output stream, then there are now two root nodes. As stated previously, you need to put a tag around where the two Descriptors are called.</p>
+
+<p class="backtotop"><a id="h1361_13" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o590">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">Can I see how other Descriptors work? Can I get their source?</strong></p>
+
+<p>Yes. Download them with a web browser or some other mechanism. The List of Descriptors Available on this Host task from the <a class="" title="" href="http://localhost:8080/webservices/descriptor/index.jsp">Descriptor Management page</a> allows you to list Descriptors available on your host or other hosts. The list of Descriptors also includes links to download the Descriptors.</p>
+
+<p class="note"><strong>Note -</strong> Some web browsers have trouble displaying the Descriptor. If this is the case, right-click on it and choose the option to download the link directly.</p>
+
+<p>Some links to local Descriptors with file URLs, such as <code>file:/home/joe/work/helloworld.xsl</code>, do not work from some web browsers. This is a security feature designed to stop web pages accessing local files. You need to retrieve the file using a local file manager, such as Windows<sup>&reg;</sup> Explorer.</p>
+
+<p class="backtotop"><a id="h1361_14" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o591">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">How do I store the result of a Mulgara command in a variable?</strong></p>
+
+<p>Use the following example as a guide.</p>
+
+<p class="commandtext">&lt;xsl:variable name=&quot;answer&quot;&gt;<br />
+<br />
+  &lt;mulgaraDescriptor:query model=&quot;{$model}&quot; node=&quot;{$node}&quot;&gt;<br />
+  &lt;![CDATA[<br />
+  select $predicate from &lt;@@model@@&gt; <br />
+    where &lt;@@node@@&gt; $predicate $object;<br />
+  ]]&gt;<br />
+  &lt;/mulgaraDescriptor:query&gt;<br />
+<br />
+&lt;/xsl:variable&gt;</p>
+
+<p class="backtotop"><a id="h1361_15" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o592">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">How do I store the returned data from a Descriptor invoked from another Descriptor?</strong></p>
+
+<p>Use the following example as a guide.</p>
+
+<p class="commandtext">&lt;xsl:variable name=&quot;answer&quot;&gt;<br />
+<br />
+  &lt;mulgaraDescriptor:descriptor<br />
+    _target=&quot;otherDescriptor.xsl<br />
+    _source=&quot;{$_self}&quot;<br />
+    model=&quot;{$model}&quot;<br />
+    myParameter=&quot;aParameter&quot;/&gt;<br />
+&lt;/xsl:variable&gt;</p>
+
+<p class="backtotop"><a id="h1361_16" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o593">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">What is the 'Can not convert TREEFRAG into NodeSet' error?</strong></p>
+
+<p>The Tree fragment must be converted into a NodeSet using a XALAN extension. See the next question for more information.</p>
+
+<p class="backtotop"><a id="h1361_17" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o594">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">How do I apply the current stylesheets rules to XML returned from a query or another Descriptor?</strong></p>
+
+<p>XSL does not directly allow for this and a XALAN extension must be used. The XML must be converted from a Tree fragment to a proper DOM NodeSet. To apply XML to the stylesheet, use the following example as a guide.</p>
+
+<p class="commandtext">&lt;xsl:variable name=&quot;answer&quot;&gt;<br />
+<br />
+  &lt;mulgaraDescriptor:query model=&quot;{$model}&quot; node=&quot;{$node}&quot;&gt;<br />
+  &lt;![CDATA[<br />
+  select $predicate from &lt;@@model@@&gt; <br />
+    where &lt;@@node@@&gt; $predicate $object;<br />
+  ]]&gt;<br />
+  &lt;/mulgaraDescriptor:query&gt;<br />
+<br />
+&lt;/xsl:variable&gt;<br />
+<br />
+&lt;!-- Now apply the templates to the answer --&gt;<br />
+&lt;xsl:apply-templates select=&quot;xalan:nodeset($answer)/*&quot;/&gt;</p>
+
+<p class="backtotop"><a id="h1361_18" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o595">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">How can I see the raw XML result from a Mulgara command?</strong></p>
+
+<p>Copy the result to the output stream as follows:</p>
+
+<p class="commandtext">&lt;xsl:variable name=&quot;answer&quot;&gt;<br />
+<br />
+  &lt;mulgaraDescriptor:query model=&quot;{$model}&quot; node=&quot;{$node}&quot;&gt;<br />
+  &lt;![CDATA[<br />
+  select $predicate from &lt;@@model@@&gt; <br />
+    where &lt;@@node@@&gt; $predicate $object;<br />
+  ]]&gt;<br />
+  &lt;/mulgaraDescriptor:query&gt;<br />
+<br />
+&lt;/xsl:variable&gt;<br />
+<br />
+&lt;!-- Now apply the templates to the answer --&gt;<br />
+&lt;xsl:copy-of select=&quot;xalan:nodeset($answer)/*&quot;/&gt;</p>
+
+<p>If you are viewing the response in a web browser, the XML tags may not be visible, so wrap them in <code>&lt;xmp&gt;</code> tags to see them. For example:</p>
+
+<p class="commandtext">&lt;!-- Now apply the templates to the answer --&gt;<br />
+&lt;xmp&gt;<br />
+&lt;xsl:copy-of select=&quot;xalan:nodeset($answer)/*&quot;/&gt;<br />
+&lt;/xmp&gt;</p>
+
+<p class="backtotop"><a id="h1361_19" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+<div class="anchor"><a name="o596">&nbsp;</a></div>
+
+
+<p><strong class="specialbold">Why are some XSL parameters or variables written like $model and some like {$model}?</strong></p>
+
+<p>When referring to a parameter from an element in the XSL namespace, it is sufficient to refer to it using a dollar sign ($) prefix. For example:</p>
+
+<p class="commandtext">&lt;h1&gt;&lt;xsl:value-of select=&quot;$title&quot;/&gt;&lt;h1&gt;</p>
+
+<p>However when referring to parameters from any other namespace they must be surrounded with braces ({}). For example:</p>
+
+<p class="commandtext">&lt;xhtml:a href=&quot;{$homepage}&quot;&gt;Home Page&lt;/xhtml:a&gt;</p>
+
+<p>Even when using no namespace, braces ({}) must be used. For example:</p>
+
+<p class="commandtext">&lt;a href=&quot;{$homepage}&quot;&gt;Home Page&lt;/a&gt;</p>
+
+<p class="backtotop"><a id="h1361_20" class="" title="Descriptors FAQ" href="/descriptors/descriptorsfaq.html">Back to Top</a></p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

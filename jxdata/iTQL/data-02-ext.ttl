@@ -1,0 +1,10 @@
+@prefix : <http://example.org/data/> .
+
+
+:y :y :x .
+:x :y :y .
+:y :x :y .
+:x :x :x .
+<@server@#data-02> :x :y .
+<@server@#data-02> <@server@#data-02> <@server@#data-02> .
+

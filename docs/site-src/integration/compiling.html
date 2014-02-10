@@ -1,0 +1,98 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Compiling with Ant</title>
+    <meta name="keywords" content="Compiling, Ant, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/integration/statements.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/integration/integrate.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="2686.htm">HTTP Resolver and MP3 Content Handler Tutorial</a></p>
+<p class="relateditem"><a href="2686.htm#o3182"></a></p>
+<p class="relateditem"><a href="2687.htm">Prerequisites</a></p>
+<p class="relateditem"><a href="3183.htm">Developing Protocol Resolvers</a></p>
+<p class="relateditem"><a href="3184.htm">Developing Content Handlers</a></p>
+<p class="relateditem"><a href="/integration/integrate.html">Integrating into Mulgara</a></p>
+
+ -->
+
+
+
+<h3>Compiling with Ant</h3>
+
+<p>Example Ant script files (<code>build-tutorial.xml</code> and <code>build-tutorial.properties</code> in the directory you unzipped the tutorial to) are provided to allow you to compile the resolver and content handler. Make sure that you have Apache Ant installed and set up on your machine first. For more information on installing and running Ant software, read the <a class="internetlinktemplate" title="" href="http://ant.apache.org/manual/index.html" target="_blank">Apache Ant Manual</a>.</p>
+
+<p>The following structure within the Mulgara installation directory is assumed:</p>
+
+<p class="commandtext">/tutorial<br />
+   build-tutorial.xml<br />
+   build-tutorial.properties<br />
+   /conf<br />
+      /handler<br />
+         parserfactory.conf<br />
+   /handler<br />
+      /java<br />
+         compile-handler.list<br />
+         **Handler package directory structure**<br />
+      /rdfs<br />
+         mp3.rdfs<br />
+   /resolver<br />
+      /java<br />
+         compile-resolver.list<br />
+         **Resolver package directory structure**<br />
+   /lib<br />
+      **Supporting jars for the resolver and content handler**</p>
+
+<div class="anchor"><a name="o3174">&nbsp;</a></div>
+
+
+<p>Change the following properties:</p>
+<ul><li><code>server-version</code> property in the <code>build-tutorial.properties</code> file to be the version of the server you are using. For example, 1.1.0</li><li>server.base.dir property to the directory you installed TKS in</li></ul>
+<p>All other properties should not require changing.</p>
+<div class="anchor"><a name="o3185">&nbsp;</a></div>
+
+
+<p>Both of the modules used in this tutorial are in the Mulgara distribution and can be built using the main build file.</p>
+
+<p>From the main directory of your Mulgara installation, run:</p>
+<ul><li><code>build.bat content-mp3-jar</code> (for systems running a Linux<sup>&reg;</sup> or UNIX<sup>&reg;</sup> operating system use <code>./build.sh content-mp3-jar</code>)
+<p class="listcontinue">This produces the file <code>content-mp3-base-&lt;Mulgara version&gt;.jar</code> (where <code>&lt;Mulgara version&gt;</code> is the version of your Mulgara installation) in the <code>bin</code> directory.</p>
+</li><li><code>build.bat resolver-http-jar</code> (for systems running a Linux<sup>&reg;</sup> or UNIX<sup>&reg;</sup> operating system use <code>./build.sh resolver-http-jar</code>)
+<p class="listcontinue">This produces a file called <code>resolver-http-base-&lt;Mulgara version&gt;.jar</code> in the <code>bin</code> directory.</p>
+</li></ul>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

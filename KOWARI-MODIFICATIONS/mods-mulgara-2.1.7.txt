@@ -1,0 +1,332 @@
+------------------------------------------------------------------------
+r1923 | alexhall | 2010-02-16 12:23:09 -0500 (Tue, 16 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/connection/CommandExecutor.java
+   M /trunk/src/jar/query/java/org/mulgara/connection/ConnectionUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/AskQuery.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstructQuery.java
+   M /trunk/src/jar/query/java/org/mulgara/query/Query.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/ApplyRules.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Backup.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Commit.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/CreateGraph.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Deletion.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/DropGraph.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Export.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Insertion.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Load.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Restore.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Rollback.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/SessionCommand.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/TransactionCommand.java
+   M /trunk/tools/src/org/mulgara/tools/Sparql.java
+
+Remove @Override annotations auto-inserted by Eclipse that were causing build problems with Java 1.5
+------------------------------------------------------------------------
+r1922 | alexhall | 2010-02-16 12:20:13 -0500 (Tue, 16 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/lib/interruptiblermi-1.1.jar
+
+Updated library version compiled with Java 1.5
+------------------------------------------------------------------------
+r1921 | alexhall | 2010-02-16 12:19:25 -0500 (Tue, 16 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/common.xml
+
+Support building in Windows Vista
+------------------------------------------------------------------------
+r1919 | pag | 2010-02-15 21:27:19 -0500 (Mon, 15 Feb 2010) | 1 line
+Changed paths:
+   A /trunk/KOWARI-MODIFICATIONS/mods-mulgara-2.1.7.txt
+   M /trunk/common.properties
+
+Moving to version 2.1.7
+------------------------------------------------------------------------
+r1918 | pag | 2010-02-15 14:28:43 -0500 (Mon, 15 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/common.xml
+
+Added a flag to use the heap memory allocator when running tests.
+------------------------------------------------------------------------
+r1917 | pag | 2010-02-15 14:27:38 -0500 (Mon, 15 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/AbstractStreamedAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/AbstractStreamedXMLAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedRdfXmlAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlJSONAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlXMLAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedTqlXMLAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+
+Added method signatures to permit lists of Answers to be streamed, instead of just a single Answer. SPARQL requires these lists to have just one element, but TQL will allow multiple entries. The ProtocolServlet does not yet send multiple Answers to be streamed. Also updated the ProtocolServlet to tell the RdfXmlEmitter to not close an Answer after processing it.
+------------------------------------------------------------------------
+r1916 | pag | 2010-02-15 14:24:58 -0500 (Mon, 15 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/RdfXmlEmitter.java
+
+Added an option to not close the Answer being emitted. This is needed since some answer processing code needs to do the closing instead.
+------------------------------------------------------------------------
+r1915 | pag | 2010-02-15 14:23:23 -0500 (Mon, 15 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/xa/BlockCacheLine.java
+   M /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/xa/HybridTuples.java
+
+Applied patch by Benjamin Armintor. Added a mechanism for recycling blocks rather than just reading them
+------------------------------------------------------------------------
+r1914 | pag | 2010-02-15 14:21:44 -0500 (Mon, 15 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/Block.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/BlockFile.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/IOBlockFile.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/ManagedBlockFile.java
+   M /trunk/src/jar/util-xa/java/org/mulgara/store/xa/MappedBlockFile.java
+
+Applied patch by Benjamin Armintor. Added a mechanism for recycling blocks rather than just reading them
+------------------------------------------------------------------------
+r1913 | alexhall | 2010-02-05 15:53:12 -0500 (Fri, 05 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/tools/src/org/mulgara/tools/Sparql.java
+
+Add a shutdown hook to cancel the query if it's still running when the user exits via Ctrl-C.
+------------------------------------------------------------------------
+r1912 | alexhall | 2010-02-05 15:51:08 -0500 (Fri, 05 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ConstraintOperations.java
+   A /trunk/src/jar/util/java/org/mulgara/util/ThreadUtil.java
+
+Add logic to the query resolution dispatch handlers to check for interrupts and halt query execution if interrupted.
+------------------------------------------------------------------------
+r1911 | alexhall | 2010-02-05 15:49:04 -0500 (Fri, 05 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteSessionFactoryImpl.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RmiServer.java
+
+Add logic to the RMI server and session factory to enable interruptible RMI operations when exporting remote sessions, if the application is configured to enable this behavior.
+------------------------------------------------------------------------
+r1910 | alexhall | 2010-02-05 15:47:54 -0500 (Fri, 05 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/connection/CommandExecutor.java
+   M /trunk/src/jar/query/java/org/mulgara/connection/ConnectionFactory.java
+   M /trunk/src/jar/query/java/org/mulgara/connection/SessionConnection.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/MulgaraServlet.java
+
+Add logic to the ConnectionFactory to use the Interruptible RMI thread factory with client connections to remote servers.
+------------------------------------------------------------------------
+r1909 | alexhall | 2010-02-05 15:46:08 -0500 (Fri, 05 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/build.xml
+   M /trunk/src/jar/util/java/org/mulgara/util/Rmi.java
+
+Adding a new method to export an RMI object using the Interruptible RMI socket factory. Also adding a central point for configuring default behavior of interruptible RMI operations in the application.
+------------------------------------------------------------------------
+r1908 | alexhall | 2010-02-05 15:43:07 -0500 (Fri, 05 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara-config-2servers.xml
+   M /trunk/conf/mulgara-config-x11.xml
+   M /trunk/conf/mulgara-config-xa1.xml
+   M /trunk/conf/mulgara-config.xml
+   M /trunk/conf/mulgara-embedded.dtd
+   M /trunk/conf/mulgara-embedded.xsd
+   M /trunk/src/jar/server/java/org/mulgara/server/MulgaraUserConfig.java
+
+Adding a new field to the Mulgara XML configuration to enable/disable interruptible RMI sessions.
+------------------------------------------------------------------------
+r1907 | alexhall | 2010-02-05 15:41:12 -0500 (Fri, 05 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/.classpath
+   M /trunk/LEGAL.txt
+   M /trunk/build.properties
+   M /trunk/build.xml
+   M /trunk/common.xml
+   A /trunk/lib/interruptiblermi-1.1.jar
+   M /trunk/src/jar/querylang/build.xml
+
+Adding the Interruptible RMI library.
+------------------------------------------------------------------------
+r1906 | alexhall | 2010-02-05 15:37:18 -0500 (Fri, 05 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/build.bat
+
+Increase max heap size to 256m to match build.sh
+------------------------------------------------------------------------
+r1905 | alexhall | 2010-02-05 14:33:48 -0500 (Fri, 05 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/jxdata/iTQL/distinct/queryResult1.txt
+   M /trunk/jxdata/iTQL/distinct/queryResult2.txt
+
+Changing svn:eol-style to 'LF' for SPARQL results as the SPARQL XML emitter hard-codes "\n" line-endings.
+------------------------------------------------------------------------
+r1904 | alexhall | 2010-02-05 13:25:14 -0500 (Fri, 05 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/jxdata/iTQL/distinct/queryResult1.txt
+   M /trunk/jxdata/iTQL/distinct/queryResult2.txt
+   M /trunk/jxdata/iTQL/distinct/queryResult3.txt
+   M /trunk/jxdata/iTQL/distinct/result1.txt
+   M /trunk/jxdata/iTQL/distinct/test.jxu
+   M /trunk/jxdata/iTQL/vargraph/queryResult1.txt
+   M /trunk/jxdata/iTQL/vargraph/queryResult2.txt
+   M /trunk/jxdata/iTQL/vargraph/queryResult3.txt
+   M /trunk/jxdata/iTQL/vargraph/result1.txt
+   M /trunk/jxdata/iTQL/vargraph/result2.txt
+   M /trunk/jxdata/iTQL/vargraph/result3.txt
+   M /trunk/jxdata/iTQL/vargraph/test.jxu
+
+Setting svn:eol-style to 'native' to fix JXUnit tests on Windows.
+------------------------------------------------------------------------
+r1903 | pag | 2010-02-03 16:41:50 -0500 (Wed, 03 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/SystemResolver.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/resolver/store/StatementStoreResolver.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa11/XA11StatementStoreImpl.java
+   M /trunk/src/jar/store-xa/java/org/mulgara/store/xa/XAStatementStore.java
+
+Alex's patch for correctly detecting existing graphs on system restarts. This only affected XA11 internal list of graphs, which is used for variable graph queries
+------------------------------------------------------------------------
+r1902 | alexhall | 2010-01-29 16:19:02 -0500 (Fri, 29 Jan 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/connection/CommandExecutor.java
+   M /trunk/src/jar/query/java/org/mulgara/connection/Connection.java
+   M /trunk/src/jar/query/java/org/mulgara/connection/ConnectionFactoryUnitTest.java
+   A /trunk/src/jar/query/java/org/mulgara/connection/ConnectionUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/connection/DummyConnection.java
+   M /trunk/src/jar/query/java/org/mulgara/connection/SessionConnection.java
+   M /trunk/src/jar/query/java/org/mulgara/query/AskQuery.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstructQuery.java
+   M /trunk/src/jar/query/java/org/mulgara/query/Query.java
+   A /trunk/src/jar/query/java/org/mulgara/query/operation/AbstractCommand.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/ApplyRules.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Backup.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Commit.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/CreateGraph.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/DataInputTx.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/DataOutputTx.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Deletion.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/DropGraph.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Export.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Insertion.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Load.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/LocalCommand.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Modification.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Restore.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Rollback.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/ServerCommand.java
+   A /trunk/src/jar/query/java/org/mulgara/query/operation/SessionCommand.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/TransactionCommand.java
+
+Refactoring the Command and Connection interfaces. Connection.getSession() has been deprecated in favor of the new method Connection.execute(SessionOp) which enforces concurrency constraints on the underlying session. There is also a new Connection.cancel() method that will interrupt the currently executing operation, although nothing is responding to the interrupt at the moment.
+------------------------------------------------------------------------
+r1901 | pag | 2010-01-28 15:57:46 -0500 (Thu, 28 Jan 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+
+Moved closing of an Answer until after the try/catch for streaming the answer to output. This means that irrelevant errors will not interfere with the HTTP result
+------------------------------------------------------------------------
+r1900 | pag | 2010-01-28 15:56:20 -0500 (Thu, 28 Jan 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/PatternMapper.java
+
+Updated to drop empty patterns from conunctions and unions. Filters are expected to have already been moved off these empty patterns before mapping
+------------------------------------------------------------------------
+r1899 | pag | 2010-01-28 15:54:52 -0500 (Thu, 28 Jan 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/EmptyGraphPattern.java
+
+Made constructor public since multiple empty graph patterns can exist, each with a different filter
+------------------------------------------------------------------------
+r1898 | pag | 2010-01-28 15:53:57 -0500 (Thu, 28 Jan 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser/SparqlParser.java
+   M /trunk/src/jar/querylang/javacc/org/mulgara/sparql/parser/SparqlParser.jj
+
+Associating out-of-order filters with the closest graph pattern
+------------------------------------------------------------------------
+r1897 | pag | 2010-01-27 14:24:29 -0500 (Wed, 27 Jan 2010) | 1 line
+Changed paths:
+   A /trunk/src/jar/tuples/java/org/mulgara/store/tuples/ExpandedProjection.java
+   A /trunk/src/jar/tuples/java/org/mulgara/store/tuples/LeftFiltered.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/LeftJoin.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperations.java
+
+Changed the evaluation of Optional to fully conform to the SPARQL algebra
+------------------------------------------------------------------------
+r1896 | pag | 2010-01-27 14:23:39 -0500 (Wed, 27 Jan 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/TuplesContext.java
+
+Made TuplesContext immutable, and also provided a way to read the value returned for unbound variables
+------------------------------------------------------------------------
+r1895 | pag | 2010-01-27 14:22:08 -0500 (Wed, 27 Jan 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/ant-task/java/org/mulgara/ant/task/rdf/RDFLoad.java
+
+Removed deprecated use of File.toURL
+------------------------------------------------------------------------
+r1894 | pag | 2010-01-27 14:21:29 -0500 (Wed, 27 Jan 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlAutoInterpreter.java
+
+Fixed TqlAutoInterpreter to correctly deal with all three operations for changing transaction state.
+------------------------------------------------------------------------
+r1893 | pag | 2010-01-27 14:20:20 -0500 (Wed, 27 Jan 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/C.java
+
+Added a new method to find the intersection between a Set and the contents of an array, and between a List and the contents of an array
+------------------------------------------------------------------------
+r1892 | pag | 2010-01-27 14:18:47 -0500 (Wed, 27 Jan 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/AbstractFilterValue.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/AbstractIsIriFnUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/CompoundStatementUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/Context.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/EqualityComparisonUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/Filter.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/InequalityComparisonUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/IsBlankFnUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/IsLiteralFnUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/LangMatchesUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/Not.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/RDFTerm.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/RegexFnUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/TestContext.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/BinaryOperation.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/arithmetic/UnaryMinus.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/BlankNodeValue.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/ExternalFn.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/IRI.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/SimpleLiteral.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/TypedLiteral.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/Var.java
+
+Added a method to get access to all the variables in an expression
+------------------------------------------------------------------------
+r1891 | pag | 2010-01-27 13:29:32 -0500 (Wed, 27 Jan 2010) | 1 line
+Changed paths:
+   A /trunk/src/jar/query/java/org/mulgara/query/filter/Inverse.java
+
+New method for testing truth of a value, and returning false on error, rather than propagating an exception. Used for Optional Joins
+------------------------------------------------------------------------
+r1890 | pag | 2010-01-27 13:27:39 -0500 (Wed, 27 Jan 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/Query.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Command.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Commit.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/LocalCommand.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Rollback.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/ServerCommand.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/TransactionCommand.java
+
+Fixed TqlAutoInterpreter to correctly deal with all three operations for changing transaction state.
+------------------------------------------------------------------------
+r1889 | pag | 2010-01-19 18:10:29 -0500 (Tue, 19 Jan 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedTqlXMLAnswer.java
+
+Fixed up handling of subanswers and closed them after processing
+------------------------------------------------------------------------
+r1888 | alexhall | 2010-01-07 10:05:53 -0500 (Thu, 07 Jan 2010) | 1 line
+Changed paths:
+   M /trunk/common.xml
+
+Upgraded to Windows 7!
+------------------------------------------------------------------------

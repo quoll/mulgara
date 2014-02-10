@@ -1,0 +1,922 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - JavaServer Pages Tag Library</title>
+    <meta name="keywords" content="JavaServer Pages Tag Library, jsp, taglib, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+    
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+ 
+		<a href="/system/jsptaglib.html#o486">Requirements</a> &#124;
+		<a href="/system/jsptaglib.html#o487">Configuration</a> &#124;
+		<a href="/system/jsptaglib.html#o493">answer</a> &#124;
+		<a href="/system/jsptaglib.html#o492">execute</a> &#124;
+		<a href="/system/jsptaglib.html#o488">init</a> &#124;
+		<a href="/system/jsptaglib.html#o491">query</a> &#124;
+		<a href="/system/jsptaglib.html#o489">render</a> &#124;
+		<a href="/system/jsptaglib.html#o490">statement</a> 
+
+
+   
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/system/index.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/system/itqlshell.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/system/index.html">System Architecture</a></p>
+<p class="relateditem"><a href="/system/itqlshell.html">iTQL Shell</a></p>
+<p class="relateditem"><a href="/system/soap.html">Simple Object Access Protocol (SOAP)</a></p>
+<p class="relateditem"><a href="/system/itqlbean.html">iTQL Bean</a></p>
+<p class="relateditem"><a href="/system/driver.html">Mulgara Driver</a></p>
+<p class="relateditem"><a href="/system/jrdf.html">Java RDF (JRDF)</a></p>
+
+ -->
+
+
+
+
+<h2>JavaServer Pages Tag Library</h2>
+
+<p>This section describes the JavaServer Pages<sup>TM</sup> (JSP) tags available for creating dynamic web-based applications on top of Mulgara. The tag library includes general tags for communicating with a Mulgara server.</p>
+<div class="anchor"><a name="o486">&nbsp;</a></div>
+<h3>Software Requirements</h3>
+
+<p>The Mulgara custom tag libraries depend on a servlet container that supports the <a class="internetlinktemplate" title="" href="http://java.sun.com/products/jsp/download.html" target="_blank">JavaServer Pages Specification, version 1.1</a> or higher. Some of the examples listed in this section make use of the <a class="internetlinktemplate" title="" href="http://jakarta.apache.org/taglibs/" target="_blank">Jakarta Taglib</a> libraries.</p>
+<div class="anchor"><a name="o487">&nbsp;</a></div>
+<h3>Configuring your Web Application</h3>
+
+<p>Follow these steps to configure your web application to use the Mulgara tag libraries:</p>
+<ol><li>Copy the tag library JAR files to the <code>/WEB-INF/lib</code> subdirectory of your web application</li><li>Add a <code>&lt;taglib&gt;</code> element to your web application deployment Descriptor in <code>/WEB-INF/web.xml</code>, as follows:
+<p class="listcontinuecommandtext">&lt;taglib&gt;<br />
+  &lt;taglib-uri&gt;http://mulgara.org/mulgara/taglibs/tks&lt;/taglib-uri&gt;<br />
+  &lt;taglib-location&gt;/WEB-INF/lib/tks-tag-2.1.jar&lt;/taglib-location&gt;<br />
+&lt;/taglib&gt;</p>
+</li></ol>
+<p>To use the general Mulgara tags from the library in your JSP pages, add the following directive at the top of each page:</p>
+
+<p class="commandtext">&lt;%@ taglib prefix=&quot;tks&quot; uri=&quot;http://mulgara.org/mulgara/taglibs/tks&quot;%&gt;</p>
+
+<p>Where <code>tks</code> is the tag name prefix you want to use for tags from the Mulgara library. You can change this to any prefix you like, but do not change the URL.</p>
+
+<p class="note"><strong>Note -</strong> All the examples in this section assume that the tag libraries are prefixed as shown above.</p>
+<div class="anchor"><a name="o493">&nbsp;</a></div>
+<h3>answer</h3>
+
+<p>Retrieves query answers from a statement.<br />
+</p>
+<table width="534" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr>
+<td width="89" height="0"></td>
+<td width="90" height="0"></td>
+<td width="78" height="0"></td>
+<td width="144" height="0"></td>
+<td width="6" height="0"></td>
+<td width="126" height="0"></td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">Tag Body</p>
+</td>
+<td colspan="5" width="445">
+<p>JSP</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">Restrictions</p>
+</td>
+<td colspan="5" width="445">
+<p>None</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<th width="89">
+<p class="table">Attributes</p>
+</th>
+<th width="91">
+<p><strong>Name</strong></p>
+</th>
+<th width="78">
+<p><strong>Required</strong></p>
+</th>
+<th width="144">
+<p><strong>Runtime Expression Evaluation</strong></p>
+</th>
+<th colspan="2" width="132">
+<p><strong>Mulgara Version</strong></p>
+</th>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="91">
+<p><code>id</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="78">
+<p>false</p>
+</td>
+<td bgcolor="#EFEFEF" width="144">
+<p>true</p>
+</td>
+<td bgcolor="#EFEFEF" colspan="2" width="132">
+<p>n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p>&nbsp;</p>
+</td>
+<td colspan="5" width="445">
+<p>If set, it saves the specified answer to a variable with this name into the page context. To save the variable to a different context, use the <code>scope</code> attribute.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="91">
+<p><code>statement</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="78">
+<p>true</p>
+</td>
+<td bgcolor="#EFEFEF" width="144">
+<p>true</p>
+</td>
+<td bgcolor="#EFEFEF" colspan="2" width="132">
+<p>n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p>&nbsp;</p>
+</td>
+<td colspan="5" width="445">
+<p>Specifies the id of the statement to retrieve answers from. If no statement with the id exists, an exception occurs.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="91">
+<p><code>query</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="78">
+<p>true</p>
+</td>
+<td bgcolor="#EFEFEF" width="144">
+<p>true</p>
+</td>
+<td bgcolor="#EFEFEF" colspan="2" width="132">
+<p>n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p>&nbsp;</p>
+</td>
+<td colspan="5" width="445">
+<p>The name of query to retrieve the answer of. The query with this id must be contained within the <code><a id="h557" class="documentlinktemplate" title="statement" href="/system/jsptaglib.html#o490">statement</a></code> tag specified. Returns nothing if a query with that name does not exist.</p>
+
+<p><strong>Note -</strong> You must specify the name of the query in the <code><a id="h1305" class="documentlinktemplate" title="execute" href="/system/jsptaglib.html#o492">execute</a></code> tag for its result to be available in the <code>answer</code> tag. This is because by default, the <code>statement</code> tag sends queries in a single batch, and receives answers in a single batch.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="91">
+<p><code>scope</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="78">
+<p>false</p>
+</td>
+<td bgcolor="#EFEFEF" width="144">
+<p>true</p>
+</td>
+<td bgcolor="#EFEFEF" colspan="2" width="132">
+<p>n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p>&nbsp;</p>
+</td>
+<td colspan="5" width="445">
+<p>The scope of the variable created to hold the answer. Values must be one of <code>page</code>, <code>request</code>, <code>session</code> or <code>application</code>. If not defined, the variables are created in the page context.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">Scripting Variables</p>
+</td>
+<td width="91">
+<p><strong>Name</strong></p>
+</td>
+<td colspan="3" width="228">
+<p><strong>Type</strong></p>
+</td>
+<td width="126">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="91">
+<p><code>[id]</code></p>
+</td>
+<td bgcolor="#EFEFEF" colspan="3" width="228">
+<p><code>org.w3c.dom.Document</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="126">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p>&nbsp;</p>
+</td>
+<td colspan="5" width="445">
+<p>If the <code>id</code> attribute is set on, the tag <code>org.w3c.dom.Document</code> containing the specified answer is set in the page context. You can override the scope of the variable created by setting the <code>scope</code> attribute.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="tableheading3">Example</p>
+</td>
+<td colspan="5" width="445">
+<p class="tablecommandtext">&lt;%-- execute a statement (saving a list of answers to a variable named stmt2) --%&gt;<br />
+&lt;tks:statement id=&quot;stmt2&quot;&gt;<br />
+<br />
+&lt;%-- set the iTQL query --%&gt;<br />
+&lt;tks:query&gt;<br />
+  select $subj $obj from rmi://mysite.com/server1#dc<br />
+    where $subj rdfs:label $obj ;<br />
+&lt;/tks:query&gt;<br />
+<br />
+&lt;%-- set another iTQL query --%&gt;<br />
+&lt;tks:query id=&quot;alltriples&quot;&gt;<br />
+  select $subj $obj $pred from rmi://mysite.com/server1#foo<br />
+    where $subj $pred $obj ;<br />
+&lt;/tks:query&gt;<br />
+<br />
+&lt;%-- execute the query --%&gt;<br />
+&lt;tks:execute/&gt;<br />
+<br />
+&lt;%-- execute the query --%&gt;<br />
+&lt;tks:execute query=&quot;alltriples&quot;/&gt;<br />
+<br />
+&lt;/tks:statement&gt;<br />
+<br />
+&lt;%-- get the answer to a named query --%&gt;<br />
+&lt;tks:answer statement=&quot;stmt2&quot; query=&quot;alltriples&quot;/&gt;<br />
+<br />
+&lt;%-- save the answer to a named query in a request scoped variable named allTriplesAnswer --%&gt;<br />
+&lt;tks:answer statement=&quot;stmt2&quot; id=&quot;allTriplesAnswer&quot; query=&quot;alltriples&quot;<br />
+  scope=&quot;request&quot;/&gt;<br />
+<br />
+&lt;%-- the following will not return any results as the execute tag does not specify a query --%&gt;<br />
+&lt;tks:statement id=&quot;answers2&quot;&gt;<br />
+  &lt;tks:query id=&quot;query1&quot;&gt;<br />
+    select $title from rmi://mysite.com/server1#tmex <br />
+      where (http://mulgara.org/projects/mulgara/data/doc49.htm<br />
+      $y http://mulgara.org/mulgara/Document#Document ) and <br />
+      ( $node http://mulgara.org/mulgara/tool/HtmlExtractor#title<br />
+      $title ) ;<br />
+  &lt;/tks:query&gt;<br />
+  &lt;tks:execute/&gt;<br />
+&lt;/tks:statement&gt;<br />
+<br />
+&lt;tks:answer statement=&quot;answers2&quot; query=&quot;query1&quot;/&gt;</p>
+</td>
+</tr>
+
+</table>
+
+<p class="allowpagebreak"></p>
+<div class="anchor"><a name="o492">&nbsp;</a></div>
+<h3>execute</h3>
+
+<p>Executes queries in a statement.<br />
+</p>
+<table width="534" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr>
+<td width="89" height="0"></td>
+<td width="72" height="0"></td>
+<td width="90" height="0"></td>
+<td width="150" height="0"></td>
+<td width="132" height="0"></td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">Tag Body</p>
+</td>
+<td colspan="4" width="445">
+<p>Empty</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">Restrictions</p>
+</td>
+<td colspan="4" width="445">
+<p>Must be enclosed in a statement tag</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">Attributes</p>
+</td>
+<td width="73">
+<p><strong>Name</strong></p>
+</td>
+<td width="90">
+<p><strong>Required</strong></p>
+</td>
+<td width="150">
+<p><strong>Runtime Expression Evaluation</strong></p>
+</td>
+<td width="132">
+<p><strong>Mulgara Version</strong></p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="73">
+<p><code>query</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="90">
+<p>false</p>
+</td>
+<td bgcolor="#EFEFEF" width="150">
+<p>true</p>
+</td>
+<td bgcolor="#EFEFEF" width="132">
+<p>n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p>&nbsp;</p>
+</td>
+<td colspan="4" width="445">
+<p>If set, it denotes the query to execute. The query with this id must be contained within the same enclosing <code><a id="h557_2" class="documentlinktemplate" title="statement" href="/system/jsptaglib.html#o490">statement</a></code> tag as the <code>execute</code> tag specifying it. An exception occurs if no query exists with this id. </p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="tableheading3">Example</p>
+</td>
+<td colspan="4" width="445">
+<p class="tablecommandtext">&lt;%-- set the iTQL query --%&gt;<br />
+&lt;tks:query&gt;<br />
+  select $subj $obj from rmi://mysite.com/server1#dc<br />
+    where $subj rdfs:label $obj ;<br />
+&lt;/tks:query&gt;<br />
+<br />
+&lt;%-- execute the query --%&gt;<br />
+&lt;tks:execute/&gt;</p>
+</td>
+</tr>
+
+</table>
+
+<p class="allowpagebreak"></p>
+<div class="anchor"><a name="o488">&nbsp;</a></div>
+<h3>init</h3>
+
+<p>Initializes the Mulgara JSP tag environment, by setting the SOAP endpoint of the Mulgara server.<br />
+</p>
+<table width="534" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr>
+<td width="89" height="0"></td>
+<td width="72" height="0"></td>
+<td width="96" height="0"></td>
+<td width="144" height="0"></td>
+<td width="132" height="0"></td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">Tag Body</p>
+</td>
+<td colspan="4" width="445">
+<p>Empty</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">Restrictions</p>
+</td>
+<td colspan="4" width="445">
+<p>To be called before using any other Mulgara tag that communicates with a Mulgara server</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">Attributes</p>
+</td>
+<td width="73">
+<p><strong>Name</strong></p>
+</td>
+<td width="96">
+<p><strong>Required</strong></p>
+</td>
+<td width="144">
+<p><strong>Runtime Expression Evaluation</strong></p>
+</td>
+<td width="132">
+<p><strong>Mulgara Version</strong></p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="73">
+<p><code>server</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="96">
+<p>true</p>
+</td>
+<td bgcolor="#EFEFEF" width="144">
+<p>true</p>
+</td>
+<td bgcolor="#EFEFEF" width="132">
+<p>n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p>&nbsp;</p>
+</td>
+<td colspan="4" width="445">
+<p>The URL of the SOAP endpoint of the Mulgara server containing metadata you are interested in. For example,<em> </em><code>http://&lt;hostname&gt;:&lt;port&gt;/driver/query</code></p>
+
+<p>The URL is stored in the page context (by default) and is accessible as a <code>java.net.URL</code> with the key <code>tks.server.soapendpoint</code></p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="73">
+<p><code>scope</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="96">
+<p>false</p>
+</td>
+<td bgcolor="#EFEFEF" width="144">
+<p>true</p>
+</td>
+<td bgcolor="#EFEFEF" width="132">
+<p>n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p>&nbsp;</p>
+</td>
+<td colspan="4" width="445">
+<p>The scope of the variables created for server and model. Value must be one of <code>page</code>, <code>request</code>, <code>session</code> or <code>application</code>. If not defined, the variables are created in the page context</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="tableheading3">Example</p>
+</td>
+<td colspan="4" width="445">
+<p class="tablecommandtext">&lt;%-- initialise the environment --%&gt;<br />
+&lt;tks:init server=&quot;http://localhost:8080/driver/query&quot;/&gt;<br />
+<br />
+&lt;%-- display the SOAP endpoint --%&gt;<br />
+TKS server SOAP endpoint = &lt;%= pageContext.getAttribute(&quot;tks.server.soapendpoint&quot;) %&gt;<br />
+<br />
+&lt;%-- initialise the environment storing variables in session scope --%&gt;<br />
+&lt;tks:init server=&quot;http://localhost:8080/driver/query&quot; scope=&quot;session&quot;/&gt;<br />
+<br />
+&lt;%-- display the TKS server model --%&gt;<br />
+TKS server = &lt;%= pageContext.getAttribute(&quot;tks.server.soapendpoint&quot;, PageContext.SESSION_SCOPE) %&gt;</p>
+</td>
+</tr>
+
+</table>
+
+<p class="allowpagebreak"></p>
+<div class="anchor"><a name="o491">&nbsp;</a></div>
+<h3>query</h3>
+
+<p>Adds an iTQL query to a statement.<br />
+</p>
+<table width="534" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr>
+<td width="89" height="0"></td>
+<td width="72" height="0"></td>
+<td width="96" height="0"></td>
+<td width="144" height="0"></td>
+<td width="132" height="0"></td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">Tag Body</p>
+</td>
+<td colspan="4" width="445">
+<p>JSP</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">Restrictions</p>
+</td>
+<td colspan="4" width="445">
+<p>Must be enclosed in a <code><a id="h557_3" class="documentlinktemplate" title="statement" href="/system/jsptaglib.html#o490">statement</a></code> tag and the body must contain a single iTQL query. Use multiple <code>query</code> tags to issue multiple queries in a single statement</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">Attributes</p>
+</td>
+<td width="73">
+<p><strong>Name</strong></p>
+</td>
+<td width="96">
+<p><strong>Required</strong></p>
+</td>
+<td width="144">
+<p><strong>Runtime Expression Evaluation</strong></p>
+</td>
+<td width="132">
+<p><strong>Mulgara Version</strong></p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="73">
+<p><code>id</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="96">
+<p>false</p>
+</td>
+<td bgcolor="#EFEFEF" width="144">
+<p>true</p>
+</td>
+<td bgcolor="#EFEFEF" width="132">
+<p>n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p>&nbsp;</p>
+</td>
+<td colspan="4" width="445">
+<p>If set, it can be referenced by an <code><a id="h1305_2" class="documentlinktemplate" title="execute" href="/system/jsptaglib.html#o492">execute</a></code> tag to execute this query individually</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="tableheading3">Example</p>
+</td>
+<td colspan="4" width="445">
+<p class="tablecommandtext">&lt;%-- set the iTQL query --%&gt;<br />
+&lt;tks:query id=&quot;query1&quot;&gt;<br />
+  select $subj $obj from rmi://mysite.com/server1#dc<br />
+    where $subj rdfs:label $obj ;<br />
+&lt;/tks:query&gt;<br />
+<br />
+&lt;%-- execute the query --%&gt;<br />
+&lt;tks:execute query=&quot;query1&quot;/&gt;</p>
+</td>
+</tr>
+
+</table>
+
+<p class="allowpagebreak"></p>
+<div class="anchor"><a name="o489">&nbsp;</a></div>
+<h3>render</h3>
+
+<p>Renders an XML document using a supplied stylesheet.<br />
+</p>
+<table width="534" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr>
+<td width="89" height="0"></td>
+<td width="96" height="0"></td>
+<td width="72" height="0"></td>
+<td width="144" height="0"></td>
+<td width="132" height="0"></td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">Tag Body</p>
+</td>
+<td colspan="4" width="445">
+<p>JSP</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">Restrictions</p>
+</td>
+<td colspan="4" width="445">
+<p>Must contain a body to transform</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">Attributes</p>
+</td>
+<td width="97">
+<p><strong>Name</strong></p>
+</td>
+<td width="72">
+<p><strong>Required</strong></p>
+</td>
+<td width="144">
+<p><strong>Runtime Expression Evaluation</strong></p>
+</td>
+<td width="132">
+<p><strong>Mulgara Version</strong></p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="table">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="97">
+<p><code>stylesheet</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="72">
+<p>true</p>
+</td>
+<td bgcolor="#EFEFEF" width="144">
+<p>true</p>
+</td>
+<td bgcolor="#EFEFEF" width="132">
+<p>n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p>&nbsp;</p>
+</td>
+<td colspan="4" width="445">
+<p>The relative path to the XSL stylesheet to use to render the tag body contents</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="89">
+<p class="tableheading3">Example</p>
+</td>
+<td colspan="4" width="445">
+<p class="tablecommandtext">&lt;%-- render the results of a query --%&gt;<br />
+&lt;tks:render stylesheet=&quot;/default.xsl&quot;&gt;<br />
+<br />
+&lt;%-- execute a statement --%&gt;<br />
+&lt;tks:statement&gt;<br />
+<br />
+&lt;%-- set the iTQL query --%&gt;<br />
+&lt;tks:query&gt;<br />
+  select $subj $pred $obj from rmi://mysite.com/server1#foo<br />
+    where $subj $pred $obj ;<br />
+&lt;/tks:query&gt;<br />
+<br />
+&lt;%-- execute the query --%&gt;<br />
+&lt;tks:execute/&gt;<br />
+<br />
+  &lt;/tks:statement&gt;<br />
+<br />
+&lt;/tks:render&gt;</p>
+</td>
+</tr>
+
+</table>
+
+<p class="allowpagebreak"></p>
+<div class="anchor"><a name="o490">&nbsp;</a></div>
+<h3>statement</h3>
+
+<p>Sends queries to a Mulgara instance.<br />
+</p>
+<table width="534" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr>
+<td width="90" height="0"></td>
+<td width="72" height="0"></td>
+<td width="84" height="0"></td>
+<td width="156" height="0"></td>
+<td width="132" height="0"></td>
+</tr>
+<tr align="left" valign="top">
+<td width="90">
+<p class="table">Tag Body</p>
+</td>
+<td colspan="4" width="444">
+<p>JSP</p>
+
+<p>The body may contain multiple queries, which by default are sent to the Mulgara server (in the order that they appear) in one request, resulting in a single set of results (one SOAP message) being set to the output stream.</p>
+
+<p>If you want to use multiple queries in a single <code>statement</code> tag, but do not want them to be sent in a batch, specify an id for each <code><a id="h1304" class="documentlinktemplate" title="query" href="/system/jsptaglib.html#o491">query</a></code> tag, and use the <code><a id="h1305_3" class="documentlinktemplate" title="execute" href="/system/jsptaglib.html#o492">execute</a></code> tag with the query attribute set to the id of the query you wish to execute.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90">
+<p class="table">Restrictions</p>
+</td>
+<td colspan="4" width="444">
+<p>If called without the server or model attributes set, the <code><a id="h1306" class="documentlinktemplate" title="init" href="/system/jsptaglib.html#o488">init</a></code> tag must precede the use of this tag.</p>
+
+<p>The body must contain at least one <code>query</code> tag.</p>
+
+<p>If you want to see results returned to the output stream, the body must also contain at least one <code>execute</code> tag. If not present, no results are returned to the output stream, or assigned to the variable specified with the id attribute.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90">
+<p class="table">Attributes</p>
+</td>
+<td width="72">
+<p><strong>Name</strong></p>
+</td>
+<td width="84">
+<p><strong>Required</strong></p>
+</td>
+<td width="156">
+<p><strong>Runtime Expression Evaluation</strong></p>
+</td>
+<td width="132">
+<p><strong>Mulgara Version</strong></p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90">
+<p class="table">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="72">
+<p><code>id</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="84">
+<p>false</p>
+</td>
+<td bgcolor="#EFEFEF" width="156">
+<p>true</p>
+</td>
+<td bgcolor="#EFEFEF" width="132">
+<p>n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90">
+<p>&nbsp;</p>
+</td>
+<td colspan="4" width="444">
+<p>If set, a <code>java.util.List</code> containing <code>org.w3c.dom.Documents</code> representing the answers to each execute tag in the statement is set in the page context. The tag does not output the contents of the SOAP responses to the output stream.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90">
+<p class="table">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="72">
+<p><code>server</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="84">
+<p>false</p>
+</td>
+<td bgcolor="#EFEFEF" width="156">
+<p>true</p>
+</td>
+<td bgcolor="#EFEFEF" width="132">
+<p>n/a</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90">
+<p>&nbsp;</p>
+</td>
+<td colspan="4" width="444">
+<p>If set, overrides the URL of the SOAP endpoint of the Mulgara server set using the <code>init</code> tag.</p>
+
+<p><strong>Note -</strong> This does not update the value, rather it sets a new URL for the execution of this tag only.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90">
+<p class="table">Scripting Variables</p>
+</td>
+<td width="72">
+<p><strong>Name</strong></p>
+</td>
+<td width="84">
+<p><strong>Type</strong></p>
+</td>
+<td width="156">
+<p>&nbsp;</p>
+</td>
+<td width="132">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90">
+<p class="table">&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="72">
+<p><code>[id]</code></p>
+</td>
+<td bgcolor="#EFEFEF" width="84">
+<p>java.util.List</p>
+</td>
+<td bgcolor="#EFEFEF" width="156">
+<p>&nbsp;</p>
+</td>
+<td bgcolor="#EFEFEF" width="132">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90">
+<p>&nbsp;</p>
+</td>
+<td colspan="4" width="444">
+<p>If the <code>id</code> attribute is set on the tag, a <code>java.util.List</code> containing answers to each execute tag in the statement in the form of <code>org.w3c.dom.Documents</code> is set in the page context.</p>
+
+<p>This list is ordered according to the ordering of the <code>execute</code> tags. So in the example below, the list contains two elements, accessible as follows:</p>
+
+<p class="tablecommandtext">// get the answer to both queries<br />
+Document answer1 = (Document) stmt1.get(0);<br />
+<br />
+// get the answer to the second query<br />
+Document answer3 = (Document) stmt1.get(1);</p>
+
+<p>The ordering is shown as an <code>execute</code> tag with no query attribute and executes all queries in the corresponding <code>statement</code> tag (two of them shown in the example below). The second <code>execute</code> tag only executes the second query (all triples). The <code>statement</code> tag does not remove duplicates from its list of answers.</p>
+
+<p><strong>Note -</strong> That setting the <code>id</code> attribute on a query that returns a large answer may impact performance as the SOAP answer is parsed into a document.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="90">
+<p class="tableheading3">Example</p>
+</td>
+<td colspan="4" width="444">
+<p class="tablecommandtext">&lt;%-- execute a statement --%&gt;<br />
+&lt;tks:statement&gt; <br />
+<br />
+&lt;%-- set the iTQL query --%&gt;<br />
+&lt;tks:query&gt;<br />
+  select $subj $obj from rmi://mysite.com/server1#dc <br />
+    where $subj rdfs:label $obj ;<br />
+&lt;/tks:query&gt;<br />
+<br />
+&lt;%-- set another iTQL query --%&gt;<br />
+&lt;tks:query id=&quot;alltriples&quot;&gt;<br />
+  select $subj $obj $pred from rmi://mysite.com/server1#foo<br />
+    where $subj $pred $obj ;<br />
+&lt;/tks:query&gt;<br />
+<br />
+&lt;%-- execute all queries --%&gt;<br />
+&lt;tks:execute/&gt;<br />
+<br />
+&lt;%-- execute the query --%&gt;<br />
+&lt;tks:execute query=&quot;alltriples&quot;/&gt;<br />
+<br />
+&lt;/tks:statement&gt;</p>
+</td>
+</tr>
+
+</table>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

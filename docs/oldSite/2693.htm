@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Resolvers </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Resolvers, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="2697.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="3184.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h4 class="heading4">Resolvers</h4>
+<p class="bodytext">Once the <a id="h2947" class="documentlinktemplate" title="Factories" href="2689.htm" target="_self">factory</a> and <a id="h2948" class="documentlinktemplate" title="Content Wrappers" href="2697.htm" target="_self">content wrapper</a> are written, the final step is to create the resolver. Resolver instances are created on an as required basis by the resolver factory and are responsible for taking a model URI and performing model creation, deletion, modification, or querying against constraints.</p>
+<p class="bodytext">Most often a resolver is written to resolve constraints against a file or store that is not naturally in RDF, with the protocol managed by a <code class="monospace">Resolver</code> implementation, and the content to triples conversion managed by a <code class="monospace">ContentHandler</code> implementation. For this reason, if a new mime type is to be resolved then a <code class="monospace">ContentHandler</code> should be written instead of a <code class="monospace">Resolver</code>, and vice versa for new protocols.</p>
+<p class="bodytext">Most of the design decisions should already have been made during the creation of the factory and content classes, leaving the process of actually resolving a query for the resolver. However, you do need to decide what operations are permitted on models of this protocol type. Since querying a model is compulsory (as it is the main purpose of a resolver) that leaves model creation, modification of data and removal of models. For the moment you want the protocol resolver to just read and resolve constraints against the triples without any model manipulation. If you are writing an <a id="h2564" class="documentlinktemplate" title="Internal Resolvers" href="2553.htm#o2559" target="_self">internal resolver</a>, then it is important to implement these methods.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="2693.htm#o2950" target="_self">Writing a Resolver</a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="3183.htm" target="_self">Developing Protocol Resolvers</a></p><p class="relateditem"><a href="2689.htm" target="_self">Factories</a></p><p class="relateditem"><a href="2697.htm" target="_self">Content Wrappers</a></p></td>
+</tr>
+</table>
+
+<a name="o2950"></a><h5 class="heading5">Writing a Resolver</h5>
+<p class="bodytext">A <code class="monospace">Resolver</code> implementation requires two classes, the <code class="monospace">Content</code> implementation for handling content under the resolver's protocol and the <code class="monospace">Resolver</code> implementation itself. Instances of the class are created by the factory and are given constraints to resolve the query against which are used in conjunction with <code class="monospace">Statements</code> found by the <code class="monospace">ContentHandler</code>, which matches the mime type of the resource. In addition to query resolution, it should also handle model creation, deletion, or content modification if required.</p>
+<p class="bodytext">The following source is how the http protocol resolver is written (extracted from <code class="monospace">HttpResolver.java</code>):</p>
+<p class="commandtext">package org.kowari.resolver.http;<br /><br />// Java 2 standard packages<br />import java.net.*;<br />import java.util.*;<br /><br />// Third party packages<br />import org.apache.log4j.Logger;<br />import org.jrdf.graph.Node;<br />import org.jrdf.graph.URIReference;<br /><br />// Locally written packages<br />import org.kowari.content.Content;<br />import org.kowari.content.ContentHandler;<br />import org.kowari.content.ContentHandlerManager;<br />import org.kowari.content.ContentHandlerException;<br />import org.kowari.content.ContentResolver;<br />import org.kowari.resolver.spi.*;<br /><br />public class HttpResolver extends ContentResolver {<br />  /**<br />   * Logger.<br />   */<br />  private static Logger logger = Logger.getLogger(HttpResolver.class.getName());<br /><br />  /**<br />   * Construct a resolver.<br />   *<br />   * @param resolverSession  the session this resolver is associated with<br />   * @param contentHandlers  the available {@link ContentHandler}s<br />   * @throws IllegalArgumentException  if resolverSession is<br />   *   null<br />   */<br />  HttpResolver(ResolverSession resolverSession,<br />               Resolver systemResolver,<br />               ContentHandlerManager contentHandlers) {<br /><br />    super(resolverSession, systemResolver, contentHandlers);<br />  }<br /><br />  //<br />  // Methods implementing ContentResolver<br />  //<br /><br />  /**<br />   * Convert a local node number representing a http: model into<br />   * {@link HttpContent}.<br />   *<br />   * @param model  the local node number of a http: URL<br />   * @throws ResolverException if the model doesn't correspond to a<br />   *   {@link URL} with the http: protocol.<br />   */<br />  protected Content toContent(long model) throws ResolverException {<br /><br />    // Container for our model's URI<br />    URI modelURI;<br /><br />    // Container for our globalised node<br />    Node globalModel = null;<br /><br />    try {<br /><br />      // Globalise the model<br />      globalModel = resolverSession.globalize(model);<br />    } catch (GlobalizeException e) {<br /><br />      throw new ResolverException(&quot;Couldn't globalize http model&quot;, e);<br />    }<br /><br />    if (!(globalModel instanceof URIReference)) {<br /><br />      // Check that our node is a URIReference<br />      throw new ResolverException(<br />          &quot;Model parameter &quot; + globalModel + &quot; isn't a URI reference&quot;);<br />    }<br /><br />    // Get the URI from the globalised node<br />    modelURI = ((URIReference) globalModel).getURI();<br /><br />    assert modelURI != null;<br /><br />    // Validate the URI<br />    if (!modelURI.getScheme().toLowerCase().startsWith(&quot;http&quot;)) {<br /><br />      throw new ResolverException(modelURI + &quot; doesn't use the http(s): scheme&quot;);<br />    }<br /><br />    // Container for our URL<br />    URL modelURL = null;<br /><br />    try {<br /><br />      // Convert the URI to a URL<br />      modelURL = modelURI.toURL();<br />    } catch (MalformedURLException malformedURLException) {<br /><br />      throw new ResolverException(<br />          &quot;Failed to convert the model's URI to a valid URL [&quot; +<br />          modelURI +&quot;]&quot;, malformedURLException);<br />    }<br /><br />    try {<br />      return new HttpContent(modelURL);<br />    }<br />    catch (URISyntaxException e) {<br />      throw new ResolverException(<br />        &quot;Couldn't create HttpContent from &quot; + modelURL, e<br />      );<br />    }<br />  }<br />}</p>
+<p class="bodytext">An analysis of the class is as follows:</p>
+<p class="indentcommandtext">package org.kowari.resolver.http;<br /><br />// Java 2 standard packages<br />import java.net.*;<br />import java.util.*;<br /><br />// Third party packages<br />import org.apache.log4j.Logger;<br />import org.jrdf.graph.Node;<br />import org.jrdf.graph.URIReference;<br /><br />// Locally written packages<br />import org.kowari.content.Content;<br />import org.kowari.content.ContentHandler;<br />import org.kowari.content.ContentHandlerManager;<br />import org.kowari.content.ContentHandlerException;<br />import org.kowari.content.ContentResolver;<br />import org.kowari.resolver.spi.*;</p>
+<p class="indent">Due to the way resolvers are constructed, the packaging should be set up so that they are always in the same package as their factory. Resolvers also require access to the <code class="monospace">Resolver</code> SPI and tuples packages. Extra imports depend on your specific implementation.</p>
+<p class="indentcommandtext">          public class HttpResolver implements ContentResolver {</p>
+<p class="indent">Most of the implementation for resolvers is already managed in the <code class="monospace">ContentResolver</code> class, which should be extended for a protocol resolver or any other resolver involving <code class="monospace">Content</code> implementations. If the resolver being written is not a protocol resolver, then a proper implementation of the <code class="monospace">Resolver</code> interface should be written. This is not covered in this tutorial.</p>
+<p class="indentcommandtext">  /**<br />   * Construct a resolver.<br />   *<br />   * @param resolverSession  the session this resolver is associated with<br />   * @param contentHandlers  the available {@link ContentHandler}s<br />   * @throws IllegalArgumentException  if resolverSession is<br />   *   null<br />   */<br />  HttpResolver(ResolverSession resolverSession,<br />               Resolver systemResolver,<br />               ContentHandlerManager contentHandlers) {<br /><br />    super(resolverSession, systemResolver, contentHandlers);<br />  }</p>
+<p class="indent">Resolver constructors should be package specific as all creation and instantiation occurs within the factory and nowhere else. To comply with the super class, they require a <code class="monospace">ResolverSession</code> to allow for globalization and localization of nodes, a link to the system resolver and the <code class="monospace">ContentHandlerManager</code> object, which contains a list all the content handlers available in the database. Extra parameters can be used as long as the factory is set up to manage them. Usually a resolver only needs to call the super constructor, but if extra initialization needs to be carried out then it can also be done in the constructor.</p>
+<p class="indentcommandtext">  /**<br />   * Convert a local node number representing a http: model into<br />   * {@link HttpContent}.<br />   *<br />   * @param model  the local node number of a http: URL<br />   * @throws ResolverException if the model doesn't correspond to a<br />   *   {@link URL} with the http: protocol.<br />   */<br />  protected Content toContent(long model) throws ResolverException {<br /><br />    // Container for our model's URI<br />    URI modelURI;<br /><br />    // Container for our globalised node<br />    Node globalModel = null;<br /><br />    try {<br /><br />      // Globalise the model<br />      globalModel = resolverSession.globalize(model);<br />    } catch (GlobalizeException e) {<br /><br />      throw new ResolverException(&quot;Couldn't globalize http model&quot;, e);<br />    }<br /><br />    if (!(globalModel instanceof URIReference)) {<br /><br />      // Check that our node is a URIReference<br />      throw new ResolverException(<br />          &quot;Model parameter &quot; + globalModel + &quot; isn't a URI reference&quot;);<br />    }<br /><br />    // Get the URI from the globalised node<br />    modelURI = ((URIReference) globalModel).getURI();<br /><br />    assert modelURI != null;<br /><br />    // Validate the URI<br />    if (!modelURI.getScheme().toLowerCase().startsWith(&quot;http&quot;)) {<br /><br />      throw new ResolverException(modelURI + &quot; doesn't use the http(s): scheme&quot;);<br />    }<br /><br />    // Container for our URL<br />    URL modelURL = null;<br /><br />    try {<br /><br />      // Convert the URI to a URL<br />      modelURL = modelURI.toURL();<br />    } catch (MalformedURLException malformedURLException) {<br /><br />      throw new ResolverException(<br />          &quot;Failed to convert the model's URI to a valid URL [&quot; +<br />          modelURI +&quot;]&quot;, malformedURLException);<br />    }<br /><br />    try {<br />      return new HttpContent(modelURL);<br />    }<br />    catch (URISyntaxException e) {<br />      throw new ResolverException(<br />        &quot;Couldn't create HttpContent from &quot; + modelURL, e<br />      );<br />    }<br />  }</p>
+<p class="indent">The only compulsory method for a resolver is the <code class="monospace">toContent(long)</code> method, which is used by the super class to obtain a content object that is suitable for the desired protocol. It is responsible for taking the model node id passed in and creating a <code class="monospace">Content</code> object that encapsulates the data represented by the model for resolving against the constraints. Since models are passed in as a node id, they should be globalized to obtain the proper URI that can then be verified and used in a <code class="monospace">Content</code> object.</p>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

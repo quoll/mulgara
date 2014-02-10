@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="content-rdfa" default="content-rdfa-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="content-rdfa-classpath">
+    <path refid="common-classpath"/>
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${resolver-file.dist.dir}/${resolver-file.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${lib.dir}/${htmlparser.jar}"/>
+    <fileset file="${lib.dir}/${java-rdfa.jar}"/>
+  </path>
+
+  <path id="content-rdfa-test-classpath">
+    <path refid="content-rdfa-classpath"/>
+    <fileset file="${resolver-file.dist.dir}/${resolver-file.jar}"/>
+    <fileset file="${store-stringpool-memory.dist.dir}/${store-stringpool-memory.jar}"/>
+    <fileset file="${store-stringpool-xa.dist.dir}/${store-stringpool-xa.jar}"/>
+    <fileset file="${content-rdfa.dist.dir}/${content-rdfa.jar}"/>
+  </path>
+
+
+  <target name="content-rdfa-clean" description="Removes all compile generated files for content-rdfa">
+    <tstamp/>
+    <delete dir="${content-rdfa.obj.dir}"/>
+    <delete dir="${content-rdfa.test.dir}"/>
+    <delete dir="${content-rdfa.dist.dir}"/>
+  </target>
+
+
+  <target name="-content-rdfa-prepare"
+          description="Creates all directories associated with the content-rdfa's compilation"
+          depends="-prepare-build">
+    <mkdir dir="${content-rdfa.obj.dir}"/>
+    <mkdir dir="${content-rdfa.test.dir}"/>
+    <mkdir dir="${content-rdfa.dist.dir}"/>
+    <mkdir dir="${content-rdfa.obj.dir}/classes"/>
+  </target>
+
+
+  <target name="content-rdfa-compile"
+          depends="-content-rdfa-prepare, resolver-spi-jar, resolver-file-jar"
+          description="Compiles all content-rdfa related files">
+    <javac destdir="${content-rdfa.obj.dir}/classes" debug="on" deprecation="on" source="1.5" encoding="UTF-8">
+      <classpath refid="content-rdfa-classpath"/>
+      <src path="${content-rdfa.src.dir}/java"/>
+    </javac>
+  </target>
+
+
+  <target name="content-rdfa-jar" depends="content-rdfa-compile, -content-rdfa-jar-uptodate"
+          unless="content-rdfa.jar.uptodate" description="Builds the rdfa content handler JAR">
+
+    <jar jarfile="${content-rdfa.dist.dir}/${content-rdfa.jar}">
+      <fileset dir="${content-rdfa.obj.dir}/classes"/>
+      <zipfileset src="${lib.dir}/${htmlparser.jar}" excludes="META-INF/**"/>
+      <zipfileset src="${lib.dir}/${java-rdfa.jar}" excludes="META-INF/**"/>
+    </jar>
+  </target>
+
+
+  <target name="-content-rdfa-jar-uptodate">
+    <uptodate property="content-rdfa.jar.uptodate" targetfile="${content-rdfa.dist.dir}/${content-rdfa.jar}">
+      <srcfiles dir="${content-rdfa.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+
+  <target name="content-rdfa-dist" depends="content-rdfa-jar" unless="content-rdfa.uptodate"
+          description="Performs all tasks related to finalising this content-rdfa and readying it for distribution">
+  </target>
+
+
+  <target name="content-rdfa-test"
+          depends="content-rdfa-jar, resolver-file-jar, store-stringpool-memory-jar, store-stringpool-xa-jar">
+    <antcall target="component-test">
+      <param name="classpath.id" value="content-rdfa-test-classpath"/>
+      <param name="dir" value="${content-rdfa.src.dir}"/>
+      <param name="jar" value="${content-rdfa.jar}"/>
+    </antcall>
+  </target>
+
+
+  <target name="content-rdfa-javadoc" depends="content-rdfa-jar" description="Creates the javadoc for this content-rdfa">
+    <antcall target="javadoc">
+      <param name="javadoc.package" value="org.mulgara.content.rdfa.*"/>
+      <param name="javadoc.classpath" value="content-rdfa-classpath"/>
+      <param name="javadoc.sourcepath" value="${content-rdfa.src.dir}/java"/>
+    </antcall>
+  </target>
+
+
+  <target name="content-rdfa-help" description="Displays the help information for this content-rdfa">
+    <echo message="Welcome to the build script for ${content-rdfa.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+    <java fork="false" classname="org.apache.tools.ant.Main" newenvironment="false">
+      <jvmarg value="${arch.bits}"/>
+      <arg line="-buildfile ${content-rdfa.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+
+</project>

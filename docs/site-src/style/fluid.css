@@ -1,0 +1,146 @@
+/* fixed style */
+
+@media screen
+{
+
+	#pulldowner	{
+		visibility: hidden;
+		height: 0;
+		width: 0;
+		}
+	#navMain	{
+		visibility: visible;
+		}
+
+	#validator, #footer 			{ opacity: 0.4; }	
+	#content, #navSite, #navPage	{ opacity: 0.8; }
+	#styleSwitch, #navProject		{ opacity: 1; }
+				
+	.anchor		{ 
+		height: 10px;
+		}
+
+	#content, #footer {
+		min-width: 300px;
+		max-width: 1000px;
+		}
+
+				
+	/* positioning */		
+	#logo, #verticalLine, #navProject, #styleSwitch, #navPage, #navMain, #navSite, #validator { 
+		position: fixed; 
+		}		
+	#content, #footer { 
+		position: relative; 
+		}
+		
+	body { 
+		background-image: url(/img-layout/backstoneV2.jpg);
+		background-position: 0 -5px;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		}
+		
+	#logo	{
+		top: 30px;
+		left: 0;
+		width: 450px;
+		height: 55px;
+		background-image: none;
+		}
+		
+	#verticalLine	{
+		left: 201px;
+		top: 0px;
+		bottom: 0px;
+		right: 30px;
+		opacity: 0.4;
+		background-color: #D4C2B6;
+		display: block;
+		}
+		
+	#navProject  {
+		left: 12px;
+		top: 100px;
+		}
+	#navMain 	{
+		width: 149px;
+		left: 0;
+		top: 0;
+		padding: 0;
+		margin: 0;
+		}
+	#navSite	{
+		width: 130px;
+		padding: 0 0 0 3px;
+		overflow: hidden;
+		margin: 0;
+		left: 68px;
+		top:  108px;
+		}
+	#navPage 	{
+		left: 200px;
+		top: 8px;
+		height: 1em;
+		padding: 0 12px 3px 10px;
+		overflow-y: hidden;
+		}		
+		
+	#styleSwitch {
+		top: 380px;
+		left: 11px;
+		width: 50px;
+		height: 150px;
+		margin: 0;
+		padding: 0;
+		}
+	#styleSwitch img {
+		margin: 0 0 10px 0;
+		}
+	div#fixed	{
+		background-image: url(/img-layout/fixed1.png);
+		background-repeat: no-repeat;
+		}
+	div#fluid	{
+		background-image: url(/img-layout/fluid3.png);
+		background-repeat: no-repeat;
+		}
+	div #straight	{
+		background-image: url(/img-layout/straight1.png);
+		background-repeat: no-repeat;
+		}
+	
+	#content	{ 
+		left: 212px;
+		right: 0;
+		top: 100px;
+		bottom: 20px;
+		margin: 0 234px 100px 0;
+		padding: 4px 17px 10px 10px;
+		border-width: 0 0 100px 0;
+		border-style: solid;
+		border-color: transparent;
+		background-color: #eee;
+		}
+	#footer { 
+		bottom: inherit;
+		margin: 115px 0 2px 222px;
+		}
+	#validator	{
+		left: 0;
+		bottom: 7px;
+		margin-left: 60px;
+		top: inherit;
+		}
+	#validator img	{
+		padding: 0 1px 0 0;
+		}
+	
+	#content, #footer {
+		min-width: 300px;
+		max-width: 1000px;
+		}
+
+
+
+}

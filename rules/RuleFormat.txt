@@ -1,0 +1,393 @@
+Rules Format
+===========
+
+This file describes the format of data files containing rules for use with the
+Mulgara Rule Engine (Krule).
+
+
+Contents
+--------
+Running Krule
+File Type
+Schema
+Structure of a Krule Model
+Schema
+  1. Resource References.
+  1.1. Literals.
+  1.2. URI References.
+  2. Axioms.
+  2.1.  Axiom subject.
+  2.2.  Axiom predicate.
+  2.1.  Axiom object.
+  3. Rules.
+  3.1. Triggers.
+  3.2. Query.
+  3.2.1. Variables.
+  3.2.2. Selection Variables.
+  3.2.3. Where Clause.
+  3.2.3.1. Constraint Operations.
+  3.2.3. Where Clause.
+  3.2.3.1. Constraint Operations.
+  3.2.3.1.1. Constraint Conjunction.
+  3.2.3.1.2. Constraint Disjunction.
+  3.2.3.2. Normal Constraints.
+  3.2.3.2.1. Simple Constraint.
+  3.2.3.2.2. Transitive Constraint.
+  3.3. Complete Rule Example.
+
+
+Running Krule
+-------------
+The purpose of the Krule engine is to apply a set of entailment rules to a base
+set of facts, producing new data based on those facts.  Rules, base data, and
+entailed data are all stored in RDF models (or graphs).   Base data and
+entailed (or output) data may be stored in the same model or in separate
+models.  Rule data is typically stored in its own model.
+
+Base data is RDF data, with no restrictions.  Entailed data will often look
+vary similar to the base data, but will depend on the rules used to generate
+it.  Alternately, Krule models must conform to the specification described in
+this document.
+
+To run rules from one model over another model containing base data, the
+following iTQL command is used:
+
+  apply <krulemodel> to <basemodel>;
+
+This command will put any entailed data into the base model.  To put entailed
+data into a separate output model, then append that model to the end of the
+command:
+
+  apply <krule_model> to <base_model> <entailment_model>;
+
+
+File Type
+---------
+Mulgara rules are described in RDF.  This means that data can be stored in any
+acceptable RDF format, including RDF-XML, N3 and NT files.  This document
+describes RDF using RDF-XML.
+
+The domain of the elements specific to Mulgara Rules is:
+  http://mulgara.org/owl/krule/#
+This is typically abbreviated to "krule".
+
+Other important domains and their abbreviations are shown here:
+  owl     http://www.w3.org/2002/07/owl#
+  rdf     http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs    http://www.w3.org/2000/01/rdf-schema#
+  xsd     http://www.w3.org/2001/XMLSchema#
+  mulgara http://mulgara.org/mulgara#
+
+
+Schema
+------
+A schema for the structure of Krule files is given in the file krule.owl.  This
+should be considered the normative specification of Krule RDF.
+
+
+Structure of a Krule Model
+--------------------------
+A Krule model (or graph) consists of a number of rules and/or axioms.  A model
+must have at least one rule or axiom to be considered a valid krule model.
+
+Axioms are simple RDF statements that will be inserted into the model receiving
+entailments during rule processing.  These statements will be inserted every
+time the Krule engine is run.  There will be no effect for any statements which
+already exist in the output model.
+
+Rules perform a query against the models containing the base data and the
+entailed data.  If the conditions in the query are met, then the rule will
+generate new statements to be inserted into the entailment model.
+
+If a rule creates new entailment data then those new statements may also
+satisfy the query for another rule.  Those rules which may be affected by the
+output of another rule should be "triggered" by that rule.  Triggers are
+explicitly declared as a part of each triggering rule in the Krule model.
+While this places a burden on the writer of the Krule model, this is a well
+established technique for the optimal flow of an entailment process.
+
+Beyond a small performance overhead, triggering a rule that is not required
+will have no detrimental effects on the system.  Therefore, if it is too
+difficult to find all possible rules which should be triggered in response to a
+rule being run, then that rule should trigger all other rules.
+
+
+Schema
+------
+
+1. Resource References.
+
+1.1. Literals.
+Literals are represented with objects of type krule:Literal.  The resource will
+have an rdf:value property referring to the literal value associated with it.
+
+Example:
+  <krule:Literal>
+    <rdf:value rdf:parseType="Literal">A String</rdf:value>
+  </krule:Literal>
+
+
+1.2. URI References.
+URI References are represented with objects of type krule:URIReference.  The
+resource will have an rdf:value property referring to the specific resource.
+This indirection allows statements to be made about the reference without
+making them about the resource.
+
+Example:
+  <krule:URIReference rdf:about="#myReferenceName">
+    <rdf:value rdf:resource="http://www.example.com/"/>
+  </krule:URIReference>
+
+
+2. Axioms.
+Axioms are RDF objects with an rdf:type of krule:Axiom.  Axioms have three
+unique properties: krule:subject, krule:predicate and krule:object.
+
+
+2.1.  Axiom subject.
+Axiom subjects must be of the type krule:URIReference.  This resource will
+refer to the resource to be used for the subject.
+
+
+2.2.  Axiom predicate.
+Axiom predicates must be of the type krule:URIReference.  This resource will
+refer to the resource to be used for the predicate.
+
+
+2.1.  Axiom object.
+Axiom objects must be of the type krule:URIReference or krule:Literal.  A
+krule:URIReference will refer to the resource to be used for the object.  A
+krule:Literal will have an rdf:value property of the literal value to be used.
+
+Example:
+  <krule:Axiom>
+    <krule:subject>
+      <krule:URIReference rdf:about="#ref_rdffirst"/>
+    </krule:subject>
+    <krule:predicate>
+      <krule:URIReference rdf:about="#ref_rdfsdomain"/>
+    </krule:predicate>
+    <krule:object>
+      <krule:URIReference rdf:about="#ref_rdfList"/>
+    </krule:object>
+  </krule:Axiom>
+
+
+3. Rules.
+Rules are RDF objects with an rdf:type of krule:Rule.  Rules have a single
+krule:hasQuery property which refers to a krule:Query object, and have an
+arbitrary number of krule:triggers properties which refer to rules.  A rule
+may have a krule:triggers property which refers to itself (a reflexive
+statement).
+
+
+3.1. Triggers.
+A krule:triggers property will refer directly to another rule resource.
+
+Example:
+  <krule:Rule rdf:about="#rule1">
+    <triggers rdf:resource="#rule2"/>
+    <triggers rdf:resource="#rule3"/>
+    <!-- hasQuery property not shown -->
+  </krule:Rule>
+
+
+3.2. Query.
+A rule's krule:hasQuery object refers to a krule:Query object.  A krule:Query
+object is a direct representation of an iTQL "select" queries.  Almost all iTQL
+query constructs are available to krule.
+
+A krule query has two properties: krule:selectionVariables and
+krule:hasWhereClause.
+
+
+3.2.1. Variables.
+Like iTQL, queries use variables to associate with sets of resources.  A
+variable is represented as an object of type krule:Variable.  Variables have an
+optional krule:name property.
+
+Example:
+  <krule:Variable rdf:about="#var_x">
+    <krule:name>xxx</krule:name>
+  </krule:Variable>
+
+
+3.2.2. Selection Variables.
+The krule:selectionVariables property refers to an rdf:Seq containing three
+elements, in order.  These items will be inserted as an entailed statement.
+The items will be inserted as the subjects, predicates and objects of the
+entailed statements, in the order of the sequence.
+
+The items to be inserted will be of type krule:URIReference or krule:Variable.
+If a krule:Variable appears in the selection variables list, then it MUST be in
+the constraint construct of the where clause.
+
+A query can only have one krule:selectionVariables property.
+
+Example:
+  <!-- enclosing Query not shown -->
+  <selectionVariables>
+    <rdf:Seq>
+      <rdf:li rdf:resource="#var_id"/>
+      <rdf:li rdf:resource="#ref_rdftype"/>
+      <rdf:li rdf:resource="#ref_rdfsContainerMembershipProperty"/>
+    </rdf:Seq>
+  </selectionVariables>
+
+
+3.2.3. Where Clause.
+A query will have a single krule:hasWhereClause property, referring to a
+constraint expression.  There are two categories of constraints: constraint
+operations and normal constraints.  Both types of constraint are valid
+constraint expressions and can be used as a "where" clause.
+
+
+3.2.3.1. Constraint Operations.
+A constraint operation takes two or more subordinate constraint expressions and
+joins them in some way.
+
+
+3.2.3.1.1. Constraint Conjunction.
+A constraint conjunction has two or more constraint expressions as
+krule:argument properties.  The results of these constraint expressions will be
+joined as a conjunction (AND) according to any matching variables.
+
+
+3.2.3.1.2. Constraint Disjunction.
+A constraint disjunction has two or more constraint expressions as
+krule:argument properties.  The results of these constraint expressions will be
+joined as a disjunction (OR).
+
+Example:
+  <!-- enclosing query not shown -->
+  <!-- Simple constraints defined elsewhere -->
+  <ConstraintConjunction>
+    <argument>
+      <SimpleConstraint rdf:about="#myConstraint"/>
+    </argument>
+    <argument>
+      <SimpleConstraint rdf:about="#myOtherConstraint"/>
+    </argument>
+  </ConstraintConjunction>
+
+
+3.2.3.2. Normal Constraints.
+A normal constraint is one which does not wrap arbitrary constraint
+expressions.  These include the types krule:SimpleConstraint and
+krule:TransitiveConstraint.
+
+
+3.2.3.2.1. Simple Constraint.
+A simple constraint has an rdf:type of krule:SimpleConstraint.  They have three
+compulsory properties: krule:hasSubject, krule:hasPredicate and
+krule:hasObject.
+
+The krule:hasSubject and krule:hasPredicate properties refer to either a
+krule:URIReference or a krule:Variable.  The krule:hasObject property may refer
+to a krule:URIReference, a krule:Variable, or a krule:Literal.
+
+A simple constraint also has an optional property of krule:hasModel.  This will
+be a krule:URIReference that refers to another model in the system, or a
+krule:Variable that will resolve to the URI of a model when the query is run.
+
+Example:
+  <SimpleConstraint>
+    <hasSubject>
+      <Variable rdf:about="#var_a"/>
+    </hasSubject>
+    <hasPredicate>
+      <URIReference rdf:about="#ref_rdftype"/>
+    </hasPredicate>
+    <hasObject>
+      <Variable rdf:about="#var_x"/>
+    </hasObject>
+  </SimpleConstraint>
+
+
+3.2.3.2.2. Transitive Constraint.
+Transitive constraints have an rdf:type of krule:TransitiveConstraint.  These
+have a compulsory property of krule:transitiveArgument which refers to a
+krule:SimpleConstraint, and an optional property of krule:anchorArgument which
+also refers to a krule:SimpleConstraint.
+
+The transitive argument of a constraint describes the pattern of a transitive
+predicate, and must have a krule:Variable in the subject and object positions.
+The predicate must be a krule:URIReference.
+
+The optional anchor argument is the same as the transitive argument, but will
+have a krule:URIReference in either the subject or the object.  This resource
+will start a chain of transitive statements, and restricts the returned
+statements to only those found in the chain.  This is a technique known as
+"backward chaining.
+
+Example:
+  <TransitiveConstraint>
+    <transitiveArgument>
+      <SimpleConstraint>
+        <hasSubject>
+          <Variable rdf:about="#var_x"/>
+        </hasSubject>
+        <hasPredicate>
+          <URIReference rdf:about="#ref_rdfssubclassof"/>
+        </hasPredicate>
+        <hasObject>
+          <Variable rdf:about="#var_z"/>
+        </hasObject>
+      </SimpleConstraint>
+    </transitiveArgument>
+    <anchorArgument>
+      <SimpleConstraint>
+        <hasSubject>
+          <Variable rdf:about="#var_x"/>
+        </hasSubject>
+        <hasPredicate>
+          <URIReference rdf:about="#ref_rdfssubclassof"/>
+        </hasPredicate>
+        <hasObject>
+          <Variable rdf:about="#rdf_topLevelClass"/>
+        </hasObject>
+      </SimpleConstraint>
+    </anchorArgument>
+  </TransitiveConstraint>
+
+
+3.3. Complete Rule Example.
+This is a complete example rule from the RDFS entailment model:
+
+  <krule:Rule rdf:about="#rdfs7a">
+    <krule:triggers rdf:resource="#rdfs2"/>
+    <krule:triggers rdf:resource="#rdfs3"/>
+    <krule:triggers rdf:resource="#rdfs6"/>
+    <krule:triggers rdf:resource="#rdfs8"/>
+    <krule:triggers rdf:resource="#rdfs9"/>
+    <krule:hasQuery>
+      <krule:Query>
+        <krule:selectionVariables>
+          <rdf:Seq>
+            <rdf:li rdf:resource="#var_x"/>
+            <rdf:li rdf:resource="#ref_rdfssubclassof"/>
+            <rdf:li rdf:resource="#ref_rdfsResource"/>
+          </rdf:Seq>
+        <krule:/selectionVariables>
+        <krule:hasWhereClause>
+          <krule:SimpleConstraint>
+            <krule:hasSubject>
+              <krule:Variable rdf:about="#var_x">
+                <krule:name>xxx</name>
+              <krule:/Variable>
+            <krule:/hasSubject>
+            <krule:hasPredicate>
+              <krule:URIReference rdf:about="#ref_rdftype"/>
+            <krule:/hasPredicate>
+            <krule:hasObject>
+              <krule:URIReference rdf:about="#ref_rdfsClass"/>
+            <krule:/hasObject>
+          <krule:/SimpleConstraint>
+        <krule:/hasWhereClause>
+      <krule:/Query>
+    <krule:/hasQuery>
+  </krule:Rule>
+
+
+
+Copyright 2005.  Paul Gearon.

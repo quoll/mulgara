@@ -1,0 +1,76 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Built-in Visitor Pattern</title>
+    <meta name="keywords" content="Built-in Visitor Pattern, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+
+		<a href="/system/jrdfvisitor.html#o2529">TypedNodeVisitable</a> &#124;
+		<a href="/system/jrdfvisitor.html#o2530">TypedNodeVisitor</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/system/jrdfconcol.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/system/jrdfexamples.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/system/jrdf.html">Java RDF (JRDF)</a></p>
+<p class="relateditem"><a href="/system/jrdfapis.html">JRDF APIs</a></p>
+<p class="relateditem"><a href="/system/jrdfgraphs.html">JRDF Graphs</a></p>
+<p class="relateditem"><a href="/system/jrdfgraphs.html#o2479">Querying a JRDF Graph</a></p>
+<p class="relateditem"><a href="/system/jrdftks.html">TKS Client Support</a></p>
+<p class="relateditem"><a href="/system/jrdfmemory.html">JRDF Memory Implementation</a></p>
+<p class="relateditem"><a href="/system/jrdfconcol.html">Containers and Collections</a></p>
+<p class="relateditem"><a href="/system/jrdfexamples.html">Examples</a></p>
+
+ -->
+
+
+
+
+<h3>Built-in Visitor Pattern</h3>
+
+<p>JRDF nodes are implemented with a visitor pattern to provide an object oriented approach to node-type specific behaviour. Nodes implement the <code>TypedNodeVisitable</code> interface and classes that use the pattern implement the <code>TypedNodeVisitor</code> interface.</p>
+
+<div class="anchor"><a name="o2529">&nbsp;</a></div>
+<h4>TypedNodeVisitable</h4>
+
+<p>Nodes implement the <code>accept(TypedNodeVisitor visitor)</code> method to call <code>visitor.visitXXX(this)</code>, where <code>XXX</code> represents the node type. For example, <code>visitBlankNode(this)</code> is called by a BlankNode.</p>
+<div class="anchor"><a name="o2530">&nbsp;</a></div>
+<h4>TypedNodeVisitor</h4>
+
+<p><code>TypedNodeVisitors</code> implement three methods:</p>
+<ol><li><code>visitBlankNode(BlankNode blankNode)</code></li><li><code>visitLiteral(Literal literal)</code></li><li><code>visitURIReference(URIReference uriReference)</code></li></ol>
+<p>When a <code>TypedNodeVisitor</code> calls <code>accept(this)</code> on a <code>TypedNodeVisitable(Node)</code>, the <code>TypedNodeVisitable</code> calls the appropriate<code> visitXXX()</code> method, where <code>XXX</code> represents the Node type. The method names contain the node type to provide clarity for classes implementing the <code>TypeNodeVisitor</code> interface.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

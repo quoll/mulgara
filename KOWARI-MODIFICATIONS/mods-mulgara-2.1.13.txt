@@ -1,0 +1,131 @@
+------------------------------------------------------------------------
+r2096 | pag | 2012-01-10 16:19:04 -0500 (Tue, 10 Jan 2012) | 1 line
+Changed paths:
+   M /trunk/common.properties
+
+Updated copyright year
+------------------------------------------------------------------------
+r2095 | pag | 2012-01-10 15:35:22 -0500 (Tue, 10 Jan 2012) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-rdfxml/java/org/mulgara/content/rdfxml/Parser.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/TransitiveFunction.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteAnswerWrapperAnswer.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/SessionWrapperRemoteSession.java
+
+Wrapped logging calls that use string concatenation in tests for the logging level
+------------------------------------------------------------------------
+r2094 | pag | 2012-01-10 15:34:36 -0500 (Tue, 10 Jan 2012) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/MappedIntFile.java
+
+Removed warning about not using initial value
+------------------------------------------------------------------------
+r2093 | pag | 2012-01-10 15:34:23 -0500 (Tue, 10 Jan 2012) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/TransactionalAnswer.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa/XAStatementStoreImpl.java
+
+Restructured try/catch/finally to simplify the exception frames
+------------------------------------------------------------------------
+r2092 | pag | 2012-01-10 15:34:08 -0500 (Tue, 10 Jan 2012) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintAssignment.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/DataInputTx.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/DataOutputTx.java
+
+Added comments and logging to empty catch blocks
+------------------------------------------------------------------------
+r2091 | pag | 2012-01-10 11:57:43 -0500 (Tue, 10 Jan 2012) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/AbstractAnswer.java
+   M /trunk/src/jar/query/java/org/mulgara/query/AnswerImpl.java
+   M /trunk/src/jar/query/java/org/mulgara/query/AnswerOperations.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ArrayAnswer.java
+   M /trunk/src/jar/query/java/org/mulgara/query/BooleanAnswer.java
+   M /trunk/src/jar/query/java/org/mulgara/query/GraphAnswer.java
+   M /trunk/src/jar/query/java/org/mulgara/query/UnconstrainedAnswer.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/GlobalizedAnswer.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/TransactionalAnswer.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/BlankNodeWrapperAnswer.java
+
+All Answer implementations now consistently implement hashCode wherever equals is defined. TransactionalAnswer uses identity hashCode due to state being affected during a clone
+------------------------------------------------------------------------
+r2090 | pag | 2012-01-10 11:56:11 -0500 (Tue, 10 Jan 2012) | 1 line
+Changed paths:
+   M /trunk/.classpath
+
+Tweaked indents to be consistently tab characters
+------------------------------------------------------------------------
+r2089 | pag | 2012-01-05 16:30:07 -0500 (Thu, 05 Jan 2012) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-nodetype/java/org/mulgara/resolver/nodetype/TuplesWrapperResolution.java
+   M /trunk/src/jar/resolver-null/java/org/mulgara/resolver/nullres/NullResolution.java
+   M /trunk/src/jar/resolver-prefix/java/org/mulgara/resolver/prefix/TuplesWrapperResolution.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/TuplesContext.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/TuplesWrapperResolution.java
+   M /trunk/src/jar/resolver-store/java/org/mulgara/store/statement/xa/TripleAVLFile.java
+   M /trunk/src/jar/store-stringpool-memory/java/org/mulgara/store/stringpool/memory/MemoryStringPoolImpl.java
+   M /trunk/src/jar/store-stringpool-xa11/java/org/mulgara/store/stringpool/xa11/XA11StringPoolImpl.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/AbstractTuples.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/LeftJoin.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/UnconstrainedTuples.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/WrappedTuples.java
+   M /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/xa/HybridTuples.java
+
+Added hashCode methods to match equality methods
+------------------------------------------------------------------------
+r2088 | pag | 2012-01-05 14:35:21 -0500 (Thu, 05 Jan 2012) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/GraphLiteral.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPBase64BinaryImpl.java
+   M /trunk/src/jar/util/java/org/mulgara/util/MemoryResultSet.java
+
+Added appropriate hash codes where equals is defined
+------------------------------------------------------------------------
+r2087 | pag | 2012-01-05 14:11:27 -0500 (Thu, 05 Jan 2012) | 1 line
+Changed paths:
+   M /trunk/src/jar/driver/java/org/mulgara/server/driver/SessionFactoryFinder.java
+   M /trunk/src/jar/query/java/org/jrdf/graph/AbstractLiteral.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintFalse.java
+   M /trunk/src/jar/query/java/org/mulgara/query/ConstraintTrue.java
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/ExternalFn.java
+   M /trunk/src/jar/query/java/org/mulgara/query/rdf/VariableNodeImpl.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ConstraintOperations.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSession.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/OrderByRowComparator.java
+   M /trunk/src/jar/resolver-prefix/java/org/mulgara/resolver/prefix/PrefixResolver.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/PersistTuplesWrapperStatements.java
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/TuplesWrapperStatements.java
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/AbstractSPObject.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/DefaultRowComparator.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/PartialColumnComparator.java
+   M /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/xa/BlockCacheLine.java
+
+wrapping logging statements that calculate a message with calls to isDebugEnabled, and adding hashCode methods to classes with their own equals
+------------------------------------------------------------------------
+r2086 | pag | 2012-01-05 14:10:12 -0500 (Thu, 05 Jan 2012) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/AnswerOperations.java
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/TuplesOperations.java
+
+Added common functions to calculate hashcodes from large data sets
+------------------------------------------------------------------------
+r2085 | pag | 2012-01-05 14:09:13 -0500 (Thu, 05 Jan 2012) | 1 line
+Changed paths:
+   M /trunk/src/jar/tuples/java/org/mulgara/store/tuples/MemoryTuples.java
+
+Updated clone to use super.clone instead of a copy constructor
+------------------------------------------------------------------------
+r2084 | pag | 2012-01-05 14:08:24 -0500 (Thu, 05 Jan 2012) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+   M /trunk/src/jar/util/java/org/mulgara/util/io/FileHashMap.java
+
+Better resource cleanup
+------------------------------------------------------------------------
+r2083 | pag | 2012-01-05 14:07:32 -0500 (Thu, 05 Jan 2012) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/io/LIOBufferedFile.java
+
+guarding against equality on null
+------------------------------------------------------------------------

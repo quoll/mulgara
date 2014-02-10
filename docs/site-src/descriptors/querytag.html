@@ -1,0 +1,115 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - The &lt;query&gt; Tag</title>
+    <meta name="keywords" content="The &lt;query&gt; Tag, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/descriptors/nsdesc.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/descriptors/descriptortag.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/descriptors/index.html">Descriptors</a></p>
+<p class="relateditem"><a href="/descriptors/descwhat.html">What are Descriptors?</a></p>
+<p class="relateditem"><a href="/descriptors/descadvantages.html">Advantages and Disadvantages of Descriptors</a></p>
+<p class="relateditem"><a href="/descriptors/nsdesc.html">Namespaces and Descriptors</a></p>
+<p class="relateditem"><a href="/descriptors/descriptortag.html">The &lt;descriptor&gt; Tag</a></p>
+<p class="relateditem"><a href="/descriptors/reserved.html">Reserved Parameters</a></p>
+<p class="relateditem"><a href="/descriptors/descriptorsfaq.html">Descriptors FAQ</a></p>
+<p class="relateditem"><a href="/descriptors/mistakes.html">Common Mistakes</a></p>
+<p class="relateditem"><a href="/descriptors/descriptorex.html">Descriptor Examples</a></p>
+
+ -->
+
+
+
+
+<h2>The &lt;query&gt; Tag</h2>
+
+<p>The <code>&lt;query&gt;</code> tag is an XSL extension that enables you to issue iTQL<sup>TM</sup> commands from within an XSL stylesheet. For example:</p>
+
+<p class="commandtext">&lt;query&gt;<br />
+&lt;!CDATA[[<br />
+  select $person from &lt;rmi://mysite.com/server1#people&gt; <br />
+    where $person &lt;http://foo#hasName&gt; 'James Gosling';<br />
+]]&gt;<br />
+&lt;/query&gt;</p>
+
+
+<div class="anchor"><a name="o3132">&nbsp;</a></div>
+
+
+<p>The results, in XML format, are normally transformed into something more suitable for the client or into a presentation format like HTML or PDF. Other Descriptors make calls on a Descriptor to perform a task without needing to know how that task is performed. For example, to return the title of a document in between two <code>&lt;title&gt;</code> tags.</p>
+<div class="anchor"><a name="o3133">&nbsp;</a></div>
+
+
+<p>Most commands require parameters, such as the model, to make them reusable across Mulgara instances and models.</p>
+
+<p>The model parameter is inserted in several ways, as outlined in the <a class="internetlinktemplate" title="" href="http://www.w3.org/style/xsl/">XSL specification</a>. However, because the command is contained within a <code>CDATA</code> segment, breaking out of it makes the command difficult for people to read. For example:</p>
+
+<p class="commandtext">&lt;query&gt;<br />
+&lt;!CDATA[[<br />
+select $person from &lt;]]&gt;&lt;xsl:variable select=&quot;$model&quot;/&gt;<br />
+  &lt;!CDATA[[&gt; where $person &lt;http://foo#hasName&gt; 'James Gosling';<br />
+]]&gt;<br />
+&lt;/query&gt;</p>
+<div class="anchor"><a name="o3134">&nbsp;</a></div>
+
+
+<p>The <code>&lt;query&gt;</code> tag has a workaround to avoid this. If any string in the <code>CDATA</code> section is surrounded by <code>@@</code> symbols, then the string is replaced with the value of an attribute of the same from within the <code>&lt;query&gt;</code> tag. This is shown in the example below.</p>
+
+<p class="commandtext">&lt;query model=&quot;rmi://mysite.com/server1#people&quot;&gt;<br />
+&lt;!CDATA[[<br />
+select $person from &lt;@@model@@&gt; where $person &lt;http://foo#hasName&gt; 'James Gosling';<br />
+]]&gt;<br />
+&lt;/query&gt;</p>
+<div class="anchor"><a name="o3135">&nbsp;</a></div>
+
+
+<p>When the Descriptor executes, it substitutes <code>rmi://mysite.com/server1#people</code> for <code>@@model@@</code> before passing the command to Mulgara.</p>
+
+<p>By specifying the parameter as a Descriptor parameter, the value can be passed in by the client. For example:</p>
+
+<p class="commandtext">&lt;query model=&quot;{$model}&quot;&gt;<br />
+&lt;!CDATA[[<br />
+select $person from &lt;@@model@@&gt; where $person &lt;http://foo#hasName&gt; 'James Gosling';<br />
+]]&gt;<br />
+&lt;/query&gt;</p>
+
+<p>If the Descriptor is created with a model parameter defined as a string, the query is now portable across models.</p>
+
+<p>These types of substitutions are not limited to models. Any string can be substituted.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

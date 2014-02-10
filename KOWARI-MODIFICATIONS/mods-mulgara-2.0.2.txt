@@ -1,0 +1,86 @@
+------------------------------------------------------------------------
+r1149 | pag | 2008-08-22 00:31:05 -0500 (Fri, 22 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/common.properties
+
+Updated the version number
+------------------------------------------------------------------------
+r1148 | pag | 2008-08-21 23:56:55 -0500 (Thu, 21 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/xa/CacheLine.java
+   M /trunk/src/jar/tuples-hybrid/java/org/mulgara/store/xa/HybridTuples.java
+
+wrapped stacktrace generation in ifDebugEnabled calls, to improve processing time. Thanks to Morten Grouleff for this patch
+------------------------------------------------------------------------
+r1147 | alexhall | 2008-08-20 10:46:08 -0500 (Wed, 20 Aug 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/itql/java/org/mulgara/itql/TqlSession.java
+
+Add logging of exceptions that occur while executing commands from a script.  Without this change, any TQL errors are lost because there is no output to System.out in script mode.
+------------------------------------------------------------------------
+r1146 | ronald | 2008-08-18 04:13:45 -0500 (Mon, 18 Aug 2008) | 13 lines
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ExternalTransactionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MockResolver.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/MulgaraExternalTransaction.java
+
+Fix resolver xa-resource activation for externally managed transactions.
+
+The Resolver's XAResource's were not being called correctly: end() was never
+being invoked, and start() was only invoked once at enlistment time. This
+caused problems for resolvers that need to track per-transaction information
+because in an RMI environment different operations in the same transaction may
+occur in different threads, i.e. the thread-xid association may change during
+the course of a transaction.
+
+The XAResource's are now properly suspended after each operation and resumed
+before each operation, just like for internally managed transactions. Also,
+end() is always invoked before any prepare(), commit(), or rollback().
+
+------------------------------------------------------------------------
+r1145 | ronald | 2008-08-18 04:13:39 -0500 (Mon, 18 Aug 2008) | 2 lines
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/AdvDatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/BasicDatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ExternalTransactionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/JotmTransactionStandaloneTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/NTriplesUnitTest.java
+
+Fixed bracing style.
+
+------------------------------------------------------------------------
+r1144 | ronald | 2008-08-15 20:31:51 -0500 (Fri, 15 Aug 2008) | 3 lines
+Changed paths:
+   M /trunk/src/jar/store-stringpool/java/org/mulgara/store/stringpool/xa/SPDateImpl.java
+
+Added backwards compatibility support to be able to decode on-disk dates
+from before r1081.
+
+------------------------------------------------------------------------
+r1143 | ronald | 2008-08-15 13:52:18 -0500 (Fri, 15 Aug 2008) | 12 lines
+Changed paths:
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/Parser.java
+
+Fix concurrent string-pool-session access bug.
+
+The parser, running in a separate thread, was allocating blank-node ids via
+ResolverSession.localize(), thereby creating a situation where two threads
+were accessing the same ResolverSession (and therefore the same
+StringPoolSession) concurrently. The fix here is to delay the id allocation
+and have the main thread do it instead.
+
+Other solutions would have included adding extra synchronization to various
+classes (e.g. the ResolverSession and StringPoolSession), but it seemed like
+we'd be punishing all other code and paths for this one errant usage.
+
+------------------------------------------------------------------------
+r1142 | ronald | 2008-08-15 13:52:09 -0500 (Fri, 15 Aug 2008) | 4 lines
+Changed paths:
+   M /trunk/src/jar/content-n3/java/org/mulgara/content/n3/Parser.java
+
+Minor code cleanups:
+ * removed trailing spaces
+ * replace wildcard imports with explicit imports
+
+------------------------------------------------------------------------

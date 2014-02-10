@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Factories </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Factories, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="3183.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="2697.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h4 class="heading4">Factories</h4>
+<p class="bodytext">Factories are an important part of the resolver framework as they are responsible for both creating resolver instances and registering themselves with the appropriate protocols. They also act as a bridge between resolvers and sessions, assigning it the session it will be working for, along with any other initial data or configuration that is required. For <a id="h2564" class="documentlinktemplate" title="Internal Resolvers" href="2553.htm#o2559" target="_self">Internal Resolvers</a> the factory also manages the cleanup of any persistent resources when the database or factory shuts down.</p>
+<p class="bodytext">Most of the decisions to be made about the resolver are made when creating the resolver itself. See the <a id="h2722" class="documentlinktemplate" title="Resolvers" href="2693.htm" target="_self">Creating the Resolver section</a> for more information. You should at least know the protocol the resolver is associating itself with when writing the factory. For this tutorial we are creating a resolver that resolves http URLs (both secure and non-secure). If the resolver's purpose is to handle a file type, such as MP3, then a content handler should be written instead of the resolver. See the <a id="h2723" class="documentlinktemplate" title="Content Handlers" href="2707.htm" target="_self">Creating the Content Handler section</a> for more information.</p>
+<p class="bodytext">The resolver classes should be reserved mainly for resolving a protocol type, which then refers to the content handlers for the statements.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="2689.htm#o2692" target="_self">Writing a Factory</a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="3183.htm" target="_self">Developing Protocol Resolvers</a></p><p class="relateditem"><a href="2697.htm" target="_self">Content Wrappers</a></p><p class="relateditem"><a href="2693.htm" target="_self">Resolvers</a></p></td>
+</tr>
+</table>
+
+<a name="o2692"></a><h5 class="heading5">Writing a Factory</h5>
+<p class="bodytext">After deciding on the protocol to resolve, write the factory to obtain instances of the resolver. This is a compulsory step for any type of resolver, as without it, the database has no way of obtaining resolver instances for its sessions. The following code represents a factory that creates and manages our http resolver instances (extracted from <code class="monospace">HttpResolverFactory.java</code>):</p>
+<p class="commandtext">package org.mulgara.resolver.http;<br /><br />// Java 2 standard packages<br />import java.io.*;<br />import java.net.*;<br />import java.util.List;<br /><br />// Third party packages<br />import org.apache.log4j.Logger;<br /><br />// Locally written packages<br />import org.mulgara.query.rdf.Mulgara;<br />import org.mulgara.query.rdf.URIReferenceImpl;<br />import org.mulgara.resolver.spi.*;<br /><br />public class HttpResolverFactory implements ResolverFactory {<br />  /**<br />   * Logger.<br />   */<br />  private static Logger logger =<br />      Logger.getLogger(HttpResolverFactory.class.getName());<br /><br />  private final List contentHandlerList;<br /><br />  /**<br />   * Instantiate a {@link HttpResolverFactory}.<br />   */<br />  private HttpResolverFactory(ResolverFactoryInitializer resolverFactoryInitializer)<br />                                            throws FactoryInitializerException {<br /><br />    // Validate &quot;resolverFactoryInitializer&quot; parameter<br />    if (resolverFactoryInitializer == null) {<br /><br />      throw new IllegalArgumentException(<br />                &quot;Null \&quot;resolverFactoryInitializer\&quot; parameter&quot;);<br />    }<br /><br />    // Obtain the content handler list<br />    contentHandlerList = resolverFactoryInitializer.getContentHandlerList();<br /><br />    // Claim the http: protocol<br />    resolverFactoryInitializer.addProtocol(&quot;http&quot;, this);<br />    ***resolverFactoryInitializer.addProtocol(&quot;https&quot;, this);***<br />  }<br /><br />  /**<br />   * {@inheritDoc ResolverFactory}<br />   *<br />   * This is actually a non-operation, because the only persistent resources<br />   * are outside the database.<br />   */<br />  public void close() {<br />    // null implementation<br />  }<br /><br />  /**<br />   * {@inheritDoc ResolverFactory}<br />   *<br />   * This is actually a non-operation, because the only persistent resources<br />   * are outside the database.<br />   */<br />  public void delete() {<br />    // null implementation<br />  }<br /><br />  /**<br />   * Register this resolver upon database startup.<br />   *<br />   * @param resolverFactoryInitializer  the database within which to find or<br />   *   create the various XML Schema resources<br />   * @throws FactoryInitializerException if the XML Schema resources<br />   *   can't be found or created<br />   */<br />  public static ResolverFactory newInstance(ResolverFactoryInitializer resolverFactoryInitializer)<br />                                            throws FactoryInitializerException {<br /><br />    return new HttpResolverFactory(resolverFactoryInitializer);<br />  }<br /><br />  /**<br />   * Obtain an http resolver.<br />   *<br />   * @param resolverSession  the session which this query is local to<br />   * @param canWrite  {@inheritDoc}; ignored in this implementation<br />   *<br />   * @throws IllegalArgumentException if resolverSession is<br />   *   null<br />   * @throws ResolverFactoryException {@inheritDoc}<br />   */<br />  public Resolver newResolver(boolean canWrite, ResolverSession resolverSession,<br />                              Resolver systemResolver)<br />                              throws ResolverFactoryException {<br /><br />    return new HttpResolver(resolverSession, systemResolver, contentHandlerList);<br />  }<br />}</p>
+<p class="bodytext">An analysis of the factory is as follows:</p>
+<p class="indentcommandtext">package org.mulgara.resolver.http;<br /><br />// Java 2 standard packages<br />import java.io.*;<br />import java.net.*;<br />import java.util.List;<br /><br />// Third party packages<br />import org.apache.log4j.Logger;<br /><br />// Locally written packages<br />import org.mulgara.query.rdf.Mulgara;<br />import org.mulgara.query.rdf.URIReferenceImpl;<br />import org.mulgara.resolver.spi.*;</p>
+<p class="indent">Factories and resolvers are not required to be in the same package as the Mulgara resolvers. As long as the custom resolver classes are accessible by the Mulgara resolver framework it does not matter how you structure the packaging. The <code class="monospace">org.mulgara.resolver.spi</code> package requires importing to allow access to the resolver framework and APIs.</p>
+<p class="indentcommandtext">    public class HttpResolverFactory implements ResolverFactory {</p>
+<p class="indent">All factories are required to implement the <code class="monospace">ResoverFactory</code> API.</p>
+<p class="indentcommandtext">  /**<br />   * Instantiate a {@link HttpResolverFactory}.<br />   */<br />  private HttpResolverFactory(ResolverFactoryInitializer resolverFactoryInitializer)<br />                                            throws FactoryInitializerException {<br /><br />    // Validate &quot;resolverFactoryInitializer&quot; parameter<br />    if (resolverFactoryInitializer == null) {<br /><br />      throw new IllegalArgumentException(<br />                &quot;Null \&quot;resolverFactoryInitializer\&quot; parameter&quot;);<br />    }<br /><br />    // Obtain the content handler list<br />    contentHandlerList = resolverFactoryInitializer.getContentHandlerList();<br /><br />    // Claim the http: protocol<br />    resolverFactoryInitializer.addProtocol(&quot;http&quot;, this);<br />    resolverFactoryInitializer.addProtocol(&quot;https&quot;, this);<br />  }</p>
+<p class="indent">Constructors for resolver factories should be private as they are managed by an API call that creates new instances as required. The <code class="monospace">ResolverFactoryInitializer</code> object passed in contains initialization information for the parent resolver factory allowing new factory objects to register themselves so they can receive constraints to resolve.</p>
+<p class="indent">Once the factory object is created it should not hold onto the initialization object as this causes errors if anything is invoked on it later. During construction the factory should register itself with the protocol or protocols, which lets the database know that queries against models with this protocol should be directed to our resolver. This is achieved using the <code class="monospace">resolverFactoryInitializer.addProtocol(String, Resolver);</code> method.</p>
+<p class="indentcommandtext">  /**<br />   * {@inheritDoc ResolverFactory}<br />   *<br />   * This is actually a non-operation, because the only persistent resources<br />   * are outside the database.<br />   */<br />  public void close() {<br />    // null implementation<br />  }<br /><br />  /**<br />   * {@inheritDoc ResolverFactory}<br />   *<br />   * This is actually a non-operation, because the only persistent resources<br />   * are outside the database.<br />   */<br />  public void delete() {<br />    // null implementation<br />  }</p>
+<p class="indent">Both the <code class="monospace">delete()</code> and <code class="monospace">close()</code> operations are used for freeing persistent resources involved with the factory when either it or the database are being shut down. <a id="h2568" class="documentlinktemplate" title="External Resolvers" href="2553.htm#o2560" target="_self">External Resolvers</a> usually do not require any releasing of resources as they are managed externally and do not interact with the database resources.</p>
+<p class="indentcommandtext">  /**<br />   * Register this resolver upon database startup.<br />   *<br />   * @param resolverFactoryInitializer  the database within which to find or<br />   *   create the various XML Schema resources<br />   * @throws FactoryInitializerException if the XML Schema resources<br />   *   can't be found or created<br />   */<br />  public static ResolverFactory newInstance(ResolverFactoryInitializer resolverFactoryInitializer)<br />                                            throws FactoryInitializerException {<br /><br />    return new HttpResolverFactory(resolverFactoryInitializer);<br />  }</p>
+<p class="indent">Factories should have private constructors and are instantiated and returned via an API call to the <code class="monospace">newInstance(ResolverFactoryInitializer)</code> method. Configuration of the factory should occur in the constructor, but any pre-initialization can occur in this method.</p>
+<p class="indentcommandtext">  /**<br />   * Obtain an http resolver.<br />   *<br />   * @param resolverSession  the session which this query is local to<br />   * @param canWrite  {@inheritDoc}; ignored in this implementation<br />   *<br />   * @throws IllegalArgumentException if resolverSession is<br />   *   null<br />   * @throws ResolverFactoryException {@inheritDoc}<br />   */<br />  public Resolver newResolver(boolean canWrite, ResolverSession resolverSession,<br />                              Resolver systemResolver)<br />                              throws ResolverFactoryException {<br /><br />    return new HttpResolver(resolverSession, systemResolver, contentHandlerList);<br />  }</p>
+<p class="indent">The purpose of a resolver factory is to create resolver objects and the <code class="monospace">newResolver(boolean, ResolverSession, systemResolver)</code> method handles this process. It is the responsibility of the resolver to manage its setup and configuration using the parameters entered. The factory might also be responsible for creating a read-only, or read-write resolver, depending on the <code class="monospace">allowWrites</code> parameter.</p>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

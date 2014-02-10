@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="resolver-memory" default="resolver-memory-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="resolver-memory-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+  </path>
+
+  <path id="resolver-memory-test-classpath">
+
+    <path refid="resolver-memory-classpath"/>
+
+    <fileset file="${resolver-memory.dist.dir}/${resolver-memory.jar}"/>
+  </path>
+
+  <target name="resolver-memory-clean"
+          description="Removes all compile generated files for the resolver-memory">
+
+    <tstamp/>
+
+    <delete dir="${resolver-memory.obj.dir}"/>
+    <delete dir="${resolver-memory.test.dir}"/>
+    <delete dir="${resolver-memory.dist.dir}"/>
+  </target>
+
+  <target name="-resolver-memory-prepare"
+          description="Creates all directories associated with the resolver-memory's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${resolver-memory.obj.dir}"/>
+    <mkdir dir="${resolver-memory.test.dir}"/>
+    <mkdir dir="${resolver-memory.dist.dir}"/>
+    <mkdir dir="${resolver-memory.obj.dir}/classes"/>
+  </target>
+
+  <target name="resolver-memory-compile"
+          depends="-resolver-memory-prepare, resolver-spi-jar"
+          description="Compiles all resolver-memory related files included
+                       generated source code">
+
+    <javac destdir="${resolver-memory.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="resolver-memory-classpath"/>
+
+      <src path="${resolver-memory.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="resolver-memory-jar"
+    depends="resolver-memory-compile, -resolver-memory-jar-uptodate"
+    unless="resolver-memory.jar.uptodate"
+    description="Builds the URL Resolver JAR">
+
+    <jar jarfile="${resolver-memory.dist.dir}/${resolver-memory.jar}">
+      <fileset dir="${resolver-memory.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-resolver-memory-jar-uptodate">
+
+    <uptodate property="resolver-memory.jar.uptodate"
+              targetfile="${resolver-memory.dist.dir}/${resolver-memory.jar}">
+      <srcfiles dir="${resolver-memory.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="resolver-memory-dist"
+          depends="resolver-memory-jar"
+          description="Performs all tasks related to finalising this resolver-memory
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the resolver-memory library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="resolver-memory-test" depends="resolver-memory-jar">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="resolver-memory-classpath"/>
+      <param name="dir" value="${resolver-memory.src.dir}"/>
+      <param name="jar" value="${resolver-memory.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-memory-javadoc"
+          depends="resolver-memory-jar"
+          description="Creates the javadoc for this resolver-memory">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.resolver.memory.*"/>
+      <param name="javadoc.classpath" value="resolver-memory-classpath"/>
+      <param name="javadoc.sourcepath" value="${resolver-memory.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-memory-help"
+          description="Displays the help information for this resolver-memory">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this resolver-memory -->
+
+    <echo message="Welcome to the build script for ${resolver-memory.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${resolver-memory.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

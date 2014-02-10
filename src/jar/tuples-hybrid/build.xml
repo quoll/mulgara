@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="tuples-hybrid" default="tuples-hybrid.jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+
+  <path id="tuples-hybrid-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${util-xa.dist.dir}/${util-xa.jar}"/>
+  </path>
+
+  <path id="tuples-hybrid-test-classpath">
+
+    <path refid="tuples-hybrid-classpath"/>
+
+    <fileset file="${tuples-hybrid.dist.dir}/${tuples-hybrid.jar}"/>
+  </path>
+
+  <target name="tuples-hybrid-clean"
+          description="Removes all compile generated files for the tuples-hybrid">
+
+    <tstamp/>
+
+    <delete dir="${tuples-hybrid.obj.dir}"/>
+    <delete dir="${tuples-hybrid.test.dir}"/>
+    <delete dir="${tuples-hybrid.dist.dir}"/>
+  </target>
+
+  <target name="-tuples-hybrid-prepare"
+          description="Creates all directories associated with the
+                       tuples-hybrid's compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${tuples-hybrid.obj.dir}"/>
+    <mkdir dir="${tuples-hybrid.test.dir}"/>
+    <mkdir dir="${tuples-hybrid.dist.dir}"/>
+    <mkdir dir="${tuples-hybrid.obj.dir}/classes"/>
+  </target>
+
+  <target name="tuples-hybrid-compile"
+          depends="-tuples-hybrid-prepare, tuples-jar, util-xa-jar"
+          description="Compiles all tuples-hybrid related files included
+                       generated source code">
+
+    <javac destdir="${obj.dir}/jar/tuples-hybrid/classes"
+           debug="on" deprecation="on" source="1.5">
+
+      <src path="${src.dir}/jar/tuples-hybrid/java"/>
+
+      <classpath refid="tuples-hybrid-classpath"/>
+    </javac>
+  </target>
+
+   <target name="tuples-hybrid-jar"
+           depends="tuples-hybrid-compile, -tuples-hybrid-jar-uptodate"
+           unless="tuples-hybrid.jar.uptodate"
+           description="Builds the hybrid tuples JAR">
+
+    <jar jarfile="${tuples-hybrid.dist.dir}/${tuples-hybrid.jar}">
+      <fileset dir="${obj.dir}/jar/tuples-hybrid/classes"/>
+    </jar>
+  </target>
+
+  <target name="-tuples-hybrid-jar-uptodate">
+
+    <uptodate property="tuples-hybrid.jar.uptodate"
+              targetfile="${tuples-hybrid.dist.dir}/${tuples-hybrid.jar}">
+      <srcfiles dir="${tuples-hybrid.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="tuples-hybrid-dist"
+          depends="tuples-hybrid-jar"
+          description="Performs all tasks related to finalising this
+                       tuples-hybrid and readying it for distribution">
+
+    <!-- All that's involved in the final version of the tuples-hybrid library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="tuples-hybrid-test"
+          depends="tuples-jar, tuples-hybrid-jar"
+          description="Carries out unit testing for this tuples-hybrid">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="tuples-hybrid-test-classpath"/>
+      <param name="dir" value="${tuples-hybrid.src.dir}"/>
+      <param name="jar" value="${tuples-hybrid.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="tuples-hybrid-javadoc"
+          depends="tuples-hybrid-jar"
+          description="Creates the javadoc for this tuples-hybrid">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.store.xa.*"/>
+      <param name="javadoc.classpath" value="tuples-hybrid-classpath"/>
+      <param name="javadoc.sourcepath" value="${tuples-hybrid.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="tuples-hybrid-help"
+          description="Displays the help information for this tuples-hybrid">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this tuples-hybrid -->
+
+    <echo message="Welcome to the build script for ${tuples-hybrid.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${tuples-hybrid.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

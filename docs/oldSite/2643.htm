@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Semantic Web </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Semantic Web, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="2642.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="2649.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h3 class="heading3">Semantic Web</h3>
+<p class="bodytext">Now imagine that all the information on the World Wide Web (about bicycles and everything else), currently locked away in a series of unrelated HTML files, was somehow organized and linked in such a way as to be processable by computer applications. These computer applications could wade through the mountains of information available and present to you the specific information you require, in the format you desire. This is the vision of what people call <em class="emphasis">The Semantic Web</em>.</p>
+<p class="bodytext">Going back to the bicycle example, this time using a Semantic Web browser (which does not exist yet, by the way), you specify the following criteria for the bicycle you want to buy:</p>
+<ul class="listbullet"><li class="listbullet">Road bicycle (as opposed to a mountain, recreational, BMX or child's bicycle)</li><li class="listbullet">Price range</li><li class="listbullet">Gender (some bicycle are built especially for women, for example)</li><li class="listbullet">Height and weight (so that the bicycle is suitable for your body size)</li><li class="listbullet">Your address and a maximum distance radius that you are prepared to travel to visit a bicycle shop<p class="listcontinue">Alternatively, you could order on-line, but it is recommended that you do test rides before you buy.</p>
+</li><li class="listbullet">The color red (nice, but not essential)</li></ul><p class="bodytext">Your Semantic Web browser returns for you:</p>
+<ul class="listbullet"><li class="listbullet">A list of bicycles that meet your requirements (type, price, gender, size and color) along with full specifications, recommended retail prices and pictures to view</li><li class="listbullet">A list of bicycle shops (within your specified distance radius) that sell the above bicycles, their advertised prices, whether the bicycles are currently in stock, and address and contact details</li><li class="listbullet">Directions on how to get to each of the shops from your address</li></ul><p class="bodytext">How did the Semantic Web browser determine all this? First of all, the available information was organized and categorized in such a way as to be computer application processable. Secondly, using rules associated with the information, and the criteria you specified, <em class="emphasis">inferences</em> were made to determine the information to present to you.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="2643.htm#o2644" target="_self">Elements of the Semantic Web</a></p><p class="relateditem"><a href="2643.htm#o2648" target="_self">Implementing Inferencing</a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="2641.htm" target="_self">Introduction to Inferencing</a></p><p class="relateditem"><a href="2642.htm" target="_self">Current Situation</a></p><p class="relateditem"><a href="2649.htm" target="_self">Summary</a></p></td>
+</tr>
+</table>
+
+<a name="o2644"></a><h4 class="heading4">Elements of the Semantic Web</h4>
+<p class="bodytext">How is data on the Semantic Web linked and organized? What are the rules and how are they specified?</p>
+<p class="bodytext">All data on the Semantic Web is described using (among other things) <em class="emphasis">Classes</em>, <em class="emphasis">SubClasses</em>, <em class="emphasis">Properties</em> and <em class="emphasis">Subproperties</em>. How classes and properties fit together is described using <em class="emphasis">Ranges</em> and <em class="emphasis">Domains</em>.</p>
+<a name="o2645"></a><h5 class="heading5">Classes</h5>
+<p class="bodytext"><em class="emphasis">Classes</em> refer to a type or a category of something. Classes that are a subset of one or more classes are called <em class="emphasis">subclasses</em>. Individual resources that belong to a class are called <em class="emphasis">instances</em> of that class. Instances of a class, which is a subclass of another class, are automatically instances of the higher level class.</p>
+<p class="bodytext">Using the bicycle example again, we have the following definitions:</p>
+<ul class="listbullet"><li class="listbullet">Four classes: <code class="monospace">HumanPoweredVehicle</code>, <code class="monospace">Bicycle</code>, <code class="monospace">RoadBicycle</code> and <code class="monospace">MountatinBicycle</code></li><li class="listbullet">The <code class="monospace">Bicycle</code> class is a subclass of the <code class="monospace">HumanPoweredVehicle</code> class</li><li class="listbullet">The <code class="monospace">RoadBicycle</code> and <code class="monospace">MountainBicycle</code> classes are subclasses of the <code class="monospace">Bicycle</code> class</li></ul><p class="bodytext">Automatically, without any further definitions, we know that all instances of the <code class="monospace">RoadBicycle</code> class also belong to the <code class="monospace">Bicycle</code> class and the <code class="monospace">HumanPoweredVehicle</code> class.</p>
+<p class="bodytext">This is an example of inferencing. Knowing that a resource belongs to a class, which is a subclass of another class, we can deduce, or <em class="emphasis">infer</em>, that the resource also belongs to the higher level class.</p>
+<a name="o2646"></a><h5 class="heading5">Properties</h5>
+<p class="bodytext">Now that we have classes of things, we need to be able to describe them. <em class="emphasis">Properties</em> are the characteristics, or descriptions, of classes. Properties of high level classes also apply to all subclasses of the class.</p>
+<a name="o3019"></a><h5 class="heading5">Ranges</h5>
+<p class="bodytext">The values a property can have are specified using <em class="emphasis">Ranges</em>. Properties can have zero or more ranges (where ranges are in fact defined as classes).</p>
+<p class="bodytext">For example, we have the following definitions:</p>
+<ul class="listbullet"><li class="listbullet">A property of <code class="monospace">Color</code></li><li class="listbullet">Three classes: <code class="monospace">Red</code>, <code class="monospace">White</code> and <code class="monospace">Blue</code></li></ul><p class="bodytext">In order to specify the possible values for the <code class="monospace">Color</code> property (red, white or blue), we define that the:</p>
+<ul class="listbullet"><li class="listbullet"><code class="monospace">Color</code> property has range of <code class="monospace">Red</code> class</li><li class="listbullet"><code class="monospace">Color</code> property has range of <code class="monospace">White</code> class</li><li class="listbullet"><code class="monospace">Color</code> property has range of <code class="monospace">Blue</code> class</li></ul>
+<a name="o3018"></a><h5 class="heading5">Domains</h5>
+<p class="bodytext">Properties are assigned to classes using <em class="emphasis">Domains</em>.</p>
+<p class="bodytext">For example, to assign the <code class="monospace">Color</code> property to the <code class="monospace">Bicycle</code> class, we define that the <code class="monospace">Color</code> property is in the domain of the <code class="monospace">Bicycle</code> class. That is, bicycles have color.</p>
+<p class="bodytext">Based on the above range and domain definitions, we have stated that all bicycles have color, and the color can be red, white or blue. From this, we can <em class="emphasis">infer</em> that all bicycles (road and mountain bicycles) come in three colors and three colors only: red, white and blue.</p>
+<p class="note"><strong class="strong">Note -</strong> There are no definitions regarding the other types of human powered vehicles besides bicycles. With no rules specified, we can not make any inferences about the color, for example, of row boats, kayaks or any other instances of the <code class="monospace">HumanPoweredVehicle</code> class.</p>
+<a name="o2647"></a><h5 class="heading5">Additional Features for Describing Classes and Properties</h5>
+<p class="bodytext">There are many other features used in inferencing, some of which include:</p>
+<ul class="listbullet"><li class="listbullet">Equivalent classes. That is, where two classes are equivalent, the instances of one class are also instances of the other, and vice versa.<p class="listcontinue">For example, the <code class="monospace">Bicycle</code> and <code class="monospace">TwoWheeledHumanPoweredVehicle</code> classes are equivalent, and the instances of one class are automatically instances of the other.</p>
+</li><li class="listbullet">Equivalent properties. That is, where two properties are equivalent, an instance of a class with a property also has the equivalent property.<p class="listcontinue">For example, <code class="monospace">BicycleSize</code> and <code class="monospace">FrameSize</code> are equivalent properties. An instance of the <code class="monospace">Bicycle</code> class has a <code class="monospace">BicycleSize</code> property, and from this you can infer that the instance also has the <code class="monospace">FrameSize</code> property.</p>
+</li><li class="listbullet">Cardinality. That is, the number of values for a property associated with a class.<p class="listcontinue">For example, if the <code class="monospace">Color</code> property has a <em class="emphasis">minimum</em> Cardinality of one with respect to the <code class="monospace">Bicycle</code> class, then you can infer that all bicycles must have at least one color. They might have two, three or more colors, but they must have at least one.</p>
+<p class="listcontinue">If the <code class="monospace">Color</code> property has a <em class="emphasis">maximum</em> Cardinality of one with respect to the <code class="monospace">Bicycle</code> class, then you can infer that all bicycles must have <em class="emphasis">only one</em> color.</p>
+</li></ul>
+<a name="o2648"></a><h4 class="heading4">Implementing Inferencing</h4>
+<p class="bodytext">The Semantic Web and inferencing is implemented using the features of the following languages:</p>
+<ul class="listbullet"><li class="listbullet">RDF (Resource Description Framework). Originally developed by the World-Wide Web Consortium (W3C) as a standard way of describing resources on the Web. As well as resources <em class="emphasis">on</em> the Web, RDF can be used to describe resources that <em class="emphasis">could</em> be on the Web. This means that for any resource (such as a person, a bicycle, or even a concept), whether it exists on the Web or not, provided it can be <em class="emphasis">identified</em> as being on the Web, it can be described using RDF.</li><li class="listbullet">RDF Schema (or RDFS). Provides the vocabulary for defining and describing classes and properties with regards to RDF.</li><li class="listbullet">OWL (Web Ontology Language). Extends the RDFS vocabulary for describing classes and properties, including relationships between classes and properties, equality and inequality, and cardinality.</li></ul><p class="bodytext">The intent of this document is only to introduce the concept of inferencing. If you want to know more about inferencing and other Semantic Web related topics, the Semantic Web Best Practices and Deployment Working Group's <a class="internetlinktemplate" title="" href="http://www.w3.org/2001/sw/BestPractices/Tutorials" target="_blank">Semantic Web Tutorials site</a> provides many links to RDF, OWL, SOFA and other sources of information.</p>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

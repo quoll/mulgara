@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="descriptor" default="descriptor-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="descriptor-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset dir="${lib.dir}" includes="**/**"/>
+
+    <fileset dir="${driver.dist.dir}" includes="${driver.jar}" />
+    <fileset dir="${querylang.dist.dir}" includes="${querylang.jar}" />
+    <fileset dir="${query.dist.dir}" includes="${query.jar}" />
+    <fileset dir="${server.dist.dir}" includes="${server.jar}" />
+    <fileset dir="${util.dist.dir}" includes="${util.jar}" />
+    <fileset dir="${server-rmi.dist.dir}" includes="${server-rmi.jar}" />
+    <fileset dir="${descriptor.dist.dir}" includes="${descriptor.jar}"/>
+
+    <fileset dir="${obj.dir}" includes="jar/descriptor-client/classes/**/**"/>
+  </path>
+
+  <path id="descriptor-jsp-classpath">
+
+    <path refid="common-classpath"/>
+
+    <pathelement location="${lib.dir}/${jsp-core.jar}"/>
+    <pathelement location="${lib.dir}/${jsp-el.jar}"/>
+    <pathelement location="${lib.dir}/${jsp-ecj.jar}"/>
+    <pathelement location="${lib.dir}/${jsp-javax-el.jar}"/>
+    <pathelement location="${lib.dir}/${jsp-javax-jstl.jar}"/>
+    <pathelement location="${lib.dir}/${jsp-javax-jsp.jar}"/>
+    <pathelement location="${lib.dir}/${jsp-jetty.jar}"/>
+    <pathelement location="${lib.dir}/${jsp-glassfish.jar}"/>
+    <pathelement location="${lib.dir}/${jsp-glassfish-taglibs.jar}"/>
+    <pathelement location="${lib.dir}/${servlet.jar}"/>
+    <pathelement location="${lib.dir}/${jetty.jar}"/>
+
+    <pathelement location="${dist.dir}/${driver.jar}"/>
+    <pathelement location="${dist.dir}/${querylang.jar}"/>
+    <pathelement location="${dist.dir}/${util.jar}"/>
+
+    <pathelement location="${server.dist.dir}/${server.jar}"/>
+  </path>
+
+  <path id="descriptor-test-classpath">
+
+    <path refid="descriptor-classpath"/>
+
+    <fileset file="${descriptor.dist.dir}/${descriptor.jar}"/>
+  </path>
+
+  <target name="descriptor-clean"
+          description="Removes all compile generated files for the descriptor">
+
+    <tstamp/>
+
+    <delete dir="${descriptor.obj.dir}"/>
+    <delete dir="${descriptor.test.dir}"/>
+    <delete dir="${descriptor.dist.dir}"/>
+    <delete dir="${descriptor.war.obj.dir}"/>
+    <delete dir="${descriptor.war.dist.dir}"/>
+    <delete dir="${client.obj.dir}"/>
+    <delete dir="${client.dist.dir}"/>
+  </target>
+
+  <target name="-descriptor-prepare"
+          description="Creates all directories associated with the descriptor's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${descriptor.obj.dir}"/>
+    <mkdir dir="${descriptor.test.dir}"/>
+    <mkdir dir="${descriptor.dist.dir}"/>
+    <mkdir dir="${descriptor.obj.dir}/classes"/>
+    <mkdir dir="${descriptor.war.obj.dir}"/>
+    <mkdir dir="${descriptor.war.obj.dir}/java"/>
+    <mkdir dir="${descriptor.war.obj.dir}/classes"/>
+    <mkdir dir="${client.obj.dir}"/>
+    <mkdir dir="${client.dist.dir}"/>
+  </target>
+
+  <target name="descriptor-jsp-compile"
+          depends="-descriptor-prepare, driver-jar, querylang-jar, server-jar"
+          description="Pre-compiles JSPs">
+
+    <!-- Replace basedir -->
+    <antcall target="-jspc">
+
+      <param name="webapp.input.dir" value="${descriptor.war.src.dir}"/>
+      <param name="jsp.output.dir" value="${descriptor.war.obj.dir}/java"/>
+      <param name="web.xml.fragment" value="${descriptor.war.obj.dir}/generated_web.xml"/>
+    </antcall>
+
+    <!-- compile jsps -->
+    <javac srcdir="${descriptor.war.obj.dir}/java"
+          destdir="${descriptor.war.obj.dir}/classes">
+
+      <classpath>
+        <path refid="descriptor-jsp-classpath"/>
+      </classpath>
+
+      <include name="**/*.java"/>
+    </javac>
+  </target>
+
+  <target name="descriptor-compile"
+          depends="descriptor-jsp-compile"
+          description="Compiles all descriptor related files included generated source code">
+
+    <javac destdir="${descriptor.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="descriptor-classpath"/>
+
+      <src path="${descriptor.src.dir}/src/java"/>
+
+      <!-- must exclude this cos the support files have not been generated yet -->
+      <exclude name="org/mulgara/descriptor/test/DescriptorUtilServiceTest.java"/>
+    </javac>
+  </target>
+
+  <target name="descriptor-jar"
+          depends="descriptor-compile, -descriptor-jar-uptodate"
+          unless="descriptor.jar.uptodate"
+          description="Creates the descriptor's jar/s">
+
+    <jar jarfile="${descriptor.dist.dir}/${descriptor.jar}"
+         manifest="${src.dir}/jar/descriptor/src/MANIFEST.MF">
+      <fileset dir="${descriptor.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-descriptor-jar-uptodate">
+
+    <uptodate property="descriptor.jar.uptodate"
+              targetfile="${descriptor.dist.dir}/${descriptor.jar}">
+      <srcfiles dir="${descriptor.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="descriptor-dist"
+          depends="descriptor-uptodate, descriptor-jar"
+          unless="descriptor.uptodate"
+          description="Performs all tasks related to finalising this descriptor
+                       and readying it for distribution">
+
+    <copy file="${descriptor.dist.dir}/${descriptor.jar}"
+          tofile="${dist.dir}/${descriptor.jar}" overwrite="true"/>
+  </target>
+
+  <target name="descriptor-uptodate">
+
+    <uptodate property="descriptor.uptodate"
+              targetfile="${dist.dir}/${descriptor.jar}">
+      <srcfiles dir="${descriptor.dist.dir}" includes="${descriptor.jar}"/>
+    </uptodate>
+  </target>
+
+  <target name="descriptor-test"
+          depends="host.name, descriptor-jar, descriptor-wsdl-client.jar"
+          description="Carries out unit testing for this descriptor">
+
+    <!-- start the Mulgara server -->
+    <antcall target="start"/>
+
+    <mkdir dir="${junit.results.tmpdir}"/>
+
+    <!-- deploy the descriptors -->
+    <get
+      src="http://${host.name}:8080/webservices/descriptor/deploy?deployLocalDescriptors=true&amp;clearLocalDescriptors=true"
+      dest="${junit.results.tmpdir}/DeployDescriptorsHttpGetResult.txt"/>
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="descriptor-test-classpath"/>
+      <param name="dir" value="${descriptor.src.dir}/src"/>
+      <param name="jar" value="${client.jar}"/>
+    </antcall>
+
+    <!-- shutdown the Mulgara server -->
+    <antcall target="stop"/>
+  </target>
+
+  <target name="descriptor-wsdl-client-gen"
+          depends="host.name, wsdl2java"
+          unless="webservice.uptodate">
+
+    <!-- start the Mulgara server -->
+    <antcall target="start"/>
+
+    <!-- wait a couple of seconds -->
+    <sleep seconds="2"/>
+
+    <mkdir dir="${client.obj.dir}/"/>
+
+    <get
+      src="http://${host.name}:8080/webservices/services/DescriptorService?wsdl"
+      dest="${obj.dir}/Descriptor.wsdl"/>
+
+    <!-- shutdown the Mulgara server -->
+    <antcall target="stop"/>
+
+    <echo message="wsdl-gen wrote to ${obj.dir}/Descriptor.wsdl"/>
+
+    <wsdl2java url="${obj.dir}/Descriptor.wsdl"
+               output="${client.obj.dir}/" verbose="true"
+               testcase="false"/>
+  </target>
+
+  <target name="descriptor-wsdl-client.jar"
+          depends="descriptor-wsdl-client-gen">
+
+    <mkdir dir="${client.obj.dir}/classes"/>
+
+    <!-- compile wsdl client -->
+    <javac destdir="${client.obj.dir}/classes" debug="on" source="1.5">
+
+      <classpath refid="descriptor-classpath"/>
+
+      <include name="**/*.java"/>
+
+      <src path="${client.obj.dir}/"/>
+      <src path="${descriptor.src.dir}/src/java/org/mulgara/descriptor/test/"/>
+    </javac>
+
+    <jar jarfile="${bin.dir}/descriptor-client.jar">
+
+      <fileset dir="${obj.dir}/jar/descriptor-client/classes"/>
+    </jar>
+  </target>
+
+  <target name="descriptor-deploy-http-script"
+    description="creates a descriptor deployment script for the build in descriptors">
+
+    <antcall target="descriptor-deploy">
+
+      <param name="scheme" value="http"/>
+      <param name="scheme.specific.part" value="//${host.name}:8080/webservices/descriptor/descriptors"/>
+      <param name="desc.src"      value="${descriptor.src.dir}/"/>
+      <param name="desc.xsl.src"  value="${descriptor.src.dir}/src/xsl/"/>
+      <param name="desc.dest"     value="${descriptor.war.obj.dir}/"/>
+      <param name="servlet.prefix" value="//${host.name}:8080/descriptor/"/>
+    </antcall>
+  </target>
+
+
+  <!-- =================================================================== -->
+  <!-- Mulgara Descriptor Deploy - Mulgara HTTP                                    -->
+  <!-- =================================================================== -->
+  <target name="descriptor-add-to-war-dir"
+    description="Deploys Descriptors for use within the Jetty servlet server in Mulgara"
+    depends="set.host.name, descriptors-uptodate"
+    unless="descriptors-uptodate">
+
+    <!-- copy xsl files -->
+    <mkdir dir="${descriptor.war.obj.dir}/descriptors"/>
+
+    <echo message="copying descriptors xsl to ${obj.dir}/war/descriptor/"/>
+
+    <copy todir="${descriptor.war.obj.dir}/descriptors">
+
+      <fileset dir="${descriptor.src.dir}/src/xsl/">
+
+        <include name="*/*.xsl"/>
+
+        <exclude name="extractDescriptorRDF.xsl"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="descriptors-uptodate">
+
+    <uptodate property="descriptors-uptodate" targetfile="${war.obj.dir}/webservices.war">
+      <srcfiles dir="${descriptor.src.dir}/src/xsl" includes="*/*.xsl"/>
+    </uptodate>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Mulgara Descriptor Deploy - Mulgara FILE                                    -->
+  <!-- =================================================================== -->
+  <target name="descriptor-deploy-file-script"
+    description="deploys Descriptors suitable for file URLs"
+    depends="set.host.name">
+
+    <antcall target="descriptor-deploy">
+
+      <param name="scheme" value="file"/>
+      <param name="scheme.specific.part" value="${descriptor.src.dir}/src/xsl"/>
+      <param name="desc.src"      value="${descriptor.src.dir}/"/>
+      <param name="desc.xsl.src"  value="${descriptor.src.dir}/src/xsl/"/>
+      <param name="desc.dest"     value="${obj.dir}/descriptor/"/>
+      <param name="servlet.prefix" value="//${host.name}:8080/descriptor/"/>
+    </antcall>
+
+  </target>
+
+
+  <!-- =================================================================== -->
+  <!-- Mulgara Descriptor Deploy                                               -->
+  <!-- =================================================================== -->
+  <target name="descriptor-deploy"
+    depends="set.host.name"
+    description="Deploys Descriptors, must be invoked with parameters, other targets call this">
+
+      <mkdir dir="${obj.dir}/descriptor/"/>
+
+      <echo message="Creating iTQL load script: ${obj.dir}/descriptor/Deploy${scheme}Descriptors.itql"/>
+
+      <!-- create the script load it all -->
+      <exec executable="${descriptor.src.dir}/scripts/createDescriptorLoadScript.sh"
+        output="${obj.dir}/descriptor/Deploy${scheme}Descriptors.itql">
+
+        <arg value="${host.name}"/>
+        <arg value="${desc.xsl.src}"/>
+        <arg value="${scheme}:${scheme.specific.part}"/>
+      </exec>
+  </target>
+
+
+  <!-- =================================================================== -->
+  <!-- Mulgara Descriptor Deploy                                               -->
+  <!-- =================================================================== -->
+  <target name="descriptor-copy-docs"
+    description="copies descriptor documentation to the docs dir">
+
+      <mkdir dir="${obj.dir}/descriptor/"/>
+
+      <echo message="Creating iTQL load script: ${obj.dir}/descriptor/Deploy${scheme}Descriptors.itql"/>
+
+      <!-- create the script load it all -->
+      <exec executable="${descriptor.src.dir}/scripts/createDescriptorLoadScript.sh"
+        output="${obj.dir}/descriptor/Deploy${scheme}Descriptors.itql">
+
+        <arg value="${host.name}"/>
+        <arg value="${desc.xsl.src}"/>
+        <arg value="${scheme}:${scheme.specific.part}"/>
+      </exec>
+  </target>
+
+
+  <target name="descriptor-javadoc"
+          depends="descriptor-jar"
+          description="Creates the javadoc for this descriptor">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.descriptor.*"/>
+      <param name="javadoc.classpath" value="descriptor-classpath"/>
+      <param name="javadoc.sourcepath" value="${descriptor.src.dir}/src/java"/>
+    </antcall>
+  </target>
+
+  <target name="descriptor-help"
+          description="Displays the help information for this descriptor">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this descriptor -->
+
+    <echo message="Welcome to the build script for ${descriptor.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${descriptor.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

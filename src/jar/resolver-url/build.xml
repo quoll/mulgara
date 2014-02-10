@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="resolver-url" default="resolver-url-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="resolver-url-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+  </path>
+
+  <path id="resolver-url-test-classpath">
+
+    <path refid="resolver-url-classpath"/>
+
+    <fileset file="${resolver-url.dist.dir}/${resolver-url.jar}"/>
+  </path>
+
+  <target name="resolver-url-clean"
+          description="Removes all compile generated files for the resolver-url">
+
+    <tstamp/>
+
+    <delete dir="${resolver-url.obj.dir}"/>
+    <delete dir="${resolver-url.test.dir}"/>
+    <delete dir="${resolver-url.dist.dir}"/>
+  </target>
+
+  <target name="-resolver-url-prepare"
+          description="Creates all directories associated with the resolver-url's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${resolver-url.obj.dir}"/>
+    <mkdir dir="${resolver-url.test.dir}"/>
+    <mkdir dir="${resolver-url.dist.dir}"/>
+    <mkdir dir="${resolver-url.obj.dir}/classes"/>
+  </target>
+
+  <target name="resolver-url-compile"
+          depends="-resolver-url-prepare, resolver-spi-jar"
+          description="Compiles all resolver-url related files included
+                       generated source code">
+
+    <javac destdir="${resolver-url.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="resolver-url-classpath"/>
+
+      <src path="${resolver-url.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="resolver-url-jar"
+          depends="resolver-url-compile, -resolver-url-jar-uptodate"
+          unless="resolver-url.jar.uptodate"
+          description="Builds the URL Resolver JAR">
+
+    <jar jarfile="${resolver-url.dist.dir}/${resolver-url.jar}">
+      <fileset dir="${resolver-url.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-resolver-url-jar-uptodate">
+
+    <uptodate property="resolver-url.jar.uptodate"
+              targetfile="${resolver-url.dist.dir}/${resolver-url.jar}">
+      <srcfiles dir="${resolver-url.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="resolver-url-dist"
+          depends="resolver-url-jar"
+          unless="resolver-url.uptodate"
+          description="Performs all tasks related to finalising this resolver-url
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the resolver-url library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="resolver-url-test" depends="resolver-url-jar">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="resolver-url-classpath"/>
+      <param name="dir" value="${resolver-url.src.dir}"/>
+      <param name="jar" value="${resolver-url.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-url-javadoc"
+          depends="resolver-url-jar"
+          description="Creates the javadoc for this resolver-url">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.resolver.url.*"/>
+      <param name="javadoc.classpath" value="resolver-url-classpath"/>
+      <param name="javadoc.sourcepath" value="${resolver-url.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="resolver-url-help"
+          description="Displays the help information for this resolver-url">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this resolver-url -->
+
+    <echo message="Welcome to the build script for ${resolver-url.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${resolver-url.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

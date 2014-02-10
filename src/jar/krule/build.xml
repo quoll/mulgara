@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="krule" default="krule.jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="krule-classpath">
+
+    <path refid="common-classpath"/>
+
+    <pathelement path="${query.dist.dir}/${query.jar}"/>
+    <pathelement path="${driver.dist.dir}/${driver.jar}"/>
+    <pathelement path="${util.dist.dir}/${util.jar}"/>
+    <pathelement path="${querylang.dist.dir}/${querylang.jar}"/>
+    <pathelement path="${tuples.dist.dir}/${tuples.jar}"/>
+    <pathelement path="${resolver.dist.dir}/${resolver.jar}"/>
+  </path>
+
+  <path id="krule-test-classpath">
+
+    <path refid="krule-classpath"/>
+
+    <fileset file="${krule.dist.dir}/${krule.jar}"/>
+  </path>
+
+  <target name="krule-clean"
+          description="Removes all compile generated files for the krule">
+
+    <tstamp/>
+
+    <delete dir="${krule.obj.dir}"/>
+    <delete dir="${krule.test.dir}"/>
+    <delete dir="${krule.dist.dir}"/>
+  </target>
+
+  <target name="-krule-prepare"
+          description="Creates all directories associated with the krule's compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${krule.obj.dir}"/>
+    <mkdir dir="${krule.test.dir}"/>
+    <mkdir dir="${krule.dist.dir}"/>
+    <mkdir dir="${krule.obj.dir}/classes"/>
+  </target>
+
+  <target name="krule-compile"
+          depends="-krule-prepare, driver-jar, querylang-jar, tuples-jar, resolver-jar"
+          description="Compiles all krule related files included generated source code">
+
+    <javac destdir="${krule.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="krule-classpath"/>
+
+      <src path="${krule.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="krule-jar"
+    depends="krule-compile, -krule-jar-uptodate"
+    unless="krule.jar.uptodate"
+    description="Builds the NodeType Resolver JAR">
+
+    <jar jarfile="${krule.dist.dir}/${krule.jar}">
+      <fileset dir="${krule.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-krule-jar-uptodate">
+
+    <uptodate property="krule.jar.uptodate"
+              targetfile="${krule.dist.dir}/${krule.jar}">
+      <srcfiles dir="${krule.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="krule-dist"
+          depends="krule-jar"
+          unless="krule.uptodate"
+          description="Performs all tasks related to finalising this krule and readying it for distribution">
+
+    <!-- All that's involved in the final version of the krule library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="krule-test"
+          depends="krule-jar"
+          description="Carries out unit testing for this krule">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="krule-test-classpath"/>
+      <param name="dir" value="${krule.src.dir}"/>
+      <param name="jar" value="${krule.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="krule-javadoc"
+          depends="krule-jar"
+          description="Creates the javadoc for this krule">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.krule.*"/>
+      <param name="javadoc.classpath" value="krule-classpath"/>
+      <param name="javadoc.sourcepath" value="${krule.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="krule-help"
+          description="Displays the help information for this krule">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this krule -->
+
+    <echo message="Welcome to the build script for ${krule.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${krule.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

@@ -1,0 +1,82 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Loading Existing RDF Data</title>
+    <meta name="keywords" content="Loading Existing RDF Data, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/tutorial/viewer.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/tutorial/convertrdbms.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/tutorial/index.html">Mulgara Tutorial</a></p>
+<p class="relateditem"><a href="/tutorial/sysreq.html">System Requirements</a></p>
+<p class="relateditem"><a href="/tutorial/starting.html">Starting a Mulgara Semantic Store Server</a></p>
+<p class="relateditem"><a href="/tutorial/itql.html">iTQL</a></p>
+<p class="relateditem"><a href="/tutorial/itqlbasics.html">Basic iTQL Operations</a></p>
+<p class="relateditem"><a href="/tutorial/itqlbasics.html#o1234"></a></p>
+<p class="relateditem"><a href="/tutorial/itqlshellsession.html">Example iTQL Shell Session</a></p>
+<p class="relateditem"><a href="/tutorial/viewer.html">Mulgara Viewer</a></p>
+<p class="relateditem"><a href="/tutorial/viewer.html#o1255"></a></p>
+<p class="relateditem"><a href="/tutorial/viewer.html#o416">Mulgara Sample Data</a></p>
+<p class="relateditem"><a href="/tutorial/convertrdbms.html">Converting Data in Relational Databases to RDF</a></p>
+<p class="relateditem"><a href="/tutorial/convertingxml.html">Converting XML Data to RDF</a></p>
+
+ -->
+
+
+
+
+<h2>Loading Existing RDF Data</h2>
+
+<p>Existing RDF data is loaded into Mulgara using the iTQL<sup>TM</sup> <code><a id="h249" class="documentlinktemplate" title="load" href="/itqlcommands/load.html">load</a></code> command. The model must already exist. The steps are as follows:</p>
+<ol><li>Create a model.&nbsp;For example, to create a model called <code>mymodel</code> on a Mulgara server running on <code>mysite.com</code>, use the following iTQL command:
+<p class="listcontinuecommandtext">create &lt;rmi://mysite.com/server1#mymodel&gt;;</p>
+
+<p class="listnote"><strong>Note -</strong> To determine your systems host name, at a command line type <code>ipconfig</code> (Windows) or <code>hostname</code> (Unix or Linux)</p>
+</li><li>Load an RDF file into the model just created.&nbsp;The specified file must have a <code>file:</code> or <code>http:</code> URL. For example, to load the file <code>file:/tmp/mydata.rdf</code>, use the following iTQL command:
+<p class="listcontinuecommandtext">load &lt;file:/tmp/mydata.rdf&gt; into &lt;rmi://mysite.com/server1#mymodel&gt;;</p>
+
+<p class="listnote"><strong>Note -</strong> In Windows, the file specification would look something like <code>&lt;file:/C:/temp/mydata.rdf&gt;</code>.</p>
+</li></ol>
+<p>The two steps above can be competed at the same time using the Mulgara Viewer<sup>TM</sup>, as shown below.</p>
+
+<p><img src="/img/loadexistingrdf.gif" alt="Load Existing RDF" height="448" width="700" vspace="2" hspace="2" align="bottom" border="1" /></p>
+
+<p>Alternatively, you can create the model first then create the <code>load</code> command by clicking on using the Browse button to find the RDF file.</p>
+
+<p>Once the RDF data is loaded into a Mulgara model, you can query and manipulate it using other iTQL commands.</p>
+
+<p>See the <a id="h894" class="documentlinktemplate" title="RDF Data" href="/overview/links.html#o759">RDF Data section</a> for links to data sources for testing purposes.</p>
+
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

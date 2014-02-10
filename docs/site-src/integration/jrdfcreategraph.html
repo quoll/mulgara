@@ -1,0 +1,128 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Creating the Graph</title>
+    <meta name="keywords" content="Graph, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+ 
+		<a href="/integration/jrdfcreategraph.html#o2901">Memory Graph</a> &#124;
+		<a href="/integration/jrdfcreategraph.html#o3189">Server Graph</a> &#124;
+		<a href="/integration/jrdfcreategraph.html#o2902">Client Graph</a> &#124;
+		<a href="/integration/jrdfcreategraph.html#o2903">iTQL Graph</a> 
+  
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/integration/jrdfprereq.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/integration/jrdfcreatenodes.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/integration/jrdftutorial.html">JRDF Tutorial</a></p>
+<p class="relateditem"><a href="/integration/jrdfprereq.html">Prerequisites</a></p>
+<p class="relateditem"><a href="/integration/jrdfprereq.html#o2898">Obtaining a Session from a Mulgara Server</a></p>
+<p class="relateditem"><a href="/integration/jrdfprereq.html#o2899">Comparison of JRDF Graph Implementations</a></p>
+<p class="relateditem"><a href="/integration/jrdfcreatenodes.html">Creating Nodes and Triples</a></p>
+<p class="relateditem"><a href="/integration/jrdfaddtriples.html">Adding Triples to the Graph</a></p>
+<p class="relateditem"><a href="/integration/searchgraph.html">Searching the Graph</a></p>
+<p class="relateditem"><a href="/integration/jrdfreify.html">Reify Triples</a></p>
+<p class="relateditem"><a href="/integration/jrdfremove.html">Removing Triples from the Graph</a></p>
+
+ -->
+
+
+
+
+<h3>Creating the Graph</h3>
+
+<p>The <a id="h3190" class="documentlinktemplate" title="Comparison of JRDF Graph Implementations" href="/integration/jrdfprereq.html#o2899">Comparison of JRDF Graph Implementations section</a> outlines the advantages and disadvantages of the different implementation options. Choose the one that is most suitable for your requirements.</p>
+
+<p>You can create more than one graph and use them together. For example, you might use an iTQL graph to retrieve results from a query, load the contents into a memory graph for efficient presentation and editing, and then persist the edited statements using a client graph.</p>
+
+<div class="anchor"><a name="o2901">&nbsp;</a></div>
+<h4>JRDF Graph (Memory Graph)</h4>
+
+<p>The following code creates a memory graph:</p>
+
+<p class="commandtext">Graph graph = new GraphImpl();</p>
+<div class="anchor"><a name="o3189">&nbsp;</a></div>
+<h4>Server-side JRDF Graph (Server Graph)</h4>
+
+<p>You need to obtain a session for your Mulgara server before you can create a server graph. When obtaining the session, use <code>SessionFactoryFinder.newSessionFactory(serverURI, false)</code> to indicate that the server is running in the same JVM (that is, it is running locally).</p>
+
+<p>The server graph is created using a <code>LocalJRDFSession</code>. See the Obtaining a Session from the TKS Server section for more information on how to obtain a <code>LocalJRDFSession</code>.</p>
+
+<p>After obtaining a local session, the following code creates a server graph:</p>
+
+<p class="commandtext">//create a new Model<br />
+URI modelURI = new URI(&quot;rmi://mysite.com/server1#exampleGraph&quot;);<br />
+URI modelType = new URI(&quot;http://mulgara.org/mulgara#Model&quot;);<br />
+session.createModel(modelURI, modelType);<br />
+<br />
+//create a JRDF Graph for the model<br />
+Graph graph = new JRDFGraph(session, modelURI);</p>
+<div class="anchor"><a name="o2902">&nbsp;</a></div>
+<h4>Server Backed JRDF Graph (Client Graph)</h4>
+
+<p>You need to obtain a session for your Mulgara server before you can create a client graph. When obtaining the session, use <code>SessionFactoryFinder.newSessionFactory(serverURI, true)</code> to indicate that the server is running remotely.</p>
+
+<p>The Client Graph is created using a <code>JRDFSession</code>. See the Obtaining a Session from the Mulgara Server section for more information on how to obtain a <code>JRDFSession</code>.</p>
+
+<p>After obtaining a session, the following code creates a client graph:</p>
+
+<p class="commandtext">//create a new Model<br />
+URI modelURI = new URI(&quot;rmi://mysite.com/server1#exampleGraph&quot;);<br />
+URI modelType = new URI(&quot;http://mulgara.org/mulgara#Model&quot;);<br />
+session.createModel(modelURI, modelType);<br />
+<br />
+//create a JRDF Graph for the model<br />
+Graph graph = AbstractGraphFactory.createGraph(modelURI, session);</p>
+
+<p>The code <code>session.createModel(modelURI, modelType);</code> creates a new model if the model does not exist. If the model already exists, this line is not required.</p>
+<div class="anchor"><a name="o2903">&nbsp;</a></div>
+<h4>Read Only iTQL Result JRDF Graph (iTQL Graph)</h4>
+
+<p>You need to obtain a session for your Mulgara server before you can create an iTQL graph. After obtaining a session, the following code creates an iTQL graph.</p>
+
+<p class="commandtext">//create the query<br />
+String queryText = &quot;select $s $p $o from &lt;rmi://mysite.com/server1#testModel&gt; where $s $p $o ; &quot;;<br />
+ItqlInterpreter interpreter = new ItqlInterpreter(new HashMap());<br />
+Query query = interpreter.parse(queryText);<br />
+<br />
+//execute the query<br />
+Answer queryResult = session.query(query);<br />
+<br />
+//create a JRDF Graph<br />
+Graph graph = AbstractGraphFactory.createGraph(queryResult);</p>
+
+<p>The iTQL query <code>select $s $p $o from &lt;rmi://mysite.com/server1#testModel&gt; where $s $p $o;</code> returns all statements from the model.</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/tr/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--
+@@debug@@
+-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Mulgara Tutorial</title>
+  <link href="@@base@@styles/ui.css" rel="stylesheet" type="text/css" />
+  <script language="JavaScript" type="text/javascript">
+  <!--
+  // Put the selected example query into the query text area. The graph
+  // name is also inserted in to the query.
+  function setQuery() {
+    // Must have a Graph URI
+    if (document.QueryForm.GraphURI.value == '') {
+      alert('Please enter a Graph URI and then select the query again');
+      document.QueryForm.GraphURI.focus;
+      return;
+    }
+    var index = document.QueryForm.ExampleQuery.selectedIndex;
+    var exampleText = document.QueryForm.ExampleQuery[index].value;
+    var graphURI= document.QueryForm.GraphURI.value;
+    // Add the graph name
+    var queryString = exampleText.replace(/-graph-/gi, graphURI);
+    document.QueryForm.QueryText.value = queryString;
+  }
+
+  // Validate the form and submit it if all is OK
+  function validateAndSubmit() {
+    // Is there a query?
+    if (document.QueryForm.QueryText.value == null ||
+        document.QueryForm.QueryText.value == "") {
+      alert('Please enter a query');
+      document.QueryForm.QueryText.focus();
+      return false;
+    } else {
+      // Submit the form
+      document.QueryForm.submit();
+      return true;
+    }
+  }
+  //-->
+  </script>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="header">
+      <div id="logo">
+        <a href="http://mulgara.org/"><img src="@@base@@images/logo.jpg" alt="Mulgara - Semantic Store" border="0" /></a>
+      </div>
+    </div>
+    <div id="content">
+      <table class="formatTable" summary="">
+        <tr>
+          <td>
+            <form action="@@base@@@@execute@@.html" method="post" name="QueryForm">
+              <table class="queryTable" summary="Enter a query">
+                <tr>
+                  <td><strong>Graph URI:</strong> </td>
+                  <td><input name="GraphURI" size="60" type="text" value="@@graph@@"/> </td>
+                </tr>
+                <tr>
+                  <td><strong>Example Queries:</strong> </td>
+                  <td>
+                    <select name="ExampleQuery" onchange="javascript:setQuery()">
+                      <option selected value="">Select a query..</option>
+                      <option value="create &lt;-graph-&gt;;">Step 1. Create a graph</option>
+                      <option value="load &lt;@@jarurl@@!/data/w3c-news.rss&gt; into &lt;-graph-&gt;;">Step 2. Load RSS data into the graph</option>
+                      <option value="select $subject $predicate $object from &lt;-graph-&gt; where $subject $predicate $object;">Step 3. List everything in the graph</option>
+                      <option value="select $title $link $description from &lt;-graph-&gt; where $article &lt;http://purl.org/rss/1.0/title&gt; $title and $article &lt;http://purl.org/rss/1.0/link&gt; $link and $article &lt;http://purl.org/rss/1.0/description&gt; $description;">Step 4. List the news articles</option>
+                      <option value="create &lt;rmi://@@hostname@@/@@servername@@#rdfs&gt;;">Step 5. Create a standalone RDF schema graph</option>
+                      <option value="load &lt;@@jarurl@@!/data/rss-1.0.rdfs&gt; into &lt;rmi://@@hostname@@/@@servername@@#rdfs&gt;; load &lt;@@jarurl@@!/data/dc.rdfs&gt; into &lt;rmi://@@hostname@@/@@servername@@#rdfs&gt;; load &lt;@@jarurl@@!/data/rdfs.rdfs&gt; into &lt;rmi://@@hostname@@/@@servername@@#rdfs&gt;;">Step 6. Load in the referenced schemas</option>
+                      <option value="select $rdfSubject $rdfProperty $value from &lt;-graph-&gt; or &lt;rmi://@@hostname@@/@@servername@@#rdfs&gt; where $rdfSubject $rdfProperty $value and $rdfProperty &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#Property&gt; and $rdfProperty &lt;http://www.w3.org/2000/01/rdf-schema#isDefinedBy&gt; &lt;http://purl.org/rss/1.0/&gt;;">Step 7. List the RSS properties using both graphs</option>
+                      <option value="drop &lt;-graph-&gt;; drop &lt;rmi://@@hostname@@/@@servername@@#rdfs&gt;;">Step 8. Drop the graphs</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Query Text:</strong> </td>
+                  <td><textarea cols="80" name="QueryText" rows="10"></textarea> </td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td align="left">
+                    <input type="button" value="Submit Query" onclick="validateAndSubmit()"/>
+                    <input type="button" value="Clear Query" onclick="javascript:document.QueryForm.QueryText.value='';"/>
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table class="allResultsTable" border="0" cellpadding="5" width="100%">

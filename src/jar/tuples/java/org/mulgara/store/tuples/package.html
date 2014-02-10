@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>Tuples</title>
+</head>
+<body>
+<p>
+Local tuples library.
+
+A {@link org.mulgara.store.tuples.Tuples} is a {@link org.mulgara.query.Cursor}
+whose variable
+assignments are to <code>long</code>-valued database-local node numbers.
+They correspond directly to the RDF node-valued {@link org.mulgara.query.Answer}
+objects used outside the database, except that the RDF nodes in variable
+assignments have been mapped via the database's string pool to the local node
+numbers.  Once in this local form, relational operations are supported via the
+methods of the {@link org.mulgara.store.tuples.TuplesOperations} factory class.
+</p>
+</body>
+</html>

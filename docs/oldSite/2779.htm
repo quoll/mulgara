@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Nodetyping Models </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Nodetyping Models, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="262.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="3201.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h2 class="heading2">Nodetyping Models</h2>
+<p class="bodytext">Nodetyping models represent the type that RDF nodes have in a graph. RDF nodes can be typed either as a <em class="emphasis">Literal</em>, or as a <em class="emphasis">URI Reference</em>. Nodes without a type are <em class="emphasis">Blank Nodes</em>.</p>
+<p class="bodytext">Nodetyping models are used to constrain results to be literals or URI references. These types have the URIs of <code class="monospace">http://www.w3.org/2000/01/rdf-schema#Literal</code> and <code class="monospace">http://mulgara.org/mulgara#uriReference</code>. Generally, the standard set of aliases should be in place, and these URIs and can be referred to in the aliased forms: <code class="monospace">rdfs:Literal</code> and <code class="monospace">mulgara:uriReference</code>.</p>
+<p class="bodytext">The standard set of aliases is defined by the <code class="monospace"><a id="h1334" class="documentlinktemplate" title="alias" href="170.htm" target="_self">alias</a></code> command:</p>
+<p class="commandtext">alias &lt;http://mulgara.org/mulgara#&gt; as mulgara;<br />alias &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; as rdf;<br />alias &lt;http://www.w3.org/2000/01/rdf-schema#&gt; as rdfs;</p>
+<p class="bodytext">Like datatyping models, nodetyping models are generally read-only. You do not insert statements into them as you do with standard or full-text models. Conceptually, they contain statements about the datatypes of nodes, such as:</p>
+<p class="commandtext">[ &lt;http://namespace/ns#value&gt;  &lt;rdf:type&gt;  &lt;mulgara:uriReference&gt; ]</p>
+<p class="bodytext">Nodetyping models also contain statements describing the type for all literals. While statements about literals are not strictly legal RDF, the statements do not exist in any RDF model, and are only used to constrain variables. An example of this kind of statement is:</p>
+<p class="commandtext">[ 'This is a string'  &lt;rdf:type&gt;  &lt;rdfs:Literal&gt; ]</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="2779.htm#o2780" target="_self">Creating Nodetyping Models</a></p><p class="relateditem"><a href="2779.htm#o2781" target="_self">Querying Nodetyping Models</a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="254.htm" target="_self">Advanced iTQL Operations</a></p><p class="relateditem"><a href="255.htm" target="_self">Views</a></p><p class="relateditem"><a href="257.htm" target="_self">Full-Text Models</a></p><p class="relateditem"><a href="262.htm" target="_self">Datatyping Models</a></p><p class="relateditem"><a href="3201.htm" target="_self">Filesystem Models</a></p></td>
+</tr>
+</table>
+
+<a name="o2780"></a><h3 class="heading3">Creating Nodetyping Models</h3>
+<p class="bodytext">Use the <code class="monospace"><a id="h1523" class="documentlinktemplate" title="create" href="176.htm" target="_self">create</a></code> command with the optional type argument of <code class="monospace">http://mulgara.org/mulgara#TypeModel</code> in addition to the model name. There should never be a need to create more than one nodetyping model per server.</p>
+<p class="bodytext">For example, to create the nodetyping model <code class="monospace">#type</code>:</p>
+<p class="commandtext">create &lt;rmi://mysite.com/server1#type&gt; &lt;http://mulgara.org/mulgara#TypeModel&gt;;</p>
+<p class="bodytext">The <code class="monospace">http://mulgara.org/mulgara#TypeModel</code> URI can be referred to in the aliased form <code class="monospace">&lt;mulgara:TypeModel&gt;</code>, when the <code class="monospace">mulgara</code> alias is active:</p>
+<p class="commandtext">alias &lt;http://mulgara.org/mulgara#&gt; as mulgara;</p>
+<a name="o2781"></a><h3 class="heading3">Querying Nodetyping Models</h3>
+<p class="bodytext">Querying nodetyping models is much the same as for normal Mulgara models. Nodetyping models contain type statements for all URI reference and literal nodes on the server (not just for a single model).</p>
+<p class="bodytext">To use a nodetyping model in a query, make sure you have a node type model available. See the <a id="h2782" class="documentlinktemplate" title="Creating Nodetyping Models" href="2779.htm#o2780" target="_self">Creating Nodetyping Models section</a> for more information. Then compose a constraint with the <code class="monospace">&lt;rdf:type&gt;</code> property, and direct it at the node type model with an <code class="monospace"><a id="h2783" class="" title="in Specifier" href="187.htm#o1530" target="_self">in</a></code> specifier.</p>
+<p class="bodytext">The example queries shown assume that the standard aliases are in place, as follows:</p>
+<p class="commandtext">alias &lt;http://mulgara.org/mulgara#&gt; as mulgara;<br />alias &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; as rdf;<br />alias &lt;http://www.w3.org/2000/01/rdf-schema#&gt; as rdfs;</p>
+<p class="bodytext">The first example uses the nodetyping model <code class="monospace">rmi://mysite.com/server1#type</code> to return all subjects with the type URI Reference.</p>
+<p class="commandtext">select $subject from &lt;rmi://mysite.com/server1#data&gt;<br />  where $subject $predicate $object<br />    and $subject &lt;rdf:type&gt; &lt;mulgara:uriReference&gt; in &lt;rmi://mysite.com/server1#type&gt;;</p>
+<p class="bodytext">This returns:</p>
+<p class="commandtext">[ http://qqq.com/staff/corky ]<br />[ http://qqq.com/staff/ppan ]<br />[ http://qqq.com/staff/spiderman ]<br />[ http://qqq.com/staff/superman ]</p>
+<p class="bodytext">The next example finds all predicates which are not used to refer to blank nodes. That is, the object node is either a literal or a URI reference.</p>
+<p class="commandtext">select $predicate from &lt;rmi://mysite.com/server1#data&gt;<br />  where $subject $predicate $object<br />    and ($object &lt;rdf:type&gt; &lt;mulgara:uriReference&gt; in &lt;rmi://mysite.com/server1#type&gt;<br />    or $object &lt;rdf:type&gt; &lt;rdfs:Literal&gt; in &lt;rmi://mysite.com/server1#type&gt;);</p>
+<p class="bodytext">This returns:</p>
+<p class="commandtext">[ http://www.w3.org/1999/02/22-rdf-syntax-ns#value ]<br />[ http://www.w3.org/2001/vcard-rdf/3.0#FN ]<br />[ http://www.w3.org/2001/vcard-rdf/3.0#Family ]<br />[ http://www.w3.org/2001/vcard-rdf/3.0#Given ]<br />[ http://www.w3.org/2001/vcard-rdf/3.0#Other ]<br />[ http://www.w3.org/2001/vcard-rdf/3.0#Prefix ]<br />[ http://www.w3.org/2001/vcard-rdf/3.0#BDAY ]<br />[ http://www.w3.org/2001/vcard-rdf/3.0#TITLE ]<br />[ http://www.w3.org/2001/vcard-rdf/3.0#ROLE ]<br />[ http://www.w3.org/2001/vcard-rdf/3.0#Street ]<br />[ http://www.w3.org/2001/vcard-rdf/3.0#Locality ]<br />[ http://www.w3.org/2001/vcard-rdf/3.0#Pcode ]<br />[ http://www.w3.org/2001/vcard-rdf/3.0#Country ]<br />[ http://www.w3.org/2001/vcard-rdf/3.0#NOTE ]</p>
+<p class="bodytext">The next example does not return any data as it looks for all statements that have a literal as the subject. This is not valid RDF so no data matches the constraints.</p>
+<p class="commandtext">select $subject from &lt;rmi://mysite.com/server1#data&gt;<br />  where $subject $predicate $object<br />    and $subject &lt;rdf:type&gt; &lt;rdfs:Literal&gt; in &lt;rmi://mysite.com/server1#type&gt;);</p>
+<p class="bodytext">The next example finds a list of all literals in the system. Note that the model in the <code class="monospace">from</code> clause is overridden and not used in the query.</p>
+<p class="commandtext">select $l from &lt;rmi://mysite.com/server1#data&gt;<br />  where $l &lt;rdf:type&gt; &lt;rdfs:Literal&gt; in &lt;rmi://mysite.com/server1#type&gt;;</p>
+<p class="bodytext">The final example lists the literals found in a single model. It is only necessary to join the variable to the object position in the constraint, as literals can only appear in this position in RDF.</p>
+<p class="commandtext">select $object from &lt;rmi://mysite.com/server1#data&gt;<br />  where $subject $predicate $object<br />    and $object &lt;rdf:type&gt; &lt;rdfs:Literal&gt; in &lt;rmi://mysite.com/server1#type&gt;;</p>
+<p class="bodytext">The first 10 lines of this 48 line result are:</p>
+<p class="commandtext">[ Corky Crystal ]<br />[ Crystal ]<br />[ Corky ]<br />[ Jacky ]<br />[ Dr ]<br />[ 1980-01-01 ]<br />[ Computer Officer Class 3 ]<br />[ Programmer ]<br />[ +61 7 555 5555 ]<br />[ corky@qqq.com ]</p>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

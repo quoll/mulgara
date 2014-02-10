@@ -1,0 +1,133 @@
+@charset "utf-8";
+* {
+  padding:0;
+  margin:0;
+}
+body {
+  font-family: "Trebuchet MS", Arial;
+  font-size: 12px;
+  color: #000000;
+  margin: 0px;
+  padding: 0px;
+  background-color: #FFFFFF;
+}
+a {
+  color: #0066cc;
+}
+a:hover {
+  text-decoration: none;
+}
+a:visited {
+  color: #330066;
+}
+
+#wrapper {
+  width: 1013px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #FFFFFF;
+  padding-right: 8px;
+  padding-left: 8px;
+  background-repeat: repeat-y;
+}
+#header {
+  background-image: url(../images/logo.jpg);
+  background-repeat: no-repeat;
+  background-position: left;
+  height: 109px;
+}
+#content {
+  padding-top: 18px;
+}
+#content h1 {
+  font-style: italic;
+  border-bottom-width: 1px;
+  border-bottom-style: dotted;
+  border-bottom-color: #999999;
+  padding-bottom: 15px;
+}
+#content h2 {
+  padding-top: 8px;
+}
+.clearer {
+  clear: both;
+}
+#logo {
+  float: left;
+}
+#content  p {
+  margin-top: 15px;
+}
+#content  ul {
+  margin-top: 15px;
+  margin-left: 15px;
+}
+#content  td {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+#content  tr {
+  spacing: 15px;
+}
+.styleBlack {
+  color: #FFFFFF
+}
+.styleLB {
+  font-size: 14px;
+  font-weight: bold;
+}
+.styleLarge {
+  font-size: 14px;
+  font-weight: bold;
+}
+.styleLColored {
+  font-size: 14px;
+  font-weight: bold;
+  color: #666666;
+}
+
+.formatTable td {
+  padding-top: 5px;
+}
+
+.queryTable td {
+  padding-top: 5px;
+}
+
+.allResultsTable td {
+  white-space: nowrap;
+  padding-top: 5px;
+}
+
+.fwdLinkTable td {
+  white-space: nowrap;
+  padding-top: 5px;
+}
+
+.resultTable {
+  margin-top: 5px;
+  border-spacing: 0;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+.resultTable th {
+  background-color: #CCCCCC;
+  border: solid #000 1px;
+  font-weight: bold;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.rtd {
+  white-space: nowrap;
+  padding: 5px;
+  border: solid #000 1px;
+}
+
+.borderLess {
+  white-space: nowrap;
+  padding: 0px;
+  font-weight: bold;
+  border: blank;
+}

@@ -1,0 +1,553 @@
+------------------------------------------------------------------------
+r1733 | pag | 2009-06-10 19:26:10 -0500 (Wed, 10 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/filter/value/TypedLiteral.java
+
+Storing the actual datatype for literals instead of using a supertype. Also automatically converting xsd: to the domain, as would usually have happened with the general types
+------------------------------------------------------------------------
+r1732 | pag | 2009-06-10 19:24:41 -0500 (Wed, 10 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+
+Picking up when an HTTP access tries to leave a transaction open and closes it
+------------------------------------------------------------------------
+r1731 | pag | 2009-06-10 19:23:53 -0500 (Wed, 10 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Equals.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/RelationalExpression.java
+
+Fixed problem where equality tests was only working on numbers
+------------------------------------------------------------------------
+r1730 | pag | 2009-06-10 19:23:05 -0500 (Wed, 10 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/TuplesContext.java
+
+Added some error logging to pick up those cases when a Tuples isn't resolving correctly. This will usually only happen when debugging in Eclipse (since Eclipse creates copies of some objects when you look carefully at them instead of reusing them)
+------------------------------------------------------------------------
+r1729 | alexhall | 2009-06-10 15:10:38 -0500 (Wed, 10 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara-config.xml
+
+Adding the SWRL rule loader to the default configuration.
+------------------------------------------------------------------------
+r1728 | alexhall | 2009-06-10 11:44:10 -0500 (Wed, 10 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/swrl/java/org/mulgara/swrl/SWRLLoader.java
+
+Add an early check to return null if no SWRL rules are found.
+------------------------------------------------------------------------
+r1727 | pag | 2009-06-09 22:01:30 -0500 (Tue, 09 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+
+Wrapped a transaction around multiple HTTP requests, and ensured that the HTTP session is never left in the middle of a transaction
+------------------------------------------------------------------------
+r1726 | pag | 2009-06-09 22:00:41 -0500 (Tue, 09 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlInterpreter.java
+
+Tacked an extra ; to the end of multiple queries, so that that last one will always be processed.
+------------------------------------------------------------------------
+r1725 | pag | 2009-06-09 21:59:41 -0500 (Tue, 09 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/krule/java/org/mulgara/krule/KruleLoader.java
+
+Added an early abort while returning null for data that is not a valid Krule configuration
+------------------------------------------------------------------------
+r1724 | pag | 2009-06-09 14:18:41 -0500 (Tue, 09 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara-embedded.xsd
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/AdvDatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/BasicDatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/BuildRulesOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/Database.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseFactory.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSession.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSessionListQueryUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/ExternalTransactionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/LocalJRDFDatabaseSession.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RmiSessionFactory.java
+
+Now handling lists of rule engines, added after construction time, rather than a single rule engine provided to various constructors
+------------------------------------------------------------------------
+r1723 | pag | 2009-06-09 14:17:38 -0500 (Tue, 09 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlInterpreter.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/SparqlInterpreter.java
+   A /trunk/src/jar/util/java/org/mulgara/util/ServerInfoRef.java
+
+Added reflection support for accessing ServerInfo
+------------------------------------------------------------------------
+r1722 | pag | 2009-06-09 14:16:15 -0500 (Tue, 09 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+
+Preliminary support for multiple queries
+------------------------------------------------------------------------
+r1721 | pag | 2009-06-08 17:51:15 -0500 (Mon, 08 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/swrl/java/org/mulgara/swrl/SWRLLoader.java
+
+Compiler is failing on this Override annotation
+------------------------------------------------------------------------
+r1720 | alexhall | 2009-06-08 14:47:56 -0500 (Mon, 08 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/.classpath
+   M /trunk/build.xml
+   M /trunk/src/jar/krule/java/org/mulgara/krule/QueryStruct.java
+   M /trunk/src/jar/krule/java/org/mulgara/krule/RuleStructure.java
+   A /trunk/src/jar/query/java/org/mulgara/query/rdf/SWRL.java
+   A /trunk/src/jar/swrl
+   A /trunk/src/jar/swrl/build.xml
+   A /trunk/src/jar/swrl/java
+   A /trunk/src/jar/swrl/java/org
+   A /trunk/src/jar/swrl/java/org/mulgara
+   A /trunk/src/jar/swrl/java/org/mulgara/swrl
+   A /trunk/src/jar/swrl/java/org/mulgara/swrl/SWRLLoader.java
+   A /trunk/src/jar/swrl/java/org/mulgara/swrl/SWRLStructureException.java
+   A /trunk/src/jar/swrl/swrl-build.properties
+
+Initial implementation of a rule loader for SWRL rules.  This is only a basic parser with enough functionality to load and execute simple SWRL examples.  Future improvements include adding support for builtins; adding a test suite; and modifying the RuleLoader interface to allow for multiple rule loaders to be configured in the system.
+------------------------------------------------------------------------
+r1719 | pag | 2009-06-04 23:04:36 -0500 (Thu, 04 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/jrdf/graph/AbstractLiteral.java
+   M /trunk/src/jar/query/java/org/jrdf/util/EscapeUtil.java
+   M /trunk/src/jar/query/java/org/jrdf/util/EscapeUtilUnitTest.java
+   M /trunk/src/jar/query/java/org/mulgara/query/rdf/LiteralImpl.java
+   M /trunk/src/jar/query/java/org/mulgara/query/rdf/LiteralImplUnitTest.java
+
+Updated to perform escapes on the UTF-8 encoding that ARP provides. This will fall back to string escapes if a UTF-8 byte sequence is discovered to be invalid
+------------------------------------------------------------------------
+r1718 | alexhall | 2009-06-04 16:33:37 -0500 (Thu, 04 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlSession.java
+
+Disable logging of keystrokes to an output file.
+------------------------------------------------------------------------
+r1717 | alexhall | 2009-06-04 16:06:30 -0500 (Thu, 04 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/TransactionalAnswer.java
+
+Adding a missing call to AnswerResultOperation.getObject() in the TransactionalAnswer.getObject(String) method.
+------------------------------------------------------------------------
+r1716 | alexhall | 2009-06-04 15:51:50 -0500 (Thu, 04 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/TransactionalAnswer.java
+
+Suppress warning for unused error reporting method.
+------------------------------------------------------------------------
+r1715 | alexhall | 2009-06-04 12:27:45 -0500 (Thu, 04 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/krule/java/org/mulgara/krule/KruleLoader.java
+   M /trunk/src/jar/krule/java/org/mulgara/krule/QueryStruct.java
+
+Remove unused namespace alias map.
+------------------------------------------------------------------------
+r1714 | pag | 2009-06-02 20:46:00 -0500 (Tue, 02 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/ant-task/java/org/mulgara/ant/task/itql/ITQLCommandUnitTest.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/AbstractGraphFactory.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/ClientClosableIterator.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/ClientGraph.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/ClientTripleFactory.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/GraphElementBuilder.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/RemoteGraphProxy.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/VirtualClosableIteratorProxy.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/answer/ClosableAnswerIteratorProxy.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/answer/RemoteAnswerGraphProxy.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/exception/JRDFClientException.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/itql/ItqlGraphProxy.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/itql/SessionGraphProxy.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/test/ClientGraphUnitTest.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/test/ItqlGraphUnitTest.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/test/SessionGraphUnitTest.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/util/ClientGraphUtil.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/util/ClosableArrayIteratorProxy.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/util/DefaultClosableIteratorProxy.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/util/NodeComparator.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/util/ObjectNodeComparator.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/util/OrderedClosableIteratorProxy.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/util/PredicateNodeComparator.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/util/SPOComparator.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/util/SubjectNodeComparator.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/util/UniqueSubjectIterator.java
+   M /trunk/src/jar/client-jrdf/java/org/mulgara/client/jrdf/writer/MemoryXMLWriter.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/Handler.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/MBoxParserUnitTest.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/MboxFolder.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/MboxFolderImpl.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/MboxMessage.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/MboxReader.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/MboxStore.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/MboxStoreImpl.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/MboxUrlConnection.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/MimeMessageToPart.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/QuollEmailAddress.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/config/ConfigManager.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/exception/IOProcessingException.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/exception/MBoxProcessException.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/exception/MimeMessageProcessException.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/exception/MimeProcessingException.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/exception/UnsupportedEncodingProcessingException.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/model/MBox.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/model/MBoxManager.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/model/ModelFactory.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/model/exception/FactoryException.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/model/exception/InvalidMBoxException.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/model/exception/ModelException.java
+   M /trunk/src/jar/content-mbox/java/org/mulgara/content/mbox/parser/model/exception/VocabularyException.java
+   M /trunk/src/jar/content-mp3/java/org/mulgara/content/mp3/MP3StatementsUnitTest.java
+   M /trunk/src/jar/content-mp3/java/org/mulgara/content/mp3/parser/ID3ParsersUnitTest.java
+   M /trunk/src/jar/content-mp3/java/org/mulgara/content/mp3/parser/ID3v1ParserImpl.java
+   M /trunk/src/jar/content-mp3/java/org/mulgara/content/mp3/parser/ID3v2ParserImpl.java
+   M /trunk/src/jar/content-mp3/java/org/mulgara/content/mp3/parser/IdentifierProcessor.java
+   M /trunk/src/jar/content-mp3/java/org/mulgara/content/mp3/parser/ParserFactory.java
+   M /trunk/src/jar/content-mp3/java/org/mulgara/content/mp3/parser/api/MP3Conversion.java
+   M /trunk/src/jar/content-mp3/java/org/mulgara/content/mp3/parser/exception/ConversionException.java
+   M /trunk/src/jar/content-mp3/java/org/mulgara/content/mp3/parser/exception/FactoryException.java
+   M /trunk/src/jar/content-mp3/java/org/mulgara/content/mp3/parser/exception/IdentifierException.java
+   M /trunk/src/jar/content-mp3/java/org/mulgara/content/mp3/parser/exception/ParserException.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Rollback.java
+   M /trunk/src/jar/query/java/org/mulgara/server/JRDFSession.java
+   M /trunk/src/jar/query/java/org/mulgara/server/JenaSession.java
+   M /trunk/src/jar/query/java/org/mulgara/server/NonRemoteSessionException.java
+   M /trunk/src/jar/query/java/org/mulgara/server/ResourceManagerInstanceAdaptor.java
+   M /trunk/src/jar/query/java/org/mulgara/server/SessionFactoryConfiguration.java
+   M /trunk/src/jar/query/java/org/mulgara/server/SessionFactoryException.java
+
+Removed warnings. These included: unused imports, variables that were never read, generics, unused loggers, and missing serialization IDs on serializable classes (mostly exceptions). Some formatting was updated as well, particularly where opening braces were on a new line, and 'catch' and 'else' were put on a new line after a closing brace.
+------------------------------------------------------------------------
+r1713 | pag | 2009-06-02 20:41:52 -0500 (Tue, 02 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryServlet.java
+
+Passing through empty default graphs, so the interpreter knows not to override the default.
+------------------------------------------------------------------------
+r1712 | pag | 2009-06-02 20:40:41 -0500 (Tue, 02 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/SparqlInterpreter.java
+
+Fixed to accept empty or null strings as the default graph, letting the interpreter use the graphs defined in the query, if present.
+------------------------------------------------------------------------
+r1711 | alexhall | 2009-06-01 10:02:08 -0500 (Mon, 01 Jun 2009) | 1 line
+Changed paths:
+   M /trunk/jxdata/iTQL/rdfs/rdfs-complex-graph-expression/createResult1.txt
+
+Changed svn:eol-style to native
+------------------------------------------------------------------------
+r1710 | pag | 2009-05-29 21:31:09 -0500 (Fri, 29 May 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/AnnotatedNode.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/Triple.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/parser/cst/TripleList.java
+
+Fixed a problem where AnnotatedNodes were not being treated correctly. Annotated nodes are not a URI/BlankNode/Literal themselves, but represent a node (expected to be blank) which in turn has a property list attached to it. Now the subject of the annotation is referenced correctly, and a set of triples describing that node with all of its properties are correctly being added as well.
+------------------------------------------------------------------------
+r1709 | pag | 2009-05-29 21:28:26 -0500 (Fri, 29 May 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/store-stringpool-memory/java/org/mulgara/store/stringpool/memory/MemoryStringPoolImpl.java
+
+Fixed a bug where tuples from the temporary stringpool were being returned as positive numbers, meaning they were being globalized using the peristent store and not the temporary store.
+------------------------------------------------------------------------
+r1708 | pag | 2009-05-29 21:25:48 -0500 (Fri, 29 May 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/krule/java/org/mulgara/krule/KruleLoader.java
+
+Calling beforeFirst on answers before using them. The ommission was a mistake, but never resulted in a problem
+------------------------------------------------------------------------
+r1707 | pag | 2009-05-29 21:24:25 -0500 (Fri, 29 May 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/web/java/org/mulgara/webquery/QueryServlet.java
+
+Taking into account the tutorial servlet as well as the webui
+------------------------------------------------------------------------
+r1706 | pag | 2009-05-29 21:23:45 -0500 (Fri, 29 May 2009) | 1 line
+Changed paths:
+   M /trunk/jxdata/iTQL/rdfs/rdfs-complex-graph-expression/createResult1.txt
+
+Removed CR characters, for compatibility with *nix systems
+------------------------------------------------------------------------
+r1705 | alexhall | 2009-05-28 11:57:21 -0500 (Thu, 28 May 2009) | 1 line
+Changed paths:
+   A /trunk/jxdata/iTQL/rdfs/rdfs-complex-graph-expression (from /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range:1703)
+   R /trunk/jxdata/iTQL/rdfs/rdfs-complex-graph-expression/createResult1.txt
+   R /trunk/jxdata/iTQL/rdfs/rdfs-complex-graph-expression/loadResult2.txt (from /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/loadResult2.txt:1704)
+   R /trunk/jxdata/iTQL/rdfs/rdfs-complex-graph-expression/loadResult3.txt (from /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/loadResult3.txt:1704)
+   R /trunk/jxdata/iTQL/rdfs/rdfs-complex-graph-expression/loadResult4.txt (from /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/loadResult4.txt:1704)
+   R /trunk/jxdata/iTQL/rdfs/rdfs-complex-graph-expression/ruleResult1.txt (from /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/ruleResult1.txt:1704)
+   R /trunk/jxdata/iTQL/rdfs/rdfs-complex-graph-expression/test.jxu (from /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/test.jxu:1704)
+
+Test cases for applying rules to complex graph expressions
+------------------------------------------------------------------------
+r1704 | alexhall | 2009-05-28 10:51:01 -0500 (Thu, 28 May 2009) | 1 line
+Changed paths:
+   A /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/Manifest.n3 (from /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/Manifest.n3:1702)
+   A /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/Manifest.nt (from /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/Manifest.nt:1702)
+   A /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/Manifest.rdf (from /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/Manifest.rdf:1702)
+   A /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/axioms.n3 (from /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/axioms.n3:1702)
+   A /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/conjunction-test (from /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/conjunction-test:1702)
+   D /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/createResult1.txt
+   M /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/loadResult2.txt
+   M /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/loadResult3.txt
+   M /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/loadResult4.txt
+   A /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/loadResult5.txt (from /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/loadResult5.txt:1702)
+   A /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/loadResult6.txt (from /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/loadResult6.txt:1702)
+   A /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/mulgara-readme.txt (from /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/mulgara-readme.txt:1702)
+   A /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/nonconclusions005.rdf (from /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/nonconclusions005.rdf:1702)
+   A /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/nonconclusions006.rdf (from /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/nonconclusions006.rdf:1702)
+   A /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/premises005.rdf (from /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/premises005.rdf:1702)
+   A /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/premises006.rdf (from /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/premises006.rdf:1702)
+   M /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/ruleResult1.txt
+   M /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/test.jxu
+
+Revert changes to jxunit tests from r1703
+------------------------------------------------------------------------
+r1703 | alexhall | 2009-05-28 09:23:40 -0500 (Thu, 28 May 2009) | 1 line
+Changed paths:
+   D /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/Manifest.n3
+   D /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/Manifest.nt
+   D /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/Manifest.rdf
+   D /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/axioms.n3
+   D /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/conjunction-test
+   A /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/createResult1.txt
+   M /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/loadResult2.txt
+   M /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/loadResult3.txt
+   M /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/loadResult4.txt
+   D /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/loadResult5.txt
+   D /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/loadResult6.txt
+   D /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/mulgara-readme.txt
+   D /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/nonconclusions005.rdf
+   D /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/nonconclusions006.rdf
+   D /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/premises005.rdf
+   D /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/premises006.rdf
+   M /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/ruleResult1.txt
+   M /trunk/jxdata/iTQL/rdfs/rdfs-domain-and-range/test.jxu
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlInterpreter.java
+   M /trunk/src/jar/querylang/sablecc/itql.grammar
+
+TQL modifications to support applying rules to complex graph expressions.
+------------------------------------------------------------------------
+r1702 | alexhall | 2009-05-26 16:57:30 -0500 (Tue, 26 May 2009) | 1 line
+Changed paths:
+   D /trunk/src/jar/query/java/org/mulgara/query/GraphPartition.java
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/GraphExpressionBuilder.java
+   M /trunk/src/jar/querylang/sablecc/itql.grammar
+
+Remove unimplemented GraphPartition ('xor') operator from TQL grammar.
+------------------------------------------------------------------------
+r1701 | alexhall | 2009-05-26 16:27:50 -0500 (Tue, 26 May 2009) | 1 line
+Changed paths:
+   M /trunk/jxdata/iTQL/relative_uris/createResult1.txt
+   M /trunk/jxdata/iTQL/relative_uris/insertResult1.txt
+   M /trunk/jxdata/iTQL/relative_uris/queryResult1.txt
+   M /trunk/jxdata/iTQL/relative_uris/queryResult2.txt
+   M /trunk/jxdata/iTQL/relative_uris/test.jxu
+
+Set svn:eol-style to native.
+------------------------------------------------------------------------
+r1700 | alexhall | 2009-05-22 15:21:23 -0500 (Fri, 22 May 2009) | 1 line
+Changed paths:
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-container-membership-superProperty/Manifest.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-container-membership-superProperty/loadResult1.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-container-membership-superProperty/not1C.n3
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-container-membership-superProperty/not1C.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-container-membership-superProperty/not1P.n3
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-container-membership-superProperty/not1P.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-container-membership-superProperty/queryResult1.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-container-membership-superProperty/ruleResult1.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-container-membership-superProperty/test.jxu
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/Manifest.n3
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/Manifest.nt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/Manifest.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/axioms.n3
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/conjunction-test
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/loadResult1.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/loadResult2.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/loadResult3.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/loadResult4.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/loadResult5.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/mulgara-readme.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/nonconclusions005.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/nonconclusions006.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/premises005.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/premises006.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/queryResult1.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/queryResult2.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/queryResult7.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/queryResult8.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/queryResultCommon.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/readme.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/ruleResult1.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/test.jxu
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/test001.nt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/test001.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/test002.nt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/test002.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/test003.nt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/test003.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/test004.nt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-domain-and-range/test004.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-no-cycles-in-subClassOf/Manifest.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-no-cycles-in-subClassOf/loadResult1.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-no-cycles-in-subClassOf/queryResult3.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-no-cycles-in-subClassOf/queryResultCommon.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-no-cycles-in-subClassOf/ruleResult1.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-no-cycles-in-subClassOf/test.jxu
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-no-cycles-in-subClassOf/test001.nt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-no-cycles-in-subClassOf/test001.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-no-cycles-in-subPropertyOf/Manifest.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-no-cycles-in-subPropertyOf/loadResult1.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-no-cycles-in-subPropertyOf/queryResult3.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-no-cycles-in-subPropertyOf/queryResultCommon.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-no-cycles-in-subPropertyOf/ruleResult1.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-no-cycles-in-subPropertyOf/test.jxu
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-no-cycles-in-subPropertyOf/test001.nt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-no-cycles-in-subPropertyOf/test001.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-subClassOf-a-Property/Manifest.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-subClassOf-a-Property/mulgara-readme.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-subClassOf-a-Property/test001.nt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-subPropertyOf-semantics/Manifest.n3
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-subPropertyOf-semantics/Manifest.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-subPropertyOf-semantics/loadResult1.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-subPropertyOf-semantics/mulgara-readme.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-subPropertyOf-semantics/queryResult1.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-subPropertyOf-semantics/queryResult2.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-subPropertyOf-semantics/ruleResult1.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-subPropertyOf-semantics/test.jxu
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-subPropertyOf-semantics/test001.nt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-subPropertyOf-semantics/test001.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-subPropertyOf-semantics/test002.nt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-subPropertyOf-semantics/test002.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-transitive-subSubProperty/mulgara-readme.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-transitive-subSubProperty/test001.nt
+   M /trunk/jxdata/iTQL/rdfs-dl/rdfs-transitive-subSubProperty/test001.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/statement-entailment/Manifest.n3
+   M /trunk/jxdata/iTQL/rdfs-dl/statement-entailment/Manifest.nt
+   M /trunk/jxdata/iTQL/rdfs-dl/statement-entailment/Manifest.rdf
+   M /trunk/jxdata/iTQL/rdfs-dl/statement-entailment/loadResult1.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/statement-entailment/loadResult2.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/statement-entailment/queryResult1.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/statement-entailment/queryResult2.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/statement-entailment/ruleResult1.txt
+   M /trunk/jxdata/iTQL/rdfs-dl/statement-entailment/test.jxu
+   M /trunk/jxdata/iTQL/rdfs-dl/statement-entailment/test001
+   M /trunk/jxdata/iTQL/rdfs-dl/statement-entailment/test001a.nt
+   M /trunk/jxdata/iTQL/rdfs-dl/statement-entailment/test001b.nt
+   M /trunk/jxdata/iTQL/rdfs-dl/statement-entailment/test002a.nt
+   M /trunk/jxdata/iTQL/rdfs-dl/statement-entailment/test002b.nt
+
+Set svn:eol-style to native.
+------------------------------------------------------------------------
+r1699 | alexhall | 2009-05-22 13:39:13 -0500 (Fri, 22 May 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/krule/java/org/mulgara/krule/KruleLoader.java
+   M /trunk/src/jar/krule/java/org/mulgara/krule/QueryStruct.java
+   M /trunk/src/jar/query/java/org/mulgara/query/GraphResource.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/ApplyRules.java
+   M /trunk/src/jar/query/java/org/mulgara/rules/RuleLoaderFactory.java
+   M /trunk/src/jar/query/java/org/mulgara/server/Session.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/BuildRulesOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseSession.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteSession.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteSessionWrapperSession.java
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/SessionWrapperRemoteSession.java
+
+Add API support for applying rules to complex graph expressions (as opposed to single graph URI's)
+------------------------------------------------------------------------
+r1698 | alexhall | 2009-05-22 13:08:07 -0500 (Fri, 22 May 2009) | 1 line
+Changed paths:
+   M /trunk/.classpath
+
+Missed removing rules module from the Eclipse classpath
+------------------------------------------------------------------------
+r1697 | alexhall | 2009-05-22 13:04:17 -0500 (Fri, 22 May 2009) | 1 line
+Changed paths:
+   M /trunk/build.xml
+   M /trunk/src/jar/client-jrdf/build.xml
+   M /trunk/src/jar/content-rlog/build.xml
+   M /trunk/src/jar/descriptor/build.xml
+   M /trunk/src/jar/driver/build.xml
+   M /trunk/src/jar/krule/build.xml
+   M /trunk/src/jar/query/build.xml
+   A /trunk/src/jar/query/java/org/mulgara/rules (from /trunk/src/jar/rules/java/org/mulgara/rules:1694)
+   M /trunk/src/jar/querylang/build.xml
+   M /trunk/src/jar/resolver/build.xml
+   M /trunk/src/jar/resolver-relational/build.xml
+   M /trunk/src/jar/resolver-test/build.xml
+   D /trunk/src/jar/rules
+   M /trunk/src/jar/server-http/build.xml
+   M /trunk/src/jar/server-rmi/build.xml
+
+Merging the rules module into the query module.  The org.mulgara.rules module didn't really need its own module as it contains interfaces to describe general system functionality.  Adding the ability to apply rules to general GraphExpressions (as opposed to the current single graph URI) will introduce a circular dependency on the query module if rules is left intact.
+------------------------------------------------------------------------
+r1696 | pag | 2009-05-22 12:24:39 -0500 (Fri, 22 May 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/content-rlog/java/org/mulgara/krule/rlog/Rlog.java
+
+Fixed triggering direction of rules, which had been triggering backwards
+------------------------------------------------------------------------
+r1695 | pag | 2009-05-21 18:25:56 -0500 (Thu, 21 May 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+
+Fixed a problem of overriding JSON format for any queries that don't use construct
+------------------------------------------------------------------------
+r1694 | pag | 2009-05-20 17:18:50 -0500 (Wed, 20 May 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/SparqlInterpreter.java
+
+Now allowing graphs in queries to be correctly set by the protocol. Also testing the parameters more thoroughly, and added some REST methods
+------------------------------------------------------------------------
+r1693 | pag | 2009-05-20 17:15:19 -0500 (Wed, 20 May 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-memory/java/org/mulgara/resolver/memory/MemoryXAResource.java
+
+Removed strange warning that shows up in Eclipse
+------------------------------------------------------------------------
+r1692 | pag | 2009-05-14 10:38:17 -0500 (Thu, 14 May 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-http/java/org/mulgara/resolver/http/HttpContent.java
+
+Protected the construction of MimeType from bad parameters
+------------------------------------------------------------------------
+r1691 | pag | 2009-05-04 13:13:06 -0500 (Mon, 04 May 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/build.xml
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+   M /trunk/src/jar/querylang/java/org/mulgara/sparql/SparqlInterpreter.java
+
+Using the configured default graph instead of a hard-coded value
+------------------------------------------------------------------------
+r1690 | pag | 2009-05-04 13:12:22 -0500 (Mon, 04 May 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/BasicDatabaseSessionUnitTest.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/BootstrapOperation.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/Database.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/DatabaseMetadataImpl.java
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/XADatabaseSessionUnitTest.java
+
+Creating the default graph whenever the system is bootstrapped
+------------------------------------------------------------------------
+r1689 | pag | 2009-05-04 13:11:41 -0500 (Mon, 04 May 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraOptionParser.java
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+
+Handling option to set the default graph
+------------------------------------------------------------------------
+r1688 | pag | 2009-05-04 13:11:20 -0500 (Mon, 04 May 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/ServerInfo.java
+
+Added a field for the default graph
+------------------------------------------------------------------------
+r1687 | pag | 2009-05-04 13:10:39 -0500 (Mon, 04 May 2009) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/rdf/Mulgara.java
+
+added in the default value for the default graph (yes, I meant to say it that way)
+------------------------------------------------------------------------

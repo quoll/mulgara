@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Embedded Mulgara Semantic Store configuration file.
+-->
+
+<MulgaraConfig>
+
+  <!-- Paths to external component configuration, relative to JAR file -->
+  <ExternalConfigPaths>
+    <MulgaraLogging>conf/log4j-mulgara.xml</MulgaraLogging>
+    <WebDefault>conf/webdefault.xml</WebDefault>
+  </ExternalConfigPaths>
+
+  <!--
+    The hostname to bind Mulgara to
+
+    Note. Not setting will cause Mulgara to bind to the canonical local machine name
+  -->
+  <!--<MulgaraHost>localhost</MulgaraHost>-->
+
+  <!--
+    Configuration for the Jetty servlet container
+
+    Note. Not setting the "Host" parameter will cause Jetty to listen on
+          all interfaces
+  -->
+  <Jetty>
+    <Listener>
+      <!--<Host>localhost</Host>-->
+      <Port>8090</Port>
+      <MinThreads>5</MinThreads>
+      <MaxThreads>255</MaxThreads>
+      <MaxIdleTimeMs>60000</MaxIdleTimeMs>
+      <MaxReadTimeMs>60000</MaxReadTimeMs>
+      <LowResourcePersistTimeMs>5000</LowResourcePersistTimeMs>
+    </Listener>
+  </Jetty>
+
+  <!-- The name of the server, used for RMI binding -->
+  <ServerName>server2</ServerName>
+
+  <!-- RMI registry port -->
+  <RMIPort>1000</RMIPort>
+
+  <!-- Flag to enable/disable interruptible RMI sessions. Disabled by default. -->
+  <RMIInterrupt>false</RMIInterrupt>
+
+  <!--
+    The path to persist data to, one of:
+
+    + . - current directory (directory from which the Mulgara JAR was run)
+    + temp - default system temporary directory
+    + <path> - user defined (OS dependant) path
+  -->
+  <PersistencePath>.</PersistencePath>
+
+  <!--
+    Database implementation to use, one of:
+
+    org.mulgara.store.xa.XADatabaseImpl
+      (Metaphasic transactional triple store)
+  -->
+  <TripleStoreImplementation>org.mulgara.store.xa.XADatabaseImpl</TripleStoreImplementation>
+
+  <!-- iTQL script to run on startup -->
+  <StartupScript>foo.itql</StartupScript>
+
+</MulgaraConfig>

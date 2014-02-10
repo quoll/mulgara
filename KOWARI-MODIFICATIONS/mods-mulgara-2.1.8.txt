@@ -1,0 +1,183 @@
+------------------------------------------------------------------------
+r1953 | pag | 2010-05-04 12:16:20 -0400 (Tue, 04 May 2010) | 1 line
+Changed paths:
+   M /trunk/LEGAL.txt
+
+Updated the email address for requesting corrections
+------------------------------------------------------------------------
+r1952 | pag | 2010-05-04 11:43:40 -0400 (Tue, 04 May 2010) | 1 line
+Changed paths:
+   M /trunk/common.properties
+
+Moving to new version
+------------------------------------------------------------------------
+r1951 | pag | 2010-05-04 11:38:57 -0400 (Tue, 04 May 2010) | 1 line
+Changed paths:
+   M /trunk/build.sh
+
+Added in an option to set the Java build target for the entire project
+------------------------------------------------------------------------
+r1950 | pag | 2010-05-03 21:40:09 -0400 (Mon, 03 May 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/C.java
+
+Missing import from java.utils
+------------------------------------------------------------------------
+r1949 | pag | 2010-05-01 18:29:44 -0400 (Sat, 01 May 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/HttpServices.java
+
+Gracefully handles a missing Jetty Context configuration
+------------------------------------------------------------------------
+r1948 | pag | 2010-05-01 18:28:48 -0400 (Sat, 01 May 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/server/java/org/mulgara/server/EmbeddedMulgaraServer.java
+
+Better error reporting in case an exception does not contain a message
+------------------------------------------------------------------------
+r1947 | pag | 2010-04-28 17:17:51 -0400 (Wed, 28 Apr 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/C.java
+
+Fixed the javadoc for tail(List)
+------------------------------------------------------------------------
+r1946 | pag | 2010-04-28 15:21:38 -0400 (Wed, 28 Apr 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/C.java
+
+Added a proper tail method
+------------------------------------------------------------------------
+r1945 | pag | 2010-04-25 17:12:03 -0400 (Sun, 25 Apr 2010) | 1 line
+Changed paths:
+   M /trunk/conf/mulgara-embedded.dtd
+   M /trunk/conf/mulgara-embedded.xsd
+   M /trunk/src/jar/server/java/org/mulgara/server/HttpServices.java
+
+Added configuration for the maximum size of an HTTP form
+------------------------------------------------------------------------
+r1944 | pag | 2010-04-22 14:37:56 -0400 (Thu, 22 Apr 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+
+Finer grained protection of transactions in POST operations. This avoids any transactions on read-only operations, or on read operations at the start and end of a set of operations
+------------------------------------------------------------------------
+r1943 | pag | 2010-04-21 23:49:18 -0400 (Wed, 21 Apr 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/AbstractStreamedAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlJSONAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlXMLAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedTqlXMLAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/TqlServlet.java
+
+Fixed up sub-answer responses, which were being incorrectly structured. Also fixed up multi-answer responses for POST requests, to return all answers, and to correctly close them.
+------------------------------------------------------------------------
+r1942 | pag | 2010-04-21 23:47:35 -0400 (Wed, 21 Apr 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/itql/TqlInterpreter.java
+
+added some protection to code that can occasionally process a null command
+------------------------------------------------------------------------
+r1941 | pag | 2010-04-21 23:46:28 -0400 (Wed, 21 Apr 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/web/java/org/mulgara/webquery/html/HtmlElement.java
+
+Missed this update with the change to C.last
+------------------------------------------------------------------------
+r1940 | pag | 2010-04-21 23:45:36 -0400 (Wed, 21 Apr 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/functional/C.java
+
+was using the name 'tail' when I should have said 'last'. 'tail' is a sublist of everything except 'first', and is an important (missing) function needed for good functional programming with lists.
+------------------------------------------------------------------------
+r1939 | pag | 2010-04-17 12:21:34 -0400 (Sat, 17 Apr 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+
+Added support for queries executed with a POST rather than a GET (see the POST bindings in http://www.w3.org/TR/rdf-sparql-protocol/#query-bindings-http). Also added infrastructure support for using PATCH via a doPatch method. This method is currently just a default method reporting that PATCH is not supported.
+------------------------------------------------------------------------
+r1938 | pag | 2010-04-17 12:16:03 -0400 (Sat, 17 Apr 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/util/java/org/mulgara/util/StringUtil.java
+
+Added a utility for extracting a data from a Reader into a String
+------------------------------------------------------------------------
+r1937 | pag | 2010-04-16 12:38:10 -0400 (Fri, 16 Apr 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/StringPoolSession.java
+
+state protection of the string pool should be global
+------------------------------------------------------------------------
+r1936 | pag | 2010-04-16 12:28:57 -0400 (Fri, 16 Apr 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+
+Added a hook for HTTP PATCH requests
+------------------------------------------------------------------------
+r1935 | alexhall | 2010-04-12 11:13:12 -0400 (Mon, 12 Apr 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/server-rmi/java/org/mulgara/server/rmi/RemoteAnswerWrapperAnswer.java
+
+Only generate stack traces when in debug mode
+------------------------------------------------------------------------
+r1934 | alexhall | 2010-04-12 11:12:23 -0400 (Mon, 12 Apr 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-spi/java/org/mulgara/resolver/spi/SumOfProductExpansionTransformer.java
+
+Fix ClassCastException when expanding filtered constraint
+------------------------------------------------------------------------
+r1933 | pag | 2010-04-07 14:34:03 -0400 (Wed, 07 Apr 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/AbstractStreamedAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/AbstractStreamedXMLAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedN3Answer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedRdfXmlAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlJSONAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlJSONObject.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlXMLAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedSparqlXMLObject.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/StreamedTqlXMLAnswer.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/ProtocolServlet.java
+   M /trunk/src/jar/querylang/java/org/mulgara/protocol/http/TqlServlet.java
+
+Added the option to emit multiple answers in a single TQL response. This meant opening up XML streaming to allow the parts to be emitted manually, with one header, multiple answers and a single closing.
+------------------------------------------------------------------------
+r1932 | alexhall | 2010-03-24 15:07:10 -0400 (Wed, 24 Mar 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalQuery.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalResolution.java
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/d2rq/ClassMapElem.java
+
+Applying patch from Alex Miller to support the d2rq:containsDuplicates property in the relational resolver
+------------------------------------------------------------------------
+r1931 | alexhall | 2010-03-18 17:26:58 -0400 (Thu, 18 Mar 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/PatternDesc.java
+
+Applying patch submitted by Alex Miller for Trac issue 213 (support urlify and urlencode flags in database column references in URI patterns for D2RQ resolver)
+------------------------------------------------------------------------
+r1930 | alexhall | 2010-03-16 09:52:56 -0400 (Tue, 16 Mar 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver-relational/java/org/mulgara/resolver/relational/RelationalAnswer.java
+
+Fixing log levels
+------------------------------------------------------------------------
+r1929 | pag | 2010-03-03 15:05:53 -0500 (Wed, 03 Mar 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/resolver/java/org/mulgara/resolver/StringPoolSession.java
+
+created a new lock for managing transaction state, separate to the lock used for synchronizing between node and string pools
+------------------------------------------------------------------------
+r1928 | pag | 2010-02-17 17:45:36 -0500 (Wed, 17 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/build.xml
+
+Added a delay to allow the previous test time to shut down the RMI Registry
+------------------------------------------------------------------------
+r1927 | pag | 2010-02-17 17:45:00 -0500 (Wed, 17 Feb 2010) | 1 line
+Changed paths:
+   M /trunk/common.xml
+
+Using a literal string instead of a property, since the script is ignoring the property
+------------------------------------------------------------------------

@@ -1,0 +1,39 @@
+------------------------------------------------------------------------
+r737 | pag | 2008-04-04 14:17:57 -0500 (Fri, 04 Apr 2008) | 1 line
+Changed paths:
+   M /trunk/common.properties
+
+Updated for new minor-release version number
+------------------------------------------------------------------------
+r736 | pag | 2008-04-04 07:37:03 -0500 (Fri, 04 Apr 2008) | 1 line
+Changed paths:
+   M /trunk/jxdata/iTQL/backup_restore/test.jxu
+
+added in backup/restore tests
+------------------------------------------------------------------------
+r735 | pag | 2008-04-03 22:59:41 -0500 (Thu, 03 Apr 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/DataTx.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Load.java
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Restore.java
+
+Changed marshalled data transfer to decompress LOAD files, but to send RESTORE data raw (which is always compressed). LOADS cannot be done compressed, as the Session interface does not allow for a compressed stream.
+------------------------------------------------------------------------
+r734 | pag | 2008-04-03 22:56:34 -0500 (Thu, 03 Apr 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/query/java/org/mulgara/query/operation/Backup.java
+
+Had an inverted test on the 'local' flag, so local was backing up on the server and remote was backing up on the client
+------------------------------------------------------------------------
+r733 | pag | 2008-04-03 22:55:15 -0500 (Thu, 03 Apr 2008) | 1 line
+Changed paths:
+   M /trunk/src/jar/itql/java/org/mulgara/itql/TqlSession.java
+
+Missed a change in prompt for the first prompt printed (all subsequent prompts were correct)
+------------------------------------------------------------------------
+r732 | pag | 2008-04-03 14:12:03 -0500 (Thu, 03 Apr 2008) | 1 line
+Changed paths:
+   M /trunk/common.properties
+
+Updated the version to be in sync with the release
+------------------------------------------------------------------------

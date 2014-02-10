@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="util-xa" default="util-xa-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="util-xa-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset dir="${util.dist.dir}" includes="${util.jar}"/>
+  </path>
+
+  <path id="util-xa-test-classpath">
+
+    <path refid="util-xa-classpath"/>
+
+    <fileset file="${util-xa.dist.dir}/${util-xa.jar}"/>
+  </path>
+
+  <target name="util-xa-clean"
+          description="Removes all compile generated files for the util-xa">
+
+    <tstamp/>
+
+    <delete dir="${util-xa.obj.dir}"/>
+    <delete dir="${util-xa.test.dir}"/>
+    <delete dir="${util-xa.dist.dir}"/>
+  </target>
+
+  <target name="-util-xa-prepare"
+          description="Creates all directories associated with the util-xa's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${util-xa.obj.dir}"/>
+    <mkdir dir="${util-xa.test.dir}"/>
+    <mkdir dir="${util-xa.dist.dir}"/>
+    <mkdir dir="${util-xa.obj.dir}/classes"/>
+  </target>
+
+  <target name="util-xa-compile"
+          depends="-util-xa-prepare, tuples-jar"
+          description="Compiles all util-xa related files included generated
+                       source code">
+
+    <javac destdir="${util-xa.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="util-xa-classpath"/>
+
+      <src path="${util-xa.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="util-xa-jar"
+          depends="util-xa-compile, -util-xa-jar-uptodate"
+          unless="util-xa.jar.uptodate"
+          description="Builds the metaphasic utility JAR">
+
+    <jar jarfile="${util-xa.dist.dir}/${util-xa.jar}">
+      <fileset dir="${util-xa.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-util-xa-jar-uptodate">
+
+    <uptodate property="util-xa.jar.uptodate"
+              targetfile="${util-xa.dist.dir}/${util-xa.jar}">
+      <srcfiles dir="${util-xa.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="util-xa-dist"
+          depends="util-xa-jar"
+          unless="util-xa.uptodate"
+          description="Performs all tasks related to finalising this util-xa
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the util-xa library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="util-xa-test"
+          depends="util-xa-jar"
+          description="Carries out unit testing for this util-xa">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="util-xa-test-classpath"/>
+      <param name="dir" value="${util-xa.src.dir}"/>
+      <param name="jar" value="${util-xa.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="util-xa-javadoc"
+          depends="util-xa-jar"
+          description="Creates the javadoc for this util-xa">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.store.xa.*"/>
+      <param name="javadoc.classpath" value="util-xa-classpath"/>
+      <param name="javadoc.sourcepath" value="${util-xa.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="util-xa-help"
+          description="Displays the help information for this util-xa">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this util-xa -->
+
+    <echo message="Welcome to the build script for ${util-xa.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${util-xa.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

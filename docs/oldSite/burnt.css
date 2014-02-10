@@ -1,0 +1,333 @@
+/*
+* adams.id.au "burnt" stylesheet.
+*
+* This style sheet uses rules from http://www.simplebits.com/200306#1055018267
+*
+* $Id: burnt.css,v 1.5 2004/12/22 05:01:58 newmana Exp $
+*/
+
+a, a:link, a:visited {
+color: #911F15;
+font-weight: bold;
+text-decoration: none;
+}
+
+a:active, a:hover, a:visited:active, a:visited:hover {
+color: #911F15;
+font-weight: bold;
+text-decoration: underline;
+}
+
+#banner {
+background: url(./images/mulgara_banner.png) no-repeat;
+margin-bottom: 10px;
+width: 629px;
+height: 55px;
+}
+
+#banner h1 {
+display: none;
+}
+
+body {
+background-color: #F3F3F3;
+color: #333;
+margin: 0;
+padding: 0;
+}
+
+blockquote {
+border-left: 1px dotted #911F15;
+font-style: italic;
+margin: 1em 0 1.5em 1.5em;
+padding-left: 0.75em;
+}
+
+#breadcrumb {
+color: #999;
+display: inline;
+font-family: Verdana, Geneva, Lucida, Helvetica, sans-serif;
+font-size: smaller;
+margin-bottom: 1em;
+text-transform: lowercase;
+}
+
+#breadcrumb a, #breadcrumb a:link, #breadcrumb a:visited {
+color: #999;
+}
+
+#breadcrumb a:hover, #breadcrumb a:active {
+color: #666;
+}
+
+#breadcrumb ul {
+margin-left: 0;
+padding-left: 0;
+display: inline;
+list-style: none;
+}
+
+#breadcrumb ul li {
+margin-left: 0;
+padding-left: 0;
+display: inline;
+list-style: none;
+}
+
+#breadcrumb > ul > li:first-child:before {
+content: "";
+}
+
+#breadcrumb ul li:before {
+content: "\00BB\0020";
+font-family: Verdana, Geneva, Lucida, Helvetica, sans-serif;
+}
+
+#container {
+/*width: 600px;*/
+padding: 20px 20px 0 20px;
+margin: 10px;
+border: 1px solid #CCC;
+background: #FFF;
+}
+
+#content {
+border: 0;
+min-height: 35em;
+padding-top: 5px;
+width: 80%;
+}
+
+#content h1 {
+text-transform: lowercase;
+}
+
+#content h2 {
+text-transform: lowercase;
+}
+
+#content h3 {
+text-transform: lowercase;
+}
+
+div.mediagrouping {
+/*border: 1px dashed #333;
+background-color: #ffe;*/
+}
+
+div.thumbnail {
+float: left;
+border: 1px silver solid;
+margin: 3px;
+padding: 5px;
+text-align: center;
+/*width: 205px;*/
+width: 160px;
+}
+
+div.spacer {
+clear: both;
+height: 0;
+}
+
+#footer {
+border-top: 1px solid #CCC;
+clear: both;
+color: #999;
+font-size: smaller;
+margin-top: 15px;
+padding: 0;
+}
+
+#footer a {
+color: #999;
+}
+
+#footer a:link.active, #footer a:visited.active, #footer a:hover {
+color: #666;
+}
+
+#footer p.copyright {
+float: left;
+text-align: left;
+}
+
+#footer p.info {
+float: right;
+text-align: right;
+}
+
+h1 {
+font-family: Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
+font-size: 1.5em;
+}
+
+h1.title {
+margin-bottom: 1em;
+}
+
+h2 {
+font-family: Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
+font-size: 1.25em;
+}
+
+h3 {
+font-family: Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
+}
+
+html {
+padding: 0;
+margin: 0;
+}
+
+img.thumbnail {
+/*width: 205px;*/
+border: 0;
+height: 100px;
+}
+
+img.scaled {
+width: 100%;
+border: 0;
+}
+
+p.caption {
+font-size: smaller;
+}
+
+#sectionnavigation {
+font-size: smaller;
+margin-top: 0em;
+text-transform: lowercase;
+}
+
+#sectionnavigation ul {
+margin-left: 0;
+padding-left: 0;
+list-style: none;
+}
+
+#sectionnavigation ul li {
+margin-left: 0;
+margin-right: 0;
+padding-right: 4px;
+border-right: 1px dotted #62615B;
+display: inline;
+list-style: none;
+}
+
+#sectionnavigation ul li:first-child {
+margin-left: 0;
+border-right: 0;
+}
+
+#sectionnavigation ul li:last-child {
+border-right: 0;
+}
+
+#sectionnavigation ul li:first-child:before {
+/*content: "album\0020\00BB\0020";*/
+}
+
+#sectionnavigation ul li:first-child:after {
+content: "\0020 album\0020\00BB\0020";
+font-family: Verdana, Geneva, Lucida, Helvetica, sans-serif;
+}
+#sectionnavigation ul li:last-child:after {
+/*content: " ::";*/
+}
+
+#sectionnavigation ul li a {
+font-weight: bold;
+}
+
+#sidebar {
+border-left: 1px dotted #CCC;
+margin: 0;
+padding: 0 23px 5px 10px;
+position: absolute;
+right: 10px;
+top: 15px;
+width: 130px;
+z-index: 1;
+}
+
+#sidebar h1 {
+font-size: 1.2em;
+margin: 8px 0 8px 0;
+padding: 0 0 0 0;
+text-transform: lowercase;
+}
+
+#sidebar h1:first-child {
+margin-top: 4px;
+}
+
+#sidebar ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+
+#sidebar ul li a {
+font-weight: bold;
+text-transform: lowercase;
+}
+
+#sidebarcauses {
+border-bottom: 1px dotted #CCC;
+padding: 0.5em 0 0.5em 0;
+}
+
+#sidebarlinks {
+border-bottom: 1px dotted #CCC;
+padding-bottom: 0.5em;
+}
+
+#sitenavigation {
+border-bottom: 1px solid #696;
+left: 0;
+margin: 0;
+position: relative;
+padding: 0 0 20px 0;
+top: 0;
+width: 80%;
+}
+
+#sitenavigation ul, #sitenavigation li {
+display: inline;
+margin: 0;
+padding: 0;
+list-style: none;
+}
+
+#sitenavigation a:link, #sitenavigation a:visited {
+color: #911F15;
+float: left;
+font-family: Verdana, Geneva, Lucida, Helvetica, sans-serif;
+font-size: smaller;
+font-weight: bold;
+line-height: 14px;
+margin: 0 10px 4px 0px;
+text-decoration: none;
+text-transform: lowercase;
+}
+
+#sitenavigation a:link.active, #sitenavigation a:visited.active, #sitenavigation a:hover {
+/*border-bottom: 4px solid #696;
+color: #363;*/
+border-bottom: 4px solid #911F15;
+color: #911F15;
+padding-bottom: 2px;
+background: #FFF;
+}
+
+#sitenavigation a:hover {
+/*color: #696;*/
+color: #911F15;
+}
+
+ul {
+margin-left: 1em;
+padding-left: 1em;
+}

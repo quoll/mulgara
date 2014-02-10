@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="content-rlog" default="content-rlog-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="content-rlog-classpath">
+    <path refid="common-classpath"/>
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${resolver-file.dist.dir}/${resolver-file.jar}"/>
+    <fileset file="${tuples.dist.dir}/${tuples.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${krule.dist.dir}/${krule.jar}"/>
+  </path>
+
+  <path id="content-rlog-test-classpath">
+    <path refid="content-rlog-classpath"/>
+    <fileset file="${resolver-file.dist.dir}/${resolver-file.jar}"/>
+    <fileset file="${store-stringpool-memory.dist.dir}/${store-stringpool-memory.jar}"/>
+    <fileset file="${store-stringpool-xa.dist.dir}/${store-stringpool-xa.jar}"/>
+    <fileset file="${content-rlog.dist.dir}/${content-rlog.jar}"/>
+  </path>
+
+
+  <target name="content-rlog-clean" description="Removes all compile generated files for content-rlog">
+    <tstamp/>
+    <delete dir="${content-rlog.obj.dir}"/>
+    <delete dir="${content-rlog.test.dir}"/>
+    <delete dir="${content-rlog.dist.dir}"/>
+  </target>
+
+
+  <target name="-content-rlog-prepare"
+          description="Creates all directories associated with the content-rlog's compilation"
+          depends="-prepare-build">
+    <mkdir dir="${content-rlog.obj.dir}"/>
+    <mkdir dir="${content-rlog.test.dir}"/>
+    <mkdir dir="${content-rlog.dist.dir}"/>
+    <mkdir dir="${content-rlog.obj.dir}/classes"/>
+  </target>
+
+
+  <target name="gen-rlog-parser" description="Build the JavaCC generated files">
+    <javacc target="${content-rlog.src.dir}/javacc/org/mulgara/krule/rlog/RlogParser.jj" javacchome="${lib.dir}" />
+  </target>
+
+  <target name="content-rlog-compile"
+          depends="-content-rlog-prepare, gen-rlog-parser, resolver-spi-jar, resolver-file-jar"
+          description="Compiles all content-rlog related files included generated source code">
+    <javac destdir="${content-rlog.obj.dir}/classes" debug="on" deprecation="on" source="1.5" encoding="UTF-8">
+      <classpath refid="content-rlog-classpath"/>
+      <src path="${content-rlog.src.dir}/java"/>
+      <src path="${content-rlog.src.dir}/javacc"/>
+    </javac>
+  </target>
+
+
+  <target name="content-rlog-jar" depends="content-rlog-compile, -content-rlog-jar-uptodate"
+          unless="content-rlog.jar.uptodate" description="Builds the RLog content handler JAR">
+
+    <jar jarfile="${content-rlog.dist.dir}/${content-rlog.jar}">
+      <fileset dir="${content-rlog.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+
+  <target name="-content-rlog-jar-uptodate">
+    <uptodate property="content-rlog.jar.uptodate" targetfile="${content-rlog.dist.dir}/${content-rlog.jar}">
+      <srcfiles dir="${content-rlog.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+
+  <target name="content-rlog-dist" depends="content-rlog-jar" unless="content-rlog.uptodate"
+          description="Performs all tasks related to finalising this content-rlog and readying it for distribution">
+  </target>
+
+
+  <target name="content-rlog-test"
+          depends="content-rlog-jar, resolver-file-jar, store-stringpool-memory-jar, store-stringpool-xa-jar">
+    <antcall target="component-test">
+      <param name="classpath.id" value="content-rlog-test-classpath"/>
+      <param name="dir" value="${content-rlog.src.dir}"/>
+      <param name="jar" value="${content-rlog.jar}"/>
+    </antcall>
+  </target>
+
+
+  <target name="content-rlog-javadoc" depends="content-rlog-jar" description="Creates the javadoc for this content-rlog">
+    <antcall target="javadoc">
+      <param name="javadoc.package" value="org.mulgara.content.rlog.*"/>
+      <param name="javadoc.classpath" value="content-rlog-classpath"/>
+      <param name="javadoc.sourcepath" value="${content-rlog.src.dir}/java"/>
+    </antcall>
+  </target>
+
+
+  <target name="content-rlog-help" description="Displays the help information for this content-rlog">
+    <echo message="Welcome to the build script for ${content-rlog.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+    <java fork="false" classname="org.apache.tools.ant.Main" newenvironment="false">
+      <jvmarg value="${arch.bits}"/>
+      <arg line="-buildfile ${content-rlog.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+
+</project>

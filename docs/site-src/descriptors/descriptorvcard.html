@@ -1,0 +1,108 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - VCard Descriptors </title>
+    <meta name="keywords" content="VCard Descriptors, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+    
+		<a href="/descriptors/descriptorvcard.html#o921">Try the VCards Example</a>
+
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/descriptors/descriptorlist.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/inferencing/index.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/descriptors/descriptorex.html">Descriptor Examples</a></p>
+<p class="relateditem"><a href="/descriptors/descriptorhw.html">Hello World Descriptor</a></p>
+<p class="relateditem"><a href="/descriptors/descriptorlist.html">List Models Descriptor</a></p>
+ -->
+
+
+
+<h3>VCard Descriptors</h3>
+
+<p>This example uses several Descriptors to generate an HTML page listing the VCards in a specified Mulgara model. The VCard data can be exported from Mulgara, in VCard format, for use by applications such as Netscape Address book and Microsoft<sup>&reg;</sup> Outlook. New VCards can be entered from an HTML interface.</p>
+
+<p>Here is a sample screen capture.</p>
+
+<p><img src="/img/descriptorvcard918.gif" alt="" height="722" width="624" vspace="0" hspace="0" align="bottom" border="1" /></p>
+
+<p>Clicking on the Export VCard button sends a file, similar to the one shown below, to your browser. Depending on your configuration, your browser may ask you to save the file or it may pass the file directly to an external application, such as Microsoft<sup>&reg;</sup> Outlook<sup>&reg;</sup>.</p>
+
+<p class="commandtext">BEGIN:VCARD&nbsp;&nbsp;&nbsp; <br />
+VERSION:2.1<br />
+FN:Corky Crystal<br />
+TITLE:Computer Officer Class 3<br />
+ROLE:Programmer<br />
+ADR;WORK:; 111 Lake Drive ; WonderCity ; 5555 ; Australia <br />
+LABEL;WORK;ENCODING=QUOTED-PRINTABLE: 111 Lake Drive =0D=0A WonderCity =0D=0A 5555&nbsp; Australia <br />
+EMAIL;PREF;INTERNET:corky@qqq.com<br />
+NOTE:Only works on Mondays and Fridays<br />
+TEL;WORK;VOICE:+61 7 555 5555<br />
+END:VCARD</p>
+
+<p>This example uses seven Descriptors to perform a variety of tasks. Using a browser and clicking on the links below displays the source in a new window.</p>
+<ol><li><a class="" title="" href="../../descriptors/vcard/vcardlisthtml.xsl">Given a Model show all VCards in that model as HTML</a></li><li><a class="" title="" href="../../descriptors/vcard/vcardlist.xsl">Given a Model return a list of VCards URIs in that model as XML</a></li><li><a class="" title="" href="../../descriptors/vcard/vcardhtml.xsl">Given a VCard URI return an HTML version of the VCard</a></li><li><a class="" title="" href="../../descriptors/vcard/vcardxml.xsl">Given a VCard URI return a XML version of the VCard</a></li><li><a class="" title="" href="../../descriptors/vcard/vcard.xsl">Given a VCard URI return a VCard Format version of the VCard</a></li><li><a class="" title="" href="../../descriptors/vcard/vcardinsert.xsl">Given VCard parameters insert a VCard into a Mulgara </a>database</li><li><a class="" title="" href="../../descriptors/vcard/vcardinserthtml.xsl">Given a model return an HTML page which will take VCard parameters and insert them into a Mulgara </a>database
+<p class="listcontinue">The above links are available in the online version of the documentation.</p>
+</li></ol>
+<p>All of these Descriptors are part of the default installation of Mulgara and are available from the List Descriptors task on the <a class="" title="" href="../../descriptors/vcard/vcardinsert.xsl">Descriptor Management page</a>.</p>
+
+<p>The diagram below outlines the relationships between these Descriptors to demonstrate their reusability.</p>
+
+<p><img src="/img/descriptorvcard919.png" alt="" height="893.6" width="736.8" vspace="0" hspace="0" align="bottom" border="1" /></p>
+
+<p class="note"><strong>Note -</strong> Descriptor 4 (Given a VCard URI return the VCard as XML) is used by both browser tasks. This is to demonstrate the reusability of well designed Descriptors.</p>
+
+
+<div class="anchor"><a name="o921">&nbsp;</a></div>
+<h4>Try the VCards Example</h4>
+
+<p>To try out the VCards example, you need to load VCard RDF into a model.</p>
+<ol><li>Using the TKS Viewer<sup>TM</sup> or the iTQL<sup>TM</sup> command line, create a model for storing the VCards. For example:
+<p class="listcontinuecommandtext">create &lt;rmi://mysite.com/server1#vcard&gt;;</p>
+
+<p class="listnote"><strong>Note -</strong> Replace <code>mysite.com</code> with the fully qualified hostname of your TKS server.</p>
+</li><li>Load some VCard RDF data into your model.
+<p class="listcontinue">A sample file, <code>vcards.rdf</code>, is included as part of the TKS installation. If you want to use this file, copy the link address for it and load the data into the vcard model. For example:</p>
+
+<p class="listcontinuecommandtext">load &lt;http://mysite.com:8080/webservices/descriptor/examples/vcard/vcards.rdf&gt;<br />
+  into &lt;rmi://mysite.com/server1#vcard&gt;;</p>
+
+<p class="listcontinue">If you want to add more vcards to the file, download it, edit it and load it in using a <code>file:</code> URL. Make sure the default Descriptors are loaded (use the Deploy Bundled Descriptors task on the <a class="" title="" href="http://localhost:8080/webservices/descriptor/index.jsp">Descriptor Management page</a>).</p>
+</li><li>Use the See List of Descriptors Available on this Host task from the <a class="" title="" href="http://localhost:8080/webservices/descriptor/index.jsp">Descriptor Management page</a> to locate the Given a Model Show All VCards in that Model as HTML Descriptor.
+<p class="listcontinue">Enter <code>rmi://mysite.com/server1#vcard</code> as the model parameter and click on the Invoke button.</p>
+</li></ol>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

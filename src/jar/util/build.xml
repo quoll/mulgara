@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="util" default="util-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="util-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${bin.dir}/${config.jar}"/>
+  </path>
+
+  <path id="util-test-classpath">
+
+    <path refid="util-classpath"/>
+
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+  </path>
+
+  <target name="util-clean"
+          description="Removes all compile generated files for the util">
+
+    <tstamp/>
+
+    <delete dir="${util.obj.dir}"/>
+    <delete dir="${util.test.dir}"/>
+    <delete dir="${util.dist.dir}"/>
+  </target>
+
+  <target name="-util-prepare"
+          description="Creates all directories associated with the util's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${util.obj.dir}"/>
+    <mkdir dir="${util.test.dir}"/>
+    <mkdir dir="${util.dist.dir}"/>
+    <mkdir dir="${util.obj.dir}/classes"/>
+  </target>
+
+  <target name="util-compile"
+          depends="-util-prepare, config-jar"
+          description="Compiles all util related files included generated
+                       source code"
+          unless="util.classes.uptodate">
+
+    <mkdir dir="${util.obj.dir}/java/org/mulgara/util/conversion/html"/>
+
+    <javacc
+      target="${util.src.dir}/java/org/mulgara/util/conversion/html/HTMLParser.jj"
+      javacchome="${lib.dir}"
+      outputdirectory="${util.obj.dir}/java/org/mulgara/util/conversion/html"/>
+
+    <javac destdir="${obj.dir}/jar/util/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="util-classpath"/>
+
+      <src path="${util.src.dir}/java"/>
+      <src path="${util.obj.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="util-jar"
+          depends="util-compile, -util-jar-uptodate"
+          unless="util.jar.uptodate"
+          description="Creates the util's jar/s">
+
+    <jar jarfile="${util.dist.dir}/${util.jar}">
+      <fileset dir="${util.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-util-jar-uptodate">
+
+    <uptodate property="util.jar.uptodate"
+              targetfile="${util.dist.dir}/${util.jar}">
+      <srcfiles dir="${util.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="util-dist"
+          depends="util-jar"
+          unless="util.uptodate"
+          description="Performs all tasks related to finalising this util
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the util library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="util-test"
+          depends="util-jar"
+          description="Carries out unit testing for this util">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="util-test-classpath"/>
+      <param name="dir" value="${util.src.dir}"/>
+      <param name="jar" value="${util.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="util-javadoc"
+          depends="util-jar"
+          description="Creates the javadoc for this util">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.util.*"/>
+      <param name="javadoc.classpath" value="util-classpath"/>
+      <param name="javadoc.sourcepath" value="${util.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="util-help"
+          description="Displays the help information for this util">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this util -->
+
+    <echo message="Welcome to the build script for ${util.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${util.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<!--
+Log4J configuration for the Mulgara Semantic Store project (distributable
+version).
+
+Typically, you'll want to add <category/> elements to display the debug
+messages of a class you're working on.  Any <category/> elements must appear
+after the <appender/> elements and before the <root/> element to satisfy the
+DTD.  An example <category/> element is as follows:
+
+  <category name="org.mulgara.store.AbstractDatabaseSession">
+    <priority value="debug"/>
+  </category>
+
+-->
+
+<log4j:configuration>
+
+  <!-- Log to standard output -->
+  <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+    <layout class="org.apache.log4j.PatternLayout">
+      <!--<param name="ConversionPattern" value="%d %-5p [%t] %C{2} - %m%n"/>-->
+      <param name="ConversionPattern" value="%d %-5p %C{1} - %m%n"/>
+    </layout>
+    <filter class="org.apache.log4j.varia.LevelRangeFilter">
+      <param name="LevelMin" value="INFO"/>
+      <param name="LevelMax" value="FATAL"/>
+      <param name="AcceptOnMatch" value="true"/>
+    </filter>
+  </appender>
+
+  <!-- Log to a file -->
+  <appender name="LOGFILE" class="org.apache.log4j.RollingFileAppender">
+    <param name="File" value="./mulgara.log"/>
+    <param name="MaxFileSize" value="5MB"/>
+    <param name="MaxBackupIndex" value="3"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d %-5p [%t] %C{2} - %m%n"/>
+    </layout>
+    <filter class="org.apache.log4j.varia.LevelRangeFilter">
+      <param name="LevelMin" value="INFO"/>
+      <param name="LevelMax" value="FATAL"/>
+      <param name="AcceptOnMatch" value="true"/>
+    </filter>
+  </appender>
+
+  <!-- Turn on info level logging for "important" classes  -->
+
+  <!-- (Insert category elements here) -->
+  <category name="org.mulgara.server.EmbeddedmulgaraServer">
+    <priority value="INFO"/>
+  </category>
+
+  <category name="Startup">
+    <priority value="INFO"/>
+  </category>
+
+  <!-- (Insert category elements here) -->
+  <!-- For monitoring RDF statement loading speed
+  <category name="org.mulgara.content.rdfxml.Parser">
+    <priority value="INFO"/>
+  </category>
+  <category name="org.mulgara.resolver.DatabaseSession">
+    <priority value="info"/>
+  </category>
+  -->
+
+  <!-- WARN and above goes to console, all else to logfile appender -->
+  <root>
+    <priority value="WARN"/>
+    <appender-ref ref="LOGFILE"/>
+    <appender-ref ref="STDOUT"/>
+  </root>
+
+</log4j:configuration>

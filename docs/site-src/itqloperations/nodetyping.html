@@ -1,0 +1,171 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - Nodetyping Models </title>
+    <meta name="keywords" content="Nodetyping Models, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>	&#124;
+    
+		<a href="/itqloperations/nodetyping.html#o2780">Creating</a> &#124;
+		<a href="/itqloperations/nodetyping.html#o2781">Querying</a>
+
+
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="262.htm"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="3201.htm"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="254.htm">Advanced iTQL Operations</a></p>
+<p class="relateditem"><a href="255.htm">Views</a></p>
+<p class="relateditem"><a href="257.htm">Full-Text Models</a></p>
+<p class="relateditem"><a href="262.htm">Datatyping Models</a></p>
+<p class="relateditem"><a href="3201.htm">Filesystem Models</a></p>
+
+ -->
+
+
+
+
+<h2>Nodetyping Models</h2>
+
+<p>Nodetyping models represent the type that RDF nodes have in a graph. RDF nodes can be typed either as a <em>Literal</em>, or as a <em>URI Reference</em>. Nodes without a type are <em>Blank Nodes</em>.</p>
+
+<p>Nodetyping models are used to constrain results to be literals or URI references. These types have the URIs of <code>http://www.w3.org/2000/01/rdf-schema#Literal</code> and <code>http://mulgara.org/mulgara#uriReference</code>. Generally, the standard set of aliases should be in place, and these URIs and can be referred to in the aliased forms: <code>rdfs:Literal</code> and <code>mulgara:uriReference</code>.</p>
+
+<p>The standard set of aliases is defined by the <code><a id="h1334" class="documentlinktemplate" title="alias" href="/itqloperations/alias.html">alias</a></code> command:</p>
+
+<p class="commandtext">alias &lt;http://mulgara.org/mulgara#&gt; as mulgara;<br />
+alias &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; as rdf;<br />
+alias &lt;http://www.w3.org/2000/01/rdf-schema#&gt; as rdfs;</p>
+
+<p>Like datatyping models, nodetyping models are generally read-only. You do not insert statements into them as you do with standard or full-text models. Conceptually, they contain statements about the datatypes of nodes, such as:</p>
+
+<p class="commandtext">[ &lt;http://namespace/ns#value&gt;  &lt;rdf:type&gt;  &lt;mulgara:uriReference&gt; ]</p>
+
+<p>Nodetyping models also contain statements describing the type for all literals. While statements about literals are not strictly legal RDF, the statements do not exist in any RDF model, and are only used to constrain variables. An example of this kind of statement is:</p>
+
+<p class="commandtext">[ 'This is a string'  &lt;rdf:type&gt;  &lt;rdfs:Literal&gt; ]</p>
+
+<div class="anchor"><a name="o2780">&nbsp;</a></div>
+<h3>Creating Nodetyping Models</h3>
+
+<p>Use the <code><a id="h1523" class="documentlinktemplate" title="create" href="/itqloperations/create.html">create</a></code> command with the optional type argument of <code>http://mulgara.org/mulgara#TypeModel</code> in addition to the model name. There should never be a need to create more than one nodetyping model per server.</p>
+
+<p>For example, to create the nodetyping model <code>#type</code>:</p>
+
+<p class="commandtext">create &lt;rmi://mysite.com/server1#type&gt; &lt;http://mulgara.org/mulgara#TypeModel&gt;;</p>
+
+<p>The <code>http://mulgara.org/mulgara#TypeModel</code> URI can be referred to in the aliased form <code>&lt;mulgara:TypeModel&gt;</code>, when the <code>mulgara</code> alias is active:</p>
+
+<p class="commandtext">alias &lt;http://mulgara.org/mulgara#&gt; as mulgara;</p>
+<div class="anchor"><a name="o2781">&nbsp;</a></div>
+<h3>Querying Nodetyping Models</h3>
+
+<p>Querying nodetyping models is much the same as for normal Mulgara models. Nodetyping models contain type statements for all URI reference and literal nodes on the server (not just for a single model).</p>
+
+<p>To use a nodetyping model in a query, make sure you have a node type model available. See the <a id="h2782" class="documentlinktemplate" title="Creating Nodetyping Models" href="/itqloperations/nodetyping.html#o2780">Creating Nodetyping Models section</a> for more information. Then compose a constraint with the <code>&lt;rdf:type&gt;</code> property, and direct it at the node type model with an <code><a id="h2783" class="" title="in Specifier" href="/itqloperations/select.html#o1530">in</a></code> specifier.</p>
+
+<p>The example queries shown assume that the standard aliases are in place, as follows:</p>
+
+<p class="commandtext">alias &lt;http://mulgara.org/mulgara#&gt; as mulgara;<br />
+alias &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; as rdf;<br />
+alias &lt;http://www.w3.org/2000/01/rdf-schema#&gt; as rdfs;</p>
+
+<p>The first example uses the nodetyping model <code>rmi://mysite.com/server1#type</code> to return all subjects with the type URI Reference.</p>
+
+<p class="commandtext">select $subject from &lt;rmi://mysite.com/server1#data&gt;<br />
+  where $subject $predicate $object<br />
+    and $subject &lt;rdf:type&gt; &lt;mulgara:uriReference&gt; in &lt;rmi://mysite.com/server1#type&gt;;</p>
+
+<p>This returns:</p>
+
+<p class="commandtext">[ http://qqq.com/staff/corky ]<br />
+[ http://qqq.com/staff/ppan ]<br />
+[ http://qqq.com/staff/spiderman ]<br />
+[ http://qqq.com/staff/superman ]</p>
+
+<p>The next example finds all predicates which are not used to refer to blank nodes. That is, the object node is either a literal or a URI reference.</p>
+
+<p class="commandtext">select $predicate from &lt;rmi://mysite.com/server1#data&gt;<br />
+  where $subject $predicate $object<br />
+    and ($object &lt;rdf:type&gt; &lt;mulgara:uriReference&gt; in &lt;rmi://mysite.com/server1#type&gt;<br />
+    or $object &lt;rdf:type&gt; &lt;rdfs:Literal&gt; in &lt;rmi://mysite.com/server1#type&gt;);</p>
+
+<p>This returns:</p>
+
+<p class="commandtext">[ http://www.w3.org/1999/02/22-rdf-syntax-ns#value ]<br />
+[ http://www.w3.org/2001/vcard-rdf/3.0#FN ]<br />
+[ http://www.w3.org/2001/vcard-rdf/3.0#Family ]<br />
+[ http://www.w3.org/2001/vcard-rdf/3.0#Given ]<br />
+[ http://www.w3.org/2001/vcard-rdf/3.0#Other ]<br />
+[ http://www.w3.org/2001/vcard-rdf/3.0#Prefix ]<br />
+[ http://www.w3.org/2001/vcard-rdf/3.0#BDAY ]<br />
+[ http://www.w3.org/2001/vcard-rdf/3.0#TITLE ]<br />
+[ http://www.w3.org/2001/vcard-rdf/3.0#ROLE ]<br />
+[ http://www.w3.org/2001/vcard-rdf/3.0#Street ]<br />
+[ http://www.w3.org/2001/vcard-rdf/3.0#Locality ]<br />
+[ http://www.w3.org/2001/vcard-rdf/3.0#Pcode ]<br />
+[ http://www.w3.org/2001/vcard-rdf/3.0#Country ]<br />
+[ http://www.w3.org/2001/vcard-rdf/3.0#NOTE ]</p>
+
+<p>The next example does not return any data as it looks for all statements that have a literal as the subject. This is not valid RDF so no data matches the constraints.</p>
+
+<p class="commandtext">select $subject from &lt;rmi://mysite.com/server1#data&gt;<br />
+  where $subject $predicate $object<br />
+    and $subject &lt;rdf:type&gt; &lt;rdfs:Literal&gt; in &lt;rmi://mysite.com/server1#type&gt;);</p>
+
+<p>The next example finds a list of all literals in the system. Note that the model in the <code>from</code> clause is overridden and not used in the query.</p>
+
+<p class="commandtext">select $l from &lt;rmi://mysite.com/server1#data&gt;<br />
+  where $l &lt;rdf:type&gt; &lt;rdfs:Literal&gt; in &lt;rmi://mysite.com/server1#type&gt;;</p>
+
+<p>The final example lists the literals found in a single model. It is only necessary to join the variable to the object position in the constraint, as literals can only appear in this position in RDF.</p>
+
+<p class="commandtext">select $object from &lt;rmi://mysite.com/server1#data&gt;<br />
+  where $subject $predicate $object<br />
+    and $object &lt;rdf:type&gt; &lt;rdfs:Literal&gt; in &lt;rmi://mysite.com/server1#type&gt;;</p>
+
+<p>The first 10 lines of this 48 line result are:</p>
+
+<p class="commandtext">[ Corky Crystal ]<br />
+[ Crystal ]<br />
+[ Corky ]<br />
+[ Jacky ]<br />
+[ Dr ]<br />
+[ 1980-01-01 ]<br />
+[ Computer Officer Class 3 ]<br />
+[ Programmer ]<br />
+[ +61 7 555 5555 ]<br />
+[ corky@qqq.com ]</p>
+
+			
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

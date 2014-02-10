@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Advantages and Disadvantages of Descriptors </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="Advantages and Disadvantages of Descriptors, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source,homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="mulgara : semantic store" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://www.kowari.org/about/index.php#copyright" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="618.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="572.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h2 class="heading2">Advantages and Disadvantages of Descriptors</h2>
+<p class="bodytext">The advantages of working with Descriptors over using APIs include:</p>
+<ul class="listbullet"><li class="listbullet">You can define an interface for a client while allowing the implementation to evolve, even at runtime. That is, you can have live development using loosely coupled components.</li><li class="listbullet">Descriptors are referenced as URLs, so Mulgara servers can use Descriptors from remote machines.</li><li class="listbullet">Descriptor interfaces are well defined in RDF, so humans or applications can discover Descriptors that meet their needs.</li><li class="listbullet">Descriptors are SOAP accessible and described in WSDL, and are therefore usable from other languages and platforms such as Perl, Microsoft<sup class="superscript">&reg;</sup> Visual Basic<sup class="superscript">&reg;</sup> and the Microsoft .NET Framework.</li><li class="listbullet">Descriptors are fast because they use optimized XSL objects and queries are performed on the server. They are not much slower than working with APIs directly.</li></ul><table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="619.htm#o3130" target="_self"></a></p><p class="relateditem"><a href="619.htm#o3131" target="_self"></a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="571.htm" target="_self">Descriptors</a></p><p class="relateditem"><a href="618.htm" target="_self">What are Descriptors?</a></p><p class="relateditem"><a href="572.htm" target="_self">Namespaces and Descriptors</a></p><p class="relateditem"><a href="573.htm" target="_self">The &lt;query&gt; Tag</a></p><p class="relateditem"><a href="574.htm" target="_self">The &lt;descriptor&gt; Tag</a></p><p class="relateditem"><a href="575.htm" target="_self">Reserved Parameters</a></p><p class="relateditem"><a href="576.htm" target="_self">Descriptors FAQ</a></p><p class="relateditem"><a href="597.htm" target="_self">Common Mistakes</a></p><p class="relateditem"><a href="779.htm" target="_self">Descriptor Examples</a></p></td>
+</tr>
+</table>
+
+<a name="o3130"></a>
+<p class="bodytext">The disadvantages of <em class="emphasis">developing</em> Descriptors include:</p>
+<ul class="listbullet"><li class="listbullet">Developing Descriptors requires knowledge of XSL.</li><li class="listbullet">Debugging Descriptors is difficult when using deeply embedded Descriptors due to the layers of components involved.</li><li class="listbullet">Large XML results have higher memory and CPU requirements than when using APIs directly.</li></ul>
+<a name="o3131"></a>
+<p class="bodytext">The disadvantages of <em class="emphasis">using</em> Descriptors include:</p>
+<ul class="listbullet"><li class="listbullet">Only string parameters are allowed, although this may change in the future to support complex data types.</li><li class="listbullet">Session type functionality is not available when developing HTML web applications, unless used from the application server.</li><li class="listbullet">Descriptors declare their input parameters in a machine understandable format, but not their output capabilities.</li></ul>
+
+			
+    </td>
+		<td width=20>
+		</td>
+		<td align="left">
+		  <a href="http://www.opensource.org/docs/definition.php" title="Open Source Initiative" target="_blank"><img style="border:0;width:110px;height:95;" src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png" alt="Open Source logo" /></a>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2004 Tucana Technologies, Inc. Some rights reserved.</p>    <p class="toc">&copy; 2006 The Mulgara Project. Some rights reserved.<br>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included in the section entitled &quot;<a href="fdl.txt">GNU Free Documentation License</a>&quot;.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+

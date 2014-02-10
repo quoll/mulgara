@@ -1,0 +1,189 @@
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="server" default="server-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="server-classpath">
+
+    <path refid="common-classpath"/>
+
+    <fileset file="${query.dist.dir}/${query.jar}"/>
+    <fileset file="${bin.dir}/${config.jar}"/>
+    <fileset file="${store.dist.dir}/${store.jar}"/>
+    <fileset file="${store-xa.dist.dir}/${store-xa.jar}"/>
+    <fileset file="${resolver-spi.dist.dir}/${resolver-spi.jar}"/>
+    <fileset file="${web.dist.dir}/${web.jar}"/>
+    <fileset file="${util.dist.dir}/${util.jar}"/>
+    <fileset file="${util-xa.dist.dir}/${util-xa.jar}"/>
+  </path>
+
+  <path id="server-test-classpath">
+
+    <path refid="server-classpath"/>
+
+    <fileset file="${server.dist.dir}/${server.jar}"/>
+  </path>
+
+  <target name="server-clean"
+          description="Removes all compile generated files for the server">
+
+    <tstamp/>
+
+    <delete dir="${server.obj.dir}"/>
+    <delete dir="${server.test.dir}"/>
+    <delete dir="${server.dist.dir}"/>
+  </target>
+
+  <target name="-server-prepare"
+          description="Creates all directories associated with the server's
+                       compilation"
+          depends="-prepare-build">
+
+    <mkdir dir="${server.obj.dir}"/>
+    <mkdir dir="${server.test.dir}"/>
+    <mkdir dir="${server.dist.dir}"/>
+    <mkdir dir="${server.obj.dir}/classes"/>
+  </target>
+
+  <target name="server-configure"
+          depends="-server-prepare"
+          description="Prepares any configuration files/generated code for the server">
+
+    <!-- Copy the Embedded Mulgara server to obj directory -->
+
+    <!-- WARNING: The ServletMulgaraerver class hasn't been ported yet, which
+                  is why it gets removed here.  Eventually it needs to be
+                  ported properly. -->
+
+
+    <copy todir="${server.obj.dir}/java/"
+          preservelastmodified="yes">
+        <fileset dir="${server.src.dir}/java/" 
+          includes="**/*.java"/>
+    </copy>
+
+    <antcall target="-server-token-build-label"/>
+
+  </target>
+
+  <target name="-server-token-build-label"
+          depends="-server-token-build-label-uptodate"
+          unless="server.token.build.label.uptodate">
+
+    <!-- Insert the normal build label -->
+    <replace file="${server.obj.dir}/java/org/mulgara/server/EmbeddedMulgaraServer.java"
+             token="@@build.label@@" value="${build.label}"/>
+
+  </target>
+
+  <target name="-server-token-build-label-uptodate">
+
+    <uptodate property="server.token.build.label.uptodate"
+              targetfile="${server.obj.dir}/classes/org/mulgara/server/EmbeddedMulgaraServer.java">
+      <srcfiles dir="${server.src.dir}" includes="**/EmbeddedMulgaraServer.java"/>
+    </uptodate>
+  </target>
+
+  <target name="server-compile"
+          depends="server-configure, store-jar, store-xa-jar, resolver-spi-jar, util-xa-jar, util-jar"
+          description="Compiles all server related files included generated
+                       source code">
+
+    <javac destdir="${server.obj.dir}/classes" 
+           debug="on" source="1.5"
+           deprecation="on"
+           classpathref="server-classpath">
+
+        <src path="${server.obj.dir}/java"/>
+
+    </javac>
+
+  </target>
+
+  <target name="server-jar"
+          depends="server-compile, -server-jar-uptodate"
+          unless="server.jar.uptodate"
+          description="Builds the driver JAR">
+
+    <jar jarfile="${server.dist.dir}/${server.jar}">
+      <fileset dir="${server.obj.dir}/classes" excludes="**/*.java"/>
+    </jar>
+
+    <replace file="${server.src.dir}/java/org/mulgara/server/EmbeddedMulgaraServer.java"
+             token="${build.label}" value="@@build.label@@"/>
+  </target>
+
+  <target name="-server-jar-uptodate">
+
+    <uptodate property="server.jar.uptodate"
+              targetfile="${server.dist.dir}/${server.jar}">
+      <srcfiles dir="${server.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="server-dist"
+          depends="server-jar"
+          description="Performs all tasks related to finalising this server
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the content-mbox library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="server-test" depends="server-jar">
+
+    <antcall target="component-test">
+
+      <param name="classpath.id" value="server-test-classpath"/>
+      <param name="dir" value="${server.src.dir}"/>
+      <param name="jar" value="${server.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="server-javadoc"
+          depends="server-jar"
+          description="Creates the javadoc for this server">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.server.*"/>
+      <param name="javadoc.classpath" value="server-classpath"/>
+      <param name="javadoc.sourcepath" value="${server.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="server-help"
+          description="Displays the help information for this server">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this server -->
+
+    <echo message="Welcome to the build script for ${server.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${server.src.dir}/build.xml -projecthelp"/>
+    </java>
+  </target>
+</project>

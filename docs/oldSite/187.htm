@@ -1,0 +1,307 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> select </title>
+<link rel="icon" type="text/png"
+href="./media/images/icons/siteicon.png" />
+<link rel="shortcut icon" type="text/png" href="siteicon.png" />
+
+<meta name="author" content="Tom Adams" />
+<meta name="copyright" content="Copyright &copy; 2003, Kowari Project" />
+<meta name="robots" content="all" />
+<meta name="description" content="Mulgara Project Home" />
+<meta name="keywords" content="select mulgara, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, mulgara, homepage" />
+<meta name="location" content="Global" />
+<meta name="document-distribution" content="Global" />
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="dialect" content="AU" />
+<meta http-equiv="language" content="English" />
+<meta http-equiv="window-target" content="_top" />
+
+<meta name="DC.Title" content="Mulgara : metastore" />
+<meta name="DC.Creator" content="Tom Adams" />
+<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" />
+<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
+<meta name="DC.Subject" content="Mulgara Project Home" />
+<meta name="DC.Description" content="Mulgara Project Home" />
+<meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Modified" scheme="iso8601" content="2003-09-22" />
+<meta name="DC.Language" scheme="rfc1766" content="en" />
+<meta name="DC.Rights" scheme="URI" content="http://mulgara.org/docs/legal.html" />
+<meta name="DC.Type" content="Text.Homepage.Personal" />
+<meta name="DC.Identifier" scheme="URI" content="http://mulgara.org/index.php" />
+
+<meta name="Generator" content="AITPublish" />
+
+<link rel="stylesheet" href="mulgara_stylesheet.css">
+<!-- <link rel="stylesheet" href="44.css"> -->
+<base target="BODY">
+</head>
+<body>
+<table border="0" width="100%">
+<tr valign="top">
+<td width="80%"> 
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "18">
+<p class="prevnextbutton"><a href="186.htm" target="_self"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+<td width= "18">
+<p class="prevnextbutton"><a href="195.htm" target="_self"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p></td>
+</tr>
+</table>
+<h2 class="heading2">select</h2>
+<p class="bodytext">Issues queries to Mulgara<sup class="superscript">TM</sup> servers and displays the corresponding results. The command consists of a sequence of <code class="monospace"><a id="h217" class="documentlinktemplate" title="select Clause" href="187.htm#o188" target="_self">select</a></code>, <code class="monospace"><a id="h218" class="documentlinktemplate" title="from Clause" href="187.htm#o189" target="_self">from</a></code>, and <code class="monospace"><a id="h206" class="documentlinktemplate" title="where Clause" href="187.htm#o197" target="_self">where</a></code> clauses; and may optionally include <code class="monospace"><a id="h219" class="documentlinktemplate" title="order by Clause" href="187.htm#o190" target="_self">order by</a></code>, <code class="monospace"><a id="h220" class="documentlinktemplate" title="offset Clause" href="187.htm#o192" target="_self">offset</a></code> and <code class="monospace"><a id="h221" class="documentlinktemplate" title="limit Clause" href="187.htm#o191" target="_self">limit</a></code> clauses. With all clauses present, the general syntax is as follows:</p>
+<p class="commandtext">select columns from models where constraints order by variables limit count offset count;</p>
+<p class="bodytext">The purpose of the <code class="monospace">select</code> command is to find values for some set of variables that satisfy the specified constraints. All variable names start with a dollar sign (<code class="monospace">$)</code>, for example <code class="monospace">$x</code> or <code class="monospace">$title</code>.</p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "226.8">
+<p class="relatedheading">In This Section</p><p class="relateditem"><a href="187.htm#o188" target="_self">select Clause</a></p><p class="relateditem"><a href="187.htm#o189" target="_self">from Clause</a></p><p class="relateditem"><a href="187.htm#o197" target="_self">where Clause</a></p><p class="relateditem"><a href="187.htm#o190" target="_self">order by Clause</a></p><p class="relateditem"><a href="187.htm#o191" target="_self">limit Clause</a></p><p class="relateditem"><a href="187.htm#o192" target="_self">offset Clause</a></p><p class="relateditem"><a href="187.htm#o193" target="_self">subquery Function</a></p><p class="relateditem"><a href="187.htm#o194" target="_self">count Function</a></p><p class="relateditem"><a href="187.htm#o2776" target="_self">having Clause</a></p></td>
+<td width= "226.8">
+<p class="relatedheading">See Also</p><p class="relateditem"><a href="271.htm" target="_self">iTQL Commands</a></p><p class="relateditem"><a href="170.htm" target="_self">alias</a></p><p class="relateditem"><a href="171.htm" target="_self">backup</a></p><p class="relateditem"><a href="223.htm" target="_self">comment (#)</a></p><p class="relateditem"><a href="174.htm" target="_self">commit</a></p><p class="relateditem"><a href="176.htm" target="_self">create</a></p><p class="relateditem"><a href="178.htm" target="_self">delete</a></p><p class="relateditem"><a href="179.htm" target="_self">drop</a></p><p class="relateditem"><a href="180.htm" target="_self">execute</a></p><p class="relateditem"><a href="181.htm" target="_self">help</a></p><p class="relateditem"><a href="182.htm" target="_self">insert</a></p><p class="relateditem"><a href="183.htm" target="_self">load</a></p><p class="relateditem"><a href="184.htm" target="_self">quit</a></p><p class="relateditem"><a href="185.htm" target="_self">restore</a></p><p class="relateditem"><a href="186.htm" target="_self">rollback</a></p><p class="relateditem"><a href="195.htm" target="_self">set</a></p></td>
+</tr>
+</table>
+
+<a name="o188"></a><h3 class="heading3">select Clause</h3>
+<p class="bodytext">Specifies the variables to solve for and their order in the result. For example:</p>
+<p class="commandtext">select $title $author $date ...</p>
+<p class="bodytext">Constant resource or literal values may be part of a <code class="monospace">select</code> clause. In these cases, dummy variable names (<code class="monospace">$k0</code>, <code class="monospace">$k1</code>, <code class="monospace">$k2</code>, … <code class="monospace">$kn</code>) are created for the constant values.</p>
+<p class="bodytext">The following example returns three columns: <code class="monospace">$k0</code>, <code class="monospace">$x</code> and <code class="monospace">$k1</code> where the values of <code class="monospace">$k0</code> and <code class="monospace">$k1</code> for every solution are the literal value <code class="monospace">foo</code> and the resource value <code class="monospace">http://www.site.domain.net</code> respectively.</p>
+<p class="commandtext">select 'foo' $x &lt;http://www.site.domain.net&gt; ...</p>
+<a name="o189"></a><h3 class="heading3">from Clause</h3>
+<p class="bodytext">Specifies the model to query. For example:</p>
+<p class="commandtext">... from &lt;rmi://mysite.com/server1#model1&gt; ...</p>
+<p class="bodytext">Because models are sets of statements, it is logical to compose them using set operations. The <code class="monospace">from </code>clause permits set union using the <code class="monospace">or</code> operator and set intersection using the <code class="monospace">and</code> operator, with parentheses used to control association.</p>
+<a name="o3149"></a>
+<p class="bodytext">The following example queries only the statements appearing in all three models. </p>
+<p class="commandtext">... from &lt;rmi://mysite.com/server1#model1&gt; and &lt;rmi://mysite.com/server1#model2&gt;<br />      and &lt;rmi://mysite.com/server1#model3&gt; ...</p>
+<a name="o197"></a><h3 class="heading3">where Clause</h3>
+<p class="bodytext">The <code class="monospace">where</code> clause is usually the largest and most detailed clause of the <code class="monospace"><a id="h207" class="documentlinktemplate" title="select" href="187.htm" target="_self">select</a></code> command. It specifies the constraints that must be satisfied by the variable values in each solution. A constraint is a sequence of subject, predicate and object that represents an RDF statement. Each of the three positions is either a constant value (a resource or a literal) or a variable. The Mulgara server finds values for any variables such that the resulting statement is present in the model that was specified in the preceding <code class="monospace"><a id="h1326" class="documentlinktemplate" title="from Clause" href="187.htm#o189" target="_self">from</a></code> clause.</p>
+<p class="bodytext">For example, the following <code class="monospace">where</code> clause constrains that in all solutions, the value of <code class="monospace">$title</code> is the title of the resource referred to in <code class="monospace">$document</code>.</p>
+<p class="commandtext">... where $document &lt;dc:title&gt; $title ...</p>
+<p class="bodytext">Constraints may be composed using <code class="monospace">and</code> and <code class="monospace">or</code> operations, with parentheses to control association.</p>
+<p class="bodytext">The following example returns every document with a title, an author and a subject of either botany or zoology. Documents without a known title or author are not returned.</p>
+<p class="commandtext">... where $document &lt;dc:title&gt; $title and $document &lt;dc:creator&gt; $author <br />      and ($document &lt;dc:subject&gt; 'botany' or $document &lt;dc:subject&gt; 'zoology') ...</p>
+<a name="o1530"></a><h4 class="heading4">in Specifier</h4>
+<p class="bodytext">Constraints may optionally contain an <code class="monospace">in</code> specifier to resolve the constraint against the statements in a specified model, rather than the one specified in the <code class="monospace"><a id="h1303" class="documentlinktemplate" title="from Clause" href="187.htm#o189" target="_self">from</a></code> clause.</p>
+<p class="bodytext">The <code class="monospace">in</code> specifier may be used to specify views as well as models.</p>
+
+<p class="bodytext">The following example constrains the result by titles in the <code class="monospace">#books</code> model rather than the one specified in the <code class="monospace">from</code> clause.</p>
+<p class="commandtext">... where $document &lt;dc:title&gt; $title in &lt;rmi://mysite.com/server1#books&gt; ...</p>
+<a name="o1531"></a><h4 class="heading4">Assigning a Value to a Variable (tucana:is)</h4>
+<p class="bodytext">Constraints may also assign a value to a variable rather then querying for it. The special property <code class="monospace">http://tucana.org/tucana#is </code>(or the aliased form <code class="monospace">&lt;tucana:is&gt;</code>) can be used with a variable as its subject and a non-variable value as its object. This assigns the non-variable value to the variable.</p>
+<p class="bodytext">The following example results in every document authored by Mendel about genetics, or by Mendeleev about chemistry.</p>
+<p class="commandtext">... where $document &lt;dc:title&gt; $title and $document &lt;dc:creator&gt; $author <br />      and $document &lt;dc:subject&gt; $subject <br />      and (($author &lt;tucana:is&gt; 'Mendel'    and $subject &lt;tucana:is&gt; 'genetics' ) <br />      or ($author &lt;tucana:is&gt; 'Mendeleev' and $subject &lt;tucana:is&gt; 'chemistry')) ...</p>
+<a name="o1532"></a><h4 class="heading4">Traversing a Graph (walk Function)</h4>
+<p class="bodytext">Traversing a graph allows a query to return values, based on a predicate, by following up or down a hierarchy of statements. In a schema language such as RDFS, these hierarchies are expressed as a sub-class or sub-property predicate. Traversing a graph is performed with the <code class="monospace">walk</code> function within a <code class="monospace"><a id="h1321" class="documentlinktemplate" title="where Clause" href="187.htm#o197" target="_self">where</a></code> clause.</p>
+<p class="bodytext">The syntax of the <code class="monospace">walk</code> function is either:</p>
+<p class="listcontinuecommandtext">walk ($subject_variable &lt;predicate_URI&gt; &lt;object_URI&gt; and<br />$subject_variable &lt;predicate_URI&gt; $object_variable)</p>
+<p class="listcontinue">or</p>
+<p class="listcontinuecommandtext">walk (&lt;subject_URI&gt; &lt;predicate_URI&gt; $object_variable and<br />$subject_variable &lt;predicate_URI&gt; $object_variable)</p>
+<p class="bodytext">The <code class="monospace">walk</code> function must be bound to a <code class="monospace"><a id="h1298" class="documentlinktemplate" title="select Clause" href="187.htm#o188" target="_self">select</a></code> clause using the same triple pattern that matches the second parameter. For example:</p>
+<p class="commandtext">select $subject &lt;predicate_URI&gt; $object<br />...<br />where walk ($subject &lt;predicate_URI&gt; &lt;object_URI&gt; and<br />$subject &lt;predicate_URI&gt; $object);</p>
+<p class="bodytext">An example of <code class="monospace">walk</code> is demonstrated using the following statements:</p>
+<p class="commandtext">[ ( &lt;kangroos&gt;, &lt;rdfs:subClassOf&gt;, &lt;marsupials&gt; )<br />  ( &lt;marsupials&gt;, &lt;rdfs:subClassOf&gt;, &lt;mammals&gt; )<br />  ( &lt;placental-mammals&gt;, &lt;rdfs:subClassOf&gt;, &lt;mammals&gt; )<br />  ( &lt;mammals&gt;, &lt;rdfs:subClassOf&gt;, &lt;vertebrates&gt; ) ]</p>
+<p class="bodytext">To query a set of statements in the hierarchy ending with <code class="monospace">&lt;vertebrates&gt;</code> as an object:</p>
+<p class="commandtext">select $subject &lt;rdfs:subClassOf&gt; $object<br />...<br />where walk($subject &lt;rdfs:subClassOf&gt; &lt;vertebrates&gt;<br />and $subject &lt;rdfs:subClassOf&gt; $object);</p>
+<p class="bodytext">Working from the bottom up, the system:</p>
+<ul class="listbullet"><li class="listbullet">Matches <code class="monospace">( &lt;mammals&gt;, &lt;rdfs:subClassOf&gt;, &lt;vertebrates&gt; )</code> and then substitutes <code class="monospace">&lt;mammals&gt;</code> for <code class="monospace">&lt;vertebrates&gt;</code> in the constraints.</li><li class="listbullet">Attempts to match for the triples <code class="monospace">( *, &lt;rdfs:subClassOf&gt;, &lt;mammals&gt; )</code>.</li><li class="listbullet">Then matches for <code class="monospace">( &lt;marsupials&gt;, &lt;rdfs:subClassOf&gt;, &lt;mammals&gt; )</code> and <code class="monospace">( &lt;placental-mammals&gt;, &lt;rdfs:subClassOf&gt;, &lt;mammals&gt; )</code>.</li><li class="listbullet">Then matches for <code class="monospace">( *, &lt;rdfs:subClassOf&gt;, &lt;marsupials&gt; )</code> and (<code class="monospace"> *, &lt;rdfs:subClassOf&gt;, &lt;placental-mammals&gt; )</code> and so on.</li></ul><p class="bodytext">The result of the query is:</p>
+<p class="commandtext">[ ( &lt;mammals&gt;, &lt;rdfs:subClassOf&gt;, &lt;vertebrates&gt; )<br />  ( &lt;placental-mammals&gt;, &lt;rdfs:subClassOf&gt;, &lt;mammals&gt; )<br />  ( &lt;marsupials&gt;, &lt;rdfs:subClassOf&gt;, &lt;mammals&gt; )<br />  ( &lt;kangaroos&gt;, &lt;rdfs:subClassOf&gt;, &lt;marsupials&gt; ) ]</p>
+<p class="bodytext">You can also traverse down the graph following the hierarchy. For example:</p>
+<p class="commandtext">select $subject &lt;rdfs:subClassOf&gt; $object<br />...<br />where walk(&lt;kangaroos&gt; &lt;rdfs:subClassOf&gt; $object<br />and $subject &lt;rdfs:subClassOf&gt; $object);</p>
+<p class="bodytext">This returns:</p>
+<p class="commandtext">[ ( &lt;kangaroos&gt;, &lt;rdfs:subClassOf&gt;, &lt;marsupials&gt; )<br />  ( &lt;marsupials&gt;, &lt;rdfs:subClassOf&gt;, &lt;mammals&gt; )<br />  ( &lt;mammals&gt;, &lt;rdfs:subClassOf&gt;, &lt;vertebrates&gt; ) ]</p>
+<a name="o1535"></a><h4 class="heading4">Transitive Closure (trans Function)</h4>
+<p class="bodytext">Transitive closure provides the ability to express a function that generates new statements. Normally, transitive closure produces both existing and new statements. The <code class="monospace">trans</code> function in iTQL<sup class="superscript">TM</sup> only produces new statements, statements that did not exist in the model before it was executed. The <code class="monospace">trans</code> function can be further constrained by limiting which statements are inferred and by giving it a starting or termination point.</p>
+<p class="bodytext">The simplest form of the <code class="monospace">trans</code> function defines a predicate to operate on:</p>
+<p class="commandtext">select $subject &lt;rdfs:subClassOf&gt; $object<br />...<br />where trans($subject &lt;rdfs:subClassOf&gt; $object);</p>
+<p class="bodytext">This generates a new statement, <code class="monospace">$x &lt;rdfs:subClassOf&gt; $z</code>, when it finds two statements that match the pattern <code class="monospace">$x &lt;rdfs:subClassOf&gt; $y</code> and <code class="monospace">$y &lt;rdfs:subClassOf&gt; $z</code>.</p>
+<p class="bodytext">For example, consider the following set of statements:</p>
+<p class="commandtext">[ (&lt;mammals&gt;, &lt;rdfs:subClassOf&gt;, &lt;vertebrates&gt;)<br />  (&lt;eats-leaves&gt;, &lt;rdfs:subPropertyOf&gt;, &lt;herbivore&gt;)<br />  (&lt;marsupials&gt;, &lt;rdfs:subClassOf&gt;, &lt;mammals&gt;)<br />  (&lt;placental-mammals&gt;, &lt;rdfs:subClassOf&gt;, &lt;mammals&gt;)<br />  (&lt;elephants&gt;, &lt;rdfs:subClassOf&gt;, &lt;placental-mammals&gt;)<br />  (&lt;kangaroos&gt;, &lt;rdfs:subClassOf&gt;, &lt;marsupials&gt;)<br />  (&lt;red-kangaroos&gt;, &lt;rdfs:subClassOf&gt;, &lt;kangaroos&gt;) ]</p>
+<p class="bodytext">As a tree it looks as follows:</p>
+<p class="bodytext"><img src="1536.gif" alt="Transitive Closure" height="273" width="252" vspace="0" hspace="0" align="bottom" border="0" /></p>
+<p class="bodytext">Based on the constraint in the query, the first and third statements match the pattern <code class="monospace">(&lt;marsupials&gt;, &lt;rdfs:subClassOf&gt;, &lt;mammals&gt;) and (&lt;mammals&gt;, &lt;rdfs:subClassOf&gt;, &lt;vertebrates&gt;)</code>. Therefore, the function generates the statement <code class="monospace">(&lt;marsupials&gt;, &lt;rdfs:subClassOf&gt;, &lt;vertebrates&gt;)</code>.</p>
+<p class="bodytext">Using the query across the existing set of statements produces the following new set of statements:</p>
+<p class="commandtext">[ (<code class="monospace">&lt;marsupials&gt;, &lt;rdfs:subClassOf&gt;, &lt;vertebrates&gt;</code>)<br />  (&lt;kangaroos&gt;, &lt;rdfs:subClassOf&gt;, &lt;<code class="monospace">vertebrates</code>&gt;)<br />  (&lt;red-kangaroos&gt;, &lt;rdfs:subClassOf&gt;, &lt;<code class="monospace">vertebrates</code>&gt;)<br />  (&lt;placental-mammals&gt;, &lt;rdfs:subClassOf&gt;, &lt;<code class="monospace">vertebrates&gt;</code>)<br />  (&lt;elephants&gt;, &lt;rdfs:subClassOf&gt;, &lt;<code class="monospace">vertebrates</code>&gt;)<br />  (&lt;kangaroos&gt;, &lt;rdfs:subClassOf&gt;, &lt;mammals&gt;)<br />  (&lt;red-kangaroos&gt;, &lt;rdfs:subClassOf&gt;, &lt;mammals&gt;)<br />  (&lt;elephants&gt;, &lt;rdfs:subClassOf&gt;, &lt;mammals&gt;)<br />  (&lt;red-kangaroos&gt;, &lt;rdfs:subClassOf&gt;, &lt;marsupials&gt;) ]</p>
+<p class="bodytext">To provide the results expected from a transitive closure function you would union together these newly generated statements with the original base set of statements, using the following query:</p>
+<p class="commandtext">select $subject &lt;rdfs:subClassOf&gt; $object<br />...<br />where trans($subject &lt;rdfs:subClassOf&gt; $object)<br />or $subject &lt;rdfs:subClassOf&gt; $object;</p>
+<p class="bodytext">You can further restrict the <code class="monospace">trans</code> function to a sub-set of statements, as shown in the following example.</p>
+<p class="commandtext">select $subject &lt;rdfs:subClassOf&gt; $object<br />...<br />where trans($subject &lt;rdfs:subClassOf&gt; &lt;mammals&gt;<br />and $subject &lt;rdfs:subClassOf&gt; $object);</p>
+<p class="bodytext">This produces new statements where the object in the inheritance tree begins with <code class="monospace">&lt;mammals&gt;</code>, eliminating the statements derived from <code class="monospace">&lt;vertebrates&gt;</code>.  It produces the following:</p>
+<p class="commandtext">[ (&lt;kangaroos&gt;, &lt;rdfs:subClassOf&gt;, &lt;mammals&gt;)<br />  (&lt;red-kangaroos&gt;, &lt;rdfs:subClassOf&gt;, &lt;mammals&gt;)<br />  (&lt;elephants&gt;, &lt;rdfs:subClassOf&gt;, &lt;mammals&gt;)<br />  (&lt;red-kangroos&gt;, &lt;rdfs:subClassOf&gt;, &lt;marsupials&gt;) ]</p>
+<p class="bodytext">To get the full transitive closure, the newly inferred statements are unioned with the base statements. To only return the sub-graph from <code class="monospace">&lt;mammals&gt;</code> we can add the results from a <code class="monospace"><a id="h1537" class="documentlinktemplate" title="Traversing a Graph (walk Function)" href="187.htm#o1532" target="_self">walk</a></code> function:</p>
+<p class="commandtext">select $subject &lt;rdfs:subClassOf&gt; $object<br />...<br />where trans($xxx &lt;rdfs:subClassOf&gt; &lt;mammals&gt;<br />and $subject &lt;rdfs:subClassOf&gt; $object) or<br />walk($subject &lt;rdfs:subClassOf&gt; &lt;mammals&gt;<br />and $subject &lt;rdfs:subClassOf&gt; $object);</p>
+<p class="bodytext">To generate the statements to <code class="monospace">&lt;marsupials&gt;</code> you can constrain the subject in the function instead:</p>
+<p class="commandtext">select $subject &lt;rdfs:subClassOf&gt; $object<br />...<br />where trans(&lt;marsupials&gt; &lt;rdfs:subClassOf&gt; $object<br />and $subject &lt;rdfs:subClassOf&gt; $object) ;</p>
+<p class="bodytext">This produces:</p>
+<p class="commandtext">[ &lt;marsupials&gt;, &lt;rdfs:subClassOf&gt;, &lt;vertebrates&gt;) ]</p>
+<p class="bodytext">The <code class="monospace">trans</code> function also allows you to limit what is inferred by dropping the second constraint within the <code class="monospace">trans</code> definition. For example, to infer only direct statements from <code class="monospace">&lt;vertebrates&gt;</code>:</p>
+<p class="commandtext">select $subject &lt;rdfs:subClassOf&gt; &lt;<code class="monospace">vertebrates</code>&gt;<br />...<br />where trans($subject &lt;rdfs:subClassOf&gt; &lt;<code class="monospace">vertebrates</code>&gt;)</p>
+<p class="bodytext">Which produces:</p>
+<p class="commandtext">[ (&lt;marsupials&gt;, &lt;rdfs:subClassOf&gt;, &lt;<code class="monospace">vertebrates</code>&gt;)<br />  (&lt;kangaroos&gt;, &lt;rdfs:subClassOf&gt;, &lt;<code class="monospace">vertebrates</code>&gt;)<br />  (&lt;red-kangaroos&gt;, &lt;rdfs:subClassOf&gt;, &lt;<code class="monospace">vertebrates</code>&gt;)<br />  (&lt;placental-mammals&gt;, &lt;rdfs:subClassOf&gt;, &lt;<code class="monospace">vertebrates</code>&gt;)<br />  (&lt;elephants&gt;, &lt;rdfs:subClassOf&gt;, &lt;<code class="monospace">vertebrates</code>&gt;) ]</p>
+<p class="bodytext">Likewise, you can also make the subject in the <code class="monospace">trans</code> constraint a constant and the object a variable.</p>
+
+<a name="oxxminusxx"></a><h4 class="heading4">Graph Difference (minus) Function</h4>
+<p class="bodytext">The <code class="monospace">minus</code> function allows
+you to find the statements which differ between two graphs.</p>
+
+<p class="bodytext">For example, to find the statements which are different
+between the model &lt;rmi://localhost/server1#input&gt; and
+&lt;rmi://localhost/server1#output&gt;, we could issue a query like this:</p>
+
+<p class="commandtext">
+select $subject $predicate $object
+from &lt;rmi://localhost/server1#output&gt;
+where
+  $subject $predicate $object in &lt;rmi://localhost/server1#output&gt;
+  minus
+  $subject $predicate $object in &lt;rmi://localhost/server1#input&gt; ;
+</p>
+
+<p class="bodytext">The use of the <code class="monospace">in</code> specifier
+is not strictly necessary for the model named in <code
+class="monospace">from</code> clause, but it makes the query a bit more
+readable by providing symmetry.</p>
+
+<p class="bodytext">To count the number of statements that differ between the
+two models, we could do something like the following.  Note variables do not
+carry over into a <code class="monospace">count</code> function&#8217;s
+namespace, so the outer query could be anything.</p>
+
+<p class="commandtext">
+select count (
+    select $subject $predicate $object
+    from &lt;rmi://localhost/server1#output&gt;
+    where
+      $subject $predicate $object in &lt;rmi://localhost/server1#output&gt;
+      minus
+      $subject $predicate $object in &lt;rmi://localhost/server1#input&gt;
+)
+from &lt;rmi://localhost/server1#&gt;
+where
+  $s $p $o ;
+</p>
+
+
+<a name="o2768"></a><h4 class="heading4">exclude Function</h4>
+<p class="bodytext">The <code class="monospace">exclude</code> function allows you to select all statements which do not match a given constraint. Normal constraints match against the graph with the constraints you provide. Constraints enclosed in an <code class="monospace">exclude</code> function return the values in the graph that are not the constraints provided.</p>
+<p class="bodytext">This function is almost never useful.  Consider using the <a href="#oxxminusxx">minus</a> operator instead.</p>
+<p class="bodytext">Using the following statements as an example for "finding all plants with leaves that are not green":</p>
+<p class="commandtext">[ (&lt;maple&gt;, &lt;leaves&gt;, 'green')<br />  (&lt;redMaple&gt;, &lt;leaves&gt;, 'red')<br />  (&lt;oak&gt;, &lt;leaves&gt;, 'green')<br />  (&lt;cactus&gt;, &lt;prickles&gt;, 'yellow') ]</p>
+<p class="bodytext">With a small model it is possible to query for all plants that do not have leaves. The following query:</p>
+<p class="commandtext">select $s<br />from ...<br />where exclude($s &lt;leaves&gt; $o) ;</p>
+<p class="bodytext">Returns:</p>
+<p class="commandtext">[ ( &lt;cactus&gt; ) ]</p>
+<p class="bodytext">However, more statements in the data mean that the results will need to be constrained more carefully.  Unfortunately this may cause the <code class="monospace">exclude</code> operator to miss some required statements.  For instance, if the following statements were also included:</p>
+<p class="commandtext">[ ( &lt;maple&gt; &lt;rdf:type&gt; &lt;plant&gt; )<br/> ( &lt;redMaple&gt; &lt;rdf:type&gt; &lt;plant&gt; )<br/> ( &lt;oak&gt; &lt;rdf:type&gt; &lt;plant&gt; )<br/> ( &lt;cactus&gt; &lt;rdf:type&gt; &lt;plant&gt; ) ]</p>
+<p class="bodytext">The following query would appear appropriate:</p>
+<p class="commandtext">select $s<br />from ...<br />where $s &lt;rdf:type&gt; &lt;plant&gt; <br/>and exclude($s &lt;leaves&gt; $o);</p>
+<p class="bodytext">However, this returns:</p>
+<p class="commandtext">[( &lt;maple&gt; )<br/> ( &lt;redMaple&gt; )<br/> ( &lt;oak&gt; )<br/> ( &lt;cactus&gt; ) ]</p>
+
+<p class="bodytext">To understand what this query is doing, examine each constraint individually:</p>
+<ol class="listnumber">
+  <li class="listnumber"><code class="monospace">$s &lt;rdf:type&gt; &lt;plant&gt;</code> returns all statements referring to a type of plant:<p class="listcontinuecommandtext">$s          $p <br/>&lt;maple&gt;     &lt;plant&gt; <br/>&lt;redMaple&gt;  &lt;plant&gt; <br/>&lt;oak&gt;       &lt;plant&gt; <br/>&lt;cactus&gt;    &lt;plant&gt;</p>
+  </li>
+  <li class="listnumber"><code class="monospace">$s &lt;urn:leaves&gt; $o</code> (before the <code class="monospace">exclude</code> operator is applied) returns all statements which match the predicate <code class="monospace">&lt;leaves&gt;</code>:<p class="listcontinuecommandtext">$s          $o<br />&lt;maple&gt;     'green'<br />&lt;redMaple&gt;  'red'<br />&lt;oak&gt;       'green'</p>
+  </li>
+  <li class="listnumber"><code class="monospace">exclude($s &lt;urn:leaves&gt; $o)</code> returns all statements which do not match the predicate <code class="monospace">&lt;leaves&gt;</code>:<p class="listcontinuecommandtext">$s          $o <br/>&lt;maple&gt;     &lt;plant&gt; <br/>&lt;redMaple&gt;  &lt;plant&gt; <br/>&lt;oak&gt;       &lt;plant&gt; <br/>&lt;cactus&gt;    &lt;plant&gt; <br/>&lt;cactus&gt;    'yellow' </p>
+  </li>
+</ol>
+<p class="bodytext">Combining the two results (using <code class="monospace">and</code>), leads to all the subjects satisfng both constraints.  This is incorrect.  The required solution can be found if the <code class="monospace">minus</code> operator is used instead:</p>
+<p class="commandtext">select $s<br />from ...<br />where $s &lt;rdf:type&gt; &lt;plant&gt; <br/>minus $s &lt;leaves&gt; $o ;</p>
+<p class="bodytext">In this case the <code class="monospace">minus</code> operator will remove all statements matching the specified constraint, rather than joining to all statements which do not match the specified constraint (which is the operation of <code class="monospace">and exclude</code>). </p>
+
+
+<a name="o190"></a><h3 class="heading3">order by Clause</h3>
+<p class="bodytext">Optionally sorts the results of a <code class="monospace"><a id="h207_2" class="documentlinktemplate" title="select" href="187.htm" target="_self">select</a></code> command according to the variables specified.</p>
+<p class="bodytext">The following example sorts the results numerically by rating (assuming ratings can be parsed as numbers), then alphabetically by author for documents of equal rating.</p>
+<p class="commandtext">... order by $rating $title;</p>
+<p class="bodytext">The suffixes <code class="monospace">asc</code> and <code class="monospace">desc</code> may be used to override the default sort ordering for a variable.</p>
+<p class="bodytext">The following example sorts the results such that low ratings display first, and then alphabetically by author for documents of equal rating.</p>
+<p class="commandtext">... order by $rating asc $author;</p>
+<a name="o191"></a><h3 class="heading3">limit Clause</h3>
+<p class="bodytext">Optionally limits the query result to a specified non-negative number of rows.</p>
+<p class="bodytext">When using <code class="monospace">limit</code>, it is advisable to use the <code class="monospace"><a id="h219_2" class="documentlinktemplate" title="order by Clause" href="187.htm#o190" target="_self">order by</a></code> clause to constrain the result rows into a unique order. Otherwise you do not know which rows are returned. For example, if you limit a result to 10 rows without specifying an order, you do not know which 10 rows are returned.</p>
+<a name="o192"></a><h3 class="heading3">offset Clause</h3>
+<p class="bodytext">Optionally skips a non-negative number of rows at the beginning of a query result. The use of <code class="monospace">offset</code> usually accompanies a <code class="monospace"><a id="h221_2" class="documentlinktemplate" title="limit Clause" href="187.htm#o191" target="_self">limit</a></code> clause, making it possible to page through results.</p>
+<p class="bodytext">As with <code class="monospace">limit</code>, it is advisable to use the <code class="monospace"><a id="h219_3" class="documentlinktemplate" title="order by Clause" href="187.htm#o190" target="_self">order by</a></code> clause to constrain the result rows into a unique order.</p>
+<p class="bodytext">For examples and explanations of complete queries, see the <a id="h666" class="documentlinktemplate" title="Basic iTQL Operations" href="230.htm" target="_self">Issuing iTQL Commands section</a>.</p>
+<a name="o193"></a><h3 class="heading3">subquery Function</h3>
+<p class="bodytext">Used to nest <code class="monospace"><a id="h207_3" class="documentlinktemplate" title="select" href="187.htm" target="_self">select</a></code> commands. Subqueries nest inside <code class="monospace">select</code> by binding variables in the subquery <code class="monospace"><a id="h1321_2" class="documentlinktemplate" title="where Clause" href="187.htm#o197" target="_self">where</a></code> clause to the outer <code class="monospace"><a id="h1298_2" class="documentlinktemplate" title="select Clause" href="187.htm#o188" target="_self">select</a></code> clause.</p>
+<p class="bodytext">In the following example the value of <code class="monospace">$vcard</code> is bound to the inner query. The outer result set contains nested result sets for each subquery.</p>
+<p class="commandtext">select $vcard $fn <br />  subquery( select $title <br />    from &lt;rmi://mysite.com/server1#vcard&gt; <br />    where $vcard &lt;http://www.w3.org/2001/vcard-rdf/3.0#TITLE&gt; $title<br />    order by $title )<br />  from &lt;rmi://mysite.com/server1#vcard&gt; <br />    where $vcard &lt;http://www.w3.org/2001/vcard-rdf/3.0#FN&gt; $fn <br />    order by $fn;</p>
+<p class="bodytext">The above example produces the following XML output from a SOAP call:</p>
+<p class="commandtext">&lt;?xml version=&quot;1.0&quot;?&gt;<br />&lt;answer xmlns=&quot;http://tucanatech.com/tql#&quot;&gt;<br />  &lt;query&gt;<br />    &lt;variables&gt;<br />      &lt;vcard/&gt;<br />      &lt;fn/&gt;<br />      &lt;k0/&gt;<br />    &lt;/variables&gt;<br />    &lt;solution&gt;<br />      &lt;vcard resource=&quot;http://qqq.com/staff/superman&quot;/&gt;<br />      &lt;fn&gt;Superman&lt;/fn&gt;<br />      &lt;k0&gt;<br />        &lt;variables&gt;<br />          &lt;title/&gt;<br />        &lt;/variables&gt;<br />      &lt;/k0&gt;<br />    &lt;/solution&gt;<br />    &lt;solution&gt;<br />      &lt;vcard resource=&quot;http://qqq.com/staff/spiderman&quot;/&gt;<br />      &lt;fn&gt;Peter Parker&lt;/fn&gt;<br />      &lt;k0&gt;<br />        &lt;variables&gt;<br />          &lt;title/&gt;<br />        &lt;/variables&gt;<br />        &lt;solution&gt;<br />          &lt;title&gt;Super Hero&lt;/title&gt;<br />        &lt;/solution&gt;<br />        &lt;solution&gt;<br />          &lt;title&gt;PO2&lt;/title&gt;<br />        &lt;/solution&gt;<br />      &lt;/k0&gt;<br />    &lt;/solution&gt;<br />    &lt;solution&gt;<br />      &lt;vcard resource=&quot;http://qqq.com/staff/corky&quot;/&gt;<br />      &lt;fn&gt;Corky Crystal&lt;/fn&gt;<br />      &lt;k0&gt;<br />        &lt;variables&gt;<br />          &lt;title/&gt;<br />        &lt;/variables&gt;<br />        &lt;solution&gt;<br />          &lt;title&gt;Computer Officer Class 3&lt;/title&gt;<br />        &lt;/solution&gt;<br />      &lt;/k0&gt;<br />    &lt;/solution&gt;<br />  &lt;/query&gt;<br />&lt;/answer&gt;</p>
+<a name="o194"></a><h3 class="heading3">count Function</h3>
+<p class="bodytext">Similar to <code class="monospace"><a id="h211_2" class="documentlinktemplate" title="subquery Function" href="187.htm#o193" target="_self">subquery</a></code> except that it only returns a dummy variable with value of the total row count of the inner query. See the <code class="monospace"><a id="h1320" class="documentlinktemplate" title="select Clause" href="187.htm#o188" target="_self">select</a></code><a id="h1320_2" class="documentlinktemplate" title="select Clause" href="187.htm#o188" target="_self"> clause section</a> for a description of dummy variables. For example:</p>
+<p class="commandtext">select $vcard $fn <br />  count( select $title from &lt;rmi://mysite.com/server1#vcard&gt; <br />    where $vcard &lt;http://www.w3.org/2001/vcard-rdf/3.0#TITLE&gt; $title )<br />  from &lt;rmi://mysite.com/server1#vcard&gt; <br />  where $vcard &lt;http://www.w3.org/2001/vcard-rdf/3.0#FN&gt; $fn ;</p>
+<p class="bodytext">The above example returns the following:</p>
+<p class="commandtext">vcard=http://qqq.com/staff/corky        fn=&quot;Corky Crystal&quot;    k0=&quot;1&quot;<br />vcard=http://qqq.com/staff/spiderman    fn=&quot;Peter Parker&quot;     k0=&quot;2&quot;<br />vcard=http://qqq.com/staff/superman     fn=&quot;Superman&quot;         k0=&quot;0&quot;</p>
+<a name="o2776"></a><h3 class="heading3">having Clause</h3>
+<p class="bodytext">The <code class="monospace">having</code> clause applies a constraint to a dummy variable that results from a <code class="monospace"><a id="h1323" class="documentlinktemplate" title="subquery Function" href="187.htm#o193" target="_self">subquery</a></code> in a <code class="monospace"><a id="h1320_3" class="documentlinktemplate" title="select Clause" href="187.htm#o188" target="_self">select</a></code><a id="h1320_4" class="documentlinktemplate" title="select Clause" href="187.htm#o188" target="_self"> clause</a> of a query. These variables are of the form <code class="monospace">$k0</code>, <code class="monospace">$k1</code>, <code class="monospace">$k2</code>, … <code class="monospace">$kn</code> and only hold numerical values. See the <code class="monospace"><a id="h1320_5" class="documentlinktemplate" title="select Clause" href="187.htm#o188" target="_self">select</a></code><a id="h1320_6" class="documentlinktemplate" title="select Clause" href="187.htm#o188" target="_self"> clause section</a> for a description of dummy variables.</p>
+<p class="bodytext">There are four special predicates that can be used to perform arithmetic comparisons in the <code class="monospace">having</code> clause, as outlined in the following table.</p>
+<table width="450" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr align="left" valign="top">
+<td width="294"><p class="tableheading">Predicate</p>
+</td>
+<td width="156"><p class="tableheading">Arithmetic Operation</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="294"><p class="tablebodytext"><code class="monospace">http://tucana.org/tucana#occurs</code></p>
+</td>
+<td width="156"><p class="tablebodytext">=</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="294"><p class="tablebodytext"><code class="monospace">http://tucana.org/tucana#occursMoreThan</code></p>
+</td>
+<td width="156"><p class="tablebodytext">&gt;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="294"><p class="tablebodytext"><code class="monospace">http://tucana.org/tucana#occursLessThan</code></p>
+</td>
+<td width="156"><p class="tablebodytext">&lt;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td width="294"><p class="tablebodytext"><code class="monospace">http://tucana.org/tucana#notOccurs</code></p>
+</td>
+<td width="156"><p class="tablebodytext">?</p>
+</td>
+</tr>
+
+</table>
+<p class="bodytext">Expanding on the example shown in the <code class="monospace"><a id="h1323_2" class="documentlinktemplate" title="subquery Function" href="187.htm#o193" target="_self">subquery</a></code> and <code class="monospace"><a id="h733_2" class="documentlinktemplate" title="count Function" href="187.htm#o194" target="_self">count</a></code> sections, the following query restricts the result to those with a count of 1:</p>
+<p class="commandtext">select $vcard $fn <br />  count( select $title from &lt;rmi://mysite.com/server1#vcard&gt; <br />    where $vcard &lt;http://www.w3.org/2001/vcard-rdf/3.0#TITLE&gt; $title )<br />  from &lt;rmi://mysite.com/server1#vcard&gt; <br />  where $vcard &lt;http://www.w3.org/2001/vcard-rdf/3.0#FN&gt; $fn <br />  having $k0 &lt;http://tucana.org/tucana#occurs&gt;<br />    '1.0'^^&lt;http://www.w3.org/2001/XMLSchema#double&gt; ;</p>
+<p class="bodytext">The above example returns:</p>
+<p class="commandtext">vcard=http://qqq.com/staff/corky    fn=&quot;Corky Crystal&quot;    k0=&quot;1&quot;</p>
+<p class="bodytext">Similarly, to restrict the result to those with a count greater than 0 would be: </p>
+<p class="commandtext">select $vcard $fn <br />  count( select $title from &lt;rmi://mysite.com/server1#vcard&gt; <br />    where $vcard &lt;http://www.w3.org/2001/vcard-rdf/3.0#TITLE&gt; $title )<br />  from &lt;rmi://mysite.com/server1#vcard&gt; <br />  where $vcard &lt;http://www.w3.org/2001/vcard-rdf/3.0#FN&gt; $fn <br />  having $k0 &lt;http://tucana.org/tucana#occursMoreThan&gt;<br />    '0.0'^^&lt;http://www.w3.org/2001/XMLSchema#double&gt; ;</p>
+<p class="bodytext">The above example returns:</p>
+<p class="commandtext">vcard=http://qqq.com/staff/corky        fn=&quot;Corky Crystal&quot;    k0=&quot;1&quot;<br />vcard=http://qqq.com/staff/spiderman    fn=&quot;Peter Parker&quot;     k0=&quot;2&quot;</p>
+<p class="bodytext">The form of the constraint for the <code class="monospace">having</code> clause must be:</p>
+<p class="commandtext">$kx predicate value^^&lt;http://www.w3.org/2001/XMLSchema#double&gt;</p>
+<p class="bodytext">Where p<code class="monospace">redicate</code> is one of the predicates from the above table.</p>
+<p class="bodytext">Note that compound constraints for the <code class="monospace">having</code> clause are not allowed. For example, the following query is <em class="emphasis">not</em> legal:</p>
+<p class="commandtext">select $vcard $fn <br />  count( select $title from &lt;rmi://mysite.com/server1#vcard&gt; <br />    where $vcard &lt;http://www.w3.org/2001/vcard-rdf/3.0#TITLE&gt; $title )<br />  from &lt;rmi://mysite.com/server1#vcard&gt; <br />  where $vcard &lt;http://www.w3.org/2001/vcard-rdf/3.0#FN&gt; $fn <br />  having $k0 &lt;http://tucana.org/tucana#occurs&gt;<br />    '0.0'^^&lt;http://www.w3.org/2001/XMLSchema#double&gt; <br />  or $k0 &lt;http://tucana.org/tucana#occurs&gt; <br />    '2.0'^^&lt;http://www.w3.org/2001/XMLSchema#double&gt; ;</p>
+
+
+</td>
+</tr>
+<tr valign="bottom">
+<td>
+<br>
+<p class="toc">&copy; 2001-2005 Northrop Grumman Corporation. Some rights reserved.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+
+
+

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE project>
+
+<!-- =================================================================== -->
+<!--                       Project definition                            -->
+<!-- =================================================================== -->
+<project name="store-nodepool" default="store-nodepool-jar" basedir="../../..">
+
+  <!-- =================================================================== -->
+  <!--                      Property Definitions                           -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                              Imports                                -->
+  <!-- =================================================================== -->
+
+  <!-- =================================================================== -->
+  <!--                          Path Definitions                           -->
+  <!-- =================================================================== -->
+  <path id="store-nodepool-classpath">
+    <path refid="common-classpath"/>
+    <fileset file="${store.dist.dir}/${store.jar}"/>
+  </path>
+
+  <path id="store-nodepool-test-classpath">
+    <path refid="store-nodepool-classpath"/>
+  </path>
+
+  <target name="store-nodepool-clean"
+          description="Removes all compile generated files for the store-nodepool">
+    <tstamp/>
+    <delete dir="${store-nodepool.obj.dir}"/>
+    <delete dir="${store-nodepool.test.dir}"/>
+    <delete dir="${store-nodepool.dist.dir}"/>
+  </target>
+
+  <target name="-store-nodepool-prepare"
+          description="Creates all directories associated with the store-nodepool's
+                       compilation"
+          depends="-prepare-build">
+    <mkdir dir="${store-nodepool.obj.dir}"/>
+    <mkdir dir="${store-nodepool.test.dir}"/>
+    <mkdir dir="${store-nodepool.dist.dir}"/>
+    <mkdir dir="${store-nodepool.obj.dir}/classes"/>
+  </target>
+
+  <target name="store-nodepool-compile"
+          depends="-store-nodepool-prepare, store-jar"
+          description="Compiles all store-nodepool related files included generated
+                       source code">
+
+    <javac destdir="${store-nodepool.obj.dir}/classes" debug="on"
+           deprecation="on" source="1.5">
+
+      <classpath refid="store-nodepool-classpath"/>
+
+      <src path="${store-nodepool.src.dir}/java"/>
+    </javac>
+  </target>
+
+  <target name="store-nodepool-jar"
+          depends="store-nodepool-compile, -store-nodepool-jar-uptodate"
+          unless="store-nodepool.jar.uptodate"
+          description="Builds the store-nodepool JAR">
+
+    <jar jarfile="${store-nodepool.dist.dir}/${store-nodepool.jar}">
+      <fileset dir="${store-nodepool.obj.dir}/classes"/>
+    </jar>
+  </target>
+
+  <target name="-store-nodepool-jar-uptodate">
+
+    <uptodate property="store-nodepool.jar.uptodate"
+              targetfile="${store-nodepool.dist.dir}/${store-nodepool.jar}">
+      <srcfiles dir="${store-nodepool.obj.dir}/classes" includes="**/*"/>
+    </uptodate>
+  </target>
+
+  <target name="store-nodepool-dist"
+          depends="store-nodepool-jar"
+          unless="store-nodepool.uptodate"
+          description="Performs all tasks related to finalising this store-nodepool
+                       and readying it for distribution">
+
+    <!-- All that's involved in the final version of the store-nodepool library
+         is the jar so we don't need to do anything because the dependencies
+         take care of the work. -->
+  </target>
+
+  <target name="store-nodepool-test">
+    <antcall target="component-test">
+      <param name="classpath.id" value="store-nodepool-test-classpath"/>
+      <param name="dir" value="${store-nodepool.src.dir}"/>
+      <param name="jar" value="${store-nodepool.jar}"/>
+    </antcall>
+  </target>
+
+  <target name="store-nodepool-javadoc"
+          depends="store-nodepool-jar"
+          description="Creates the javadoc for this store-nodepool">
+
+    <antcall target="javadoc">
+
+      <param name="javadoc.package" value="org.mulgara.store-nodepool.*"/>
+      <param name="javadoc.classpath" value="store-nodepool-classpath"/>
+      <param name="javadoc.sourcepath" value="${store-nodepool.src.dir}/java"/>
+    </antcall>
+  </target>
+
+  <target name="store-nodepool-help"
+          description="Displays the help information for this store-nodepool">
+
+    <!-- This is similar to the main project's help except the information
+         is specific to this store-nodepool -->
+
+    <echo message="Welcome to the build script for ${store-nodepool.name}."/>
+    <echo message=""/>
+    <echo message="These targets can be invoked as follows:"/>
+    <echo message="  ./build.sh &lt;target&gt;"/>
+    <echo message=""/>
+
+    <java fork="false" classname="org.apache.tools.ant.Main"
+          newenvironment="false">
+
+      <jvmarg value="${arch.bits}"/>
+
+      <arg line="-buildfile ${store-nodepool.src.dir}/build.xml -projecthelp"/>
+    </java>
+
+  </target>
+</project>

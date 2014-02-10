@@ -1,0 +1,98 @@
+@@includeTop@@
+ 
+    <title>Mulgara &#124; Semantic Store - load</title>
+    <meta name="keywords" content="load, mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
+	
+@@includeMiddle@@		
+   
+<!-- INNER PAGE NAVIGATION STARTS HERE -->
+<div id="navPage">
+		<a href="#top">Top</a>
+    
+</div>
+<!-- INNER PAGE NAVIGATION ENDS HERE -->
+
+
+
+<!-- PAGE CONTENT STARTS HERE -->
+<div id="content" class="inOut">  
+<a name="textonlynav"></a>	  
+	
+
+
+
+
+
+<!--
+<p><a href="/itqlcommands/insert.html"><img src="previous.gif" alt="Previous Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p>
+
+<p><a href="/itqlcommands/quit.html"><img src="next.gif" alt="Next Topic" height="25px" width="23px" vspace="2" hspace="2" align="bottom" border="0" /></a></p> 
+
+<p class="relatedheading">See Also</p>
+<p class="relateditem"><a href="/itqlcommands/index.html">iTQL Commands</a></p>
+<p class="relateditem"><a href="/itqlcommands/alias.html">alias</a></p>
+<p class="relateditem"><a href="/itqlcommands/backup.html">backup</a></p>
+<p class="relateditem"><a href="/itqlcommands/comment.html">comment (#)</a></p>
+<p class="relateditem"><a href="/itqlcommands/commit.html">commit</a></p>
+<p class="relateditem"><a href="/itqlcommands/create.html">create</a></p>
+<p class="relateditem"><a href="/itqlcommands/delete.html">delete</a></p>
+<p class="relateditem"><a href="/itqlcommands/drop.html">drop</a></p>
+<p class="relateditem"><a href="/itqlcommands/execute.html">execute</a></p>
+<p class="relateditem"><a href="/itqlcommands/help.html">help</a></p>
+<p class="relateditem"><a href="/itqlcommands/insert.html">insert</a></p>
+<p class="relateditem"><a href="/itqlcommands/quit.html">quit</a></p>
+<p class="relateditem"><a href="/itqlcommands/restore.html">restore</a></p>
+<p class="relateditem"><a href="/itqlcommands/rollback.html">rollback</a></p>
+<p class="relateditem"><a href="/itqlcommands/select.html">select</a></p>
+<p class="relateditem"><a href="/itqlcommands/set.html">set</a></p>
+
+
+			
+ -->
+
+
+
+
+<h2>load</h2>
+
+<p>Reads <a class="internetlinktemplate" title="XML/RDF" href="http://www.w3.org/TR/2004/REC-rdf-primer-20040210/#rdfxml">RDF/XML</a> or <a class="internetlinktemplate" title="" href="http://www.w3.org/2001/sw/RDFCore/ntriples/">N-Triple</a> statements from a file and and loads them into a model. The URL for the file to load must be absolute. The general syntax is as follows:</p>
+
+<p class="commandtext">load [local | remote] file into model;</p>
+
+<p>For example:</p>
+
+<p class="commandtext">load &lt;http://mysite.com/tmp/mydata.rdf&gt; into &lt;rmi://mysite.com/Server1#Model1&gt;;<br />
+load &lt;file:/tmp/ntriple.n3 into &lt;rmi://mysite.com/Server1#Model1&gt;;</p>
+
+<p>By default, the <code>load</code> command expects an RDF/XML file. To load an N-Triple file, the file must have one of the following file extensions: <code>.n3</code>, <code>.nt</code>, <code>.n3.gz</code>, <code>.nt.gz</code>, <code>.n3.zip</code> or <code>.nt.zip</code>.<code> </code>The <code>load</code> command also accepts zip and GNUzip (gzip) compressed file formats.</p>
+
+<p>For documents with a protocol of <code>file:</code>, two optional parameters specify whether the document resides on the server or the client:</p>
+<ul><li><code>remote</code> (the default) specifies that the document resides on the server</li><li><code>local</code> specifies that the document resides on the client, and is streamed to the server first before loading into the model</li></ul>
+<p>For example:</p>
+
+<p class="indentcommandtext">load &lt;file:/tmp/mydata.rdf&gt; into &lt;rmi://mysite.com/Server1#Model1&gt;;</p>
+
+<p class="indent">and</p>
+
+<p class="indentcommandtext">load remote &lt;file:/tmp/mydata.rdf&gt; into &lt;rmi://mysite.com/Server1#Model1&gt;;</p>
+
+<p class="indent">are equivalent. The file resides on the server and is loaded into the model.</p>
+
+<p class="indentcommandtext">load local &lt;file:/tmp/mydata.rdf&gt; into &lt;rmi://mysite.com/Server1#Model1&gt;;</p>
+
+<p class="indent">streams the file from the client to the server first, then loads it into the model.</p>
+
+<p class="note"><strong>Note -</strong> For systems running a Windows<sup>&reg;</sup> operating system, the file specification would look something like <code>&lt;file:/C:/temp/mydata.rdf&gt;</code>.</p>
+
+    
+
+
+
+
+
+</div>
+<!-- PAGE CONTENT ENDS HERE -->
+
+@@includeBottom@@
+
+

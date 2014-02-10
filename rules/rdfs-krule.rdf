@@ -1,0 +1,1239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+<!ENTITY owl     "http://www.w3.org/2002/07/owl#">
+<!ENTITY rdf     "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<!ENTITY rdfs    "http://www.w3.org/2000/01/rdf-schema#">
+<!ENTITY xsd     "http://www.w3.org/2001/XMLSchema#">
+<!ENTITY mulgara "http://mulgara.org/mulgara#">
+<!ENTITY krule   "http://mulgara.org/owl/krule/#">
+]>
+
+<rdf:RDF xmlns:rdf="&rdf;"
+         xmlns:rdfs="&rdfs;"
+         xmlns:owl="&owl;"
+         xmlns:xsd="&xsd;"
+         xmlns="&krule;"
+         xmlns:krule="&krule;"
+         xml:base="http://mulgara.org/owl/krule/">
+
+  <krule:URIReference rdf:about="#ref_rdftype">
+    <rdf:value rdf:resource="&rdf;type"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfsubject">
+    <rdf:value rdf:resource="&rdf;subject"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfpredicate">
+    <rdf:value rdf:resource="&rdf;predicate"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfobject">
+    <rdf:value rdf:resource="&rdf;object"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdffirst">
+    <rdf:value rdf:resource="&rdf;first"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfrest">
+    <rdf:value rdf:resource="&rdf;rest"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfnil">
+    <rdf:value rdf:resource="&rdf;nil"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfProperty">
+    <rdf:value rdf:resource="&rdf;Property"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfList">
+    <rdf:value rdf:resource="&rdf;List"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfAlt">
+    <rdf:value rdf:resource="&rdf;Alt"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfBag">
+    <rdf:value rdf:resource="&rdf;Bag"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfSeq">
+    <rdf:value rdf:resource="&rdf;Seq"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfXMLLiteral">
+    <rdf:value rdf:resource="&rdf;XMLLiteral"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfStatement">
+    <rdf:value rdf:resource="&rdf;Statement"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfscomment">
+    <rdf:value rdf:resource="&rdfs;comment"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfsdomain">
+    <rdf:value rdf:resource="&rdfs;domain"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfsisdefinedby">
+    <rdf:value rdf:resource="&rdfs;isDefinedBy"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfslabel">
+    <rdf:value rdf:resource="&rdfs;label"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfsrange">
+    <rdf:value rdf:resource="&rdfs;range"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfsseealso">
+    <rdf:value rdf:resource="&rdfs;seeAlso"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfssubclassof">
+    <rdf:value rdf:resource="&rdfs;subClassOf"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfssubpropertyof">
+    <rdf:value rdf:resource="&rdfs;subPropertyOf"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfsContainer">
+    <rdf:value rdf:resource="&rdfs;Container"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfsContainerMembershipProperty">
+    <rdf:value rdf:resource="&rdfs;ContainerMembershipProperty"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfsmember">
+    <rdf:value rdf:resource="&rdfs;member"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfsResource">
+    <rdf:value rdf:resource="&rdfs;Resource"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfsLiteral">
+    <rdf:value rdf:resource="&rdfs;Literal"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfsClass">
+    <rdf:value rdf:resource="&rdfs;Class"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdfsDatatype">
+    <rdf:value rdf:resource="&rdfs;Datatype"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_uriType">
+    <rdf:value rdf:resource="&mulgara;UriReference"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_rdftypeGraph">
+    <rdf:value rdf:resource="sys:type"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_prefix">
+    <rdf:value rdf:resource="&mulgara;prefix"/>
+  </krule:URIReference>
+
+  <krule:URIReference rdf:about="#ref_prefixGraph">
+    <rdf:value rdf:resource="sys:prefix"/>
+  </krule:URIReference>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfssubpropertyof"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfsdomain"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfProperty"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfssubclassof"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfsdomain"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfsClass"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfsdomain"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfsdomain"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfProperty"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfsrange"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfsdomain"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfProperty"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfsubject"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfsdomain"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfStatement"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfpredicate"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfsdomain"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfStatement"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfobject"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfsdomain"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfStatement"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdffirst"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfsdomain"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfList"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfrest"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfsdomain"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfList"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfssubpropertyof"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfsrange"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfProperty"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfssubclassof"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfsrange"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfsClass"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfsdomain"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfsrange"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfsClass"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfsrange"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfsrange"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfsClass"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdftype"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfsrange"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfsClass"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfscomment"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfsrange"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfsLiteral"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfslabel"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfsrange"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfsLiteral"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfrest"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfsrange"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfList"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfAlt"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfssubclassof"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfsContainer"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfBag"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfssubclassof"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfsContainer"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfSeq"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfssubclassof"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfsContainer"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfsContainerMembershipProperty"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfssubclassof"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfProperty"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfsisdefinedby"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfssubpropertyof"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfsseealso"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfXMLLiteral"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdftype"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfsDatatype"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfsDatatype"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdfssubclassof"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfsClass"/>
+    </object>
+  </krule:Axiom>
+
+
+  <!--  Axiomatic triples from RDF Semantics, section 4.2: -->
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfsResource"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdftype"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfsClass"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfsLiteral"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdftype"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfsClass"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfStatement"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdftype"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfsClass"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfnil"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdftype"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfList"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfsubject"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdftype"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfProperty"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfpredicate"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdftype"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfProperty"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfobject"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdftype"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfProperty"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdffirst"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdftype"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfProperty"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Axiom>
+    <subject>
+      <URIReference rdf:about="#ref_rdfrest"/>
+    </subject>
+    <predicate>
+      <URIReference rdf:about="#ref_rdftype"/>
+    </predicate>
+    <object>
+      <URIReference rdf:about="#ref_rdfProperty"/>
+    </object>
+  </krule:Axiom>
+
+  <krule:Rule rdf:about="#rdfs1">
+    <triggers rdf:resource="#rdfs2"/>
+    <triggers rdf:resource="#rdfs3"/>
+    <triggers rdf:resource="#rdfs4a"/>
+    <triggers rdf:resource="#rdfs5b"/>
+    <triggers rdf:resource="#rdfs6"/>
+    <triggers rdf:resource="#rdfs9"/>
+    <hasQuery>
+      <Query>
+        <selectionVariables>
+          <rdf:Seq>
+            <rdf:li rdf:resource="#var_a"/>
+            <rdf:li rdf:resource="#ref_rdftype"/>
+            <rdf:li rdf:resource="#ref_rdfProperty"/>
+          </rdf:Seq>
+        </selectionVariables>
+        <hasWhereClause>
+          <SimpleConstraint>
+            <hasSubject>
+              <Variable rdf:about="#var_x">
+                <name>xxx</name>
+              </Variable>
+            </hasSubject>
+            <hasPredicate>
+              <Variable rdf:about="#var_a">
+                <name>aaa</name>
+              </Variable>
+            </hasPredicate>
+            <hasObject>
+              <Variable rdf:about="#var_y">
+                <name>yyy</name>
+              </Variable>
+            </hasObject>
+          </SimpleConstraint>
+        </hasWhereClause>
+      </Query>
+    </hasQuery>
+  </krule:Rule>
+
+  <krule:Rule rdf:about="#rdfs2">
+    <triggers rdf:resource="#rdfs2"/>
+    <triggers rdf:resource="#rdfs3"/>
+    <triggers rdf:resource="#rdfs5b"/>
+    <triggers rdf:resource="#rdfs6"/>
+    <triggers rdf:resource="#rdfs7a"/>
+    <triggers rdf:resource="#rdfs7b"/>
+    <triggers rdf:resource="#rdfs9"/>
+    <triggers rdf:resource="#rdfs10"/>
+    <triggers rdf:resource="#rdfs11"/>
+    <hasQuery>
+      <Query>
+        <selectionVariables>
+          <rdf:Seq>
+            <rdf:li rdf:resource="#var_x"/>
+            <rdf:li rdf:resource="#ref_rdftype"/>
+            <rdf:li rdf:resource="#var_z"/>
+          </rdf:Seq>
+        </selectionVariables>
+        <hasWhereClause>
+          <ConstraintConjunction>
+            <argument>
+              <SimpleConstraint>
+                <hasSubject>
+                  <Variable rdf:about="#var_x">
+                    <name>xxx</name>
+                  </Variable>
+                </hasSubject>
+                <hasPredicate>
+                  <Variable rdf:about="#var_a">
+                    <name>aaa</name>
+                  </Variable>
+                </hasPredicate>
+                <hasObject>
+                  <Variable rdf:about="#var_y">
+                    <name>yyy</name>
+                  </Variable>
+                </hasObject>
+              </SimpleConstraint>
+            </argument>
+            <argument>
+              <SimpleConstraint>
+                <hasSubject>
+                  <Variable rdf:about="#var_a">
+                    <name>aaa</name>
+                  </Variable>
+                </hasSubject>
+                <hasPredicate>
+                  <URIReference rdf:about="#ref_rdfsdomain"/>
+                </hasPredicate>
+                <hasObject>
+                  <Variable rdf:about="#var_z">
+                    <name>zzz</name>
+                  </Variable>
+                </hasObject>
+              </SimpleConstraint>
+            </argument>
+          </ConstraintConjunction>
+        </hasWhereClause>
+      </Query>
+    </hasQuery>
+  </krule:Rule>
+
+  <krule:Rule rdf:about="#rdfs3">
+    <triggers rdf:resource="#rdfs2"/>
+    <triggers rdf:resource="#rdfs3"/>
+    <triggers rdf:resource="#rdfs5b"/>
+    <triggers rdf:resource="#rdfs6"/>
+    <triggers rdf:resource="#rdfs7a"/>
+    <triggers rdf:resource="#rdfs7b"/>
+    <triggers rdf:resource="#rdfs9"/>
+    <triggers rdf:resource="#rdfs10"/>
+    <triggers rdf:resource="#rdfs11"/>
+    <hasQuery>
+      <Query>
+        <selectionVariables>
+          <rdf:Seq>
+            <rdf:li rdf:resource="#var_u"/>
+            <rdf:li rdf:resource="#ref_rdftype"/>
+            <rdf:li rdf:resource="#var_z"/>
+          </rdf:Seq>
+        </selectionVariables>
+        <hasWhereClause>
+          <ConstraintConjunction>
+            <argument>
+              <SimpleConstraint>
+                <hasSubject>
+                  <Variable rdf:about="#var_x">
+                    <name>xxx</name>
+                  </Variable>
+                </hasSubject>
+                <hasPredicate>
+                  <Variable rdf:about="#var_a">
+                    <name>aaa</name>
+                  </Variable>
+                </hasPredicate>
+                <hasObject>
+                  <Variable rdf:about="#var_u">
+                    <name>uuu</name>
+                  </Variable>
+                </hasObject>
+              </SimpleConstraint>
+            </argument>
+            <argument>
+              <SimpleConstraint>
+                <hasSubject>
+                  <Variable rdf:about="#var_a">
+                    <name>aaa</name>
+                  </Variable>
+                </hasSubject>
+                <hasPredicate>
+                  <URIReference rdf:about="#ref_rdfsrange"/>
+                </hasPredicate>
+                <hasObject>
+                  <Variable rdf:about="#var_z">
+                    <name>zzz</name>
+                  </Variable>
+                </hasObject>
+              </SimpleConstraint>
+            </argument>
+          </ConstraintConjunction>
+        </hasWhereClause>
+      </Query>
+    </hasQuery>
+  </krule:Rule>
+
+  <krule:Rule rdf:about="#rdfs4a">
+    <triggers rdf:resource="#rdfs2"/>
+    <triggers rdf:resource="#rdfs3"/>
+    <triggers rdf:resource="#rdfs6"/>
+    <triggers rdf:resource="#rdfs9"/>
+    <hasQuery>
+      <Query>
+        <selectionVariables>
+          <rdf:Seq>
+            <rdf:li rdf:resource="#var_x"/>
+            <rdf:li rdf:resource="#ref_rdftype"/>
+            <rdf:li rdf:resource="#ref_rdfsResource"/>
+          </rdf:Seq>
+        </selectionVariables>
+        <hasWhereClause>
+          <SimpleConstraint>
+            <hasSubject>
+              <Variable rdf:about="#var_x">
+                <name>xxx</name>
+              </Variable>
+            </hasSubject>
+            <hasPredicate>
+              <Variable rdf:about="#var_a">
+                <name>aaa</name>
+              </Variable>
+            </hasPredicate>
+            <hasObject>
+              <Variable rdf:about="#var_y">
+                <name>yyy</name>
+              </Variable>
+            </hasObject>
+          </SimpleConstraint>
+        </hasWhereClause>
+      </Query>
+    </hasQuery>
+  </krule:Rule>
+
+  <krule:Rule rdf:about="#rdfs4b">
+    <triggers rdf:resource="#rdfs2"/>
+    <triggers rdf:resource="#rdfs3"/>
+    <triggers rdf:resource="#rdfs6"/>
+    <triggers rdf:resource="#rdfs9"/>
+    <hasQuery>
+      <Query>
+        <selectionVariables>
+          <rdf:Seq>
+            <rdf:li rdf:resource="#var_u"/>
+            <rdf:li rdf:resource="#ref_rdftype"/>
+            <rdf:li rdf:resource="#ref_rdfsResource"/>
+          </rdf:Seq>
+        </selectionVariables>
+        <hasWhereClause>
+          <ConstraintConjunction>
+            <argument>
+              <SimpleConstraint>
+                <hasSubject>
+                  <Variable rdf:about="#var_x">
+                    <name>xxx</name>
+                  </Variable>
+                </hasSubject>
+                <hasPredicate>
+                  <Variable rdf:about="#var_a">
+                    <name>aaa</name>
+                  </Variable>
+                </hasPredicate>
+                <hasObject>
+                  <Variable rdf:about="#var_u">
+                    <name>uuu</name>
+                  </Variable>
+                </hasObject>
+              </SimpleConstraint>
+            </argument>
+            <argument>
+              <SimpleConstraint>
+                <hasSubject>
+                  <Variable rdf:about="#var_u">
+                    <name>uuu</name>
+                  </Variable>
+                </hasSubject>
+                <hasPredicate>
+                  <URIReference rdf:about="#ref_rdftype"/>
+                </hasPredicate>
+                <hasObject>
+                  <URIReference rdf:about="#ref_uriType"/>
+                </hasObject>
+                <hasModel>
+                  <URIReference rdf:about="#ref_rdftypeGraph"/>
+                </hasModel>
+              </SimpleConstraint>
+            </argument>
+          </ConstraintConjunction>
+        </hasWhereClause>
+      </Query>
+    </hasQuery>
+  </krule:Rule>
+
+  <krule:Rule rdf:about="#rdfs5a">
+    <triggers rdf:resource="#rdfs5a"/>
+    <triggers rdf:resource="#rdfs6"/>
+    <hasQuery>
+      <Query>
+        <selectionVariables>
+          <rdf:Seq>
+            <rdf:li rdf:resource="#var_a"/>
+            <rdf:li rdf:resource="#ref_rdfssubpropertyof"/>
+            <rdf:li rdf:resource="#var_b"/>
+          </rdf:Seq>
+        </selectionVariables>
+        <hasWhereClause>
+          <TransitiveConstraint>
+            <transitiveArgument>
+              <SimpleConstraint>
+                <hasSubject>
+                  <Variable rdf:about="#var_a">
+                    <name>aaa</name>
+                  </Variable>
+                </hasSubject>
+                <hasPredicate>
+                  <URIReference rdf:about="#ref_rdfssubpropertyof"/>
+                </hasPredicate>
+                <hasObject>
+                  <Variable rdf:about="#var_b">
+                    <name>bbb</name>
+                  </Variable>
+                </hasObject>
+              </SimpleConstraint>
+            </transitiveArgument>
+          </TransitiveConstraint>
+        </hasWhereClause>
+      </Query>
+    </hasQuery>
+  </krule:Rule>
+
+  <krule:Rule rdf:about="#rdfs5b">
+    <triggers rdf:resource="#rdfs2"/>
+    <triggers rdf:resource="#rdfs3"/>
+    <triggers rdf:resource="#rdfs6"/>
+    <hasQuery>
+      <Query>
+        <selectionVariables>
+          <rdf:Seq>
+            <rdf:li rdf:resource="#var_x"/>
+            <rdf:li rdf:resource="#ref_rdfssubpropertyof"/>
+            <rdf:li rdf:resource="#var_x"/>
+          </rdf:Seq>
+        </selectionVariables>
+        <hasWhereClause>
+          <SimpleConstraint>
+            <hasSubject>
+              <Variable rdf:about="#var_x">
+                <name>xxx</name>
+              </Variable>
+            </hasSubject>
+            <hasPredicate>
+              <URIReference rdf:about="#ref_rdftype"/>
+            </hasPredicate>
+            <hasObject>
+              <URIReference rdf:about="#ref_rdfProperty"/>
+            </hasObject>
+          </SimpleConstraint>
+        </hasWhereClause>
+      </Query>
+    </hasQuery>
+  </krule:Rule>
+
+  <krule:Rule rdf:about="#rdfs6">
+    <triggers rdf:resource="#rdfs2"/>
+    <triggers rdf:resource="#rdfs3"/>
+    <triggers rdf:resource="#rdfs5a"/>
+    <triggers rdf:resource="#rdfs5b"/>
+    <triggers rdf:resource="#rdfs6"/>
+    <triggers rdf:resource="#rdfs7a"/>
+    <triggers rdf:resource="#rdfs7b"/>
+    <triggers rdf:resource="#rdfs8"/>
+    <triggers rdf:resource="#rdfs9"/>
+    <triggers rdf:resource="#rdfs10"/>
+    <triggers rdf:resource="#rdfs11"/>
+    <triggers rdf:resource="#rdfsXI"/>
+    <hasQuery>
+      <Query>
+        <selectionVariables>
+          <rdf:Seq>
+            <rdf:li rdf:resource="#var_x"/>
+            <rdf:li rdf:resource="#var_b"/>
+            <rdf:li rdf:resource="#var_y"/>
+          </rdf:Seq>
+        </selectionVariables>
+        <hasWhereClause>
+          <ConstraintConjunction>
+            <argument>
+              <SimpleConstraint>
+                <hasSubject>
+                  <Variable rdf:about="#var_x">
+                    <name>xxx</name>
+                  </Variable>
+                </hasSubject>
+                <hasPredicate>
+                  <Variable rdf:about="#var_a">
+                    <name>aaa</name>
+                  </Variable>
+                </hasPredicate>
+                <hasObject>
+                  <Variable rdf:about="#var_y">
+                    <name>yyy</name>
+                  </Variable>
+                </hasObject>
+              </SimpleConstraint>
+            </argument>
+            <argument>
+              <SimpleConstraint>
+                <hasSubject>
+                  <Variable rdf:about="#var_a">
+                    <name>aaa</name>
+                  </Variable>
+                </hasSubject>
+                <hasPredicate>
+                  <URIReference rdf:about="#ref_rdfssubpropertyof"/>
+                </hasPredicate>
+                <hasObject>
+                  <Variable rdf:about="#var_b">
+                    <name>bbb</name>
+                  </Variable>
+                </hasObject>
+              </SimpleConstraint>
+            </argument>
+          </ConstraintConjunction>
+        </hasWhereClause>
+      </Query>
+    </hasQuery>
+  </krule:Rule>
+
+  <krule:Rule rdf:about="#rdfs7a">
+    <triggers rdf:resource="#rdfs2"/>
+    <triggers rdf:resource="#rdfs3"/>
+    <triggers rdf:resource="#rdfs6"/>
+    <triggers rdf:resource="#rdfs8"/>
+    <triggers rdf:resource="#rdfs9"/>
+    <hasQuery>
+      <Query>
+        <selectionVariables>
+          <rdf:Seq>
+            <rdf:li rdf:resource="#var_x"/>
+            <rdf:li rdf:resource="#ref_rdfssubclassof"/>
+            <rdf:li rdf:resource="#ref_rdfsResource"/>
+          </rdf:Seq>
+        </selectionVariables>
+        <hasWhereClause>
+          <SimpleConstraint>
+            <hasSubject>
+              <Variable rdf:about="#var_x">
+                <name>xxx</name>
+              </Variable>
+            </hasSubject>
+            <hasPredicate>
+              <URIReference rdf:about="#ref_rdftype"/>
+            </hasPredicate>
+            <hasObject>
+              <URIReference rdf:about="#ref_rdfsClass"/>
+            </hasObject>
+          </SimpleConstraint>
+        </hasWhereClause>
+      </Query>
+    </hasQuery>
+  </krule:Rule>
+
+  <krule:Rule rdf:about="#rdfs7b">
+    <triggers rdf:resource="#rdfs2"/>
+    <triggers rdf:resource="#rdfs3"/>
+    <triggers rdf:resource="#rdfs6"/>
+    <hasQuery>
+      <Query>
+        <selectionVariables>
+          <rdf:Seq>
+            <rdf:li rdf:resource="#var_x"/>
+            <rdf:li rdf:resource="#ref_rdfssubclassof"/>
+            <rdf:li rdf:resource="#var_x"/>
+          </rdf:Seq>
+        </selectionVariables>
+        <hasWhereClause>
+          <SimpleConstraint>
+            <hasSubject>
+              <Variable rdf:about="#var_x">
+                <name>xxx</name>
+              </Variable>
+            </hasSubject>
+            <hasPredicate>
+              <URIReference rdf:about="#ref_rdftype"/>
+            </hasPredicate>
+            <hasObject>
+              <URIReference rdf:about="#ref_rdfsClass"/>
+            </hasObject>
+          </SimpleConstraint>
+        </hasWhereClause>
+      </Query>
+    </hasQuery>
+  </krule:Rule>
+
+  <krule:Rule rdf:about="#rdfs8">
+    <triggers rdf:resource="#rdfs6"/>
+    <triggers rdf:resource="#rdfs8"/>
+    <triggers rdf:resource="#rdfs9"/>
+    <hasQuery>
+      <Query>
+        <selectionVariables>
+          <rdf:Seq>
+            <rdf:li rdf:resource="#var_x"/>
+            <rdf:li rdf:resource="#ref_rdfssubclassof"/>
+            <rdf:li rdf:resource="#var_z"/>
+          </rdf:Seq>
+        </selectionVariables>
+        <hasWhereClause>
+          <TransitiveConstraint>
+            <transitiveArgument>
+              <SimpleConstraint>
+                <hasSubject>
+                  <Variable rdf:about="#var_x">
+                    <name>xxx</name>
+                  </Variable>
+                </hasSubject>
+                <hasPredicate>
+                  <URIReference rdf:about="#ref_rdfssubclassof"/>
+                </hasPredicate>
+                <hasObject>
+                  <Variable rdf:about="#var_z">
+                    <name>zzz</name>
+                  </Variable>
+                </hasObject>
+              </SimpleConstraint>
+            </transitiveArgument>
+          </TransitiveConstraint>
+        </hasWhereClause>
+      </Query>
+    </hasQuery>
+  </krule:Rule>
+
+  <krule:Rule rdf:about="#rdfs9">
+    <triggers rdf:resource="#rdfs3"/>
+    <triggers rdf:resource="#rdfs5b"/>
+    <triggers rdf:resource="#rdfs6"/>
+    <triggers rdf:resource="#rdfs7a"/>
+    <triggers rdf:resource="#rdfs7b"/>
+    <triggers rdf:resource="#rdfs9"/>
+    <triggers rdf:resource="#rdfs10"/>
+    <triggers rdf:resource="#rdfs11"/>
+    <hasQuery>
+      <Query>
+        <selectionVariables>
+          <rdf:Seq>
+            <rdf:li rdf:resource="#var_a"/>
+            <rdf:li rdf:resource="#ref_rdftype"/>
+            <rdf:li rdf:resource="#var_y"/>
+          </rdf:Seq>
+        </selectionVariables>
+        <hasWhereClause>
+          <ConstraintConjunction>
+            <argument>
+              <SimpleConstraint>
+                <hasSubject>
+                  <Variable rdf:about="#var_a">
+                    <name>aaa</name>
+                  </Variable>
+                </hasSubject>
+                <hasPredicate>
+                  <URIReference rdf:about="#ref_rdftype"/>
+                </hasPredicate>
+                <hasObject>
+                  <Variable rdf:about="#var_x">
+                    <name>xxx</name>
+                  </Variable>
+                </hasObject>
+              </SimpleConstraint>
+            </argument>
+            <argument>
+              <SimpleConstraint>
+                <hasSubject>
+                  <Variable rdf:about="#var_x">
+                    <name>xxx</name>
+                  </Variable>
+                </hasSubject>
+                <hasPredicate>
+                  <URIReference rdf:about="#ref_rdfssubclassof"/>
+                </hasPredicate>
+                <hasObject>
+                  <Variable rdf:about="#var_y">
+                    <name>yyy</name>
+                  </Variable>
+                </hasObject>
+              </SimpleConstraint>
+            </argument>
+          </ConstraintConjunction>
+        </hasWhereClause>
+      </Query>
+    </hasQuery>
+  </krule:Rule>
+
+  <krule:Rule rdf:about="#rdfs10">
+    <triggers rdf:resource="#rdfs2"/>
+    <triggers rdf:resource="#rdfs3"/>
+    <triggers rdf:resource="#rdfs4b"/>
+    <triggers rdf:resource="#rdfs5a"/>
+    <triggers rdf:resource="#rdfs6"/>
+    <hasQuery>
+      <Query>
+        <selectionVariables>
+          <rdf:Seq>
+            <rdf:li rdf:resource="#var_x"/>
+            <rdf:li rdf:resource="#ref_rdfssubpropertyof"/>
+            <rdf:li rdf:resource="#ref_rdfsmember"/>
+          </rdf:Seq>
+        </selectionVariables>
+        <hasWhereClause>
+          <SimpleConstraint>
+            <hasSubject>
+              <Variable rdf:about="#var_x">
+                <name>xxx</name>
+              </Variable>
+            </hasSubject>
+            <hasPredicate>
+              <URIReference rdf:about="#ref_rdftype"/>
+            </hasPredicate>
+            <hasObject>
+              <URIReference rdf:about="#ref_rdfsContainerMembershipProperty"/>
+            </hasObject>
+          </SimpleConstraint>
+        </hasWhereClause>
+      </Query>
+    </hasQuery>
+  </krule:Rule>
+
+  <krule:Rule rdf:about="#rdfs11">
+    <triggers rdf:resource="#rdfs2"/>
+    <triggers rdf:resource="#rdfs3"/>
+    <triggers rdf:resource="#rdfs6"/>
+    <triggers rdf:resource="#rdfs8"/>
+    <triggers rdf:resource="#rdfs9"/>
+    <hasQuery>
+      <Query>
+        <selectionVariables>
+          <rdf:Seq>
+            <rdf:li rdf:resource="#var_x"/>
+            <rdf:li rdf:resource="#ref_rdfssubclassof"/>
+            <rdf:li rdf:resource="#ref_rdfsLiteral"/>
+          </rdf:Seq>
+        </selectionVariables>
+        <hasWhereClause>
+          <SimpleConstraint>
+            <hasSubject>
+              <Variable rdf:about="#var_x">
+                <name>xxx</name>
+              </Variable>
+            </hasSubject>
+            <hasPredicate>
+              <URIReference rdf:about="#ref_rdftype"/>
+            </hasPredicate>
+            <hasObject>
+              <URIReference rdf:about="#ref_rdfsDatatype"/>
+            </hasObject>
+          </SimpleConstraint>
+        </hasWhereClause>
+      </Query>
+    </hasQuery>
+  </krule:Rule>
+
+  <krule:Rule rdf:about="#rdfsXI">
+    <triggers rdf:resource="#rdfs2"/>
+    <triggers rdf:resource="#rdfs3"/>
+    <triggers rdf:resource="#rdfs6"/>
+    <triggers rdf:resource="#rdfs9"/>
+    <triggers rdf:resource="#rdfs10"/>
+    <hasQuery>
+      <Query>
+        <selectionVariables>
+          <rdf:Seq>
+            <rdf:li rdf:resource="#var_id"/>
+            <rdf:li rdf:resource="#ref_rdftype"/>
+            <rdf:li rdf:resource="#ref_rdfsContainerMembershipProperty"/>
+          </rdf:Seq>
+        </selectionVariables>
+        <hasWhereClause>
+          <ConstraintConjunction>
+            <argument>
+              <SimpleConstraint>
+                <hasSubject>
+                  <Variable rdf:about="#var_x">
+                    <name>xxx</name>
+                  </Variable>
+                </hasSubject>
+                <hasPredicate>
+                  <Variable rdf:about="#var_id">
+                    <name>id</name>
+                  </Variable>
+                </hasPredicate>
+                <hasObject>
+                  <Variable rdf:about="#var_y">
+                    <name>yyy</name>
+                  </Variable>
+                </hasObject>
+              </SimpleConstraint>
+            </argument>
+            <argument>
+              <SimpleConstraint>
+                <hasSubject>
+                  <Variable rdf:about="#var_id">
+                    <name>id</name>
+                  </Variable>
+                </hasSubject>
+                <hasPredicate>
+                  <URIReference rdf:about="#ref_prefix"/>
+                </hasPredicate>
+                <hasObject>
+                  <Literal>
+                    <rdf:value rdf:parseType="Literal">&rdf;_</rdf:value>
+                  </Literal>
+                </hasObject>
+                <hasModel>
+                  <URIReference rdf:about="#ref_prefixGraph"/>
+                </hasModel>
+              </SimpleConstraint>
+            </argument>
+          </ConstraintConjunction>
+        </hasWhereClause>
+      </Query>
+    </hasQuery>
+  </krule:Rule>
+</rdf:RDF>
