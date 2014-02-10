@@ -8,20 +8,18 @@ Table of Contents
  * - [Release Notes](#release-notes)
  * [Installing Java](#installing-java)
  * [Building Mulgara](#building-mulgara)
- * - [Building Mulgara in Eclipse](#building-a-mulgara-server)
+ * - [Building Mulgara in Eclipse](#building-mulgara-in-eclipse)
  * [Running a Mulgara Server](#running-a-mulgara-server)
  * [Mulgara Server Options](#mulgara-server-options)
  * [License](#license)
 
 
 # Introduction
-===============
 
 Mulgara Semantic Store is a directed graph daatabase designed to store metadata in
 a highly scalable, transaction safe environment.
 
 ## Directory Layout
--------------------
 
  * bin -     Executables
  * conf -    Build configuration templates (read only)
@@ -36,7 +34,6 @@ a highly scalable, transaction safe environment.
  * test -    Test results (auto generated)
 
 ## Release Notes
------------------
 
 New Features:
 * New Transaction framework fixing several Concurrent Modification bugs, and
@@ -86,7 +83,6 @@ The list of bugs may be browsed (and updated) at:
 http://mulgara.org/jira/secure/Dashboard.jspa
 
 # Installing Java
-===================
 
 Download a J2SE 1.5.X (or higher) for your platform from http://java.sun.com/j2se/,
 and install it. Installation instructions for Windows and Linux are
@@ -114,7 +110,6 @@ Mulgara.  Java 1.6.0 and above is not yet supported.
 
 
 # Building Mulgara
-====================
 
 If you have downloaded the binary distribution of Mulgara please skip this
 section and go on to "Running a Mulgara Server".
@@ -131,7 +126,6 @@ To build the distribution in Windows:
 C:\Mulgara\> build dist
 
 ## Building Mulgara in Eclipse
--------------------------------
 
 The Mulgara sources include the .project and .classpath files required for
 Eclipse.  However for an error free environment Eclipse also requires access
@@ -156,7 +150,6 @@ available to the project.
 
 
 # Running a Mulgara Server
-============================
 
 The Mulgara server is currently run from a shell script under Linux or a batch
 file under Windows. To start the server using this script, you'll need to do
@@ -206,7 +199,6 @@ Follow the links to the user documentation to learn more about using Mulgara.
 
 
 # Mulgara Server Options
-=========================
 
 You can change the basic Mulgara server options by suppling them as arguments
 to the startup command. To view the basic options supply the --help option.
@@ -257,7 +249,6 @@ $java -jar mulgara-1.1.0.jar -a c:\mulgara-data
 ```
 
 # License
-==========
 
 The Mulgara Semantic Store is licensed under the Open Software License
 version 1.1 which is included with the distribution in a file called
