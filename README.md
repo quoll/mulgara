@@ -3,15 +3,15 @@ Mulgara Semantic Store (Mulgara) Installation Guide
 
 Table of Contents
 
-I. Introduction
-    i. Directory Layout
-    ii. Release Notes
-II. Installing Java
-III. Building Mulgara
-    i. Building Mulgara in Eclipse
-IV. Running a Mulgara Server
-V. Mulgara Server Options
-VI. License
+# Introduction
+## Directory Layout
+## Release Notes
+# Installing Java
+# Building Mulgara
+## Building Mulgara in Eclipse
+# Running a Mulgara Server
+# Mulgara Server Options
+# License
 
 
 I. Introduction
@@ -23,17 +23,17 @@ a highly scalable, transaction safe environment.
 i. Directory Layout
 -------------------
 
-bin      Executables
-conf     Build configuration templates (read only)
-data     Test data (read only)
-dist     Distributable product
-doc      Documentation, both sources and generated
-lib      Components external to this project (read only)
-obj      Generated files
-rules    Documentation for using rules, and RDFS rule data
-scripts  Scripts used by the build process
-src      Source code
-test     Test results (auto generated)
+ * bin -     Executables
+ * conf -    Build configuration templates (read only)
+ * data -    Test data (read only)
+ * dist -    Distributable product
+ * doc -     Documentation, both sources and generated
+ * lib -     Components external to this project (read only)
+ * obj -     Generated files
+ * rules -   Documentation for using rules, and RDFS rule data
+ * scripts - Scripts used by the build process
+ * src -     Source code
+ * test -    Test results (auto generated)
 
 ii. Release Notes
 -----------------
@@ -88,18 +88,22 @@ http://mulgara.org/jira/secure/Dashboard.jspa
 II. Installing Java
 ===================
 
-1. Download a J2SE 1.5.X for your platform from http://java.sun.com/j2se/,
+Download a J2SE 1.5.X (or higher) for your platform from http://java.sun.com/j2se/,
 and install it. Installation instructions for Windows and Linux are
 available. You should then check that the installation added the java
 commands to your path by typing:
 
+```bash
 $ java -version
+```
 
 You should get something like the following:
 
+```
 java version "1.5.0_07"
 Java(TM) 2 Runtime Environment, Standard Edition (build 1.5.0_07-164)
 Java HotSpot(TM) Client VM (build 1.5.0_07-87, mixed mode, sharing)
+```
 
 If your shell reports that it cannot find the command, add <JAVA_HOME>/bin
 (where JAVA_HOME is the location where you installed J2SE to) to your path
@@ -136,10 +140,16 @@ an extra ANT target which builds a library containing the required classes
 for the Eclipse IDE.
 
 To build this library from a Unix command line:
+
+```bash
 $ ./build.sh ideSupport
+```
 
 To build the library in Windows:
+
+```bash
 C:\Mulgara\> build ideSupport
+```
 
 After building the library, do a Refresh (F5) in Eclipse to make the library
 available to the project.
@@ -207,6 +217,7 @@ $ java -jar mulgara-1.1.0.jar --help
 
 This will return the following options :
 
+```
 -h, --help          display this help screen
 -n, --normi         disable automatic starting of the RMI registry
 -x, --shutdown      shutdown the local running server
@@ -221,6 +232,7 @@ This will return the following options :
                     '.' or 'temp' will use the current working directory
                     or the system temporary directory respectively
 -m, --smtp          the SMTP server for email notifications
+```
 
 Since Mulgara has an embedded HTTP server you may have a conflict with an
 existing HTTP running on port 8080. For example, to change the HTTP port of
