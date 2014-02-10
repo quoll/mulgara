@@ -17,7 +17,7 @@ Table of Contents
 # Introduction
 
 Mulgara Semantic Store is a directed graph daatabase designed to store metadata in
-a highly scalable, transaction safe environment.
+a transaction safe environment.
 
 ## Directory Layout
 
