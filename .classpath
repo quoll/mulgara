@@ -96,17 +96,6 @@
 	<classpathentry kind="lib" path="lib/jenatest-2.5.6.jar"/>
 	<classpathentry kind="lib" path="lib/interruptiblermi-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/iri-0.5.jar"/>
-	<classpathentry kind="lib" path="lib/jetty-continuation-7.1.6.v20100715.jar"/>
-	<classpathentry kind="lib" path="lib/jetty-deploy-7.1.6.v20100715.jar"/>
-	<classpathentry kind="lib" path="lib/jetty-http-7.1.6.v20100715.jar"/>
-	<classpathentry kind="lib" path="lib/jetty-io-7.1.6.v20100715.jar"/>
-	<classpathentry kind="lib" path="lib/jetty-security-7.1.6.v20100715.jar"/>
-	<classpathentry kind="lib" path="lib/jetty-server-7.1.6.v20100715.jar"/>
-	<classpathentry kind="lib" path="lib/jetty-servlet-7.1.6.v20100715.jar"/>
-	<classpathentry kind="lib" path="lib/jetty-servlets-7.1.6.v20100715.jar"/>
-	<classpathentry kind="lib" path="lib/jetty-util-7.1.6.v20100715.jar"/>
-	<classpathentry kind="lib" path="lib/jetty-webapp-7.1.6.v20100715.jar"/>
-	<classpathentry kind="lib" path="lib/jetty-xml-7.1.6.v20100715.jar"/>
 	<classpathentry kind="lib" path="lib/jid3-0.34.jar"/>
 	<classpathentry kind="lib" path="lib/jl1.0.jar"/>
 	<classpathentry kind="lib" path="lib/jline-0.9.94.jar"/>
@@ -114,14 +103,7 @@
 	<classpathentry kind="lib" path="lib/jotm-2.0.10.jar"/>
 	<classpathentry kind="lib" path="lib/jotm_jrmp_stubs-2.0.10.jar"/>
 	<classpathentry kind="lib" path="lib/js-1.5r3.jar"/>
-	<classpathentry kind="lib" path="lib/jsp/com.sun.el_1.0.0.v201004190952.jar"/>
 	<classpathentry kind="lib" path="lib/jsp/ecj-3.6.jar"/>
-	<classpathentry kind="lib" path="lib/jsp/javax.el_2.1.0.v201004190952.jar"/>
-	<classpathentry kind="lib" path="lib/jsp/javax.servlet.jsp.jstl_1.2.0.v201004190952.jar"/>
-	<classpathentry kind="lib" path="lib/jsp/javax.servlet.jsp_2.1.0.v201004190952.jar"/>
-	<classpathentry kind="lib" path="lib/jsp/jetty-jsp-2.1-7.1.6.v20100715.jar"/>
-	<classpathentry kind="lib" path="lib/jsp/org.apache.jasper.glassfish_2.1.0.v201007080150.jar"/>
-	<classpathentry kind="lib" path="lib/jsp/org.apache.taglibs.standard.glassfish_1.2.0.v201004190952.jar"/>
 	<classpathentry kind="lib" path="lib/jta-spec1_0_1.jar"/>
 	<classpathentry kind="lib" path="lib/jtidy-r7-xmlc-2.2.jar"/>
 	<classpathentry kind="lib" path="lib/junit-3.8.1.jar"/>
@@ -133,7 +115,6 @@
 	<classpathentry kind="lib" path="lib/Quick4util.jar"/>
 	<classpathentry kind="lib" path="lib/saaj-1.4.jar"/>
 	<classpathentry kind="lib" path="lib/sablecc-2.18.2.jar"/>
-	<classpathentry kind="lib" path="lib/servlet-api-2.5.jar"/>
 	<classpathentry kind="lib" path="lib/sesame-model-2.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/trove-2.0.4.jar"/>
 	<classpathentry kind="lib" path="lib/velocity-1.5.jar"/>
@@ -151,5 +132,25 @@
 	<classpathentry kind="lib" path="lib/httpmime-4.0-beta2.jar"/>
 	<classpathentry kind="lib" path="lib/htmlparser-1.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/java-rdfa-0.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/jsp/org.apache.taglibs.standard.glassfish-1.2.0.v201112081803.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-deploy-8.1.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-http-8.1.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-io-8.1.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-security-8.1.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-server-8.1.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-servlet-8.1.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-servlets-8.1.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-util-8.1.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-webapp-8.1.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-xml-8.1.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="lib/servlet-api-3.0.jar"/>
+	<classpathentry kind="lib" path="lib/jsp/com.sun.el-2.2.0.v201108011116.jar"/>
+	<classpathentry kind="lib" path="lib/jsp/javax.el-2.2.0.v201108011116.jar"/>
+	<classpathentry kind="lib" path="lib/jsp/javax.servlet.jsp-2.2.0.v201112011158.jar"/>
+	<classpathentry kind="lib" path="lib/jsp/javax.servlet.jsp.jstl-1.2.0.v201105211821.jar"/>
+	<classpathentry kind="lib" path="lib/jsp/jetty-jsp-8.1.14.v20131031.jar"/>
+	<classpathentry kind="lib" path="lib/jsp/org.apache.jasper.glassfish-2.2.2.v201112011158.jar"/>
+	<classpathentry kind="lib" path="lib/jsp/org.eclipse.jdt.core-3.7.1.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-continuation-8.1.14.v20131031.jar"/>
 	<classpathentry kind="output" path="obj/jar"/>
 </classpath>
