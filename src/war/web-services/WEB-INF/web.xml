@@ -64,6 +64,7 @@
   <!-- Mulgara servlets                                                      -->
   <!-- ==================================================================== -->
 
+  <!-- descriptor mappings -->
   <servlet>
     <servlet-name>Execute</servlet-name>
     <servlet-class>org.mulgara.descriptor.DescriptorServlet</servlet-class>
@@ -76,16 +77,7 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
 
-	<servlet>
-		<servlet-name>error_jsp</servlet-name>
-		<servlet-class>org.apache.jsp.error_jsp</servlet-class>
-	</servlet>
 
-	<servlet>
-		<servlet-name>index_jsp</servlet-name>
-    <servlet-class>org.apache.jsp.index_jsp</servlet-class>
-	</servlet>
-  <!-- descriptor mappings -->
   <servlet-mapping>
     <servlet-name>Execute</servlet-name>
     <url-pattern>/descriptor/execute</url-pattern>
@@ -98,6 +90,15 @@
 
 
 <!-- precompiled -->
+	<servlet>
+		<servlet-name>error_jsp</servlet-name>
+		<servlet-class>org.apache.jsp.error_jsp</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>index_jsp</servlet-name>
+	  	<servlet-class>org.apache.jsp.index_jsp</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>error_jsp</servlet-name>
