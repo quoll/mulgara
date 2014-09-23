@@ -114,7 +114,7 @@ public class LocalJRDFDatabaseSession extends DatabaseSession
    *   external models
    * @throws IllegalArgumentException if any argument is <code>null</code>
    */
-  LocalJRDFDatabaseSession(MulgaraTransactionManager transactionManager, 
+  LocalJRDFDatabaseSession(MulgaraTransactionManager transactionManager,
       TransactionManagerFactory transactionManagerFactory,
       List<SecurityAdapter> securityAdapterList,
       List<SymbolicTransformation> symbolicTransformationList,
@@ -127,13 +127,16 @@ public class LocalJRDFDatabaseSession extends DatabaseSession
       DatabaseMetadata metadata,
       ContentHandlerManager contentHandlers,
       Set<ResolverFactory> cachedResolverFactorySet,
-      URI temporaryModelTypeURI)
+      URI temporaryModelTypeURI,
+      long transactionTimeout,
+      long idleTimeout)
       throws ResolverFactoryException {
     super(transactionManager, transactionManagerFactory, securityAdapterList,
         symbolicTransformationList, resolverSessionFactory,
         systemResolverFactory, temporaryResolverFactory, resolverFactoryList,
         externalResolverFactoryMap, internalResolverFactoryMap, metadata,
-        contentHandlers, cachedResolverFactorySet, temporaryModelTypeURI);
+                contentHandlers, cachedResolverFactorySet, temporaryModelTypeURI,
+                transactionTimeout, idleTimeout, null);
 
     jrdfFactory = new JRDFFactoryImpl();
   }
