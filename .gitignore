@@ -2,3 +2,8 @@ bin/
 dist/
 obj/
 .DS_STORE
+.idea/
+*.iml
+
+src/jar/config/java
+src/jar/config/javagenerated
