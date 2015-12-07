@@ -17,6 +17,7 @@
 package org.mulgara.util;
 
 import java.util.Arrays;
+
 import org.eclipse.jetty.util.log.Logger;
 
 /**
@@ -36,7 +37,7 @@ public class JettyLogger implements Logger {
   /**
    * The property that has to be set to this class in order for this class to be loaded
    * as the logger for org.eclipse.jetty.* classes.
-   */ 
+   */
   public static final String LOGGING_CLASS_PROPERTY = "org.eclipse.jetty.util.log.class";
 
   /** This flag turns logging on and off. */
@@ -46,7 +47,7 @@ public class JettyLogger implements Logger {
   boolean debugEnabled = true;
 
   /** The name of this object. */
-  private String name;
+  private final String name;
 
 
   /**
@@ -89,7 +90,8 @@ public class JettyLogger implements Logger {
    * @param msg The message to log.
    * @param th The Throwable relevant to this log.
    */
-  public void debug(String msg, Throwable th) {
+  @Override
+public void debug(String msg, Throwable th) {
     if (enabled && debugEnabled) log.debug(msg, th);
   }
 
@@ -113,7 +115,8 @@ public class JettyLogger implements Logger {
    * @return A logger with the name from the <var>name</var> parameter, or the current logger
    *         if no name was given.
    */
-  public Logger getLogger(String name) {
+  @Override
+public Logger getLogger(String name) {
     if (name == null || name.equals("") || name.equals(this.name)) return this;
     return new JettyLogger(name);
   }
@@ -135,7 +138,8 @@ public class JettyLogger implements Logger {
    * Indicates if debug messages are logged.
    * @return <code>true</code> if debug messages are acted on.
    */
-  public boolean isDebugEnabled() {
+  @Override
+public boolean isDebugEnabled() {
     return enabled && debugEnabled;
   }
 
@@ -144,7 +148,8 @@ public class JettyLogger implements Logger {
    * Set whether or not to log debug messages.
    * @param enabled <code>true</code> if debug messages are to be acted on.
    */
-  public void setDebugEnabled(boolean enabled) {
+  @Override
+public void setDebugEnabled(boolean enabled) {
     debugEnabled = enabled;
   }
 
@@ -154,7 +159,8 @@ public class JettyLogger implements Logger {
    * @param msg The message to log.
    * @param th The Throwable relevant to this log.
    */
-  public void warn(String msg, Throwable th) {
+  @Override
+public void warn(String msg, Throwable th) {
     if (enabled) log.warn(msg, th);
   }
 
@@ -181,7 +187,7 @@ public class JettyLogger implements Logger {
   private String format(String msg, Object arg0, Object arg1) {
     int i0 = msg.indexOf("{}");
     int i1 = i0 < 0 ? -1 : msg.indexOf("{}", i0 + 2);
-    
+
     if (arg1 != null && i1 >= 0) {
         msg=msg.substring(0, i1) + arg1 + msg.substring(i1 + 2);
     }
@@ -252,4 +258,15 @@ public class JettyLogger implements Logger {
   public void warn(String arg0, Object... arg1) {
     if (enabled) log.warn(format(arg0, arg1));
   }
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jetty.util.log.Logger#ignore(java.lang.Throwable)
+	 */
+	@Override
+	public void ignore(Throwable arg0) {
+		// TODO Auto-generated method stub
+
+	}
 }

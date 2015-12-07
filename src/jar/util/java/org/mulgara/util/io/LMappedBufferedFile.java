@@ -151,7 +151,7 @@ public abstract class LMappedBufferedFile extends LBufferedFile {
     // if there's a partial page at the end, then map it
     if (fullPages < pages) {
       assert fullPages == pages - 1;
-      newBuffers[fullPages] = fc.map(getMode(), fullPages * pageSize, size % pageSize);
+      newBuffers[fullPages] = fc.map(getMode(), (long)fullPages * pageSize, size % pageSize);
       if (logger.isDebugEnabled()) logger.debug("Remapped final partial page");
     }
   
@@ -211,10 +211,10 @@ public abstract class LMappedBufferedFile extends LBufferedFile {
     // fill in the rest of the new array
     FileChannel.MapMode mode = getMode();
     for (int page = start; page < fullPages; page++) {
-      newBuffers[page] = fc.map(mode, page * pageSize, pageSize);
+      newBuffers[page] = fc.map(mode, (long)page * pageSize, pageSize);
     }
     // if there's a partial page at the end, then map it
-    if (fullPages < pages) newBuffers[fullPages] = fc.map(mode, fullPages * pageSize, size % pageSize);
+    if (fullPages < pages) newBuffers[fullPages] = fc.map(mode, (long)fullPages * pageSize, size % pageSize);
 
     buffers = newBuffers;
 

@@ -819,14 +819,14 @@ public class Database implements SessionFactory, Closable {
     } catch(UnknownHostException ex) {
       logger.info("Unable to obtain local host name for aliases", ex);
     }
-    
+
     if (!uri.isOpaque()) {
       String currentHost = uri.getHost();
       if (currentHost != null) {
         hostNames.add(currentHost.toLowerCase());
       }
     }
-    
+
     if (startupLogger.isInfoEnabled()) {
       StringBuffer aliases =
         new StringBuffer("Host name aliases for this server are: [");
@@ -1240,7 +1240,9 @@ public class Database implements SessionFactory, Closable {
           metadata,
           contentHandlers,
           cachedResolverFactorySet,
-          temporaryModelTypeURI);
+          temporaryModelTypeURI,
+          defaultTransactionTimeout,
+          defaultIdleTimeout);
     } catch (ResolverFactoryException e) {
       throw new QueryException("Couldn't create JRDF session", e);
     }
@@ -1509,7 +1511,9 @@ public class Database implements SessionFactory, Closable {
           metadata,
           contentHandlers,
           cachedResolverFactorySet,
-          temporaryModelTypeURI);
+          temporaryModelTypeURI,
+          defaultTransactionTimeout,
+          defaultIdleTimeout);
       }
       catch (ResolverFactoryException e) {
         throw new QueryException("Couldn't create session", e);

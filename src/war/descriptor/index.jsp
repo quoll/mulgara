@@ -1,6 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<%@ page import="java.net.*, org.mu
+<%@ page import="java.net.*" %>
+<%@ page import="org.mulgara.server.*" %>
+<%
   String hostname = null;
 String currentHostUrl = null;
 try {
@@ -27,7 +29,7 @@ try {
 
 String URL2Here = currentHostUrl.substring(0, currentHostUrl.length() - "index.jsp".length());
 String descriptorModel = (String)getServletContext().getAttribute(HttpServicesImpl.SERVER_MODEL_URI_KEY) + "#descriptors";
-ERVER_MODEL_URI_KEY) + "#descriptors";
+//ERVER_MODEL_URI_KEY) + "#descriptors";
   
 %>
 
