@@ -36,7 +36,7 @@ import org.mulgara.util.URIUtil;
  * Container for functions in the afn domain.
  *
  * @created Dec 14, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2009 <a href="http://www.duraspace.org/">DuraSpace</a>
  */
 public class AfnFunctionGroup implements MulgaraFunctionGroup {

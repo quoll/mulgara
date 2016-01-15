@@ -23,7 +23,7 @@ import org.mulgara.krule.rlog.ParseContext;
  * Basic String and integer literals have a separate type.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class BPredicateLiteral extends PredicateLiteral implements BPredicateLabel, PredicateParam {

@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
  * A utility which applies N-Triples escaping.
  *
  * @author Andrew Newman
- * @author Paul Gearon
+ * @author Paula Gearon
  * @version $Revision: 624 $
  */
 public class EscapeUtil {

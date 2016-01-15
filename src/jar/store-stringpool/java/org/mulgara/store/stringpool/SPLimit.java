@@ -37,7 +37,7 @@ import java.nio.ByteBuffer;
  *
  * @created 2004-11-02
  *
- * @author <a href="http://staff.pisoftware.com/pag">Paul Gearon</a>
+ * @author <a href="http://staff.pisoftware.com/pag">Paula Gearon</a>
  *
  * @version $Revision: 1.1 $
  *

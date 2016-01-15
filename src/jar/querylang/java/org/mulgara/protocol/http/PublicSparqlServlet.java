@@ -30,7 +30,7 @@ import static javax.servlet.http.HttpServletResponse.SC_METHOD_NOT_ALLOWED;
  * via POST and GET.
  *
  * @created Feb 5, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  */
 public class PublicSparqlServlet extends SparqlServlet {
 

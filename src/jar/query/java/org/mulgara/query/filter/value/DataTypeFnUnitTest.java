@@ -31,7 +31,7 @@ import junit.framework.TestSuite;
  * Tests the data type function class.
  *
  * @created Mar 31, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.topazproject.org/">The Topaz Project</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */

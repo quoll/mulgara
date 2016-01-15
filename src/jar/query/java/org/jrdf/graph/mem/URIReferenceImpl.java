@@ -72,7 +72,7 @@ import java.net.URI;
  * A URI Reference can be any part of an RDF Triple: subject, predicate or
  * object.
  *
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  *
  * @version $Revision: 624 $
  */

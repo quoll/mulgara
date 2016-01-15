@@ -25,7 +25,7 @@ import com.hp.hpl.jena.rdf.model.Model;
  * Describes operations expected by a Jena client.
  *
  * @created Jun 22, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2009 <a href="http://www.duraspace.org/">DuraSpace</a>
  */
 public interface JenaConnection {

@@ -49,7 +49,7 @@ import org.mulgara.util.MemoryResultSet;
  *
  * @created 2004-03-29
  *
- * @author <a href="http://staff.pisoftware.com/pag">Paul Gearon</a>
+ * @author <a href="http://staff.pisoftware.com/pag">Paula Gearon</a>
  *
  * @version $Revision: 1.9 $
  *

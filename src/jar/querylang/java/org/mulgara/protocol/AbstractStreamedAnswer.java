@@ -36,7 +36,7 @@ import org.mulgara.query.Variable;
  * Converts an answer to a stream, acccording to the protocol of the implementing class.
  *
  * @created Sep 1, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public abstract class AbstractStreamedAnswer {

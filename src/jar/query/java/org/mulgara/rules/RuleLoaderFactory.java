@@ -27,7 +27,7 @@ import org.mulgara.query.GraphExpression;
  * Constructs {@link RuleLoader} instances, given a classname.
  *
  * @created 2005-05-22
- * @author <a href="pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="pgearon@users.sourceforge.net">Paula Gearon</a>
  * @version $Revision: 1.1 $
  * @modified $Date: 2005/06/26 12:42:43 $
  * @maintenanceAuthor $Author: pgearon $

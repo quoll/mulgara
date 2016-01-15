@@ -72,7 +72,7 @@ import java.net.URI;
  * Implementation of {@link AbstractGraphElementFactoryTest}
  * test case.
  *
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  *
  * @version $Revision: 624 $
  */

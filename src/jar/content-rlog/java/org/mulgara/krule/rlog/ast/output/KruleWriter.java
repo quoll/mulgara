@@ -25,7 +25,7 @@ import org.mulgara.krule.rlog.parser.URIParseException;
  * Writes a set of rules to an RDF/XML file in Krule format.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class KruleWriter extends RDFXMLWriter {

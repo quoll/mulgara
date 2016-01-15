@@ -44,7 +44,7 @@ import org.mulgara.query.Variable;
  * None of the methods in this class throw RemoteException, as this class just needs to meet the
  * interface, and will be serialised rather than remote.
  *
- * @author <a href="http://staff.pisoftware.com/pag">Paul Gearon</a>
+ * @author <a href="http://staff.pisoftware.com/pag">Paula Gearon</a>
  *
  * @created 2004-03-25
  *

@@ -49,7 +49,7 @@ import org.mulgara.store.tuples.TuplesOperations;
  * Resolves constraints accessible through a session.
  *
  * @created 2004-10-27
- * @author Paul Gearon
+ * @author Paula Gearon
  * @version $Revision: 1.10 $
  * @modified $Date: 2005/05/15 01:04:25 $ @maintenanceAuthor $Author: pgearon $
  * @company <a href="mailto:info@PIsoftware.com">Plugged In Software</a>

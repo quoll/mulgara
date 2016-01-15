@@ -23,7 +23,7 @@ import org.mulgara.krule.rlog.rdf.RDFNode;
  * Represents binary predicate labels.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public interface BPredicateLabel {

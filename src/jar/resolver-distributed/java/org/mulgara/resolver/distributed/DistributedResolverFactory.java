@@ -36,7 +36,7 @@ import org.mulgara.resolver.spi.InitializerException;
  * Factory for a resolver that delegates resolution to another server.
  *
  * @created 2007-03-20
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @version $Revision: $
  * @modified $Date: $
  * @maintenanceAuthor $Author: $

@@ -32,7 +32,7 @@ import java.util.List;
  * Writes variables to an XML stream as a set of declarations.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class RuleWriter extends XMLFragmentWriter {

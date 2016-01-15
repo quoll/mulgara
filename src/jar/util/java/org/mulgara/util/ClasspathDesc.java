@@ -23,7 +23,7 @@ import java.io.IOException;
  * Utility for describing a classpath, and extracting elements if needed.
  *
  * @created Aug 28, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class ClasspathDesc {

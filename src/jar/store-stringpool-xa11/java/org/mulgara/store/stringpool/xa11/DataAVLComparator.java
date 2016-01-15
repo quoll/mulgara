@@ -29,7 +29,7 @@ import org.mulgara.util.io.LBufferedFile;
  * Comparator for objects in the data pool.
  *
  * @created Aug 12, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class DataAVLComparator implements AVLComparator {

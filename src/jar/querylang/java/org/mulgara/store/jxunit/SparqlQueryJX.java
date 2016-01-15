@@ -41,7 +41,7 @@ import java.net.URLEncoder;
  * Test frame for SPARQL queries.
  *
  * @created 2009-09-17
- * @author Paul Gearon
+ * @author Paula Gearon
  */
 public class SparqlQueryJX implements JXTestStep {
 

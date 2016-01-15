@@ -970,7 +970,7 @@ U   trunk/jxdata/iTQL/mp3/queryResult2.txt
 brian
 2006-07-09 19:14:49 -0500 (Sun, 09 Jul 2006)
 48
-Removed the reference to Paul's filesystem. :)
+Removed the reference to Paula's filesystem. :)
 
 
 

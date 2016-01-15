@@ -66,7 +66,7 @@ import java.net.URI;
 /**
  * RDF literal node.
  *
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  *
  * @version $Revision: 624 $
  */

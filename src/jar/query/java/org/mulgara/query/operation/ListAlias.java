@@ -26,7 +26,7 @@ import org.mulgara.connection.Connection;
  * An AST element for the ALIAS command.
  *
  * @created 2009-10-19
- * @author Paul Gearon
+ * @author Paula Gearon
  */
 public class ListAlias extends LocalCommand {
 

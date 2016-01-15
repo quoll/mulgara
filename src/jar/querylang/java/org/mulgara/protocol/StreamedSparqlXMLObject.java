@@ -32,7 +32,7 @@ import org.mulgara.util.StringUtil;
  * Represents a data object as XML.
  *
  * @created Jul 8, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class StreamedSparqlXMLObject implements StreamedXMLAnswer {

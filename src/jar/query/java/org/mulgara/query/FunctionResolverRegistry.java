@@ -29,7 +29,7 @@ import javax.xml.xpath.XPathFunctionResolver;
  * A singleton registry for XPathFunctionResolvers.
  *
  * @created Sep 27, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2009 <a href="http://www.duraspace.org/">DuraSpace</a>
  */
 public class FunctionResolverRegistry implements Iterable<XPathFunctionResolver> {

@@ -61,7 +61,7 @@ import org.openrdf.model.Value;
  *
  * @author <a href="http://staff.pisoftware.com/raboczi">Simon Raboczi</a>
  * @author Andrew Newman
- * @author Paul Gearon
+ * @author Paula Gearon
  *
  */
 public interface Node extends Serializable, Value {

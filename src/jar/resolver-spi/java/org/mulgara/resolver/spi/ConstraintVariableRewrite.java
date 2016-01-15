@@ -20,7 +20,7 @@ import org.mulgara.query.Variable;
  * Used to update a given variable in a constraint to a new name.
  *
  * @created May 29, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.topazproject.org/">The Topaz Project</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */

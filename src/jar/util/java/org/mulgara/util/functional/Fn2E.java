@@ -21,7 +21,7 @@ package org.mulgara.util.functional;
  * and returns a value of a third type, possibly throwing an exception.
  *
  * @created Aug 4, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public interface Fn2E<T1,T2,T3,E extends Exception> {

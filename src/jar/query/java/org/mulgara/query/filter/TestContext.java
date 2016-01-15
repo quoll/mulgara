@@ -26,8 +26,8 @@ import static org.mulgara.util.ObjectUtil.eq;
  * A simple Context used for testing purposes.
  * This context returns <code>null</code> for unbound values, since it is globalizing.
  * @created Mar 31, 2008
- * @author Paul Gearon
- * @copyright &copy; 2008 <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author Paula Gearon
+ * @copyright &copy; 2008 <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */
 public class TestContext implements Context {

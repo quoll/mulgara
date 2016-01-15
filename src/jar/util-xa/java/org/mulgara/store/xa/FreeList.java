@@ -47,7 +47,7 @@ import org.mulgara.util.functional.C;
  *
  * @created 2001-09-20
  *
- * @author Paul Gearon
+ * @author Paula Gearon
  * @author David Makepeace
  *
  * @version $Revision: 1.13 $

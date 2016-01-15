@@ -20,7 +20,7 @@ package org.mulgara.server;
  * Manages all the HTTP services provided by a Mulgara server.
  *
  * @created Dec 12, 2011
- * @author Paul Gearon
+ * @author Paula Gearon
  */
 public interface HttpServices {
 

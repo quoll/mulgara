@@ -65,7 +65,7 @@ import org.mulgara.server.*;
  *
  * @licence <a href="{@docRoot}/../../LICENCE">Mozilla Public License v1.1</a>
  *
- * Portions by Paul Gearon.
+ * Portions by Paula Gearon.
  * @copyright &copy;2006 <a href="http://www.herzumsoftware.com/">Herzum Software LLC</a>
  */
 public class SessionGraphProxy implements RemoteGraphProxy {

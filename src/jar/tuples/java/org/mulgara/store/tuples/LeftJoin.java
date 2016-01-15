@@ -49,7 +49,7 @@ import org.mulgara.store.tuples.AbstractTuples;
  * {@link TuplesOperations#optionalJoin(Tuples, Tuples, Filter, QueryEvaluationContext)}.
  *
  * @created 2008-04-04
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  */
 public class LeftJoin extends AbstractTuples implements ContextOwner {
 

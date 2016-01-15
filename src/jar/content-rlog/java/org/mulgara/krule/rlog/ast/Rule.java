@@ -38,7 +38,7 @@ import org.mulgara.util.functional.C;
  * Represents a rule statement.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class Rule extends Statement {

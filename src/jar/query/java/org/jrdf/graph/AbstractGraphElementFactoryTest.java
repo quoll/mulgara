@@ -73,7 +73,7 @@ import java.net.URI;
  * {@link #newGraph}, {@link #getDefaultLiteralType} and
  * {@link #getDefaultLiteralLanguage} methods.
  *
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  *
  * @version $Revision: 624 $
  */

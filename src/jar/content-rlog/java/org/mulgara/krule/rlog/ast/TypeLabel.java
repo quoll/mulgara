@@ -23,7 +23,7 @@ import org.mulgara.krule.rlog.rdf.RDFNode;
  * Represents a label for a unary predicate.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public interface TypeLabel {

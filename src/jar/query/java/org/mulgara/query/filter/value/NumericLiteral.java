@@ -23,7 +23,7 @@ import org.mulgara.query.rdf.XSDAbbrev;
  * A numeric value.  Expect that this will be extended into Double, Integer, Long, etc.
  *
  * @created Mar 7, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.topazproject.org/">The Topaz Project</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */

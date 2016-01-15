@@ -39,7 +39,7 @@ import net.sourceforge.jxunit.*;  // Plugged In packages
  *
  * @created 2001-12-18
  *
- * @author <a href="http://staff.pisoftware.com/pag">Paul Gearon</a>
+ * @author <a href="http://staff.pisoftware.com/pag">Paula Gearon</a>
  *
  * @version $Revision: 1.8 $
  *

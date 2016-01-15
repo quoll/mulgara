@@ -25,7 +25,7 @@ import org.apache.log4j.Logger;
  * Test case for {@link SparqlUtil}.
  *
  * @created Oct 13, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class SparqlUtilUnitTest extends TestCase {

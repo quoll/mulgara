@@ -70,7 +70,7 @@ import java.util.*;
 /**
  * A memory based RDF Graph.
  *
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @author Andrew Newman
  *
  * @version $Revision: 624 $

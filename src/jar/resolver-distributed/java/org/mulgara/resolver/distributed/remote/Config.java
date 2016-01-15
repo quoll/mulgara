@@ -20,7 +20,7 @@ package org.mulgara.resolver.distributed.remote;
  * Defines a set of property names and default values for use with paged remote sets.
  *
  * @created 2007-04-23
- * @author <a href="mailto:gearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:gearon@users.sourceforge.net">Paula Gearon</a>
  * @copyright &copy; 2007 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class Config {

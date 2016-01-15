@@ -48,7 +48,7 @@ import org.mulgara.store.tuples.Tuples;
  * Represents a single executable rule.
  *
  * @created 2005-5-16
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @version $Revision: 1.2 $
  * @modified $Date: 2005/06/30 01:12:28 $
  * @maintenanceAuthor $Author: pgearon $

@@ -22,7 +22,7 @@ import org.mulgara.krule.rlog.ParseContext;
  * Base class for all nodes in the AST.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public abstract class Node {

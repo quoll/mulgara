@@ -32,7 +32,7 @@ import org.mulgara.query.TuplesException;
  * include StreamedXMLAnswer.
  *
  * @created Jan 29, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2009 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class StreamedRdfXmlAnswer implements StreamedAnswer {

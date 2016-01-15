@@ -44,7 +44,7 @@ import static org.mulgara.query.rdf.Krule.*;
  * from it, according to the krule.owl ontology.
  *
  * @created 2005-5-17
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @version $Revision: 1.3 $
  * @modified $Date: 2005/07/03 12:57:44 $
  * @maintenanceAuthor $Author: pgearon $

@@ -66,7 +66,7 @@ import java.util.NoSuchElementException;
 /**
  * An iterator that returns only a single triple, if any exists.
  *
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  *
  * @version $Revision: 624 $
  */

@@ -24,7 +24,7 @@ import org.mulgara.store.xa.AVLNode;
  * Compares data objects by type and category only.
  *
  * @created Aug 14, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class DataCategoryTypeAVLComparator implements AVLComparator {

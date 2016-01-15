@@ -24,8 +24,8 @@ import org.mulgara.query.filter.value.Bool;
  * A constraint expression composed of a left-out-join conjunction of two subexpressions
  *
  * @created Apr 2, 2008
- * @author Paul Gearon
- * @copyright &copy; 2007 <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author Paula Gearon
+ * @copyright &copy; 2007 <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */
 

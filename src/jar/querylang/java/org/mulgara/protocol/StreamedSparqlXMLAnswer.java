@@ -35,7 +35,7 @@ import org.mulgara.util.StringUtil;
  * The format is specified at: {@link http://www.w3.org/TR/rdf-sparql-XMLres/}
  *
  * @created Jul 8, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class StreamedSparqlXMLAnswer extends AbstractStreamedXMLAnswer {

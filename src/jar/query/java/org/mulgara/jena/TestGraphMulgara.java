@@ -19,7 +19,7 @@ import com.hp.hpl.jena.shared.JenaException;
  * Test suite for the Jena bridge
  *
  * @created Jun 22, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 Hewlett-Packard Development Company, LP
  */
 public class TestGraphMulgara extends AbstractTestGraph {

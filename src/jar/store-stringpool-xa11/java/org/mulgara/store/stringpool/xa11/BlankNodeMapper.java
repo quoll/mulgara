@@ -26,7 +26,7 @@ import org.mulgara.util.LongMapper;
  * Manages node-to-node mapping, including our blank nodes that need to be mapped to other nodes.
  *
  * @created Sep 26, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class BlankNodeMapper implements LongMapper {

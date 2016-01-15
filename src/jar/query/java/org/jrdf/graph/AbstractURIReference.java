@@ -63,7 +63,7 @@ import org.openrdf.model.util.URIUtil;
  * A base implementation of an RDF {@link URIReference}.
  * @author <a href="http://staff.pisoftware.com/raboczi">Simon Raboczi</a>
  * @author Andrew Newman
- * @author Paul Gearon
+ * @author Paula Gearon
  */
 public abstract class AbstractURIReference implements org.openrdf.model.URI, URIReference, Serializable {
 

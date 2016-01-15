@@ -38,8 +38,8 @@ import org.mulgara.util.ClassDescriberXML;
  * instantiate the object.
  *
  * @created Mar 28, 2008
- * @author Paul Gearon
- * @copyright &copy; 2007 <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author Paula Gearon
+ * @copyright &copy; 2007 <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */
 public class RmiURLConnection extends URLConnection {

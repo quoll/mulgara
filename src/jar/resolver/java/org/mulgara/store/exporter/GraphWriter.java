@@ -38,7 +38,7 @@ import org.jrdf.graph.Graph;
  *
  * @created 2004-02-23
  *
- * @author <a href="mailto:pag@tucanatech.com">Paul Gearon</a>
+ * @author <a href="mailto:pag@tucanatech.com">Paula Gearon</a>
  *
  * @version $Revision: 1.8 $
  *

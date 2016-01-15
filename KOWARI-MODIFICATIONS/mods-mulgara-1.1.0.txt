@@ -1402,7 +1402,7 @@ U   trunk/.classpath
 brian
 2007-02-11 13:19:20 -0600 (Sun, 11 Feb 2007)
 54
-Replaced the DateUtils dependency after Paul fixed it.
+Replaced the DateUtils dependency after Paula fixed it.
 
 revision 167
 U   trunk/.classpath
@@ -4614,7 +4614,7 @@ U   trunk/jxdata/iTQL/mp3/queryResult2.txt
 brian
 2006-07-09 19:14:49 -0500 (Sun, 09 Jul 2006)
 48
-Removed the reference to Paul's filesystem. :)
+Removed the reference to Paula's filesystem. :)
 
 
 
@@ -11011,7 +11011,7 @@ U   trunk/.classpath
 brian
 2007-02-11 13:19:20 -0600 (Sun, 11 Feb 2007)
 54
-Replaced the DateUtils dependency after Paul fixed it.
+Replaced the DateUtils dependency after Paula fixed it.
 
 revision 167
 U   trunk/.classpath
@@ -14223,7 +14223,7 @@ U   trunk/jxdata/iTQL/mp3/queryResult2.txt
 brian
 2006-07-09 19:14:49 -0500 (Sun, 09 Jul 2006)
 48
-Removed the reference to Paul's filesystem. :)
+Removed the reference to Paula's filesystem. :)
 
 
 
@@ -20620,7 +20620,7 @@ U   trunk/.classpath
 brian
 2007-02-11 13:19:20 -0600 (Sun, 11 Feb 2007)
 54
-Replaced the DateUtils dependency after Paul fixed it.
+Replaced the DateUtils dependency after Paula fixed it.
 
 revision 167
 U   trunk/.classpath

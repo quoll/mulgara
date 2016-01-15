@@ -22,7 +22,7 @@ import java.net.URI;
  * Represents an Answer that can be emitted as XML.
  *
  * @created Jul 9, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public interface XMLAnswer {

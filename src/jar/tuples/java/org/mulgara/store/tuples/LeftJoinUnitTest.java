@@ -26,7 +26,7 @@ import static org.mulgara.store.tuples.Tuples.UNBOUND;
  * <a href="http://www.w3.org/TR/rdf-sparql-query/#optionals">OPTIONAL</a> operation in SPARQL.
  *
  * @created 2008-04-08
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @copyright &copy; 2008 <A href="http://www.topazproject.org/">The Topaz Project</A>
  * @licence <a href="{@docRoot}/../../LICENCE">Open Software License v3.0</a>
  */

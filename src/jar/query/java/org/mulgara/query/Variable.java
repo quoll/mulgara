@@ -38,7 +38,7 @@ package org.mulgara.query;
  *
  * @author <a href="http://staff.pisoftware.com/raboczi">Simon Raboczi</a>
  *
- * @maintenanceAuthor <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @maintenanceAuthor <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  *
  * @copyright &copy;2001-2004 <a href="http://www.pisoftware.com/">Plugged In Software Pty Ltd</a>
  *

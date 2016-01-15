@@ -23,8 +23,8 @@ import org.mulgara.connection.Connection;
  * An AST element for the ALIAS command.
  *
  * @created 2007-11-14
- * @author Paul Gearon
- * @copyright &copy; 2007 <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author Paula Gearon
+ * @copyright &copy; 2007 <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */
 public class AddAlias extends LocalCommand {

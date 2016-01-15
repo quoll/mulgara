@@ -35,7 +35,7 @@ import java.net.URI;
  * A {@link Resolution} which extends a LocalizedTuples, which in turn wraps an Answer.
  *
  * @created 2007-03-23
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2007 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 class AnswerResolution extends LocalizedTuples implements Resolution {

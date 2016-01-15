@@ -21,7 +21,7 @@ import org.mulgara.sparql.parser.cst.BlankNode;
  * This class allocated names for anonymous variables used for indicating blank nodes in queries.
  *
  * @created Feb 19, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  * @licence <a href="{@docRoot}/../LICENCE.txt">Apache License, Version 2.0</a>
  */

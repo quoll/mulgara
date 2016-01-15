@@ -41,7 +41,7 @@ import org.mulgara.resolver.spi.Statements;
  * Resolves constraints accessible through a session.
  *
  * @created 2007-03-20
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @copyright &copy; 2007 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class DistributedResolver implements Resolver, TransactionCoordinator {

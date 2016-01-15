@@ -43,7 +43,7 @@ import static org.mulgara.query.rdf.Mulgara.NAMESPACE;
  *
  * @created 2004-08-10
  *
- * @author <a href="mailto:pag@tucanatech.com">Paul Gearon</a>
+ * @author <a href="mailto:pag@tucanatech.com">Paula Gearon</a>
  *
  * @version $Revision: 1.8 $
  *

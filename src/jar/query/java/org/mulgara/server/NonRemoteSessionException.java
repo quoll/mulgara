@@ -33,7 +33,7 @@ package org.mulgara.server;
  *
  * @created 2004-11-123
  *
- * @author Paul Gearon
+ * @author Paula Gearon
  *
  * @version $Revision: 1.8 $
  *

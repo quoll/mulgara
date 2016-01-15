@@ -22,7 +22,7 @@ import java.util.HashMap;
  * A minimal LongMapper implementation for use in tests.
  *
  * @created Sep 26, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class MemLongMapper extends HashMap<Long,Long> implements LongMapper {

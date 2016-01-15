@@ -30,8 +30,8 @@ import com.hp.hpl.jena.rdf.model.Model;
  * A connection for accepting state changes at the local end with no server involvement
  *
  * @created 2007-09-25
- * @author Paul Gearon
- * @copyright &copy; 2007 <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author Paula Gearon
+ * @copyright &copy; 2007 <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */
 public class DummyConnection extends CommandExecutor implements Connection {

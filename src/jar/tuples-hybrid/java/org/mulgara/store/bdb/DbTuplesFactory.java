@@ -1,5 +1,5 @@
 /*
- * Copyright 2010, Paul Gearon
+ * Copyright 2010, Paula Gearon
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import org.mulgara.store.tuples.TuplesFactory;
  * Generates {@link BdTuples} instances.
  *
  * @created 2010-07-12
- * @author Paul Gearon
+ * @author Paula Gearon
  */
 public class DbTuplesFactory extends TuplesFactory {
 

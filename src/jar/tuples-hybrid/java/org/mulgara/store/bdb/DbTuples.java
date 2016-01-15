@@ -1,5 +1,5 @@
 /*
- * Copyright 2010, Paul Gearon
+ * Copyright 2010, Paula Gearon
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ import com.sleepycat.je.OperationStatus;
  * Represents a group of tuples, sorted and stored in a Berkeley DB.
  *
  * @created 2010-07-11
- * @author Paul Gearon
+ * @author Paula Gearon
  */
 public final class DbTuples implements Tuples {
 

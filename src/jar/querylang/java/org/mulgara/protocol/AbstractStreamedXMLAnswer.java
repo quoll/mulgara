@@ -35,7 +35,7 @@ import org.mulgara.query.Variable;
  * Basic functionality for emitting Answers as XML using raw text methods.
  *
  * @created Jul 9, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public abstract class AbstractStreamedXMLAnswer extends AbstractStreamedAnswer implements StreamedXMLAnswer {

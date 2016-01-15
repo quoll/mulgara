@@ -40,7 +40,7 @@ import org.mulgara.util.MemoryResultSet;
  * Test case for {@link StreamedTqlXMLAnswer}.
  *
  * @created Jul 8, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class StreamedTqlXMLAnswerUnitTest extends TestCase {

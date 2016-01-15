@@ -19,8 +19,8 @@ import org.mulgara.query.filter.value.Bool;
  * Describes a test function on an RDFTerm.
  *
  * @created Mar 17, 2008
- * @author Paul Gearon
- * @copyright &copy; 2008 <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author Paula Gearon
+ * @copyright &copy; 2008 <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */
 public abstract class AbstractBooleanFn extends AbstractFilterValue implements Filter {

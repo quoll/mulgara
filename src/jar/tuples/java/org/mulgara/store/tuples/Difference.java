@@ -41,7 +41,7 @@ import org.mulgara.store.tuples.AbstractTuples;
  * {@link TuplesOperations#subtract}.
  *
  * @created March, 2005
- * @author Paul Gearon
+ * @author Paula Gearon
  * @licence <a href="{@docRoot}/../LICENCE.txt">Apache License, Version 2.0</a>
  */
 public class Difference extends AbstractTuples {

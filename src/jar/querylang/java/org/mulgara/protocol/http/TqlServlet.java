@@ -44,7 +44,7 @@ import org.mulgara.util.functional.Pair;
  * A query gateway for TQL.
  *
  * @created Sep 14, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class TqlServlet extends ProtocolServlet {

@@ -27,7 +27,7 @@ import org.mulgara.krule.rlog.rdf.URIReference;
  * Represents an axiom statement.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class Axiom extends Statement {

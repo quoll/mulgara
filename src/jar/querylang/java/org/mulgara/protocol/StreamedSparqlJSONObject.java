@@ -29,7 +29,7 @@ import org.mulgara.query.TuplesException;
  * Represents a data object as JSON.
  *
  * @created Jul 8, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class StreamedSparqlJSONObject implements StreamedAnswer {

@@ -21,7 +21,7 @@ package org.mulgara.util;
  *
  * Creation Date: 7 September 2011 <P>
  *
- * Original Author: Paul Gearon (pgearon@revelytix.com) <P>
+ * Original Author: Paula Gearon (pgearon@revelytix.com) <P>
  *
  * Company: Revelytix, Inc. <P>
  *

@@ -28,7 +28,7 @@ import org.mulgara.krule.rlog.rdf.Var;
  * Outputs an element of the AST into XML.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public abstract class XMLFragmentWriter {

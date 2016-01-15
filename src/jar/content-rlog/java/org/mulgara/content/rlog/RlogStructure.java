@@ -44,7 +44,7 @@ import org.jrdf.vocabulary.RDF;
  * This class constructs an RLog structure out of a set of Statements.
  *
  * @created Mar 18, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2009 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class RlogStructure {

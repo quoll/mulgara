@@ -21,7 +21,7 @@ package org.mulgara.query.functions;
  * Retrieves Mulgara functions.
  *
  * @created Oct 6, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2009 <a href="http://www.duraspace.org/">DuraSpace</a>
  */
 public class MulgaraUnsafeFunctionResolver extends MulgaraFunctionResolver {

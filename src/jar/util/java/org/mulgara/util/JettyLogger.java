@@ -26,7 +26,7 @@ import org.eclipse.jetty.util.log.Logger;
  * @see org.eclipse.jetty.log.Logger
  *
  * @created Aug 6, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class JettyLogger implements Logger {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010 Paul Gearon.
+ * Copyright 2010 Paula Gearon.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import static java.sql.Types.*;
  * Provides a mapping function between JDBC data types and XSD types.
  *
  * @created Jun 9, 2010
- * @author Paul Gearon
+ * @author Paula Gearon
  */
 public class DB2XSD {
 

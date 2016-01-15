@@ -48,7 +48,7 @@ import org.mulgara.server.Session;
  * Represents a structure of rules.
  *
  * @created 2005-5-16
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @version $Revision: 1.3 $
  * @modified $Date: 2005/07/03 12:53:41 $
  * @maintenanceAuthor $Author: pgearon $

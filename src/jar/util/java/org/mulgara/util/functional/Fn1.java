@@ -21,7 +21,7 @@ package org.mulgara.util.functional;
  * throwing an exception.
  *
  * @created Aug 4, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public interface Fn1<T1,T2> extends Fn1E<T1,T2,RuntimeException> {

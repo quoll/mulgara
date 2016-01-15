@@ -64,7 +64,7 @@ import org.mulgara.query.rdf.XSD;
  * This object maps a {@link GroupGraphPattern} into a {@link ConstraintExpression}.
  *
  * @created Apr 21, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class PatternMapper {

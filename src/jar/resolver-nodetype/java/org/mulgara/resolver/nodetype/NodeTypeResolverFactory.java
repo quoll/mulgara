@@ -43,7 +43,7 @@ import org.mulgara.resolver.spi.*;
  * Factory for a resolver that gets type information from the string pool
  *
  * @created 2004-10-27
- * @author <a href="mailto:pag@tucanatech.com">Paul Gearon</a>
+ * @author <a href="mailto:pag@tucanatech.com">Paula Gearon</a>
  * @version $Revision: 1.8 $
  * @modified $Date: 2005/01/05 04:58:49 $ @maintenanceAuthor $Author: newmana $
  * @company <a href="mailto:info@PIsoftware.com">Plugged In Software</a>

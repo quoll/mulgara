@@ -39,7 +39,7 @@ import org.mulgara.store.tuples.TuplesOperations;
  * Resolves constraints accessible through a session.
  *
  * @created 2005-4-19
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @version $Revision: $
  * @modified $Date: $ @maintenanceAuthor $Author: $
  * @copyright &copy; 2005 <a href="http://www.fedora-commons.org/">Fedora Commons</a>

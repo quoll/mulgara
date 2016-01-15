@@ -1,5 +1,5 @@
 <docudocu>
-	hi paul,
+	hi paula,
 
 	below is the documentation of what i did. i figured that it doesn't make sense to post it on the list before you update the website. but maybe it helps you in checking what i did.
 	well, i'll have a beer now!
@@ -224,7 +224,7 @@
 		<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" /> 		
 			//deleted (page doesn't exist anymore)
 		<!--<meta name="DC.Contributor" content="Andrew Newman" />-->
-			// decommented and changed to Paul Gearon
+			// decommented and changed to Paula Gearon
 		<meta name="DC.Subject" content="Mulgara Project Home" />
 			// changed to "mulgara semantic store"
 		<meta name="DC.Description" content="Mulgara Project Home" />
@@ -420,7 +420,7 @@ Updated to revision 139.
 	<meta http-equiv="window-target" content="_top" />			// deleted
 	<meta name="DC.Creator.Address" content="http://www.adams.id.au/tom/index.php" /> 	//del (doesn't work anymore)
 	<!--<meta name="DC.Contributor" content="Andrew Newman" />-->  
-		// decomment and change content to Paul Gearon
+		// decomment and change content to Paula Gearon
 	<meta name="DC.Subject" content="Mulgara Project Home" />
 		// changed to "mulgara semantic store"
 	<meta name="DC.Description" content="Mulgara Project Home" />

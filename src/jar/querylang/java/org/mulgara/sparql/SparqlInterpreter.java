@@ -77,7 +77,7 @@ import org.mulgara.util.functional.Fn1;
  * Converts a parsed SPARQL query into a Command for execution.
  *
  * @created Apr 18, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class SparqlInterpreter implements Interpreter {

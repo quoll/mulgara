@@ -24,7 +24,7 @@ import org.apache.log4j.Logger;
 /**
  * Splits strings with multiple commands into lists of strings containing single commands.
  * @created Sep 11, 2007
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2007 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class TqlCommandSplitter implements CommandSplitter {

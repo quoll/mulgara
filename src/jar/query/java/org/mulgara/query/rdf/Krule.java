@@ -21,7 +21,7 @@ import java.net.URI;
  * URI constants for rules.
  * 
  * @created Mar 23, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 

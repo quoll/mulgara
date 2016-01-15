@@ -1,5 +1,5 @@
 /*
- * Copyright 2010, Paul Gearon
+ * Copyright 2010, Paula Gearon
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import com.sleepycat.je.EnvironmentConfig;
  * A central location for creating a singleton BerkeleyDB environment.
  *
  * @created Jul 12, 2010
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2009 <a href="http://www.duraspace.org/">DuraSpace</a>
  */
 public class DbEnvironment {

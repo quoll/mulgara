@@ -35,7 +35,7 @@ import org.mulgara.query.TuplesException;
  *
  * @created 2002-12-16
  *
- * @author <a href="http://staff.pisoftware.com/pag">Paul Gearon</a>
+ * @author <a href="http://staff.pisoftware.com/pag">Paula Gearon</a>
  *
  * @version $Revision: 1.9 $
  *

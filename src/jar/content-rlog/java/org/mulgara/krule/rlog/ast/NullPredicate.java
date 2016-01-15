@@ -28,7 +28,7 @@ import org.mulgara.krule.rlog.rdf.Var;
  * This class represents a predicate place holder that is not occupied.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class NullPredicate extends Predicate {

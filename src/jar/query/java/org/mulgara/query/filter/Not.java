@@ -23,7 +23,7 @@ import org.mulgara.query.filter.value.Bool;
  * An inversion of a test.
  *
  * @created Mar 7, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  */
 public class Not extends AbstractFilterValue implements Filter {
 

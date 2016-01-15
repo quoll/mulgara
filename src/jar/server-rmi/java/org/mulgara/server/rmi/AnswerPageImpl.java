@@ -45,7 +45,7 @@ import java.io.IOException;
 /**
  * Contains a serializable page of answers retrieved from an {@link org.mulgara.query.Answer} object.
  *
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @created 2004-03-26
  * @copyright &copy; 2001-2003 <A href="http://www.PIsoftware.com/">Plugged In Software Pty Ltd</A>
  * @licence <a href="{@docRoot}/../../LICENCE">Mozilla Public License v1.1</a>

@@ -33,7 +33,7 @@ package org.mulgara.store.xa;
  * @created 2001-10-03
  *
  * @author David Makepeace
- * @author Paul Gearon
+ * @author Paula Gearon
  *
  * @version $Revision: 1.10 $
  *

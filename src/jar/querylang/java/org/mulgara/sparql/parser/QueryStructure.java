@@ -38,7 +38,7 @@ import org.mulgara.sparql.parser.cst.Variable;
  * method on {@link SparqlParser}.</p>
  *
  * @created February 28, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  * @licence <a href="{@docRoot}/../LICENCE.txt">Apache License, Version 2.0</a>
  */

@@ -48,7 +48,7 @@ import org.mulgara.store.tuples.RowComparator;
  *
  * @created 2003-02-04
  *
- * @author Paul Gearon
+ * @author Paula Gearon
  *
  * @version $Revision: 1.9 $
  *

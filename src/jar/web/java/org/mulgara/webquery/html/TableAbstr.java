@@ -20,7 +20,7 @@ package org.mulgara.webquery.html;
  * An abstraction of a table.
  *
  * @created Aug 4, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public abstract class TableAbstr extends HtmlElement implements TableStructure {

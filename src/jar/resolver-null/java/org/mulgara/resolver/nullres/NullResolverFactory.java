@@ -29,7 +29,7 @@ import org.mulgara.resolver.spi.*;
  * The registered factory for creating a Null resolver.
  *
  * @created May 8, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class NullResolverFactory implements ResolverFactory {

@@ -33,7 +33,7 @@ import org.mulgara.util.TempDir;
  *
  * @created 2008-08-20
  *
- * @author <a href="http://staff.pisoftware.com/pag">Paul Gearon</a>
+ * @author <a href="http://staff.pisoftware.com/pag">Paula Gearon</a>
  */
 public class XA11StringPoolLoadTest extends StringPoolLoadTest {
 

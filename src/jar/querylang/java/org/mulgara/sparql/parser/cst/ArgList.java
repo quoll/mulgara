@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * Represents a list of expressions, used for arguments to a function call.
  *
  * @created Feb 12, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  * @licence <a href="{@docRoot}/../LICENCE.txt">Apache License, Version 2.0</a>
  */

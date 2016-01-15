@@ -36,7 +36,7 @@ import org.mulgara.query.TuplesException;
 /**
  * Contains a page of answers retrieved from an {@link org.mulgara.query.Answer} object.
  *
- * @author <a href="http://staff.pisoftware.com/pag">Paul Gearon</a>
+ * @author <a href="http://staff.pisoftware.com/pag">Paula Gearon</a>
  *
  * @created 2004-03-26
  *

@@ -24,7 +24,7 @@ import java.net.URI;
  * A BlankNode that represents nodes from a foreign server.
  *
  * @created 2007-04-18
- * @author Paul Gearon
+ * @author Paula Gearon
  * @version $Revision: $
  * @modified $Date: $ @maintenanceAuthor $Author: $
  * @copyright &copy; 2007 <a href="http://www.fedora-commons.org/">Fedora Commons</a>

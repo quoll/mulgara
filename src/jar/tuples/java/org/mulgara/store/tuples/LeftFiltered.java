@@ -54,7 +54,7 @@ import org.mulgara.store.tuples.AbstractTuples;
  * RHS for true rows. If one is found, then the lhs must iterate again.
  *
  * @created 2009-12-18
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  */
 public class LeftFiltered extends AbstractTuples implements ContextOwner {
 

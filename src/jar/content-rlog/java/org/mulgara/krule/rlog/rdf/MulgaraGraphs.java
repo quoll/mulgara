@@ -30,7 +30,7 @@ import static org.mulgara.krule.rlog.rdf.RDF.RDFS_PREFIX;
  * Contains information about specific Mulgara graphs that can be used in rlog.
  *
  * @created May 3, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  * @licence <a href="http://www.opensource.org/licenses/apache2.0.php">Apache License, Version 2.0</a>
  */

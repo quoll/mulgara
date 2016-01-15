@@ -29,7 +29,7 @@ import org.mulgara.krule.rlog.rdf.Var;
  * Represents a binary predicate in the AST.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class BPredicate extends Predicate {

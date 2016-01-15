@@ -32,7 +32,7 @@ import org.apache.log4j.Logger;
  * Provides access to the global ServerInfo class when it is not available as a dependency.
  *
  * @created June 08, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class ServerInfoRef {

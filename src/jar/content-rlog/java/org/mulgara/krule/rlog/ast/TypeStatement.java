@@ -31,7 +31,7 @@ import org.mulgara.krule.rlog.rdf.Var;
  * for their parameter.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class TypeStatement extends Predicate {

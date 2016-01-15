@@ -20,7 +20,7 @@ import java.nio.ByteBuffer;
  * This class manages the allocation and detection of blank nodes.
  *
  * @created July 4, 2012
- * @author Paul Gearon
+ * @author Paula Gearon
  */
 public class BlankNodeAllocator {
 

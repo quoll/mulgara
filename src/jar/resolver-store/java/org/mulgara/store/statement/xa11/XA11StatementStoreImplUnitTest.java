@@ -45,7 +45,7 @@ import org.mulgara.util.*;
  * Test case for {@link XA11StatementStoreImpl}.
  *
  * @author <a href="http://staff.pisoftware.com/david">David Makepeace</a>
- * @author <a href="http://staff.pisoftware.com/pag">Paul Gearon</a>
+ * @author <a href="http://staff.pisoftware.com/pag">Paula Gearon</a>
  * @copyright &copy;2001-2004 <a href="http://www.pisoftware.com/">Plugged In Software Pty Ltd</a>
  * @licence <a href="{@docRoot}/../../LICENCE">Mozilla Public License v1.1</a>
  */

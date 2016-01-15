@@ -29,7 +29,7 @@ import org.mulgara.store.nodepool.NodePoolException;
  * Converts a set of rules to triples.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class KruleGenerator {

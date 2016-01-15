@@ -33,7 +33,7 @@ package org.mulgara.server.rmi;
  *
  * @created 2004-07-16
  *
- * @author Paul Gearon
+ * @author Paula Gearon
  *
  * @version $Revision: 1.9 $
  *

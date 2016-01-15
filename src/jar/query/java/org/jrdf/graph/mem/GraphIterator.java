@@ -76,7 +76,7 @@ import java.util.Set;
  * It will always be set to return the next value until it reaches
  * the end of the graph.
  *
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @author Andrew Newman
  */
 public class GraphIterator implements ClosableIterator<Triple> {

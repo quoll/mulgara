@@ -49,7 +49,7 @@ import org.mulgara.util.Constants;
  * @created 2001-10-13
  *
  * @author David Makepeace
- * @author Paul Gearon
+ * @author Paula Gearon
  *
  * @version $Revision: 1.9 $
  *
@@ -2314,7 +2314,7 @@ public final class TripleAVLFile {
      * A version of StoreTuples which is designed to set the Meta variable to a requested value.
      *
      * @created Dec 22, 2008
-     * @author Paul Gearon
+     * @author Paula Gearon
      * @copyright &copy; 2008 <a href="http://www.topazproject.org/">The Topaz Project</a>
      * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
      */

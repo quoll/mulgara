@@ -41,7 +41,7 @@ import org.mulgara.server.Session;
  * establishing connections to servers when required.
  * 
  * @created Sep 11, 2007
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2007 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class TqlAutoInterpreter {

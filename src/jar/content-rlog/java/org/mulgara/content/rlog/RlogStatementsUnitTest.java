@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;  // Apache Log4J
 
 /**
  * @created Feb 24, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class RlogStatementsUnitTest extends TestCase {

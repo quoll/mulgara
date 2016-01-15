@@ -47,7 +47,7 @@ import org.mulgara.util.*;
  * Test case for {@link XAStatementStoreImpl}.
  *
  * @author <a href="http://staff.pisoftware.com/david">David Makepeace</a>
- * @author <a href="http://staff.pisoftware.com/pag">Paul Gearon</a>
+ * @author <a href="http://staff.pisoftware.com/pag">Paula Gearon</a>
  *
  * @author David Makepeace
  *

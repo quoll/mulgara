@@ -44,7 +44,7 @@ import org.mulgara.store.tuples.Tuples;
  * A {@link Resolution} which wraps a Tuples object.
  *
  * @created 2004-10-28
- * @author Paul Gearon
+ * @author Paula Gearon
  * @version $Revision: 1.2 $
  * @modified $Date: 2005/05/16 11:07:07 $ @maintenanceAuthor $Author: amuys $
  * @company <a href="mailto:info@tucanatech.com">Plugged In Software</a>

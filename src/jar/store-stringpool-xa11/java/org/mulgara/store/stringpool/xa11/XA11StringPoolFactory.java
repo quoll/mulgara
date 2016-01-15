@@ -38,7 +38,7 @@ import org.mulgara.store.stringpool.StringPoolFactory;
  * A {@link StringPoolFactory} that constructs {@link XA11StringPoolImpl} instances.
  *
  * @created Aug 11, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class XA11StringPoolFactory implements StringPoolFactory, NodePoolFactory {

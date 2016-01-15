@@ -62,7 +62,7 @@ import org.xml.sax.SAXException;
  * Manages all the HTTP services provided by a Mulgara server.
  *
  * @created Sep 5, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.topazproject.org/">The Topaz Project</a>
  */
 public class HttpServicesImpl implements HttpServices {

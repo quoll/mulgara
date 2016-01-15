@@ -33,7 +33,7 @@ import org.mulgara.store.tuples.Tuples;
  * A {@link Resolution} which wraps a Tuples object.
  *
  * @created 2004-10-28
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @copyright &copy; 2005 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 class TuplesWrapperResolution implements Resolution {

@@ -18,8 +18,8 @@ import org.mulgara.query.QueryException;
  * Tests an element to see if it is an RDF Literal value.
  *
  * @created Mar 17, 2008
- * @author Paul Gearon
- * @copyright &copy; 2008 <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author Paula Gearon
+ * @copyright &copy; 2008 <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */
 public class IsLiteralFn extends AbstractBooleanFn {
