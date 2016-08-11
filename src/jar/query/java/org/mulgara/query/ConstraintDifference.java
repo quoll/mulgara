@@ -24,8 +24,8 @@ import java.util.*;
  * subexpressions.
  *
  * @created 2005-03-08
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
- * @copyright &copy; 2005 <A href="mailto:pgearon@users.sourceforge.net">Paul Gearon</A>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
+ * @copyright &copy; 2005 <A href="mailto:pgearon@users.sourceforge.net">Paula Gearon</A>
  * @licence <a href="{@docRoot}/../../LICENCE">Mozilla Public License v1.1</a>
  */
 public class ConstraintDifference extends ConstraintBinaryOperation {

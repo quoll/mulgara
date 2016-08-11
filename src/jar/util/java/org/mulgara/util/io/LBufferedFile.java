@@ -1,5 +1,5 @@
 /*
- * Copyright 2010 Paul Gearon
+ * Copyright 2010 Paula Gearon
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import org.apache.log4j.Logger;
 
 /**
  * An abstraction for reading and writing to files with Long offsets.
- * @author Paul Gearon
+ * @author Paula Gearon
  *
  */
 public abstract class LBufferedFile {

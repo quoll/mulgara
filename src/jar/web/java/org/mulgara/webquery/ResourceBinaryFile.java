@@ -30,7 +30,7 @@ import javax.servlet.ServletOutputStream;
  * streams are "binary" and are therefore considered complete.
  *
  * @created Aug 1, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class ResourceBinaryFile extends ResourceFile {

@@ -32,7 +32,7 @@ import org.mulgara.util.io.LBufferedFile;
  * Similar to a C-struct for storing and retrieving the data being stored by this string pool.
  *
  * @created Aug 12, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 class DataStruct {

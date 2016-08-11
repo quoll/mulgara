@@ -34,7 +34,7 @@ import org.mulgara.query.Variable;
  * The format is specified at: {@link http://www.w3.org/TR/rdf-sparql-json-res/}
  *
  * @created Sep 1, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class StreamedSparqlJSONAnswer extends AbstractStreamedAnswer implements StreamedJSONAnswer {

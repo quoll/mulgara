@@ -23,7 +23,7 @@ import java.util.Set;
  * Represents a group of functions exposed as XPathFunctions in a single namespace.
  *
  * @created Oct 5, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2009 <a href="http://www.duraspace.org/">DuraSpace</a>
  */
 public interface MulgaraFunctionGroup {

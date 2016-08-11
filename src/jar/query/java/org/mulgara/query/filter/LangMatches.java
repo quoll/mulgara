@@ -21,8 +21,8 @@ import org.mulgara.query.filter.value.ValueLiteral;
  * TODO: fully implement RFC 4647: <a href="http://www.ietf.org/rfc/rfc4647.txt">http://www.ietf.org/rfc/rfc4647.txt</a>
  *
  * @created Mar 8, 2008
- * @author Paul Gearon
- * @copyright &copy; 2008 <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author Paula Gearon
+ * @copyright &copy; 2008 <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */
 public class LangMatches extends BinaryTstFilter {

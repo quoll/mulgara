@@ -23,7 +23,7 @@ import org.mulgara.store.xa.AVLNode;
  * Comparator for category information only.
  *
  * @created Aug 14, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class DataCategoryAVLComparator implements AVLComparator {

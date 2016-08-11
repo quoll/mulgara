@@ -22,7 +22,7 @@ import java.util.List;
  * Represents the standard subject/predicate/object of a triple.
  *
  * @created Feb 18, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  * @licence <a href="{@docRoot}/../LICENCE.txt">Apache License, Version 2.0</a>
  */

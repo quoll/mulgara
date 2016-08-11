@@ -22,7 +22,7 @@ import org.mulgara.query.functions.MulgaraFunctionResolver;
  * Retrieves functions for SPARQL expressions.
  *
  * @created Oct 5, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2009 <a href="http://www.duraspace.org/">DuraSpace</a>
  */
 public class MulgaraXPathFunctionResolver extends MulgaraFunctionResolver {

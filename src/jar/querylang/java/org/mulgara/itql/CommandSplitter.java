@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * This interface splits queries for the appropriate query type
  * @created Sep 11, 2007
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2007 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 interface CommandSplitter {

@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
  * Wraps a servlet request to provide as a parameter to a MimeMultipart handler.
  *
  * @created Sep 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class ServletDataSource implements DataSource {

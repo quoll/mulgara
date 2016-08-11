@@ -19,7 +19,7 @@ package org.mulgara.sparql.parser.cst;
  * Used for expressions in functions.
  *
  * @created Oct 28, 2011
- * @author Paul Gearon
+ * @author Paula Gearon
  * @licence <a href="{@docRoot}/../LICENCE.txt">Apache License, Version 2.0</a>
  */
 public interface Verb extends Node, PrimaryExpression {

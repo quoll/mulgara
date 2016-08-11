@@ -22,7 +22,7 @@ import java.rmi.RemoteException;
  * This interface is used for loading a rules structure.
  *
  * @created 2005-5-22
- * @author <a href="mailto:gearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:gearon@users.sourceforge.net">Paula Gearon</a>
  * @version $Revision: 1.1 $
  * @modified $Date: 2005/06/26 12:42:43 $
  * @maintenanceAuthor $Author: pgearon $

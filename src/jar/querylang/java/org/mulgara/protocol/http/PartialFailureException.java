@@ -22,7 +22,7 @@ import static javax.servlet.http.HttpServletResponse.SC_NO_CONTENT;
  * Encodes the condition of a bad HTTP servlet request.
  *
  * @created Sep 8, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class PartialFailureException extends ServletException {

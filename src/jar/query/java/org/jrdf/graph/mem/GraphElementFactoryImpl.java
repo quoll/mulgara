@@ -69,7 +69,7 @@ import java.util.Map;
  * A SkipListNode Factory is a class which create the various components of a graph.
  * It is tied to a specific instance of GraphImpl.
  *
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  */
 public class GraphElementFactoryImpl implements GraphElementFactory {
 

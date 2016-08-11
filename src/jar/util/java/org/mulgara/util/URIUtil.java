@@ -26,7 +26,7 @@ import javax.xml.namespace.QName;
  * Utilities for working with URIs in Mulgara.
  *
  * @created Nov 26, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  */
 public class URIUtil {
 

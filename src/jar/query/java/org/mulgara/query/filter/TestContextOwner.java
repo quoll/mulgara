@@ -19,8 +19,8 @@ import java.util.List;
  * A test class for emulating a context ownership.
  *
  * @created Mar 31, 2008
- * @author Paul Gearon
- * @copyright &copy; 2008 <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author Paula Gearon
+ * @copyright &copy; 2008 <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */
 public class TestContextOwner implements ContextOwner {

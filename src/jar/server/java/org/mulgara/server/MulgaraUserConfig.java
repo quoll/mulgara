@@ -49,7 +49,7 @@ import org.mulgara.config.XpathFunctionResolver;
  * config.
  *
  * @created Jun 28, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2009 <a href="http://www.duraspace.org/">DuraSpace</a>
  */
 public class MulgaraUserConfig extends MulgaraConfig {

@@ -49,7 +49,7 @@ import org.mulgara.query.rdf.URIReferenceImpl;
  * A structure to describe an iTQL query.
  *
  * @created 2005-5-27
- * @author <a href="mailto:gearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:gearon@users.sourceforge.net">Paula Gearon</a>
  * @version $Revision: 1.2 $
  * @modified $Date: 2005/07/03 12:56:44 $
  * @maintenanceAuthor $Author: pgearon $

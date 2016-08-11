@@ -20,7 +20,7 @@ package org.mulgara.webquery.html;
  * Describes some part of a table's structure.
  *
  * @created Aug 8, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public interface TableStructure {

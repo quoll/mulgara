@@ -24,7 +24,7 @@ import java.net.URI;
  * A set of constants for the standard OWL vocabulary.
  *
  * @created 2009-1-28
- * @author <a href="mailto:gearon@ieee.org">Paul Gearon</a>
+ * @author <a href="mailto:gearon@ieee.org">Paula Gearon</a>
  */
 public abstract class OWL extends Vocabulary {
 

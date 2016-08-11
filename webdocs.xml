@@ -47,7 +47,7 @@
     <meta name="DC.Subject" content="mulgara project, metadata, metastore, metadatabase, datastore, database, scaleable, scalable, transaction, java, open source, rdf, resource description framework" />
     <meta name="DC.Description" content="Mulgara semantic store is a scalable RDF database written entirely in Java. It is an Open Source fork of Kowari metastore." />
     <meta name="DC.Creator" content="Tom Adams" />
-    <meta name="DC.Contributor" content="Paul Gearon" />
+    <meta name="DC.Contributor" content="Paula Gearon" />
     <meta name="DC.Contributor" content="David Wood" />
     <meta name="DC.Date.Created" scheme="iso8601" content="2003-09-22" />
     <meta name="DC.Modified" scheme="iso8601" content="2006-10-01" />

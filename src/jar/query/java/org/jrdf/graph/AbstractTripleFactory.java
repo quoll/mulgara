@@ -68,7 +68,7 @@ import java.util.Iterator;
  * The base implementation of the Triple Factory which adds to a given graph
  * reified statements, containers and collections.
  *
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @author Andrew Newman
  *
  * @version $Revision: 624 $

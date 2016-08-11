@@ -56,7 +56,7 @@ import org.mulgara.util.Constants;
  * An implementation of {@link StatementStore}.
  *
  * @created 2008-09-30
- * @author Paul Gearon
+ * @author Paula Gearon
  * @company <A href="mailto:info@PIsoftware.com">Plugged In Software</A>
  * @copyright &copy;2001-2004 <a href="http://www.pisoftware.com/">Plugged In Software Pty Ltd</a>
  * @licence <a href="{@docRoot}/../../LICENCE">Mozilla Public License v1.1</a>

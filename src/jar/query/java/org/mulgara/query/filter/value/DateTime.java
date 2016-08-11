@@ -24,7 +24,7 @@ import static org.mulgara.query.rdf.XSD.DATE_TIME_URI;
  * A date value.
  *
  * @created Mar 8, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.topazproject.org/">The Topaz Project</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */

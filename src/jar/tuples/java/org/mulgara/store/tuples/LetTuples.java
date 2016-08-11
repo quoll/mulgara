@@ -41,7 +41,7 @@ import org.mulgara.store.tuples.AbstractTuples;
  * the context provided by that Tuples.
  * 
  * @created July 1, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2009 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class LetTuples extends AbstractTuples implements ContextOwner {

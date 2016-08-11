@@ -37,7 +37,7 @@ import org.mulgara.sparql.SparqlInterpreter;
  * A query gateway for SPARQL.
  *
  * @created Sep 7, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class SparqlServlet extends ProtocolServlet {

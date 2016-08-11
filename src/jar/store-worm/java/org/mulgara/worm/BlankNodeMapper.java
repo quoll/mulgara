@@ -24,7 +24,7 @@ import org.mulgara.util.LongMapper;
  * Manages node-to-node mapping, including our blank nodes that need to be mapped to other nodes.
  *
  * @created July 4, 2012
- * @author Paul Gearon
+ * @author Paula Gearon
  */
 public class BlankNodeMapper implements LongMapper {
 

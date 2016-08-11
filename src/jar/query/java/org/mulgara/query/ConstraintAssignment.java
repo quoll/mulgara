@@ -30,7 +30,7 @@ import org.mulgara.query.filter.RDFTerm;
  *
  * @created July 2, 2009
  *
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2009 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class ConstraintAssignment implements ConstraintExpression {

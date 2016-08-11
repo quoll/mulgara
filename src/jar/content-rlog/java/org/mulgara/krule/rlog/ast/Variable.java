@@ -23,7 +23,7 @@ import org.mulgara.krule.rlog.rdf.Var;
  * Represents an RLog variable.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class Variable extends Node implements TypeLabel, BPredicateLabel, PredicateParam {

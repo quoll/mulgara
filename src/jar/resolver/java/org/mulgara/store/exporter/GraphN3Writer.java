@@ -48,7 +48,7 @@ import org.mulgara.store.*;
  *
  * @created 2004-07-26
  *
- * @author <a href="mailto:pag@pisoftware.com">Paul Gearon</a>
+ * @author <a href="mailto:pag@pisoftware.com">Paula Gearon</a>
  *
  * @version $Revision: 1.8 $
  *

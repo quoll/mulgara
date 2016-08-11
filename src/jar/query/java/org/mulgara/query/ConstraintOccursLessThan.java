@@ -39,7 +39,7 @@ import org.mulgara.query.rdf.URIReferenceImpl;
  *
  * @created 2004-08-12
  *
- * @author <a href="mailto:pag@tucanatech.com">Paul Gearon</a>
+ * @author <a href="mailto:pag@tucanatech.com">Paula Gearon</a>
  *
  * @version $Revision: 1.9 $
  *

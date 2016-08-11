@@ -43,7 +43,7 @@ import java.util.*;
  *
  * @created 2004-05-12
  *
- * @author Paul Gearon
+ * @author Paula Gearon
  *
  * @version $Revision: 1.9 $
  *

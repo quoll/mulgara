@@ -29,7 +29,7 @@ import org.mulgara.util.functional.C;
  * Indents are hard coded to 2 characters.
  *
  * @created Aug 4, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public abstract class HtmlElement {

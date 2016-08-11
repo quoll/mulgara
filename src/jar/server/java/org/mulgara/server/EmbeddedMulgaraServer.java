@@ -70,7 +70,7 @@ import static org.mulgara.server.ServerMBean.ServerState;
  *
  * @author Tom Adams
  * @author Simon Raboczi
- * @author Paul Gearon
+ * @author Paula Gearon
  * @author Tate Jones
  *
  * @company <a href="mailto:info@PIsoftware.com">Plugged In Software</a>

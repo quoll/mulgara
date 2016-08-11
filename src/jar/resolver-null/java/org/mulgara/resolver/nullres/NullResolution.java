@@ -34,7 +34,7 @@ import org.mulgara.store.tuples.TuplesOperations;
  * An empty set of results, equivalent to {@link org.mulgara.store.tuples.EmptyTuples}.
  *
  * @created May 8, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class NullResolution implements Resolution {

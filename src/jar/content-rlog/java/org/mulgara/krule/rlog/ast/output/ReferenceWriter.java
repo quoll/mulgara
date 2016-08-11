@@ -25,7 +25,7 @@ import java.util.Collection;
  * Writes variables to an XML stream as a set of declarations.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class ReferenceWriter extends XMLFragmentWriter {

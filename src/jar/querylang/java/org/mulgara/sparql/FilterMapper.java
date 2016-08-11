@@ -97,7 +97,7 @@ import org.mulgara.query.filter.value.Var;
  * {@link org.mulgara.query.filter.Filter}.
  *
  * @created Apr 22, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class FilterMapper {

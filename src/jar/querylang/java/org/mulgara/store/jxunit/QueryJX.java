@@ -37,7 +37,7 @@ import org.mulgara.itql.ItqlInterpreterBean;
  * Test frame for iTQL queries.
  *
  * @created 2001-12-18
- * @author <a href="http://staff.pisoftware.com/pag">Paul Gearon</a>
+ * @author <a href="http://staff.pisoftware.com/pag">Paula Gearon</a>
  * @company <A href="mailto:info@PIsoftware.com">Plugged In Software</A>
  * @copyright &copy; 2001-2003 <A href="http://www.PIsoftware.com/">Plugged In Software Pty Ltd</A>
  * @licence <a href="{@docRoot}/../../LICENCE">Mozilla Public License v1.1</a>

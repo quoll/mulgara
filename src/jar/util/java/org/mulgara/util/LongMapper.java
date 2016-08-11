@@ -22,7 +22,7 @@ package org.mulgara.util;
  * to allow manipulation of the number space if this is more efficient.
  *
  * @created Sep 26, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public interface LongMapper {

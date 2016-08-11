@@ -29,7 +29,7 @@ import org.mulgara.query.functions.MulgaraFunctionGroup;
  * Container for functions in the smf domain.
  *
  * @created Dec 15, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2009 <a href="http://www.duraspace.org/">DuraSpace</a>
  */
 public class SmfFunctionGroup implements MulgaraFunctionGroup {

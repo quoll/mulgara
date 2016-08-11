@@ -20,7 +20,7 @@ package org.mulgara.krule;
  * Indicates a structural error in the Krule rules.
  *
  * @created 2005-6-03
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @version $Revision: 1.1 $
  * @modified $Date: 2005/06/26 12:41:14 $
  * @maintenanceAuthor $Author: pgearon $

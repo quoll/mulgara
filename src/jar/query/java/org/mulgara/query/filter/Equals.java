@@ -18,8 +18,8 @@ import org.mulgara.query.QueryException;
  * The equality comparison for Values.
  *
  * @created Mar 8, 2008
- * @author Paul Gearon
- * @copyright &copy; 2008 <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author Paula Gearon
+ * @copyright &copy; 2008 <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */
 public class Equals extends BinaryTstFilter {

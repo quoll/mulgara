@@ -26,7 +26,7 @@ import org.mulgara.sparql.parser.cst.TripleList;
  * a {@link QueryStructure} to an equivalent form of the query.
  *
  * @created January 25, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  * @licence <a href="{@docRoot}/../LICENCE.txt">Apache License, Version 2.0</a>
  */

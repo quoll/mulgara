@@ -35,7 +35,7 @@ import java.net.URI;
  * @created 2001-10-05
  *
  * @author <a href="http://staff.pisoftware.com/david">David Makepeace</a>
- * @author <a href="http://staff.pisoftware.com/pag">Paul Gearon</a>
+ * @author <a href="http://staff.pisoftware.com/pag">Paula Gearon</a>
  *
  * @version $Revision: 1.1 $
  *

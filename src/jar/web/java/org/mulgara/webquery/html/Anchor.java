@@ -25,7 +25,7 @@ import java.net.URL;
  * objects do not hold relative URLs, while URIs can.
  *
  * @created Aug 4, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class Anchor extends HtmlElement {

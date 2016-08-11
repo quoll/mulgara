@@ -20,7 +20,7 @@ package org.mulgara.webquery.html;
  * Represents a span element. This implementation always uses a class attribute.
  *
  * @created Aug 4, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class Span extends HtmlElement {

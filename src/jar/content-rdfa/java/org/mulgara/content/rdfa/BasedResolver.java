@@ -1,5 +1,5 @@
 /*
- * Copyright 2010 Paul Gearon
+ * Copyright 2010 Paula Gearon
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import net.rootdev.javardfa.Resolver;
 /**
  *
  * @created 2010-08-09
- * @author Paul Gearon
+ * @author Paula Gearon
  */
 class BasedResolver implements Resolver {
 

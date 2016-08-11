@@ -19,7 +19,7 @@ package org.mulgara.sparql.parser.cst;
  * A greater than or equal to relation
  *
  * @created Feb 13, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  * @licence <a href="{@docRoot}/../LICENCE.txt">Apache License, Version 2.0</a>
  */

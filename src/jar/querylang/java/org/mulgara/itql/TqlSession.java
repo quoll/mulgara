@@ -46,7 +46,7 @@ import org.mulgara.query.TuplesException;
  * Command line shell for working with TQL sessions.
  *
  * @created September 11, 2007
- * @author Paul Gearon
+ * @author Paula Gearon
  * @author <a href="mailto:brian@bosatsu.net">Brian Sletten</a>
  * @copyright &copy; 2007 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */

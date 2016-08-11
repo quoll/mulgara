@@ -33,7 +33,7 @@ import org.mulgara.server.Session;
  * Third column: contains URIs, BlankNodes, or Literals
  *
  * @created Jun 26, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.topazproject.org/">The Topaz Project</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */

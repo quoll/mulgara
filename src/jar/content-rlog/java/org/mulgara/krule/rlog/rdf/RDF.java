@@ -20,7 +20,7 @@ package org.mulgara.krule.rlog.rdf;
  * Contains the RDF namespace details
  *
  * @created May 2, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  * @licence <a href="http://www.opensource.org/licenses/apache2.0.php">Apache License, Version 2.0</a>
  */

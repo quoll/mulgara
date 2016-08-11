@@ -75,7 +75,7 @@ import static org.mulgara.store.stringpool.xa11.DataStruct.*;
  * on a transaction results in a set of writes being abandoned.
  *
  * @created Aug 11, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class XA11StringPoolImpl implements XAStringPool, XANodePool {

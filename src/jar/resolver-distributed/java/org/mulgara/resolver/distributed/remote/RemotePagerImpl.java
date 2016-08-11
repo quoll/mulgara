@@ -30,7 +30,7 @@ import org.mulgara.util.Rmi;
  * @param <E> The elements of the paged list.
  *
  * @created 2007-04-23
- * @author <a href="mailto:gearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:gearon@users.sourceforge.net">Paula Gearon</a>
  * @copyright &copy; 2007 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class RemotePagerImpl<E extends Serializable> implements RemotePager<E> {

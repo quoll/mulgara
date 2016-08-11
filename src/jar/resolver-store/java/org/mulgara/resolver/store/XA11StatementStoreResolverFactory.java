@@ -25,7 +25,7 @@ import org.mulgara.store.xa.XAStatementStore;
  * An extension of StatementStoreResolverFactory which instantiates an XA 1.1 statement store.
  *
  * @created Oct 1, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.topazproject.org/">The Topaz Project</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */

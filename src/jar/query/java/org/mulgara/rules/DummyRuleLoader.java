@@ -22,7 +22,7 @@ import java.net.URI;
  * A dummy implementation of the rule loader.
  *
  * @created 2005-7-1
- * @author <a href="mailto:gearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:gearon@users.sourceforge.net">Paula Gearon</a>
  * @version $Revision: 1.1 $
  * @modified $Date: 2005/07/01 23:21:33 $
  * @maintenanceAuthor $Author: pgearon $

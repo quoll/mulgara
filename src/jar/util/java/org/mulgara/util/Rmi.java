@@ -32,7 +32,7 @@ import org.neilja.net.interruptiblermi.InterruptibleRMISocketFactory;
  * would need to be overridden.
  *
  * @created Sep 23, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class Rmi extends UnicastRemoteObject {

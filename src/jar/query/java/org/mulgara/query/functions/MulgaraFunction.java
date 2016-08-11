@@ -29,7 +29,7 @@ import org.mulgara.query.filter.value.SimpleLiteral;
  * General class for providing management information for XPath function implementations.
  *
  * @created Oct 5, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2009 <a href="http://www.duraspace.org/">DuraSpace</a>
  */
 public abstract class MulgaraFunction implements XPathFunction {

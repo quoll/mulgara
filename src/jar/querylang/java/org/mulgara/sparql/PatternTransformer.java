@@ -36,7 +36,7 @@ import org.mulgara.query.filter.value.Bool;
  * This object transforms a {@link ConstraintExpression} into a minimized {@link ConstraintExpression}.
  *
  * @created May 06, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class PatternTransformer {

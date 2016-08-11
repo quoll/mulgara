@@ -24,8 +24,8 @@ import org.mulgara.query.QueryException;
  * {@link #isOn()} indicates that a transaction is being closed.
  * 
  * @created Aug 17, 2007
- * @author Paul Gearon
- * @copyright &copy; 2007 <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author Paulaa Gearon
+ * @copyright &copy; 2007 <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */
 public class SetAutoCommit extends BooleanSetCommand implements TxOp {

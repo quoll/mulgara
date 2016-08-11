@@ -27,7 +27,7 @@ import org.mulgara.query.rdf.BlankNodeImpl;
  * An Answer that represents a graph.
  *
  * @created Jun 30, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.topazproject.org/">The Topaz Project</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */

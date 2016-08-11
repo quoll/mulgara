@@ -31,7 +31,7 @@ import org.mulgara.resolver.spi.*;
  * Factory for a resolver that gets type information from the string pool
  *
  * @created 2005-4-19
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @copyright &copy; 2005 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class PrefixResolverFactory implements ResolverFactory {

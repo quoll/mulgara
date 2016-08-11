@@ -24,7 +24,7 @@ import org.mulgara.query.Variable;
  * Test case for {@link Difference}.
  *
  * @created 2005-03-31
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @copyright &copy; 2003 <A href="http://www.topazproject.org/">The Topaz Project</A>
  * @licence <a href="{@docRoot}/../../LICENCE">Open Software License v3.0</a>
  */

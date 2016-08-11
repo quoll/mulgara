@@ -47,7 +47,7 @@ import org.mulgara.util.Timezone;
  * @created 2004-10-06
  *
  * @author Mark Ludlow
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2004 <A href="http://www.PIsoftware.com/">Plugged In Software Pty Ltd</A>
  * @licence <a href="{@docRoot}/../../LICENCE">Mozilla Public License v1.1</a>
  */

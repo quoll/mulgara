@@ -46,7 +46,7 @@ import org.mulgara.server.SessionFactory;
  *
  * @created 2004-12-01
  *
- * @author Paul Gearon
+ * @author Paula Gearon
  *
  * @modified $Date: 2005/01/05 04:58:59 $ by $Author: newmana $
  *

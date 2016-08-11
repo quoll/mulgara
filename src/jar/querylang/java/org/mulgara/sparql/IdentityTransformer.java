@@ -47,7 +47,7 @@ import org.mulgara.query.WalkConstraint;
  * Identity transformation on constraint expressions.
  *
  * @created July 1, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public abstract class IdentityTransformer {

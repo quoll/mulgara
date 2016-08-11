@@ -26,8 +26,8 @@ import org.mulgara.query.TuplesException;
  * lower index numbers are major.
  *
  * @created 2008-04-04
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
- * @copyright &copy; 2008 <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
+ * @copyright &copy; 2008 <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @licence <a href="{@docRoot}/../../LICENCE">Open Software License v3.0</a>
  */
 public class PartialColumnComparator implements RowComparator {

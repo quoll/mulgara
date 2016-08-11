@@ -20,7 +20,7 @@ package org.mulgara.webquery.html;
  * Represents a table.
  *
  * @created Aug 4, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class Table extends TableAbstr {

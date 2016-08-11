@@ -27,8 +27,8 @@ import org.mulgara.server.Session;
 /**
  * Represents a command to create a new graph.
  * @created Aug 10, 2007
- * @author Paul Gearon
- * @copyright &copy; 2007 <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author Paula Gearon
+ * @copyright &copy; 2007 <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */
 public class CreateGraph extends SessionCommand {

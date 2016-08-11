@@ -242,7 +242,7 @@ Changed paths:
    M /trunk/src/jar/query/java/org/mulgara/query/operation/DataOutputTx.java
    M /trunk/src/jar/query/java/org/mulgara/query/operation/Export.java
 
-Correcting the copyright on files created by me that Paul accidentally changed when re-licensing his contributions.
+Correcting the copyright on files created by me that Paula accidentally changed when re-licensing her contributions.
 ------------------------------------------------------------------------
 r1825 | alexhall | 2009-10-20 08:26:21 -0400 (Tue, 20 Oct 2009) | 1 line
 Changed paths:

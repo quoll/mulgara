@@ -22,7 +22,7 @@ import java.util.Map;
  * A pair of elements.
  *
  * @created Aug 5, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class Pair<T1,T2> implements Map.Entry<T1,T2> {

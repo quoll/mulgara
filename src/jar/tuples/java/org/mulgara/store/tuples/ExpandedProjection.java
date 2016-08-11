@@ -30,7 +30,7 @@ import org.mulgara.util.functional.C;
  * and will maintain almost all the properties of the wrapped Tuples.
  *
  * @created 2010-01-06
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2010 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 class ExpandedProjection extends AbstractTuples {

@@ -20,7 +20,7 @@ package org.mulgara.util.functional;
  * 
  *
  * @created Aug 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class F {

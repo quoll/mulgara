@@ -62,7 +62,7 @@ import static org.mulgara.query.rdf.Krule.VARIABLE;
  * Writes rules to a list of triples.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class RuleGenerator extends TripleGenerator {

@@ -20,7 +20,7 @@ package org.mulgara.krule.rlog.ast;
  * Visitor pattern class for traversing the AST and printing what it finds.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class PrintWalker implements TreeWalker {

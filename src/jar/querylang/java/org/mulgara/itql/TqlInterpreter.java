@@ -73,7 +73,7 @@ import org.mulgara.util.URIUtil;
  * for each thread.</em>
  *
  * @created 2007-08-09
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy;2007 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class TqlInterpreter extends DepthFirstAdapter implements SableCCInterpreter, Aliasing {

@@ -30,7 +30,7 @@ package org.mulgara.query;
 /**
  * Nodes representing resources, literal, or semantics-free graph vertices.
  *
- * @author <a href="http://staff.pisoftware.com/pag">Paul Gearon</a>
+ * @author <a href="http://staff.pisoftware.com/pag">Paula Gearon</a>
  * @author <a href="http://staff.pisoftware.com/raboczi">Simon Raboczi</a>
  *
  * @created 2001-07-13

@@ -24,7 +24,7 @@ import org.mulgara.query.filter.value.Bool;
  * This is different to NOT in that it will pass if the test fails with an exception.
  *
  * @created Jan 8, 2010
- * @author Paul Gearon
+ * @author Paula Gearon
  */
 public class Inverse extends AbstractFilterValue implements Filter {
 

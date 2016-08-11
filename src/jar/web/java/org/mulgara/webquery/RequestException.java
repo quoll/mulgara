@@ -20,7 +20,7 @@ package org.mulgara.webquery;
  * An internal exception for communicating issues that need to be sent out as HTTP responses.
  *
  * @created Aug 7, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class RequestException extends Exception {

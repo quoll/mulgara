@@ -37,7 +37,7 @@ import org.apache.log4j.*;
  *
  * @created 2004-08-10
  *
- * @author Paul Gearon
+ * @author Paula Gearon
  *
  * @version $Revision: 1.8 $
  *

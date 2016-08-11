@@ -25,7 +25,7 @@ import org.mulgara.query.TuplesException;
  * Represents an Answer that can be emitted as XML to a stream.
  *
  * @created Jul 8, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public interface StreamedXMLAnswer extends XMLAnswer, StreamedAnswer {

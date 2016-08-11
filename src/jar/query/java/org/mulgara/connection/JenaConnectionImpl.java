@@ -31,7 +31,7 @@ import com.hp.hpl.jena.shared.JenaException;
  * Implements operations expected by a Jena client.
  *
  * @created Aug 11, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2009 <a href="http://www.duraspace.org/">DuraSpace</a>
  */
 public class JenaConnectionImpl implements JenaConnection {

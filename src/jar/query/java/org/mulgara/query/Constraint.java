@@ -36,7 +36,7 @@ package org.mulgara.query;
  * @created 2002-02-28
  *
  * @author <a href="http://staff.pisoftware.com/david">David Makepeace</a>
- * @author <a href="http://staff.pisoftware.com/pag">Paul Gearon</a>
+ * @author <a href="http://staff.pisoftware.com/pag">Paula Gearon</a>
  *
  * @version $Revision: 1.8 $
  *

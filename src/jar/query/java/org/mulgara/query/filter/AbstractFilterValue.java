@@ -29,7 +29,7 @@ import org.mulgara.query.filter.value.ValueLiteral;
  * A root for most values, for setting the context and giving default responses to many items.
  *
  * @created Apr 14, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.topazproject.org/">The Topaz Project</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */

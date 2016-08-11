@@ -20,7 +20,7 @@ package org.mulgara.krule.rlog.ast;
  * Created by IntelliJ IDEA.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public interface TreeWalker {

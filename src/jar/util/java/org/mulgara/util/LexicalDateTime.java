@@ -31,7 +31,7 @@ import static org.mulgara.util.Constants.SIZEOF_LONG;
  * allow the preservation of the non-canonical format.
  *
  * @created Jun 5, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class LexicalDateTime {

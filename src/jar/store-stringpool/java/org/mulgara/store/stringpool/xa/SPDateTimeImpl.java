@@ -50,7 +50,7 @@ import static org.mulgara.util.Constants.SIZEOF_LONG;
  *
  * @author David Makepeace
  * @author Edwin Shin
- * @author Paul Gearon
+ * @author Paula Gearon
  * @company <A href="mailto:info@PIsoftware.com">Plugged In Software</A>
  * @copyright &copy; 2004 <A href="http://www.PIsoftware.com/">Plugged In
  *      Software Pty Ltd</A>

@@ -60,7 +60,7 @@ import org.mulgara.util.*;
  * @created 2001-10-09
  *
  * @author David Makepeace
- * @author Paul Gearon
+ * @author Paula Gearon
  *
  * @version $Revision: 1.3 $
  *

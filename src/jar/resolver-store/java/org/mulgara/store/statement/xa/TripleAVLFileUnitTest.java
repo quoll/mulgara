@@ -44,7 +44,7 @@ import org.mulgara.util.TempDir;
  * @created 2001-10-17
  *
  * @author David Makepeace
- * @author Paul Gearon
+ * @author Paula Gearon
  *
  * @version $Revision: 1.8 $
  *

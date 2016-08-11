@@ -22,8 +22,8 @@ import java.net.URI;
  * An AST element for non-server commands.
  *
  * @created 2007-08-09
- * @author Paul Gearon
- * @copyright &copy; 2007 <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author Paula Gearon
+ * @copyright &copy; 2007 <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */
 public abstract class LocalCommand extends AbstractCommand {

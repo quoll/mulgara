@@ -27,7 +27,7 @@ import org.mulgara.krule.rlog.rdf.Var;
  * Represents the inversion of a standard predicate.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class InvertedPredicate extends Predicate {

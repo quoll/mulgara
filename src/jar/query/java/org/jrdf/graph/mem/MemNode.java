@@ -66,7 +66,7 @@ import org.jrdf.graph.Node;
  * Memory node.  This is an additional interface for nodes so they can be accessed by id.
  * Extends {@link Serializable} so all nodes will be serializable.
  *
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  *
  * @version $Revision: 624 $
  */

@@ -22,7 +22,7 @@ import java.nio.ByteBuffer;
  * This class manages the allocation and detection of blank nodes.
  *
  * @created Aug 15, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class BlankNodeAllocator {

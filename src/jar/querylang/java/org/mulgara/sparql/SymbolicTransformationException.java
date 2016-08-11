@@ -20,7 +20,7 @@ package org.mulgara.sparql;
  * Indicates an error performing a symbolic transformation.
  *
  * @created Jul 1, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class SymbolicTransformationException extends Exception {

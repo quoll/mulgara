@@ -25,7 +25,7 @@ import java.util.TimeZone;
  * Maps from a known hour:minute offset for a timezone into a 6 bit code, and back.
  *
  * @created Jun 5, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class Timezone {

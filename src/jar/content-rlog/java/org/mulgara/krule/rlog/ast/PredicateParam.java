@@ -22,7 +22,7 @@ import org.mulgara.krule.rlog.rdf.RDFNode;
  * A parameter for a predicate.
  *
  * @created 2007
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2007 <a href="mailto:pgearon@users.sourceforge.net">Topaz Project</a>
  * @licence <a href="http://www.opensource.org/licenses/apache2.0.php">Apache License, Version 2.0</a>
  */

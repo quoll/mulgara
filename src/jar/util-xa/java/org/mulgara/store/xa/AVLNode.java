@@ -45,7 +45,7 @@ import org.mulgara.util.Constants;
  * @created 2002-10-04
  *
  * @author David Makepeace
- * @author Paul Gearon
+ * @author Paula Gearon
  *
  * @version $Revision: 1.10 $
  *

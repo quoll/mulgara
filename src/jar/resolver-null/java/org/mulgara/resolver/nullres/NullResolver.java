@@ -34,7 +34,7 @@ import org.mulgara.resolver.spi.*;
  * A resolver for accepting and discarding any data and returning valid empty results.
  *
  * @created May 8, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class NullResolver implements Resolver {

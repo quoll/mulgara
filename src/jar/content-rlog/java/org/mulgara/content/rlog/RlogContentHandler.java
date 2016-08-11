@@ -42,7 +42,7 @@ import org.mulgara.resolver.spi.Statements;
  * Resolves constraints in models defined by RLog documents.
  *
  * @created Feb 24, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class RlogContentHandler implements ContentHandler {

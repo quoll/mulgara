@@ -29,7 +29,7 @@ import org.mulgara.query.Variable;
  * TODO: This is more properly called an Expression, since they can be used in non-filter roles.
  *
  * @created Mar 7, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public interface Filter extends ContextOwner, RDFTerm {

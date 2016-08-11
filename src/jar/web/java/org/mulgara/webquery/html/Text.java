@@ -24,7 +24,7 @@ import org.mulgara.util.StringUtil;
  * Represents free floating text. Indent is irrelevant for this class.
  *
  * @created Aug 4, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class Text extends HtmlElement {

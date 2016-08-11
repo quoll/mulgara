@@ -19,7 +19,7 @@ import java.util.Map;
  * Maintains state for updating variables to a canonical form.
  *
  * @created Mar 4, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.topazproject.org/">The Topaz Project</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */

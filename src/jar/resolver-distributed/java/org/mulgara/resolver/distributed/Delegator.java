@@ -28,7 +28,7 @@ import org.mulgara.query.QueryException;
  * Interface for an object capable of resolving a constraint
  *
  * @created 2007-03-20
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @version $Revision: $
  * @modified $Date: $
  * @maintenanceAuthor $Author: $

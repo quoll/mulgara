@@ -30,7 +30,7 @@ import javax.mail.internet.MimeMultipart;
  * This class extends multipart MIME objects to lookup parameter values.
  *
  * @created Sep 17, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class MimeMultiNamedPart extends MimeMultipart {

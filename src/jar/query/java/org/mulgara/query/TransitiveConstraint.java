@@ -42,7 +42,7 @@ import java.util.*;
  *
  * @created 2004-06-22
  *
- * @author Paul Gearon
+ * @author Paula Gearon
  * @author Andrew Newman
  *
  * @version $Revision: 1.9 $

@@ -20,7 +20,7 @@ package org.mulgara.krule.rlog.ast;
  * Visitor pattern class used to help convert a tree from a CST to an AST.
  * 
  * @created May 16, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class TreeTransformer implements TreeWalker {

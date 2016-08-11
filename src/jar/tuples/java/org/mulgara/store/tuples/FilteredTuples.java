@@ -37,7 +37,7 @@ import org.mulgara.store.tuples.AbstractTuples;
 /**
  * Filtering operation. This class wraps another Tuples, removing those elements that don't
  * pass the filter.
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class FilteredTuples extends AbstractTuples implements ContextOwner {

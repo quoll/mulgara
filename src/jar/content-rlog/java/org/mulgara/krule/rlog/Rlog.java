@@ -39,7 +39,7 @@ import org.mulgara.krule.rlog.rdf.Var;
  * This class is used to interpret a string into an AST.  The AST is then transformed into a krule encoding in XML.
  * 
  * @created Feb 22, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class Rlog implements Interpreter {

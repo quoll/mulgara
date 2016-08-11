@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * Represents an n-ary AND expression.
  *
  * @created Feb 13, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  * @licence <a href="{@docRoot}/../LICENCE.txt">Apache License, Version 2.0</a>
  */

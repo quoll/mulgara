@@ -22,7 +22,7 @@ import static javax.servlet.http.HttpServletResponse.SC_SERVICE_UNAVAILABLE;
  * Encodes the condition of an unavailable service.
  *
  * @created Sep 8, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class ServiceUnavailableException extends ServletException {

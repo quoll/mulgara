@@ -29,7 +29,7 @@ import org.mulgara.resolver.spi.SystemResolver;
  * A rule that generates no data, but instead checks that the data is consistent.
  *
  * @created Mar 18, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.topazproject.org/">The Topaz Project</a>
  * @licence <a href="{@docRoot}/../../LICENCE.txt">Open Software License v3.0</a>
  */

@@ -73,7 +73,7 @@ import java.io.ObjectOutputStream;
 /**
  * Implementation of {@link AbstractGraphTest} test case.
  *
- * @author <a href="mailto:pgearon@users.sourceforge.net">Paul Gearon</a>
+ * @author <a href="mailto:pgearon@users.sourceforge.net">Paula Gearon</a>
  * @author Andrew Newman
  *
  * @version $Revision: 624 $

@@ -25,7 +25,7 @@ import org.mulgara.server.SessionFactoryProvider;
  * WebUI, but includes a series of selectable commands.
  *
  * @created Dec 4, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  */
 public class TutorialServlet extends QueryServlet {
 

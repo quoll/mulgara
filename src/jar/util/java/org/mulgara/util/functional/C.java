@@ -32,7 +32,7 @@ import java.util.Set;
  * {@link org.mulgara.util.functional.Fn1} and {@link org.mulgara.util.functional.Fn2}.
  *
  * @created Aug 4, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class C {

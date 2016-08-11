@@ -40,7 +40,7 @@ import org.mulgara.util.MemoryResultSet;
  * Test case for {@link StreamedSparqlJSONAnswer}.
  *
  * @created Sep 1, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class StreamedSparqlJSONAnswerUnitTest extends TestCase {

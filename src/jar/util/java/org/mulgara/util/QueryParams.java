@@ -33,7 +33,7 @@ import org.mulgara.util.functional.Pair;
  * Note: This does NOT permit duplicate parameters.
  *
  * @created Aug 5, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2008 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class QueryParams {

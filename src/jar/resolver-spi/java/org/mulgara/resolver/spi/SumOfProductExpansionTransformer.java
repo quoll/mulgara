@@ -37,7 +37,7 @@ import org.mulgara.query.ConstraintFilter;
  * A - (B or C) -> (A - B) - C, iff B and C share all variables
  *
  * @created August 7, 2009
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2009 <a href="http://www.duraspace.org/">DuraSpace</a>
  */
 public class SumOfProductExpansionTransformer extends AbstractSymbolicTransformer {

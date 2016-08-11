@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * An interface for indicating that an object holds and manages aliases.
  * @created Sep 26, 2007
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy;2007 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 interface Aliasing {

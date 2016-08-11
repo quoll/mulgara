@@ -22,7 +22,7 @@ import org.mulgara.query.TuplesException;
  * A class for performing appends between identically structured StoreTuples.
  *
  * @created Dec 17, 2008
- * @author Paul Gearon
+ * @author Paula Gearon
  * @copyright &copy; 2005 <a href="http://www.fedora-commons.org/">Fedora Commons</a>
  */
 public class OrderedStoreAppend extends OrderedAppend implements StoreTuples {
