@@ -1123,7 +1123,7 @@
       <arg value="file:${dist.dir}/log4j-instance-${server.instance}.xml"/>
     </exec>
 
-    <exec os="Windows NT,Windows 2000,Windows XP, Windows 2003" executable="${scripts.dir}\bg.exe"
+    <exec os="Windows NT,Windows 2000,Windows XP, Windows 2003, Windows 8" executable="${scripts.dir}\bg.exe"
         failonerror="yes">
 
       <arg value="-o"/>
