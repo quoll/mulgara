@@ -102,7 +102,7 @@ public class Multimap<K,V> implements Map<K,V>  {
    * @param value the value to remove from the mapping
    * @return whether the object existed and was unmapped
    */
-  public boolean remove(K key, V value) {
+  public boolean removeMapping(K key, V value) {
 
     Set<V> values = map.get(key);
 
