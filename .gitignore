@@ -7,3 +7,7 @@ obj/
 
 src/jar/config/java
 src/jar/config/javagenerated
+/test
+/tmp
+/mulgara.log
+/devel-template.log
