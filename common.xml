@@ -80,7 +80,7 @@
       <classpath>
 
         <pathelement location="${java.home}/lib/tools.jar"/>
-        <pathelement location="${lib.dir}/ant-1.8.3.jar"/>
+        <pathelement location="${lib.dir}/ant-1.9.7.jar"/>
         <pathelement location="${lib.dir}/${servlet.jar}"/>
         <pathelement location="${lib.dir}/${servlet-jsp.jar}"/>
         <pathelement location="${lib.dir}/${jetty-logging.jar}"/>
