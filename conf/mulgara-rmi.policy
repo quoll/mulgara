@@ -23,7 +23,9 @@ grant
   permission java.net.SocketPermission "*:80", "listen,accept,connect,resolve";
   permission java.net.SocketPermission "*:443", "connect,resolve";
   permission java.net.SocketPermission "*:1099", "connect,resolve";
-  permission java.net.SocketPermission "*:8080", "connect,resolve";
+  permission java.net.SocketPermission "*:6789", "listen,resolve";
+  permission java.net.SocketPermission "*:8080", "connect,listen,resolve";
+  permission java.net.SocketPermission "*:8081", "connect,listen,resolve";
   permission java.net.SocketPermission "*:1024-", "accept,connect,resolve";
   permission java.net.SocketPermission "224.0.0.251", "connect,accept,resolve";
   permission java.security.SecurityPermission "getPolicy";
