@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><variables><o/></variables><solution><o resource="http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfs-domain-and-range/premises005.rdf#A"/></solution></query></answer>

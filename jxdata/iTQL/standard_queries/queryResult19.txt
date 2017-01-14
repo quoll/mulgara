@@ -1,3 +1,0 @@
-ItqlInterpreter error - Unable to connect to a server
-Caused by: (SessionFactoryFinderException) Couldn't create session factory for @server2@
-Caused by: (ClassNotFoundException) org.mulgara.server.local.LocalSessionFactory

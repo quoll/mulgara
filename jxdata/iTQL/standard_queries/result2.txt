@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><message>Successfully loaded 16 statements from @baseuri@/jxdata/iTQL/coins.rdf into @server@#model2</message></query></answer>

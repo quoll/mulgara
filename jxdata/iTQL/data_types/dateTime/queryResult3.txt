@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><variables><label/></variables><solution><label language="en">Boxing Day</label></solution><solution><label language="en">Christmas Day</label></solution><solution><label language="en">Christmas Eve</label></solution><solution><label language="en">New Year's Eve</label></solution><solution><label language="fr">Noel</label></solution></query></answer>

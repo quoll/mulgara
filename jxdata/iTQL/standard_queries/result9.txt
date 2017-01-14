@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><message>Successfully loaded 49 statements from jar:@baseuri@/dist/@mulgara.jar@!/data/w3c-news.rss into @server@#model7</message></query></answer>

@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><message>Successfully inserted statements into @server@#diff</message></query><query><message>Successfully deleted statements from @server@#diff</message></query></answer>

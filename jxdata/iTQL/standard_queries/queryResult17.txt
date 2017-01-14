@@ -1,3 +1,0 @@
-ItqlInterpreter error - Could not commit modify: rmi://localhost/server1#nographexistswiththisname has a URI indicating the local server, but was not found
-Caused by: (QueryException) org.mulgara.query.MulgaraTransactionException: Transaction rollback triggered
-Caused by: (QueryException) rmi://localhost/server1#nographexistswiththisname has a URI indicating the local server, but was not found

@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><message>Successfully applied @server@#krule to ((@server@#test001 union @server@#test002) union @server@#test003) =&gt; @server@#test</message></query></answer>

@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><variables><dateTime/></variables><solution><dateTime datatype="http://www.w3.org/2001/XMLSchema#dateTime">2005-01-01T12:17:00.005</dateTime></solution></query></answer>

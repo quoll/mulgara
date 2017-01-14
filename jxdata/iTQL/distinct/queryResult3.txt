@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><variables><person/><email/></variables><solution><person resource="http://test.com/test#Barney"/><email>barney@test.com</email></solution><solution><person resource="http://test.com/test#Fred"/><email>fred@test.com</email></solution><solution><person resource="http://test.com/test#Fred"/><email>fred@test.com</email></solution></query></answer>

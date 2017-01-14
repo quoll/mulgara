@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><message>Successfully loaded 6 statements from @baseuri@/jxtest/iTQL/data-02-ext.ttl into @server@#data-02</message></query></answer>

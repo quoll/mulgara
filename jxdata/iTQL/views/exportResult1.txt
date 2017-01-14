@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><message>Successfully exported @server@#view1 to @baseuri@/tmp/view1.rdf.</message></query></answer>

@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><variables><label/></variables><solution><label language="en">Day 04</label></solution><solution><label language="en">Day 05</label></solution><solution><label language="en">Day 31</label></solution></query></answer>

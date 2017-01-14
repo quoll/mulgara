@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><message>Successfully loaded 3 statements from @baseuri@/jxdata/iTQL/rdfs/rdfs-domain-and-range/test002.rdf into @server@#test</message></query></answer>

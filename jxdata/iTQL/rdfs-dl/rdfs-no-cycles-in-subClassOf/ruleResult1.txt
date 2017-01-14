@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><message>Successfully applied @baseuri@/rules/rdfs.dl to @server@#test</message></query></answer>

@@ -1,6 +1,0 @@
-ItqlInterpreter error - Error getting information for answer
-Caused by: (QueryException) org.mulgara.query.TuplesException: Transaction error
-Caused by: (QueryException) org.mulgara.query.MulgaraTransactionException: Transaction rollback triggered
-Caused by: (QueryException) org.mulgara.query.TuplesException: Couldn't evaluate aggregate
-Caused by: (QueryException) Failed to resolve subquery
-Caused by: (QueryException) The subject: $head and the object: $n are invalid, one must be a variable and the other a fixed value around a predicate.

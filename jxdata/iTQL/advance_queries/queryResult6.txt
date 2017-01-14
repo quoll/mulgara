@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><variables><g/><a/><b/></variables><solution><g resource="@server@#"/><a resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/><b resource="http://mulgara.org/mulgara#Model"/></solution><solution><g resource="@server@#data-02"/><a resource="http://example.org/data/x"/><b resource="http://example.org/data/y"/></solution><solution><g resource="@server@#data-02"/><a resource="@server@#data-02"/><b resource="@server@#data-02"/></solution></query></answer>

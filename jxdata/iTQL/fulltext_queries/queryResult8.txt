@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><message>Successfully created graph @server@#lucenetest</message></query><query><message>Successfully inserted statements into @server@#lucenetest</message></query><query><variables><page/></variables><solution><page resource="http://subject/"/></solution></query><query><message>Successfully dropped graph @server@#lucenetest</message></query></answer>

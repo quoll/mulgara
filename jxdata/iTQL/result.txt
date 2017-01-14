@@ -1,1 +1,0 @@
-<aanswers><query><variables><x/><y/></variables><solution><x resource="http://mulgara.org/projects/mulgara/data/doc49.htm"/><y resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/></solution></query></answers>

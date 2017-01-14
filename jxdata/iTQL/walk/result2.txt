@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><message>Successfully loaded 183 statements from @baseuri@/data/examples/camera.rdf into @server@#camera</message></query><query><message>Successfully loaded 157 statements from @baseuri@/data/examples/camera.owl into @server@#camera</message></query></answer>

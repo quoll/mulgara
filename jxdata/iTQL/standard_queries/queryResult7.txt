@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><variables><subject/><predicate/><object/></variables><solution><subject resource="http://mulgara.org/mulgara#user/test"/><predicate resource="http://mulgara.org/mulgara#canRead"/><object resource="rmi://whisper.bne.pisoftware.com/server1#"/></solution><solution><subject resource="http://mulgara.org/mulgara#user/test"/><predicate resource="http://mulgara.org/mulgara#canRead"/><object resource="rmi://whisper.bne.pisoftware.com/server1#_"/></solution></query></answer>

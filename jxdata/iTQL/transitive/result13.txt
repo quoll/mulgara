@@ -1,3 +1,0 @@
-ItqlInterpreter error - Query failed: Predicate in transitive function, $p, currently must be bound to a value.
-Caused by: (MulgaraTransactionException) Transaction rollback triggered
-Caused by: (QueryException) Predicate in transitive function, $p, currently must be bound to a value.

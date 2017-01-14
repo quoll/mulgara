@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><variables><s/><p/><k0/></variables><solution><s resource="urn:test:10"/><p resource="urn:test:property"/><k0 datatype="http://www.w3.org/2001/XMLSchema#integer">3</k0></solution><solution><s resource="urn:test:11"/><p resource="urn:test:property"/><k0 datatype="http://www.w3.org/2001/XMLSchema#integer">2</k0></solution></query></answer>

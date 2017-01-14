@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><message>Successfully created graph @server@#xsdmodel</message></query><query><message>Successfully dropped graph @server@#xsdmodel</message></query><query><message>Successfully created graph @server@#xsdmodel</message></query><query><message>Successfully aliased http://mulgara.org/mulgara# as exp</message></query></answer>

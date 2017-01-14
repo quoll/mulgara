@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><message>Successfully loaded 18 statements from @baseuri@/tmp/test_ns.rdf into @server@#test_ns</message></query></answer>

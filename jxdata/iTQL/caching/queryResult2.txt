@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><variables><a/><b/></variables><solution><a>bar</a><b>bar</b></solution><solution><a>bar</a><b resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"/></solution><solution><a resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"/><b>bar</b></solution><solution><a resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"/><b resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"/></solution></query></answer>

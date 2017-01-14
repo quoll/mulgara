@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><message>Auto commit is off</message></query><query><message>Successfully created graph @server@#trans3</message></query><query><message>Successfully inserted statements into @server@#trans3</message></query><query><variables><s/><o/></variables><solution><s resource="uri:subject1"/><o>1</o></solution></query></answer>

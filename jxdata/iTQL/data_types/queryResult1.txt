@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><variables><value2/></variables><solution><value2 datatype="http://www.w3.org/2001/XMLSchema#double">40.0</value2></solution></query></answer>

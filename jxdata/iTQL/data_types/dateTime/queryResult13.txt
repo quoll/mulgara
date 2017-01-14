@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><variables><label/></variables><solution><label language="en">eleven</label></solution></query><query><message>Successfully deleted statements from @server@#numbers</message></query><query><variables><label/></variables></query></answer>

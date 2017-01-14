@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><variables><p/><o/></variables><solution><p resource="http://foo.com"/><o datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">this is a less than &amp;lt;</o></solution></query></answer>

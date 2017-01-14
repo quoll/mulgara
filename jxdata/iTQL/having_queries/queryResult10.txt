@@ -1,4 +1,0 @@
-ItqlInterpreter error - Query failed: No such variable $v in tuples [$s, $k0] (class org.mulgara.resolver.AppendAggregateTuples)
-Caused by: (MulgaraTransactionException) Transaction rollback triggered
-Caused by: (QueryException) Failed to resolve query
-Caused by: (TuplesException) No such variable $v in tuples [$s, $k0] (class org.mulgara.resolver.AppendAggregateTuples)

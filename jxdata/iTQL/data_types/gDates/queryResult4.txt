@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><variables><label/></variables><solution><label language="en">Year 0001</label></solution><solution><label language="en">Year 1981</label></solution><solution><label language="en">Year 2001</label></solution></query></answer>

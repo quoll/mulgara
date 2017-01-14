@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><message>Successfully loaded 103 statements from @baseuri@/jxdata/iTQL/camera.owl into @server@#camera</message></query></answer>

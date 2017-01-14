@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><variables><o/></variables><solution><o resource="http://www.w3.org/2000/01/rdf-schema#Class"/></solution><solution><o resource="http://www.w3.org/2000/01/rdf-schema#Resource"/></solution></query></answer>

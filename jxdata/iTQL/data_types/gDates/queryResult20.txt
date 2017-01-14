@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><variables><label/></variables><solution><label language="en">April 2004</label></solution><solution><label language="en">February 2004</label></solution><solution><label language="en">March 2004</label></solution></query></answer>

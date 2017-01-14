@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<answer xmlns="http://mulgara.org/tql#"><query><variables><label/></variables><solution><label language="en">Ascension Sunday</label></solution><solution><label language="en">Easter Monday</label></solution><solution><label language="en">Easter Sunday</label></solution><solution><label language="en">Good Friday</label></solution><solution><label language="en">Shrove Tuesday</label></solution></query></answer>

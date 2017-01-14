@@ -1,4 +1,0 @@
-ItqlInterpreter error - Query failed: Graph not in local storage, and not able to be found with the "mailto" scheme: <mailto:foo@bar.com>
-Caused by: (MulgaraTransactionException) Transaction rollback triggered
-Caused by: (QueryException) Error resolving [$s $p $o $_from] from mailto:foo@bar.com
-Caused by: (QueryException) Graph not in local storage, and not able to be found with the "mailto" scheme: <mailto:foo@bar.com>

@@ -1,4 +1,0 @@
-ItqlInterpreter error - Query failed: @server@#badmodel has a URI indicating the local server, but was not found
-Caused by: (MulgaraTransactionException) Transaction rollback triggered
-Caused by: (QueryException) Error resolving [$pmid http://mulgara.org/mulgara/Document#subject "Birds" $_from] from @server@#badmodel
-Caused by: (QueryException) @server@#badmodel has a URI indicating the local server, but was not found
