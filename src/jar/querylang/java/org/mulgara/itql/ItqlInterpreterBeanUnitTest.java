@@ -146,11 +146,6 @@ public class ItqlInterpreterBeanUnitTest extends TestCase {
     suite.addTest(new ItqlInterpreterBeanUnitTest("testQuery3"));
     suite.addTest(new ItqlInterpreterBeanUnitTest("testAnswerIteration"));
     suite.addTest(new ItqlInterpreterBeanUnitTest("testCreateModel"));
-    suite.addTest(new ItqlInterpreterBeanUnitTest("testLoadApi1"));
-    suite.addTest(new ItqlInterpreterBeanUnitTest("testLoadApi2"));
-    suite.addTest(new ItqlInterpreterBeanUnitTest("testLoadApi3"));
-    suite.addTest(new ItqlInterpreterBeanUnitTest("testLoadApi4"));
-    suite.addTest(new ItqlInterpreterBeanUnitTest("testLoadApi4_1"));
     suite.addTest(new ItqlInterpreterBeanUnitTest("testLoadApi5"));
     suite.addTest(new ItqlInterpreterBeanUnitTest("testLoadApi6"));
     suite.addTest(new ItqlInterpreterBeanUnitTest("testLoadApi7"));
@@ -395,125 +390,6 @@ public class ItqlInterpreterBeanUnitTest extends TestCase {
 
     // log that we've completed the test
     log.debug("Completed create test 3");
-  }
-
-  /**
-   * Test the interpreter using a load API remotely .
-   *
-   * @throws Exception if the test fails
-   */
-  public void testLoadApi1() throws Exception {
-
-    // log that we're executing the test
-    log.debug("Starting load API test 1");
-
-    URI sourceURI = new URI("http://purl.org/dc/elements/1.1");
-    URI modelURI = new URI(testModel);
-
-    // execute the load remotely
-    long statements = bean.load(null, sourceURI, modelURI);
-
-    assertEquals("Incorrect number of statements inserted", 153, statements);
-  }
-
-  // testLoadApi1()
-
-  /**
-   * Test the interpreter using a load API locally
-   *
-   * @throws Exception if the test fails
-   */
-  public void testLoadApi2() throws Exception {
-
-    // log that we're executing the test
-    log.debug("Starting load API test 2");
-
-    URI sourceURI = new URI("http://purl.org/dc/elements/1.1");
-    URI modelURI = new URI(testModel);
-
-    // open and wrap the inputstream
-    RemoteInputStreamSrvImpl srv =
-        new RemoteInputStreamSrvImpl(sourceURI.toURL().openStream());
-
-    // prepare it for exporting
-    Rmi.export(srv);
-
-    RemoteInputStream inputStream = new RemoteInputStream(srv);
-
-    // execute the load locally
-    long statements = bean.load(inputStream,
-        sourceURI, modelURI);
-
-    assertEquals("Incorrect number of statements inserted", 153, statements);
-
-    inputStream.close();
-
-  }
-
-  // testLoadApi2()
-
-  /**
-   * Test the interpreter using a load API locally
-   *
-   * @throws Exception if the test fails
-   */
-  public void testLoadApi3() throws Exception {
-
-    // log that we're executing the test
-    log.debug("Starting load API test 3");
-
-    URI sourceURI = new URI("http://purl.org/dc/elements/1.1");
-    URI dummyURI = new URI("http://mydummysite.com/rssfeed.rdf");
-    URI modelURI = new URI(testModel);
-
-    // execute the load locally - pass an invalid URI for the server.
-    // This should succeed as the server will ignore the dummyURI
-    long statements = bean.load(sourceURI.toURL().openStream(),
-        dummyURI, modelURI);
-
-    assertEquals("Incorrect number of statements inserted", 153, statements);
-
-  }
-
-  /**
-   * Test the interpreter using a load API locally
-   *
-   * @throws Exception if the test fails
-   */
-  public void testLoadApi4() throws Exception {
-
-    // log that we're executing the test
-    log.debug("Starting load API test 4");
-
-    URI sourceURI = new URI("http://purl.org/dc/elements/1.1");
-    URI modelURI = new URI(testModel);
-
-    // execute the load locally
-    long statements = bean.load(sourceURI.toURL().openStream(),
-        modelURI);
-
-    assertEquals("Incorrect number of statements inserted", 153, statements);
-
-  }
-
-  /**
-   * Test the interpreter using a load API locally
-   *
-   * @throws Exception if the test fails
-   */
-  public void testLoadApi4_1() throws Exception {
-
-    // log that we're executing the test
-    log.debug("Starting load API test 4_1");
-
-    URI sourceURI = new URI("http://purl.org/dc/elements/1.1");
-    URI modelURI = new URI(testModel);
-
-    // execute the load locally
-    long statements = bean.load(sourceURI.toURL().openStream(), modelURI, "application/rdf+xml");
-
-    assertEquals("Incorrect number of statements inserted", 153, statements);
-
   }
 
   /**

@@ -251,8 +251,8 @@ public class IntervalTransformationUnitTest extends TestCase {
     Variable y = new Variable("y");
 
     assertEquals(new ConstraintConjunction(
-        new IntervalConstraint(y, null, new Bound(3, false), xsdModel),
-        new IntervalConstraint(x, new Bound(2, false), null, xsdModel)
+        new IntervalConstraint(x, new Bound(2, false), null, xsdModel),
+        new IntervalConstraint(y, null, new Bound(3, false), xsdModel)
       ),
       intervalTransformation.transformExpression(context, new ConstraintConjunction(
           new ConstraintImpl(x, greaterThan, new LiteralImpl(2), xsdModel),

@@ -129,9 +129,9 @@ public class HttpContentUnitTest extends TestCase {
     content = new HttpContent(new URL(
         "https://sourceforge.net/export/rss_sfnewreleases.php"));
     mimeType = content.getContentType();
-    assertTrue("Expecting mime type of text/xml but found " + mimeType,
-        mimeType != null && mimeType.getPrimaryType().equals("text")
-            && mimeType.getSubType().equals("xml"));
+    assertTrue("Expecting mime type of application/rss+xml but found " + mimeType,
+        mimeType != null && mimeType.getPrimaryType().equals("application")
+            && mimeType.getSubType().equals("rss+xml"));
 
   }
 
@@ -146,7 +146,7 @@ public class HttpContentUnitTest extends TestCase {
     MimeType mimeType = null;
 
     //  obtain an invalid content type
-    content = new HttpContent(new URL("http://bad.google.org/"));
+    content = new HttpContent(new URL("http://bad.slashdot.org/"));
     mimeType = content.getContentType();
     assertTrue("Expecting mime type of null but found " + mimeType,
         mimeType == null);
@@ -233,7 +233,7 @@ public class HttpContentUnitTest extends TestCase {
     content = new HttpContent(new URL("http://purl.org/dc/elements/1.1"));
     stream = content.newInputStream();
     assertTrue("Expecting an input stream ", stream != null);
-    assertEquals("Expecting 17425 bytes from inputstream ", 17425, dumpAndCheck(stream));
+    assertEquals("Expecting 263018 bytes from inputstream ", 263018, dumpAndCheck(stream));
     stream.close();
     
   }

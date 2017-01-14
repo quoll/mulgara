@@ -197,7 +197,6 @@
     <delete dir="${dist.dir}"/>
     <delete dir="${tmp.dir}"/>
     <delete dir="${javadoc.dir}"/>
-    <delete dir="${jxtest.dir}"/>
     <delete dir="${src.docs.dir}"/>
     <delete dir="${basedir}/testDatabase"/>
     <delete dir="${basedir}/sqltest"/>
@@ -220,7 +219,7 @@
   <!-- running tests                                                       -->
   <!-- =================================================================== -->
   <target name="anthill-quick-test"
-          depends="clean, jxunit-test, publish"
+          depends="clean, publish"
           description="Runs all tests for Anthill">
   </target>
 
@@ -383,12 +382,6 @@
       <fileset dir="${javadoc.dir}">
         <include name="*/**"/>
       </fileset>
-    </copy>
-
-    <!-- jxunit tests -->
-    <mkdir dir="${core.dir}/jxdata/iTQL/"/>
-    <copy todir="${core.dir}/jxdata/iTQL">
-      <fileset dir="${jxdata.dir}/iTQL"/>
     </copy>
 
     <!-- resolver example -->
@@ -787,7 +780,6 @@
                       org.mulgara.store.*,
                       org.mulgara.store.graph.*,
                       org.mulgara.store.graph.xa.*,
-                      org.mulgara.store.jxunit.*,
                       org.mulgara.store.loader.*,
                       org.mulgara.store.nodepool.*,
                       org.mulgara.store.nodepool.memory.*,
@@ -1349,7 +1341,7 @@
 
         <fileset dir="${bin.dir}" includes="${dtd.jar}, ${querylang.jar}, ${query.jar},
                  ${driver.jar}, ${rmi.jar}, ${server-rmi.jar}"/>
-        <fileset dir="${lib.dir}" includes="${xerces.jar}, ${xmlParserAPIs.jar}, jxunit*.jar, junit.jar, junitpp.jar"/>
+        <fileset dir="${lib.dir}" includes="${xerces.jar}, ${xmlParserAPIs.jar}, junit.jar, junitpp.jar"/>
       </classpath>
 
     </java>
@@ -1498,15 +1490,6 @@
        transactionsize="10"
        logconfig="${conf.dir}/log4j-rdfload.xml">
 
-       <rdfpath>
-
-         <fileset dir="${jxdata.dir}/ant-tasks">
-
-           <include name="rdf-good/*.rdf"/>
-           <!-- Put in a baddy -->
-           <include name="rdf-bad/2.rdf"/>
-        </fileset>
-      </rdfpath>
     </rdfload>
 
    <!-- shutdown the Mulgara server -->
@@ -1559,14 +1542,6 @@
      </copy>
 
      <mkdir dir="${deployDir}/${version}/logs"/>
-     <copy todir="${deployDir}/${version}/logs">
-       <fileset dir="${jxtest.dir}"
-         includes="**/*.xml,**/*.txt"/>
-     </copy>
-     <copy todir="${deployDir}/${version}/logs">
-       <fileset dir="${jxtest.dir}"
-         includes="**/*output. **/*.log"/>
-     </copy>
 
   </target>
 
@@ -2171,7 +2146,7 @@
       <zipfileset src="${bin.dir}/${dtd.jar}" excludes="META-INF/**, **/*Test*"/>
       <zipfileset src="${bin.dir}/${jrdf.base.jar}" excludes="META-INF/**, **/*Test*"/>
       <zipfileset src="${bin.dir}/${query.jar}" excludes="META-INF/**, conf/mulgara-x-config.xml, org/mulgara/jena/**, **/*Test*"/>
-      <zipfileset src="${bin.dir}/${querylang.jar}" excludes="META-INF/**, **/*.xml, **/*Test*, org/mulgara/protocol/**, org/mulgara/itql/**, org/mulgara/sparql/**, org/mulgara/store/jxunit/**"/>
+      <zipfileset src="${bin.dir}/${querylang.jar}" excludes="META-INF/**, **/*.xml, **/*Test*, org/mulgara/protocol/**, org/mulgara/itql/**, org/mulgara/sparql/**"/>
       <zipfileset src="${bin.dir}/${resolver.jar}" excludes="META-INF/**, **/*Test*"/>
       <zipfileset src="${bin.dir}/${resolver-memory.jar}" excludes="META-INF/**, **/*.xml, **/*Test*"/>
       <zipfileset src="${bin.dir}/${resolver-nodetype.jar}" excludes="META-INF/**, **/*Test*"/>
@@ -2412,7 +2387,7 @@
 
   <target name="test"
           depends="dist, client-test, session-test, resolver-api-test, store-xa-test,
-                   utils-test, jxtest,
+                   utils-test,
                    store-stringpool-xa-loadtest, store-stringpool-xa11-loadtest,
                    publish-summary"
           description="Runs all tests (updates source first)">
@@ -2465,11 +2440,6 @@
   <target name="utils-test"
     depends="ant-task-test, dtd-test, krule-test, swrl-test, tag-test, util-test, util-xa-test"
     description="Runs miscellaneous utility tests">
-  </target>
-
-  <target name="jxtest"
-    depends="jxunit-test"
-    description="Runs all jxunit based testing">
   </target>
 
   <target name="ideSupport" depends="dist,demo-mp3-jar,descriptor-wsdl-client.jar"

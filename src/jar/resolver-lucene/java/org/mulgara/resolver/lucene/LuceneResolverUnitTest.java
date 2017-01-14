@@ -740,8 +740,8 @@ public class LuceneResolverUnitTest extends TestCase {
       transf.transform(context, q);
 
       cc = checkConstraint(q.getConstraintExpression(), 2);
-      checkConstraint(cc.getElements().get(0), "foo", "test:title", "blah", null, null);
-      checkConstraint(cc.getElements().get(1), "bar", "test:author", "Smith", null, null);
+      checkConstraint(cc.getElements().get(0), "bar", "test:author", "Smith", null, null);
+      checkConstraint(cc.getElements().get(1), "foo", "test:title", "blah", null, null);
 
       // two complex queries with scores but shared var
       q = new TestMutableLocalQuery(parseQuery(
@@ -756,8 +756,8 @@ public class LuceneResolverUnitTest extends TestCase {
       transf.transform(context, q);
 
       cc = checkConstraint(q.getConstraintExpression(), 2);
-      checkConstraint(cc.getElements().get(0), "foo", "test:title", "blah", "search1", "score1");
-      checkConstraint(cc.getElements().get(1), "foo", "test:author", "Smith", "search2", "score2");
+      checkConstraint(cc.getElements().get(0), "foo", "test:author", "Smith", "search2", "score2");
+      checkConstraint(cc.getElements().get(1), "foo", "test:title", "blah", "search1", "score1");
 
       // two complex queries with scores and separate vars
       q = new TestMutableLocalQuery(parseQuery(
@@ -772,8 +772,8 @@ public class LuceneResolverUnitTest extends TestCase {
       transf.transform(context, q);
 
       cc = checkConstraint(q.getConstraintExpression(), 2);
-      checkConstraint(cc.getElements().get(0), "foo", "test:title", "blah", "search1", "score1");
-      checkConstraint(cc.getElements().get(1), "bar", "test:author", "Smith", "search2", "score2");
+      checkConstraint(cc.getElements().get(0), "bar", "test:author", "Smith", "search2", "score2");
+      checkConstraint(cc.getElements().get(1), "foo", "test:title", "blah", "search1", "score1");
 
       // a simple query and a complex query, shared var
       q = new TestMutableLocalQuery(parseQuery(

@@ -136,8 +136,8 @@ public class N3WriterUnitTest extends TestCase {
     // multiple blank-nodes using internal-ids (numbers)
     runTest("_:42 <baz:baz> _:987 .\n" +
             "_:987 <bar:bar> <foo:foo> .\n",
-            "_:node1000002 <baz:baz> _:node1000001 .\n" +
-            "_:node1000001 <bar:bar> <foo:foo> .\n");
+            "_:node1000001 <baz:baz> _:node1000002 .\n" +
+            "_:node1000002 <bar:bar> <foo:foo> .\n");
   }
 
   private void runTest(String n3, String exp) throws Exception {

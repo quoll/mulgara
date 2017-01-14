@@ -157,7 +157,7 @@
 
     <fileset dir="${lib.dir}"
              includes="log4j-*.jar, ${xmlParserAPIs.jar}, ${xerces.jar},
-                       ${jena.jar}, ${iri.jar}, ${icu4j.jar}, jxunit*.jar, castor*.jar,
+                       ${jena.jar}, ${iri.jar}, ${icu4j.jar}, castor*.jar,
                        mail-*.jar, activation-*.jar, apache-soap-*.jar, jline*.jar,
                        axis-*.jar, saaj-*.jar, emory-*.jar, ${trove.jar},
                        ${bdb.jar}, jargs-*.jar, jetty-*.jar, jta-spec*.jar,
@@ -485,116 +485,11 @@
 
         <fileset dir="${bin.dir}" includes="${dtd.jar}, ${querylang.jar}, ${query.jar},
                  ${driver.jar}, ${rmi.jar}, ${server-rmi.jar}"/>
-        <fileset dir="${lib.dir}" includes="${xerces.jar}, ${xmlParserAPIs.jar}, jxunit*.jar, junit.jar, junitpp.jar"/>
+        <fileset dir="${lib.dir}" includes="${xerces.jar}, ${xmlParserAPIs.jar}, junit.jar, junitpp.jar"/>
       </classpath>
 
     </java>
    </target>
-
-  <!-- =================================================================== -->
-  <!-- JXUnit tests - performs tests located in the jxdata/ directory      -->
-  <!-- =================================================================== -->
-  <target name="jxunit-test"
-          depends="jxtest-data">
-
-    <ant antfile="build.xml" target="dist"/>
-
-    <!-- stop and start the server -->
-    <ant target="stop"/>
-    <ant target="start"/>
-    <ant target="scripted-itql-test"/>
-
-    <!-- stop the server -->
-    <ant target="stop"/>
-  </target>
-
-  <!-- =================================================================== -->
-  <!-- Run the scripted iTQL tests                                         -->
-  <!-- =================================================================== -->
-  <target name="scripted-itql-test"
-          depends="uri, driver-jar, query-jar"
-          description="run jxunit tests on itql scripts">
-
-    <mkdir dir="${junit.results.tmpdir}"/>
-    <echo message="Sending results to ${junit.results.tmpdir}"/>
-
-    <junit fork="yes" haltonfailure="no" printsummary="on"
-           jvm="${java.home}/bin/java" dir="${jxtest.dir}/iTQL">
-
-      <jvmarg value="${arch.bits}"/>
-      <jvmarg value="-ea"/>
-      <jvmarg value="${jvm.args}"/>
-      <sysproperty key="java.io.tmpdir" value="${tmp.dir}"/>
-      <sysproperty key="org.mulgara.xml.ResourceDocumentBuilderFactory"
-                   value="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
-      <sysproperty key="java.naming.factory.initial"
-                   value="com.sun.jndi.rmi.registry.RegistryContextFactory"/>
-      <sysproperty key="java.naming.provider.url" value="rmi://localhost"/>
-      <sysproperty key="java.rmi.server.codebase"
-                   value="${bin.uri}/${rmi.base.jar}"/>
-      <sysproperty key="file.encoding" value="UTF8"/>
-      <sysproperty key="cvs.root" value="${basedir}"/>
-      <sysproperty key="log4j.configuration" value="${baseuri}/log4j-conf.xml"/>
-      <sysproperty key="itql.command.log" value="${tmp.dir}/querylang.log"/>
-      <sysproperty key="org.mulgara.test" value="${org.mulgara.test}"/>
-
-      <classpath>
-
-        <path refid="query-classpath"/>
-
-        <fileset dir="${bin.dir}" includes="${dtd.jar}, ${querylang.jar},
-                                            ${query.jar},
-                                            ${driver.jar}, ${rmi.base.jar},
-                                            ${server-rmi.jar}"/>
-        <fileset dir="${lib.dir}" includes="${xerces.jar}, ${xmlParserAPIs.jar},
-                                            xmlc-xerces.jar, jxunit*.jar,
-                                            jakarta-regexp*.jar, junit.jar"/>
-      </classpath>
-
-      <test name="net.sourceforge.jxunit.JXTestCase" haltonfailure="no"
-            todir="${junit.results.tmpdir}"
-            outfile="TEST-net.sourceforge.jxunit.itql">
-        <formatter type="xml"/>
-      </test>
-    </junit>
-
-    <!-- rename test name for duplicate jxunits -->
-    <replace file="${junit.results.tmpdir}/TEST-net.sourceforge.jxunit.itql.xml"
-             token="name=&quot;net.sourceforge.jxunit.JXTestCase&quot;"
-             value="name=&quot;net.sourceforge.jxunit.JXTestCase.itql&quot;"/>
-  </target>
-
-  <!-- =================================================================== -->
-  <!-- Unpack, filter and preen JXUnit test data                           -->
-  <!-- =================================================================== -->
-  <target name="jxtest-data"
-          depends="set.host.name, uri, -jxtest-data-uptodate"
-          unless="jxtest.data.uptodate">
-
-    <!-- debugging only - clean test data -->
-    <delete dir="${jxtest.dir}"/>
-
-    <filter token="baseuri" value="${baseuri}"/>
-    <filter token="server" value="rmi://${host.name}/server1"/>
-    <filter token="server2" value="rmi://${host.name}/server2"/>
-    <filter token="mulgara.jar" value="${mulgara.jar}"/>
-
-    <copy todir="${jxtest.dir}" filtering="yes" encoding="utf-8">
-      <fileset dir="jxdata">
-        <exclude name="**/*.gz"/>
-      </fileset>
-    </copy>
-
-    <ant target="resolver-filesystem-test-data"/>
-  </target>
-
-  <target name="-jxtest-data-uptodate">
-
-    <uptodate property="jxtest.data.uptodate"
-              targetfile="${jxtest.dir}/iTQL/dc.rdfs">
-      <srcfiles dir="${jxdata.dir}" includes="**/*"/>
-    </uptodate>
-  </target>
 
   <!-- =================================================================== -->
   <!-- Starts an embedded Mulgara server                                    -->
