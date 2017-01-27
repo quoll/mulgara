@@ -3,7 +3,6 @@
 REM -----------------------------------------------------------------------------
 REM Build script for Mulgara
 REM
-REM $Id: build.bat,v 1.5 2004/12/22 05:00:31 newmana Exp $
 REM -----------------------------------------------------------------------------
 
 
@@ -56,16 +55,14 @@ goto buildpath
 REM for %%l IN (%LIBDIR%\*.jar) DO call setlocalpath %%l
 REM for %%l IN (%BUILDDIR%\*.jar) DO call setlocalpath %%l
 REM for %%l IN (%JAR_DEPENDENCIES%) DO call setlocalpath %%l
-set LOCALPATH=%LIBDIR%\ant-1.7.0.jar
+set LOCALPATH=%LIBDIR%\ant-1.9.7.jar
 set LOCALPATH=%LOCALPATH%;%LIBDIR%\bsf-2.3.0.jar
-set LOCALPATH=%LOCALPATH%;%LIBDIR%\ant-launcher-1.7.0.jar
+set LOCALPATH=%LOCALPATH%;%LIBDIR%\ant-launcher-1.9.7.jar
 set LOCALPATH=%LOCALPATH%;%LIBDIR%\junit-3.8.1.jar
-set LOCALPATH=%LOCALPATH%;%LIBDIR%\ant-junit-1.7.0.jar
-set LOCALPATH=%LOCALPATH%;%LIBDIR%\ant-apache-bsf-1.7.0.jar
-set LOCALPATH=%LOCALPATH%;%LIBDIR%\ant-trax-1.7.0.jar
+set LOCALPATH=%LOCALPATH%;%LIBDIR%\ant-junit-1.9.7.jar
+set LOCALPATH=%LOCALPATH%;%LIBDIR%\ant-apache-bsf-1.9.7.jar
 set LOCALPATH=%LOCALPATH%;%LIBDIR%\js-1.5r3.jar
-set LOCALPATH=%LOCALPATH%;%LIBDIR%\ant-nodeps-1.7.0.jar
-set LOCALPATH=%LOCALPATH%;%LIBDIR%\javacc-3.2.jar
+set LOCALPATH=%LOCALPATH%;%LIBDIR%\javacc.jar
 
 :testjavahome
 if "%JAVA_HOME%" == "" goto setjavahome
