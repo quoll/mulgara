@@ -1,4 +1,5 @@
 -- SKOS definitions.
+-- Based on the definitions from https://www.w3.org/TR/skos-reference/
 
 -- section 3.3
 owl:Class(skos:Concept).                                            -- S1
