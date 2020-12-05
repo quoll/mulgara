@@ -1,0 +1,145 @@
+-- SKOS definitions.
+
+-- section 3.3
+owl:Class(skos:Concept).                                            -- S1
+
+-- section 4.3
+owl:Class(skos:ConceptScheme).                                      -- S2
+owl:ObjectProperty(skos:inScheme).                                  -- S3
+owl:ObjectProperty(skos:hasTopConcept).                             -- S3
+owl:ObjectProperty(skos:topConceptOf).                              -- S3
+rdfs:range(skos:inScheme,skos:ConceptScheme).                       -- S4
+rdfs:domain(skos:hasTopConcept, skos:ConceptScheme).                -- S5
+rdfs:range(skos:hasTopConcept, skos:Concept).                       -- S6
+rdfs:subPropertyOf(skos:topConceptOf, skos:inScheme).               -- S7
+owl:inverseOf(skos:topConceptOf, skos:hasTopConcept).               -- S8
+
+-- section 4.4
+owl:disjointWith(skos:ConceptScheme, skos:Concept).                 -- S9
+
+-- section 5.3
+owl:DatatypeProperty(skos:prefLabel).                               -- S10
+owl:DatatypeProperty(skos:altLabel).                                -- S10
+owl:DatatypeProperty(skos:hiddenLabel).                             -- S10
+rdfs:subPropertyOf(skos:prefLabel, rdfs:label).                     -- S11
+rdfs:subPropertyOf(skos:altLabel, rdfs:label).                      -- S11
+rdfs:subPropertyOf(skos:hiddenLabel, rdfs:label).                   -- S11
+rdfs:range(skos:prefLabel, rdfs:Literal).                           -- S12
+rdfs:range(skos:altLabel, rdfs:Literal).                            -- S12
+rdfs:range(skos:hiddenLabel, rdfs:Literal).                         -- S12
+
+-- section 5.4
+owl:disjointWith(skos:prefLabel, skos:altLabel).                    -- S13
+owl:disjointWith(skos:prefLabel, skos:hiddenLabel).                 -- S13
+owl:disjointWith(skos:altLabel, skos:hiddenLabel).                  -- S13
+    -- Skipping S14.
+    -- This would need an owl:maxCardinality of 1 on a construct built
+    -- from skos:prefLabel and a language code predicate on a literal
+
+-- section 6.3
+owl:DatatypeProperty(skos:notation).                                -- S15
+
+-- section 7.3
+owl:ObjectProperty(skos:note).                                      -- S16
+owl:ObjectProperty(skos:changeNote).                                -- S16
+owl:ObjectProperty(skos:definition).                                -- S16
+owl:ObjectProperty(skos:editorialNote).                             -- S16
+owl:ObjectProperty(skos:example).                                   -- S16
+owl:ObjectProperty(skos:historyNote).                               -- S16
+owl:ObjectProperty(skos:scopeNote).                                 -- S16
+rdfs:subPropertyOf(skos:changeNote, skos:note).                     -- S17
+rdfs:subPropertyOf(skos:definition, skos:note).                     -- S17
+rdfs:subPropertyOf(skos:editorialNote, skos:note).                  -- S17
+rdfs:subPropertyOf(skos:example, skos:note).                        -- S17
+rdfs:subPropertyOf(skos:historyNote, skos:note).                    -- S17
+rdfs:subPropertyOf(skos:scopeNote, skos:note).                      -- S17
+
+-- section 8.3
+owl:ObjectProperty(skos:semanticRelation).                          -- S18
+owl:ObjectProperty(skos:broader).                                   -- S18
+owl:ObjectProperty(skos:narrower).                                  -- S18
+owl:ObjectProperty(skos:related).                                   -- S18
+owl:ObjectProperty(skos:broaderTransitive).                         -- S18
+owl:ObjectProperty(skos:narrowerTransitive).                        -- S18
+rdfs:domain(skos:semanticRelation, skos:Concept).                   -- S19
+rdfs:range(skos:semanticRelation, skos:Concept).                    -- S20
+rdfs:subPropertyOf(skos:broaderTransitive, skos:semanticRelation).  -- S21
+rdfs:subPropertyOf(skos:narrowerTransitive, skos:semanticRelation). -- S21
+rdfs:subPropertyOf(skos:related, skos:semanticRelation).            -- S21
+rdfs:subPropertyOf(skos:broader, skos:broaderTransitive).           -- S22
+rdfs:subPropertyOf(skos:narrower, skos:narrowerTransitive).         -- S22
+owl:SymmetricProperty(skos:related).                                -- S23
+owl:TransitiveProperty(skos:broaderTransitive).                     -- S24
+owl:TransitiveProperty(skos:narrowerTransitive).                    -- S24
+owl:inverseOf(skos:narrower, skos:broader).                         -- S25
+owl:inverseOf(skos:narrowerTransitive, skos:broaderTransitive).     -- S26
+
+-- section 8.4
+owl:disjointWith(skos:related, skos:broaderTransitive).             -- S27
+
+-- section 9.3
+owl:Class(skos:Collection).                                         -- S28
+owl:Class(skos:OrderedCollection).                                  -- S28
+rdfs:subClassOf(skos:OrderedCollection, skos:Collection).           -- S29
+owl:ObjectProperty(skos:member).                                    -- S30
+owl:ObjectProperty(skos:memberList).                                -- S30
+rdfs:domain(skos:member, skos:Collection).                          -- S31
+rdfs:domain(skos:memberList, skos:OrderedCollection).               -- S32
+rdfs:range(skos:memberList, rdf:List).                              -- S33
+owl:FunctionalProperty(skos:memberList).                            -- S34
+skos:member(R,M) :- skos:memberList(R,L), krule:inList(M,L).        -- S35
+
+-- section 9.4
+owl:disjointWith(skos:Collection, skos:Concept).                    -- S36
+owl:disjointWith(skos:Collection, skos:ConceptScheme).              -- S36
+
+-- section 10.3
+owl:ObjectProperty(skos:mappingRelation).                           -- S37
+owl:ObjectProperty(skos:closeMatch).                                -- S37
+owl:ObjectProperty(skos:exactMatch).                                -- S37
+owl:ObjectProperty(skos:broadMatch).                                -- S37
+owl:ObjectProperty(skos:narrowMatch).                               -- S37
+owl:ObjectProperty(skos:relatedMatch).                              -- S37
+rdfs:domain(skos:mappingRelation, skos:Concept).                    -- S38
+rdfs:range(skos:mappingRelation, skos:Concept).                     -- S39
+rdfs:subPropertyOf(skos:closeMatch, skos:mappingRelation).          -- S40
+rdfs:subPropertyOf(skos:broadMatch, skos:mappingRelation).          -- S40
+rdfs:subPropertyOf(skos:narrowMatch, skos:mappingRelation).         -- S40
+rdfs:subPropertyOf(skos:relatedMatch, skos:mappingRelation).        -- S40
+rdfs:subPropertyOf(skos:broadMatch, skos:broader).                  -- S41
+rdfs:subPropertyOf(skos:narrowMatch, skos:narrower).                -- S41
+rdfs:subPropertyOf(skos:relatedMatch, skos:related).                -- S41
+rdfs:subPropertyOf(skos:exactMatch, skos:closeMatch).               -- S42
+owl:inverseOf(skos:narrowMatch, skos:broadMatch).                   -- S43
+owl:SymmetricProperty(skos:relatedMatch).                           -- S44
+owl:SymmetricProperty(skos:closeMatch).                             -- S45
+owl:SymmetricProperty(skos:exactMatch).                             -- S45
+owl:TransitiveProperty(skos:exactMatch).                            -- S46
+
+-- section 10.4
+owl:disjointWith(skos:exactMatch, skos:broadMatch).                 -- S47
+owl:disjointWith(skos:exactMatch, skos:relatedMatch).               -- S47
+
+
+-- These rules implement the inList predicate
+
+krule:inList(L, X) :- rdf:first(L, X).
+krule:inList(L, X) :- rdf:rest(L, T), krule:inList(T, X).
+
+-- The following are a reduced set of OWL/RDFS definitions that will make the above work
+
+owl:TransitiveProperty(rdfs:subPropertyOf).
+owl:TransitiveProperty(rdfs:subClassOf).
+owl:SymmetricProperty(owl:disjointWith).
+owl:SymmetricProperty(owl:sameAs).
+owl:SymmetricProperty(owl:inverseOf).
+
+B(X,Y) :- A(X,Y), rdfs:subPropertyOf(A,B).
+Y(A) :- X(A), rdfs:subClassOf(X,Y).
+
+P(B,X) :- owl:sameAs(A,B), P(A,X).
+B(Y,X) :- owl:inverseOf(A,B), A(X,Y).
+P(B,A) :- owl:SymmetricProperty(P), P(A,B).
+P(A,C) :- owl:TransitiveProperty(P), P(A,B), P(B,C).
+owl:sameAs(Y,Z) :- owl:FunctionalProperty(P), P(X,Y), P(X,Z).
+
