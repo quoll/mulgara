@@ -13,6 +13,10 @@ Table of Contents
  * [Mulgara Server Options](#mulgara-server-options)
  * [License](#license)
 
+# Note about log4j
+On 2021-12-10 [CERT NZ issued an advisory](https://www.cert.govt.nz/it-specialists/advisories/log4j-rce-0-day-actively-exploited/) that [CVE-2021-44228](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-44228) was being actively exploited. This means that JNDI lookups in log messages could be used to prompt log4j to expose environment data, or to download and evaluate executable content.
+
+Mulgara has not been maintained for several years (I have focused on [Asami](https://github.com/threatgrid/asami) instead. That doesn't mean I can't or won't work on Mulgara. Get in touch!) and as a result the dependency on log4j is 1.2.15. This is prior to when the JNDI vulnerability was introduced, and so Mulgara is currently unaffected by this issue.
 
 # Introduction
 
